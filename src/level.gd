@@ -8,6 +8,7 @@ var chessboard:Chessboard = null
 var in_battle:bool = false
 var teleport:Dictionary = {}
 var history_state:PackedInt64Array = []
+@onready var history_document:Document = load("res://scene/history.tscn").instantiate()
 var level_state:String = ""
 var level_state_signal_connection:Array = []
 var mutex:Mutex = Mutex.new()
@@ -216,6 +217,8 @@ func state_ready_versus_start(_arg:Dictionary) -> void:
 	chessboard.state.set_castle(0xF)
 	chessboard.state.set_step_to_draw(0)
 	chessboard.state.set_round(1)
+	history_document.set_state(chessboard.state)
+	history_document.set_filename("history." + String.num_int64(Time.get_unix_time_from_system()) + ".json")
 	if Chess.get_end_type(chessboard.state) == "checkmate_black":
 		change_state("black_win")
 	elif Chess.get_end_type(chessboard.state) == "checkmate_white":
@@ -239,6 +242,7 @@ func state_ready_versus_waiting() -> void:
 	engine.stop_search()
 
 func state_ready_versus_move(_arg:Dictionary) -> void:
+	history_document.push_move(_arg["move"])
 	history_state.push_back(chessboard.state.get_zobrist())
 	state_signal_connect(chessboard.animation_finished, func() -> void:
 		var end_type:String = Chess.get_end_type(chessboard.state)
@@ -312,6 +316,7 @@ func state_ready_versus_extra_move(_arg:Dictionary) -> void:
 	Dialog.push_selection(decision_list, "请选择一个着法", true, true)
 
 func state_ready_black_win(_arg:Dictionary) -> void:
+	history_document.save_file()
 	var bit:int = chessboard.state.get_bit(ord("K")) | \
 				  chessboard.state.get_bit(ord("Q")) | \
 				  chessboard.state.get_bit(ord("R")) | \
@@ -327,6 +332,7 @@ func state_ready_black_win(_arg:Dictionary) -> void:
 	Dialog.push_dialog("你赢了！", "", true, true)
 
 func state_ready_white_win(_arg:Dictionary) -> void:
+	history_document.save_file()
 	var by:int = Chess.to_x88(chessboard.state.bit_index("k".unicode_at(0))[0])
 	chessboard.state.capture_piece(Chess.to_x88(by))
 	#chessboard.chessboard_piece[Chess.to_x88(by)].captured()
@@ -337,6 +343,7 @@ func state_ready_conclude(_arg:Dictionary) -> void:
 	Loading.change_scene("res://scene/conclude.tscn", {}, 1)
 
 func state_ready_versus_draw(_arg:Dictionary) -> void:
+	history_document.save_file()
 	var bit:int = chessboard.state.get_bit(ord("K")) | \
 				chessboard.state.get_bit(ord("Q")) | \
 				chessboard.state.get_bit(ord("R")) | \
