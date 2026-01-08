@@ -1,7 +1,7 @@
 extends Control
 
 func _ready() -> void:
-	$texture_rect/label_value_obtain.text = "%d" % Progress.get_value("obtain", 0)
+	$texture_rect/label_value_obtain.text = "%d" % Progress.get_value("obtains", 0)
 	$texture_rect/label_value_wins.text = "%d" % Progress.get_value("wins", 0)
 	$texture_rect/button.connect("button_up", on_button_pressed)
 

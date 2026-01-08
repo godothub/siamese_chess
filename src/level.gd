@@ -42,7 +42,7 @@ func _ready() -> void:
 			var by:int = Chess.to_position_int(chessboard.get_position_name(node.position))
 			node.get_parent().remove_child(node)
 			chessboard.add_piece_instance(node, by)
-	Progress.create_if_not_exist("obtain", 0)
+	Progress.create_if_not_exist("obtains", 0)
 	Progress.create_if_not_exist("wins", 0)
 	change_state("explore_idle")
 
@@ -101,6 +101,9 @@ func state_ready_explore_ready_to_move(_arg:Dictionary) -> void:
 			"档案":
 				Archive.open()
 				change_state("explore_idle")
+			"统计":
+				Dialog.push_selection(["统计", "卡牌", "档案", "设置"], 
+					"获得货币：%d  赢局：%d" % [Progress.get_value("obtains", 0), Progress.get_value("wins", 0)], false, false)
 			"设置":
 				change_state("explore_idle")
 	)
@@ -108,7 +111,7 @@ func state_ready_explore_ready_to_move(_arg:Dictionary) -> void:
 		change_state("explore_check_move", {"from": from, "to": chessboard.selected, "move_list": move_list})
 	)
 	state_signal_connect(chessboard.click_empty, change_state.bind("explore_idle"))
-	Dialog.push_selection(["卡牌", "档案", "设置"], "", false, false)
+	Dialog.push_selection(["统计", "卡牌", "档案", "设置"], "", false, false)
 	chessboard.set_square_selection(selection)
 
 func state_exit_explore_ready_to_move() -> void:

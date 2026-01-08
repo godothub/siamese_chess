@@ -44,6 +44,8 @@ func capturing(_pos:Vector3, _captured:Actor) -> void:	# 攻击
 	_captured.captured(self)
 
 func captured(_capturing:Actor = null) -> void:	# 被攻击
+	if larger_scale && Chess.group(piece_type) == 0:
+		Progress.accumulate("obtains", 5)
 	visible = false
 	return
 
