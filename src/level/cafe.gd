@@ -3,6 +3,7 @@ extends Level
 var standard_history_zobrist:PackedInt64Array = []
 var standard_history_state:Array[State] = []
 var standard_history_event:Array[Dictionary] = []
+@onready var standard_history_document:Document = load("res://scene/history.tscn").instantiate()
 var standard_engine:ChessEngine = PastorEngine.new()
 var chessboard_state:String = ""
 
@@ -41,6 +42,8 @@ func state_ready_in_game_start(_arg:Dictionary) -> void:
 	$table_0/chessboard_standard.state = Chess.create_initial_state()
 	$table_0/chessboard_standard.remove_piece_set()
 	$table_0/chessboard_standard.add_default_piece_set()
+	history_document.set_state($table_0/chessboard_standard.state)
+	history_document.set_filename("history." + String.num_int64(Time.get_unix_time_from_system()) + ".json")
 	if $table_0/chessboard_standard.state.get_turn() == 0:
 		change_state.call_deferred("in_game_enemy")
 	else:
@@ -60,6 +63,7 @@ func state_ready_in_game_waiting() -> void:
 	engine.stop_search()
 
 func state_ready_in_game_move(_arg:Dictionary) -> void:
+	history_document.push_move(_arg["move"])
 	standard_history_state.push_back($table_0/chessboard_standard.state.duplicate())
 	standard_history_zobrist.push_back($table_0/chessboard_standard.state.get_zobrist())
 	var rollback_event:Dictionary = $table_0/chessboard_standard.execute_move(_arg["move"])
@@ -159,6 +163,7 @@ func state_ready_in_game_extra_move(_arg:Dictionary) -> void:
 	Dialog.push_selection(decision_list, "请选择一个着法", true, true)
 
 func state_ready_game_end(_arg:Dictionary) -> void:
+	history_document.save_file()
 	match Chess.get_end_type($table_0/chessboard_standard.state):
 		"checkmate_black":
 			Dialog.push_dialog("黑方胜", "", true, true)
