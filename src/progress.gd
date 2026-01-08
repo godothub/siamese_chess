@@ -33,7 +33,7 @@ func set_value(key:String, data:Variant) -> void:
 
 func accumulate(key:String, data:Variant) -> void:
 	if !table.has(key):
-		table[key] = 0
+		table[key] = data
 	table[key] += data
 
 func create_if_not_exist(key:String, data:Variant) -> void:
