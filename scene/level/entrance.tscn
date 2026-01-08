@@ -295,3 +295,19 @@ to = "res://scene/level/outside_0.tscn"
 args = {
 "by": 3
 }
+
+[node name="csg_box_3d" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -0.2512207, -8.760193)
+size = Vector3(16, 0.4975586, 1.4796143)
+
+[node name="csg_box_3d_2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.507315, -0.2512207, 1.037384)
+size = Vector3(1.238739, 0.4975586, 21.074768)
+
+[node name="csg_box_3d_3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.578018, -0.2512207, 1.037384)
+size = Vector3(1.238739, 0.4975586, 21.074768)
+
+[node name="csg_box_3d_4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, -0.2512207, 9.793869)
+size = Vector3(16.021355, 0.4975586, 3.561798)

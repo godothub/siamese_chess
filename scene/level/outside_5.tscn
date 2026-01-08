@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://du05mqguyrd2v"]
+[gd_scene load_steps=13 format=3 uid="uid://du05mqguyrd2v"]
 
 [ext_resource type="Script" uid="uid://cjddqgsgfo4hw" path="res://src/level/outside.gd" id="1_vytyt"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_l5cec"]
@@ -28,6 +28,10 @@ fog_light_color = Color(1, 1, 1, 1)
 volumetric_fog_albedo = Color(0.88, 0.79816, 0.6072, 1)
 volumetric_fog_emission = Color(1, 1, 1, 1)
 adjustment_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vytyt"]
+metallic = 1.0
+roughness = 0.0
 
 [node name="outside" type="Node3D"]
 script = ExtResource("1_vytyt")
@@ -292,3 +296,23 @@ to = "res://scene/level/outside_7.tscn"
 args = {
 "by": 55
 }
+
+[node name="csg_box_3d" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -0.2512207, -8.760193)
+size = Vector3(16, 0.4975586, 1.4796143)
+material = SubResource("StandardMaterial3D_vytyt")
+
+[node name="csg_box_3d_2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.507315, -0.2512207, 0)
+size = Vector3(1.238739, 0.4975586, 19)
+material = SubResource("StandardMaterial3D_vytyt")
+
+[node name="csg_box_3d_3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.578018, -0.2512207, 0)
+size = Vector3(1.238739, 0.4975586, 19)
+material = SubResource("StandardMaterial3D_vytyt")
+
+[node name="csg_box_3d_4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, -0.2512207, 8.76297)
+size = Vector3(16.021355, 0.4975586, 1.5)
+material = SubResource("StandardMaterial3D_vytyt")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyv2flrvd7jsu"]
+[gd_scene load_steps=14 format=3 uid="uid://cyv2flrvd7jsu"]
 
 [ext_resource type="Script" uid="uid://d33ukx23kdm7v" path="res://src/level/outside_7.gd" id="1_kptv7"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_kptv7"]
@@ -29,6 +29,10 @@ fog_light_color = Color(1, 1, 1, 1)
 volumetric_fog_albedo = Color(0.88, 0.79816, 0.6072, 1)
 volumetric_fog_emission = Color(1, 1, 1, 1)
 adjustment_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kptv7"]
+metallic = 1.0
+roughness = 0.0
 
 [node name="outside" type="Node3D"]
 script = ExtResource("1_kptv7")
@@ -201,3 +205,23 @@ script = ExtResource("6_u6hh6")
 [node name="fence_branch2_5" parent="." instance=ExtResource("9_kptv7")]
 transform = Transform3D(-4.3711395e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711395e-08, -3, 0, 9)
 script = ExtResource("6_u6hh6")
+
+[node name="csg_box_3d" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -0.2512207, -8.760193)
+size = Vector3(16, 0.4975586, 1.4796143)
+material = SubResource("StandardMaterial3D_kptv7")
+
+[node name="csg_box_3d_2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.507315, -0.2512207, 0)
+size = Vector3(1.238739, 0.4975586, 19)
+material = SubResource("StandardMaterial3D_kptv7")
+
+[node name="csg_box_3d_3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.578018, -0.2512207, 0)
+size = Vector3(1.238739, 0.4975586, 19)
+material = SubResource("StandardMaterial3D_kptv7")
+
+[node name="csg_box_3d_4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, -0.2512207, 8.76297)
+size = Vector3(16.021355, 0.4975586, 1.5)
+material = SubResource("StandardMaterial3D_kptv7")
