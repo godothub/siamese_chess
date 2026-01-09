@@ -8,4 +8,7 @@ script = ExtResource("1_q3eg8")
 
 [node name="sprite_3d" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.009567261, 0)
+modulate = Color(0.21, 0.21, 0.21, 0.39215687)
+shaded = true
+render_priority = 1
 texture = ExtResource("2_ntu5p")
