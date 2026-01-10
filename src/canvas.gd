@@ -14,13 +14,14 @@ class ChessboardPointer extends Node2D:
 func _ready() -> void:
 	$sub_viewport.size = Vector2(resolution, resolution)
 
-func draw_pointer(type:String, color:Color, drawing_position:Vector2) -> void:
+func draw_pointer(type:String, color:Color, drawing_position:Vector2, priority:int = 0) -> void:
 	if !pointer.has(type):
 		pointer[type] = []
 	var new_point:ChessboardPointer = ChessboardPointer.new()
 	new_point.position = drawing_position
 	new_point.color = color
 	new_point.resolution = resolution
+	new_point.z_index = priority
 	$sub_viewport.add_child(new_point)
 	pointer[type].push_back(new_point)
 
