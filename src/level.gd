@@ -262,7 +262,7 @@ func state_ready_versus_enemy(_arg:Dictionary) -> void:
 	)
 	chessboard.set_square_selection(start_from)
 	engine.set_think_time(INF)
-	engine.set_max_depth(10)
+	engine.set_max_depth(6)
 	engine.start_search(chessboard.state, 0, history_state, Callable())
 
 func state_exit_versus_enemy() -> void:
