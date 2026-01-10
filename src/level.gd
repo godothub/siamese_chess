@@ -67,7 +67,7 @@ func state_signal_connect(_signal:Signal, _method:Callable) -> void:
 	level_state_signal_connection.push_back({"signal": _signal, "method": _method})
 
 func state_ready_explore_idle(_arg:Dictionary) -> void:
-	var by:int = Chess.to_x88(chessboard.state.bit_index("k".unicode_at(0))[0])
+	var by:int = Chess.to_x88(chessboard.state.bit_index(ord("k"))[0])
 	var selection:PackedStringArray = []
 	var start_from:int = chessboard.state.get_bit(ord("K")) | chessboard.state.get_bit(ord("k")) | \
 						 chessboard.state.get_bit(ord("Q")) | chessboard.state.get_bit(ord("q")) | \
@@ -79,7 +79,7 @@ func state_ready_explore_idle(_arg:Dictionary) -> void:
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("explore_ready_to_move", {"from": chessboard.selected})
 	)
-	if chessboard.state.get_bit("z".unicode_at(0)) & Chess.mask(Chess.to_64(by)):
+	if chessboard.state.get_bit(ord("z")) & Chess.mask(Chess.to_64(by)):
 		selection = interact_list[by].keys()
 		Dialog.push_selection(selection, title[by], false, false)
 	chessboard.set_square_selection(start_from)
@@ -169,8 +169,8 @@ func state_ready_explore_check_attack(_arg:Dictionary) -> void:
 	change_state("explore_check_interact", _arg)
 
 func state_ready_explore_check_interact(_arg:Dictionary) -> void:
-	var by:int = Chess.to_x88(chessboard.state.bit_index("k".unicode_at(0))[0])
-	if _arg.has("move") && Chess.to(_arg["move"]) == by && chessboard.state.get_bit("Z".unicode_at(0)) & Chess.mask(Chess.to_64(by)):
+	var by:int = Chess.to_x88(chessboard.state.bit_index(ord("k"))[0])
+	if _arg.has("move") && Chess.to(_arg["move"]) == by && chessboard.state.get_bit(ord("Z")) & Chess.mask(Chess.to_64(by)):
 		change_state("interact", {"callback": interact_list[by][""]})
 		return
 	change_state("explore_idle")
@@ -366,7 +366,7 @@ func state_ready_black_win(_arg:Dictionary) -> void:
 
 func state_ready_white_win(_arg:Dictionary) -> void:
 	history_document.save_file()
-	var by:int = Chess.to_x88(chessboard.state.bit_index("k".unicode_at(0))[0])
+	var by:int = Chess.to_x88(chessboard.state.bit_index(ord("k"))[0])
 	chessboard.state.capture_piece(Chess.to_x88(by))
 	#chessboard.chessboard_piece[Chess.to_x88(by)].captured()
 	state_signal_connect(Dialog.on_next, change_state.bind("conclude"))
@@ -391,7 +391,7 @@ func state_ready_versus_draw(_arg:Dictionary) -> void:
 	Dialog.push_dialog("平局", "", true, true)
 
 func state_ready_dialog(_arg:Dictionary) -> void:
-	var by:int = Chess.to_x88(chessboard.state.bit_index("k".unicode_at(0))[0])
+	var by:int = Chess.to_x88(chessboard.state.bit_index(ord("k"))[0])
 	change_state("interact", {"callback": interact_list[by][Dialog.selected]})
 
 func state_ready_interact(_arg:Dictionary) -> void:

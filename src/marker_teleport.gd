@@ -9,6 +9,6 @@ func _init() -> void:
 
 func event() -> void:
 	var from:int = Chess.to_position_int(level.chessboard.get_position_name(position))
-	if level.chessboard.state.get_piece(from) == "k".unicode_at(0):
+	if level.chessboard.state.get_piece(from) == ord("k"):
 		HoldCard.reset()
 		Loading.change_scene(to, args)

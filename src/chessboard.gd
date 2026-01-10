@@ -239,9 +239,9 @@ func add_piece_instance(instance:Actor, by:int) -> void:	# 注意根据state摆�
 	else:
 		instance.visible = true
 		chessboard_piece[by] = instance
-		if state.get_piece(by) == "K".unicode_at(0):
+		if state.get_piece(by) == ord("K"):
 			king_instance[0] = instance
-		if state.get_piece(by) == "k".unicode_at(0):
+		if state.get_piece(by) == ord("k"):
 			king_instance[1] = instance
 		instance.introduce(get_node(Chess.to_position_name(by)).global_position)
 

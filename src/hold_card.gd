@@ -34,12 +34,12 @@ func add_card(card:Card) -> void:
 func init_card() -> void:
 	var card_1:CardTarot = CardTarot.new()
 	card_1.cover = load("res://assets/texture/piece_pawn.svg")
-	card_1.piece = "p".unicode_at(0)
+	card_1.piece = ord("p")
 	card_1.actor = load("res://scene/actor/piece_pawn_black.tscn").instantiate().set_larger_scale()
 	card_list.push_back(card_1)
 	var card_2:CardTarot = CardTarot.new()
 	card_2.cover = load("res://assets/texture/piece_queen.svg")
-	card_2.piece = "q".unicode_at(0)
+	card_2.piece = ord("q")
 	card_2.actor = load("res://scene/actor/piece_queen_black.tscn").instantiate().set_larger_scale()
 	card_list.push_back(card_2)
 
