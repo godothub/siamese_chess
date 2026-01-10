@@ -364,3 +364,9 @@ func set_enabled(enabled:bool) -> void:
 		$canvas.clear_pointer("move")
 		$canvas.clear_pointer("pointer")
 		selected = -1
+
+func draw_pointer(type:String, color:Color, by:int) -> void:
+	$canvas.draw_pointer(type, color, $canvas.convert_name_to_position(Chess.to_position_name(by)))
+
+func clear_pointer(type:String) -> void:
+	$canvas.clear_pointer(type)
