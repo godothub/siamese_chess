@@ -239,7 +239,9 @@ func state_ready_versus_enemy(_arg:Dictionary) -> void:
 						 chessboard.state.get_bit(ord("p"))
 
 	state_signal_connect(chessboard.click_selection, func () -> void:
-		if premove_from == -1:
+		if premove_from == -1 || premove_to != -1:
+			premove_to = -1
+			chessboard.clear_pointer("premove")
 			var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1)
 			var selection:int = 0
 			premove_from = chessboard.selected
@@ -251,15 +253,20 @@ func state_ready_versus_enemy(_arg:Dictionary) -> void:
 			premove_to = chessboard.selected
 			chessboard.draw_pointer("premove", Color(0.3, 0.0, 0.0, 1), premove_from)
 			chessboard.draw_pointer("premove", Color(0.3, 0.0, 0.0, 1), premove_to)
+			chessboard.set_square_selection(start_from)
+			
 	)
 	state_signal_connect(chessboard.click_empty, func() -> void:
 		premove_from = -1
 		premove_to = -1
+		chessboard.clear_pointer("premove")
 		chessboard.set_square_selection(start_from)
 	)
 	state_signal_connect(engine.search_finished, func() -> void:
 		change_state("versus_move", {"move": engine.get_search_result(), "premove_from": premove_from, "premove_to": premove_to})
 	)
+	premove_from = -1
+	premove_to = -1
 	chessboard.set_square_selection(start_from)
 	engine.set_think_time(INF)
 	engine.set_max_depth(6)
