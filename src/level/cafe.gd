@@ -89,18 +89,19 @@ func state_ready_in_game_player(_arg:Dictionary) -> void:
 				return
 			$table_0/chessboard_standard.state = standard_history_state[-2]
 			$table_0/chessboard_standard.set_square_selection(
-				$table_0/chessboard_standard.state.get_bit(ord("K")) | $table_0/chessboard_standard.state.get_bit(ord("k")) |
-				$table_0/chessboard_standard.state.get_bit(ord("Q")) | $table_0/chessboard_standard.state.get_bit(ord("q")) |
-				$table_0/chessboard_standard.state.get_bit(ord("R")) | $table_0/chessboard_standard.state.get_bit(ord("r")) |
-				$table_0/chessboard_standard.state.get_bit(ord("B")) | $table_0/chessboard_standard.state.get_bit(ord("b")) |
-				$table_0/chessboard_standard.state.get_bit(ord("N")) | $table_0/chessboard_standard.state.get_bit(ord("n")) |
-				$table_0/chessboard_standard.state.get_bit(ord("P")) | $table_0/chessboard_standard.state.get_bit(ord("p"))
+				$table_0/chessboard_standard.state.get_bit(ord("k")) |
+				$table_0/chessboard_standard.state.get_bit(ord("q")) |
+				$table_0/chessboard_standard.state.get_bit(ord("r")) |
+				$table_0/chessboard_standard.state.get_bit(ord("b")) |
+				$table_0/chessboard_standard.state.get_bit(ord("n")) |
+				$table_0/chessboard_standard.state.get_bit(ord("p"))
 			)
 			$table_0/chessboard_standard.receive_rollback_event(standard_history_event[-1])
 			$table_0/chessboard_standard.receive_rollback_event(standard_history_event[-2])
 			standard_history_zobrist.resize(standard_history_zobrist.size() - 2)
 			standard_history_state.resize(standard_history_state.size() - 2)
 			standard_history_event.resize(standard_history_event.size() - 2)
+			history_document.rollback($table_0/chessboard_standard.state, 2)
 			await $table_0/chessboard_standard.animation_finished
 			if standard_history_event.size() <= 1:
 				Dialog.push_selection(["离开对局"], "已回退", false, false)

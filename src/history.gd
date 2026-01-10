@@ -34,6 +34,11 @@ func push_move(move:int) -> void:
 	Chess.apply_move(state, move)
 	update_table()
 
+func rollback(_state:State, pop_count:int = 1) -> void:
+	history.resize(history.size() - pop_count)
+	state = _state.duplicate()
+	update_table()
+
 func update_table() -> void:
 	$chessboard_flat.set_state(state)
 	for i:int in range(history.size()):
