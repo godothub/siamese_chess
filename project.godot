@@ -24,6 +24,7 @@ Dialog="*res://scene/dialog.tscn"
 Loading="*res://scene/loading.tscn"
 Progress="*res://src/progress.gd"
 Ambient="*res://scene/ambient.tscn"
+Clock="*res://src/clock.gd"
 
 [debug]
 

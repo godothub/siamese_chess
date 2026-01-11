@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://n5i2mcgyqj3k"]
+[gd_scene load_steps=9 format=3 uid="uid://n5i2mcgyqj3k"]
 
 [ext_resource type="PackedScene" uid="uid://dmo5204uinktq" path="res://assets/model/chess_clock.glb" id="1_jy1k2"]
-[ext_resource type="Script" uid="uid://303g4umue4bi" path="res://src/clock.gd" id="2_vaj2q"]
 [ext_resource type="Shader" uid="uid://dd7xsr1eeq6mo" path="res://src/unmoving_plaid.gdshader" id="3_41mnw"]
 [ext_resource type="Texture2D" uid="uid://d15qcqdl3xuf3" path="res://assets/texture/Texturelabs_Fabric_186S.jpg" id="4_oqnbl"]
 [ext_resource type="FontFile" uid="uid://d0mkasnv22qwl" path="res://assets/fonts/LCDMN___.TTF" id="5_oqnbl"]
@@ -28,7 +27,6 @@ albedo_texture = SubResource("ViewportTexture_vaj2q")
 bg_color = Color(0.0503998, 0.111772, 0.0784249, 1)
 
 [node name="clock" instance=ExtResource("1_jy1k2")]
-script = ExtResource("2_vaj2q")
 
 [node name="body" parent="." index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_sn2cr")
