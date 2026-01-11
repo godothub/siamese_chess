@@ -24,6 +24,9 @@ class PastorEngine : public ChessEngine
 		godot::PackedInt32Array get_principal_variation();
 		int get_score();
 		int get_deepest_ply();
+		int get_evaluated_position();
+		int get_beta_cutoff();
+		int get_transposition_table_cutoff();
 		void set_max_depth(int _max_depth);
 		void set_despise_factor(int _despise_factor);
 		void set_think_time(double _think_time);
@@ -41,7 +44,13 @@ class PastorEngine : public ChessEngine
 		double think_time;
 		int best_move;
 		int best_score;
+
+		//调试用
 		int deepest_ply = 0;
+		int evaluated_position = 0;
+		int beta_cutoff = 0;
+		int transposition_table_cutoff = 0;
+		
 		std::vector<godot::Ref<State>> state_pool;
 		std::unordered_map<int64_t, int> map_history_state;
 		std::array<int, 65536> history_table;
