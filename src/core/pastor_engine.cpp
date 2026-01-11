@@ -502,7 +502,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	deepest_ply = std::max(_ply, deepest_ply);
 	bool found_pv = false;
 	int transposition_table_score = transposition_table->probe_hash(_state->get_zobrist(), _depth, _alpha, _beta);
-	if (transposition_table_score != 65535)
+	if (_ply > 0 && transposition_table_score != 65535)
 	{
 		transposition_table_cutoff++;
 		return transposition_table_score;
@@ -512,7 +512,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 		evaluated_position++;
 		return quies(_state, score, _alpha, _beta, _group, _ply + 1);
 	}
-	if (map_history_state.count(_state->get_zobrist()))
+	if (_ply > 0 && map_history_state.count(_state->get_zobrist()))
 	{
 		return despise_factor; // 视作平局，如果局面不太好，也不会选择负分的下法
 	}
@@ -523,15 +523,15 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	}
 
 	unsigned char flag = ALPHA;
-	int best_move = 0;
+	int pv_move = 0;
 	bool has_transposition_table_move = false;
-	best_move = transposition_table->best_move(_state->get_zobrist());
-	if (Chess::is_move_valid(_state, _group, best_move))
+	pv_move = transposition_table->best_move(_state->get_zobrist());
+	if (Chess::is_move_valid(_state, _group, pv_move))
 	{
 		godot::Ref<State> test_state = state_pool[_ply + 1];
 		_state->_internal_duplicate(test_state);
-		Chess::apply_move(test_state, best_move);
-		int next_score = -alphabeta(test_state, score + evaluate(_state, best_move), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, true, nullptr, nullptr, _debug_output);
+		Chess::apply_move(test_state, pv_move);
+		int next_score = -alphabeta(test_state, score + evaluate(_state, pv_move), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, true, nullptr, nullptr, _debug_output);
 		has_transposition_table_move = true;
 		if (_beta <= next_score)
 		{
@@ -547,7 +547,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	}
 	else
 	{
-		best_move = 0;
+		pv_move = 0;
 	}
 	
 	bool has_killer_1 = false;
@@ -566,7 +566,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 		if (_alpha < next_score)
 		{
 			found_pv = true;
-			best_move = *killer_1;
+			pv_move = *killer_1;
 			_alpha = next_score;
 			flag = EXACT;
 		}
@@ -587,7 +587,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 		if (_alpha < next_score)
 		{
 			found_pv = true;
-			best_move = *killer_2;
+			pv_move = *killer_2;
 			_alpha = next_score;
 			flag = EXACT;
 		}
@@ -611,8 +611,8 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 			return despise_factor;
 		}
 	}
-	std::sort(move_list.ptrw(), move_list.ptrw() + move_list.size(), [this, &_state, best_move, killer_1, killer_2](int a, int b) -> bool{
-		return compare_move(a, b, best_move,  killer_1 ? *killer_1 : 0, killer_2 ? *killer_2 : 0, _state);
+	std::sort(move_list.ptrw(), move_list.ptrw() + move_list.size(), [this, &_state, pv_move, killer_1, killer_2](int a, int b) -> bool{
+		return compare_move(a, b, pv_move,  killer_1 ? *killer_1 : 0, killer_2 ? *killer_2 : 0, _state);
 	});
 	int move_count = move_list.size();
 	if (_depth > 2)
@@ -622,7 +622,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	}
 	int next_killer_1 = 0;
 	int next_killer_2 = 0;
-	best_move = move_list[0];
+	pv_move = move_list[0];
 	for (int i = 0; i < move_count; i++)
 	{
 		if (i == 0 && has_transposition_table_move || i == 1 && has_killer_1 || i == 2 && has_killer_2)
@@ -659,7 +659,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 		if (_alpha < next_score)
 		{
 			found_pv = true;
-			best_move = move_list[i];
+			pv_move = move_list[i];
 			_alpha = next_score;
 			flag = EXACT;
 			history_table[move_list[i] & 0xFFFF] += (1 << _depth);
@@ -667,15 +667,15 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	}
 	if (_alpha >= WIN - MAX_PLY)
 	{
-		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha + _ply, flag, best_move);
+		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha + _ply, flag, pv_move);
 	}
 	else if (_alpha <= -WIN + MAX_PLY)
 	{
-		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha - _ply, flag, best_move);
+		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha - _ply, flag, pv_move);
 	}
 	else
 	{
-		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha, flag, best_move);
+		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha, flag, pv_move);
 	}
 	return _alpha;
 }
@@ -693,7 +693,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 		if (suggest_move.size())
 		{
 			std::mt19937_64 rng(time(nullptr));
-			best_move = suggest_move[rng() % suggest_move.size()];
+			searched_move = suggest_move[rng() % suggest_move.size()];
 			return;
 		}
 	}
@@ -711,8 +711,8 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 			break;
 		}
 	}
-	best_move = transposition_table->best_move(_state->get_zobrist());
-	best_score = transposition_table->probe_hash(_state->get_zobrist(), 1, -THRESHOLD, THRESHOLD);
+	searched_move = transposition_table->best_move(_state->get_zobrist());
+	searched_score = transposition_table->probe_hash(_state->get_zobrist(), 1, -THRESHOLD, THRESHOLD);
 	//principal_variation.clear();
 	//godot::Ref<State> test_state = _state->duplicate();
 	//while (transposition_table->probe_hash(test_state->get_zobrist(), 1, -THRESHOLD, THRESHOLD) != 65535)
@@ -725,7 +725,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 
 int PastorEngine::get_search_result()
 {
-	return best_move;
+	return searched_move;
 }
 
 godot::PackedInt32Array PastorEngine::get_principal_variation()
@@ -735,7 +735,7 @@ godot::PackedInt32Array PastorEngine::get_principal_variation()
 
 int PastorEngine::get_score()
 {
-	return best_score;
+	return searched_score;
 }
 
 int PastorEngine::get_deepest_ply()

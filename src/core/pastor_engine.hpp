@@ -42,8 +42,8 @@ class PastorEngine : public ChessEngine
 		int MAX_PLY = 50;
 		int despise_factor = -100;
 		double think_time;
-		int best_move;
-		int best_score;
+		int searched_move;
+		int searched_score;
 
 		//调试用
 		int deepest_ply = 0;
