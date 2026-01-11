@@ -6,9 +6,9 @@ signal click_selection()
 signal click_empty()
 signal animation_finished()
 
-@export var COLOR_LAST_MOVE:Color = Color(0.3, 0.3, 0.3, 1)
-@export var COLOR_MOVE:Color = Color(0.3, 0.3, 0.3, 1)
-@export var COLOR_POINTER:Color = Color(0.3, 0.3, 0.3, 1)
+@export var COLOR_LAST_MOVE:Color = Color(0.569, 0.569, 0.569, 1.0)
+@export var COLOR_MOVE:Color = Color(0.56, 0.157, 0.164, 1.0)
+@export var COLOR_POINTER:Color = Color(0.176, 0.176, 0.176, 1.0)
 
 @onready var fallback_piece:Actor = load("res://scene/actor/piece_shrub.tscn").instantiate()
 var backup_piece:Array = []	#  被吃的子统一放这里管理
