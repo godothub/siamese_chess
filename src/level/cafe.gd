@@ -38,6 +38,61 @@ func interact_pastor() -> void:
 	$player.force_set_camera($camera_chessboard)
 	change_state("in_game_start")
 
+var game_premove_from:int = -1
+var game_premove_to:int = -1
+
+func game_premove_init() -> void:
+	if game_premove_from == -1:
+		var start_from:int = $table_0/chessboard_standard.state.get_bit(ord("k")) | \
+							 $table_0/chessboard_standard.state.get_bit(ord("q")) | \
+							 $table_0/chessboard_standard.state.get_bit(ord("r")) | \
+							 $table_0/chessboard_standard.state.get_bit(ord("b")) | \
+							 $table_0/chessboard_standard.state.get_bit(ord("n")) | \
+							 $table_0/chessboard_standard.state.get_bit(ord("p"))
+		$table_0/chessboard_standard.set_square_selection(start_from)
+	elif game_premove_to == -1:
+		var move_list:PackedInt32Array = Chess.generate_premove($table_0/chessboard_standard.state, 1)
+		var selection:int = 0
+		for iter:int in move_list:
+			if Chess.from(iter) == game_premove_from:
+				selection |= Chess.mask(Chess.to_64(Chess.to(iter)))
+		$table_0/chessboard_standard.set_square_selection(selection)
+
+func game_premove_pressed() -> void:
+	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord("k")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("q")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("r")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("b")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("n")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("p"))
+	if game_premove_from == -1 || game_premove_to != -1:
+		game_premove_to = -1
+		$table_0/chessboard_standard.clear_pointer("premove")
+		var move_list:PackedInt32Array = Chess.generate_premove($table_0/chessboard_standard.state, 1)
+		var selection:int = 0
+		game_premove_from = $table_0/chessboard_standard.selected
+		for iter:int in move_list:
+			if Chess.from(iter) == game_premove_from:
+				selection |= Chess.mask(Chess.to_64(Chess.to(iter)))
+		$table_0/chessboard_standard.set_square_selection(selection)
+	else:
+		game_premove_to = $table_0/chessboard_standard.selected
+		$table_0/chessboard_standard.draw_pointer("premove", Color(0.64, 0.051, 0.198, 1.0), game_premove_from, 1)
+		$table_0/chessboard_standard.draw_pointer("premove", Color(0.639, 0.051, 0.196, 1.0), game_premove_to, 1)
+		$table_0/chessboard_standard.set_square_selection(start_from)
+
+func game_premove_cancel() -> void:
+	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord("k")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("q")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("r")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("b")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("n")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("p"))
+	game_premove_from = -1
+	game_premove_to = -1
+	$table_0/chessboard_standard.clear_pointer("premove")
+	$table_0/chessboard_standard.set_square_selection(start_from)
+
 func state_ready_in_game_start(_arg:Dictionary) -> void:
 	$table_0/chessboard_standard.state = Chess.create_initial_state()
 	$table_0/chessboard_standard.remove_piece_set()
@@ -50,19 +105,23 @@ func state_ready_in_game_start(_arg:Dictionary) -> void:
 		change_state("in_game_player")
 
 func state_ready_in_game_enemy(_arg:Dictionary) -> void:
-	$table_0/chessboard_standard.set_square_selection(0)
+	state_signal_connect($table_0/chessboard_standard.click_selection, game_premove_pressed)
+	state_signal_connect($table_0/chessboard_standard.click_empty, game_premove_cancel)
 	state_signal_connect(engine.search_finished, func() -> void:
 		change_state("in_game_move", {"move": engine.get_search_result()})
 	)
 	engine.set_think_time(3)
 	engine.set_max_depth(20)
 	engine.start_search($table_0/chessboard_standard.state, 0, standard_history_state, Callable())
+	game_premove_init()
 
 func state_ready_in_game_waiting() -> void:
 	state_signal_connect(engine.search_finished, change_state.bind("in_game_enemy"))
 	engine.stop_search()
 
 func state_ready_in_game_move(_arg:Dictionary) -> void:
+	state_signal_connect($table_0/chessboard_standard.click_selection, game_premove_pressed)
+	state_signal_connect($table_0/chessboard_standard.click_empty, game_premove_cancel)
 	history_document.push_move(_arg["move"])
 	history_document.save_file()
 	standard_history_state.push_back($table_0/chessboard_standard.state.duplicate())
@@ -73,16 +132,23 @@ func state_ready_in_game_move(_arg:Dictionary) -> void:
 		change_state("game_end")
 	elif $table_0/chessboard_standard.state.get_turn() == 0:
 		change_state("in_game_enemy")
+	elif game_premove_from != -1 && game_premove_to != -1:
+		change_state("in_game_check_move", {"from": game_premove_from, "to": game_premove_to, "move_list": Chess.generate_valid_move($table_0/chessboard_standard.state, 1)})
+		game_premove_from = -1
+		game_premove_to = -1
+	elif game_premove_from != -1:
+		change_state("in_game_ready_to_move", {"from": game_premove_from})
 	else:
 		change_state("in_game_player")
+	game_premove_init()
 
 func state_ready_in_game_player(_arg:Dictionary) -> void:
-	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord("K")) | $table_0/chessboard_standard.state.get_bit(ord("k")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("Q")) | $table_0/chessboard_standard.state.get_bit(ord("q")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("R")) | $table_0/chessboard_standard.state.get_bit(ord("r")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("B")) | $table_0/chessboard_standard.state.get_bit(ord("b")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("N")) | $table_0/chessboard_standard.state.get_bit(ord("n")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("P")) | $table_0/chessboard_standard.state.get_bit(ord("p"))
+	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord("k")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("q")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("r")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("b")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("n")) | \
+						 $table_0/chessboard_standard.state.get_bit(ord("p"))
 	state_signal_connect(Dialog.on_next, func () -> void:
 		if Dialog.selected == "悔棋":
 			if standard_history_event.size() <= 1:
