@@ -301,6 +301,7 @@ func state_ready_versus_waiting() -> void:
 
 func state_ready_versus_move(_arg:Dictionary) -> void:
 	history_document.push_move(_arg["move"])
+	history_document.save_file()
 	history_state.push_back(chessboard.state.get_zobrist())
 
 	state_signal_connect(chessboard.click_selection, versus_premove_pressed)

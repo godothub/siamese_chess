@@ -64,6 +64,7 @@ func state_ready_in_game_waiting() -> void:
 
 func state_ready_in_game_move(_arg:Dictionary) -> void:
 	history_document.push_move(_arg["move"])
+	history_document.save_file()
 	standard_history_state.push_back($table_0/chessboard_standard.state.duplicate())
 	standard_history_zobrist.push_back($table_0/chessboard_standard.state.get_zobrist())
 	var rollback_event:Dictionary = $table_0/chessboard_standard.execute_move(_arg["move"])
