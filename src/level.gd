@@ -66,6 +66,61 @@ func state_signal_connect(_signal:Signal, _method:Callable) -> void:
 	assert(_signal.is_connected(_method))
 	level_state_signal_connection.push_back({"signal": _signal, "method": _method})
 
+var premove_from:int = -1
+var premove_to:int = -1
+
+func premove_init(explore:bool = false) -> void:
+	if premove_from == -1:
+		var start_from:int = chessboard.state.get_bit(ord("k")) | \
+							 chessboard.state.get_bit(ord("q")) | \
+							 chessboard.state.get_bit(ord("r")) | \
+							 chessboard.state.get_bit(ord("b")) | \
+							 chessboard.state.get_bit(ord("n")) | \
+							 chessboard.state.get_bit(ord("p"))
+		chessboard.set_square_selection(start_from)
+	elif premove_to == -1:
+		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if !explore else Chess.generate_explore_move(chessboard.state, 1)
+		var selection:int = 0
+		for iter:int in move_list:
+			if Chess.from(iter) == premove_from:
+				selection |= Chess.mask(Chess.to_64(Chess.to(iter)))
+		chessboard.set_square_selection(selection)
+
+func premove_pressed(explore:bool = false) -> void:
+	var start_from:int = chessboard.state.get_bit(ord("k")) | \
+						 chessboard.state.get_bit(ord("q")) | \
+						 chessboard.state.get_bit(ord("r")) | \
+						 chessboard.state.get_bit(ord("b")) | \
+						 chessboard.state.get_bit(ord("n")) | \
+						 chessboard.state.get_bit(ord("p"))
+	if premove_from == -1 || premove_to != -1:
+		premove_to = -1
+		chessboard.clear_pointer("premove")
+		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if !explore else Chess.generate_explore_move(chessboard.state, 1)
+		var selection:int = 0
+		premove_from = chessboard.selected
+		for iter:int in move_list:
+			if Chess.from(iter) == premove_from:
+				selection |= Chess.mask(Chess.to_64(Chess.to(iter)))
+		chessboard.set_square_selection(selection)
+	else:
+		premove_to = chessboard.selected
+		chessboard.draw_pointer("premove", Color(0.64, 0.051, 0.198, 1.0), premove_from, 1)
+		chessboard.draw_pointer("premove", Color(0.639, 0.051, 0.196, 1.0), premove_to, 1)
+		chessboard.set_square_selection(start_from)
+
+func premove_cancel() -> void:
+	var start_from:int = chessboard.state.get_bit(ord("k")) | \
+						 chessboard.state.get_bit(ord("q")) | \
+						 chessboard.state.get_bit(ord("r")) | \
+						 chessboard.state.get_bit(ord("b")) | \
+						 chessboard.state.get_bit(ord("n")) | \
+						 chessboard.state.get_bit(ord("p"))
+	premove_from = -1
+	premove_to = -1
+	chessboard.clear_pointer("premove")
+	chessboard.set_square_selection(start_from)
+
 func state_ready_explore_idle(_arg:Dictionary) -> void:
 	var by:int = Chess.to_x88(chessboard.state.bit_index(ord("k"))[0])
 	var selection:PackedStringArray = []
@@ -148,8 +203,11 @@ func state_ready_explore_extra_move(_arg:Dictionary) -> void:
 	Dialog.push_selection(decision_list, "请选择一个着法", true, true)
 
 func state_ready_explore_move(_arg:Dictionary) -> void:
+	state_signal_connect(chessboard.click_selection, premove_pressed.bind(true))
+	state_signal_connect(chessboard.click_empty, premove_cancel)
 	state_signal_connect(chessboard.animation_finished, change_state.bind("explore_check_attack", _arg))
 	chessboard.execute_move(_arg["move"])
+	premove_init(true)
 
 func state_ready_explore_check_attack(_arg:Dictionary) -> void:
 	if !chessboard.state.get_bit(ord("K")):
@@ -173,6 +231,15 @@ func state_ready_explore_check_interact(_arg:Dictionary) -> void:
 	if _arg.has("move") && Chess.to(_arg["move"]) == by && chessboard.state.get_bit(ord("Z")) & Chess.mask(Chess.to_64(by)):
 		change_state("interact", {"callback": interact_list[by][""]})
 		return
+	change_state("explore_check_premove")
+
+func state_ready_explore_check_premove(_arg:Dictionary) -> void:
+	if premove_from != -1 && premove_to != -1:
+		change_state("explore_check_move", {"from": premove_from, "to": premove_to, "move_list": Chess.generate_explore_move(chessboard.state, 1)})
+		premove_from = -1
+		premove_to = -1
+	elif premove_from != -1:
+		change_state("ready_to_move", {"from": premove_from})
 	change_state("explore_idle")
 
 func state_ready_explore_select_card(_arg:Dictionary) -> void:
@@ -228,64 +295,9 @@ func state_ready_versus_start(_arg:Dictionary) -> void:
 	else:
 		change_state("versus_player")
 
-var premove_from:int = -1
-var premove_to:int = -1
-
-func versus_premove_init() -> void:
-	if premove_from == -1:
-		var start_from:int = chessboard.state.get_bit(ord("k")) | \
-							 chessboard.state.get_bit(ord("q")) | \
-							 chessboard.state.get_bit(ord("r")) | \
-							 chessboard.state.get_bit(ord("b")) | \
-							 chessboard.state.get_bit(ord("n")) | \
-							 chessboard.state.get_bit(ord("p"))
-		chessboard.set_square_selection(start_from)
-	elif premove_to == -1:
-		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1)
-		var selection:int = 0
-		for iter:int in move_list:
-			if Chess.from(iter) == premove_from:
-				selection |= Chess.mask(Chess.to_64(Chess.to(iter)))
-		chessboard.set_square_selection(selection)
-
-func versus_premove_pressed() -> void:
-	var start_from:int = chessboard.state.get_bit(ord("k")) | \
-						 chessboard.state.get_bit(ord("q")) | \
-						 chessboard.state.get_bit(ord("r")) | \
-						 chessboard.state.get_bit(ord("b")) | \
-						 chessboard.state.get_bit(ord("n")) | \
-						 chessboard.state.get_bit(ord("p"))
-	if premove_from == -1 || premove_to != -1:
-		premove_to = -1
-		chessboard.clear_pointer("premove")
-		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1)
-		var selection:int = 0
-		premove_from = chessboard.selected
-		for iter:int in move_list:
-			if Chess.from(iter) == premove_from:
-				selection |= Chess.mask(Chess.to_64(Chess.to(iter)))
-		chessboard.set_square_selection(selection)
-	else:
-		premove_to = chessboard.selected
-		chessboard.draw_pointer("premove", Color(0.64, 0.051, 0.198, 1.0), premove_from, 1)
-		chessboard.draw_pointer("premove", Color(0.639, 0.051, 0.196, 1.0), premove_to, 1)
-		chessboard.set_square_selection(start_from)
-
-func versus_premove_cancel() -> void:
-	var start_from:int = chessboard.state.get_bit(ord("k")) | \
-						 chessboard.state.get_bit(ord("q")) | \
-						 chessboard.state.get_bit(ord("r")) | \
-						 chessboard.state.get_bit(ord("b")) | \
-						 chessboard.state.get_bit(ord("n")) | \
-						 chessboard.state.get_bit(ord("p"))
-	premove_from = -1
-	premove_to = -1
-	chessboard.clear_pointer("premove")
-	chessboard.set_square_selection(start_from)
-
 func state_ready_versus_enemy(_arg:Dictionary) -> void:
-	state_signal_connect(chessboard.click_selection, versus_premove_pressed)
-	state_signal_connect(chessboard.click_empty, versus_premove_cancel)
+	state_signal_connect(chessboard.click_selection, premove_pressed)
+	state_signal_connect(chessboard.click_empty, premove_cancel)
 	state_signal_connect(engine.search_finished, func() -> void:
 		assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(engine.get_search_result()))))
 		change_state("versus_move", {"move": engine.get_search_result()})
@@ -293,7 +305,7 @@ func state_ready_versus_enemy(_arg:Dictionary) -> void:
 	engine.set_think_time(INF)
 	engine.set_max_depth(6)
 	engine.start_search(chessboard.state, 0, history_state, Callable())
-	versus_premove_init()
+	premove_init()
 
 func state_ready_versus_waiting() -> void:
 	state_signal_connect(engine.search_finished, change_state.bind("versus_enemy"))
@@ -304,8 +316,8 @@ func state_ready_versus_move(_arg:Dictionary) -> void:
 	history_document.save_file()
 	history_state.push_back(chessboard.state.get_zobrist())
 
-	state_signal_connect(chessboard.click_selection, versus_premove_pressed)
-	state_signal_connect(chessboard.click_empty, versus_premove_cancel)
+	state_signal_connect(chessboard.click_selection, premove_pressed)
+	state_signal_connect(chessboard.click_empty, premove_cancel)
 	state_signal_connect(chessboard.animation_finished, func() -> void:
 		var end_type:String = Chess.get_end_type(chessboard.state)
 		if end_type == "checkmate_black":
@@ -331,7 +343,7 @@ func state_ready_versus_move(_arg:Dictionary) -> void:
 	
 	assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(_arg["move"]))))
 	chessboard.execute_move(_arg["move"])
-	versus_premove_init()
+	premove_init()
 
 func state_ready_versus_player(_arg:Dictionary) -> void:
 	var start_from:int = chessboard.state.get_bit(ord("k")) | \
