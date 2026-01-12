@@ -218,6 +218,7 @@ func receive_rollback_event(event:Dictionary) -> void:
 			move_piece_instance(event["to"], event["from"])
 			move_piece_instance_from_backup(event["to"], event["captured_instance"])
 		"promotion":
+			chessboard_piece[event["to"]].unpromote()
 			move_piece_instance(event["to"], event["from"])
 		"move":
 			move_piece_instance(event["to"], event["from"])
