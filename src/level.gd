@@ -322,6 +322,8 @@ func state_ready_versus_move(_arg:Dictionary) -> void:
 			change_state("versus_enemy")
 		elif premove_from != -1 && premove_to != -1:
 			change_state("versus_check_move", {"from": premove_from, "to": premove_to, "move_list": Chess.generate_valid_move(chessboard.state, 1)})
+			premove_from = -1
+			premove_to = -1
 		elif premove_from != -1:
 			change_state("versus_ready_to_move", {"from": premove_from})
 		else:
