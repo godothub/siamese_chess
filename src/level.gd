@@ -279,6 +279,7 @@ func state_ready_versus_alert(_arg:Dictionary) -> void:
 	Dialog.push_dialog("敌人发现了你！", "", true, true)
 
 func state_ready_versus_start(_arg:Dictionary) -> void:
+	Clock.set_time(30, 1)
 	chessboard.state.set_turn(0)
 	chessboard.state.set_castle(0xF)
 	chessboard.state.set_step_to_draw(0)
@@ -311,6 +312,7 @@ func state_ready_versus_waiting() -> void:
 	engine.stop_search()
 
 func state_ready_versus_move(_arg:Dictionary) -> void:
+	Clock.pause()
 	history_document.push_move(_arg["move"])
 	history_document.save_file()
 	history_state.push_back(chessboard.state.get_zobrist())
@@ -354,6 +356,8 @@ func state_ready_versus_player(_arg:Dictionary) -> void:
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("versus_ready_to_move", {"from": chessboard.selected})
 	)
+	state_signal_connect(Clock.timeout, change_state.bind("white_win"))
+	Clock.resume()
 	chessboard.clear_pointer("premove")
 	premove_from = -1
 	premove_to = -1
@@ -372,6 +376,7 @@ func state_ready_versus_ready_to_move(_arg:Dictionary) -> void:
 		change_state("versus_check_move", {"from": from, "to": chessboard.selected, "move_list": move_list})
 	)
 	state_signal_connect(chessboard.click_empty, change_state.bind("versus_player"))
+	state_signal_connect(Clock.timeout, change_state.bind("white_win"))
 	chessboard.set_square_selection(selection)
 
 func state_ready_versus_check_move(_arg:Dictionary) -> void:
@@ -399,6 +404,7 @@ func state_ready_versus_extra_move(_arg:Dictionary) -> void:
 		else:
 			change_state("versus_move", {"move": decision_to_move[Dialog.selected]})
 	)
+	state_signal_connect(Clock.timeout, change_state.bind("white_win"))
 	Dialog.push_selection(decision_list, "请选择一个着法", true, true)
 
 func state_ready_black_win(_arg:Dictionary) -> void:

@@ -7,17 +7,18 @@ var start_thinking:float = 0
 var extra:int = 0
 var paused:bool = false
 
+func _ready() -> void:
+	set_physics_process(false)
+
 func set_time(_time:float, _extra:int) -> void:
 	time_left = _time
 	extra = _extra
+	start_thinking = Time.get_unix_time_from_system()
+	paused = false
 
 func _physics_process(_delta:float):
 	if get_time_left() <= 0:
 		end_game()
-
-func start() -> void:
-	start_thinking = Time.get_unix_time_from_system()
-	set_physics_process(true)
 
 func get_time_left() -> float:
 	if !paused:
@@ -26,9 +27,10 @@ func get_time_left() -> float:
 		return time_left
 
 func pause() -> void:
-	time_left -= Time.get_unix_time_from_system() - start_thinking
-	paused = true
-	set_physics_process(false)
+	if !paused:
+		time_left -= Time.get_unix_time_from_system() - start_thinking
+		paused = true
+		set_physics_process(false)
 
 func resume() -> void:
 	start_thinking = Time.get_unix_time_from_system()
