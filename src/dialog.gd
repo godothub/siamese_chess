@@ -58,6 +58,11 @@ func push_selection(_selection:PackedStringArray, title:String, _force_selection
 	tween.tween_property($texture_rect_top/label, "text", tr(title), 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
 
+func set_hint_left(text:String) -> void:
+	$texture_rect_top/label_hint_left.text = text
+
+func set_hint_right(text:String) -> void:
+	$texture_rect_top/label_hint_right.text = text
 
 func clear() -> void:
 	if tween && tween.is_running():

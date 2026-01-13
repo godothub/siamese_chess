@@ -32,11 +32,41 @@ texture = SubResource("GradientTexture1D_ggi1b")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="label_hint_left" type="RichTextLabel" parent="texture_rect_top"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.020000001
+anchor_right = 0.18
+anchor_bottom = 1.0
+offset_left = -0.040000916
+offset_right = -0.36001587
+theme_override_fonts/normal_font = ExtResource("2_ow5ht")
+theme_override_font_sizes/normal_font_size = 23
+bbcode_enabled = true
+vertical_alignment = 1
+
+[node name="label_hint_right" type="RichTextLabel" parent="texture_rect_top"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82000005
+anchor_right = 0.98
+anchor_bottom = 1.0
+offset_left = 0.35992432
+offset_right = 0.040039063
+theme_override_fonts/normal_font = ExtResource("2_ow5ht")
+theme_override_font_sizes/normal_font_size = 23
+bbcode_enabled = true
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="label" type="RichTextLabel" parent="texture_rect_top"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
+anchor_left = 0.18
+anchor_right = 0.82000005
 anchor_bottom = 1.0
+offset_left = -0.36001587
+offset_right = 0.35992432
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_ow5ht")
