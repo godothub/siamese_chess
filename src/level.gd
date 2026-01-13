@@ -183,7 +183,6 @@ func state_ready_explore_check_move(_arg:Dictionary) -> void:
 		return
 	elif move_list.size() > 1:
 		change_state("explore_extra_move", {"move_list": move_list})
-
 	else:
 		change_state("explore_move", {"move": move_list[0]})
 
@@ -239,7 +238,7 @@ func state_ready_explore_check_premove(_arg:Dictionary) -> void:
 		premove_from = -1
 		premove_to = -1
 	elif premove_from != -1:
-		change_state("ready_to_move", {"from": premove_from})
+		change_state("explore_ready_to_move", {"from": premove_from})
 	change_state("explore_idle")
 
 func state_ready_explore_select_card(_arg:Dictionary) -> void:
