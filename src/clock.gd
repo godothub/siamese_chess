@@ -17,6 +17,8 @@ func set_time(_time:float, _extra:int) -> void:
 	paused = false
 
 func _physics_process(_delta:float):
+	var actual_time_left:float = get_time_left()
+	Dialog.set_hint_left("%02d:%02d.%03d" % [int(actual_time_left / 60), int(fmod(actual_time_left, 60)), int(fmod(actual_time_left, 1) * 1000)])
 	if get_time_left() <= 0:
 		end_game()
 
@@ -28,6 +30,7 @@ func get_time_left() -> float:
 
 func pause() -> void:
 	if !paused:
+		Dialog.set_hint_left("")
 		time_left -= Time.get_unix_time_from_system() - start_thinking
 		paused = true
 		set_physics_process(false)
@@ -38,5 +41,6 @@ func resume() -> void:
 	set_physics_process(true)
 
 func end_game() -> void:
+	Dialog.set_hint_left("")
 	set_physics_process(false)
 	timeout.emit()
