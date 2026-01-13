@@ -28,7 +28,7 @@ func set_state(_state:State) -> void:
 	update_table()
 
 func push_move(move:int) -> void:
-	if history.size() >= 60:
+	if history.size() >= 120:
 		return
 	history.push_back(Chess.get_move_name(state, move))
 	Chess.apply_move(state, move)
