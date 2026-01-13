@@ -25,6 +25,8 @@ func _unhandled_input(event:InputEvent) -> void:
 func push_dialog(text:String, title:String, blackscreen:bool = false, _click_anywhere:bool = false, _waiting:bool = false) -> void:
 	if tween && tween.is_running():
 		tween.kill()
+	if $texture_rect_bottom/label.text != "" || $texture_rect_top/label.text != "":
+		clear()
 	tween = create_tween()
 	force_selection = false
 	waiting = _waiting
@@ -38,7 +40,7 @@ func push_dialog(text:String, title:String, blackscreen:bool = false, _click_any
 	tween.tween_property($texture_rect_full, "visible", false, 0)
 
 func push_selection(_selection:PackedStringArray, title:String, _force_selection:bool = true, blackscreen:bool = false) -> void:
-	var text = ""
+	var text:String = ""
 	click_anywhere = false
 	force_selection = _force_selection
 	selection = _selection
@@ -46,6 +48,8 @@ func push_selection(_selection:PackedStringArray, title:String, _force_selection
 		text += "[url=\"" + iter + "\"]" + tr(iter) + "[/url]  "
 	if tween && tween.is_running():
 		tween.kill()
+	if $texture_rect_bottom/label.text != "" || $texture_rect_top/label.text != "":
+		clear()
 	tween = create_tween()
 	if blackscreen:
 		tween.tween_property($texture_rect_full, "visible", true, 0)
