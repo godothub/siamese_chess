@@ -999,6 +999,7 @@ bool Chess::is_move_valid(const godot::Ref<State> &_state, int _group, int _move
 
 bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 {
+	DEV_ASSERT(_state.is_valid());
 	int enemy_king = _group == 0 ? 'k' : 'K';
 	uint64_t enemy_king_mask = _state->get_bit(enemy_king);
 	if (_state->get_king_passant() != -1)
@@ -1100,6 +1101,7 @@ bool Chess::is_en_passant(const godot::Ref<State> &_state, int _from, int _to)
 
 godot::PackedInt32Array Chess::generate_premove(const godot::Ref<State> &_state, int _group)
 {
+	DEV_ASSERT(_state.is_valid());
 	godot::PackedInt32Array output;
 	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? 'A' : 'a'); !iter.end(); iter.next())
 	{
@@ -1186,6 +1188,7 @@ godot::PackedInt32Array Chess::generate_premove(const godot::Ref<State> &_state,
 
 godot::PackedInt32Array Chess::generate_move(const godot::Ref<State> &_state, int _group)
 {
+	DEV_ASSERT(_state.is_valid());
 	godot::PackedInt32Array output;
 	_internal_generate_move(output, _state, _group);
 	return output;
@@ -1193,10 +1196,12 @@ godot::PackedInt32Array Chess::generate_move(const godot::Ref<State> &_state, in
 
 void Chess::_internal_generate_move(godot::PackedInt32Array &output, const godot::Ref<State> &_state, int _group)
 {
+	DEV_ASSERT(_state.is_valid());
 	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? 'A' : 'a'); !iter.end(); iter.next())
 	{
 		int _from = iter.pos();
 		int from_piece = iter.piece();
+		DEV_ASSERT(from_piece >= 'A' && from_piece <= 'Z' || from_piece >= 'a' && from_piece <= 'z');
 		DEV_ASSERT(Chess::group(from_piece) == _group);
 		if ((from_piece & 95) == 'P')
 		{

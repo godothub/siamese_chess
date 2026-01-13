@@ -97,6 +97,7 @@ int State::has_piece(int _by)
 
 void State::add_piece(int _by, int _piece)
 {
+	DEV_ASSERT(_piece >= 'A' && _piece <= 'Z' || _piece >= 'a' && _piece <= 'z');
 	int by_64 = Chess::to_64(_by);
 	int64_t by_mask = Chess::mask(by_64);
 	pieces[_by] = _piece;

@@ -528,7 +528,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	pv_move = transposition_table->best_move(_state->get_zobrist());
 	if (Chess::is_move_valid(_state, _group, pv_move))
 	{
-		godot::Ref<State> test_state = state_pool[_ply + 1];
+		godot::Ref<State> &test_state = state_pool[_ply + 1];
 		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, pv_move);
 		int next_score = -alphabeta(test_state, score + evaluate(_state, pv_move), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, true, nullptr, nullptr, _debug_output);
@@ -553,7 +553,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	bool has_killer_1 = false;
 	if (killer_1 && Chess::is_move_valid(_state, _group, *killer_1))
 	{
-		godot::Ref<State> test_state = state_pool[_ply + 1];
+		godot::Ref<State> &test_state = state_pool[_ply + 1];
 		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, *killer_1);
 		int next_score = -alphabeta(test_state, score + evaluate(_state, *killer_1), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, true, nullptr, nullptr, _debug_output);
@@ -574,7 +574,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	bool has_killer_2 = false;
 	if (killer_2 && Chess::is_move_valid(_state, _group, *killer_2))
 	{
-		godot::Ref<State> test_state = state_pool[_ply + 1];
+		godot::Ref<State> &test_state = state_pool[_ply + 1];
 		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, *killer_2);
 		int next_score = -alphabeta(test_state, score + evaluate(_state, *killer_2), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, true, nullptr, nullptr, _debug_output);
@@ -633,7 +633,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 		{
 			_debug_output.call(_state->get_zobrist(), _depth, i, move_list.size());
 		}
-		godot::Ref<State> test_state = state_pool[_ply + 1];
+		godot::Ref<State> &test_state = state_pool[_ply + 1];
 		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, move_list[i]);
 		int next_score = 0;
@@ -713,14 +713,6 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	}
 	searched_move = transposition_table->best_move(_state->get_zobrist());
 	searched_score = transposition_table->probe_hash(_state->get_zobrist(), 1, -THRESHOLD, THRESHOLD);
-	//principal_variation.clear();
-	//godot::Ref<State> test_state = _state->duplicate();
-	//while (transposition_table->probe_hash(test_state->get_zobrist(), 1, -THRESHOLD, THRESHOLD) != 65535)
-	//{
-	//	int move = transposition_table->best_move(test_state->get_zobrist());
-	//	principal_variation.push_back(move);
-	//	Chess::apply_move(test_state, move);
-	//}
 }
 
 int PastorEngine::get_search_result()
