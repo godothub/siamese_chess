@@ -239,7 +239,8 @@ func state_ready_explore_check_premove(_arg:Dictionary) -> void:
 		premove_to = -1
 	elif premove_from != -1:
 		change_state("explore_ready_to_move", {"from": premove_from})
-	change_state("explore_idle")
+	else:
+		change_state("explore_idle")
 
 func state_ready_explore_select_card(_arg:Dictionary) -> void:
 	state_signal_connect(Dialog.on_next, change_state.bind("explore_idle"))
