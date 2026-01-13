@@ -46,7 +46,10 @@ background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_kgksa")
 ssr_enabled = true
-fog_light_color = Color(1, 1, 1, 1)
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3pbh"]
 render_priority = 0

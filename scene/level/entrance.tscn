@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfjv22gvsub2x"]
+[gd_scene load_steps=14 format=3 uid="uid://bfjv22gvsub2x"]
 
 [ext_resource type="Script" uid="uid://cjddqgsgfo4hw" path="res://src/level/outside.gd" id="1_vie8g"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_x41v6"]
+[ext_resource type="Environment" uid="uid://dpl334n3lt1ig" path="res://assets/environment_outside.tres" id="3_5hf7g"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_as14m"]
 [ext_resource type="PackedScene" uid="uid://cpdfjiqb4d2q6" path="res://assets/model/pool.glb" id="4_vie8g"]
 [ext_resource type="PackedScene" uid="uid://d13fcqueggvup" path="res://assets/model/fence.glb" id="5_of156"]
@@ -12,23 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cwjgphuayqvy3" path="res://assets/model/hotel_door_large.glb" id="10_lvxho"]
 [ext_resource type="PackedScene" uid="uid://bfl3bn4u2am21" path="res://scene/actor/tree.tscn" id="12_x41v6"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="13_as14m"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x41v6"]
-sky_top_color = Color(1, 1, 1, 1)
-sky_horizon_color = Color(1, 1, 1, 1)
-sky_curve = 0.5795615
-ground_bottom_color = Color(0.75, 0.195, 0.195, 1)
-ground_horizon_color = Color(0.7490196, 0.1882353, 0.2, 1)
-
-[sub_resource type="Sky" id="Sky_gimty"]
-sky_material = SubResource("ProceduralSkyMaterial_x41v6")
-
-[sub_resource type="Environment" id="Environment_sb1hd"]
-background_mode = 2
-background_color = Color(1, 1, 1, 1)
-sky = SubResource("Sky_gimty")
-ssr_enabled = true
-fog_light_color = Color(1, 1, 1, 1)
 
 [node name="entrance" type="Node3D"]
 script = ExtResource("1_vie8g")
@@ -42,7 +26,7 @@ transform = Transform3D(-0.9911276, 0.09025611, -0.09757031, 1.93588e-08, 0.7340
 fov = 58.5874
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_sb1hd")
+environment = ExtResource("3_5hf7g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.840762, 0.239459, -0.485571, 0.242345, 0.635549, 0.733039, 0.484137, -0.733987, 0.476314, 4.61496, 2.82427, 0)

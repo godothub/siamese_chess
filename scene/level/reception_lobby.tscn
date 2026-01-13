@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="3_aion5"]
 [ext_resource type="PackedScene" uid="uid://ylr82inm0vxe" path="res://assets/model/counter.glb" id="4_s8vca"]
 [ext_resource type="PackedScene" uid="uid://bw021nt6bdr6t" path="res://assets/model/elevator.glb" id="7_s7rcd"]
-[ext_resource type="Script" uid="uid://chtqhpiu556i1" path="res://src/marker_bit.gd" id="10_h67uj"]
+[ext_resource type="Script" path="res://src/marker_bit.gd" id="10_h67uj"]
 [ext_resource type="PackedScene" uid="uid://d14xggudtxih0" path="res://assets/model/hotel_sofa_small.glb" id="11_h67uj"]
 [ext_resource type="PackedScene" uid="uid://ji4lvbpsrte5" path="res://assets/model/hotel_sofa_large.glb" id="12_4fyxn"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="12_r1xpb"]
@@ -31,7 +31,10 @@ background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_gimty")
 ssr_enabled = true
-fog_light_color = Color(1, 1, 1, 1)
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gimty"]
 
@@ -83,7 +86,6 @@ material = SubResource("StandardMaterial3D_gimty")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
 script = ExtResource("10_h67uj")
 piece = 122
-metadata/_custom_type_script = "uid://chtqhpiu556i1"
 
 [node name="hotel_sofa2" parent="." instance=ExtResource("12_4fyxn")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7, 0, 4)

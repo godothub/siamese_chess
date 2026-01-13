@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bpxhvxnph5us"]
+[gd_scene load_steps=16 format=3 uid="uid://bpxhvxnph5us"]
 
 [ext_resource type="Script" uid="uid://qu3f0pfdm0a3" path="res://src/level/outside_0.gd" id="1_hcaay"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_a6ui3"]
+[ext_resource type="Environment" uid="uid://dpl334n3lt1ig" path="res://assets/environment_outside.tres" id="2_crw01"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="5_up75d"]
 [ext_resource type="PackedScene" uid="uid://rlos56ckp02d" path="res://scene/actor/shrub.tscn" id="7_6yoeu"]
 [ext_resource type="PackedScene" uid="uid://bfl3bn4u2am21" path="res://scene/actor/tree.tscn" id="8_kcqwh"]
@@ -14,26 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://c7joe7stxo7vb" path="res://scene/card_item.tscn" id="12_sq15a"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="14_crw01"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_not3w"]
-sky_top_color = Color(1, 1, 1, 1)
-sky_horizon_color = Color(1, 1, 1, 1)
-sky_curve = 0.5795615
-ground_bottom_color = Color(0.75, 0.195, 0.195, 1)
-ground_horizon_color = Color(0.7490196, 0.1882353, 0.2, 1)
-
-[sub_resource type="Sky" id="Sky_cdevh"]
-sky_material = SubResource("ProceduralSkyMaterial_not3w")
-
-[sub_resource type="Environment" id="Environment_w3jsn"]
-background_mode = 2
-sky = SubResource("Sky_cdevh")
-ssr_enabled = true
-ssr_max_steps = 32
-fog_light_color = Color(1, 1, 1, 1)
-volumetric_fog_albedo = Color(0.88, 0.79816, 0.6072, 1)
-volumetric_fog_emission = Color(1, 1, 1, 1)
-adjustment_enabled = true
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_not3w"]
 albedo_color = Color(0.89492244, 0.89492244, 0.8949224, 1)
 metallic = 1.0
@@ -44,7 +25,7 @@ script = ExtResource("1_hcaay")
 metadata/by = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_w3jsn")
+environment = ExtResource("2_crw01")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)

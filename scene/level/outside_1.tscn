@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://5jb1sys8w4to"]
+[gd_scene load_steps=17 format=3 uid="uid://5jb1sys8w4to"]
 
 [ext_resource type="Script" uid="uid://c733mdh8qpsk2" path="res://src/level/outside_1.gd" id="1_ychsu"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_4c3sk"]
+[ext_resource type="Environment" uid="uid://dpl334n3lt1ig" path="res://assets/environment_outside.tres" id="2_x07jh"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="5_6ehyn"]
 [ext_resource type="PackedScene" uid="uid://rlos56ckp02d" path="res://scene/actor/shrub.tscn" id="7_olkv4"]
 [ext_resource type="PackedScene" uid="uid://bfl3bn4u2am21" path="res://scene/actor/tree.tscn" id="8_glbyl"]
@@ -9,33 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://ekjtt81nkr2f" path="res://scene/actor/flower.tscn" id="9_gqr3t"]
 [ext_resource type="PackedScene" uid="uid://d1orpuo40iup6" path="res://scene/actor/carnation.tscn" id="10_fmso8"]
 [ext_resource type="PackedScene" uid="uid://c0v6vrq8yafil" path="res://assets/model/stone_0.glb" id="11_acvd5"]
-[ext_resource type="Script" uid="uid://chtqhpiu556i1" path="res://src/marker_bit.gd" id="11_ychsu"]
+[ext_resource type="Script" path="res://src/marker_bit.gd" id="11_ychsu"]
 [ext_resource type="PackedScene" uid="uid://d201yx1cmkulm" path="res://assets/model/stone_1.glb" id="12_acvd5"]
 [ext_resource type="PackedScene" uid="uid://d13fcqueggvup" path="res://assets/model/fence.glb" id="13_83jv4"]
 [ext_resource type="PackedScene" uid="uid://8kbw64nuq0ai" path="res://assets/model/fence_turn.glb" id="14_4c3sk"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="15_x07jh"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
-sky_top_color = Color(1, 1, 1, 1)
-sky_horizon_color = Color(1, 1, 1, 1)
-sky_curve = 0.5795615
-sky_cover_modulate = Color(0.7490196, 0.1882353, 0.2, 1)
-ground_bottom_color = Color(0.75, 0.195, 0.195, 1)
-ground_horizon_color = Color(0.7490196, 0.1882353, 0.2, 1)
-
-[sub_resource type="Sky" id="Sky_cdevh"]
-sky_material = SubResource("ProceduralSkyMaterial_w25ob")
-
-[sub_resource type="Environment" id="Environment_w3jsn"]
-background_mode = 2
-sky = SubResource("Sky_cdevh")
-ambient_light_color = Color(0.7490196, 0.2, 0.1882353, 1)
-ssr_enabled = true
-ssr_max_steps = 32
-fog_light_color = Color(1, 1, 1, 1)
-volumetric_fog_albedo = Color(0.88, 0.79816, 0.6072, 1)
-volumetric_fog_emission = Color(1, 1, 1, 1)
-adjustment_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w25ob"]
 metallic = 1.0
@@ -46,7 +25,7 @@ script = ExtResource("1_ychsu")
 metadata/by = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_w3jsn")
+environment = ExtResource("2_x07jh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
