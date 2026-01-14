@@ -457,6 +457,7 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, 
 	int score_relative = _group == 0 ? score : -score;
 	if (score_relative >= _beta)
 	{
+		beta_cutoff++;
 		return _beta;
 	}
 	if (score_relative > _alpha)
@@ -487,6 +488,7 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, 
 		int test_score = -quies(test_state, score + evaluate(_state, move_list[i]), -_beta, -_alpha, 1 - _group, _ply + 1);
 		if (test_score >= _beta)
 		{
+			beta_cutoff++;
 			return _beta;
 		}
 		if (test_score > _alpha)
@@ -500,6 +502,7 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, 
 int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alpha, int _beta, int _depth, int _group, int _ply, bool _can_null, bool _is_null, int *killer_1, int *killer_2, const godot::Callable &_debug_output)
 {
 	deepest_ply = std::max(_ply, deepest_ply);
+	deepest_depth = std::max(_depth, deepest_depth);
 	bool found_pv = false;
 	int transposition_table_score = transposition_table->probe_hash(_state->get_zobrist(), _depth, _alpha, _beta);
 	if (_ply > 0 && transposition_table_score != 65535)
@@ -523,13 +526,13 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	}
 
 	unsigned char flag = ALPHA;
-	int pv_move = 0;
-	bool has_transposition_table_move = false;
-	if (_can_null)
+	int pv_move = transposition_table->best_move(_state->get_zobrist());
+	if (_depth > 2 && _can_null)
 	{
 		int next_score = -alphabeta(_state, score, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, false, true, nullptr, nullptr, _debug_output);
 		if (next_score >= _beta)
 		{
+			beta_cutoff++;
 			return _beta;
 		}
 	}
@@ -577,6 +580,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 
 		if (_beta <= next_score)
 		{
+			beta_cutoff++;
 			if (!_is_null)
 			{
 				transposition_table->record_hash(_state->get_zobrist(), _depth, _beta, BETA, move_list[i]);
@@ -670,6 +674,11 @@ int PastorEngine::get_deepest_ply()
 	return deepest_ply;
 }
 
+int PastorEngine::get_deepest_depth()
+{
+	return deepest_depth;
+}
+
 int PastorEngine::get_evaluated_position()
 {
 	return evaluated_position;
@@ -716,6 +725,7 @@ void PastorEngine::_bind_methods()
 	godot::ClassDB::bind_method(godot::D_METHOD("get_search_result"), &PastorEngine::get_search_result);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_score"), &PastorEngine::get_score);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_deepest_ply"), &PastorEngine::get_deepest_ply);
+	godot::ClassDB::bind_method(godot::D_METHOD("get_deepest_depth"), &PastorEngine::get_deepest_depth);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_evaluated_position"), &PastorEngine::get_evaluated_position);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_beta_cutoff"), &PastorEngine::get_beta_cutoff);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_transposition_table_cutoff"), &PastorEngine::get_transposition_table_cutoff);

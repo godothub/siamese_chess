@@ -24,6 +24,7 @@ class PastorEngine : public ChessEngine
 		godot::PackedInt32Array get_principal_variation();
 		int get_score();
 		int get_deepest_ply();
+		int get_deepest_depth();
 		int get_evaluated_position();
 		int get_beta_cutoff();
 		int get_transposition_table_cutoff();
@@ -47,6 +48,7 @@ class PastorEngine : public ChessEngine
 
 		//调试用
 		int deepest_ply = 0;
+		int deepest_depth = 0;
 		int evaluated_position = 0;
 		int beta_cutoff = 0;
 		int transposition_table_cutoff = 0;
