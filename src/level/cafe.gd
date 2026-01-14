@@ -21,12 +21,22 @@ func _ready() -> void:
 	$player.force_set_camera($camera)
 	$table_0/chessboard_standard.set_enabled(false)
 	$pastor.play_animation("thinking")
-	interact_list[0x54] = {"下棋": interact_pastor}
+	interact_list[0x54] = {"下棋": interact_pastor.bind(false), "自定义布局": interact_pastor.bind(true)}
 	title[0x54] = "玉兰"
-	interact_list[0x55] = {"下棋": interact_pastor}
+	interact_list[0x55] = {"下棋": interact_pastor.bind(false), "自定义布局": interact_pastor.bind(true)}
 	title[0x55] = "玉兰"
 
-func interact_pastor() -> void:
+func interact_pastor(custom_state:bool) -> void:
+	var state:State = null
+	if custom_state:
+		var text_input_instance:TextInput = TextInput.create_text_input_instance("输入FEN格式的布局：", "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+		add_child(text_input_instance)
+		await text_input_instance.confirmed
+		state = Chess.parse(text_input_instance.text)
+		if !is_instance_valid(state):
+			return
+	else:
+		state = Chess.create_initial_state()
 	var from:int = $chessboard.state.bit_index(ord("k"))[0]
 	from = Chess.to_x88(from)
 	if from != 0x54:
@@ -36,7 +46,7 @@ func interact_pastor() -> void:
 	$chessboard/pieces/cheshire.set_position($chessboard.convert_name_to_position("e2"))
 	$chessboard/pieces/cheshire.play_animation("thinking")
 	$player.force_set_camera($camera_chessboard)
-	change_state("in_game_start")
+	change_state("in_game_start", {"state": state})
 
 var game_premove_from:int = -1
 var game_premove_to:int = -1
@@ -94,7 +104,7 @@ func game_premove_cancel() -> void:
 	$table_0/chessboard_standard.set_square_selection(start_from)
 
 func state_ready_in_game_start(_arg:Dictionary) -> void:
-	$table_0/chessboard_standard.state = Chess.create_initial_state()
+	$table_0/chessboard_standard.state = _arg["state"]
 	$table_0/chessboard_standard.remove_piece_set()
 	$table_0/chessboard_standard.add_default_piece_set()
 	history_document.set_state($table_0/chessboard_standard.state)
@@ -108,6 +118,12 @@ func state_ready_in_game_enemy(_arg:Dictionary) -> void:
 	state_signal_connect($table_0/chessboard_standard.click_selection, game_premove_pressed)
 	state_signal_connect($table_0/chessboard_standard.click_empty, game_premove_cancel)
 	state_signal_connect(engine.search_finished, func() -> void:
+		print("score: ", engine.get_score())
+		print("deepest depth: ", engine.get_deepest_depth())
+		print("deepest ply: ", engine.get_deepest_ply())
+		print("evaluated_position: ", engine.get_evaluated_position())
+		print("beta_cutoff: ", engine.get_beta_cutoff())
+		print("transposition_table_cutoff: ", engine.get_transposition_table_cutoff())
 		change_state("in_game_move", {"move": engine.get_search_result()})
 	)
 	engine.set_think_time(3)
