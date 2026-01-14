@@ -303,8 +303,8 @@ func state_ready_versus_enemy(_arg:Dictionary) -> void:
 		assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(engine.get_search_result()))))
 		change_state("versus_move", {"move": engine.get_search_result()})
 	)
-	engine.set_think_time(INF)
-	engine.set_max_depth(6)
+	engine.set_think_time(2)
+	engine.set_max_depth(20)
 	engine.start_search(chessboard.state, 0, history_state, Callable())
 	premove_init()
 
