@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="3_aion5"]
 [ext_resource type="PackedScene" uid="uid://ylr82inm0vxe" path="res://assets/model/counter.glb" id="4_s8vca"]
 [ext_resource type="PackedScene" uid="uid://bw021nt6bdr6t" path="res://assets/model/elevator.glb" id="7_s7rcd"]
-[ext_resource type="Script" path="res://src/marker_bit.gd" id="10_h67uj"]
+[ext_resource type="Script" uid="uid://chtqhpiu556i1" path="res://src/marker_bit.gd" id="10_h67uj"]
 [ext_resource type="PackedScene" uid="uid://d14xggudtxih0" path="res://assets/model/hotel_sofa_small.glb" id="11_h67uj"]
 [ext_resource type="PackedScene" uid="uid://ji4lvbpsrte5" path="res://assets/model/hotel_sofa_large.glb" id="12_4fyxn"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="12_r1xpb"]

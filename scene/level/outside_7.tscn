@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d13fcqueggvup" path="res://assets/model/fence.glb" id="5_od7r3"]
 [ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="6_u6hh6"]
 [ext_resource type="PackedScene" uid="uid://8kbw64nuq0ai" path="res://assets/model/fence_turn.glb" id="7_83ln2"]
-[ext_resource type="PackedScene" uid="uid://rlos56ckp02d" path="res://scene/actor/shrub.tscn" id="8_5gqpn"]
+[ext_resource type="PackedScene" uid="uid://c4wyvxxvc66cl" path="res://scene/actor/shrub.tscn" id="8_5gqpn"]
 [ext_resource type="PackedScene" uid="uid://hwvhjiv4h8w1" path="res://assets/model/fence_branch.glb" id="9_kptv7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kptv7"]

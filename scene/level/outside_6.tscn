@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="5_13g2u"]
 [ext_resource type="PackedScene" uid="uid://8kbw64nuq0ai" path="res://assets/model/fence_turn.glb" id="6_kv140"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="7_k3jk5"]
-[ext_resource type="PackedScene" uid="uid://rlos56ckp02d" path="res://scene/actor/shrub.tscn" id="11_ylpdj"]
+[ext_resource type="PackedScene" uid="uid://c4wyvxxvc66cl" path="res://scene/actor/shrub.tscn" id="11_ylpdj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fjtr"]
 metallic = 1.0

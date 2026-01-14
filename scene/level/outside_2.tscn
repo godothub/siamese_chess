@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_4jhsc"]
 [ext_resource type="Environment" uid="uid://dpl334n3lt1ig" path="res://assets/environment_outside.tres" id="2_8sf6x"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="5_h4n7q"]
-[ext_resource type="PackedScene" uid="uid://rlos56ckp02d" path="res://scene/actor/shrub.tscn" id="7_nqfyu"]
+[ext_resource type="PackedScene" uid="uid://c4wyvxxvc66cl" path="res://scene/actor/shrub.tscn" id="7_nqfyu"]
 [ext_resource type="PackedScene" uid="uid://d13fcqueggvup" path="res://assets/model/fence.glb" id="10_ogq1s"]
 [ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="10_qs46h"]
 [ext_resource type="Texture2D" uid="uid://bcktgfe4r1bsf" path="res://assets/texture/piece_knight.svg" id="11_cqecb"]
