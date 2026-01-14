@@ -497,7 +497,7 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, 
 	return _alpha;
 }
 
-int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alpha, int _beta, int _depth, int _group, int _ply, bool _can_null, int *killer_1, int *killer_2, const godot::Callable &_debug_output)
+int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alpha, int _beta, int _depth, int _group, int _ply, bool _can_null, bool _is_null, int *killer_1, int *killer_2, const godot::Callable &_debug_output)
 {
 	deepest_ply = std::max(_ply, deepest_ply);
 	bool found_pv = false;
@@ -525,76 +525,9 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	unsigned char flag = ALPHA;
 	int pv_move = 0;
 	bool has_transposition_table_move = false;
-	pv_move = transposition_table->best_move(_state->get_zobrist());
-	if (Chess::is_move_valid(_state, _group, pv_move))
-	{
-		godot::Ref<State> &test_state = state_pool[_ply + 1];
-		_state->_internal_duplicate(test_state);
-		Chess::apply_move(test_state, pv_move);
-		int next_score = -alphabeta(test_state, score + evaluate(_state, pv_move), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, true, nullptr, nullptr, _debug_output);
-		has_transposition_table_move = true;
-		if (_beta <= next_score)
-		{
-			beta_cutoff++;
-			return _beta;
-		}	
-		if (_alpha < next_score)
-		{
-			found_pv = true;
-			_alpha = next_score;
-			flag = EXACT;
-		}
-	}
-	else
-	{
-		pv_move = 0;
-	}
-	
-	bool has_killer_1 = false;
-	if (killer_1 && Chess::is_move_valid(_state, _group, *killer_1))
-	{
-		godot::Ref<State> &test_state = state_pool[_ply + 1];
-		_state->_internal_duplicate(test_state);
-		Chess::apply_move(test_state, *killer_1);
-		int next_score = -alphabeta(test_state, score + evaluate(_state, *killer_1), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, true, nullptr, nullptr, _debug_output);
-		has_killer_1 = true;
-		if (_beta <= next_score)
-		{
-			beta_cutoff++;
-			return _beta;
-		}
-		if (_alpha < next_score)
-		{
-			found_pv = true;
-			pv_move = *killer_1;
-			_alpha = next_score;
-			flag = EXACT;
-		}
-	}
-	bool has_killer_2 = false;
-	if (killer_2 && Chess::is_move_valid(_state, _group, *killer_2))
-	{
-		godot::Ref<State> &test_state = state_pool[_ply + 1];
-		_state->_internal_duplicate(test_state);
-		Chess::apply_move(test_state, *killer_2);
-		int next_score = -alphabeta(test_state, score + evaluate(_state, *killer_2), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, true, nullptr, nullptr, _debug_output);
-		has_killer_2 = true;
-		if (_beta <= next_score)
-		{
-			beta_cutoff++;
-			return _beta;
-		}
-		if (_alpha < next_score)
-		{
-			found_pv = true;
-			pv_move = *killer_2;
-			_alpha = next_score;
-			flag = EXACT;
-		}
-	}
 	if (_can_null)
 	{
-		int next_score = -alphabeta(_state, score, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, false);
+		int next_score = -alphabeta(_state, score, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, false, true, nullptr, nullptr, _debug_output);
 		if (next_score >= _beta)
 		{
 			return _beta;
@@ -625,10 +558,6 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	pv_move = move_list[0];
 	for (int i = 0; i < move_count; i++)
 	{
-		if (i == 0 && has_transposition_table_move || i == 1 && has_killer_1 || i == 2 && has_killer_2)
-		{
-			continue;
-		}
 		if (_debug_output.is_valid())
 		{
 			_debug_output.call(_state->get_zobrist(), _depth, i, move_list.size());
@@ -639,16 +568,19 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 		int next_score = 0;
 		if (found_pv)
 		{
-			next_score = -alphabeta(test_state, score + evaluate(_state, move_list[i]), -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, true, &next_killer_1, &next_killer_2, _debug_output);
+			next_score = -alphabeta(test_state, score + evaluate(_state, move_list[i]), -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, _can_null, _is_null, &next_killer_1, &next_killer_2, _debug_output);
 		}
 		if (!found_pv || next_score > _alpha && next_score < _beta)
 		{
-			next_score = -alphabeta(test_state, score + evaluate(_state, move_list[i]), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, true, &next_killer_1, &next_killer_2, _debug_output);
+			next_score = -alphabeta(test_state, score + evaluate(_state, move_list[i]), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, _can_null, _is_null, &next_killer_1, &next_killer_2, _debug_output);
 		}
 
 		if (_beta <= next_score)
 		{
-			transposition_table->record_hash(_state->get_zobrist(), _depth, _beta, BETA, move_list[i]);
+			if (!_is_null)
+			{
+				transposition_table->record_hash(_state->get_zobrist(), _depth, _beta, BETA, move_list[i]);
+			}
 			if (killer_1 && killer_2)
 			{
 				*killer_2 = *killer_1;
@@ -665,17 +597,20 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 			history_table[move_list[i] & 0xFFFF] += (1 << _depth);
 		}
 	}
-	if (_alpha >= WIN - MAX_PLY)
+	if (!_is_null)
 	{
-		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha + _ply, flag, pv_move);
-	}
-	else if (_alpha <= -WIN + MAX_PLY)
-	{
-		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha - _ply, flag, pv_move);
-	}
-	else
-	{
-		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha, flag, pv_move);
+		if (_alpha >= WIN - MAX_PLY)
+		{
+			transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha + _ply, flag, pv_move);
+		}
+		else if (_alpha <= -WIN + MAX_PLY)
+		{
+			transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha - _ply, flag, pv_move);
+		}
+		else
+		{
+			transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha, flag, pv_move);
+		}
 	}
 	return _alpha;
 }
@@ -705,7 +640,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	}
 	for (int i = 2; i <= max_depth; i += 2)
 	{
-		alphabeta(_state, evaluate_all(_state), -THRESHOLD, THRESHOLD, i, _group, 0, true, nullptr, nullptr, _debug_output);
+		alphabeta(_state, evaluate_all(_state), -THRESHOLD, THRESHOLD, i, _group, 0, true, false, nullptr, nullptr, _debug_output);
 		if (time_passed() >= think_time || interrupted)
 		{
 			break;
