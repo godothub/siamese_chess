@@ -1,7 +1,8 @@
 extends "res://src/level/outside.gd"
 
 var random_pattern:Array = [
-	[
+	{
+		"map": [
 			   0,        0,        0,        0,        0,        0,        0,        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
@@ -10,8 +11,10 @@ var random_pattern:Array = [
 			   0,        0,        0,        0,        0,        0,        0,        0,
 			 "P",      "P",      "P",      "P",      "P",      "P",      "P",      "P",
 		   "NBR",    "NBR",    "NBR",      "K",    "NBR",    "NBR",    "NBR",    "NBR",
-	],
-	[
+		]
+	},
+	{
+		"map": [
 			   0,        0,        0,        0,        0,        0,        0,        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
@@ -20,8 +23,10 @@ var random_pattern:Array = [
 			   0,        0,        0,        0,        0,        0,        0,        0,
 			 "P",      "P",      "P",      "P",      "P",      "P",      "P",      "P",
 			   0,        0,        0,      "K",        0,        0,        0,        0,
-	],
-	[
+		]
+	},
+	{
+		"map": [
 			   0,        0,        0,        0,        0,        0,        0,        0,
 			   0,        0,      "X",      "X",      "X",      "X",      "X",        0,
 			   0,      "X",      "X",      "X",      "X",      "X",      "X",        0,
@@ -30,8 +35,10 @@ var random_pattern:Array = [
 			   0,      "X",     "NX",      "X",      "K",      "X",      "X",        0,
 			   0,      "X",      "X",      "X",      "X",      "X",      "X",        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
-	],
-	[
+		]
+	},
+	{
+		"map": [
 			   0,        0,        0,        0,        0,        0,        0,        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
@@ -40,7 +47,20 @@ var random_pattern:Array = [
 			   0,        0,    "BN ",    "BN ",      "K",    "BN ",        0,        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
-	]
+		]
+	},
+	{
+		"map": [
+			   0,      "n",        0,        0,        0,        0,      "n",        0,
+			   0,        0,        0,        0,        0,        0,        0,        0,
+			   0,        0,    "Y  ",    "Y  ",    "Y  ",    "Y  ",        0,        0,
+			   0,        0,    "Y  ",    "Y  ",    "Y  ",    "Y  ",        0,        0,
+			   0,        0,    "Y  ",    "Y  ",    "Y  ",    "Y  ",        0,        0,
+			   0,        0,    "Y  ",    "Y  ",    "Y  ",    "Y  ",        0,        0,
+			   0,        0,        0,        0,        0,      "Y",      "Y",      "Y",
+			   0,        0,        0,        0,        0,      "Y",      "K",      "Y",
+		]
+	}
 ]
 
 var actor:Dictionary = {
@@ -51,16 +71,18 @@ var actor:Dictionary = {
 	ord('Q'): load("res://scene/actor/piece_queen_white.tscn").instantiate().set_larger_scale(),
 	ord('K'): load("res://scene/actor/enemy_cheshire.tscn").instantiate(),
 	ord('X'): load("res://scene/actor/shrub.tscn").instantiate(),
+	ord('Y'): load("res://scene/actor/stone.tscn").instantiate(),
 	ord('p'): load("res://scene/actor/piece_pawn_black.tscn").instantiate().set_larger_scale(),
 	ord('n'): load("res://scene/actor/piece_knight_black.tscn").instantiate().set_larger_scale(),
 	ord('b'): load("res://scene/actor/piece_bishop_black.tscn").instantiate().set_larger_scale(),
 	ord('r'): load("res://scene/actor/piece_rook_black.tscn").instantiate().set_larger_scale(),
 	ord('q'): load("res://scene/actor/piece_queen_black.tscn").instantiate().set_larger_scale(),
 	ord('x'): load("res://scene/actor/shrub.tscn").instantiate(),
+	ord('y'): load("res://scene/actor/stone.tscn").instantiate(),
 }
 var white:Array = [ord('P'), ord('N'), ord('B'), ord('R'), ord('Q')]
 
-var pattern_seed:int = 0
+var pattern_seed:int = Time.get_unix_time_from_system()
 
 func _ready() -> void:
 	var map_pos:Vector2i = get_meta("map_pos")
@@ -75,7 +97,7 @@ func _ready() -> void:
 	super._ready()
 	pattern_seed += map_pos.x * 100 + map_pos.y
 	seed(pattern_seed)
-	var pattern:Array = random_pattern[randi() % random_pattern.size()]
+	var pattern:Array = random_pattern[randi() % random_pattern.size()]["map"]
 	for i:int in 64:
 		if pattern[i]:
 			var piece:int = pattern[i].unicode_at(randi() % pattern[i].length())
