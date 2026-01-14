@@ -30,7 +30,7 @@ class TranspositionTable : public godot::RefCounted
 		void load_file(const godot::String &path);
 		int probe_hash(int64_t checksum, int8_t depth, int alpha, int beta);
 		int best_move(int64_t checksum);
-		void record_hash(int64_t checksum, int8_t depth, int value, int8_t flag, int best_move);
+		void record_hash(int64_t checksum, int8_t depth, int value, int8_t flag, int best_move, bool replace_by_depth = false);
 		void clear();
 		void print_status();
 		static void _bind_methods();
