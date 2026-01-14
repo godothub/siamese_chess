@@ -14,6 +14,10 @@ config/name="SiameseChess"
 config/tags=PackedStringArray("a_lone_flower", "puzzle", "siamese")
 run/main_scene="uid://co6urdc5oyrbh"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="uid://gdemlmk1r3x4"
 
 [autoload]
