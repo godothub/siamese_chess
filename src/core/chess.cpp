@@ -31,64 +31,50 @@ const int Chess::rotate_90_reverse_table[64] = {
 
 const int Chess::rotate_45_table[64]
 {
-	0,  2,  5,  9, 14, 20, 27, 35,
-	1,  4,  8, 13, 19, 26, 34, 42,
-	3,  7, 12, 18, 25, 33, 41, 48,
-	6, 11, 17, 24, 32, 40, 47, 53,
-   10, 16, 23, 31, 39, 46, 52, 57,
-   15, 22, 30, 38, 45, 51, 56, 60,
-   21, 29, 37, 44, 50, 55, 59, 62,
-   28, 36, 43, 49, 54, 58, 61, 63
+	 8, 17, 26, 35, 44, 53, 62,  7,
+	16, 25, 34, 43, 52, 61,  6, 15,
+	24, 33, 42, 51, 60,  5, 14, 23,
+	32, 41, 50, 59,  4, 13, 22, 31,
+	40, 49, 58,  3, 12, 21, 30, 39,
+	48, 57,  2, 11, 20, 29, 38, 47,
+	56,  1, 10, 19, 28, 37, 46, 55,
+	 0,  9, 18, 27, 36, 45, 54, 63,
 };
 
 const int Chess::rotate_45_reverse_table[64]
 {
-	               0, 
-	             8,  1,
-	          16,  9,  2,
-	        24, 17, 10,  3,
-	      32, 25, 18, 11,  4,
-	    40, 33, 26, 19, 12,  5,
-	  48, 41, 34, 27, 20, 13,  6,
 	56, 49, 42, 35, 28, 21, 14,  7,
-	  57, 50, 43, 36, 29, 22, 15,
-	    58, 51, 44, 37, 30, 23,
-	      59, 52, 45, 38, 31,
-	        60, 53, 46, 39,
-	          61, 54, 47,
-	            62, 55,
-	              63,
+	 0, 57, 50, 43, 36, 29, 22, 15,
+	 8,  1, 58, 51, 44, 37, 30, 23,
+	16,  9,  2, 59, 52, 45, 38, 31,
+	24, 17, 10,  3, 60, 53, 46, 39,
+	32, 25, 18, 11,  4, 61, 54, 47,
+	40, 33, 26, 19, 12,  5, 62, 55,
+	48, 41, 34, 27, 20, 13,  6, 63
 };
 
 const int Chess::rotate_315_table[64]
 {
-	28, 21, 15, 10,  6,  3,  1,  0,
-	36, 29, 22, 16, 11,  7,  4,  2,
-	43, 37, 30, 23, 17, 12,  8,  5,
-	49, 44, 38, 31, 24, 18, 13,  9,
-	54, 50, 45, 39, 32, 25, 19, 14,
-	58, 55, 51, 46, 40, 33, 26, 20,
-	61, 59, 56, 52, 47, 41, 34, 27,
-	63, 62, 60, 57, 53, 48, 42, 35
+	 0, 57, 50, 43, 36, 29, 22, 15,
+	 8,  1, 58, 51, 44, 37, 30, 23,
+	16,  9,  2, 59, 52, 45, 38, 31,
+	24, 17, 10,  3, 60, 53, 46, 39,
+	32, 25, 18, 11,  4, 61, 54, 47,
+	40, 33, 26, 19, 12,  5, 62, 55,
+	48, 41, 34, 27, 20, 13,  6, 63,
+	56, 49, 42, 35, 28, 21, 14,  7
 };
 
 const int Chess::rotate_315_reverse_table[64]
 {
-	               7, 
-	             6, 15,
-	           5, 14, 23,
-	         4, 13, 22, 31,
-	       3, 12, 21, 30, 39,
-	     2, 11, 20, 29, 38, 47,
-	   1, 10, 19, 28, 37, 46, 55,
 	 0,  9, 18, 27, 36, 45, 54, 63,
-	   8, 17, 26, 35, 44, 53, 62,
-	    16, 25, 34, 43, 52, 61,
-	      24, 33, 42, 51, 60,
-	        32, 41, 50, 59,
-	          40, 49, 58,
-	            48, 57,
-	              56,
+	 8, 17, 26, 35, 44, 53, 62,  7,
+	16, 25, 34, 43, 52, 61,  6, 15,
+	24, 33, 42, 51, 60,  5, 14, 23,
+	32, 41, 50, 59,  4, 13, 22, 31,
+	40, 49, 58,  3, 12, 21, 30, 39,
+	48, 57,  2, 11, 20, 29, 38, 47,
+	56,  1, 10, 19, 28, 37, 46, 55
 };
 
 const int Chess::rotate_45_length_table[64]
@@ -165,26 +151,26 @@ const int Chess::rotate_90_shift_table[64]
 
 const int Chess::rotate_45_shift_table[64]
 {
-	0,  1,  3,  6, 10, 15, 21, 28,
-	1,  3,  6, 10, 15, 21, 28, 36,
-	3,  6, 10, 15, 21, 28, 36, 43,
-	6, 10, 15, 21, 28, 36, 43, 49,
-   10, 15, 21, 28, 36, 43, 49, 54,
-   15, 21, 28, 36, 43, 49, 54, 58,
-   21, 28, 36, 43, 49, 54, 58, 61,
-   28, 36, 43, 49, 54, 58, 61, 63,
+	 8, 16, 24, 32, 40, 48, 56,  0,
+	16, 24, 32, 40, 48, 56,  0,  9,
+	24, 32, 40, 48, 56,  0,  9, 18,
+	32, 40, 48, 56,  0,  9, 18, 27, 
+	40, 48, 56,  0,  9, 18, 27, 36,
+	48, 56,  0,  9, 18, 27, 36, 45,
+	56,  0,  9, 18, 27, 36, 45, 54,
+	 0,  9, 18, 27, 36, 45, 54, 63
 };
 
 const int Chess::rotate_315_shift_table[64]
 {
-	28, 21, 15, 10,  6,  3,  1,  0,
-	36, 28, 21, 15, 10,  6,  3,  1,
-	43, 36, 28, 21, 15, 10,  6,  3,
-	49, 43, 36, 28, 21, 15, 10,  6,
-	54, 49, 43, 36, 28, 21, 15, 10,
-	58, 54, 49, 43, 36, 28, 21, 15,
-	61, 58, 54, 49, 43, 36, 28, 21,
-	63, 61, 58, 54, 49, 43, 36, 28
+	 0, 57, 50, 43, 36, 29, 22, 15,
+	 8,  0, 57, 50, 43, 36, 29, 22,
+	16,  8,  0, 57, 50, 43, 36, 29,
+	24, 16,  8,  0, 57, 50, 43, 36,
+	32, 24, 16,  8,  0, 57, 50, 43,
+	40, 32, 24, 16,  8,  0, 57, 50,
+	48, 40, 32, 24, 16,  8,  0, 57,
+	56, 48, 40, 32, 24, 16,  8,  0
 };
 
 int64_t Chess::rank_attacks[64][256] = {};
@@ -612,6 +598,64 @@ int64_t Chess::next_bit(int64_t bit)
 	return x & (x - 1);
 }
 
+int64_t Chess::bit_flip_vertical(int64_t bit)
+{
+	uint64_t x = bit;
+	return ((x << 56)) |
+		   ((x << 40) & 0x00ff000000000000) |
+		   ((x << 24) & 0x0000ff0000000000) |
+		   ((x <<  8) & 0x000000ff00000000) |
+		   ((x >>  8) & 0x00000000ff000000) |
+		   ((x >> 24) & 0x0000000000ff0000) |
+		   ((x >> 40) & 0x000000000000ff00) |
+		   ((x >> 56));
+}
+
+int64_t Chess::bit_flip_diag_a1h8(int64_t bit)
+{
+	uint64_t x = bit;
+	uint64_t t;
+	const uint64_t k1 = 0x5500550055005500;
+	const uint64_t k2 = 0x3333000033330000;
+	const uint64_t k4 = 0x0f0f0f0f00000000;
+	t  = k4 & (x ^ (x << 28));
+	x ^=       t ^ (t >> 28) ;
+	t  = k2 & (x ^ (x << 14));
+	x ^=       t ^ (t >> 14) ;
+	t  = k1 & (x ^ (x <<  7));
+	x ^=       t ^ (t >>  7) ;
+	return x;
+}
+
+int64_t Chess::bit_rotate_90(int64_t bit)
+{
+	return bit_flip_diag_a1h8(bit_flip_vertical(bit));
+}
+
+int64_t Chess::bit_rotate_45(int64_t bit)
+{
+	uint64_t x = bit;
+	const uint64_t k1 = 0x5555555555555555;
+	const uint64_t k2 = 0x3333333333333333;
+	const uint64_t k4 = 0x0f0f0f0f0f0f0f0f;
+	x ^= k1 & (x ^ _rotr64(x, 8));
+	x ^= k2 & (x ^ _rotr64(x, 16));
+	x ^= k4 & (x ^ _rotr64(x, 32));
+	return x;
+}
+
+int64_t Chess::bit_rotate_315(int64_t bit)
+{
+	uint64_t x = bit;
+	const uint64_t k1 = 0xAAAAAAAAAAAAAAAA;
+	const uint64_t k2 = 0xCCCCCCCCCCCCCCCC;
+	const uint64_t k4 = 0xF0F0F0F0F0F0F0F0;
+	x ^= k1 & (x ^ _rotr64(x, 8));
+	x ^= k2 & (x ^ _rotr64(x, 16));
+	x ^= k4 & (x ^ _rotr64(x, 32));
+	return x;
+}
+
 int Chess::to_64(int n)
 {
 	return (n >> 4 << 3) | (n & 0xF);
@@ -954,8 +998,11 @@ bool Chess::is_move_valid(const godot::Ref<State> &_state, int _group, int _move
 	}
 	if ((from_piece & 95) == 'B')
 	{
-		int64_t diag_a1h8 = (uint64_t(_state->get_bit(ROTATE_45)) >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
-		int64_t diag_a8h1 = (uint64_t(_state->get_bit(ROTATE_315)) >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
+		uint64_t occupied = _state->get_bit(ALL_PIECE);
+		uint64_t occupied_rotate_45 = bit_rotate_45(occupied);
+		uint64_t occupied_rotate_315 = bit_rotate_315(occupied);
+		int64_t diag_a1h8 = (occupied_rotate_45 >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
+		int64_t diag_a8h1 = (occupied_rotate_315 >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
 		int64_t bishop_attacks = diag_a1h8_attacks[from_64][diag_a1h8] | diag_a8h1_attacks[from_64][diag_a8h1];
 		if (!(bishop_attacks & Chess::mask(to_64)))
 		{
@@ -964,8 +1011,10 @@ bool Chess::is_move_valid(const godot::Ref<State> &_state, int _group, int _move
 	}
 	if ((from_piece & 95) == 'R')
 	{
-		int64_t rank = (uint64_t(_state->get_bit(ALL_PIECE)) >> Chess::rotate_0_shift(from_64)) & 255;
-		int64_t file = (uint64_t(_state->get_bit('!')) >> Chess::rotate_90_shift(from_64)) & 255;
+		uint64_t occupied = _state->get_bit(ALL_PIECE);
+		uint64_t occupied_rotate_90 = bit_rotate_90(occupied);
+		int64_t rank = (occupied >> Chess::rotate_0_shift(from_64)) & 255;
+		int64_t file = (occupied_rotate_90 >> Chess::rotate_90_shift(from_64)) & 255;
 		int64_t rook_attacks = rank_attacks[from_64][rank] | file_attacks[from_64][file];
 		if (!(rook_attacks & Chess::mask(to_64)))
 		{
@@ -974,10 +1023,14 @@ bool Chess::is_move_valid(const godot::Ref<State> &_state, int _group, int _move
 	}
 	if ((from_piece & 95) == 'Q')
 	{
-		int64_t diag_a1h8 = (uint64_t(_state->get_bit(ROTATE_45)) >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
-		int64_t diag_a8h1 = (uint64_t(_state->get_bit(ROTATE_315)) >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
-		int64_t rank = (uint64_t(_state->get_bit(ALL_PIECE)) >> Chess::rotate_0_shift(from_64)) & 255;
-		int64_t file = (uint64_t(_state->get_bit('!')) >> Chess::rotate_90_shift(from_64)) & 255;
+		uint64_t occupied = _state->get_bit(ALL_PIECE);
+		uint64_t occupied_rotate_90 = bit_rotate_90(occupied);
+		uint64_t occupied_rotate_45 = bit_rotate_45(occupied);
+		uint64_t occupied_rotate_315 = bit_rotate_315(occupied);
+		int64_t diag_a1h8 = (occupied_rotate_45 >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
+		int64_t diag_a8h1 = (occupied_rotate_315 >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
+		int64_t rank = (occupied >> Chess::rotate_0_shift(from_64)) & 255;
+		int64_t file = (occupied_rotate_90 >> Chess::rotate_90_shift(from_64)) & 255;
 		int64_t queen_attacks = diag_a1h8_attacks[from_64][diag_a1h8] | diag_a8h1_attacks[from_64][diag_a8h1] | rank_attacks[from_64][rank] | file_attacks[from_64][file];
 		if (!(queen_attacks & Chess::mask(to_64)))
 		{
@@ -1032,8 +1085,11 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 		}
 		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'B')
 		{
-			int64_t diag_a1h8 = (uint64_t(_state->get_bit(ROTATE_45)) >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
-			int64_t diag_a8h1 = (uint64_t(_state->get_bit(ROTATE_315)) >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
+			uint64_t occupied = _state->get_bit(ALL_PIECE);
+			uint64_t occupied_rotate_45 = bit_rotate_45(occupied);
+			uint64_t occupied_rotate_315 = bit_rotate_315(occupied);
+			int64_t diag_a1h8 = (occupied_rotate_45 >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
+			int64_t diag_a8h1 = (occupied_rotate_315 >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
 			int64_t bishop_attacks = diag_a1h8_attacks[from_64][diag_a1h8] | diag_a8h1_attacks[from_64][diag_a8h1];
 			if (bishop_attacks & enemy_king_mask)
 			{
@@ -1042,8 +1098,10 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 		}
 		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'R')
 		{
-			int64_t rank = (uint64_t(_state->get_bit(ALL_PIECE)) >> Chess::rotate_0_shift(from_64)) & 255;
-			int64_t file = (uint64_t(_state->get_bit('!')) >> Chess::rotate_90_shift(from_64)) & 255;
+			uint64_t occupied = _state->get_bit(ALL_PIECE);
+			uint64_t occupied_rotate_90 = bit_rotate_90(occupied);
+			int64_t rank = (occupied >> Chess::rotate_0_shift(from_64)) & 255;
+			int64_t file = (occupied_rotate_90 >> Chess::rotate_90_shift(from_64)) & 255;
 			int64_t rook_attacks = rank_attacks[from_64][rank] | file_attacks[from_64][file];
 			if (rook_attacks & enemy_king_mask)
 			{

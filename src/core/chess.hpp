@@ -14,6 +14,11 @@ class Chess : public godot::Object
 		static int population(int64_t bit);
 		static int first_bit(int64_t bit);
 		static int64_t next_bit(int64_t bit);
+		static int64_t bit_flip_vertical(int64_t bit);
+		static int64_t bit_flip_diag_a1h8(int64_t bit);
+		static int64_t bit_rotate_90(int64_t bit);
+		static int64_t bit_rotate_45(int64_t bit);
+		static int64_t bit_rotate_315(int64_t bit);
 		static int rotate_90(int n);
 		static int rotate_90_reverse(int n);
 		static int rotate_45(int n);
@@ -107,6 +112,10 @@ class Chess : public godot::Object
 		const static int rotate_90_shift_table[64];
 		const static int rotate_45_shift_table[64];
 		const static int rotate_315_shift_table[64];
+		static int64_t rank_wall[64][256];
+		static int64_t file_wall[64][256];
+		static int64_t diag_a1h8_wall[64][256];
+		static int64_t diag_a8h1_wall[64][256];
 		static int64_t rank_attacks[64][256];
 		static int64_t file_attacks[64][256];	//将棋盘转置后使用
 		static int64_t diag_a1h8_attacks[64][256];

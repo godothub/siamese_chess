@@ -106,9 +106,6 @@ void State::add_piece(int _by, int _piece)
 		bit[Chess::group(_piece) == 0 ? WHITE : BLACK] ^= by_mask;
 	}
 	bit[ALL_PIECE] ^= by_mask;
-	bit[ROTATE_90] ^= Chess::mask(Chess::rotate_90(by_64));
-	bit[ROTATE_45] ^= Chess::mask(Chess::rotate_45(by_64));
-	bit[ROTATE_315] ^= Chess::mask(Chess::rotate_315(by_64));
 	bit[ZOBRIST_HASH] ^= ZobristHash::get_singleton()->hash_piece(_piece, _by);
 }
 
@@ -126,9 +123,6 @@ void State::capture_piece(int _by)
 			bit[Chess::group(piece) == 0 ? WHITE : BLACK] ^= by_mask;
 		}
 		bit[ALL_PIECE] ^= by_mask;
-		bit[ROTATE_90] ^= Chess::mask(Chess::rotate_90(by_64));
-		bit[ROTATE_45] ^= Chess::mask(Chess::rotate_45(by_64));
-		bit[ROTATE_315] ^= Chess::mask(Chess::rotate_315(by_64));
 		pieces[_by] = 0;
 		// 虽然大多数情况是攻击者移到被攻击者上，但是吃过路兵是例外，后续可能会出现类似情况，所以还是得手多一下
 	}
@@ -146,15 +140,9 @@ void State::move_piece(int _from, int _to)
 	bit[piece] ^= from_mask;
 	bit[Chess::group(piece) == 0 ? WHITE : BLACK] ^= from_mask;
 	bit[ALL_PIECE] ^= from_mask;
-	bit[ROTATE_90] ^= Chess::mask(Chess::rotate_90(from_64));
-	bit[ROTATE_45] ^= Chess::mask(Chess::rotate_45(from_64));
-	bit[ROTATE_315] ^= Chess::mask(Chess::rotate_315(from_64));
 	bit[piece] ^= to_mask;
 	bit[Chess::group(piece) == 0 ? WHITE : BLACK] ^= to_mask;
 	bit[ALL_PIECE] ^= to_mask;
-	bit[ROTATE_90] ^= Chess::mask(Chess::rotate_90(to_64));
-	bit[ROTATE_45] ^= Chess::mask(Chess::rotate_45(to_64));
-	bit[ROTATE_315] ^= Chess::mask(Chess::rotate_315(to_64));
 	pieces[_to] = pieces[_from];
 	pieces[_from] = 0;
 }

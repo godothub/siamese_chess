@@ -16,9 +16,6 @@ enum StateBit
 	ALL_PIECE = '.',
 	WHITE = 'A',
 	BLACK = 'a',
-	ROTATE_90 = '!',
-	ROTATE_45 = ')',
-	ROTATE_315 = '('
 };
 
 class State : public godot::RefCounted
