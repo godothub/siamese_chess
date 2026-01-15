@@ -37,9 +37,8 @@ PastorEngine::PastorEngine()
 		{'B', 320},
 		{'N', 280},
 		{'P', 100},
-		{'W', 0},
-		{'X', 0},
-		{'Y', 0},
+		{'*', 0},
+		{'#', 0},
 		{'Z', 0},
 		{'k', -60000},
 		{'q', -929},
@@ -47,10 +46,6 @@ PastorEngine::PastorEngine()
 		{'b', -320},
 		{'n', -280},
 		{'p', -100},
-		{'w', 0},
-		{'x', 0},
-		{'y', 0},
-		{'z', 0},
 	};
 	directions_diagonal = {-17, -15, 15, 17};
 	directions_straight = {-16, -1, 1, 16};
@@ -127,7 +122,7 @@ PastorEngine::PastorEngine()
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
 		}},
-		{'X', {
+		{'*', {
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
@@ -137,7 +132,7 @@ PastorEngine::PastorEngine()
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
 		}},
-		{'Y', {
+		{'#', {
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
@@ -217,7 +212,7 @@ PastorEngine::PastorEngine()
 		-78, -83, -86, -73,-102, -82, -85, -90,
 		0,   0,   0,   0,   0,   0,   0,   0,
 		}},
-		{'w', {
+		{'*', {
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
@@ -227,27 +222,7 @@ PastorEngine::PastorEngine()
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
 		}},
-		{'x', {
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		}},
-		{'y', {
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		}},
-		{'z', {
+		{'#', {
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
 		0,   0,   0,   0,   0,   0,   0,   0,
@@ -263,7 +238,7 @@ PastorEngine::PastorEngine()
 void PastorEngine::generate_good_capture_move(godot::PackedInt32Array &output, const godot::Ref<State> &_state, int _group)
 {
 	//既然是good_capture_move，那么无需考虑王车易位、过路兵带来的潜在规则问题，因为上一步不是吃子着法
-	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? 'A' : 'a'); !iter.end(); iter.next())
+	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? WHITE : BLACK); !iter.end(); iter.next())
 	{
 		int _from = iter.pos();
 		int from_piece = iter.piece();

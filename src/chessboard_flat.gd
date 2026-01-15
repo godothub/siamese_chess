@@ -8,20 +8,14 @@ var piece_path:Dictionary = {
 	"B": "res://assets/texture/cburnett/wB.svg",
 	"N": "res://assets/texture/cburnett/wN.svg",
 	"P": "res://assets/texture/cburnett/wP.svg",
-	"W": "res://assets/texture/siamesepiece/wW.svg",
-	"X": "res://assets/texture/siamesepiece/wX.svg",
-	"Y": "res://assets/texture/siamesepiece/wY.svg",
-	"Z": "res://assets/texture/siamesepiece/wZ.svg",
 	"k": "res://assets/texture/cburnett/bK.svg",
 	"q": "res://assets/texture/cburnett/bQ.svg",
 	"r": "res://assets/texture/cburnett/bR.svg",
 	"b": "res://assets/texture/cburnett/bB.svg",
 	"n": "res://assets/texture/cburnett/bN.svg",
 	"p": "res://assets/texture/cburnett/bP.svg",
-	"w": "res://assets/texture/siamesepiece/bW.svg",
-	"x": "res://assets/texture/siamesepiece/bX.svg",
-	"y": "res://assets/texture/siamesepiece/bY.svg",
-	"z": "res://assets/texture/siamesepiece/bZ.svg"
+	"*": "res://assets/texture/siamesepiece/bX.svg",
+	'#': "res://assets/texture/siamesepiece/bY.svg",
 }
 
 var state:State = null

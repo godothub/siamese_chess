@@ -42,51 +42,51 @@ transform = Transform3D(-0.930877, 0.248081, -0.268185, 6.34992e-08, 0.734086, 0
 
 [node name="shrub_2" parent="." instance=ExtResource("7_olkv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -7)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_3" parent="." instance=ExtResource("7_olkv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -7)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_7" parent="." instance=ExtResource("7_olkv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_8" parent="." instance=ExtResource("7_olkv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_9" parent="." instance=ExtResource("7_olkv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_10" parent="." instance=ExtResource("7_olkv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_14" parent="." instance=ExtResource("7_olkv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
-piece_type = 88
+piece_type = 42
 
 [node name="tree_4" parent="." instance=ExtResource("8_glbyl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
-piece_type = 89
+piece_type = 35
 
 [node name="tree_5" parent="." instance=ExtResource("8_glbyl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
-piece_type = 89
+piece_type = 35
 
 [node name="tree_6" parent="." instance=ExtResource("8_glbyl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
-piece_type = 89
+piece_type = 35
 
 [node name="tree_8" parent="." instance=ExtResource("8_glbyl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
-piece_type = 89
+piece_type = 35
 
 [node name="tree_10" parent="." instance=ExtResource("8_glbyl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
-piece_type = 89
+piece_type = 35
 
 [node name="flower" parent="." instance=ExtResource("9_gqr3t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
@@ -179,7 +179,7 @@ fov = 51.0187
 [node name="actor_y" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="stone_1" parent="." instance=ExtResource("12_acvd5")]
@@ -188,7 +188,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 [node name="actor_y_2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="fence_1" parent="." instance=ExtResource("13_83jv4")]
@@ -197,7 +197,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
 [node name="actor_y_3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="fence_2" parent="." instance=ExtResource("13_83jv4")]
@@ -206,19 +206,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
 [node name="actor_y_4" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_5" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 7)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_6" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="fence_turnn_3" parent="." instance=ExtResource("14_4c3sk")]
@@ -227,7 +227,7 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 7, 0, 3)
 [node name="actor_y_7" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 3)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="fence_3" parent="." instance=ExtResource("13_83jv4")]
@@ -236,13 +236,13 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, 
 [node name="actor_y_8" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, 1)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_9" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, -1)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="fence_5" parent="." instance=ExtResource("13_83jv4")]
@@ -251,13 +251,13 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, 
 [node name="actor_y_10" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, -7)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_11" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, -5)
 script = ExtResource("9_83jv4")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="fence_turn_3" parent="." instance=ExtResource("14_4c3sk")]
@@ -268,11 +268,11 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 7, 0, -5
 
 [node name="shrub_4" parent="." instance=ExtResource("7_olkv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_5" parent="." instance=ExtResource("7_olkv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
-piece_type = 88
+piece_type = 42
 
 [node name="camera_carnation_2" type="Camera3D" parent="."]
 transform = Transform3D(-0.7071068, 0.5, -0.5, 3.0908623e-08, 0.70710677, 0.7071068, 0.7071068, 0.49999997, -0.50000006, 2.51396, 4.829229, -6.0974197)

@@ -28,12 +28,12 @@ var random_pattern:Array = [
 	{
 		"map": [
 			   0,        0,        0,        0,        0,        0,        0,        0,
-			   0,        0,      "X",      "X",      "X",      "X",      "X",        0,
-			   0,      "X",      "X",      "X",      "X",      "X",      "X",        0,
-			   0,      "X",      "X",      "X",      "X",     "NX",      "X",        0,
-			   0,      "X",      "X",      "X",      "X",      "X",      "X",        0,
-			   0,      "X",     "NX",      "X",      "K",      "X",      "X",        0,
-			   0,      "X",      "X",      "X",      "X",      "X",      "X",        0,
+			   0,        0,      "*",      "*",      "*",      "*",      "*",        0,
+			   0,      "*",      "*",      "*",      "*",      "*",      "*",        0,
+			   0,      "*",      "*",      "*",      "*",     "N*",      "*",        0,
+			   0,      "*",      "*",      "*",      "*",      "*",      "*",        0,
+			   0,      "*",     "N*",      "*",      "K",      "*",      "*",        0,
+			   0,      "*",      "*",      "*",      "*",      "*",      "*",        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
 		]
 	},
@@ -53,12 +53,12 @@ var random_pattern:Array = [
 		"map": [
 			   0,      "n",        0,        0,        0,        0,      "n",        0,
 			   0,        0,        0,        0,        0,        0,        0,        0,
-			   0,        0,    "Y  ",    "Y  ",    "Y  ",    "Y  ",        0,        0,
-			   0,        0,    "Y  ",    "Y  ",    "Y  ",    "Y  ",        0,        0,
-			   0,        0,    "Y  ",    "Y  ",    "Y  ",    "Y  ",        0,        0,
-			   0,        0,    "Y  ",    "Y  ",    "Y  ",    "Y  ",        0,        0,
-			   0,        0,        0,        0,        0,      "Y",      "Y",      "Y",
-			   0,        0,        0,        0,        0,      "Y",      "K",      "Y",
+			   0,        0,    "#  ",    "#  ",    "#  ",    "#  ",        0,        0,
+			   0,        0,    "#  ",    "#  ",    "#  ",    "#  ",        0,        0,
+			   0,        0,    "#  ",    "#  ",    "#  ",    "#  ",        0,        0,
+			   0,        0,    "#  ",    "#  ",    "#  ",    "#  ",        0,        0,
+			   0,        0,        0,        0,        0,      "#",      "#",      "#",
+			   0,        0,        0,        0,        0,      "#",      "K",      "#",
 		]
 	}
 ]
@@ -70,15 +70,13 @@ var actor:Dictionary = {
 	ord('R'): load("res://scene/actor/piece_rook_white.tscn").instantiate().set_larger_scale(),
 	ord('Q'): load("res://scene/actor/piece_queen_white.tscn").instantiate().set_larger_scale(),
 	ord('K'): load("res://scene/actor/enemy_cheshire.tscn").instantiate(),
-	ord('X'): load("res://scene/actor/shrub.tscn").instantiate(),
-	ord('Y'): load("res://scene/actor/stone.tscn").instantiate(),
 	ord('p'): load("res://scene/actor/piece_pawn_black.tscn").instantiate().set_larger_scale(),
 	ord('n'): load("res://scene/actor/piece_knight_black.tscn").instantiate().set_larger_scale(),
 	ord('b'): load("res://scene/actor/piece_bishop_black.tscn").instantiate().set_larger_scale(),
 	ord('r'): load("res://scene/actor/piece_rook_black.tscn").instantiate().set_larger_scale(),
 	ord('q'): load("res://scene/actor/piece_queen_black.tscn").instantiate().set_larger_scale(),
-	ord('x'): load("res://scene/actor/shrub.tscn").instantiate(),
-	ord('y'): load("res://scene/actor/stone.tscn").instantiate(),
+	ord('*'): load("res://scene/actor/shrub.tscn").instantiate(),
+	ord('#'): load("res://scene/actor/stone.tscn").instantiate(),
 }
 var white:Array = [ord('P'), ord('N'), ord('B'), ord('R'), ord('Q')]
 

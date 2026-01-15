@@ -5,4 +5,4 @@
 
 [node name="tree" instance=ExtResource("1_dcgk5")]
 script = ExtResource("2_lutej")
-piece_type = [121, 89]
+piece_type = 35

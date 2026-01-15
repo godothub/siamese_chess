@@ -13,7 +13,7 @@ enum StateBit
 	ROUND = '4',
 	KING_PASSANT = '5',
 	ZOBRIST_HASH = '6',
-	ALL_PIECE = '*',
+	ALL_PIECE = '.',
 	WHITE = 'A',
 	BLACK = 'a',
 	ROTATE_90 = '!',

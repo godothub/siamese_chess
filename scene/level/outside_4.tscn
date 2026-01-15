@@ -38,22 +38,22 @@ transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -
 [node name="fence_7" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 1.4210855e-14, 0, 1, -5, 0, 3)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_10" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(-4.3711378e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711378e-08, -5, 0, -3)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_12" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, 3)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_9" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 1.4210855e-14, 0, 1, -7, 0, -1)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="card_item" parent="." instance=ExtResource("8_exdps")]
 transform = Transform3D(-7, 0, -6.119594e-07, 0, 7, 0, 6.119594e-07, 0, -7, -7, 0, -5)
@@ -65,92 +65,92 @@ progress_key = "piece_rook_card"
 [node name="fence_13" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -1)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_turn_3" parent="." instance=ExtResource("7_b17ph")]
 transform = Transform3D(1, 0, 1.7484601e-07, 0, 1, 0, -1.7484601e-07, 0, 1, -1, 0, 3)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_17" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -3)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_turn_4" parent="." instance=ExtResource("7_b17ph")]
 transform = Transform3D(0.9999574, 0, 0.009232803, 0, 1, 0, -0.009232803, 0, 0.9999574, 3, 0, 7)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_18" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -3)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_19" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -3, 0, 3)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_22" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -5)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_23" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -5)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_24" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -7)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_25" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -7)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_26" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 1, 0, 7)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_27" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 0, 5)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_30" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, 7)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_31" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -5, 0, 7)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_32" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -3, 0, 7)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_33" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -1, 0, 7)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_34" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, 1)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_turn_6" parent="." instance=ExtResource("7_b17ph")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -5, 0, -1)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="teleport_pointer" parent="." instance=ExtResource("10_sfjwe")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 5)
@@ -162,7 +162,7 @@ args = {
 [node name="fence_36" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1.3113417e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113417e-07, -5, 0, -5)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="teleport_pointer_2" parent="." instance=ExtResource("10_sfjwe")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 1)
@@ -181,12 +181,12 @@ args = {
 [node name="fence_turn_5" parent="." instance=ExtResource("7_b17ph")]
 transform = Transform3D(-2.185574e-07, 0, 1, 0, 1, 0, -1, 0, -2.185574e-07, -5, 0, -7)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_11" parent="." instance=ExtResource("5_i4gxw")]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 1.4210855e-14, 0, 1, -7, 0, -7)
 script = ExtResource("6_356mc")
-piece_type = 121
+piece_type = 35
 
 [node name="teleport_pointer_4" parent="." instance=ExtResource("10_sfjwe")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -3, 0, -7)

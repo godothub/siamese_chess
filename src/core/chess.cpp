@@ -764,7 +764,7 @@ godot::Ref<State> Chess::create_initial_state()
 godot::Ref<State> Chess::create_random_state(int piece_count)
 {
 	std::mt19937_64 rng(time(nullptr));
-	godot::PackedInt32Array type = {'P', 'N', 'B', 'R', 'Q', 'W', 'X', 'Y'};
+	godot::PackedInt32Array type = {'P', 'N', 'B', 'R', 'Q', '*', '#'};
 	godot::PackedInt32Array pieces;
 	pieces.push_back('K');
 	pieces.push_back('k');
@@ -913,14 +913,6 @@ godot::String Chess::stringify(const godot::Ref<State> &_state)
 	output.push_back(godot::String::num(_state->get_step_to_draw(), 0));
 	output.push_back(godot::String::num(_state->get_round(), 0));
 	// king_passant是为了判定是否违规走子，临时记录的，这里不做转换
-	if (_state->get_bit('^'))
-	{
-		output.push_back("^" + godot::String::num(_state->get_bit('^')));
-	}
-	if (_state->get_bit('v'))
-	{
-		output.push_back("v" + godot::String::num(_state->get_bit('v')));
-	}
 	return godot::String(" ").join(output);
 }
 
@@ -962,8 +954,8 @@ bool Chess::is_move_valid(const godot::Ref<State> &_state, int _group, int _move
 	}
 	if ((from_piece & 95) == 'B')
 	{
-		int64_t diag_a1h8 = (uint64_t(_state->get_bit(')')) >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
-		int64_t diag_a8h1 = (uint64_t(_state->get_bit('(')) >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
+		int64_t diag_a1h8 = (uint64_t(_state->get_bit(ROTATE_45)) >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
+		int64_t diag_a8h1 = (uint64_t(_state->get_bit(ROTATE_315)) >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
 		int64_t bishop_attacks = diag_a1h8_attacks[from_64][diag_a1h8] | diag_a8h1_attacks[from_64][diag_a8h1];
 		if (!(bishop_attacks & Chess::mask(to_64)))
 		{
@@ -972,7 +964,7 @@ bool Chess::is_move_valid(const godot::Ref<State> &_state, int _group, int _move
 	}
 	if ((from_piece & 95) == 'R')
 	{
-		int64_t rank = (uint64_t(_state->get_bit('*')) >> Chess::rotate_0_shift(from_64)) & 255;
+		int64_t rank = (uint64_t(_state->get_bit(ALL_PIECE)) >> Chess::rotate_0_shift(from_64)) & 255;
 		int64_t file = (uint64_t(_state->get_bit('!')) >> Chess::rotate_90_shift(from_64)) & 255;
 		int64_t rook_attacks = rank_attacks[from_64][rank] | file_attacks[from_64][file];
 		if (!(rook_attacks & Chess::mask(to_64)))
@@ -982,9 +974,9 @@ bool Chess::is_move_valid(const godot::Ref<State> &_state, int _group, int _move
 	}
 	if ((from_piece & 95) == 'Q')
 	{
-		int64_t diag_a1h8 = (uint64_t(_state->get_bit(')')) >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
-		int64_t diag_a8h1 = (uint64_t(_state->get_bit('(')) >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
-		int64_t rank = (uint64_t(_state->get_bit('*')) >> Chess::rotate_0_shift(from_64)) & 255;
+		int64_t diag_a1h8 = (uint64_t(_state->get_bit(ROTATE_45)) >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
+		int64_t diag_a8h1 = (uint64_t(_state->get_bit(ROTATE_315)) >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
+		int64_t rank = (uint64_t(_state->get_bit(ALL_PIECE)) >> Chess::rotate_0_shift(from_64)) & 255;
 		int64_t file = (uint64_t(_state->get_bit('!')) >> Chess::rotate_90_shift(from_64)) & 255;
 		int64_t queen_attacks = diag_a1h8_attacks[from_64][diag_a1h8] | diag_a8h1_attacks[from_64][diag_a8h1] | rank_attacks[from_64][rank] | file_attacks[from_64][file];
 		if (!(queen_attacks & Chess::mask(to_64)))
@@ -1009,7 +1001,7 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 		enemy_king_mask |= Chess::mask(Chess::to_64(_state->get_king_passant() + 1));
 	}
 	
-	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? 'A' : 'a'); !iter.end(); iter.next())
+	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? WHITE : BLACK); !iter.end(); iter.next())
 	{
 		int from = iter.pos();
 		int from_64 = Chess::to_64(from);
@@ -1040,8 +1032,8 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 		}
 		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'B')
 		{
-			int64_t diag_a1h8 = (uint64_t(_state->get_bit(')')) >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
-			int64_t diag_a8h1 = (uint64_t(_state->get_bit('(')) >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
+			int64_t diag_a1h8 = (uint64_t(_state->get_bit(ROTATE_45)) >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
+			int64_t diag_a8h1 = (uint64_t(_state->get_bit(ROTATE_315)) >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
 			int64_t bishop_attacks = diag_a1h8_attacks[from_64][diag_a1h8] | diag_a8h1_attacks[from_64][diag_a8h1];
 			if (bishop_attacks & enemy_king_mask)
 			{
@@ -1050,7 +1042,7 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 		}
 		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'R')
 		{
-			int64_t rank = (uint64_t(_state->get_bit('*')) >> Chess::rotate_0_shift(from_64)) & 255;
+			int64_t rank = (uint64_t(_state->get_bit(ALL_PIECE)) >> Chess::rotate_0_shift(from_64)) & 255;
 			int64_t file = (uint64_t(_state->get_bit('!')) >> Chess::rotate_90_shift(from_64)) & 255;
 			int64_t rook_attacks = rank_attacks[from_64][rank] | file_attacks[from_64][file];
 			if (rook_attacks & enemy_king_mask)
@@ -1070,7 +1062,7 @@ bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to)
 	}
 	int from_piece = _state->get_piece(_from);
 	int from_group = Chess::group(from_piece);
-	if ((_state->get_piece(_to) & 95) == 'W' || (_state->get_piece(_to) & 95) == 'X')
+	if (_state->get_piece(_to) == '*')
 	{
 		return false;
 	}
@@ -1091,7 +1083,7 @@ bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to)
 
 bool Chess::is_enemy(const godot::Ref<State> &_state, int _from, int _to)
 {
-	return _state->has_piece(_to) && (_state->get_piece(_to) & 95) != 'W' && (!Chess::is_same_group(_state->get_piece(_from), _state->get_piece(_to)) || (_state->get_piece(_to) & 95) == 'X');
+	return _state->has_piece(_to) && (!Chess::is_same_group(_state->get_piece(_from), _state->get_piece(_to)) || (_state->get_piece(_to) & 95) == '*');
 }
 
 bool Chess::is_en_passant(const godot::Ref<State> &_state, int _from, int _to)
@@ -1103,7 +1095,7 @@ godot::PackedInt32Array Chess::generate_premove(const godot::Ref<State> &_state,
 {
 	DEV_ASSERT(_state.is_valid());
 	godot::PackedInt32Array output;
-	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? 'A' : 'a'); !iter.end(); iter.next())
+	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? WHITE : BLACK); !iter.end(); iter.next())
 	{
 		int _from = iter.pos();
 		int from_piece = iter.piece();
@@ -1197,7 +1189,7 @@ godot::PackedInt32Array Chess::generate_move(const godot::Ref<State> &_state, in
 void Chess::_internal_generate_move(godot::PackedInt32Array &output, const godot::Ref<State> &_state, int _group)
 {
 	DEV_ASSERT(_state.is_valid());
-	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? 'A' : 'a'); !iter.end(); iter.next())
+	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? WHITE : BLACK); !iter.end(); iter.next())
 	{
 		int _from = iter.pos();
 		int from_piece = iter.piece();
@@ -1289,7 +1281,7 @@ void Chess::_internal_generate_move(godot::PackedInt32Array &output, const godot
 					break;
 				}
 				output.push_back(Chess::create(_from, to, 0));
-				if ((from_piece & 95) == 'K' || (from_piece & 95) == 'N' || to_piece && (to_piece & 95) != 'W')
+				if ((from_piece & 95) == 'K' || (from_piece & 95) == 'N' || to_piece)
 				{
 					break;
 				}
@@ -1543,10 +1535,6 @@ void Chess::apply_move(const godot::Ref<State> &_state, int _move)
 	{
 		_state->capture_piece(to);
 		_state->set_step_to_draw(0);	// 吃子时重置50步和棋
-	}
-	if ((to_piece & 95) == 'W')
-	{
-		has_grafting = true;
 	}
 	if (_state->get_king_passant() != -1 && abs(_state->get_king_passant() - to) <= 1)
 	{

@@ -85,149 +85,149 @@ args = {
 [node name="fence" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -3, 0, 5)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_2" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -5, 0, 5)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_3" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -7, 0, 5)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_turn" parent="." instance=ExtResource("6_kv140")]
 transform = Transform3D(-2.1855737e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855737e-07, -1, 0, 5)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_4" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, 1)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_5" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-4.3711378e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711378e-08, -1, 0, 7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="shrub" parent="." instance=ExtResource("11_ylpdj")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.0000005, 0, -5)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_2" parent="." instance=ExtResource("11_ylpdj")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.0000005, 0, -5)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_3" parent="." instance=ExtResource("11_ylpdj")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.9999995, 0, -5)
-piece_type = 88
+piece_type = 42
 
 [node name="fence_7" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -3, 0, -7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_8" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -5, 0, -7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_9" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -7, 0, -7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_10" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, 3, 0, -7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_11" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, 1, 0, -7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_12" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -1, 0, -7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_13" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, 5, 0, -7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_turn_2" parent="." instance=ExtResource("6_kv140")]
 transform = Transform3D(-2.1855737e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855737e-07, 7, 0, -7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_14" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-4.3711378e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711378e-08, 7, 0, -5)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_15" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-4.3711378e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711378e-08, 7, 0, -3)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_16" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-4.3711378e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711378e-08, 7, 0, -1)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_17" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-4.3711378e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711378e-08, 7, 0, 1)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_18" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-4.3711378e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711378e-08, 7, 0, 3)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_19" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-4.3711378e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711378e-08, 7, 0, 5)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_turn_3" parent="." instance=ExtResource("6_kv140")]
 transform = Transform3D(1, 0, 1.7484598e-07, 0, 1, 0, -1.7484598e-07, 0, 1, 7, 0, 7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_turn_4" parent="." instance=ExtResource("6_kv140")]
 transform = Transform3D(-1, 0, -8.74232e-08, 0, 1, 0, 8.74232e-08, 0, -1, 3, 0, 7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="fence_20" parent="." instance=ExtResource("4_nv7hc")]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, 5, 0, 7)
 script = ExtResource("5_13g2u")
-piece_type = 121
+piece_type = 35
 
 [node name="shrub_4" parent="." instance=ExtResource("11_ylpdj")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.9999995, 0, -5)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_5" parent="." instance=ExtResource("11_ylpdj")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 4.9999995, 0, 3)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_6" parent="." instance=ExtResource("11_ylpdj")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 4.9999995, 0, 1)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_7" parent="." instance=ExtResource("11_ylpdj")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 4.9999995, 0, -1)
-piece_type = 88
+piece_type = 42
 
 [node name="shrub_8" parent="." instance=ExtResource("11_ylpdj")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 4.9999995, 0, -3)
-piece_type = 88
+piece_type = 42
 
 [node name="csg_box_3d" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -0.2512207, -8.760193)

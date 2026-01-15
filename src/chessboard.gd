@@ -43,14 +43,6 @@ func add_default_piece_set() -> void:	# 最好交由外部来负责棋子的准�
 				add_piece_instance(load("res://scene/actor/piece_knight_white.tscn").instantiate(), i)
 			"P":
 				add_piece_instance(load("res://scene/actor/piece_pawn_white.tscn").instantiate(), i)
-			"W":
-				add_piece_instance(load("res://scene/actor/piece_checker_1_white.tscn").instantiate(), i)
-			"X":
-				add_piece_instance(load("res://scene/actor/piece_checker_2_white.tscn").instantiate(), i)
-			"Y":
-				add_piece_instance(load("res://scene/actor/piece_checker_3_white.tscn").instantiate(), i)
-			"Z":
-				add_piece_instance(load("res://scene/actor/piece_checker_4_white.tscn").instantiate(), i)
 			"k":
 				add_piece_instance(load("res://scene/actor/piece_king_black.tscn").instantiate(), i)
 			"q":
@@ -65,9 +57,9 @@ func add_default_piece_set() -> void:	# 最好交由外部来负责棋子的准�
 				add_piece_instance(load("res://scene/actor/piece_pawn_black.tscn").instantiate(), i)
 			"w":
 				add_piece_instance(load("res://scene/actor/piece_checker_1_black.tscn").instantiate(), i)
-			"x":
+			'*':
 				add_piece_instance(load("res://scene/actor/piece_checker_2_black.tscn").instantiate(), i)
-			"y":
+			'#':
 				add_piece_instance(load("res://scene/actor/piece_checker_3_black.tscn").instantiate(), i)
 			"z":
 				add_piece_instance(load("res://scene/actor/piece_checker_4_black.tscn").instantiate(), i)

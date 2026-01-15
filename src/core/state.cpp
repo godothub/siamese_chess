@@ -97,12 +97,14 @@ int State::has_piece(int _by)
 
 void State::add_piece(int _by, int _piece)
 {
-	DEV_ASSERT(_piece >= 'A' && _piece <= 'Z' || _piece >= 'a' && _piece <= 'z');
 	int by_64 = Chess::to_64(_by);
 	int64_t by_mask = Chess::mask(by_64);
 	pieces[_by] = _piece;
 	bit[_piece] ^= by_mask;
-	bit[Chess::group(_piece) == 0 ? WHITE : BLACK] ^= by_mask;
+	if (_piece >= 'A' && _piece <= 'Z' || _piece >= 'a' && _piece <= 'z')
+	{
+		bit[Chess::group(_piece) == 0 ? WHITE : BLACK] ^= by_mask;
+	}
 	bit[ALL_PIECE] ^= by_mask;
 	bit[ROTATE_90] ^= Chess::mask(Chess::rotate_90(by_64));
 	bit[ROTATE_45] ^= Chess::mask(Chess::rotate_45(by_64));
@@ -119,7 +121,10 @@ void State::capture_piece(int _by)
 		int64_t by_mask = Chess::mask(by_64);
 		bit[ZOBRIST_HASH] ^= ZobristHash::get_singleton()->hash_piece(piece, _by);
 		bit[piece] ^= by_mask;
-		bit[Chess::group(piece) == 0 ? WHITE : BLACK] ^= by_mask;
+		if (piece >= 'A' && piece <= 'Z' || piece >= 'a' && piece <= 'z')
+		{
+			bit[Chess::group(piece) == 0 ? WHITE : BLACK] ^= by_mask;
+		}
 		bit[ALL_PIECE] ^= by_mask;
 		bit[ROTATE_90] ^= Chess::mask(Chess::rotate_90(by_64));
 		bit[ROTATE_45] ^= Chess::mask(Chess::rotate_45(by_64));

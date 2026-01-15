@@ -100,97 +100,97 @@ metadata/_custom_type_script = "uid://chtqhpiu556i1"
 [node name="actor_y_0" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_4" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_5" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_6" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_7" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_8" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_9" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_10" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_11" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_12" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_13" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_14" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="actor_y_15" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
 script = ExtResource("7_6v2ut")
-piece_type = 121
+piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="door_3" parent="." instance=ExtResource("5_unvbp")]

@@ -5,4 +5,4 @@
 
 [node name="piece_checker_3" instance=ExtResource("1_vrx8t")]
 script = ExtResource("2_fjp8c")
-piece_type = [121]
+piece_type = 35

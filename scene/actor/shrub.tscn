@@ -40,6 +40,7 @@ stream_0/stream = ExtResource("3_71i6i")
 [node name="shrub" type="Node3D"]
 script = ExtResource("2_4hxfj")
 breakable = true
+piece_type = 42
 metadata/_custom_type_script = "uid://r84cy7gvn2eo"
 
 [node name="gpu_particles_died" type="GPUParticles3D" parent="."]
