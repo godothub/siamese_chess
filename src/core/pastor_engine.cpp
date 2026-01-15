@@ -501,14 +501,29 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, 
 
 int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alpha, int _beta, int _depth, int _group, int _ply, bool _can_null, bool _is_null, int *killer_1, int *killer_2, const godot::Callable &_debug_output)
 {
+	godot::PackedInt32Array move_list;
 	deepest_ply = std::max(_ply, deepest_ply);
 	deepest_depth = std::max(_depth, deepest_depth);
-	bool found_pv = false;
-	int transposition_table_score = transposition_table->probe_hash(_state->get_zobrist(), _depth, _alpha, _beta);
-	if (_ply > 0 && transposition_table_score != 65535)
+	if (Chess::is_check(_state, 1 - _group))
 	{
-		transposition_table_cutoff++;
-		return transposition_table_score;
+		Chess::_internal_generate_valid_move(move_list, _state, _group);
+		if (!move_list.size())
+		{
+			return -WIN + _ply;
+		}
+	}
+	if (Chess::is_check(_state, _group))
+	{
+		Chess::_internal_generate_valid_move(move_list, _state, 1 - _group);
+		if (!move_list.size())
+		{
+			return WIN - _ply;
+		}
+	}
+	Chess::_internal_generate_valid_move(move_list, _state, _group);
+	if (move_list.size() == 0)
+	{
+		return _group == 0 ? despise_factor : -despise_factor;
 	}
 	if (_depth <= 0)
 	{
@@ -517,9 +532,16 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	}
 	if (_ply > 0 && map_history_state.count(_state->get_zobrist()))
 	{
-		return despise_factor; // 视作平局，如果局面不太好，也不会选择负分的下法
+		return _group == 0 ? despise_factor : -despise_factor; // 视作平局，如果局面不太好，也不会选择负分的下法
 	}
 
+	bool found_pv = false;
+	int transposition_table_score = transposition_table->probe_hash(_state->get_zobrist(), _depth, _alpha, _beta);
+	if (_ply > 0 && transposition_table_score != 65535)
+	{
+		transposition_table_cutoff++;
+		return transposition_table_score;
+	}
 	if (time_passed() >= think_time || interrupted)
 	{
 		return quies(_state, score, _alpha, _beta, _group, _ply + 1);
@@ -527,7 +549,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 
 	unsigned char flag = ALPHA;
 	int pv_move = transposition_table->best_move(_state->get_zobrist());
-	if (_depth > 2 && _can_null)
+	if (_depth > 2 && _ply > 1 && _can_null)
 	{
 		int next_score = -alphabeta(_state, score, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, false, true, nullptr, nullptr, _debug_output);
 		if (next_score >= _beta)
@@ -536,26 +558,10 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 			return _beta;
 		}
 	}
-	godot::PackedInt32Array move_list;
-	Chess::_internal_generate_valid_move(move_list, _state, _group);
-	if (move_list.size() == 0)
-	{
-		if (Chess::is_check(_state, 1 - _group))
-		{
-			return -WIN + _ply;
-		} else {
-			return despise_factor;
-		}
-	}
 	std::sort(move_list.ptrw(), move_list.ptrw() + move_list.size(), [this, &_state, pv_move, killer_1, killer_2](int a, int b) -> bool{
 		return compare_move(a, b, pv_move,  killer_1 ? *killer_1 : 0, killer_2 ? *killer_2 : 0, _state);
 	});
 	int move_count = move_list.size();
-	if (_depth > 2)
-	{
-		move_count -= 0.57 + (pow(_depth, 0.10) * pow(move_count, 0.16)) / 2.49;
-		move_count = move_count <= 0 ? 1 : move_count;
-	}
 	int next_killer_1 = 0;
 	int next_killer_2 = 0;
 	pv_move = move_list[0];
@@ -603,18 +609,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	}
 	if (!_is_null)
 	{
-		if (_alpha >= WIN - MAX_PLY)
-		{
-			transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha + _ply, flag, pv_move);
-		}
-		else if (_alpha <= -WIN + MAX_PLY)
-		{
-			transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha - _ply, flag, pv_move);
-		}
-		else
-		{
-			transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha, flag, pv_move);
-		}
+		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha, flag, pv_move);
 	}
 	return _alpha;
 }
