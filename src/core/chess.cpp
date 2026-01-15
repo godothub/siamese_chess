@@ -190,6 +190,142 @@ int64_t Chess::pawn_end[2] = {0x0000000000FF00, 0x00FF000000000000};
 
 Chess::Chess()
 {
+	for (int i = 0; i < 64; i++)	//墙（行）
+	{
+		//bit所在位置设置为1时，右侧的缝隙就是墙壁了
+		//和攻击范围不一样，这里标记能走的范围不能够多走一格
+		//向右走时，还需要再走多一格，才能够在这一格上标记
+		//向左走并不需要特别注意这些
+		for (int j = 0; j < 256; j++)
+		{
+			uint64_t barrel = uint64_t(j) << Chess::rotate_0_shift(i);
+			int64_t bit = 0;
+			for (int k = Chess::to_x88(i); !(k & 0x88); k--)
+			{
+				bit |= Chess::mask(Chess::to_64(k));
+				if (!((k - 1) & 0x88) && Chess::mask(Chess::to_64(k - 1)) & barrel)
+				{
+					break;
+				}
+			}
+			for (int k = Chess::to_x88(i); !(k & 0x88); k++)
+			{
+				bit |= Chess::mask(Chess::to_64(k));
+				if (Chess::mask(Chess::to_64(k)) & barrel)
+				{
+					break;
+				}
+			}
+			rank_wall[i][j] = bit;
+		}
+	}
+	
+	for (int i = 0; i < 64; i++)	//墙（列）
+	{
+		//bit所在位置设置为1时，下方的缝隙就是墙壁
+		for (int j = 0; j < 256; j++)
+		{
+			uint64_t barrel_rotated = uint64_t(j) << Chess::rotate_90_shift(i);
+			uint64_t barrel = 0;
+			for (int k = 0; k < 64; k++)
+			{
+				if (barrel_rotated & 1)
+				{
+					barrel |= Chess::mask(Chess::rotate_90_reverse(k));
+				}
+				barrel_rotated >>= 1;
+			}
+			int64_t bit = 0;
+			for (int k = Chess::to_x88(i); !(k & 0x88); k -= 16)
+			{
+				bit |= Chess::mask(Chess::to_64(k));
+				if (!((k - 16) & 0x88) && Chess::mask(Chess::to_64(k - 16)) & barrel)
+				{
+					break;
+				}
+			}
+			for (int k = Chess::to_x88(i); !(k & 0x88); k += 16)
+			{
+				bit |= Chess::mask(Chess::to_64(k));
+				if (Chess::mask(Chess::to_64(k)) & barrel)
+				{
+					break;
+				}
+			}
+			file_wall[i][j] = bit;
+		}
+	}
+
+	for (int i = 0; i < 64; i++)	//墙（角）（a1h8)
+	{
+		//bit所在位置设置为1时，右下角位置则为墙角
+		//但是从左下到右上之时，能到达最远的地方，其标记在上方格子
+		//从右上到左下时，能到达最远的地方，标记在左侧
+		for (int j = 0; j < 256; j++)
+		{
+			uint64_t barrel_rotated = uint64_t(j) << Chess::rotate_45_shift(i);
+			uint64_t barrel = 0;
+			for (int k = 0; k < 64; k++)
+			{
+				if (barrel_rotated & 1)
+				{
+					barrel |= Chess::mask(Chess::rotate_90_reverse(k));
+				}
+				barrel_rotated >>= 1;
+			}
+			int64_t bit = 0;
+			for (int k = Chess::to_x88(i); !(k & 0x88); k -= 15)
+			{
+				bit |= Chess::mask(Chess::to_64(k));
+				if (!((k - 16) & 0x88) && (Chess::mask(Chess::to_64(k - 16)) & barrel))
+				{
+					break;
+				}
+			}
+			for (int k = Chess::to_x88(i); !(k & 0x88); k += 15)
+			{
+				bit |= Chess::mask(Chess::to_64(k));
+				if (!((k - 1) & 0x88) && Chess::mask(Chess::to_64(k - 1)) & barrel)
+				{
+					break;
+				}
+			}
+		}
+	}
+	for (int i = 0; i < 64; i++)	//墙（角）（a8h1)
+	{
+		//bit所在位置设置为1时，右下角位置则为墙角
+		for (int j = 0; j < 256; j++)
+		{
+			uint64_t barrel_rotated = uint64_t(j) << Chess::rotate_45_shift(i);
+			uint64_t barrel = 0;
+			for (int k = 0; k < 64; k++)
+			{
+				if (barrel_rotated & 1)
+				{
+					barrel |= Chess::mask(Chess::rotate_90_reverse(k));
+				}
+				barrel_rotated >>= 1;
+			}
+			int64_t bit = 0;
+			for (int k = Chess::to_x88(i); !(k & 0x88); k -= 17)
+			{
+				bit |= Chess::mask(Chess::to_64(k));
+				if (!((k - 17) & 0x88) && Chess::mask(Chess::to_64(k - 17)) & barrel)
+				{
+					break;
+				}
+			}
+			for (int k = Chess::to_x88(i); !(k & 0x88); k += 17)
+			{
+				bit |= Chess::mask(Chess::to_64(k));
+				if (Chess::mask(Chess::to_64(k)) & barrel)
+				{
+					break;
+				}
+			}
+		}
+	}
 	for (int i = 0; i < 64; i++)	//直线行
 	{
 		for (int j = 0; j < 256; j++)
