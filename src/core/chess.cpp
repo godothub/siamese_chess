@@ -1299,8 +1299,8 @@ bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to)
 	}
 	if ((_from >> 4) + (_from & 15) == (_to >> 4) + (_to & 15))
 	{
-		int last_diag = !((_from - 1) & 0x88) ? _from - 1 : 
-						(!((_from - 16) & 0x88) ? _from - 8 : 63);
+		int last_diag = !((_from - 1) & 0x88) ? from_64 - 1 : 
+						(!((_from - 16) & 0x88) ? from_64 - 8 : 63);
 		uint64_t wall = Chess::bit_rotate_45(_state->get_bit('+'));
 		uint64_t can_walk = diag_a1h8_wall[from_64][(wall >> Chess::rotate_45_shift(last_diag)) & Chess::rotate_45_length_mask(last_diag)];
 		if (!(can_walk & to_mask))
@@ -1578,9 +1578,10 @@ godot::PackedInt32Array Chess::generate_explore_move(const godot::Ref<State> &_s
 			{
 				int next = cur + direction('k', i);
 				int move = Chess::create(from, next, 0);
+				int move_with_extra = Chess::create(from, next, 'E');
 				if (!closed.count(next) && !is_blocked(_state, cur, next) && !is_enemy(_state, cur, next))
 				{
-					godot::Ref<State>test_state = _state->duplicate();
+					godot::Ref<State> test_state = _state->duplicate();
 					apply_move(test_state, move);
 					if (!is_check(test_state, 1 - _group))
 					{
@@ -1590,8 +1591,8 @@ godot::PackedInt32Array Chess::generate_explore_move(const godot::Ref<State> &_s
 						}
 						q.push(next);
 					}
+					closed.insert(next);
 				}
-				closed.insert(next);
 			}
 		}
 		move_list.append_array(king_move);
