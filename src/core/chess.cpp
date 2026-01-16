@@ -1587,7 +1587,7 @@ godot::PackedInt32Array Chess::generate_explore_move(const godot::Ref<State> &_s
 					{
 						if (!move_list.has(move))
 						{
-							king_move.push_back(move);
+							king_move.push_back(move_with_extra);
 						}
 						q.push(next);
 					}
@@ -1949,6 +1949,13 @@ godot::Dictionary Chess::apply_move_custom(const godot::Ref<State> &_state, int 
 	{
 		if (Chess::extra(_move))
 		{
+			if (Chess::extra(_move) == 'E')
+			{
+				output["type"] = "king_explore";
+				output["from"] = from;
+				output["path"] = generate_king_path(_state, from, to);
+				return output;
+			}
 			if (to == Chess::g1())
 			{
 				output["type"] = "castle";
@@ -1985,13 +1992,6 @@ godot::Dictionary Chess::apply_move_custom(const godot::Ref<State> &_state, int 
 				output["to_rook"] = Chess::d8();
 				return output;
 			}
-		}
-		if (to % 16 < from % 16 - 1 || to % 16 > from % 16 + 1 || to / 16 < from / 16 - 1 || to / 16 > from / 16 + 1)
-		{
-			output["type"] = "king_explore";
-			output["from"] = from;
-			output["path"] = generate_king_path(_state, from, to);
-			return output;
 		}
 	}
 	output["type"] = "move";
