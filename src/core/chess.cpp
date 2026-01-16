@@ -173,6 +173,10 @@ const int Chess::rotate_315_shift_table[64]
 	56, 48, 40, 32, 24, 16,  8,  0
 };
 
+int64_t Chess::rank_wall[64][256] = {};
+int64_t Chess::file_wall[64][256] = {};
+int64_t Chess::diag_a1h8_wall[64][256] = {};
+int64_t Chess::diag_a8h1_wall[64][256] = {};
 int64_t Chess::rank_attacks[64][256] = {};
 int64_t Chess::file_attacks[64][256] = {};	//将棋盘转置后使用
 int64_t Chess::diag_a1h8_attacks[64][256] = {};
@@ -203,7 +207,7 @@ Chess::Chess()
 			for (int k = Chess::to_x88(i); !(k & 0x88); k--)
 			{
 				bit |= Chess::mask(Chess::to_64(k));
-				if (!((k - 1) & 0x88) && Chess::mask(Chess::to_64(k - 1)) & barrel)
+				if (!((k - 1) & 0x88) && (Chess::mask(Chess::to_64(k - 1)) & barrel))
 				{
 					break;
 				}
@@ -239,7 +243,7 @@ Chess::Chess()
 			for (int k = Chess::to_x88(i); !(k & 0x88); k -= 16)
 			{
 				bit |= Chess::mask(Chess::to_64(k));
-				if (!((k - 16) & 0x88) && Chess::mask(Chess::to_64(k - 16)) & barrel)
+				if (!((k - 16) & 0x88) && (Chess::mask(Chess::to_64(k - 16)) & barrel))
 				{
 					break;
 				}
@@ -261,15 +265,18 @@ Chess::Chess()
 		//bit所在位置设置为1时，右下角位置则为墙角
 		//但是从左下到右上之时，能到达最远的地方，其标记在上方格子
 		//从右上到左下时，能到达最远的地方，标记在左侧
+		//特别小心：需要检测的位置是在上一条斜线，而不是这一条
+		int last_diag = !((Chess::to_x88(i) - 1) & 0x88) ? i - 1 : 
+						(!((Chess::to_x88(i) - 16) & 0x88) ? i - 8 : 63);
 		for (int j = 0; j < 256; j++)
 		{
-			uint64_t barrel_rotated = uint64_t(j) << Chess::rotate_45_shift(i);
+			uint64_t barrel_rotated = uint64_t(j) << Chess::rotate_45_shift(last_diag);
 			uint64_t barrel = 0;
 			for (int k = 0; k < 64; k++)
 			{
 				if (barrel_rotated & 1)
 				{
-					barrel |= Chess::mask(Chess::rotate_90_reverse(k));
+					barrel |= Chess::mask(Chess::rotate_45_reverse(k));
 				}
 				barrel_rotated >>= 1;
 			}
@@ -285,11 +292,12 @@ Chess::Chess()
 			for (int k = Chess::to_x88(i); !(k & 0x88); k += 15)
 			{
 				bit |= Chess::mask(Chess::to_64(k));
-				if (!((k - 1) & 0x88) && Chess::mask(Chess::to_64(k - 1)) & barrel)
+				if (!((k - 1) & 0x88) && (Chess::mask(Chess::to_64(k - 1)) & barrel))
 				{
 					break;
 				}
 			}
+			diag_a1h8_wall[i][j] = bit;
 		}
 	}
 	for (int i = 0; i < 64; i++)	//墙（角）（a8h1)
@@ -297,13 +305,13 @@ Chess::Chess()
 		//bit所在位置设置为1时，右下角位置则为墙角
 		for (int j = 0; j < 256; j++)
 		{
-			uint64_t barrel_rotated = uint64_t(j) << Chess::rotate_45_shift(i);
+			uint64_t barrel_rotated = uint64_t(j) << Chess::rotate_315_shift(i);
 			uint64_t barrel = 0;
 			for (int k = 0; k < 64; k++)
 			{
 				if (barrel_rotated & 1)
 				{
-					barrel |= Chess::mask(Chess::rotate_90_reverse(k));
+					barrel |= Chess::mask(Chess::rotate_315_reverse(k));
 				}
 				barrel_rotated >>= 1;
 			}
@@ -311,7 +319,7 @@ Chess::Chess()
 			for (int k = Chess::to_x88(i); !(k & 0x88); k -= 17)
 			{
 				bit |= Chess::mask(Chess::to_64(k));
-				if (!((k - 17) & 0x88) && Chess::mask(Chess::to_64(k - 17)) & barrel)
+				if (!((k - 17) & 0x88) && (Chess::mask(Chess::to_64(k - 17)) & barrel))
 				{
 					break;
 				}
@@ -324,6 +332,7 @@ Chess::Chess()
 					break;
 				}
 			}
+			diag_a8h1_wall[i][j] = bit;
 		}
 	}
 	for (int i = 0; i < 64; i++)	//直线行
@@ -1256,6 +1265,8 @@ bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to)
 	}
 	int from_piece = _state->get_piece(_from);
 	int from_group = Chess::group(from_piece);
+	int from_64 = Chess::to_64(_from);
+	uint64_t to_mask = Chess::mask(Chess::to_64(_to));
 	if (_state->get_piece(_to) == '*')
 	{
 		return false;
@@ -1264,13 +1275,47 @@ bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to)
 	{
 		return true;
 	}
-	if ((_state->get_piece(_to) & 95) == 'Y')
+	if (_state->get_bit('#') & to_mask)
 	{
 		return true;
 	}
-	if (_state->get_bit('#') & Chess::mask(Chess::to_64(_to)))
+	if ((_from >> 4) == (_to >> 4))
 	{
-		return true;
+		uint64_t wall = _state->get_bit('|');
+		uint64_t can_walk = rank_wall[from_64][(wall >> Chess::rotate_0_shift(from_64)) & 0xFF];
+		if (!(can_walk & to_mask))
+		{
+			return true;
+		}
+	}
+	if ((_from & 15) == (_to & 15))
+	{
+		uint64_t wall = Chess::bit_rotate_90(_state->get_bit('-'));
+		uint64_t can_walk = file_wall[from_64][(wall >> Chess::rotate_90_shift(from_64)) & 0xFF];
+		if (!(can_walk & to_mask))
+		{
+			return true;
+		}
+	}
+	if ((_from >> 4) + (_from & 15) == (_to >> 4) + (_to & 15))
+	{
+		int last_diag = !((_from - 1) & 0x88) ? _from - 1 : 
+						(!((_from - 16) & 0x88) ? _from - 8 : 63);
+		uint64_t wall = Chess::bit_rotate_45(_state->get_bit('+'));
+		uint64_t can_walk = diag_a1h8_wall[from_64][(wall >> Chess::rotate_45_shift(last_diag)) & Chess::rotate_45_length_mask(last_diag)];
+		if (!(can_walk & to_mask))
+		{
+			return true;
+		}
+	}
+	if ((_from >> 4) - (_from & 15) == (_to >> 4) - (_to & 15))
+	{
+		uint64_t wall = Chess::bit_rotate_315(_state->get_bit('+'));
+		uint64_t can_walk = diag_a8h1_wall[from_64][(wall >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64)];
+		if (!(can_walk & to_mask))
+		{
+			return true;
+		}
 	}
 	return false;
 }
@@ -1469,7 +1514,7 @@ void Chess::_internal_generate_move(godot::PackedInt32Array &output, const godot
 						}
 						else if ((_from & 15) <= 3 && (_group == 0 && (_state->get_castle() & 4) || _group == 1 && (_state->get_castle() & 1)))
 						{
-							output.push_back(Chess::create(to,_group == 0 ? Chess::c1() : Chess::c8(), 'Q'));
+							output.push_back(Chess::create(to, _group == 0 ? Chess::c1() : Chess::c8(), 'Q'));
 						}
 					}
 					break;
