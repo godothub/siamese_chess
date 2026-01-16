@@ -1277,7 +1277,7 @@ bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to)
 
 bool Chess::is_enemy(const godot::Ref<State> &_state, int _from, int _to)
 {
-	return _state->has_piece(_to) && (!Chess::is_same_group(_state->get_piece(_from), _state->get_piece(_to)) || (_state->get_piece(_to) & 95) == '*');
+	return _state->has_piece(_to) && (!Chess::is_same_group(_state->get_piece(_from), _state->get_piece(_to)) || _state->get_piece(_to) == '*');
 }
 
 bool Chess::is_en_passant(const godot::Ref<State> &_state, int _from, int _to)
