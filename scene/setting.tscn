@@ -1,0 +1,293 @@
+[gd_scene load_steps=8 format=3 uid="uid://dndc701nn8f4o"]
+
+[ext_resource type="Script" uid="uid://sm17i1s74xa8" path="res://src/setting.gd" id="1_ahr6q"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_xthoy"]
+
+[sub_resource type="Gradient" id="Gradient_j3y3i"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eocmh"]
+gradient = SubResource("Gradient_j3y3i")
+
+[sub_resource type="LabelSettings" id="LabelSettings_xthoy"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_ahr6q"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_g2to7"]
+
+[node name="setting" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_ahr6q")
+
+[node name="texture_rect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture1D_eocmh")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="label_title" type="Label" parent="texture_rect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.074
+anchor_right = 1.0
+anchor_bottom = 0.17400001
+offset_top = 0.048007965
+offset_right = -479.02472
+offset_bottom = -26.751999
+grow_horizontal = 2
+scale = Vector2(1.7118014, 1.7118014)
+theme_override_fonts/font = ExtResource("1_xthoy")
+theme_override_font_sizes/font_size = 91
+text = "设置"
+label_settings = SubResource("LabelSettings_xthoy")
+horizontal_alignment = 1
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 141.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="v_box_container_left" type="VBoxContainer" parent="texture_rect/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="margin_container_resolution" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution"]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution/h_box_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "渲染分辨率"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="option_button" type="OptionButton" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 10
+focus_mode = 3
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_xthoy")
+theme_override_font_sizes/font_size = 25
+flat = true
+
+[node name="margin_container_fullscreen" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen"]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "全屏"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="check_box" type="CheckBox" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container"]
+self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_mode = 3
+
+[node name="margin_container_master_volume" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume"]
+layout_mode = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container"]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container/h_box_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "主音量"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "0%"
+label_settings = SubResource("LabelSettings_ahr6q")
+horizontal_alignment = 2
+
+[node name="h_slider" type="HSlider" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container"]
+layout_mode = 2
+focus_mode = 3
+
+[node name="margin_container_sfx_volume" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container"]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container/h_box_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "效果音"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "0%"
+label_settings = SubResource("LabelSettings_ahr6q")
+horizontal_alignment = 2
+
+[node name="h_slider" type="HSlider" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container"]
+layout_mode = 2
+focus_mode = 3
+
+[node name="margin_container_env_volume" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume"]
+layout_mode = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container"]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container/h_box_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "环境音"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "0%"
+label_settings = SubResource("LabelSettings_ahr6q")
+horizontal_alignment = 2
+
+[node name="h_slider" type="HSlider" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container"]
+layout_mode = 2
+focus_mode = 3
+
+[node name="v_box_container_right" type="VBoxContainer" parent="texture_rect/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="margin_container_language" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language"]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language/h_box_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "语言/Language"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="option_button" type="OptionButton" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("1_xthoy")
+theme_override_font_sizes/font_size = 25
+flat = true
+
+[node name="margin_container_relax" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax"]
+layout_mode = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container"]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container/h_box_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "没玩过象棋，手下留情？"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="check_box" type="CheckBox" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container/h_box_container"]
+self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)
+layout_mode = 2
+size_flags_horizontal = 10
+focus_mode = 3
+
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "欢迎尝试！引擎尽量不通过深层战术让您感到挫败，
+但它仍然能惩罚您的丢子行为，请集中注意力思考！"
+label_settings = SubResource("LabelSettings_g2to7")
+
+[node name="margin_container_clean_archive" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive"]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive/h_box_container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "清空文档"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="button" type="Button" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("1_xthoy")
+theme_override_font_sizes/font_size = 22
+text = "清空"
+flat = true
