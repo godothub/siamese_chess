@@ -7,9 +7,6 @@
 [node name="chessboard_large" instance=ExtResource("1_x56hs")]
 script = ExtResource("2_j52ln")
 
-[node name="CollisionShape3D" parent="h3" index="0"]
-visible = false
-
 [node name="canvas" parent="." index="67" instance=ExtResource("3_vvu1j")]
 transform = Transform3D(-16, 0, -2.41593e-06, 0, 16, 0, 2.41593e-06, 0, -16, 0, 0.0786357, 0)
 
