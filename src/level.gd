@@ -161,6 +161,7 @@ func state_ready_explore_ready_to_move(_arg:Dictionary) -> void:
 				Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"], 
 					tr("HINT_STATUS") % [Progress.get_value("obtains", 0), Progress.get_value("wins", 0)], false, false)
 			"SELECTION_SETTINGS":
+				Setting.open()
 				change_state("explore_idle")
 	)
 	state_signal_connect(chessboard.click_selection, func () -> void:
