@@ -783,9 +783,9 @@ int64_t Chess::bit_rotate_45(int64_t bit)
 	const uint64_t k1 = 0x5555555555555555;
 	const uint64_t k2 = 0x3333333333333333;
 	const uint64_t k4 = 0x0f0f0f0f0f0f0f0f;
-	x ^= k1 & (x ^ _rotr64(x, 8));
-	x ^= k2 & (x ^ _rotr64(x, 16));
-	x ^= k4 & (x ^ _rotr64(x, 32));
+	x ^= k1 & (x ^ ((x >> 8) | (x << (64 - 8))));
+	x ^= k2 & (x ^ ((x >> 16) | (x << (64 - 16))));
+	x ^= k4 & (x ^ ((x >> 32) | (x << (64 - 32))));
 	return x;
 }
 
@@ -795,9 +795,9 @@ int64_t Chess::bit_rotate_315(int64_t bit)
 	const uint64_t k1 = 0xAAAAAAAAAAAAAAAA;
 	const uint64_t k2 = 0xCCCCCCCCCCCCCCCC;
 	const uint64_t k4 = 0xF0F0F0F0F0F0F0F0;
-	x ^= k1 & (x ^ _rotr64(x, 8));
-	x ^= k2 & (x ^ _rotr64(x, 16));
-	x ^= k4 & (x ^ _rotr64(x, 32));
+	x ^= k1 & (x ^ ((x >> 8) | (x << (64 - 8))));
+	x ^= k2 & (x ^ ((x >> 16) | (x << (64 - 16))));
+	x ^= k4 & (x ^ ((x >> 32) | (x << (64 - 32))));
 	return x;
 }
 
