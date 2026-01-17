@@ -152,22 +152,22 @@ func state_ready_explore_ready_to_move(_arg:Dictionary) -> void:
 			selection |= Chess.mask(Chess.to_64(Chess.to(iter)))
 	state_signal_connect(Dialog.on_next, func() -> void:
 		match Dialog.selected:
-			"卡牌":
+			"SELECTION_PIECES":
 				change_state("explore_select_card", {"selection": selection})
-			"档案":
+			"SELECTION_DOCUMENTS":
 				Archive.open()
 				change_state("explore_idle")
-			"统计":
-				Dialog.push_selection(["统计", "卡牌", "档案", "设置"], 
-					"获得货币：%d  赢局：%d" % [Progress.get_value("obtains", 0), Progress.get_value("wins", 0)], false, false)
-			"设置":
+			"SELECTION_STATUS":
+				Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"], 
+					tr("HINT_STATUS") % [Progress.get_value("obtains", 0), Progress.get_value("wins", 0)], false, false)
+			"SELECTION_SETTINGS":
 				change_state("explore_idle")
 	)
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("explore_check_move", {"from": from, "to": chessboard.selected, "move_list": move_list})
 	)
 	state_signal_connect(chessboard.click_empty, change_state.bind("explore_idle"))
-	Dialog.push_selection(["统计", "卡牌", "档案", "设置"], "", false, false)
+	Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"], "", false, false)
 	chessboard.set_square_selection(selection)
 
 func state_exit_explore_ready_to_move() -> void:
@@ -199,7 +199,7 @@ func state_ready_explore_extra_move(_arg:Dictionary) -> void:
 		else:
 			change_state("explore_move", {"move": decision_to_move[Dialog.selected]})
 	)
-	Dialog.push_selection(decision_list, "请选择一个着法", true, true)
+	Dialog.push_selection(decision_list, "HINT_EXTRA_MOVE", true, true)
 
 func state_ready_explore_move(_arg:Dictionary) -> void:
 	state_signal_connect(chessboard.click_selection, premove_pressed.bind(true))
@@ -245,7 +245,7 @@ func state_ready_explore_check_premove(_arg:Dictionary) -> void:
 func state_ready_explore_select_card(_arg:Dictionary) -> void:
 	state_signal_connect(Dialog.on_next, change_state.bind("explore_idle"))
 	state_signal_connect(HoldCard.selected, change_state.bind("explore_use_card", _arg))
-	Dialog.push_selection(["取消"], "选择一张卡", false, false)
+	Dialog.push_selection(["SELECTION_CANCEL"], "HINT_USE_PIECE", false, false)
 	HoldCard.show_card()
 
 func state_exit_explore_select_card() -> void:
@@ -260,7 +260,7 @@ func state_ready_explore_use_card(_arg:Dictionary) -> void:
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("explore_using_card", {"by": chessboard.selected})
 	)
-	Dialog.push_selection(["取消"], "选择一个位置", false, false)
+	Dialog.push_selection(["SELECTION_CANCEL"], "HINT_SELECT_SQUARE", false, false)
 	chessboard.set_square_selection(_arg["selection"])
 
 func state_exit_explore_use_card() -> void:
@@ -277,7 +277,7 @@ func state_ready_explore_using_card(_arg:Dictionary) -> void:
 
 func state_ready_versus_alert(_arg:Dictionary) -> void:
 	state_signal_connect(Dialog.on_next, change_state.bind("versus_start"))
-	Dialog.push_dialog("敌人发现了你！", "", true, true)
+	Dialog.push_dialog("HINT_ENEMY_SPOTTED", "", true, true)
 
 func state_ready_versus_start(_arg:Dictionary) -> void:
 	Clock.set_time(30, 1)
@@ -406,7 +406,7 @@ func state_ready_versus_extra_move(_arg:Dictionary) -> void:
 			change_state("versus_move", {"move": decision_to_move[Dialog.selected]})
 	)
 	state_signal_connect(Clock.timeout, change_state.bind("white_win"))
-	Dialog.push_selection(decision_list, "请选择一个着法", true, true)
+	Dialog.push_selection(decision_list, "HINT_EXTRA_MOVE", true, true)
 
 func state_ready_black_win(_arg:Dictionary) -> void:
 	history_document.save_file()
@@ -422,7 +422,7 @@ func state_ready_black_win(_arg:Dictionary) -> void:
 		bit = Chess.next_bit(bit)
 	state_signal_connect(Dialog.on_next, change_state.bind("explore_idle"))
 	Progress.accumulate("wins", 1)
-	Dialog.push_dialog("你赢了！", "", true, true)
+	Dialog.push_dialog("HINT_YOU_WIN", "", true, true)
 
 func state_ready_white_win(_arg:Dictionary) -> void:
 	history_document.save_file()
@@ -430,7 +430,7 @@ func state_ready_white_win(_arg:Dictionary) -> void:
 	chessboard.state.capture_piece(Chess.to_x88(by))
 	#chessboard.chessboard_piece[Chess.to_x88(by)].captured()
 	state_signal_connect(Dialog.on_next, change_state.bind("conclude"))
-	Dialog.push_dialog("你输了！", "", true, true)
+	Dialog.push_dialog("HINT_YOU_LOSE", "", true, true)
 
 func state_ready_conclude(_arg:Dictionary) -> void:
 	Loading.change_scene("res://scene/conclude.tscn", {}, 1)

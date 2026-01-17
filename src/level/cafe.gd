@@ -21,10 +21,10 @@ func _ready() -> void:
 	$player.force_set_camera($camera)
 	$table_0/chessboard_standard.set_enabled(false)
 	$pastor.play_animation("thinking")
-	interact_list[0x54] = {"下棋": interact_pastor.bind(false), "自定义布局": interact_pastor.bind(true)}
-	title[0x54] = "玉兰"
-	interact_list[0x55] = {"下棋": interact_pastor.bind(false), "自定义布局": interact_pastor.bind(true)}
-	title[0x55] = "玉兰"
+	interact_list[0x54] = {"YULAN_INTERACT_PLAY_CHESS": interact_pastor.bind(false), "YULAN_INTERACT_CUSTOM_POSITION": interact_pastor.bind(true)}
+	title[0x54] = "CHAR_YULAN"
+	interact_list[0x55] = {"YULAN_INTERACT_PLAY_CHESS": interact_pastor.bind(false), "YULAN_INTERACT_CUSTOM_POSITION": interact_pastor.bind(true)}
+	title[0x55] = "CHAR_YULAN"
 
 func interact_pastor(custom_state:bool) -> void:
 	var state:State = null
@@ -166,9 +166,9 @@ func state_ready_in_game_player(_arg:Dictionary) -> void:
 						 $table_0/chessboard_standard.state.get_bit(ord("n")) | \
 						 $table_0/chessboard_standard.state.get_bit(ord("p"))
 	state_signal_connect(Dialog.on_next, func () -> void:
-		if Dialog.selected == "悔棋":
+		if Dialog.selected == "SELECTION_TAKE_BACK":
 			if standard_history_event.size() <= 1:
-				Dialog.push_selection(["离开对局"], "已回退", false, false)
+				Dialog.push_selection(["SELECTION_LEAVE_GAME"], "HINT_TAKE_BACKED", false, false)
 				return
 			$table_0/chessboard_standard.state = standard_history_state[-2]
 			$table_0/chessboard_standard.set_square_selection(
@@ -187,10 +187,10 @@ func state_ready_in_game_player(_arg:Dictionary) -> void:
 			history_document.rollback($table_0/chessboard_standard.state, 2)
 			await $table_0/chessboard_standard.animation_finished
 			if standard_history_event.size() <= 1:
-				Dialog.push_selection(["离开对局"], "已回退", false, false)
+				Dialog.push_selection(["SELECTION_LEAVE_GAME"], "HINT_TAKE_BACKED", false, false)
 			else:
-				Dialog.push_selection(["悔棋", "离开对局"], "已回退", false, false)
-		elif Dialog.selected == "离开对局":
+				Dialog.push_selection(["SELECTION_TAKE_BACK", "SELECTION_LEAVE_GAME"], "HINT_TAKE_BACKED", false, false)
+		elif Dialog.selected == "SELECTION_LEAVE_GAME":
 			change_state("game_end")
 	)
 	state_signal_connect($table_0/chessboard_standard.click_selection, func () -> void:
@@ -198,9 +198,9 @@ func state_ready_in_game_player(_arg:Dictionary) -> void:
 	)
 
 	if standard_history_event.size() <= 1:
-		Dialog.push_selection(["离开对局"], "轮到你了", false, false)
+		Dialog.push_selection(["SELECTION_LEAVE_GAME"], "HINT_YOUR_TURN", false, false)
 	else:
-		Dialog.push_selection(["悔棋", "离开对局"], "轮到你了", false, false)
+		Dialog.push_selection(["SELECTION_TAKE_BACK", "SELECTION_LEAVE_GAME"], "HINT_YOUR_TURN", false, false)
 	$table_0/chessboard_standard.set_square_selection(start_from)
 
 func state_exit_in_game_player() -> void:
@@ -244,25 +244,25 @@ func state_ready_in_game_extra_move(_arg:Dictionary) -> void:
 		else:
 			change_state("in_game_move", {"move": decision_to_move[Dialog.selected]})
 	)
-	Dialog.push_selection(decision_list, "请选择一个着法", true, true)
+	Dialog.push_selection(decision_list, "HINT_EXTRA_MOVE", true, true)
 
 func state_ready_game_end(_arg:Dictionary) -> void:
 	history_document.save_file()
 	match Chess.get_end_type($table_0/chessboard_standard.state):
 		"checkmate_black":
-			Dialog.push_dialog("黑方胜", "", true, true)
+			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "", true, true)
 			await Dialog.on_next
 		"checkmate_white":
-			Dialog.push_dialog("白方胜", "", true, true)
+			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "", true, true)
 			await Dialog.on_next
 		"stalemate_black":
-			Dialog.push_dialog("平局", "", true, true)
+			Dialog.push_dialog("HINT_DRAW", "", true, true)
 			await Dialog.on_next
 		"stalemate_white":
-			Dialog.push_dialog("平局", "", true, true)
+			Dialog.push_dialog("HINT_DRAW", "", true, true)
 			await Dialog.on_next
 		"50_moves":
-			Dialog.push_dialog("平局", "", true, true)
+			Dialog.push_dialog("HINT_DRAW", "", true, true)
 			await Dialog.on_next
 	$player.force_set_camera($camera)
 	$chessboard/pieces/cheshire.play_animation("battle_idle")

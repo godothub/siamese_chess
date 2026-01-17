@@ -48,6 +48,10 @@ naming/default_signal_callback_name="on_{node_name}_{signal_name}"
 naming/default_signal_callback_to_self_name="on_{signal_name}"
 naming/script_name_casing=2
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/translation.en.translation", "res://assets/translation.zh_CN.translation")
+
 [layer_names]
 
 3d_physics/layer_1="inspection"

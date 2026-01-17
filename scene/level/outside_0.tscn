@@ -34,90 +34,69 @@ shadow_enabled = true
 [node name="player" parent="." instance=ExtResource("2_a6ui3")]
 
 [node name="chessboard" parent="." instance=ExtResource("5_up75d")]
-metadata/_edit_lock_ = true
 
 [node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(0.9997678, 0.014635563, -0.015821615, 8.113766e-09, 0.73408604, 0.6790565, 0.021552801, -0.67889875, 0.7339155, -0.72627926, 6.60401, 10.65578)
 
 [node name="shrub" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
-piece_type = 42
 
 [node name="shrub_2" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
-piece_type = 42
 
 [node name="shrub_3" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
-piece_type = 42
 
 [node name="shrub_4" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
-piece_type = 42
 
 [node name="shrub_7" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
-piece_type = 42
 
 [node name="shrub_8" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
-piece_type = 42
 
 [node name="shrub_9" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
-piece_type = 42
 
 [node name="shrub_10" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
-piece_type = 42
 
 [node name="shrub_12" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -7)
-piece_type = 42
 
 [node name="shrub_14" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
-piece_type = 42
 
 [node name="shrub_15" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
-piece_type = 42
 
 [node name="tree_2" parent="." instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
-piece_type = 35
 
 [node name="tree_3" parent="." instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
-piece_type = 35
 
 [node name="tree_4" parent="." instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
-piece_type = 35
 
 [node name="tree_5" parent="." instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
-piece_type = 35
 
 [node name="tree_6" parent="." instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
-piece_type = 35
 
 [node name="tree_7" parent="." instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -7)
-piece_type = 35
 
 [node name="tree_8" parent="." instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
-piece_type = 35
 
 [node name="tree_9" parent="." instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
-piece_type = 35
 
 [node name="tree_10" parent="." instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
-piece_type = 35
 
 [node name="flower" parent="." instance=ExtResource("9_3g7ix")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
@@ -191,23 +170,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.9819274)
 
 [node name="shrub_16" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
-piece_type = 42
 
 [node name="shrub_5" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
-piece_type = 42
 
 [node name="shrub_6" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
-piece_type = 42
 
 [node name="shrub_11" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -7)
-piece_type = 42
 
 [node name="shrub_13" parent="." instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
-piece_type = 42
 
 [node name="teleport_pointer" parent="." instance=ExtResource("14_crw01")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 1, 0, 7)
