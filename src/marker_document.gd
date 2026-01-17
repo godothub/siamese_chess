@@ -7,6 +7,10 @@ class_name MarkerDocument
 
 func event() -> void:
 	if !FileAccess.file_exists(file_path):
+		var dir:DirAccess = DirAccess.open("user://archive/")
+		if !dir:
+			DirAccess.make_dir_absolute("user://archive/")
+			dir = DirAccess.open("user://archive/")
 		var path:String = file_path
 		var file:FileAccess = FileAccess.open(path, FileAccess.WRITE)
 		file.store_string(JSON.stringify(file_content))
