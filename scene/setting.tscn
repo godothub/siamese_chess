@@ -55,7 +55,7 @@ grow_horizontal = 2
 scale = Vector2(1.7118014, 1.7118014)
 theme_override_fonts/font = ExtResource("1_xthoy")
 theme_override_font_sizes/font_size = 91
-text = "设置"
+text = "TITLE_SETTINGS"
 label_settings = SubResource("LabelSettings_xthoy")
 horizontal_alignment = 1
 
@@ -86,7 +86,7 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution/h_box_container"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
-text = "渲染分辨率"
+text = "SETTINGS_RESOLUTION"
 label_settings = SubResource("LabelSettings_ahr6q")
 
 [node name="option_button" type="OptionButton" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution/h_box_container"]
@@ -115,7 +115,7 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
-text = "全屏"
+text = "SETTINGS_FULLSCREEN"
 label_settings = SubResource("LabelSettings_ahr6q")
 
 [node name="check_box" type="CheckBox" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container"]
@@ -140,7 +140,7 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container/h_box_container"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
-text = "主音量"
+text = "SETTINGS_MASTER_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
 [node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container/h_box_container"]
@@ -172,7 +172,7 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container/h_box_container"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
-text = "效果音"
+text = "SETTINGS_SFX_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
 [node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container/h_box_container"]
@@ -203,7 +203,7 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container/h_box_container"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
-text = "环境音"
+text = "SETTINGS_ENV_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
 [node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container/h_box_container"]
@@ -235,7 +235,7 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language/h_box_container"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
-text = "语言/Language"
+text = "SETTINGS_LANGUAGE"
 label_settings = SubResource("LabelSettings_ahr6q")
 
 [node name="option_button" type="OptionButton" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language/h_box_container"]
@@ -261,7 +261,7 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container/h_box_container"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
-text = "没玩过象棋，手下留情？"
+text = "SETTINGS_RELAX"
 label_settings = SubResource("LabelSettings_ahr6q")
 
 [node name="check_box" type="CheckBox" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container/h_box_container"]
@@ -273,9 +273,9 @@ focus_mode = 3
 [node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
-text = "欢迎尝试！引擎尽量不通过深层战术让您感到挫败，
-但它仍然能惩罚您的丢子行为，请集中注意力思考！"
+text = "SETTINGS_RELAX_EXPLAIN"
 label_settings = SubResource("LabelSettings_g2to7")
+autowrap_mode = 3
 
 [node name="margin_container_clean_archive" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right"]
 layout_mode = 2
@@ -290,7 +290,7 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive/h_box_container"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
-text = "清空文档"
+text = "SETTINGS_RESET_DOCUMENTS"
 label_settings = SubResource("LabelSettings_ahr6q")
 
 [node name="button" type="Button" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive/h_box_container"]
@@ -298,7 +298,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("1_xthoy")
 theme_override_font_sizes/font_size = 22
-text = "清空"
+text = "SETTINGS_RESET_DOCUMENTS_BUTTON"
 flat = true
 
 [node name="button_close" type="Button" parent="texture_rect"]

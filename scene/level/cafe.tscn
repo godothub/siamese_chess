@@ -649,7 +649,7 @@ file_content = {
 "lines": [],
 "path": "res://assets/texture/menu.png"
 }
-selection = "菜单"
+selection = "DOCUMENT_TITLE_MENU"
 metadata/_custom_type_script = "uid://dc4n8wl381mqw"
 
 [node name="marker_document_chess_movements" type="Node3D" parent="."]
@@ -660,7 +660,7 @@ file_content = {
 "lines": [],
 "path": "res://assets/texture/chess_movements.png"
 }
-selection = "有关棋子的移动"
+selection = "DOCUMENT_TITLE_CHESS_MOVEMENT"
 metadata/_custom_type_script = "uid://dc4n8wl381mqw"
 
 [editable path="table_0"]

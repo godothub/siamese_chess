@@ -162,7 +162,7 @@ transform = Transform3D(-7, 0, -6.119594e-07, 0, 7, 0, 6.119594e-07, 0, -7, 1.00
 cover = ExtResource("11_crw01")
 actor = ExtResource("12_owa5c")
 card_piece = 112
-comment = "在“卡牌”页面中使用这张卡"
+comment = "HINT_GET_PIECE_FIRST_TIME"
 progress_key = "piece_pawn_card_0"
 
 [node name="hotel_gate" parent="." instance=ExtResource("12_not3w")]

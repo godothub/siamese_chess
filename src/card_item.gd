@@ -23,5 +23,5 @@ func event() -> void:
 	card.piece = card_piece
 	card.actor = actor.instantiate().set_larger_scale()
 	HoldCard.add_card(card)
-	Dialog.push_dialog(comment, "你获得了一张卡牌", false, false, false)
+	Dialog.push_dialog(comment, "HINT_GET_PIECE", false, false, false)
 	level.change_state("explore_idle")
