@@ -3,6 +3,7 @@ extends CanvasLayer
 var resolutions:Array[Vector2i] = [
 	Vector2i(800, 600),
 	Vector2i(1024, 600),
+	Vector2i(1152, 648),
 	Vector2i(1440, 900),
 	Vector2i(1600, 900),
 	Vector2i(1280, 720),
@@ -35,6 +36,17 @@ func _ready() -> void:
 	for key:String in languages:
 		language_input.add_item(languages[key])
 	
+	resolution_input.select(2)
+	fullscreen_input.set_pressed_no_signal(false)
+	master_volume_input.set_value_no_signal(AudioServer.get_bus_volume_linear(AudioServer.get_bus_index(&"Master")) * 100)
+	master_volume_value.text = "%d%%" % (AudioServer.get_bus_volume_linear(AudioServer.get_bus_index(&"Master")) * 100)
+	sfx_volume_input.set_value_no_signal(AudioServer.get_bus_volume_linear(AudioServer.get_bus_index(&"SFX")) * 100)
+	sfx_volume_value.text = "%d%%" % (AudioServer.get_bus_volume_linear(AudioServer.get_bus_index(&"SFX")) * 100)
+	env_volume_input.set_value_no_signal(AudioServer.get_bus_volume_linear(AudioServer.get_bus_index(&"Ambient")) * 100)
+	env_volume_value.text = "%d%%" % (AudioServer.get_bus_volume_linear(AudioServer.get_bus_index(&"Ambient")) * 100)
+	language_input.select(languages.keys().find(TranslationServer.get_locale()))
+	relax_input.set_pressed_no_signal(false)
+	
 	resolution_input.connect("item_selected", set_resolution)
 	fullscreen_input.connect("toggled", set_fullscreen)
 	master_volume_input.connect("value_changed", set_master_volume)
@@ -53,7 +65,7 @@ func close() -> void:
 	visible = false
 
 func set_resolution(index:int) -> void:
-	get_window().size = resolutions[index]
+	get_viewport().size = resolutions[index]
 
 func set_fullscreen(toggled_on:bool) -> void:
 	if toggled_on:
