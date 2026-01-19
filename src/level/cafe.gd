@@ -16,7 +16,10 @@ func _ready() -> void:
 	$chessboard.state.add_piece(cheshire_by, ord("k"))
 	$chessboard.add_piece_instance(cheshire_instance, cheshire_by)
 	
-	standard_engine.set_max_depth(6)
+	if Progress.get_value("relax", false):
+		standard_engine.set_max_depth(20)
+	else:
+		standard_engine.set_max_depth(2)
 	standard_engine.set_think_time(INF)
 	$player.force_set_camera($camera)
 	$table_0/chessboard_standard.set_enabled(false)
@@ -117,23 +120,26 @@ func state_ready_in_game_start(_arg:Dictionary) -> void:
 func state_ready_in_game_enemy(_arg:Dictionary) -> void:
 	state_signal_connect($table_0/chessboard_standard.click_selection, game_premove_pressed)
 	state_signal_connect($table_0/chessboard_standard.click_empty, game_premove_cancel)
-	state_signal_connect(engine.search_finished, func() -> void:
-		print("score: ", engine.get_score())
-		print("deepest depth: ", engine.get_deepest_depth())
-		print("deepest ply: ", engine.get_deepest_ply())
-		print("evaluated_position: ", engine.get_evaluated_position())
-		print("beta_cutoff: ", engine.get_beta_cutoff())
-		print("transposition_table_cutoff: ", engine.get_transposition_table_cutoff())
-		change_state("in_game_move", {"move": engine.get_search_result()})
+	state_signal_connect(standard_engine.search_finished, func() -> void:
+		print("score: ", standard_engine.get_score())
+		print("deepest depth: ", standard_engine.get_deepest_depth())
+		print("deepest ply: ", standard_engine.get_deepest_ply())
+		print("evaluated_position: ", standard_engine.get_evaluated_position())
+		print("beta_cutoff: ", standard_engine.get_beta_cutoff())
+		print("transposition_table_cutoff: ", standard_engine.get_transposition_table_cutoff())
+		change_state("in_game_move", {"move": standard_engine.get_search_result()})
 	)
-	engine.set_think_time(3)
-	engine.set_max_depth(20)
-	engine.start_search($table_0/chessboard_standard.state, 0, standard_history_state, Callable())
+	if Progress.get_value("relax", false):
+		standard_engine.set_max_depth(20)
+	else:
+		standard_engine.set_max_depth(2)
+	standard_engine.set_think_time(3)
+	standard_engine.start_search($table_0/chessboard_standard.state, 0, standard_history_state, Callable())
 	game_premove_init()
 
 func state_ready_in_game_waiting() -> void:
-	state_signal_connect(engine.search_finished, change_state.bind("in_game_enemy"))
-	engine.stop_search()
+	state_signal_connect(standard_engine.search_finished, change_state.bind("in_game_enemy"))
+	standard_engine.stop_search()
 
 func state_ready_in_game_move(_arg:Dictionary) -> void:
 	state_signal_connect($table_0/chessboard_standard.click_selection, game_premove_pressed)
