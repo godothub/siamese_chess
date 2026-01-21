@@ -7,8 +7,6 @@ var promote_instance:Actor = null
 
 func _ready() -> void:
 	super._ready()
-	if has_meta("larger_scale") && get_meta("larger_scale"):
-		set_larger_scale()
 	top_level = true
 	var audio_stream_randomizer:AudioStreamRandomizer = AudioStreamRandomizer.new()
 	audio_stream_randomizer.random_pitch = 1.3
@@ -18,8 +16,10 @@ func _ready() -> void:
 	sfx.stream = audio_stream_randomizer
 	sfx.bus = &"SFX"
 	add_child(sfx)
-	sfx.unit_size = 2
-	sfx.volume_db = -20
+	sfx.unit_size = 40 if larger_scale else 2
+	sfx.volume_db = 0 if larger_scale else 0
+	if has_meta("larger_scale") && get_meta("larger_scale"):
+		set_larger_scale()
 	#if position_name:
 	#	position = chessboard.convert_name_to_position(position_name)
 	#else:
