@@ -240,6 +240,8 @@ func state_ready_explore_check_premove(_arg:Dictionary) -> void:
 		premove_to = -1
 	elif premove_from != -1:
 		change_state("explore_ready_to_move", {"from": premove_from})
+		premove_from = -1
+		premove_to = -1
 	else:
 		change_state("explore_idle")
 
@@ -344,6 +346,8 @@ func state_ready_versus_move(_arg:Dictionary) -> void:
 			premove_to = -1
 		elif premove_from != -1:
 			change_state("versus_ready_to_move", {"from": premove_from})
+			premove_from = -1
+			premove_to = -1
 		else:
 			change_state("versus_player"))
 	
