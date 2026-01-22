@@ -1,9 +1,30 @@
-#include <nnue.hpp>
-#include <chess.hpp>
+#include "nnue.hpp"
+#include "chess.hpp"
 #include <stack>
 #include <random>
 
-int NNUE::index(int piece, int by)
+godot::Ref<NNUEInstance> NNUEInstance::duplicate()
+{
+	godot::Ref<NNUEInstance> new_instance = memnew(NNUEInstance);
+	_internal_duplicate(new_instance);
+	return new_instance;
+}
+
+void NNUEInstance::_internal_duplicate(const godot::Ref<NNUEInstance> &other)
+{
+	memcpy(other->bit_input, bit_input, sizeof(bit_input));
+	memcpy(other->h1_sum, h1_sum, sizeof(h1_sum));
+	memcpy(other->h2_sum, h2_sum, sizeof(h2_sum));
+	other->output_sum = output_sum;
+	other->output_screlu = output_screlu;
+}
+
+void NNUEInstance::_bind_methods()
+{
+	godot::ClassDB::bind_method(godot::D_METHOD("duplicate"), &NNUEInstance::duplicate);
+}
+
+int NNUE::calculate_index(int piece, int by)
 {
 	return piece * 64 + by;
 }
@@ -64,7 +85,7 @@ godot::Ref<NNUEInstance> NNUE::create_instance(const godot::Ref<State> &state)
 		{
 			for (int j = 0; j < H1_SIZE; j++)
 			{
-				int neuron = index(i, Chess::first_bit(bit));
+				int neuron = calculate_index(i, Chess::first_bit(bit));
 				new_instance->h1_sum[neuron] += weight_input_h1[neuron][j];
 			}
 			bit = Chess::next_bit(bit);
@@ -88,12 +109,12 @@ double NNUE::feedforward(const godot::Ref<State> &state, const godot::Ref<NNUEIn
 		int64_t bit_close = bit_diff & instance->bit_input[i];
 		while (bit_open)
 		{
-			open.push(index(i, Chess::first_bit(bit_open)));
+			open.push(calculate_index(i, Chess::first_bit(bit_open)));
 			bit_open = Chess::next_bit(bit_open);
 		}
 		while (bit_close)
 		{
-			close.push(index(i, Chess::first_bit(bit_close)));
+			close.push(calculate_index(i, Chess::first_bit(bit_close)));
 			bit_close = Chess::next_bit(bit_close);
 		}
 		instance->bit_input[i] = state->get_bit(i);
@@ -177,7 +198,7 @@ void NNUE::feedback(const godot::Ref<NNUEInstance> &instance, double desire_outp
 			int64_t bit = instance->bit_input[j];
 			while (bit)
 			{
-				int neuron = index(j, Chess::first_bit(bit));
+				int neuron = calculate_index(j, Chess::first_bit(bit));
 				weight_input_h1[neuron][i] += -learn_step * error_h1[i];
 				bit = Chess::next_bit(bit);
 			}
@@ -209,4 +230,13 @@ void NNUE::train(const godot::Ref<State> &state, double desire_output)
 	godot::Ref<NNUEInstance> instance = create_instance(state);
 	feedforward(state, instance);
 	feedback(instance, desire_output);
+}
+
+void NNUE::_bind_methods()
+{
+	godot::ClassDB::bind_method(godot::D_METHOD("randomize_weight"), &NNUE::randomize_weight);
+	godot::ClassDB::bind_method(godot::D_METHOD("create_instance"), &NNUE::create_instance);
+	godot::ClassDB::bind_method(godot::D_METHOD("feedforward"), &NNUE::feedforward);
+	godot::ClassDB::bind_method(godot::D_METHOD("feedback"), &NNUE::feedback);
+	godot::ClassDB::bind_method(godot::D_METHOD("train"), &NNUE::train);
 }
