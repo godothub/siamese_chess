@@ -7,11 +7,7 @@
 godot::Ref<NNUEInstance> NNUEInstance::duplicate()
 {
 	godot::Ref<NNUEInstance> new_instance = memnew(NNUEInstance);
-	memcpy(new_instance->bit_input, bit_input, sizeof(bit_input));
-	memcpy(new_instance->h1_sum, h1_sum, sizeof(h1_sum));
-	memcpy(new_instance->h2_sum, h2_sum, sizeof(h2_sum));
-	new_instance->output_sum = output_sum;
-	new_instance->output_screlu = output_screlu;
+	_internal_duplicate(new_instance);
 	return new_instance;
 }
 
@@ -60,24 +56,24 @@ double NNUE::screlu_derivative(double x)
 void NNUE::randomize_weight()
 {
 	std::mt19937 rng(0);
-	for (int i = 0; i < H1_SIZE; i++)
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
-		for (int j = 0; j < INPUT_SIZE; j++)
+		for (int j = 0; j < NNUE_INPUT_SIZE; j++)
 		{
 			weight_input_h1[j][i] = int(rng() % 20000) / 10000.0;
 		}
 		bias_h1[i] = int(rng() % 20000) / 10000.0;
 	}
-	for (int i = 0; i < H1_SIZE; i++)
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
-		for (int j = 0; j < H2_SIZE; j++)
+		for (int j = 0; j < NNUE_H2_SIZE; j++)
 		{
 			weight_h1_h2[j][i] = int(rng() % 20000) / 10000.0;
 		}
 		bias_h2[i] = int(rng() % 20000) / 10000.0;
 	}
 
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		weight_h2_output[i] = int(rng() % 20000) / 10000.0;
 	}
@@ -87,24 +83,24 @@ void NNUE::randomize_weight()
 void NNUE::save_file(const godot::String &path)
 {
 	godot::Ref<godot::FileAccess> file = godot::FileAccess::open(path, godot::FileAccess::ModeFlags::WRITE);
-	for (int i = 0; i < H1_SIZE; i++)
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
-		for (int j = 0; j < INPUT_SIZE; j++)
+		for (int j = 0; j < NNUE_INPUT_SIZE; j++)
 		{
 			file->store_64(weight_input_h1[j][i]);
 		}
 		file->store_64(bias_h1[i]);
 	}
-	for (int i = 0; i < H1_SIZE; i++)
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
-		for (int j = 0; j < H2_SIZE; j++)
+		for (int j = 0; j < NNUE_H2_SIZE; j++)
 		{
 			file->store_64(weight_h1_h2[j][i]);
 		}
 		file->store_64(bias_h2[i]);
 	}
 
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		file->store_64(weight_h2_output[i]);
 	}
@@ -116,24 +112,24 @@ void NNUE::load_file(const godot::String &path)
 {
 	godot::Ref<godot::FileAccess> file = godot::FileAccess::open(path, godot::FileAccess::READ);
 	std::mt19937_64 rng(0);
-	for (int i = 0; i < H1_SIZE; i++)
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
-		for (int j = 0; j < INPUT_SIZE; j++)
+		for (int j = 0; j < NNUE_INPUT_SIZE; j++)
 		{
 			weight_input_h1[j][i] = file->get_64();
 		}
 		bias_h1[i] = file->get_64();
 	}
-	for (int i = 0; i < H1_SIZE; i++)
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
-		for (int j = 0; j < H2_SIZE; j++)
+		for (int j = 0; j < NNUE_H2_SIZE; j++)
 		{
 			weight_h1_h2[j][i] = file->get_64();
 		}
 		bias_h2[i] = file->get_64();
 	}
 
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		weight_h2_output[i] = file->get_64();
 	}
@@ -150,28 +146,28 @@ godot::Ref<NNUEInstance> NNUE::create_instance(const godot::Ref<State> &state)
 		int64_t bit = state->get_bit(i);
 		while (bit)
 		{
-			for (int j = 0; j < H1_SIZE; j++)
+			for (int j = 0; j < NNUE_H1_SIZE; j++)
 			{
 				int neuron = calculate_index(i, Chess::first_bit(bit));
-				new_instance->h1_sum[neuron] += weight_input_h1[neuron][j];
+				new_instance->h1_sum[j] += weight_input_h1[neuron][j];
 			}
 			bit = Chess::next_bit(bit);
 		}
 	}
-	for (int i = 0; i < H1_SIZE; i++)
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
 		new_instance->h1_sum[i] = bias_h1[i];
 	}
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		new_instance->h2_sum[i] = bias_h2[i];
-		for (int j = 0; j < H1_SIZE; j++)
+		for (int j = 0; j < NNUE_H1_SIZE; j++)
 		{
 			new_instance->h2_sum[i] += new_instance->h1_sum[j] * weight_h1_h2[j][i];
 		}
 	}
 	new_instance->output_sum = bias_output;
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		new_instance->output_sum += new_instance->h2_sum[i] * weight_h2_output[i];
 	}
@@ -204,7 +200,7 @@ double NNUE::feedforward(const godot::Ref<State> &state, const godot::Ref<NNUEIn
 	{
 		int neuron = open.top();
 		open.pop();
-		for (int i = 0; i < H1_SIZE; i++)
+		for (int i = 0; i < NNUE_H1_SIZE; i++)
 		{
 			instance->h1_sum[i] += weight_input_h1[neuron][i];
 		}
@@ -213,50 +209,50 @@ double NNUE::feedforward(const godot::Ref<State> &state, const godot::Ref<NNUEIn
 	{
 		int neuron = close.top();
 		close.pop();
-		for (int i = 0; i < H1_SIZE; i++)
+		for (int i = 0; i < NNUE_H1_SIZE; i++)
 		{
 			instance->h1_sum[i] -= weight_input_h1[neuron][i];
 		}
 	}
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		instance->h2_sum[i] = bias_h2[i];
-		for (int j = 0; j < H1_SIZE; j++)
+		for (int j = 0; j < NNUE_H1_SIZE; j++)
 		{
 			instance->h2_sum[i] += instance->h1_sum[j] * weight_h1_h2[j][i];
 		}
 	}
 	instance->output_sum = bias_output;
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		instance->output_sum += instance->h2_sum[i] * weight_h2_output[i];
 	}
 	instance->output_screlu = screlu(instance->output_sum);
-	return instance->output_sum;
+	return instance->output_screlu;
 }
 
 void NNUE::feedback(const godot::Ref<NNUEInstance> &instance, double desire_output)
 {
-	double weight_h1_h2_delta[H1_SIZE][H2_SIZE];
-	double weight_h2_output_delta[H2_SIZE];
-	double bias_h2_delta[H2_SIZE];
+	double weight_h1_h2_delta[NNUE_H1_SIZE][NNUE_H2_SIZE];
+	double weight_h2_output_delta[NNUE_H2_SIZE];
+	double bias_h2_delta[NNUE_H2_SIZE];
 	double bias_output_delta;
-	double error_h2[H2_SIZE];
-	double error_h1[H1_SIZE];
+	double error_h2[NNUE_H2_SIZE];
+	double error_h1[NNUE_H1_SIZE];
 	double error_output = (instance->output_screlu - desire_output) * screlu_derivative(instance->output_sum);
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		weight_h2_output_delta[i] = -learn_step * error_output * instance->h2_sum[i];
 	}
 	bias_output_delta = -learn_step * error_output;
 	
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		error_h2[i] = error_output * weight_h2_output[i];
 	}
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
-		for (int j = 0; j < H1_SIZE; j++)
+		for (int j = 0; j < NNUE_H1_SIZE; j++)
 		{
 			weight_h1_h2_delta[j][i] = -learn_step * error_h2[i] * instance->h1_sum[j];
 		}
@@ -264,15 +260,15 @@ void NNUE::feedback(const godot::Ref<NNUEInstance> &instance, double desire_outp
 	}
 
 	//输入层到第一隐藏层
-	for (int i = 0; i < H1_SIZE; i++)
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
 		error_h1[i] = 0;
-		for (int j = 0; j < H2_SIZE; j++)
+		for (int j = 0; j < NNUE_H2_SIZE; j++)
 		{
 			error_h1[i] += error_h2[j] * weight_h1_h2[i][j];
 		}
 	}
-	for (int i = 0; i < H1_SIZE; i++)
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
 		for (int j = 0; j < 128; j++)
 		{
@@ -288,18 +284,18 @@ void NNUE::feedback(const godot::Ref<NNUEInstance> &instance, double desire_outp
 	}
 	
 	//第一、第二、输出层之间的权重梯度更新
-	for (int i = 0; i < H1_SIZE; i++)
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
-		for (int j = 0; j < H2_SIZE; j++)
+		for (int j = 0; j < NNUE_H2_SIZE; j++)
 		{
 			weight_h1_h2[i][j] += weight_h1_h2_delta[i][j];
 		}
 	}
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		bias_h2[i] += bias_h2_delta[i];
 	}
-	for (int i = 0; i < H2_SIZE; i++)
+	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		weight_h2_output[i] += weight_h2_output_delta[i];
 	}

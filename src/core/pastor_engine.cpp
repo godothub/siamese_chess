@@ -285,7 +285,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, const godot::Ref<NN
 		transposition_table_cutoff++;
 		return transposition_table_score;
 	}
-	if (time_passed() >= think_time || interrupted)
+	if (_ply > 0 && (time_passed() >= think_time || interrupted))
 	{
 		return quies(_state, _nnue_instance, _alpha, _beta, _group, _ply + 1);
 	}
@@ -314,7 +314,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, const godot::Ref<NN
 		{
 			_debug_output.call(_state->get_zobrist(), _depth, i, move_list.size());
 		}
-		godot::Ref<State> &test_state = state_pool[_ply + 1];
+		godot::Ref<State> test_state = state_pool[_ply + 1];
 		_state->_internal_duplicate(test_state);
 		godot::Ref<NNUEInstance> test_nnue_instance = _nnue_instance->duplicate();
 		Chess::apply_move(test_state, move_list[i]);

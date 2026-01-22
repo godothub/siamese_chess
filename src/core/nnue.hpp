@@ -4,11 +4,12 @@
 #include <godot_cpp/godot.hpp>
 #include <godot_cpp/classes/ref_counted.hpp>
 #include <vector>
+#include <array>
 #include "state.hpp"
 
-const int INPUT_SIZE = 64 * 128;
-const int H1_SIZE = 8;
-const int H2_SIZE = 8;
+#define NNUE_INPUT_SIZE (64 * 128)
+#define NNUE_H1_SIZE (8)
+#define NNUE_H2_SIZE (8)
 
 class NNUE;
 
@@ -22,9 +23,9 @@ class NNUEInstance : public godot::RefCounted
 		static void _bind_methods();
 	private:
 		friend NNUE;
-		int64_t bit_input[128];
-		double h1_sum[8];
-		double h2_sum[8];
+		int64_t bit_input[NNUE_INPUT_SIZE];
+		double h1_sum[NNUE_H1_SIZE];
+		double h2_sum[NNUE_H2_SIZE];
 		double output_sum;
 		double output_screlu;
 };
@@ -46,11 +47,11 @@ class NNUE : public godot::RefCounted
 		static void _bind_methods();
 	private:
 		double learn_step = 0.003;
-		double weight_input_h1[INPUT_SIZE][H1_SIZE];
-		double weight_h1_h2[H1_SIZE][H2_SIZE];
-		double weight_h2_output[H2_SIZE];
-		double bias_h1[H1_SIZE];
-		double bias_h2[H2_SIZE];
+		double weight_input_h1[NNUE_INPUT_SIZE][NNUE_H1_SIZE];
+		double weight_h1_h2[NNUE_H1_SIZE][NNUE_H2_SIZE];
+		double weight_h2_output[NNUE_H2_SIZE];
+		double bias_h1[NNUE_H1_SIZE];
+		double bias_h2[NNUE_H2_SIZE];
 		double bias_output;
 };
 
