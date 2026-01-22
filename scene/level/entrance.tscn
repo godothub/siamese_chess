@@ -36,6 +36,54 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
 metadata/_edit_lock_ = true
 
+[node name="f6_001" parent="chessboard" index="20"]
+visible = false
+
+[node name="f5_001" parent="chessboard" index="21"]
+visible = false
+
+[node name="f4_001" parent="chessboard" index="22"]
+visible = false
+
+[node name="f3_001" parent="chessboard" index="23"]
+visible = false
+
+[node name="e6_001" parent="chessboard" index="28"]
+visible = false
+
+[node name="e5_001" parent="chessboard" index="29"]
+visible = false
+
+[node name="e4_001" parent="chessboard" index="30"]
+visible = false
+
+[node name="e3_001" parent="chessboard" index="31"]
+visible = false
+
+[node name="d6_001" parent="chessboard" index="36"]
+visible = false
+
+[node name="d5_001" parent="chessboard" index="37"]
+visible = false
+
+[node name="d4_001" parent="chessboard" index="38"]
+visible = false
+
+[node name="d3_001" parent="chessboard" index="39"]
+visible = false
+
+[node name="c6_001" parent="chessboard" index="44"]
+visible = false
+
+[node name="c5_001" parent="chessboard" index="45"]
+visible = false
+
+[node name="c4_001" parent="chessboard" index="46"]
+visible = false
+
+[node name="c3_001" parent="chessboard" index="47"]
+visible = false
+
 [node name="pool" parent="." instance=ExtResource("4_vie8g")]
 metadata/_edit_lock_ = true
 
@@ -239,11 +287,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27220386, 11.386337)
 
 [node name="tree" parent="." instance=ExtResource("12_x41v6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -8)
-piece_type = 35
 
 [node name="tree_2" parent="." instance=ExtResource("12_x41v6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 4)
-piece_type = 35
 
 [node name="tree_3" parent="." instance=ExtResource("12_x41v6")]
 transform = Transform3D(-0.082703836, 0, 0.99657416, 0, 1, 0, -0.99657416, 0, -0.082703836, -7, 0, -8)
@@ -295,3 +341,5 @@ size = Vector3(1.238739, 0.4975586, 21.074768)
 [node name="csg_box_3d_4" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, -0.2512207, 9.793869)
 size = Vector3(16.021355, 0.4975586, 3.561798)
+
+[editable path="chessboard"]
