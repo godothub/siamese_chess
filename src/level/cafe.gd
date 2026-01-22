@@ -129,7 +129,7 @@ func state_ready_in_game_enemy(_arg:Dictionary) -> void:
 		print("transposition_table_cutoff: ", standard_engine.get_transposition_table_cutoff())
 		change_state("in_game_move", {"move": standard_engine.get_search_result()})
 	)
-	if Progress.get_value("relax", false):
+	if !Progress.get_value("relax", false):
 		standard_engine.set_max_depth(20)
 	else:
 		standard_engine.set_max_depth(2)
