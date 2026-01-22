@@ -2,6 +2,7 @@
 #include "chess.hpp"
 #include <stack>
 #include <random>
+#include <file_access.hpp>
 
 godot::Ref<NNUEInstance> NNUEInstance::duplicate()
 {
@@ -72,6 +73,63 @@ void NNUE::randomize_weight()
 		weight_h2_output[i] = (rng() % 20000 - 10000) / 10000.0;
 	}
 	bias_output = (rng() % 20000 - 10000) / 10000.0;
+}
+
+void NNUE::save_file(const godot::String &path)
+{
+	godot::Ref<godot::FileAccess> file = godot::FileAccess::open(path, godot::FileAccess::ModeFlags::WRITE);
+	for (int i = 0; i < H1_SIZE; i++)
+	{
+		for (int j = 0; j < INPUT_SIZE; j++)
+		{
+			file->store_64(weight_input_h1[j][i]);
+		}
+		file->store_64(bias_h1[i]);
+	}
+	for (int i = 0; i < H1_SIZE; i++)
+	{
+		for (int j = 0; j < H2_SIZE; j++)
+		{
+			file->store_64(weight_h1_h2[j][i]);
+		}
+		file->store_64(bias_h2[i]);
+	}
+
+	for (int i = 0; i < H2_SIZE; i++)
+	{
+		file->store_64(weight_h2_output[i]);
+	}
+	file->store_64(bias_output);
+	file->close();
+}
+
+void NNUE::load_file(const godot::String &path)
+{
+	godot::Ref<godot::FileAccess> file = godot::FileAccess::open(path, godot::FileAccess::READ);
+	std::mt19937_64 rng(0);
+	for (int i = 0; i < H1_SIZE; i++)
+	{
+		for (int j = 0; j < INPUT_SIZE; j++)
+		{
+			weight_input_h1[j][i] = file->get_64();
+		}
+		bias_h1[i] = file->get_64();
+	}
+	for (int i = 0; i < H1_SIZE; i++)
+	{
+		for (int j = 0; j < H2_SIZE; j++)
+		{
+			weight_h1_h2[j][i] = file->get_64();
+		}
+		bias_h2[i] = file->get_64();
+	}
+
+	for (int i = 0; i < H2_SIZE; i++)
+	{
+		weight_h2_output[i] = file->get_64();
+	}
+	bias_output = file->get_64();
+	file->close();
 }
 
 godot::Ref<NNUEInstance> NNUE::create_instance(const godot::Ref<State> &state)
@@ -235,6 +293,8 @@ void NNUE::train(const godot::Ref<State> &state, double desire_output)
 void NNUE::_bind_methods()
 {
 	godot::ClassDB::bind_method(godot::D_METHOD("randomize_weight"), &NNUE::randomize_weight);
+	godot::ClassDB::bind_method(godot::D_METHOD("save_file"), &NNUE::save_file);
+	godot::ClassDB::bind_method(godot::D_METHOD("load_file"), &NNUE::load_file);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_instance"), &NNUE::create_instance);
 	godot::ClassDB::bind_method(godot::D_METHOD("feedforward"), &NNUE::feedforward);
 	godot::ClassDB::bind_method(godot::D_METHOD("feedback"), &NNUE::feedback);

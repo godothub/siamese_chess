@@ -36,6 +36,8 @@ class NNUE : public godot::RefCounted
 		static double screlu(double x);
 		static double screlu_derivative(double x);
 		void randomize_weight();
+		void save_file(const godot::String &path);
+		void load_file(const godot::String &path);
 		godot::Ref<NNUEInstance> create_instance(const godot::Ref<State> &state);
 		double feedforward(const godot::Ref<State> &state, const godot::Ref<NNUEInstance> &instance);
 		void feedback(const godot::Ref<NNUEInstance> &instance, double desire_output);
