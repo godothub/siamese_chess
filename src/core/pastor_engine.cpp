@@ -14,8 +14,11 @@ PastorEngine::PastorEngine()
 		godot::Ref<State> new_state = memnew(State);
 		state_pool[i] = new_state;
 	}
+
 	transposition_table.instantiate();
 	opening_book.instantiate();
+	nnue.instantiate();
+
 	if (godot::FileAccess::file_exists("user://standard_opening.fa"))
 	{
 		transposition_table->load_file("user://standard_opening.fa");
@@ -24,10 +27,21 @@ PastorEngine::PastorEngine()
 	{
 		transposition_table->reserve(1 << 20);
 	}
+
 	if (godot::FileAccess::file_exists("user://standard_opening_document.fa"))
 	{
 		opening_book->load_file("user://standard_opening_document.fa");
 	}
+
+	if (godot::FileAccess::file_exists("user://nnue_weight.fa"))
+	{
+		nnue->load_file("user://nnue_weight.fa");
+	}
+	else
+	{
+		nnue->randomize_weight();
+	}
+
 	max_depth = 100;
 	piece_value = {
 		{0, 0},
@@ -51,188 +65,6 @@ PastorEngine::PastorEngine()
 	directions_straight = {-16, -1, 1, 16};
 	directions_eight_way = {-17, -16, -15, -1, 1, 15, 16, 17};
 	directions_horse = {33, 31, 18, 14, -33, -31, -18, -14};
-	position_value = {
-		{'K', {
-		4,  54,  47, -99, -99,  60,  83, -62,
-		-32,  10,  55,  56,  56,  55,  10,   3,
-		-62,  12, -57,  44, -67,  28,  37, -31,
-		-55,  50,  11,  -4, -19,  13,   0, -49,
-		-55, -43, -52, -28, -51, -47,  -8, -50,
-		-47, -42, -43, -79, -64, -32, -29, -32,
-		-4,   3, -14, -50, -57, -18,  13,   4,
-		17,  30,  -3, -14,   6,  -1,  40,  18
-		}},
-		{'Q', {
-		6,   1,  -8,-104,  69,  24,  88,  26,
-		14,  32,  60, -10,  20,  76,  57,  24,
-		-2,  43,  32,  60,  72,  63,  43,   2,
-		1, -16,  22,  17,  25,  20, -13,  -6,
-		-14, -15,  -2,  -5,  -1, -10, -20, -22,
-		-30,  -6, -13, -11, -16, -11, -16, -27,
-		-36, -18,   0, -19, -15, -15, -21, -38,
-		-39, -30, -31, -13, -31, -36, -34, -42
-		}},
-		{'R', {
-		35,  29,  33,   4,  37,  33,  56,  50,
-		55,  29,  56,  67,  55,  62,  34,  60,
-		19,  35,  28,  33,  45,  27,  25,  15,
-		0,   5,  16,  13,  18,  -4,  -9,  -6,
-		-28, -35, -16, -21, -13, -29, -46, -30,
-		-42, -28, -42, -25, -25, -35, -26, -46,
-		-53, -38, -31, -26, -29, -43, -44, -53,
-		-30, -24, -18,   5,  -2, -18, -31, -32
-		}},
-		{'B', {
-		-59, -78, -82, -76, -23,-107, -37, -50,
-		-11,  20,  35, -42, -39,  31,   2, -22,
-		-9,  39, -32,  41,  52, -10,  28, -14,
-		25,  17,  20,  34,  26,  25,  15,  10,
-		13,  10,  17,  23,  17,  16,   0,   7,
-		14,  25,  24,  15,   8,  25,  20,  15,
-		19,  20,  11,   6,   7,   6,  20,  16,
-		-7,   2, -15, -12, -14, -15, -10, -10
-		}},
-		{'N', {
-		-66, -53, -75, -75, -10, -55, -58, -70,
-		-3,  -6, 100, -36,   4,  62,  -4, -14,
-		10,  67,   1,  74,  73,  27,  62,  -2,
-		24,  24,  45,  37,  33,  41,  25,  17,
-		-1,   5,  31,  21,  22,  35,   2,   0,
-		-18,  10,  13,  22,  18,  15,  11, -14,
-		-23, -15,   2,   0,   2,   0, -23, -20,
-		-74, -23, -26, -24, -19, -35, -22, -69
-		}},
-		{'P', {
-		0,   0,   0,   0,   0,   0,   0,   0,
-		78,  83,  86,  73, 102,  82,  85,  90,
-		7,  29,  21,  44,  40,  31,  44,   7,
-		-17,  16,  -2,  15,  14,   0,  15, -13,
-		-26,   3,  10,   9,   6,   1,   0, -23,
-		-22,   9,   5, -11, -10,  -2,   3, -19,
-		-31,   8,  -7, -37, -36, -14,   3, -31,
-		0,   0,   0,   0,   0,   0,   0,   0
-		}},
-		{'W', {
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		}},
-		{'*', {
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		}},
-		{'#', {
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		}},
-		{'Z', {
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		}},
-		{'k', {
-		17, -30,   3,  14,  -6,   1, -40, -18,
-		4,  -3,  14,  50,  57,  18, -13,  -4,
-		47,  42,  43,  79,  64,  32,  29,  32,
-		55,  43,  52,  28,  51,  47,   8,  50,
-		55, -50, -11,   4,  19, -13,   0,  49,
-		62, -12,  57, -44,  67, -28, -37,  31,
-		32, -10, -55, -56, -56, -55, -10,  -3,
-		-4, -54, -47,  99,  99, -60, -83,  62,
-		}},
-		{'q', {
-		39,  30,  31,  13,  31,  36,  34,  42,
-		36,  18,   0,  19,  15,  15,  21,  38,
-		30,   6,  13,  11,  16,  11,  16,  27,
-		14,  15,   2,   5,   1,  10,  20,  22,
-		-1,  16, -22, -17, -25, -20,  13,   6,
-		2, -43, -32, -60, -72, -63, -43,  -2,
-		-14, -32, -60,  10, -20, -76, -57, -24,
-		-6,  -1,   8, 104, -69, -24, -88, -26
-		}},
-		{'r', {
-		30,  24,  18,  -5,   2,  18,  31,  32,
-		53,  38,  31,  26,  29,  43,  44,  53,
-		42,  28,  42,  25,  25,  35,  26,  46,
-		28,  35,  16,  21,  13,  29,  46,  30,
-		0,  -5, -16, -13, -18,   4,   9,   6,
-		-19, -35, -28, -33, -45, -27, -25, -15,
-		-55, -29, -56, -67, -55, -62, -34, -60,
-		-35, -29, -33,  -4, -37, -33, -56, -50,
-		}},
-		{'b', {
-		7,  -2,  15,  12,  14,  15,  10,  10,
-		-19, -20, -11,  -6,  -7,  -6, -20, -16,
-		-14, -25, -24, -15,  -8, -25, -20, -15,
-		-13, -10, -17, -23, -17, -16,   0,  -7,
-		-25, -17, -20, -34, -26, -25, -15, -10,
-		9, -39,  32, -41, -52,  10, -28,  14,
-		11, -20, -35,  42,  39, -31,  -2,  22,
-		59,  78,  82,  76,  23, 107,  37,  50,
-		}},
-		{'n', {
-		74,  23,  26,  24,  19,  35,  22,  69,
-		23,  15,  -2,   0,  -2,   0,  23,  20,
-		18, -10, -13, -22, -18, -15, -11,  14,
-		1,  -5, -31, -21, -22, -35,  -2,   0,
-		-24, -24, -45, -37, -33, -41, -25, -17,
-		-10, -67,  -1, -74, -73, -27, -62,   2,
-		3,   6,-100,  36,  -4, -62,   4,  14,
-		66,  53,  75,  75,  10,  55,  58,  70,
-		}},
-		{'p', {
-		0,   0,   0,   0,   0,   0,   0,   0,
-		31,  -8,   7,  37,  36,  14,  -3,  31,
-		22,  -9,  -5,  11,  10,   2,  -3,  19,
-		26,  -3, -10,  -9,  -6,  -1,   0,  23,
-		17, -16,   2, -15, -14,   0, -15,  13,
-		-7, -29, -21, -44, -40, -31, -44,  -7,
-		-78, -83, -86, -73,-102, -82, -85, -90,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		}},
-		{'*', {
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		}},
-		{'#', {
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		0,   0,   0,   0,   0,   0,   0,   0,
-		}}
-	};
 }
 
 void PastorEngine::generate_good_capture_move(godot::PackedInt32Array &output, const godot::Ref<State> &_state, int _group)
@@ -329,72 +161,6 @@ void PastorEngine::generate_good_capture_move(godot::PackedInt32Array &output, c
 	}
 }
 
-
-int PastorEngine::get_piece_score(int _by, int _piece)
-{
-	godot::Vector2i piece_position = godot::Vector2i(_by % 16, _by / 16);
-	if (piece_value.count(_piece) && position_value.count(_piece))
-	{
-		return position_value[_piece][piece_position.x + piece_position.y * 8] + piece_value[_piece];
-	}
-	return 0;
-}
-
-int PastorEngine::evaluate_all(const godot::Ref<State> &_state)
-{
-	int score = 0;
-	for (State::PieceIterator iter = _state->piece_iterator_begin(); !iter.end(); iter.next())
-	{
-		int by = iter.pos();
-		int piece = iter.piece();
-		score += get_piece_score(by, piece);
-	}
-	return score;
-}
-
-int PastorEngine::evaluate(const godot::Ref<State> &_state, int _move)
-{
-	int from = Chess::from(_move);
-	int from_piece = _state->get_piece(from);
-	int to = Chess::to(_move);
-	int to_piece = _state->get_piece(to);
-	int extra = Chess::extra(_move);
-	int group = Chess::group(from_piece);
-	int score = get_piece_score(to, from_piece) - get_piece_score(from, from_piece);
-	if (to_piece && !Chess::is_same_group(from_piece, to_piece))
-	{
-		score -= get_piece_score(to, to_piece);
-	}
-	if (_state->get_king_passant() != -1 && abs(_state->get_king_passant() - Chess::to(_move)) <= 1)
-	{
-		score -= piece_value[group == 0 ? 'k' : 'K'];
-	}
-	if (from_piece == 'K' && extra != 0)
-	{
-		score += get_piece_score((from + to) / 2, 'R');
-		score -= get_piece_score(to < from ? Chess::a1() : Chess::h1(), 'R');
-	}
-	if (from_piece == 'k' && extra != 0)
-	{
-		score += get_piece_score((from + to) / 2, 'r');
-		score -= get_piece_score(to < from ? Chess::a8() : Chess::h8(), 'r');
-	}
-	if ((from_piece & 95) == 'P')
-	{
-		int front = Chess::direction(from_piece, 0);
-		if (extra)
-		{
-			score += get_piece_score(to, extra);
-			score -= get_piece_score(from, from_piece);
-		}
-		if (to == _state->get_en_passant())
-		{
-			score -= get_piece_score(to - front, group == 0 ? 'p' : 'P');
-		}
-	}
-	return score;
-}
-
 int PastorEngine::compare_move(int a, int b, int best_move, int killer_1, int killer_2, const godot::Ref<State> &state)
 {
 	if (best_move == a)
@@ -426,10 +192,10 @@ int PastorEngine::compare_move(int a, int b, int best_move, int killer_1, int ki
 	return a > b;
 }
 
-int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, int _beta, int _group, int _ply)
+int PastorEngine::quies(const godot::Ref<State> &_state, const godot::Ref<NNUEInstance> &_nnue_instance, int _alpha, int _beta, int _group, int _ply)
 {
 	deepest_ply = std::max(_ply, deepest_ply);
-	int score_relative = _group == 0 ? score : -score;
+	int score_relative = _group == 0 ? _nnue_instance->get_output() * 1000 : -_nnue_instance->get_output() * 1000;
 	if (score_relative >= _beta)
 	{
 		beta_cutoff++;
@@ -459,8 +225,10 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, 
 	for (int i = 0; i < move_list.size(); i++)
 	{
 		godot::Ref<State> test_state = _state->duplicate();
+		godot::Ref<NNUEInstance> test_nnue_instance = _nnue_instance->duplicate();
 		Chess::apply_move(test_state, move_list[i]);
-		int test_score = -quies(test_state, score + evaluate(_state, move_list[i]), -_beta, -_alpha, 1 - _group, _ply + 1);
+		nnue->feedforward(test_state, test_nnue_instance);
+		int test_score = -quies(test_state, test_nnue_instance, -_beta, -_alpha, 1 - _group, _ply + 1);
 		if (test_score >= _beta)
 		{
 			beta_cutoff++;
@@ -474,7 +242,7 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, 
 	return _alpha;
 }
 
-int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alpha, int _beta, int _depth, int _group, int _ply, bool _can_null, bool _is_null, int *killer_1, int *killer_2, const godot::Callable &_debug_output)
+int PastorEngine::alphabeta(const godot::Ref<State> &_state, const godot::Ref<NNUEInstance> &_nnue_instance, int _alpha, int _beta, int _depth, int _group, int _ply, bool _can_null, bool _is_null, int *killer_1, int *killer_2, const godot::Callable &_debug_output)
 {
 	godot::PackedInt32Array move_list;
 	deepest_ply = std::max(_ply, deepest_ply);
@@ -503,7 +271,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	if (_depth <= 0)
 	{
 		evaluated_position++;
-		return quies(_state, score, _alpha, _beta, _group, _ply + 1);
+		return quies(_state, _nnue_instance, _alpha, _beta, _group, _ply + 1);
 	}
 	if (_ply > 0 && map_history_state.count(_state->get_zobrist()))
 	{
@@ -519,14 +287,14 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	}
 	if (time_passed() >= think_time || interrupted)
 	{
-		return quies(_state, score, _alpha, _beta, _group, _ply + 1);
+		return quies(_state, _nnue_instance, _alpha, _beta, _group, _ply + 1);
 	}
 
 	unsigned char flag = ALPHA;
 	int pv_move = transposition_table->best_move(_state->get_zobrist());
 	if (_depth > 2 && _ply > 1 && _can_null)
 	{
-		int next_score = -alphabeta(_state, score, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, false, true, nullptr, nullptr, _debug_output);
+		int next_score = -alphabeta(_state, _nnue_instance, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, false, true, nullptr, nullptr, _debug_output);
 		if (next_score >= _beta)
 		{
 			beta_cutoff++;
@@ -548,15 +316,17 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 		}
 		godot::Ref<State> &test_state = state_pool[_ply + 1];
 		_state->_internal_duplicate(test_state);
+		godot::Ref<NNUEInstance> test_nnue_instance = _nnue_instance->duplicate();
 		Chess::apply_move(test_state, move_list[i]);
+		nnue->feedforward(test_state, test_nnue_instance);
 		int next_score = 0;
 		if (found_pv)
 		{
-			next_score = -alphabeta(test_state, score + evaluate(_state, move_list[i]), -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, _can_null, _is_null, &next_killer_1, &next_killer_2, _debug_output);
+			next_score = -alphabeta(test_state, test_nnue_instance, -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, _can_null, _is_null, &next_killer_1, &next_killer_2, _debug_output);
 		}
 		if (!found_pv || next_score > _alpha && next_score < _beta)
 		{
-			next_score = -alphabeta(test_state, score + evaluate(_state, move_list[i]), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, _can_null, _is_null, &next_killer_1, &next_killer_2, _debug_output);
+			next_score = -alphabeta(test_state, test_nnue_instance, -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, _can_null, _is_null, &next_killer_1, &next_killer_2, _debug_output);
 		}
 
 		if (_beta <= next_score)
@@ -614,7 +384,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	}
 	for (int i = 2; i <= max_depth; i += 2)
 	{
-		alphabeta(_state, evaluate_all(_state), -THRESHOLD, THRESHOLD, i, _group, 0, true, false, nullptr, nullptr, _debug_output);
+		alphabeta(_state, nnue->create_instance(_state), -THRESHOLD, THRESHOLD, i, _group, 0, true, false, nullptr, nullptr, _debug_output);
 		if (time_passed() >= think_time || interrupted)
 		{
 			break;

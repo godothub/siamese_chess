@@ -4,6 +4,7 @@
 #include "engine.hpp"
 #include "transposition_table.hpp"
 #include "opening_book.hpp"
+#include "nnue.hpp"
 #include <unordered_map>
 #include <vector>
 
@@ -13,12 +14,10 @@ class PastorEngine : public ChessEngine
 	public:
 		PastorEngine();
 		int get_piece_score(int _by, int _piece);
-		int evaluate_all(const godot::Ref<State> &_state);
-		int evaluate(const godot::Ref<State> &_state, int _move);
 		int compare_move(int a, int b, int best_move, int killer_1, int killer_2, const godot::Ref<State> &state);
-		int quies(const godot::Ref<State> &_state, int score, int alpha, int beta, int _group = 0, int _ply = 0);
+		int quies(const godot::Ref<State> &_state, const godot::Ref<NNUEInstance> &_nnue_instance, int alpha, int beta, int _group = 0, int _ply = 0);
 		void generate_good_capture_move(godot::PackedInt32Array &output, const godot::Ref<State> &_state, int _group);
-		int alphabeta(const godot::Ref<State> &_state, int score, int _alpha, int _beta, int _depth, int _group = 0, int _ply = 0, bool _can_null = true, bool _is_null = false, int *killer_1 = nullptr, int *killer_2 = nullptr, const godot::Callable &_debug_output = godot::Callable());
+		int alphabeta(const godot::Ref<State> &_state, const godot::Ref<NNUEInstance> &_nnue_instance, int _alpha, int _beta, int _depth, int _group = 0, int _ply = 0, bool _can_null = true, bool _is_null = false, int *killer_1 = nullptr, int *killer_2 = nullptr, const godot::Callable &_debug_output = godot::Callable());
 		void search(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state, const godot::Callable &_debug_output) override;
 		int get_search_result() override;
 		godot::PackedInt32Array get_principal_variation();
@@ -37,6 +36,7 @@ class PastorEngine : public ChessEngine
 	private:
 		godot::Ref<TranspositionTable> transposition_table;
 		godot::Ref<OpeningBook> opening_book;
+		godot::Ref<NNUE> nnue;
 		int max_depth;
 		int WIN = 50000;
 		int THRESHOLD = 60000;
@@ -62,7 +62,7 @@ class PastorEngine : public ChessEngine
 		godot::PackedInt32Array directions_straight;
 		godot::PackedInt32Array directions_eight_way;
 		godot::PackedInt32Array directions_horse;
-		std::unordered_map<int, godot::PackedInt32Array> position_value;
+
 };
 
 #endif

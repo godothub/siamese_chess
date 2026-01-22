@@ -17,7 +17,8 @@ class NNUEInstance : public godot::RefCounted
 	GDCLASS(NNUEInstance, RefCounted)
 	public:
 		godot::Ref<NNUEInstance> duplicate();
-		void _internal_duplicate(const godot::Ref<NNUEInstance> &other);
+		void _internal_duplicate(godot::Ref<NNUEInstance> &other);
+		double get_output();
 		static void _bind_methods();
 	private:
 		friend NNUE;

@@ -2,22 +2,31 @@
 #include "chess.hpp"
 #include <stack>
 #include <random>
-#include <file_access.hpp>
+#include <godot_cpp/classes/file_access.hpp>
 
 godot::Ref<NNUEInstance> NNUEInstance::duplicate()
 {
 	godot::Ref<NNUEInstance> new_instance = memnew(NNUEInstance);
-	_internal_duplicate(new_instance);
+	memcpy(new_instance->bit_input, bit_input, sizeof(bit_input));
+	memcpy(new_instance->h1_sum, h1_sum, sizeof(h1_sum));
+	memcpy(new_instance->h2_sum, h2_sum, sizeof(h2_sum));
+	new_instance->output_sum = output_sum;
+	new_instance->output_screlu = output_screlu;
 	return new_instance;
 }
 
-void NNUEInstance::_internal_duplicate(const godot::Ref<NNUEInstance> &other)
+void NNUEInstance::_internal_duplicate(godot::Ref<NNUEInstance> &other)
 {
 	memcpy(other->bit_input, bit_input, sizeof(bit_input));
 	memcpy(other->h1_sum, h1_sum, sizeof(h1_sum));
 	memcpy(other->h2_sum, h2_sum, sizeof(h2_sum));
 	other->output_sum = output_sum;
 	other->output_screlu = output_screlu;
+}
+
+double NNUEInstance::get_output()
+{
+	return output_screlu;
 }
 
 void NNUEInstance::_bind_methods()
@@ -50,29 +59,29 @@ double NNUE::screlu_derivative(double x)
 
 void NNUE::randomize_weight()
 {
-	std::mt19937_64 rng(0);
+	std::mt19937 rng(0);
 	for (int i = 0; i < H1_SIZE; i++)
 	{
 		for (int j = 0; j < INPUT_SIZE; j++)
 		{
-			weight_input_h1[j][i] = (rng() % 20000 - 10000) / 10000.0;
+			weight_input_h1[j][i] = int(rng() % 20000) / 10000.0;
 		}
-		bias_h1[i] = (rng() % 20000 - 10000) / 10000.0;
+		bias_h1[i] = int(rng() % 20000) / 10000.0;
 	}
 	for (int i = 0; i < H1_SIZE; i++)
 	{
 		for (int j = 0; j < H2_SIZE; j++)
 		{
-			weight_h1_h2[j][i] = (rng() % 20000 - 10000) / 10000.0;
+			weight_h1_h2[j][i] = int(rng() % 20000) / 10000.0;
 		}
-		bias_h2[i] = (rng() % 20000 - 10000) / 10000.0;
+		bias_h2[i] = int(rng() % 20000) / 10000.0;
 	}
 
 	for (int i = 0; i < H2_SIZE; i++)
 	{
-		weight_h2_output[i] = (rng() % 20000 - 10000) / 10000.0;
+		weight_h2_output[i] = int(rng() % 20000) / 10000.0;
 	}
-	bias_output = (rng() % 20000 - 10000) / 10000.0;
+	bias_output = int(rng() % 20000) / 10000.0;
 }
 
 void NNUE::save_file(const godot::String &path)
@@ -153,6 +162,20 @@ godot::Ref<NNUEInstance> NNUE::create_instance(const godot::Ref<State> &state)
 	{
 		new_instance->h1_sum[i] = bias_h1[i];
 	}
+	for (int i = 0; i < H2_SIZE; i++)
+	{
+		new_instance->h2_sum[i] = bias_h2[i];
+		for (int j = 0; j < H1_SIZE; j++)
+		{
+			new_instance->h2_sum[i] += new_instance->h1_sum[j] * weight_h1_h2[j][i];
+		}
+	}
+	new_instance->output_sum = bias_output;
+	for (int i = 0; i < H2_SIZE; i++)
+	{
+		new_instance->output_sum += new_instance->h2_sum[i] * weight_h2_output[i];
+	}
+	new_instance->output_screlu = screlu(new_instance->output_sum);
 	return new_instance;
 }
 
