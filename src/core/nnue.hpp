@@ -25,7 +25,9 @@ class NNUEInstance : public godot::RefCounted
 		friend NNUE;
 		int64_t bit_input[NNUE_INPUT_SIZE];
 		double h1_sum[NNUE_H1_SIZE];
+		double h1_crelu[NNUE_H1_SIZE];
 		double h2_sum[NNUE_H2_SIZE];
+		double h2_crelu[NNUE_H2_SIZE];
 		double output_sum;
 		double output_screlu;
 };
@@ -37,6 +39,8 @@ class NNUE : public godot::RefCounted
 		static int calculate_index(int piece, int by);
 		static double screlu(double x);
 		static double screlu_derivative(double x);
+		static double crelu(double x);
+		static double crelu_derivative(double x);
 		void randomize_weight();
 		void save_file(const godot::String &path);
 		void load_file(const godot::String &path);
