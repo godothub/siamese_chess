@@ -458,7 +458,8 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, 
 	});
 	for (int i = 0; i < move_list.size(); i++)
 	{
-		godot::Ref<State> test_state = _state->duplicate();
+		godot::Ref<State> &test_state = state_pool[_ply + 1];
+		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, move_list[i]);
 		int test_score = -quies(test_state, score + evaluate(_state, move_list[i]), -_beta, -_alpha, 1 - _group, _ply + 1);
 		if (test_score >= _beta)
