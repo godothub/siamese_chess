@@ -17,12 +17,12 @@ void NNUEInstance::_internal_duplicate(godot::Ref<NNUEInstance> &other)
 	memcpy(other->h1_sum, h1_sum, sizeof(h1_sum));
 	memcpy(other->h2_sum, h2_sum, sizeof(h2_sum));
 	other->output_sum = output_sum;
-	other->output_screlu = output_screlu;
+	other->output_activated = output_activated;
 }
 
 double NNUEInstance::get_output()
 {
-	return output_screlu;
+	return output_activated;
 }
 
 void NNUEInstance::_bind_methods()
@@ -68,6 +68,17 @@ double NNUE::crelu_derivative(double x)
 	return int(x >= 0 && x <= 1);
 }
 
+double NNUE::sigmoid(double x)
+{
+	return 1.0 / (1.0 + exp(-x));
+}
+
+double NNUE::sigmoid_derivative(double x)
+{
+	double _x = sigmoid(x);
+	return _x / (1 - _x);
+}
+
 void NNUE::randomize_weight()
 {
 	std::mt19937 rng(0);
@@ -75,24 +86,30 @@ void NNUE::randomize_weight()
 	{
 		for (int j = 0; j < NNUE_INPUT_SIZE; j++)
 		{
-			weight_input_h1[j][i] = int(rng() % 20000) / 10000.0;
+			weight_input_h1[j][i] = (int(rng() % 20000) - 10000) / 100000.0;
+			DEV_ASSERT(!std::isnan(weight_input_h1[j][i]));
 		}
-		bias_h1[i] = int(rng() % 20000) / 10000.0;
+		bias_h1[i] = (int(rng() % 20000) - 10000) / 100000.0;
+		DEV_ASSERT(!std::isnan(bias_h1[i]));
 	}
 	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
 		for (int j = 0; j < NNUE_H2_SIZE; j++)
 		{
-			weight_h1_h2[j][i] = int(rng() % 20000) / 10000.0;
+			weight_h1_h2[j][i] = (int(rng() % 20000) - 10000) / 100000.0;
+			DEV_ASSERT(!std::isnan(weight_h1_h2[j][i]));
 		}
-		bias_h2[i] = int(rng() % 20000) / 10000.0;
+		bias_h2[i] = (int(rng() % 20000) - 10000) / 100000.0;
+		DEV_ASSERT(!std::isnan(bias_h2[i]));
 	}
 
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
-		weight_h2_output[i] = int(rng() % 20000) / 10000.0;
+		weight_h2_output[i] = (int(rng() % 20000) - 10000) / 100000.0;
+		DEV_ASSERT(!std::isnan(weight_h2_output[i]));
 	}
-	bias_output = int(rng() % 20000) / 10000.0;
+	bias_output = (int(rng() % 20000) - 10000) / 100000.0;
+	DEV_ASSERT(!std::isnan(bias_output));
 }
 
 void NNUE::save_file(const godot::String &path)
@@ -156,9 +173,14 @@ godot::Ref<NNUEInstance> NNUE::create_instance(const godot::Ref<State> &state)
 {
 	//事先准备第一层的数据，后续为增量更新
 	godot::Ref<NNUEInstance> new_instance = memnew(NNUEInstance);
+	for (int i = 0; i < NNUE_H1_SIZE; i++)
+	{
+		new_instance->h1_sum[i] = bias_h1[i];
+	}
 	for (int i = 0; i < 128; i++)
 	{
 		int64_t bit = state->get_bit(i);
+		new_instance->bit_input[i] = bit;
 		while (bit)
 		{
 			for (int j = 0; j < NNUE_H1_SIZE; j++)
@@ -169,26 +191,21 @@ godot::Ref<NNUEInstance> NNUE::create_instance(const godot::Ref<State> &state)
 			bit = Chess::next_bit(bit);
 		}
 	}
-	for (int i = 0; i < NNUE_H1_SIZE; i++)
-	{
-		new_instance->h1_sum[i] += bias_h1[i];
-		new_instance->h1_crelu[i] = crelu(new_instance->h1_sum[i]);
-	}
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		new_instance->h2_sum[i] = bias_h2[i];
 		for (int j = 0; j < NNUE_H1_SIZE; j++)
 		{
-			new_instance->h2_sum[i] += new_instance->h1_crelu[j] * weight_h1_h2[j][i];
+			new_instance->h2_sum[i] += new_instance->h1_sum[j] * weight_h1_h2[j][i];
 		}
-		new_instance->h2_crelu[i] = crelu(new_instance->h2_sum[i]);
 	}
 	new_instance->output_sum = bias_output;
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
-		new_instance->output_sum += new_instance->h2_crelu[i] * weight_h2_output[i];
+		new_instance->output_sum += new_instance->h2_sum[i] * weight_h2_output[i];
 	}
-	new_instance->output_screlu = screlu(new_instance->output_sum);
+	new_instance->output_activated = sigmoid(new_instance->output_sum);
+	DEV_ASSERT(new_instance->output_activated >= 0 && new_instance->output_activated <= 1);
 	return new_instance;
 }
 
@@ -231,26 +248,21 @@ double NNUE::feedforward(const godot::Ref<State> &state, const godot::Ref<NNUEIn
 			instance->h1_sum[i] -= weight_input_h1[neuron][i];
 		}
 	}
-	for (int i = 0; i < NNUE_H1_SIZE; i++)
-	{
-		instance->h1_crelu[i] = crelu(instance->h1_sum[i]);
-	}
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		instance->h2_sum[i] = bias_h2[i];
 		for (int j = 0; j < NNUE_H1_SIZE; j++)
 		{
-			instance->h2_sum[i] += instance->h1_crelu[j] * weight_h1_h2[j][i];
+			instance->h2_sum[i] += instance->h1_sum[j] * weight_h1_h2[j][i];
 		}
-		instance->h2_crelu[i] = crelu(instance->h2_sum[i]);
 	}
 	instance->output_sum = bias_output;
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
-		instance->output_sum += instance->h2_crelu[i] * weight_h2_output[i];
+		instance->output_sum += instance->h2_sum[i] * weight_h2_output[i];
 	}
-	instance->output_screlu = screlu(instance->output_sum);
-	return instance->output_screlu;
+	instance->output_activated = sigmoid(instance->output_sum);
+	return instance->output_activated;
 }
 
 void NNUE::feedback(const godot::Ref<NNUEInstance> &instance, double desire_output)
@@ -261,24 +273,28 @@ void NNUE::feedback(const godot::Ref<NNUEInstance> &instance, double desire_outp
 	double bias_output_delta;
 	double error_h2[NNUE_H2_SIZE];
 	double error_h1[NNUE_H1_SIZE];
-	double error_output = (instance->output_screlu - desire_output) * screlu_derivative(instance->output_sum);
+	double error_output = (instance->output_activated - desire_output) * sigmoid_derivative(instance->output_sum);
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
-		weight_h2_output_delta[i] = -learn_step * error_output * instance->h2_crelu[i];
+		weight_h2_output_delta[i] = -learn_step * error_output * instance->h2_sum[i];
+		DEV_ASSERT(!std::isnan(weight_h2_output_delta[i]));
 	}
 	bias_output_delta = -learn_step * error_output;
+	DEV_ASSERT(!std::isnan(bias_output_delta));
 	
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
-		error_h2[i] = error_output * weight_h2_output[i] * crelu_derivative(instance->h2_sum[i]);
+		error_h2[i] = error_output * weight_h2_output[i];
 	}
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
 		for (int j = 0; j < NNUE_H1_SIZE; j++)
 		{
-			weight_h1_h2_delta[j][i] = -learn_step * error_h2[i] * instance->h1_crelu[j];
+			weight_h1_h2_delta[j][i] = -learn_step * error_h2[i] * instance->h1_sum[j];
+			DEV_ASSERT(!std::isnan(weight_h1_h2_delta[j][i]));
 		}
 		bias_h2_delta[i] = -learn_step * error_h2[i];
+		DEV_ASSERT(!std::isnan(bias_h2_delta[i]));
 	}
 
 	//输入层到第一隐藏层
@@ -287,7 +303,7 @@ void NNUE::feedback(const godot::Ref<NNUEInstance> &instance, double desire_outp
 		error_h1[i] = 0;
 		for (int j = 0; j < NNUE_H2_SIZE; j++)
 		{
-			error_h1[i] += error_h2[j] * weight_h1_h2[i][j] * crelu_derivative(instance->h1_sum[i]);
+			error_h1[i] += error_h2[j] * weight_h1_h2[i][j];
 		}
 	}
 	for (int i = 0; i < NNUE_H1_SIZE; i++)
@@ -299,10 +315,12 @@ void NNUE::feedback(const godot::Ref<NNUEInstance> &instance, double desire_outp
 			{
 				int neuron = calculate_index(j, Chess::first_bit(bit));
 				weight_input_h1[neuron][i] += -learn_step * error_h1[i];
+				DEV_ASSERT(!std::isnan(weight_input_h1[neuron][i]));
 				bit = Chess::next_bit(bit);
 			}
 		}
 		bias_h1[i] += -learn_step * error_h1[i];
+		DEV_ASSERT(!std::isnan(bias_h1[i]));
 	}
 	
 	//第一、第二、输出层之间的权重梯度更新

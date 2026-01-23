@@ -23,13 +23,11 @@ class NNUEInstance : public godot::RefCounted
 		static void _bind_methods();
 	private:
 		friend NNUE;
-		int64_t bit_input[NNUE_INPUT_SIZE];
+		int64_t bit_input[128];
 		double h1_sum[NNUE_H1_SIZE];
-		double h1_crelu[NNUE_H1_SIZE];
 		double h2_sum[NNUE_H2_SIZE];
-		double h2_crelu[NNUE_H2_SIZE];
 		double output_sum;
-		double output_screlu;
+		double output_activated;
 };
 
 class NNUE : public godot::RefCounted
@@ -41,6 +39,8 @@ class NNUE : public godot::RefCounted
 		static double screlu_derivative(double x);
 		static double crelu(double x);
 		static double crelu_derivative(double x);
+		static double sigmoid(double x);
+		static double sigmoid_derivative(double x);
 		void randomize_weight();
 		void save_file(const godot::String &path);
 		void load_file(const godot::String &path);
@@ -50,7 +50,7 @@ class NNUE : public godot::RefCounted
 		void train(const godot::Ref<State> &state, double desire_output);
 		static void _bind_methods();
 	private:
-		double learn_step = 0.003;
+		double learn_step = 0.00003;
 		double weight_input_h1[NNUE_INPUT_SIZE][NNUE_H1_SIZE];
 		double weight_h1_h2[NNUE_H1_SIZE][NNUE_H2_SIZE];
 		double weight_h2_output[NNUE_H2_SIZE];

@@ -47,15 +47,14 @@ func read_file() -> void:
 
 func learn(state:State, desire_score:float) -> void:
 	var nnue_instance:NNUEInstance = nnue.create_instance(state)
-	nnue.feedforward(state, nnue_instance)
 	desire = desire_score
 	actual = nnue_instance.get_output()
-	var loss = (nnue_instance.get_output() - desire_score) * (nnue_instance.get_output() - desire_score)
+	var loss:float = (nnue_instance.get_output() - desire_score) * (nnue_instance.get_output() - desire_score)
 	loss_sum += loss
+	assert(loss <= 1 && loss >= 0)
 	if loss_list.size() >= 1000:
 		loss_sum -= loss_list.front()
 		loss_list.pop_front()
 	loss_list.push_back(loss)
 	step += 1
 	nnue.feedback(nnue_instance, desire_score)
-	await get_tree().create_timer(0.5).timeout
