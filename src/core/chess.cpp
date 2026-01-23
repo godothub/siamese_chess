@@ -894,10 +894,6 @@ godot::Ref<State> Chess::parse(const godot::String &_str)
 	godot::Ref<State>state = memnew(State);
 	godot::Vector2i pointer = godot::Vector2i(0, 0);
 	godot::PackedStringArray fen_splited = _str.split(" ");
-	if (fen_splited.size() < 6)
-	{
-		return nullptr;
-	}
 	for (int i = 0; i < fen_splited[0].length(); i++)
 	{
 		if (fen_splited[0][i] == '/')	//太先进了竟然是char32
@@ -923,19 +919,34 @@ godot::Ref<State> Chess::parse(const godot::String &_str)
 	{
 		return nullptr;
 	}
-	if (!fen_splited[4].is_valid_int())
+	if (fen_splited.size() >= 5 && !fen_splited[4].is_valid_int())
 	{
 		return nullptr;
 	}
-	if (!fen_splited[5].is_valid_int())
+	if (fen_splited.size() >= 6 && !fen_splited[5].is_valid_int())
 	{
 		return nullptr;
 	}
 	state->set_turn(fen_splited[1] == "w" ? 0 : 1);
 	state->set_castle((int(fen_splited[2].contains("K")) << 3) + (int(fen_splited[2].contains("Q")) << 2) + (int(fen_splited[2].contains("k")) << 1) + int(fen_splited[2].contains("q")));
 	state->set_en_passant(Chess::to_position_int(fen_splited[3]));
-	state->set_step_to_draw(fen_splited[4].to_int());
-	state->set_round(fen_splited[5].to_int());
+	if (fen_splited.size() >= 5)
+	{
+		state->set_step_to_draw(fen_splited[4].to_int());
+	}
+	else
+	{
+		state->set_step_to_draw(0);
+	}
+	if (fen_splited.size() >= 6)
+	{
+		state->set_round(fen_splited[5].to_int());
+	}
+	else
+	{
+		state->set_round(1);
+	}
+	
 	for (int i = 6; i < fen_splited.size(); i++)
 	{
 		int type = fen_splited[i][0];
