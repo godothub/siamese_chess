@@ -201,7 +201,8 @@ int PastorEngine::compare_move(int a, int b, int best_move, int killer_1, int ki
 int PastorEngine::quies(const godot::Ref<State> &_state, const godot::Ref<NNUEInstance> &_nnue_instance, int _alpha, int _beta, int _group, int _ply)
 {
 	deepest_ply = std::max(_ply, deepest_ply);
-	int score_relative = _group == 0 ? _nnue_instance->get_output() * 1000 : -_nnue_instance->get_output() * 1000;
+	int score_relative = _nnue_instance->get_output() * 2000 - 1000;
+	score_relative = _group == 0 ? score_relative : -score_relative;
 	if (score_relative >= _beta)
 	{
 		beta_cutoff++;
