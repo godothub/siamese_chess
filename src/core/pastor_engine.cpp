@@ -224,8 +224,9 @@ int PastorEngine::quies(const godot::Ref<State> &_state, const godot::Ref<NNUEIn
 	});
 	for (int i = 0; i < move_list.size(); i++)
 	{
-		godot::Ref<State> test_state = _state->duplicate();
+		godot::Ref<State> &test_state = state_pool[_ply + 1];
 		godot::Ref<NNUEInstance> test_nnue_instance = _nnue_instance->duplicate();
+		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, move_list[i]);
 		nnue->feedforward(test_state, test_nnue_instance);
 		int test_score = -quies(test_state, test_nnue_instance, -_beta, -_alpha, 1 - _group, _ply + 1);
@@ -314,9 +315,9 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, const godot::Ref<NN
 		{
 			_debug_output.call(_state->get_zobrist(), _depth, i, move_list.size());
 		}
-		godot::Ref<State> test_state = state_pool[_ply + 1];
-		_state->_internal_duplicate(test_state);
+		godot::Ref<State> &test_state = state_pool[_ply + 1];
 		godot::Ref<NNUEInstance> test_nnue_instance = _nnue_instance->duplicate();
+		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, move_list[i]);
 		nnue->feedforward(test_state, test_nnue_instance);
 		int next_score = 0;
