@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc2k36e1d1q2b"]
+
+[ext_resource type="PackedScene" uid="uid://bnxosopniliec" path="res://scene/chessboard_flat.tscn" id="1_qffmq"]
+[ext_resource type="Script" uid="uid://cnk7llcv504pm" path="res://src/test/nnue_supervised_learner.gd" id="1_wfiq5"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_inh2a"]
+
+[node name="nnue_trainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wfiq5")
+filepath = "D:/lichess_db_eval.jsonl"
+
+[node name="chessboard_flat" parent="." instance=ExtResource("1_qffmq")]
+position = Vector2(389, 148)
+scale = Vector2(0.329108, 0.329108)
+
+[node name="label_actual" type="Label" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 115.0
+offset_right = 360.0
+offset_bottom = 572.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_inh2a")
+theme_override_font_sizes/font_size = 40
+
+[node name="label_desire" type="Label" parent="."]
+layout_mode = 0
+offset_left = 785.0
+offset_top = 115.0
+offset_right = 1108.0
+offset_bottom = 572.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_inh2a")
+theme_override_font_sizes/font_size = 40

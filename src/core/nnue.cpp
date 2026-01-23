@@ -28,6 +28,7 @@ double NNUEInstance::get_output()
 void NNUEInstance::_bind_methods()
 {
 	godot::ClassDB::bind_method(godot::D_METHOD("duplicate"), &NNUEInstance::duplicate);
+	godot::ClassDB::bind_method(godot::D_METHOD("get_output"), &NNUEInstance::get_output);
 }
 
 int NNUE::calculate_index(int piece, int by)
