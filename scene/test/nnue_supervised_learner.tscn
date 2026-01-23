@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cc2k36e1d1q2b"]
+[gd_scene load_steps=5 format=3 uid="uid://cc2k36e1d1q2b"]
 
 [ext_resource type="PackedScene" uid="uid://bnxosopniliec" path="res://scene/chessboard_flat.tscn" id="1_qffmq"]
 [ext_resource type="Script" uid="uid://cnk7llcv504pm" path="res://src/test/nnue_supervised_learner.gd" id="1_wfiq5"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_inh2a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfiq5"]
+bg_color = Color(1, 1, 1, 0.59607846)
 
 [node name="nnue_trainer" type="Control"]
 layout_mode = 3
@@ -37,3 +40,15 @@ offset_bottom = 572.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_inh2a")
 theme_override_font_sizes/font_size = 40
+
+[node name="button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 306.0
+offset_right = 640.0
+offset_bottom = 379.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_inh2a")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/normal = SubResource("StyleBoxFlat_wfiq5")
+text = "STOP"

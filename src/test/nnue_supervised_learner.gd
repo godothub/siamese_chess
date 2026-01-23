@@ -9,6 +9,7 @@ var loss_list:Array = []
 var step:int = 0
 var desire:float = 0
 var actual:float = 0
+var stopped:bool = false
 @onready var chessboard:Node2D = $chessboard_flat
 @onready var label_actual:Label = $label_actual
 @onready var label_desire:Label = $label_desire
@@ -16,6 +17,7 @@ var actual:float = 0
 func _ready() -> void:
 	nnue = NNUE.new()
 	nnue.randomize_weight()
+	$button.connect("button_down", func() -> void: stopped = true)
 	var thread:Thread = Thread.new()
 	thread.start(read_file)
 
@@ -28,7 +30,7 @@ func read_file() -> void:
 	if !file:
 		print(error_string(FileAccess.get_open_error()))
 		return
-	while !file.eof_reached():
+	while !file.eof_reached() && !stopped:
 		var json:String = file.get_line()
 		var dict:Dictionary = JSON.parse_string(json)
 		var state:State = Chess.parse(dict["fen"])
@@ -44,6 +46,7 @@ func read_file() -> void:
 			score = (first_pvs["cp"]) / 200.0
 			score = 1.0 / (1.0 + exp(-score))
 		learn(state, score)
+	nnue.save_file("user://nnue_weight.fa")
 
 func learn(state:State, desire_score:float) -> void:
 	var nnue_instance:NNUEInstance = nnue.create_instance(state)
