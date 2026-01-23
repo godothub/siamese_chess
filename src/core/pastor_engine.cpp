@@ -14,6 +14,12 @@ PastorEngine::PastorEngine()
 		godot::Ref<State> new_state = memnew(State);
 		state_pool[i] = new_state;
 	}
+	nnue_instance_pool.resize(1000);
+	for (int i = 0; i < 1000; i++)
+	{
+		godot::Ref<NNUEInstance> new_instance = memnew(NNUEInstance);
+		nnue_instance_pool[i] = new_instance;
+	}
 
 	transposition_table.instantiate();
 	opening_book.instantiate();
@@ -225,8 +231,9 @@ int PastorEngine::quies(const godot::Ref<State> &_state, const godot::Ref<NNUEIn
 	for (int i = 0; i < move_list.size(); i++)
 	{
 		godot::Ref<State> &test_state = state_pool[_ply + 1];
-		godot::Ref<NNUEInstance> test_nnue_instance = _nnue_instance->duplicate();
+		godot::Ref<NNUEInstance> &test_nnue_instance = nnue_instance_pool[_ply + 1];
 		_state->_internal_duplicate(test_state);
+		_nnue_instance->_internal_duplicate(test_nnue_instance);
 		Chess::apply_move(test_state, move_list[i]);
 		nnue->feedforward(test_state, test_nnue_instance);
 		int test_score = -quies(test_state, test_nnue_instance, -_beta, -_alpha, 1 - _group, _ply + 1);
@@ -316,8 +323,9 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, const godot::Ref<NN
 			_debug_output.call(_state->get_zobrist(), _depth, i, move_list.size());
 		}
 		godot::Ref<State> &test_state = state_pool[_ply + 1];
-		godot::Ref<NNUEInstance> test_nnue_instance = _nnue_instance->duplicate();
+		godot::Ref<NNUEInstance> &test_nnue_instance = nnue_instance_pool[_ply + 1];
 		_state->_internal_duplicate(test_state);
+		_nnue_instance->_internal_duplicate(test_nnue_instance);
 		Chess::apply_move(test_state, move_list[i]);
 		nnue->feedforward(test_state, test_nnue_instance);
 		int next_score = 0;

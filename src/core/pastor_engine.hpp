@@ -54,6 +54,7 @@ class PastorEngine : public ChessEngine
 		int transposition_table_cutoff = 0;
 		
 		std::vector<godot::Ref<State>> state_pool;
+		std::vector<godot::Ref<NNUEInstance>> nnue_instance_pool;
 		std::unordered_map<int64_t, int> map_history_state;
 		std::array<int, 65536> history_table;
 		godot::PackedInt32Array principal_variation;
