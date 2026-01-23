@@ -81,34 +81,35 @@ double NNUE::sigmoid_derivative(double x)
 
 void NNUE::randomize_weight()
 {
-	std::mt19937 rng(0);
+	std::default_random_engine random_engine(0);
+	std::normal_distribution<double> normal(0, 0.1);
 	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
 		for (int j = 0; j < NNUE_INPUT_SIZE; j++)
 		{
-			weight_input_h1[j][i] = (int(rng() % 20000) - 10000) / 100000.0;
+			weight_input_h1[j][i] = normal(random_engine);
 			DEV_ASSERT(!std::isnan(weight_input_h1[j][i]));
 		}
-		bias_h1[i] = (int(rng() % 20000) - 10000) / 100000.0;
+		bias_h1[i] = normal(random_engine);
 		DEV_ASSERT(!std::isnan(bias_h1[i]));
 	}
 	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
 		for (int j = 0; j < NNUE_H2_SIZE; j++)
 		{
-			weight_h1_h2[j][i] = (int(rng() % 20000) - 10000) / 100000.0;
+			weight_h1_h2[j][i] = normal(random_engine);
 			DEV_ASSERT(!std::isnan(weight_h1_h2[j][i]));
 		}
-		bias_h2[i] = (int(rng() % 20000) - 10000) / 100000.0;
+		bias_h2[i] = normal(random_engine);
 		DEV_ASSERT(!std::isnan(bias_h2[i]));
 	}
 
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
-		weight_h2_output[i] = (int(rng() % 20000) - 10000) / 100000.0;
+		weight_h2_output[i] = normal(random_engine);
 		DEV_ASSERT(!std::isnan(weight_h2_output[i]));
 	}
-	bias_output = (int(rng() % 20000) - 10000) / 100000.0;
+	bias_output = normal(random_engine);
 	DEV_ASSERT(!std::isnan(bias_output));
 }
 
