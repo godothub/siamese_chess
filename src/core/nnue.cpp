@@ -120,53 +120,52 @@ void NNUE::save_file(const godot::String &path)
 	{
 		for (int j = 0; j < NNUE_INPUT_SIZE; j++)
 		{
-			file->store_64(weight_input_h1[j][i]);
+			file->store_double(weight_input_h1[j][i]);
 		}
-		file->store_64(bias_h1[i]);
+		file->store_double(bias_h1[i]);
 	}
 	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
 		for (int j = 0; j < NNUE_H2_SIZE; j++)
 		{
-			file->store_64(weight_h1_h2[j][i]);
+			file->store_double(weight_h1_h2[j][i]);
 		}
-		file->store_64(bias_h2[i]);
+		file->store_double(bias_h2[i]);
 	}
 
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
-		file->store_64(weight_h2_output[i]);
+		file->store_double(weight_h2_output[i]);
 	}
-	file->store_64(bias_output);
+	file->store_double(bias_output);
 	file->close();
 }
 
 void NNUE::load_file(const godot::String &path)
 {
 	godot::Ref<godot::FileAccess> file = godot::FileAccess::open(path, godot::FileAccess::READ);
-	std::mt19937_64 rng(0);
 	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
 		for (int j = 0; j < NNUE_INPUT_SIZE; j++)
 		{
-			weight_input_h1[j][i] = file->get_64();
+			weight_input_h1[j][i] = file->get_double();
 		}
-		bias_h1[i] = file->get_64();
+		bias_h1[i] = file->get_double();
 	}
 	for (int i = 0; i < NNUE_H1_SIZE; i++)
 	{
 		for (int j = 0; j < NNUE_H2_SIZE; j++)
 		{
-			weight_h1_h2[j][i] = file->get_64();
+			weight_h1_h2[j][i] = file->get_double();
 		}
-		bias_h2[i] = file->get_64();
+		bias_h2[i] = file->get_double();
 	}
 
 	for (int i = 0; i < NNUE_H2_SIZE; i++)
 	{
-		weight_h2_output[i] = file->get_64();
+		weight_h2_output[i] = file->get_double();
 	}
-	bias_output = file->get_64();
+	bias_output = file->get_double();
 	file->close();
 }
 
