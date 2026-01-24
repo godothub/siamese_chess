@@ -40,7 +40,7 @@ class State : public godot::RefCounted
 		State();
 		godot::Ref<State> duplicate();
 		void _internal_duplicate(godot::Ref<State> &other);
-		PieceIterator piece_iterator_begin(int _piece = '*');
+		PieceIterator piece_iterator_begin(int _piece = '.');
 		godot::PackedInt32Array get_all_pieces();
 		int get_piece(int _by);
 		int has_piece(int _by);
