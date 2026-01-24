@@ -62,7 +62,8 @@ class PastorEngine : public ChessEngine
 		godot::PackedInt32Array directions_straight;
 		godot::PackedInt32Array directions_eight_way;
 		godot::PackedInt32Array directions_horse;
-		std::unordered_map<int, godot::PackedInt32Array> position_value;
+		std::unordered_map<int, godot::PackedInt32Array> position_value_midgame;
+		std::unordered_map<int, godot::PackedInt32Array> position_value_endgame;
 };
 
 #endif
