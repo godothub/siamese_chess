@@ -433,12 +433,14 @@ void PastorEngine::generate_good_capture_move(godot::PackedInt32Array &output, c
 }
 
 
-int PastorEngine::get_piece_score(int _by, int _piece)
+int PastorEngine::get_piece_score(int _by, int _piece, int phase)
 {
 	godot::Vector2i piece_position = godot::Vector2i(_by % 16, _by / 16);
-	if (piece_value.count(_piece) && position_value_midgame.count(_piece))
+	if (piece_value.count(_piece) && position_value_midgame.count(_piece) && position_value_endgame.count(_piece))
 	{
-		return position_value_midgame[_piece][piece_position.x + piece_position.y * 8] + piece_value[_piece];
+		int midgame_value = position_value_midgame[_piece][piece_position.x + piece_position.y * 8] + piece_value[_piece];
+		int endgame_value = position_value_endgame[_piece][piece_position.x + piece_position.y * 8] + piece_value[_piece];
+		return ((midgame_value * (256 - phase)) + (endgame_value * phase)) / 256;
 	}
 	return 0;
 }
@@ -446,54 +448,16 @@ int PastorEngine::get_piece_score(int _by, int _piece)
 int PastorEngine::evaluate_all(const godot::Ref<State> &_state)
 {
 	int score = 0;
+	int total_phase = 24;
+	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 -
+			 Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 4;
+	phase = (phase * 256 + (total_phase / 2)) / total_phase;
+
 	for (State::PieceIterator iter = _state->piece_iterator_begin(); !iter.end(); iter.next())
 	{
 		int by = iter.pos();
 		int piece = iter.piece();
-		score += get_piece_score(by, piece);
-	}
-	return score;
-}
-
-int PastorEngine::evaluate(const godot::Ref<State> &_state, int _move)
-{
-	int from = Chess::from(_move);
-	int from_piece = _state->get_piece(from);
-	int to = Chess::to(_move);
-	int to_piece = _state->get_piece(to);
-	int extra = Chess::extra(_move);
-	int group = Chess::group(from_piece);
-	int score = get_piece_score(to, from_piece) - get_piece_score(from, from_piece);
-	if (to_piece && !Chess::is_same_group(from_piece, to_piece))
-	{
-		score -= get_piece_score(to, to_piece);
-	}
-	if (_state->get_king_passant() != -1 && abs(_state->get_king_passant() - Chess::to(_move)) <= 1)
-	{
-		score -= piece_value[group == 0 ? 'k' : 'K'];
-	}
-	if (from_piece == 'K' && extra != 0)
-	{
-		score += get_piece_score((from + to) / 2, 'R');
-		score -= get_piece_score(to < from ? Chess::a1() : Chess::h1(), 'R');
-	}
-	if (from_piece == 'k' && extra != 0)
-	{
-		score += get_piece_score((from + to) / 2, 'r');
-		score -= get_piece_score(to < from ? Chess::a8() : Chess::h8(), 'r');
-	}
-	if ((from_piece & 95) == 'P')
-	{
-		int front = Chess::direction(from_piece, 0);
-		if (extra)
-		{
-			score += get_piece_score(to, extra);
-			score -= get_piece_score(from, from_piece);
-		}
-		if (to == _state->get_en_passant())
-		{
-			score -= get_piece_score(to - front, group == 0 ? 'p' : 'P');
-		}
+		score += get_piece_score(by, piece, phase);
 	}
 	return score;
 }
@@ -529,10 +493,10 @@ int PastorEngine::compare_move(int a, int b, int best_move, int killer_1, int ki
 	return a > b;
 }
 
-int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, int _beta, int _group, int _ply)
+int PastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _beta, int _group, int _ply)
 {
 	deepest_ply = std::max(_ply, deepest_ply);
-	int score_relative = _group == 0 ? score : -score;
+	int score_relative = _group == 0 ? evaluate_all(_state) : -evaluate_all(_state);
 	if (score_relative >= _beta)
 	{
 		beta_cutoff++;
@@ -564,7 +528,7 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, 
 		godot::Ref<State> &test_state = state_pool[_ply + 1];
 		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, move_list[i]);
-		int test_score = -quies(test_state, score + evaluate(_state, move_list[i]), -_beta, -_alpha, 1 - _group, _ply + 1);
+		int test_score = -quies(test_state, -_beta, -_alpha, 1 - _group, _ply + 1);
 		if (test_score >= _beta)
 		{
 			beta_cutoff++;
@@ -578,7 +542,7 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int score, int _alpha, 
 	return _alpha;
 }
 
-int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alpha, int _beta, int _depth, int _group, int _ply, bool _can_null, bool _is_null, int *killer_1, int *killer_2, const godot::Callable &_debug_output)
+int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _beta, int _depth, int _group, int _ply, bool _can_null, bool _is_null, int *killer_1, int *killer_2, const godot::Callable &_debug_output)
 {
 	godot::PackedInt32Array move_list;
 	deepest_ply = std::max(_ply, deepest_ply);
@@ -607,7 +571,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	if (_depth <= 0)
 	{
 		evaluated_position++;
-		return quies(_state, score, _alpha, _beta, _group, _ply + 1);
+		return quies(_state, _alpha, _beta, _group, _ply + 1);
 	}
 	if (_ply > 0 && map_history_state.count(_state->get_zobrist()))
 	{
@@ -623,14 +587,14 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 	}
 	if (time_passed() >= think_time || interrupted)
 	{
-		return quies(_state, score, _alpha, _beta, _group, _ply + 1);
+		return quies(_state, _alpha, _beta, _group, _ply + 1);
 	}
 
 	unsigned char flag = ALPHA;
 	int pv_move = transposition_table->best_move(_state->get_zobrist());
 	if (_depth > 2 && _ply > 1 && _can_null)
 	{
-		int next_score = -alphabeta(_state, score, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, false, true, nullptr, nullptr, _debug_output);
+		int next_score = -alphabeta(_state, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, false, true, nullptr, nullptr, _debug_output);
 		if (next_score >= _beta)
 		{
 			beta_cutoff++;
@@ -656,11 +620,11 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int score, int _alp
 		int next_score = 0;
 		if (found_pv)
 		{
-			next_score = -alphabeta(test_state, score + evaluate(_state, move_list[i]), -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, _can_null, _is_null, &next_killer_1, &next_killer_2, _debug_output);
+			next_score = -alphabeta(test_state, -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, _can_null, _is_null, &next_killer_1, &next_killer_2, _debug_output);
 		}
 		if (!found_pv || next_score > _alpha && next_score < _beta)
 		{
-			next_score = -alphabeta(test_state, score + evaluate(_state, move_list[i]), -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, _can_null, _is_null, &next_killer_1, &next_killer_2, _debug_output);
+			next_score = -alphabeta(test_state, -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, _can_null, _is_null, &next_killer_1, &next_killer_2, _debug_output);
 		}
 
 		if (_beta <= next_score)
@@ -718,7 +682,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	}
 	for (int i = 2; i <= max_depth; i += 2)
 	{
-		alphabeta(_state, evaluate_all(_state), -THRESHOLD, THRESHOLD, i, _group, 0, true, false, nullptr, nullptr, _debug_output);
+		alphabeta(_state, -THRESHOLD, THRESHOLD, i, _group, 0, true, false, nullptr, nullptr, _debug_output);
 		if (time_passed() >= think_time || interrupted)
 		{
 			break;
