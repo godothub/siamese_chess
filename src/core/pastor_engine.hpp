@@ -13,7 +13,7 @@ class PastorEngine : public ChessEngine
 	public:
 		PastorEngine();
 		int get_piece_score(int _by, int _piece, int phase);
-		int evaluate_all(const godot::Ref<State> &_state);
+		int evaluate(const godot::Ref<State> &_state);
 		int compare_move(int a, int b, int best_move, int killer_1, int killer_2, const godot::Ref<State> &state);
 		int quies(const godot::Ref<State> &_state, int alpha, int beta, int _group = 0, int _ply = 0);
 		void generate_good_capture_move(godot::PackedInt32Array &output, const godot::Ref<State> &_state, int _group);

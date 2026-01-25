@@ -445,7 +445,7 @@ int PastorEngine::get_piece_score(int _by, int _piece, int phase)
 	return 0;
 }
 
-int PastorEngine::evaluate_all(const godot::Ref<State> &_state)
+int PastorEngine::evaluate(const godot::Ref<State> &_state)
 {
 	int score = 0;
 	int total_phase = 24;
@@ -496,7 +496,7 @@ int PastorEngine::compare_move(int a, int b, int best_move, int killer_1, int ki
 int PastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _beta, int _group, int _ply)
 {
 	deepest_ply = std::max(_ply, deepest_ply);
-	int score_relative = _group == 0 ? evaluate_all(_state) : -evaluate_all(_state);
+	int score_relative = _group == 0 ? evaluate(_state) : -evaluate(_state);
 	if (score_relative >= _beta)
 	{
 		beta_cutoff++;
