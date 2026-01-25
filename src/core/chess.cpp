@@ -1219,15 +1219,30 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 		{
 			if (pawn_attacks[from_64][_group] & enemy_king_mask)
 			{
-				return true;
+				
+				int last_diag_45 = !((from - 1) & 0x88) ? from_64 - 1 : (!((from - 16) & 0x88) ? from_64 - 8 : 63);
+				uint64_t wall_45 = Chess::bit_rotate_45(_state->get_bit('+'));
+				uint64_t can_walk_45 = diag_a1h8_wall[from_64][(wall_45 >> Chess::rotate_45_shift(last_diag_45)) & Chess::rotate_45_length_mask(last_diag_45)];
+				uint64_t wall_315 = Chess::bit_rotate_315(_state->get_bit('+'));
+				uint64_t can_walk_315 = diag_a8h1_wall[from_64][(wall_315 >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64)];
+				return (can_walk_45 | can_walk_315) & enemy_king_mask;
 			}
 			continue;
 		}
 		if ((from_piece & 95) == 'K')
 		{
-			if (king_attacks[from_64] & enemy_king_mask)
+			if ((king_attacks[from_64] & enemy_king_mask))
 			{
-				return true;
+				uint64_t wall_file = Chess::bit_rotate_90(_state->get_bit('-'));
+				uint64_t can_walk_file = file_wall[from_64][(wall_file >> Chess::rotate_90_shift(from_64)) & 0xFF];
+				uint64_t wall_rank = _state->get_bit('|');
+				uint64_t can_walk_rank = file_wall[from_64][(wall_rank >> Chess::rotate_0_shift(from_64)) & 0xFF];
+				int last_diag_45 = !((from - 1) & 0x88) ? from_64 - 1 : (!((from - 16) & 0x88) ? from_64 - 8 : 63);
+				uint64_t wall_45 = Chess::bit_rotate_45(_state->get_bit('+'));
+				uint64_t can_walk_45 = diag_a1h8_wall[from_64][(wall_45 >> Chess::rotate_45_shift(last_diag_45)) & Chess::rotate_45_length_mask(last_diag_45)];
+				uint64_t wall_315 = Chess::bit_rotate_315(_state->get_bit('+'));
+				uint64_t can_walk_315 = diag_a8h1_wall[from_64][(wall_315 >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64)];
+				return (can_walk_file | can_walk_rank | can_walk_45 | can_walk_315) & enemy_king_mask;
 			}
 			continue;
 		}
@@ -1241,8 +1256,7 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 		}
 		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'B')
 		{
-			int last_diag_45 = !((from - 1) & 0x88) ? from_64 - 1 : 
-							(!((from - 16) & 0x88) ? from_64 - 8 : 63);
+			int last_diag_45 = !((from - 1) & 0x88) ? from_64 - 1 : (!((from - 16) & 0x88) ? from_64 - 8 : 63);
 			uint64_t wall_45 = Chess::bit_rotate_45(_state->get_bit('+'));
 			uint64_t can_walk_45 = diag_a1h8_wall[from_64][(wall_45 >> Chess::rotate_45_shift(last_diag_45)) & Chess::rotate_45_length_mask(last_diag_45)];
 			uint64_t wall_315 = Chess::bit_rotate_315(_state->get_bit('+'));
