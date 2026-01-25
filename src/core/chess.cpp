@@ -1241,12 +1241,18 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 		}
 		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'B')
 		{
+			int last_diag_45 = !((from - 1) & 0x88) ? from_64 - 1 : 
+							(!((from - 16) & 0x88) ? from_64 - 8 : 63);
+			uint64_t wall_45 = Chess::bit_rotate_45(_state->get_bit('+'));
+			uint64_t can_walk_45 = diag_a1h8_wall[from_64][(wall_45 >> Chess::rotate_45_shift(last_diag_45)) & Chess::rotate_45_length_mask(last_diag_45)];
+			uint64_t wall_315 = Chess::bit_rotate_315(_state->get_bit('+'));
+			uint64_t can_walk_315 = diag_a8h1_wall[from_64][(wall_315 >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64)];
 			uint64_t occupied = _state->get_bit(ALL_PIECE);
 			uint64_t occupied_rotate_45 = bit_rotate_45(occupied);
 			uint64_t occupied_rotate_315 = bit_rotate_315(occupied);
 			int64_t diag_a1h8 = (occupied_rotate_45 >> Chess::rotate_45_shift(from_64)) & Chess::rotate_45_length_mask(from_64);
 			int64_t diag_a8h1 = (occupied_rotate_315 >> Chess::rotate_315_shift(from_64)) & Chess::rotate_315_length_mask(from_64);
-			int64_t bishop_attacks = diag_a1h8_attacks[from_64][diag_a1h8] | diag_a8h1_attacks[from_64][diag_a8h1];
+			int64_t bishop_attacks = (diag_a1h8_attacks[from_64][diag_a1h8] & can_walk_45) | (diag_a8h1_attacks[from_64][diag_a8h1] & can_walk_315);
 			if (bishop_attacks & enemy_king_mask)
 			{
 				return true;
@@ -1254,11 +1260,15 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 		}
 		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'R')
 		{
+			uint64_t wall_file = Chess::bit_rotate_90(_state->get_bit('-'));
+			uint64_t can_walk_file = file_wall[from_64][(wall_file >> Chess::rotate_90_shift(from_64)) & 0xFF];
+			uint64_t wall_rank = _state->get_bit('|');
+			uint64_t can_walk_rank = file_wall[from_64][(wall_rank >> Chess::rotate_0_shift(from_64)) & 0xFF];
 			uint64_t occupied = _state->get_bit(ALL_PIECE);
 			uint64_t occupied_rotate_90 = bit_rotate_90(occupied);
 			int64_t rank = (occupied >> Chess::rotate_0_shift(from_64)) & 255;
 			int64_t file = (occupied_rotate_90 >> Chess::rotate_90_shift(from_64)) & 255;
-			int64_t rook_attacks = rank_attacks[from_64][rank] | file_attacks[from_64][file];
+			int64_t rook_attacks = (rank_attacks[from_64][rank] & can_walk_rank) | (file_attacks[from_64][file] & can_walk_file);
 			if (rook_attacks & enemy_king_mask)
 			{
 				return true;
