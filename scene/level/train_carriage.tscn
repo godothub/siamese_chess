@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://d321vutxtv07y"]
+
+[ext_resource type="PackedScene" uid="uid://d3hydaycubbdl" path="res://assets/model/train_carriage.glb" id="1_krrqq"]
+[ext_resource type="Script" uid="uid://dq6lcfkrdndxy" path="res://src/level/train_carriage.gd" id="2_ixuif"]
+[ext_resource type="Environment" uid="uid://dpl334n3lt1ig" path="res://assets/environment_outside.tres" id="2_qu1c6"]
+[ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="3_i5amg"]
+[ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="5_xj5v5"]
+
+[node name="train_carriage" instance=ExtResource("1_krrqq")]
+script = ExtResource("2_ixuif")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="19"]
+environment = ExtResource("2_qu1c6")
+
+[node name="camera_3d" type="Camera3D" parent="." index="20"]
+transform = Transform3D(-0.7916815, 0.5645834, -0.23342226, 0.09903436, 0.49561867, 0.86287564, 0.6028537, 0.6600059, -0.44828528, 0.20313555, 2.2856023, -0.6831463)
+
+[node name="cheshire" parent="." index="21" instance=ExtResource("3_i5amg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.2692413, 0.09528524, 0.7884095)
+
+[node name="chessboard" parent="." index="22" instance=ExtResource("5_xj5v5")]
+transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 1.3180614, 0.88824224, 0.014529258)
