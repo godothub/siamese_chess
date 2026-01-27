@@ -1,7 +1,5 @@
-extends Node3D
+extends StateMachine
 class_name Level
-
-signal level_state_changed(state:String)
 
 var engine:ChessEngine = null	# 有可能会出现多线作战，共用同一个引擎显然不好
 var chessboard:Chessboard = null
@@ -9,9 +7,6 @@ var in_battle:bool = false
 var teleport:Dictionary = {}
 var history_state:PackedInt64Array = []
 @onready var history_document:Document = load("res://scene/history.tscn").instantiate()
-var level_state:String = ""
-var level_state_signal_connection:Array = []
-var mutex:Mutex = Mutex.new()
 var interact_list:Dictionary[int, Dictionary] = {}
 var title:Dictionary[int, String] = {}
 
@@ -46,25 +41,6 @@ func _ready() -> void:
 	Progress.create_if_not_exist("obtains", 0)
 	Progress.create_if_not_exist("wins", 0)
 	change_state("explore_idle")
-
-func change_state(next_state:String, arg:Dictionary = {}) -> void:
-	mutex.lock()
-	# 涉及到信号的自动断连
-	for connection:Dictionary in level_state_signal_connection:
-		connection["signal"].disconnect(connection["method"])
-	level_state_signal_connection.clear()
-	# 执行状态退出方法
-	if has_method("state_exit_" + level_state):
-		call("state_exit_" + level_state)
-	level_state = next_state
-	call_deferred("state_ready_" + level_state, arg)
-	level_state_changed.emit.call_deferred(level_state)
-	mutex.unlock()
-
-func state_signal_connect(_signal:Signal, _method:Callable) -> void:
-	_signal.connect(_method)
-	assert(_signal.is_connected(_method))
-	level_state_signal_connection.push_back({"signal": _signal, "method": _method})
 
 var premove_from:int = -1
 var premove_to:int = -1
