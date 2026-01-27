@@ -6,9 +6,6 @@ extends Node
 
 var table:Dictionary = {}
 
-func _ready() -> void:
-	pass
-
 func load_file() -> void:
 	var file:FileAccess = FileAccess.open("user://progress/prototype_2.json", FileAccess.READ)
 	if !is_instance_valid(file):

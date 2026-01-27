@@ -8,6 +8,8 @@ func _ready() -> void:
 	$texture_rect.visible = false
 
 func change_scene(path:String, meta:Dictionary, wait_time:float = 0.3) -> void:
+	Progress.set_value("current_level", path)
+	Progress.save_file()
 	var tween:Tween = create_tween()
 	tween.tween_property($texture_rect, "visible", true, 0)
 	tween.tween_property($texture_rect, "modulate", Color(1, 1, 1, 1), wait_time)
