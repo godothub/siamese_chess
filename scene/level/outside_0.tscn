@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpxhvxnph5us"]
+[gd_scene format=3 uid="uid://bpxhvxnph5us"]
 
 [ext_resource type="Script" uid="uid://qu3f0pfdm0a3" path="res://src/level/outside_0.gd" id="1_hcaay"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_a6ui3"]
@@ -20,144 +20,144 @@ albedo_color = Color(0.89492244, 0.89492244, 0.8949224, 1)
 metallic = 1.0
 roughness = 0.0
 
-[node name="outside" type="Node3D"]
+[node name="outside" type="Node3D" unique_id=1622673]
 script = ExtResource("1_hcaay")
 metadata/by = 4
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=324225758]
 environment = ExtResource("2_crw01")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=772073326]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("2_a6ui3")]
+[node name="player" parent="." unique_id=1184934726 instance=ExtResource("2_a6ui3")]
 
-[node name="chessboard" parent="." instance=ExtResource("5_up75d")]
+[node name="chessboard" parent="." unique_id=367263181 instance=ExtResource("5_up75d")]
 
-[node name="camera" type="Camera3D" parent="."]
+[node name="camera" type="Camera3D" parent="." unique_id=732929932]
 transform = Transform3D(0.9997678, 0.014635563, -0.015821615, 8.113766e-09, 0.73408604, 0.6790565, 0.021552801, -0.67889875, 0.7339155, -0.72627926, 6.60401, 10.65578)
 
-[node name="shrub" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub" parent="." unique_id=882276286 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
 
-[node name="shrub_2" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_2" parent="." unique_id=728582678 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
 
-[node name="shrub_3" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_3" parent="." unique_id=1352571140 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 
-[node name="shrub_4" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_4" parent="." unique_id=606404338 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
 
-[node name="shrub_7" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_7" parent="." unique_id=751897165 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
 
-[node name="shrub_8" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_8" parent="." unique_id=1479914879 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 
-[node name="shrub_9" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_9" parent="." unique_id=578406834 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
 
-[node name="shrub_10" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_10" parent="." unique_id=777361444 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
 
-[node name="shrub_12" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_12" parent="." unique_id=649833565 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -7)
 
-[node name="shrub_14" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_14" parent="." unique_id=200064811 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
 
-[node name="shrub_15" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_15" parent="." unique_id=1105632501 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
 
-[node name="tree_2" parent="." instance=ExtResource("8_kcqwh")]
+[node name="tree_2" parent="." unique_id=1740080201 instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
 
-[node name="tree_3" parent="." instance=ExtResource("8_kcqwh")]
+[node name="tree_3" parent="." unique_id=1185517067 instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
 
-[node name="tree_4" parent="." instance=ExtResource("8_kcqwh")]
+[node name="tree_4" parent="." unique_id=1922015386 instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
 
-[node name="tree_5" parent="." instance=ExtResource("8_kcqwh")]
+[node name="tree_5" parent="." unique_id=1817449643 instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
 
-[node name="tree_6" parent="." instance=ExtResource("8_kcqwh")]
+[node name="tree_6" parent="." unique_id=498215314 instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 
-[node name="tree_7" parent="." instance=ExtResource("8_kcqwh")]
+[node name="tree_7" parent="." unique_id=1967383622 instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -7)
 
-[node name="tree_8" parent="." instance=ExtResource("8_kcqwh")]
+[node name="tree_8" parent="." unique_id=1644543626 instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
 
-[node name="tree_9" parent="." instance=ExtResource("8_kcqwh")]
+[node name="tree_9" parent="." unique_id=1336401415 instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
 
-[node name="tree_10" parent="." instance=ExtResource("8_kcqwh")]
+[node name="tree_10" parent="." unique_id=1081096533 instance=ExtResource("8_kcqwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
 
-[node name="flower" parent="." instance=ExtResource("9_3g7ix")]
+[node name="flower" parent="." unique_id=1160583547 instance=ExtResource("9_3g7ix")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 piece_type = 0
 
-[node name="flower_5" parent="." instance=ExtResource("9_3g7ix")]
+[node name="flower_5" parent="." unique_id=1246507832 instance=ExtResource("9_3g7ix")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
 piece_type = 0
 
-[node name="flower_6" parent="." instance=ExtResource("9_3g7ix")]
+[node name="flower_6" parent="." unique_id=914463250 instance=ExtResource("9_3g7ix")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
 piece_type = 0
 
-[node name="flower_7" parent="." instance=ExtResource("9_3g7ix")]
+[node name="flower_7" parent="." unique_id=633398106 instance=ExtResource("9_3g7ix")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
 piece_type = 0
 
-[node name="flower_8" parent="." instance=ExtResource("9_3g7ix")]
+[node name="flower_8" parent="." unique_id=1110680463 instance=ExtResource("9_3g7ix")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
 piece_type = 0
 
-[node name="flower_13" parent="." instance=ExtResource("9_3g7ix")]
+[node name="flower_13" parent="." unique_id=1000504120 instance=ExtResource("9_3g7ix")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
 piece_type = 0
 
-[node name="fence_0" parent="." instance=ExtResource("10_agd6e")]
+[node name="fence_0" parent="." unique_id=594065073 instance=ExtResource("10_agd6e")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, -3)
 script = ExtResource("11_not3w")
 piece_type = 35
 
-[node name="fence_1" parent="." instance=ExtResource("10_agd6e")]
+[node name="fence_1" parent="." unique_id=1765484943 instance=ExtResource("10_agd6e")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, -5)
 script = ExtResource("11_not3w")
 piece_type = 35
 
-[node name="fence_2" parent="." instance=ExtResource("10_agd6e")]
+[node name="fence_2" parent="." unique_id=1652631266 instance=ExtResource("10_agd6e")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, -1)
 script = ExtResource("11_not3w")
 piece_type = 35
 
-[node name="fence_3" parent="." instance=ExtResource("10_agd6e")]
+[node name="fence_3" parent="." unique_id=2124536036 instance=ExtResource("10_agd6e")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, 1)
 script = ExtResource("11_not3w")
 piece_type = 35
 
-[node name="fence_4" parent="." instance=ExtResource("10_agd6e")]
+[node name="fence_4" parent="." unique_id=1953947676 instance=ExtResource("10_agd6e")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, 3)
 script = ExtResource("11_not3w")
 piece_type = 35
 
-[node name="fence_5" parent="." instance=ExtResource("10_agd6e")]
+[node name="fence_5" parent="." unique_id=285109236 instance=ExtResource("10_agd6e")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, 5)
 script = ExtResource("11_not3w")
 piece_type = 35
 
-[node name="fence_6" parent="." instance=ExtResource("10_agd6e")]
+[node name="fence_6" parent="." unique_id=1016647685 instance=ExtResource("10_agd6e")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, 7)
 script = ExtResource("11_not3w")
 piece_type = 35
 
-[node name="card_item" parent="." instance=ExtResource("12_sq15a")]
+[node name="card_item" parent="." unique_id=2102297026 instance=ExtResource("12_sq15a")]
 transform = Transform3D(-7, 0, -6.119594e-07, 0, 7, 0, 6.119594e-07, 0, -7, 1.0000005, 0, -1.0000005)
 cover = ExtResource("11_crw01")
 actor = ExtResource("12_owa5c")
@@ -165,68 +165,68 @@ card_piece = 112
 comment = "HINT_GET_PIECE_FIRST_TIME"
 progress_key = "piece_pawn_card_0"
 
-[node name="hotel_gate" parent="." instance=ExtResource("12_not3w")]
+[node name="hotel_gate" parent="." unique_id=2009263103 instance=ExtResource("12_not3w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.9819274)
 
-[node name="shrub_16" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_16" parent="." unique_id=731785825 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
 
-[node name="shrub_5" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_5" parent="." unique_id=308482830 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
 
-[node name="shrub_6" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_6" parent="." unique_id=278143303 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
 
-[node name="shrub_11" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_11" parent="." unique_id=804774300 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -7)
 
-[node name="shrub_13" parent="." instance=ExtResource("7_6yoeu")]
+[node name="shrub_13" parent="." unique_id=214325378 instance=ExtResource("7_6yoeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
 
-[node name="teleport_pointer" parent="." instance=ExtResource("14_crw01")]
+[node name="teleport_pointer" parent="." unique_id=1918735848 instance=ExtResource("14_crw01")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 1, 0, 7)
 to = "res://scene/level/outside_1.tscn"
 args = {
 "by": 4
 }
 
-[node name="teleport_pointer_2" parent="." instance=ExtResource("14_crw01")]
+[node name="teleport_pointer_2" parent="." unique_id=1606524186 instance=ExtResource("14_crw01")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -1, 0, 7)
 to = "res://scene/level/outside_1.tscn"
 args = {
 "by": 3
 }
 
-[node name="teleport_pointer_3" parent="." instance=ExtResource("14_crw01")]
+[node name="teleport_pointer_3" parent="." unique_id=1245813386 instance=ExtResource("14_crw01")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1, 0, -7)
 to = "res://scene/level/entrance.tscn"
 args = {
 "by": 3
 }
 
-[node name="teleport_pointer_4" parent="." instance=ExtResource("14_crw01")]
+[node name="teleport_pointer_4" parent="." unique_id=1009612978 instance=ExtResource("14_crw01")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, -7)
 to = "res://scene/level/entrance.tscn"
 args = {
 "by": 4
 }
 
-[node name="csg_box_3d" type="CSGBox3D" parent="."]
+[node name="csg_box_3d" type="CSGBox3D" parent="." unique_id=144880748]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -0.2512207, -8.760193)
 size = Vector3(16, 0.4975586, 1.4796143)
 material = SubResource("StandardMaterial3D_not3w")
 
-[node name="csg_box_3d_2" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_2" type="CSGBox3D" parent="." unique_id=1795589823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.507315, -0.2512207, 0)
 size = Vector3(1.238739, 0.4975586, 19)
 material = SubResource("StandardMaterial3D_not3w")
 
-[node name="csg_box_3d_3" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_3" type="CSGBox3D" parent="." unique_id=528764968]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.578018, -0.2512207, 0)
 size = Vector3(1.238739, 0.4975586, 19)
 material = SubResource("StandardMaterial3D_not3w")
 
-[node name="csg_box_3d_4" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_4" type="CSGBox3D" parent="." unique_id=159999901]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, -0.2512207, 8.76297)
 size = Vector3(16.021355, 0.4975586, 1.5)
 material = SubResource("StandardMaterial3D_not3w")

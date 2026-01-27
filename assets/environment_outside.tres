@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=3 format=3 uid="uid://dpl334n3lt1ig"]
+[gd_resource type="Environment" format=3 uid="uid://dpl334n3lt1ig"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -14,7 +14,7 @@ background_mode = 2
 sky = SubResource("Sky_cdevh")
 ambient_light_color = Color(0.7490196, 0.2, 0.1882353, 1)
 ssr_enabled = true
-ssr_max_steps = 32
+sdfgi_read_sky_light = false
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.88074917, 0.26800972, 0.25980935, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://co6urdc5oyrbh"]
+[gd_scene format=3 uid="uid://co6urdc5oyrbh"]
 
 [ext_resource type="Script" uid="uid://cln6ksgl3ll6o" path="res://src/level/cafe.gd" id="1_e1edc"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="1_o611t"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bw127d1iawnv3" path="res://assets/model/radermachera_sinica.glb" id="13_fsnob"]
 [ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="14_e7kou"]
 [ext_resource type="PackedScene" uid="uid://ppw81bokufcf" path="res://assets/model/chair_high.glb" id="15_n3pbh"]
-[ext_resource type="Script" uid="uid://chtqhpiu556i1" path="res://src/marker_bit.gd" id="16_0icrd"]
+[ext_resource type="Script" path="res://src/marker_bit.gd" id="16_0icrd"]
 [ext_resource type="PackedScene" uid="uid://cingkxj4uodjo" path="res://assets/model/window.glb" id="17_q5uxw"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="18_e7kou"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="19_lw61d"]
@@ -46,6 +46,7 @@ background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_kgksa")
 ssr_enabled = true
+sdfgi_enabled = true
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
@@ -128,32 +129,32 @@ shader_parameter/value_mult = 0.133
 shader_parameter/brightness_add = -0.1
 shader_parameter/contrast_mult = 1.0
 
-[node name="cafe" type="Node3D"]
+[node name="cafe" type="Node3D" unique_id=1397432663]
 script = ExtResource("1_e1edc")
 metadata/by = 53
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=85210075]
 environment = SubResource("Environment_ve7rb")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1748943930]
 transform = Transform3D(0.840762, 0.239459, -0.485571, 0.242345, 0.635549, 0.733039, 0.484137, -0.733987, 0.476313, 4.61496, 2.82427, 0)
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("1_ps8i8")]
+[node name="player" parent="." unique_id=34630711 instance=ExtResource("1_ps8i8")]
 
-[node name="chessboard" parent="." instance=ExtResource("1_o611t")]
+[node name="chessboard" parent="." unique_id=2031875546 instance=ExtResource("1_o611t")]
 
-[node name="camera" type="Camera3D" parent="."]
+[node name="camera" type="Camera3D" parent="." unique_id=546823115]
 transform = Transform3D(1.3044414e-07, 0.7638636, -0.64537776, 7.736119e-09, 0.64537776, 0.7638636, 1, -1.0463425e-07, 7.82764e-08, -5.501005, 6.3051796, 3.2519171)
 fov = 72.17557
 
-[node name="table_0" parent="." instance=ExtResource("6_ecjec")]
+[node name="table_0" parent="." unique_id=241443587 instance=ExtResource("6_ecjec")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0.0249235, 5)
 
 [node name="table_000" parent="table_0" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_n3pbh")
 
-[node name="sofa_0" parent="table_0" instance=ExtResource("9_fsnob")]
+[node name="sofa_0" parent="table_0" unique_id=1817867806 instance=ExtResource("9_fsnob")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045349, 0, -0.90022)
 
 [node name="sofa" parent="table_0/sofa_0" index="0"]
@@ -162,7 +163,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_0icrd")
 surface_material_override/1 = SubResource("ShaderMaterial_q5uxw")
 surface_material_override/2 = SubResource("ShaderMaterial_q5uxw")
 
-[node name="sofa_1" parent="table_0" instance=ExtResource("9_fsnob")]
+[node name="sofa_1" parent="table_0" unique_id=593487402 instance=ExtResource("9_fsnob")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.048802, 0, 1.09839)
 
 [node name="sofa" parent="table_0/sofa_1" index="0"]
@@ -170,398 +171,398 @@ surface_material_override/0 = SubResource("ShaderMaterial_e7kou")
 surface_material_override/1 = SubResource("ShaderMaterial_lw61d")
 surface_material_override/2 = SubResource("ShaderMaterial_lw61d")
 
-[node name="chessboard_standard" parent="table_0" instance=ExtResource("12_yx65i")]
+[node name="chessboard_standard" parent="table_0" unique_id=1922098236 instance=ExtResource("12_yx65i")]
 transform = Transform3D(-0.425, 0, 3.71547e-08, 0, 0.425, 0, -3.71547e-08, 0, -0.425, 0.0284882, 0.85944, -0.00441313)
 
-[node name="pastor" parent="." instance=ExtResource("11_ogoy6")]
+[node name="pastor" parent="." unique_id=913212403 instance=ExtResource("11_ogoy6")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, 5)
 
-[node name="radermachera_sinica_2" parent="." instance=ExtResource("13_fsnob")]
+[node name="radermachera_sinica_2" parent="." unique_id=1460634649 instance=ExtResource("13_fsnob")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.73073, 0, 4.28252)
 
-[node name="table_high_0" parent="." instance=ExtResource("2_jb28s")]
+[node name="table_high_0" parent="." unique_id=1979411854 instance=ExtResource("2_jb28s")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 1)
 
 [node name="table_001" parent="table_high_0" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_km6g5")
 
-[node name="chair_high_0" parent="table_high_0" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_0" parent="table_high_0" unique_id=238541657 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.716291, 0, -0.518619)
 
 [node name="chair" parent="table_high_0/chair_high_0" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_1" parent="table_high_0" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_1" parent="table_high_0" unique_id=890820842 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0418291, 0, -0.518619)
 
 [node name="chair" parent="table_high_0/chair_high_1" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_2" parent="table_high_0" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_2" parent="table_high_0" unique_id=1390915239 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.689076, 0, -0.518619)
 
 [node name="chair" parent="table_high_0/chair_high_2" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_3" parent="table_high_0" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_3" parent="table_high_0" unique_id=542554490 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.716291, 0, 0.481381)
 
 [node name="chair" parent="table_high_0/chair_high_3" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_4" parent="table_high_0" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_4" parent="table_high_0" unique_id=846779923 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0174162, 0, 0.481381)
 
 [node name="chair" parent="table_high_0/chair_high_4" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_5" parent="table_high_0" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_5" parent="table_high_0" unique_id=39169695 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.661157, 0, 0.481381)
 
 [node name="chair" parent="table_high_0/chair_high_5" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="table_high_1" parent="." instance=ExtResource("2_jb28s")]
+[node name="table_high_1" parent="." unique_id=1164281135 instance=ExtResource("2_jb28s")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 1)
 
 [node name="table_001" parent="table_high_1" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_km6g5")
 
-[node name="chair_high_0" parent="table_high_1" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_0" parent="table_high_1" unique_id=121606434 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.716291, 0, -0.518619)
 
 [node name="chair" parent="table_high_1/chair_high_0" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_1" parent="table_high_1" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_1" parent="table_high_1" unique_id=538419727 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0418291, 0, -0.518619)
 
 [node name="chair" parent="table_high_1/chair_high_1" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_2" parent="table_high_1" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_2" parent="table_high_1" unique_id=1991523057 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.689076, 0, -0.518619)
 
 [node name="chair" parent="table_high_1/chair_high_2" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_3" parent="table_high_1" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_3" parent="table_high_1" unique_id=1594206532 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.716291, 0, 0.481381)
 
 [node name="chair" parent="table_high_1/chair_high_3" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_4" parent="table_high_1" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_4" parent="table_high_1" unique_id=171689075 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0174162, 0, 0.481381)
 
 [node name="chair" parent="table_high_1/chair_high_4" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_5" parent="table_high_1" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_5" parent="table_high_1" unique_id=653966992 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.661157, 0, 0.481381)
 
 [node name="chair" parent="table_high_1/chair_high_5" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="radermachera_sinica_3" parent="." instance=ExtResource("13_fsnob")]
+[node name="radermachera_sinica_3" parent="." unique_id=444481288 instance=ExtResource("13_fsnob")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.906834, 0, -0.232878)
 
-[node name="actor_y" type="Node3D" parent="."]
+[node name="actor_y" type="Node3D" parent="." unique_id=2046641559]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_2" type="Node3D" parent="."]
+[node name="actor_y_2" type="Node3D" parent="." unique_id=185593934]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_3" type="Node3D" parent="."]
+[node name="actor_y_3" type="Node3D" parent="." unique_id=317568778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_4" type="Node3D" parent="."]
+[node name="actor_y_4" type="Node3D" parent="." unique_id=1839372712]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="table_high_2" parent="." instance=ExtResource("2_jb28s")]
+[node name="table_high_2" parent="." unique_id=794748692 instance=ExtResource("2_jb28s")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, 1)
 
 [node name="table_001" parent="table_high_2" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_km6g5")
 
-[node name="chair_high_0" parent="table_high_2" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_0" parent="table_high_2" unique_id=397759058 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.716291, 0, -0.518619)
 
 [node name="chair" parent="table_high_2/chair_high_0" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_1" parent="table_high_2" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_1" parent="table_high_2" unique_id=1062677209 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0418291, 0, -0.518619)
 
 [node name="chair" parent="table_high_2/chair_high_1" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_2" parent="table_high_2" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_2" parent="table_high_2" unique_id=928497685 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.689076, 0, -0.518619)
 
 [node name="chair" parent="table_high_2/chair_high_2" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_3" parent="table_high_2" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_3" parent="table_high_2" unique_id=1811114647 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.716291, 0, 0.481381)
 
 [node name="chair" parent="table_high_2/chair_high_3" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_4" parent="table_high_2" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_4" parent="table_high_2" unique_id=406784013 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0174162, 0, 0.481381)
 
 [node name="chair" parent="table_high_2/chair_high_4" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="chair_high_5" parent="table_high_2" instance=ExtResource("15_n3pbh")]
+[node name="chair_high_5" parent="table_high_2" unique_id=1602493058 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.661157, 0, 0.481381)
 
 [node name="chair" parent="table_high_2/chair_high_5" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
-[node name="actor_y_5" type="Node3D" parent="."]
+[node name="actor_y_5" type="Node3D" parent="." unique_id=1972975753]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="window" parent="." instance=ExtResource("17_q5uxw")]
+[node name="window" parent="." unique_id=1254191721 instance=ExtResource("17_q5uxw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6713133, 0, 6.232663)
 
-[node name="window_2" parent="." instance=ExtResource("17_q5uxw")]
+[node name="window_2" parent="." unique_id=209213659 instance=ExtResource("17_q5uxw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8133861, 0, 6.232663)
 
-[node name="door" parent="." instance=ExtResource("18_e7kou")]
+[node name="door" parent="." unique_id=948884677 instance=ExtResource("18_e7kou")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2)
 
-[node name="bookshelf" parent="." instance=ExtResource("19_lw61d")]
+[node name="bookshelf" parent="." unique_id=289025717 instance=ExtResource("19_lw61d")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0, 3)
 
-[node name="bookshelf_2" parent="." instance=ExtResource("19_lw61d")]
+[node name="bookshelf_2" parent="." unique_id=1669366951 instance=ExtResource("19_lw61d")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0, 1)
 
-[node name="radermachera_sinica_4" parent="." instance=ExtResource("13_fsnob")]
+[node name="radermachera_sinica_4" parent="." unique_id=245832707 instance=ExtResource("13_fsnob")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.90683, 0, -0.247615)
 
-[node name="camera_pastor" type="Camera3D" parent="."]
+[node name="camera_pastor" type="Camera3D" parent="." unique_id=1321780903]
 transform = Transform3D(-0.84129, 0.265096, -0.471121, -0.00495441, 0.867686, 0.497088, 0.540561, 0.420529, -0.728662, 1.25572, 2.46423, 3.04269)
 fov = 51.3432
 
-[node name="camera_chessboard" type="Camera3D" parent="."]
+[node name="camera_chessboard" type="Camera3D" parent="." unique_id=489509762]
 transform = Transform3D(-4.21108e-08, 0.71145, -0.702737, 1.17203e-08, 0.702737, 0.71145, 1, 2.17234e-08, -3.79312e-08, 1.60037, 1.24647, 5.02685)
 fov = 63.9549
 
-[node name="marker_bit_7" type="Marker3D" parent="."]
+[node name="marker_bit_7" type="Marker3D" parent="." unique_id=564020689]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
 script = ExtResource("16_0icrd")
 piece = 122
 
-[node name="marker_bit_8" type="Marker3D" parent="."]
+[node name="marker_bit_8" type="Marker3D" parent="." unique_id=466297108]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 script = ExtResource("16_0icrd")
 piece = 122
 
-[node name="actor_y_7" type="Node3D" parent="."]
+[node name="actor_y_7" type="Node3D" parent="." unique_id=1593945633]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="door_2" parent="." instance=ExtResource("18_e7kou")]
+[node name="door_2" parent="." unique_id=828687556 instance=ExtResource("18_e7kou")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6, 0, 5)
 
-[node name="teleport_pointer_3" parent="." instance=ExtResource("19_m8sl2")]
+[node name="teleport_pointer_3" parent="." unique_id=221900182 instance=ExtResource("19_m8sl2")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3, 0, -1)
 to = "res://scene/level/reception_lobby.tscn"
 args = {
 "by": 80
 }
 
-[node name="actor_y_1" type="Node3D" parent="."]
+[node name="actor_y_1" type="Node3D" parent="." unique_id=1283433051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_6" type="Node3D" parent="."]
+[node name="actor_y_6" type="Node3D" parent="." unique_id=600838775]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_8" type="Node3D" parent="."]
+[node name="actor_y_8" type="Node3D" parent="." unique_id=1355213403]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_9" type="Node3D" parent="."]
+[node name="actor_y_9" type="Node3D" parent="." unique_id=1217711915]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_10" type="Node3D" parent="."]
+[node name="actor_y_10" type="Node3D" parent="." unique_id=20867848]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_11" type="Node3D" parent="."]
+[node name="actor_y_11" type="Node3D" parent="." unique_id=1029547255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_12" type="Node3D" parent="."]
+[node name="actor_y_12" type="Node3D" parent="." unique_id=965294445]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_14" type="Node3D" parent="."]
+[node name="actor_y_14" type="Node3D" parent="." unique_id=1118408692]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_15" type="Node3D" parent="."]
+[node name="actor_y_15" type="Node3D" parent="." unique_id=625176556]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -3)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_16" type="Node3D" parent="."]
+[node name="actor_y_16" type="Node3D" parent="." unique_id=916524120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_17" type="Node3D" parent="."]
+[node name="actor_y_17" type="Node3D" parent="." unique_id=1222397117]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_18" type="Node3D" parent="."]
+[node name="actor_y_18" type="Node3D" parent="." unique_id=522947832]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 3)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_19" type="Node3D" parent="."]
+[node name="actor_y_19" type="Node3D" parent="." unique_id=369613305]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_20" type="Node3D" parent="."]
+[node name="actor_y_20" type="Node3D" parent="." unique_id=518211462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_13" type="Node3D" parent="."]
+[node name="actor_y_13" type="Node3D" parent="." unique_id=275908481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_0" type="Node3D" parent="."]
+[node name="actor_y_0" type="Node3D" parent="." unique_id=751247358]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_21" type="Node3D" parent="."]
+[node name="actor_y_21" type="Node3D" parent="." unique_id=526483970]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_22" type="Node3D" parent="."]
+[node name="actor_y_22" type="Node3D" parent="." unique_id=1507676477]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_23" type="Node3D" parent="."]
+[node name="actor_y_23" type="Node3D" parent="." unique_id=739476141]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_24" type="Node3D" parent="."]
+[node name="actor_y_24" type="Node3D" parent="." unique_id=54789454]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_25" type="Node3D" parent="."]
+[node name="actor_y_25" type="Node3D" parent="." unique_id=1071470000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_26" type="Node3D" parent="."]
+[node name="actor_y_26" type="Node3D" parent="." unique_id=688455422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_27" type="Node3D" parent="."]
+[node name="actor_y_27" type="Node3D" parent="." unique_id=866167085]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_28" type="Node3D" parent="."]
+[node name="actor_y_28" type="Node3D" parent="." unique_id=521776843]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="counter" parent="." instance=ExtResource("20_uwrpd")]
+[node name="counter" parent="." unique_id=1239334850 instance=ExtResource("20_uwrpd")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.9781, 0, 2.29696)
 
-[node name="kitchen_table" parent="." instance=ExtResource("21_u42d1")]
+[node name="kitchen_table" parent="." unique_id=2022232144 instance=ExtResource("21_u42d1")]
 transform = Transform3D(-4.3711378e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711378e-08, -6.38197, 0, 2)
 
-[node name="coffee_machine" parent="." instance=ExtResource("22_uyp13")]
+[node name="coffee_machine" parent="." unique_id=1504435139 instance=ExtResource("22_uyp13")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.494755, 1.03095, 3.575828)
 
-[node name="radio" parent="." instance=ExtResource("23_qbjw3")]
+[node name="radio" parent="." unique_id=629383647 instance=ExtResource("23_qbjw3")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.767867, 0.8829714, 0.6479871)
 
-[node name="hang_shelf" parent="." instance=ExtResource("25_0ldt7")]
+[node name="hang_shelf" parent="." unique_id=2041682078 instance=ExtResource("25_0ldt7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.57524, 2, 1)
 
-[node name="hang_shelf_2" parent="." instance=ExtResource("25_0ldt7")]
+[node name="hang_shelf_2" parent="." unique_id=465629313 instance=ExtResource("25_0ldt7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.57524, 2, 3)
 
-[node name="hotel_fridge" parent="." instance=ExtResource("25_8pfak")]
+[node name="hotel_fridge" parent="." unique_id=1023636684 instance=ExtResource("25_8pfak")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0.039903313, 3.810114)
 
-[node name="table_1" parent="." instance=ExtResource("6_ecjec")]
+[node name="table_1" parent="." unique_id=594017055 instance=ExtResource("6_ecjec")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.0249235, 5)
 
 [node name="table_000" parent="table_1" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_n3pbh")
 
-[node name="sofa_0" parent="table_1" instance=ExtResource("9_fsnob")]
+[node name="sofa_0" parent="table_1" unique_id=1997327101 instance=ExtResource("9_fsnob")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045349, 0, -0.90022)
 
 [node name="sofa" parent="table_1/sofa_0" index="0"]
@@ -570,7 +571,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_0icrd")
 surface_material_override/1 = SubResource("ShaderMaterial_q5uxw")
 surface_material_override/2 = SubResource("ShaderMaterial_q5uxw")
 
-[node name="sofa_1" parent="table_1" instance=ExtResource("9_fsnob")]
+[node name="sofa_1" parent="table_1" unique_id=556835623 instance=ExtResource("9_fsnob")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.048802, 0, 1.09839)
 
 [node name="sofa" parent="table_1/sofa_1" index="0"]
@@ -578,70 +579,70 @@ surface_material_override/0 = SubResource("ShaderMaterial_e7kou")
 surface_material_override/1 = SubResource("ShaderMaterial_lw61d")
 surface_material_override/2 = SubResource("ShaderMaterial_lw61d")
 
-[node name="painting_frame_square_2" parent="." instance=ExtResource("26_gphu1")]
+[node name="painting_frame_square_2" parent="." unique_id=860346204 instance=ExtResource("26_gphu1")]
 transform = Transform3D(-2, 1.7484558e-07, 3.4969108e-07, -1.7484555e-07, -2, 1.7484558e-07, 3.496911e-07, 1.7484555e-07, 2, 4.7202787, 1.5019372, -1.9429536)
 
-[node name="painting_frame_rect_6" parent="." instance=ExtResource("26_8pfak")]
+[node name="painting_frame_rect_6" parent="." unique_id=1591656267 instance=ExtResource("26_8pfak")]
 transform = Transform3D(-2, -3.0199158e-07, 3.496911e-07, 3.019916e-07, -2, 8.742278e-08, 3.496911e-07, 8.7422826e-08, 2, -0.7013469, 1.6403265, -1.9934025)
 
-[node name="actor_y_29" type="Node3D" parent="."]
+[node name="actor_y_29" type="Node3D" parent="." unique_id=1135114243]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_30" type="Node3D" parent="."]
+[node name="actor_y_30" type="Node3D" parent="." unique_id=425921183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_31" type="Node3D" parent="."]
+[node name="actor_y_31" type="Node3D" parent="." unique_id=1428364377]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_32" type="Node3D" parent="."]
+[node name="actor_y_32" type="Node3D" parent="." unique_id=360913619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_33" type="Node3D" parent="."]
+[node name="actor_y_33" type="Node3D" parent="." unique_id=1402091336]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_34" type="Node3D" parent="."]
+[node name="actor_y_34" type="Node3D" parent="." unique_id=70010164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 script = ExtResource("14_e7kou")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="curtain2" parent="." instance=ExtResource("28_jnxq1")]
+[node name="curtain2" parent="." unique_id=791186254 instance=ExtResource("28_jnxq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4575335, 2.9938352, 6.053683)
 
-[node name="curtain_support2" parent="." instance=ExtResource("29_7tmgw")]
+[node name="curtain_support2" parent="." unique_id=647260049 instance=ExtResource("29_7tmgw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.742231, 2.9938352, 6.0536833)
 
-[node name="curtain2_2" parent="." instance=ExtResource("28_jnxq1")]
+[node name="curtain2_2" parent="." unique_id=304375373 instance=ExtResource("28_jnxq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9760733, 2.9938352, 6.0536833)
 
-[node name="curtain2_3" parent="." instance=ExtResource("28_jnxq1")]
+[node name="curtain2_3" parent="." unique_id=628254275 instance=ExtResource("28_jnxq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0289516, 2.9938352, 6.053683)
 
-[node name="curtain_support2_2" parent="." instance=ExtResource("29_7tmgw")]
+[node name="curtain_support2_2" parent="." unique_id=1133498237 instance=ExtResource("29_7tmgw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.744254, 2.9938352, 6.0536833)
 
-[node name="curtain2_4" parent="." instance=ExtResource("28_jnxq1")]
+[node name="curtain2_4" parent="." unique_id=1183250921 instance=ExtResource("28_jnxq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51041186, 2.9938352, 6.0536833)
 
-[node name="menu" parent="." instance=ExtResource("30_7tmgw")]
+[node name="menu" parent="." unique_id=1736592801 instance=ExtResource("30_7tmgw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.8820629, 4.255598)
 
-[node name="marker_document_menu" type="Node3D" parent="."]
+[node name="marker_document_menu" type="Node3D" parent="." unique_id=1630966651]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
 script = ExtResource("31_2nvbi")
 file_path = "user://archive/printed.menu.json"
@@ -652,7 +653,7 @@ file_content = {
 selection = "DOCUMENT_TITLE_MENU"
 metadata/_custom_type_script = "uid://dc4n8wl381mqw"
 
-[node name="marker_document_chess_movements" type="Node3D" parent="."]
+[node name="marker_document_chess_movements" type="Node3D" parent="." unique_id=753425092]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
 script = ExtResource("31_2nvbi")
 file_path = "user://archive/printed.chess_movements.json"
