@@ -9,7 +9,7 @@ func _ready() -> void:
 		var table:Array = [
 			{
 				"actor": load("res://scene/actor/enemy_cheshire.tscn").instantiate(),
-				"pos": 0x52,
+				"pos": 0x51,
 				"piece": ord("K")
 			}
 		]
