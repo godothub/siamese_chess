@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy6ug52q4hcy"]
+[gd_scene format=3 uid="uid://cy6ug52q4hcy"]
 
 [ext_resource type="Script" uid="uid://cadrp53slaymf" path="res://src/startup.gd" id="1_maqjh"]
 
-[node name="startup" type="Control"]
+[sub_resource type="Gradient" id="Gradient_qb5h4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_maqjh"]
+gradient = SubResource("Gradient_qb5h4")
+
+[node name="startup" type="Control" unique_id=50651250]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,3 +17,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_maqjh")
+
+[node name="texture_rect" type="TextureRect" parent="." unique_id=1795105490]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_maqjh")

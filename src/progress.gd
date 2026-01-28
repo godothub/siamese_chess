@@ -10,12 +10,17 @@ func load_file() -> void:
 	var file:FileAccess = FileAccess.open("user://progress/prototype_2.json", FileAccess.READ)
 	if !is_instance_valid(file):
 		return
+	table = JSON.parse_string(file.get_as_text())
+	file.close()
 
 func save_file() -> void:
-	var dir:DirAccess = DirAccess.open("user://progress/prototype_2.json")
+	var dir:DirAccess = DirAccess.open("user://progress")
 	if !dir:
-		DirAccess.make_dir_absolute("user://progress/prototype_2.json")
-		dir = DirAccess.open("user://progress/prototype_2.json")
+		DirAccess.make_dir_absolute("user://progress")
+		dir = DirAccess.open("user://progress")
+	var file:FileAccess = FileAccess.open("user://progress/prototype_2.json", FileAccess.WRITE)
+	file.store_string(JSON.stringify(table))
+	file.close()
 
 func has_key(key:String) -> bool:
 	return table.has(key)

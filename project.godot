@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="SiameseChess"
 config/tags=PackedStringArray("a_lone_flower", "puzzle", "siamese")
-run/main_scene="uid://co6urdc5oyrbh"
+run/main_scene="uid://cy6ug52q4hcy"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
