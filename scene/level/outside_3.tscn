@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6ey8gnor627h"]
+[gd_scene format=3 uid="uid://c6ey8gnor627h"]
 
 [ext_resource type="Script" uid="uid://in8n7yjdw5tm" path="res://src/level/outside_3.gd" id="1_e5o5s"]
 [ext_resource type="Environment" uid="uid://dpl334n3lt1ig" path="res://assets/environment_outside.tres" id="2_n5co1"]
@@ -7,286 +7,202 @@
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="5_wlbto"]
 [ext_resource type="PackedScene" uid="uid://d13fcqueggvup" path="res://assets/model/fence.glb" id="9_0c3bi"]
 [ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="9_4agfd"]
-[ext_resource type="Texture2D" uid="uid://q6pm5ephq24b" path="res://assets/texture/piece_bishop.svg" id="9_e5o5s"]
-[ext_resource type="PackedScene" uid="uid://c7joe7stxo7vb" path="res://scene/card_item.tscn" id="10_a3wim"]
-[ext_resource type="PackedScene" uid="uid://8fh667jl5ppl" path="res://scene/actor/piece_bishop_black.tscn" id="10_n5co1"]
 [ext_resource type="PackedScene" uid="uid://8kbw64nuq0ai" path="res://assets/model/fence_turn.glb" id="11_4agfd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3wim"]
 metallic = 1.0
 roughness = 0.0
 
-[node name="outside" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wudfx"]
+metallic = 1.0
+roughness = 0.0
+
+[node name="outside" type="Node3D" unique_id=2103883103]
 script = ExtResource("1_e5o5s")
 metadata/by = 96
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=142071270]
 environment = ExtResource("2_n5co1")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-light_color = Color(0.419813, 0.419813, 0.419813, 1)
-shadow_enabled = true
-
-[node name="player" parent="." instance=ExtResource("2_x378j")]
-
-[node name="chessboard" parent="." instance=ExtResource("5_wlbto")]
+[node name="chessboard" parent="." unique_id=932455830 instance=ExtResource("5_wlbto")]
 metadata/_edit_lock_ = true
 
-[node name="camera" type="Camera3D" parent="."]
-transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 0.11304951, 14.3042965, -0.37958658)
-
-[node name="fence_7" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 1)
+[node name="fence_7" parent="." unique_id=1516761061 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, 5)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_8" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, -1)
+[node name="fence_8" parent="." unique_id=1874517368 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, 3)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_10" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, -5)
+[node name="fence_10" parent="." unique_id=423705598 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, -1)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_11" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, -7)
+[node name="fence_9" parent="." unique_id=599754490 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, 1)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_turn_2" parent="." instance=ExtResource("11_4agfd")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -5, 0, 3)
+[node name="fence_26" parent="." unique_id=1121390447 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 1, 0, 9)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_12" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, 3)
+[node name="fence_27" parent="." unique_id=1905688176 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 3, 0, 9)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_9" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, -3)
+[node name="fence_28" parent="." unique_id=1094487725 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 5, 0, 9)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="card_item" parent="." instance=ExtResource("10_a3wim")]
-transform = Transform3D(-7, 0, -6.119594e-07, 0, 7, 0, 6.119594e-07, 0, -7, -6.9999995, 0, -5.0000005)
-cover = ExtResource("9_e5o5s")
-actor = ExtResource("10_n5co1")
-card_piece = 98
-progress_key = "piece_bishop_card"
-
-[node name="fence_13" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -1)
+[node name="fence_29" parent="." unique_id=2120354712 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 7, 0, 9)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_14" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 1, 0, 3)
+[node name="fence_30" parent="." unique_id=852946361 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, 9)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_turn_3" parent="." instance=ExtResource("11_4agfd")]
-transform = Transform3D(1.3113461e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113461e-07, -1, 0, 3)
+[node name="fence_31" parent="." unique_id=1728061364 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -5, 0, 9)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_15" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 3, 0, 3)
+[node name="fence_32" parent="." unique_id=297674186 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -3, 0, 9)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_16" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 5, 0, 3)
+[node name="fence_33" parent="." unique_id=386890939 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -1, 0, 9)
 script = ExtResource("9_4agfd")
-piece_type = 35
 
-[node name="fence_17" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -3)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_turn_4" parent="." instance=ExtResource("11_4agfd")]
-transform = Transform3D(1.3113461e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113461e-07, 3, 0, -1)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_18" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -3)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_19" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 7, 0, 3)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_20" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 5, 0, -1)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_21" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 7, 0, -1)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_22" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -5)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_23" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -5)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_24" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_25" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_26" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 1, 0, 7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_27" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 3, 0, 7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_28" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 5, 0, 7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_29" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 7, 0, 7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_30" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, 7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_31" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -5, 0, 7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_32" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -3, 0, 7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_33" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -1, 0, 7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="fence_34" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, 1)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="teleport_pointer_2" parent="." instance=ExtResource("5_n5co1")]
+[node name="teleport_pointer_2" parent="." unique_id=640740357 instance=ExtResource("5_n5co1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, -3)
 to = "res://scene/level/outside_2.tscn"
 args = {
 "by": 80
 }
 
-[node name="fence_35" parent="." instance=ExtResource("9_0c3bi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, -5)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="teleport_pointer" parent="." instance=ExtResource("5_n5co1")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 5)
-to = "res://scene/level/outside_2.tscn"
-args = {
-"by": 16
-}
-
-[node name="teleport_pointer_3" parent="." instance=ExtResource("5_n5co1")]
+[node name="teleport_pointer_3" parent="." unique_id=860812815 instance=ExtResource("5_n5co1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, 5)
 to = "res://scene/level/outside_4.tscn"
 args = {
 "by": 96
 }
 
-[node name="teleport_pointer_4" parent="." instance=ExtResource("5_n5co1")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, 1)
-to = "res://scene/level/outside_4.tscn"
-args = {
-"by": 64
-}
-
-[node name="fence_turn_5" parent="." instance=ExtResource("11_4agfd")]
-transform = Transform3D(-1, 0, -7.54979e-08, 0, 1, 0, 7.54979e-08, 0, -1, 7, 0, -7)
-script = ExtResource("9_4agfd")
-piece_type = 35
-
-[node name="teleport_pointer_5" parent="." instance=ExtResource("5_n5co1")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, -3)
-to = "res://scene/level/outside_4.tscn"
-args = {
-"by": 32
-}
-
-[node name="teleport_pointer_6" parent="." instance=ExtResource("5_n5co1")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -3, 0, -7)
-to = "res://scene/level/outside_5.tscn"
-args = {
-"by": 114
-}
-
-[node name="teleport_pointer_7" parent="." instance=ExtResource("5_n5co1")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7, 0, -7)
-to = "res://scene/level/outside_5.tscn"
-args = {
-"by": 112
-}
-
-[node name="teleport_pointer_8" parent="." instance=ExtResource("5_n5co1")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1, 0, -7)
-to = "res://scene/level/outside_5.tscn"
-args = {
-"by": 116
-}
-
-[node name="teleport_pointer_9" parent="." instance=ExtResource("5_n5co1")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5, 0, -7)
-to = "res://scene/level/outside_5.tscn"
-args = {
-"by": 118
-}
-
-[node name="csg_box_3d" type="CSGBox3D" parent="."]
+[node name="csg_box_3d" type="CSGBox3D" parent="." unique_id=442110132]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -0.2512207, -8.760193)
 size = Vector3(16, 0.4975586, 1.4796143)
 material = SubResource("StandardMaterial3D_a3wim")
 
-[node name="csg_box_3d_2" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_2" type="CSGBox3D" parent="." unique_id=2111390081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.507315, -0.2512207, 0)
 size = Vector3(1.238739, 0.4975586, 19)
 material = SubResource("StandardMaterial3D_a3wim")
 
-[node name="csg_box_3d_3" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_3" type="CSGBox3D" parent="." unique_id=2026107693]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.578018, -0.2512207, 0)
 size = Vector3(1.238739, 0.4975586, 19)
 material = SubResource("StandardMaterial3D_a3wim")
 
-[node name="csg_box_3d_4" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_4" type="CSGBox3D" parent="." unique_id=294574646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, -0.2512207, 8.76297)
 size = Vector3(16.021355, 0.4975586, 1.5)
 material = SubResource("StandardMaterial3D_a3wim")
+
+[node name="fence_34" parent="." unique_id=356556161 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 1, 0, -9)
+script = ExtResource("9_4agfd")
+
+[node name="fence_35" parent="." unique_id=1970211079 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 3, 0, -9)
+script = ExtResource("9_4agfd")
+
+[node name="fence_36" parent="." unique_id=1472063368 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 5, 0, -9)
+script = ExtResource("9_4agfd")
+
+[node name="fence_37" parent="." unique_id=254700861 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 7, 0, -9)
+script = ExtResource("9_4agfd")
+
+[node name="fence_38" parent="." unique_id=1566762527 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -3, 0, -9)
+script = ExtResource("9_4agfd")
+
+[node name="fence_39" parent="." unique_id=1978502368 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -1, 0, -9)
+script = ExtResource("9_4agfd")
+
+[node name="fence_16" parent="." unique_id=1178837352 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0, 3)
+script = ExtResource("9_4agfd")
+
+[node name="fence_17" parent="." unique_id=1203964766 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0, -1)
+script = ExtResource("9_4agfd")
+
+[node name="fence_18" parent="." unique_id=307062970 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0, 1)
+script = ExtResource("9_4agfd")
+
+[node name="fence_23" parent="." unique_id=2041865130 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0, 7)
+script = ExtResource("9_4agfd")
+
+[node name="csg_box_3d_5" type="CSGBox3D" parent="." unique_id=157545152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.421982, -0.2512207, 0)
+size = Vector3(1.238739, 0.4975586, 19)
+material = SubResource("StandardMaterial3D_wudfx")
+
+[node name="fence_turn_3" parent="." unique_id=2144937181 instance=ExtResource("11_4agfd")]
+transform = Transform3D(1, 0, 1.7484598e-07, 0, 1, 0, -1.7484598e-07, 0, 1, 9, 0, 9)
+script = ExtResource("9_4agfd")
+
+[node name="fence_24" parent="." unique_id=1942154699 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0, -3)
+script = ExtResource("9_4agfd")
+
+[node name="fence_25" parent="." unique_id=1329057641 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0, -5)
+script = ExtResource("9_4agfd")
+
+[node name="fence_40" parent="." unique_id=1869699532 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0, -7)
+script = ExtResource("9_4agfd")
+
+[node name="fence_turn_6" parent="." unique_id=1061386308 instance=ExtResource("11_4agfd")]
+transform = Transform3D(-4.3711815e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711815e-08, 9, 0, -9.000001)
+script = ExtResource("9_4agfd")
+
+[node name="camera" type="Camera3D" parent="." unique_id=1439920673]
+transform = Transform3D(-0.9999747, -0.0048229806, 0.005213909, 5.053461e-08, 0.7340857, 0.6790569, -0.007102534, 0.6790398, -0.73406714, 1.2133465, 6.60401, -10.262447)
+
+[node name="player" parent="." unique_id=62048714 instance=ExtResource("2_x378j")]
+
+[node name="fence_11" parent="." unique_id=696049685 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, -5)
+script = ExtResource("9_4agfd")
+
+[node name="fence_12" parent="." unique_id=2053724373 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, -7)
+script = ExtResource("9_4agfd")
+
+[node name="fence_13" parent="." unique_id=481485845 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, 7)
+script = ExtResource("9_4agfd")
+
+[node name="fence_turn_4" parent="." unique_id=318559142 instance=ExtResource("11_4agfd")]
+transform = Transform3D(1.3113458e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113458e-07, -9, 0, 9)
+script = ExtResource("9_4agfd")
+
+[node name="fence_turn_5" parent="." unique_id=1963919835 instance=ExtResource("11_4agfd")]
+transform = Transform3D(-1, 0, -8.7423196e-08, 0, 1, 0, 8.7423196e-08, 0, -1, -9, 0, -9)
+script = ExtResource("9_4agfd")
+
+[node name="fence_41" parent="." unique_id=1164098154 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, -9)
+script = ExtResource("9_4agfd")
+
+[node name="fence_42" parent="." unique_id=2017580998 instance=ExtResource("9_0c3bi")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -5, 0, -9)
+script = ExtResource("9_4agfd")
