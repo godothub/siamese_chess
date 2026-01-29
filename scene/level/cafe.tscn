@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bw127d1iawnv3" path="res://assets/model/radermachera_sinica.glb" id="13_fsnob"]
 [ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="14_e7kou"]
 [ext_resource type="PackedScene" uid="uid://ppw81bokufcf" path="res://assets/model/chair_high.glb" id="15_n3pbh"]
-[ext_resource type="Script" path="res://src/marker_bit.gd" id="16_0icrd"]
+[ext_resource type="Script" uid="uid://chtqhpiu556i1" path="res://src/marker_bit.gd" id="16_0icrd"]
 [ext_resource type="PackedScene" uid="uid://cingkxj4uodjo" path="res://assets/model/window.glb" id="17_q5uxw"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="18_e7kou"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="19_lw61d"]
@@ -47,6 +47,7 @@ background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_kgksa")
 ssr_enabled = true
 sdfgi_enabled = true
+sdfgi_read_sky_light = false
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
@@ -129,6 +130,8 @@ shader_parameter/value_mult = 0.133
 shader_parameter/brightness_add = -0.1
 shader_parameter/contrast_mult = 1.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nvbi"]
+
 [node name="cafe" type="Node3D" unique_id=1397432663]
 script = ExtResource("1_e1edc")
 metadata/by = 53
@@ -137,12 +140,187 @@ metadata/by = 53
 environment = SubResource("Environment_ve7rb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1748943930]
-transform = Transform3D(0.840762, 0.239459, -0.485571, 0.242345, 0.635549, 0.733039, 0.484137, -0.733987, 0.476313, 4.61496, 2.82427, 0)
+transform = Transform3D(0.9359207, 0.062158316, -0.34668246, 0.2177223, 0.6716128, 0.7081901, 0.2768563, -0.7382903, 0.61504304, 4.61496, 2.82427, 0)
+light_color = Color(0.81, 0.76625997, 0.7128, 1)
 shadow_enabled = true
 
 [node name="player" parent="." unique_id=34630711 instance=ExtResource("1_ps8i8")]
 
 [node name="chessboard" parent="." unique_id=2031875546 instance=ExtResource("1_o611t")]
+
+[node name="h8_001" parent="chessboard" index="2"]
+visible = false
+
+[node name="h7_001" parent="chessboard" index="3"]
+visible = false
+
+[node name="h6_001" parent="chessboard" index="4"]
+visible = false
+
+[node name="h5_001" parent="chessboard" index="5"]
+visible = false
+
+[node name="h4_001" parent="chessboard" index="6"]
+visible = false
+
+[node name="h3_001" parent="chessboard" index="7"]
+visible = false
+
+[node name="h2_001" parent="chessboard" index="8"]
+visible = false
+
+[node name="h1_001" parent="chessboard" index="9"]
+visible = false
+
+[node name="g8_001" parent="chessboard" index="10"]
+visible = false
+
+[node name="g7_001" parent="chessboard" index="11"]
+visible = false
+
+[node name="g6_001" parent="chessboard" index="12"]
+visible = false
+
+[node name="f8_001" parent="chessboard" index="18"]
+visible = false
+
+[node name="f7_001" parent="chessboard" index="19"]
+visible = false
+
+[node name="f6_001" parent="chessboard" index="20"]
+visible = false
+
+[node name="e8_001" parent="chessboard" index="26"]
+visible = false
+
+[node name="e7_001" parent="chessboard" index="27"]
+visible = false
+
+[node name="e6_001" parent="chessboard" index="28"]
+visible = false
+
+[node name="d8_001" parent="chessboard" index="34"]
+visible = false
+
+[node name="d7_001" parent="chessboard" index="35"]
+visible = false
+
+[node name="d6_001" parent="chessboard" index="36"]
+visible = false
+
+[node name="c8_001" parent="chessboard" index="42"]
+visible = false
+
+[node name="c7_001" parent="chessboard" index="43"]
+visible = false
+
+[node name="c6_001" parent="chessboard" index="44"]
+visible = false
+
+[node name="b8_001" parent="chessboard" index="50"]
+visible = false
+
+[node name="b7_001" parent="chessboard" index="51"]
+visible = false
+
+[node name="b6_001" parent="chessboard" index="52"]
+visible = false
+
+[node name="a8_001" parent="chessboard" index="58"]
+visible = false
+
+[node name="a7_001" parent="chessboard" index="59"]
+visible = false
+
+[node name="a6_001" parent="chessboard" index="60"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/a6" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/a7" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/a8" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/b6" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/b7" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/b8" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/c6" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/c7" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/c8" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/d6" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/d7" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/d8" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/e6" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/e7" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/e8" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/f6" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/f7" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/f8" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/g6" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/g7" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/g8" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/h1" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/h2" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/h3" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/h4" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/h5" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/h6" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/h7" index="0"]
+visible = false
+
+[node name="CollisionShape3D" parent="chessboard/h8" index="0"]
+visible = false
 
 [node name="camera" type="Camera3D" parent="." unique_id=546823115]
 transform = Transform3D(1.3044414e-07, 0.7638636, -0.64537776, 7.736119e-09, 0.64537776, 0.7638636, 1, -1.0463425e-07, 7.82764e-08, -5.501005, 6.3051796, 3.2519171)
@@ -349,10 +527,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8133861, 0, 6.232663)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2)
 
 [node name="bookshelf" parent="." unique_id=289025717 instance=ExtResource("19_lw61d")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0, 3)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.679858, 0, 3)
 
 [node name="bookshelf_2" parent="." unique_id=1669366951 instance=ExtResource("19_lw61d")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0, 1)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.679858, 0, 1)
 
 [node name="radermachera_sinica_4" parent="." unique_id=245832707 instance=ExtResource("13_fsnob")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.90683, 0, -0.247615)
@@ -664,6 +842,61 @@ file_content = {
 selection = "DOCUMENT_TITLE_CHESS_MOVEMENT"
 metadata/_custom_type_script = "uid://dc4n8wl381mqw"
 
+[node name="csg_wall_6" type="CSGBox3D" parent="." unique_id=1497509967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 1.51379, 2.0978413)
+size = Vector3(0.408875, 3, 8.191406)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="csg_wall_7" type="CSGBox3D" parent="." unique_id=2145217246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.203891, 1.51379, 2.1015034)
+size = Vector3(0.408875, 3, 8.19873)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="csg_wall_8" type="CSGBox3D" parent="." unique_id=1286210515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.719086, 1.51379, 6.3762484)
+size = Vector3(4.873535, 3, 0.43603516)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="csg_wall_9" type="CSGBox3D" parent="." unique_id=1756542337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86279774, 1.51379, -2.248186)
+size = Vector3(14.635178, 3, 0.43603516)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="spot_light_3d" type="SpotLight3D" parent="." unique_id=1436247631]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.8269051, 3.18505, 4.67948)
+light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
+
+[node name="spot_light_3d_2" type="SpotLight3D" parent="." unique_id=427116363]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.1730949, 3.18505, 4.67948)
+light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
+
+[node name="spot_light_3d_3" type="SpotLight3D" parent="." unique_id=1911924198]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.8269051, 3.18505, 1.300142)
+light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
+
+[node name="spot_light_3d_4" type="SpotLight3D" parent="." unique_id=1370456828]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.1730949, 3.18505, 1.300142)
+light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
+
+[node name="spot_light_3d_5" type="SpotLight3D" parent="." unique_id=1689802959]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.712865, 3.18505, 4.67948)
+light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
+
+[node name="spot_light_3d_6" type="SpotLight3D" parent="." unique_id=521083284]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.712865, 3.18505, 1.300142)
+light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
+
+[node name="csg_wall_10" type="CSGBox3D" parent="." unique_id=1479229998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42219305, 1.51379, 6.3762484)
+size = Vector3(1.4410095, 3, 0.43603516)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="csg_wall_11" type="CSGBox3D" parent="." unique_id=304530948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3064857, 1.51379, 6.3762484)
+size = Vector3(2.24115, 3, 0.43603516)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[editable path="chessboard"]
 [editable path="table_0"]
 [editable path="table_0/sofa_0"]
 [editable path="table_0/sofa_1"]

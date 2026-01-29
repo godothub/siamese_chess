@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqhrjov2u5bkh"]
+[gd_scene format=3 uid="uid://dqhrjov2u5bkh"]
 
 [ext_resource type="Script" uid="uid://cnmdm2via55ge" path="res://src/level/hallway_2f.gd" id="1_gs125"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_e5n4w"]
@@ -25,194 +25,216 @@ background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_kgksa")
 ssr_enabled = true
-fog_light_color = Color(1, 1, 1, 1)
+sdfgi_enabled = true
+sdfgi_read_sky_light = false
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gs125"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucain"]
 
-[node name="hallway_2f" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf3t0"]
+
+[node name="hallway_2f" type="Node3D" unique_id=1150747816]
 script = ExtResource("1_gs125")
 metadata/_custom_type_script = "uid://rhdq34na2j5m"
 metadata/by = 2
 
-[node name="player" parent="." instance=ExtResource("2_e5n4w")]
+[node name="player" parent="." unique_id=826078688 instance=ExtResource("2_e5n4w")]
 
-[node name="camera" type="Camera3D" parent="."]
+[node name="camera" type="Camera3D" parent="." unique_id=1621213488]
 transform = Transform3D(1, 7.06329e-09, 3.74149e-08, -2.36979e-08, 0.884581, 0.466387, -2.98023e-08, -0.466387, 0.884581, -3.78099, 4.32631, 8.9718)
 fov = 58.5874
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1132927711]
 environment = SubResource("Environment_reac2")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1094120500]
 transform = Transform3D(0.840762, 0.239459, -0.485571, 0.242345, 0.635549, 0.733039, 0.484137, -0.733987, 0.476314, 4.61496, 2.82427, 0)
 shadow_enabled = true
 
-[node name="chessboard" parent="." instance=ExtResource("3_7733s")]
+[node name="chessboard" parent="." unique_id=1145732609 instance=ExtResource("3_7733s")]
 
-[node name="elevator" parent="." instance=ExtResource("4_ucain")]
+[node name="elevator" parent="." unique_id=956614934 instance=ExtResource("4_ucain")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -7)
 
-[node name="csg_elevator_pillar" type="CSGBox3D" parent="."]
+[node name="csg_elevator_pillar" type="CSGBox3D" parent="." unique_id=223759448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0572302, 1.51379, -3.94922)
 size = Vector3(1.0507, 3, 1.06445)
 material = SubResource("StandardMaterial3D_gs125")
 
-[node name="csg_elevator_wall" type="CSGBox3D" parent="."]
+[node name="csg_elevator_wall" type="CSGBox3D" parent="." unique_id=1080430725]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0558453, 1.51379, -6)
 size = Vector3(0.408875, 3, 4)
 material = SubResource("StandardMaterial3D_ucain")
 
-[node name="csg_hallway_wall" type="CSGBox3D" parent="."]
+[node name="csg_hallway_wall" type="CSGBox3D" parent="." unique_id=677134837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0558453, 1.51379, 3.74611)
 size = Vector3(0.408875, 3, 8.2832)
 material = SubResource("StandardMaterial3D_ucain")
 
-[node name="csg_elevator_wall_2" type="CSGBox3D" parent="."]
+[node name="csg_elevator_wall_2" type="CSGBox3D" parent="." unique_id=2147379343]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0454791, 1.51379, -2.79593)
 size = Vector3(0.408875, 3, 2.40814)
 material = SubResource("StandardMaterial3D_ucain")
 
-[node name="door_1" parent="." instance=ExtResource("5_gs125")]
+[node name="door_1" parent="." unique_id=1156844583 instance=ExtResource("5_gs125")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -1)
 
-[node name="door_2" parent="." instance=ExtResource("5_gs125")]
+[node name="door_2" parent="." unique_id=2129415252 instance=ExtResource("5_gs125")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 0, -1)
 
-[node name="csg_elevator_wall_3" type="CSGBox3D" parent="."]
+[node name="csg_elevator_wall_3" type="CSGBox3D" parent="." unique_id=1308417221]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05585, 1.51379, -4.7981)
 size = Vector3(0.408875, 3, 6.40381)
 material = SubResource("StandardMaterial3D_ucain")
 
-[node name="csg_hallway_wall_2" type="CSGBox3D" parent="."]
+[node name="csg_hallway_wall_2" type="CSGBox3D" parent="." unique_id=1196971033]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05585, 1.51379, 3.74611)
 size = Vector3(0.408875, 3, 8.2832)
 material = SubResource("StandardMaterial3D_ucain")
 
-[node name="marker_elevator" type="Marker3D" parent="."]
+[node name="marker_elevator" type="Marker3D" parent="." unique_id=1702827434]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -7)
 script = ExtResource("6_y4d10")
 piece = 122
 metadata/_custom_type_script = "uid://chtqhpiu556i1"
 
-[node name="marker_teleport_music_room" parent="." instance=ExtResource("8_37aeh")]
+[node name="marker_teleport_music_room" parent="." unique_id=1414167548 instance=ExtResource("8_37aeh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, -1)
 to = "res://scene/level/music_room.tscn"
 args = {
 "by": 33
 }
 
-[node name="actor_y_0" type="Node3D" parent="."]
+[node name="actor_y_0" type="Node3D" parent="." unique_id=633473883]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_1" type="Node3D" parent="."]
+[node name="actor_y_1" type="Node3D" parent="." unique_id=836772055]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_2" type="Node3D" parent="."]
+[node name="actor_y_2" type="Node3D" parent="." unique_id=1501246923]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_3" type="Node3D" parent="."]
+[node name="actor_y_3" type="Node3D" parent="." unique_id=573397301]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_4" type="Node3D" parent="."]
+[node name="actor_y_4" type="Node3D" parent="." unique_id=1707335522]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_5" type="Node3D" parent="."]
+[node name="actor_y_5" type="Node3D" parent="." unique_id=1619298950]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_6" type="Node3D" parent="."]
+[node name="actor_y_6" type="Node3D" parent="." unique_id=24217325]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_7" type="Node3D" parent="."]
+[node name="actor_y_7" type="Node3D" parent="." unique_id=1680615189]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_8" type="Node3D" parent="."]
+[node name="actor_y_8" type="Node3D" parent="." unique_id=1731553457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_9" type="Node3D" parent="."]
+[node name="actor_y_9" type="Node3D" parent="." unique_id=338755533]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_10" type="Node3D" parent="."]
+[node name="actor_y_10" type="Node3D" parent="." unique_id=9825169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_11" type="Node3D" parent="."]
+[node name="actor_y_11" type="Node3D" parent="." unique_id=439684714]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_12" type="Node3D" parent="."]
+[node name="actor_y_12" type="Node3D" parent="." unique_id=127941665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_13" type="Node3D" parent="."]
+[node name="actor_y_13" type="Node3D" parent="." unique_id=1722921175]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_14" type="Node3D" parent="."]
+[node name="actor_y_14" type="Node3D" parent="." unique_id=840285226]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="actor_y_15" type="Node3D" parent="."]
+[node name="actor_y_15" type="Node3D" parent="." unique_id=68557192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
 script = ExtResource("7_e5wmh")
 piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
-[node name="painting_frame_rect_3" parent="." instance=ExtResource("9_n2gtx")]
+[node name="painting_frame_rect_3" parent="." unique_id=299697362 instance=ExtResource("9_n2gtx")]
 transform = Transform3D(2.6226832e-07, -8.742276e-08, 2, -2, -8.742278e-08, 2.6226832e-07, 8.742276e-08, -2, -8.742278e-08, -5.803107, 1.6737189, 2.6371717)
 
-[node name="painting_frame_square" parent="." instance=ExtResource("10_vf3t0")]
+[node name="painting_frame_square" parent="." unique_id=53116922 instance=ExtResource("10_vf3t0")]
 transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -5.833545, 1.9238081, 1)
 
-[node name="painting_frame_rect_4" parent="." instance=ExtResource("9_n2gtx")]
+[node name="painting_frame_rect_4" parent="." unique_id=1634713450 instance=ExtResource("9_n2gtx")]
 transform = Transform3D(-2.6226832e-07, -8.742279e-08, -2, -2, -8.742278e-08, 2.6226832e-07, -8.742279e-08, 2, -8.742278e-08, -0.34096807, 2.0751853, 3.7684698)
 
-[node name="painting_frame_square_2" parent="." instance=ExtResource("10_vf3t0")]
+[node name="painting_frame_square_2" parent="." unique_id=25563237 instance=ExtResource("10_vf3t0")]
 transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -0.31052977, 1.6600966, 1.9532957)
 
-[node name="painting_frame_rect_5" parent="." instance=ExtResource("9_n2gtx")]
+[node name="painting_frame_rect_5" parent="." unique_id=122912847 instance=ExtResource("9_n2gtx")]
 transform = Transform3D(-2, -1.7484555e-07, 3.496911e-07, 1.7484557e-07, -2, 8.742276e-08, 3.496911e-07, 8.7422805e-08, 2, -1.3409681, 1.4510243, -7.9934025)
 
-[node name="painting_frame_rect_6" parent="." instance=ExtResource("9_n2gtx")]
+[node name="painting_frame_rect_6" parent="." unique_id=1247030064 instance=ExtResource("9_n2gtx")]
 transform = Transform3D(-2, -1.7484555e-07, 3.496911e-07, 1.7484557e-07, -2, 8.742276e-08, 3.496911e-07, 8.7422805e-08, 2, -4.701347, 1.4510243, -7.9934025)
+
+[node name="csg_wall_2" type="CSGBox3D" parent="." unique_id=1347407800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86027193, 1.51379, -8.2439575)
+size = Vector3(2.0532455, 3, 0.4732666)
+material = SubResource("StandardMaterial3D_vf3t0")
+
+[node name="csg_elevator_wall_4" type="CSGBox3D" parent="." unique_id=794412903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1305356, 1.51379, -8.2439575)
+size = Vector3(2.0584414, 3, 0.4732666)
+material = SubResource("StandardMaterial3D_vf3t0")
+
+[node name="csg_elevator_wall_5" type="CSGBox3D" parent="." unique_id=583312074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.991712, 2.8370323, -8.2439575)
+size = Vector3(2.2494354, 0.35351563, 0.4732666)
+material = SubResource("StandardMaterial3D_vf3t0")
