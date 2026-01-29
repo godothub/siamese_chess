@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dndc701nn8f4o"]
+[gd_scene format=3 uid="uid://dndc701nn8f4o"]
 
 [ext_resource type="Script" uid="uid://sm17i1s74xa8" path="res://src/setting.gd" id="1_ahr6q"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_xthoy"]
@@ -27,11 +27,11 @@ font_size = 26
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fhdrf"]
 
-[node name="setting" type="CanvasLayer"]
+[node name="setting" type="CanvasLayer" unique_id=1363617514]
 layer = 5
 script = ExtResource("1_ahr6q")
 
-[node name="texture_rect" type="TextureRect" parent="."]
+[node name="texture_rect" type="TextureRect" parent="." unique_id=1852563277]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -42,7 +42,7 @@ texture = SubResource("GradientTexture1D_eocmh")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="label_title" type="Label" parent="texture_rect"]
+[node name="label_title" type="Label" parent="texture_rect" unique_id=256099390]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.074
@@ -59,7 +59,7 @@ text = "TITLE_SETTINGS"
 label_settings = SubResource("LabelSettings_xthoy")
 horizontal_alignment = 1
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect"]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect" unique_id=989147268]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,27 +69,27 @@ offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="v_box_container_left" type="VBoxContainer" parent="texture_rect/h_box_container"]
+[node name="v_box_container_left" type="VBoxContainer" parent="texture_rect/h_box_container" unique_id=734535842]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="margin_container_resolution" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left"]
+[node name="margin_container_resolution" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left" unique_id=871511955]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution"]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution" unique_id=1351747620]
 layout_mode = 2
 
-[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution/h_box_container"]
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution/h_box_container" unique_id=1245557422]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RESOLUTION"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="option_button" type="OptionButton" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution/h_box_container"]
+[node name="option_button" type="OptionButton" parent="texture_rect/h_box_container/v_box_container_left/margin_container_resolution/h_box_container" unique_id=1012661039]
 layout_mode = 2
 size_flags_horizontal = 10
 focus_mode = 3
@@ -102,48 +102,48 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 theme_override_font_sizes/font_size = 25
 flat = true
 
-[node name="margin_container_fullscreen" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left"]
+[node name="margin_container_fullscreen" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left" unique_id=756264488]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen"]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen" unique_id=151770354]
 layout_mode = 2
 
-[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container"]
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container" unique_id=1601565506]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_FULLSCREEN"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="check_box" type="CheckBox" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container"]
+[node name="check_box" type="CheckBox" parent="texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container" unique_id=1410364639]
 self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_mode = 3
 
-[node name="margin_container_master_volume" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left"]
+[node name="margin_container_master_volume" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left" unique_id=829069536]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume"]
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume" unique_id=289110103]
 layout_mode = 2
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container"]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container" unique_id=834212442]
 layout_mode = 2
 
-[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container/h_box_container"]
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container/h_box_container" unique_id=874908023]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_MASTER_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container/h_box_container"]
+[node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container/h_box_container" unique_id=1928802745]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("1_xthoy")
@@ -151,31 +151,31 @@ text = "0%"
 label_settings = SubResource("LabelSettings_ahr6q")
 horizontal_alignment = 2
 
-[node name="h_slider" type="HSlider" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container"]
+[node name="h_slider" type="HSlider" parent="texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container" unique_id=927328205]
 layout_mode = 2
 focus_mode = 3
 
-[node name="margin_container_sfx_volume" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left"]
+[node name="margin_container_sfx_volume" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left" unique_id=2075423611]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume"]
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume" unique_id=1425828877]
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container"]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container" unique_id=1218462125]
 layout_mode = 2
 
-[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container/h_box_container"]
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container/h_box_container" unique_id=1712982765]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_SFX_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container/h_box_container"]
+[node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container/h_box_container" unique_id=251484677]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("1_xthoy")
@@ -183,30 +183,30 @@ text = "0%"
 label_settings = SubResource("LabelSettings_ahr6q")
 horizontal_alignment = 2
 
-[node name="h_slider" type="HSlider" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container"]
+[node name="h_slider" type="HSlider" parent="texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container" unique_id=1205003451]
 layout_mode = 2
 focus_mode = 3
 
-[node name="margin_container_env_volume" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left"]
+[node name="margin_container_env_volume" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_left" unique_id=677013504]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume"]
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume" unique_id=2008869402]
 layout_mode = 2
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container"]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container" unique_id=1583522396]
 layout_mode = 2
 
-[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container/h_box_container"]
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container/h_box_container" unique_id=73645585]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_ENV_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container/h_box_container"]
+[node name="label_value" type="Label" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container/h_box_container" unique_id=1476094605]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("1_xthoy")
@@ -214,86 +214,86 @@ text = "0%"
 label_settings = SubResource("LabelSettings_ahr6q")
 horizontal_alignment = 2
 
-[node name="h_slider" type="HSlider" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container"]
+[node name="h_slider" type="HSlider" parent="texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container" unique_id=470739025]
 layout_mode = 2
 focus_mode = 3
 
-[node name="v_box_container_right" type="VBoxContainer" parent="texture_rect/h_box_container"]
+[node name="v_box_container_right" type="VBoxContainer" parent="texture_rect/h_box_container" unique_id=2051198955]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="margin_container_language" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right"]
+[node name="margin_container_language" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right" unique_id=382772457]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language"]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language" unique_id=1032336887]
 layout_mode = 2
 
-[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language/h_box_container"]
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language/h_box_container" unique_id=1306716495]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_LANGUAGE"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="option_button" type="OptionButton" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language/h_box_container"]
+[node name="option_button" type="OptionButton" parent="texture_rect/h_box_container/v_box_container_right/margin_container_language/h_box_container" unique_id=729568239]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("1_xthoy")
 theme_override_font_sizes/font_size = 25
 flat = true
 
-[node name="margin_container_relax" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right"]
+[node name="margin_container_relax" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right" unique_id=2056793701]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax"]
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax" unique_id=1805741066]
 layout_mode = 2
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container"]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container" unique_id=1919533416]
 layout_mode = 2
 
-[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container/h_box_container"]
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container/h_box_container" unique_id=1067911891]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RELAX"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="check_box" type="CheckBox" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container/h_box_container"]
+[node name="check_box" type="CheckBox" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container/h_box_container" unique_id=412773121]
 self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_mode = 3
 
-[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container"]
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container" unique_id=352134125]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RELAX_EXPLAIN"
 label_settings = SubResource("LabelSettings_g2to7")
 autowrap_mode = 3
 
-[node name="margin_container_clean_archive" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right"]
+[node name="margin_container_clean_archive" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right" unique_id=723941772]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive"]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive" unique_id=1484600575]
 layout_mode = 2
 
-[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive/h_box_container"]
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive/h_box_container" unique_id=556935244]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RESET_DOCUMENTS"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="button" type="Button" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive/h_box_container"]
+[node name="button" type="Button" parent="texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive/h_box_container" unique_id=234295169]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("1_xthoy")
@@ -301,7 +301,31 @@ theme_override_font_sizes/font_size = 22
 text = "SETTINGS_RESET_DOCUMENTS_BUTTON"
 flat = true
 
-[node name="button_close" type="Button" parent="texture_rect"]
+[node name="margin_container_reset_progress" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_right" unique_id=986785498]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/h_box_container/v_box_container_right/margin_container_reset_progress" unique_id=927708248]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/h_box_container/v_box_container_right/margin_container_reset_progress/h_box_container" unique_id=1604255752]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "SETTINGS_RESET_PROGRESS"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="button" type="Button" parent="texture_rect/h_box_container/v_box_container_right/margin_container_reset_progress/h_box_container" unique_id=552186227]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("1_xthoy")
+theme_override_font_sizes/font_size = 22
+text = "SETTINGS_RESET_PROGRESS_BUTTON"
+flat = true
+
+[node name="button_close" type="Button" parent="texture_rect" unique_id=1349635290]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.013

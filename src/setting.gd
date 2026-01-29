@@ -29,6 +29,7 @@ var languages:Dictionary[String, String] = {
 @onready var language_input:OptionButton = $texture_rect/h_box_container/v_box_container_right/margin_container_language/h_box_container/option_button
 @onready var relax_input:CheckBox = $texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container/h_box_container/check_box
 @onready var clean_archive_input:Button = $texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive/h_box_container/button
+@onready var reset_progress_input:Button = $texture_rect/h_box_container/v_box_container_right/margin_container_reset_progress/h_box_container/button
 
 func _ready() -> void:
 	for iter:Vector2i in resolutions:
@@ -55,6 +56,7 @@ func _ready() -> void:
 	language_input.connect("item_selected", set_language)
 	relax_input.connect("toggled", set_relax)
 	clean_archive_input.connect("button_down", set_clean_archive)
+	reset_progress_input.connect("button_down", set_reset_progress)
 	$texture_rect/button_close.connect("button_down", close)
 	visible = false
 
@@ -94,3 +96,9 @@ func set_relax(toggled_on:bool) -> void:
 func set_clean_archive() -> void:
 	if DirAccess.dir_exists_absolute("user://archive"):
 		DirAccess.remove_absolute("user://archive")
+
+func set_reset_progress() -> void:
+	if FileAccess.file_exists("user://progress/prototype_2.json"):
+		DirAccess.remove_absolute("user://progress/prototype_2.json")
+	Loading.change_scene("res://scene/startup.tscn", {})
+	close()
