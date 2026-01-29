@@ -11,6 +11,11 @@ func _ready() -> void:
 				"actor": load("res://scene/actor/enemy_cheshire.tscn").instantiate(),
 				"pos": 0x51,
 				"piece": ord("K")
+			},
+			{
+				"actor": load("res://scene/actor/piece_pawn_white.tscn").instantiate().set_larger_scale(),
+				"pos": 0x60,
+				"piece": ord("P")
 			}
 		]
 		for iter:Dictionary in table:

@@ -5,8 +5,11 @@
 [ext_resource type="Environment" uid="uid://dpl334n3lt1ig" path="res://assets/environment_outside.tres" id="2_8sf6x"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="5_h4n7q"]
 [ext_resource type="PackedScene" uid="uid://c4wyvxxvc66cl" path="res://scene/actor/shrub.tscn" id="7_nqfyu"]
+[ext_resource type="PackedScene" uid="uid://c7joe7stxo7vb" path="res://scene/card_item.tscn" id="10_0gjgc"]
 [ext_resource type="PackedScene" uid="uid://d13fcqueggvup" path="res://assets/model/fence.glb" id="10_ogq1s"]
 [ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="10_qs46h"]
+[ext_resource type="Texture2D" uid="uid://q6pm5ephq24b" path="res://assets/texture/piece_bishop.svg" id="11_0gjgc"]
+[ext_resource type="PackedScene" uid="uid://8fh667jl5ppl" path="res://scene/actor/piece_bishop_black.tscn" id="12_0gjgc"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="13_8sf6x"]
 [ext_resource type="PackedScene" uid="uid://8kbw64nuq0ai" path="res://assets/model/fence_turn.glb" id="13_mi7h5"]
 
@@ -87,10 +90,10 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0,
 script = ExtResource("10_qs46h")
 
 [node name="teleport_pointer" parent="." unique_id=1366342378 instance=ExtResource("13_8sf6x")]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 7, 0, -5)
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 7, 0, 3)
 to = "res://scene/level/outside_1.tscn"
 args = {
-"by": 103
+"by": 39
 }
 
 [node name="teleport_pointer_2" parent="." unique_id=427809643 instance=ExtResource("13_8sf6x")]
@@ -165,7 +168,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0, 
 script = ExtResource("10_qs46h")
 
 [node name="fence_33" parent="." unique_id=546933187 instance=ExtResource("10_ogq1s")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0, 3)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 0, -5)
 script = ExtResource("10_qs46h")
 
 [node name="fence_34" parent="." unique_id=1800264052 instance=ExtResource("10_ogq1s")]
@@ -223,3 +226,10 @@ script = ExtResource("10_qs46h")
 [node name="fence_45" parent="." unique_id=2026372207 instance=ExtResource("10_ogq1s")]
 transform = Transform3D(-1, 0, 8.742279e-08, 0, 1, 0, -8.742279e-08, 0, -1, 7, 0, -9)
 script = ExtResource("10_qs46h")
+
+[node name="card_item" parent="." unique_id=132669118 instance=ExtResource("10_0gjgc")]
+transform = Transform3D(-7, 0, -6.119594e-07, 0, 7, 0, 6.119594e-07, 0, -7, -6.9999995, 0, 6.9999995)
+cover = ExtResource("11_0gjgc")
+actor = ExtResource("12_0gjgc")
+card_piece = 98
+progress_key = "piece_bishop_card_0"

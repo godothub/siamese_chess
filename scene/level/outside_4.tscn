@@ -1,12 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dc8x53eg7w3kt"]
+[gd_scene format=3 uid="uid://dc8x53eg7w3kt"]
 
 [ext_resource type="Script" uid="uid://cwrxkq31arap2" path="res://src/level/outside_4.gd" id="1_sor00"]
 [ext_resource type="Environment" uid="uid://dpl334n3lt1ig" path="res://assets/environment_outside.tres" id="2_c4bed"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_sfjwe"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_c4bed"]
-[ext_resource type="PackedScene" uid="uid://d13fcqueggvup" path="res://assets/model/fence.glb" id="5_i4gxw"]
-[ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="6_356mc"]
-[ext_resource type="PackedScene" uid="uid://8kbw64nuq0ai" path="res://assets/model/fence_turn.glb" id="7_b17ph"]
 [ext_resource type="PackedScene" uid="uid://c7joe7stxo7vb" path="res://scene/card_item.tscn" id="8_exdps"]
 [ext_resource type="Texture2D" uid="uid://ctg3og17dj8wy" path="res://assets/texture/piece_rook.svg" id="9_sor00"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="10_sfjwe"]
@@ -16,208 +13,83 @@
 metallic = 1.0
 roughness = 0.0
 
-[node name="outside" type="Node3D"]
+[node name="outside" type="Node3D" unique_id=604659926]
 script = ExtResource("1_sor00")
 metadata/by = 96
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1438672068]
 environment = ExtResource("2_c4bed")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2109391929]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 light_color = Color(0.419813, 0.419813, 0.419813, 1)
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("2_sfjwe")]
+[node name="player" parent="." unique_id=1639833740 instance=ExtResource("2_sfjwe")]
 
-[node name="chessboard" parent="." instance=ExtResource("3_c4bed")]
+[node name="chessboard" parent="." unique_id=1886340733 instance=ExtResource("3_c4bed")]
 
-[node name="camera" type="Camera3D" parent="."]
+[node name="camera" type="Camera3D" parent="." unique_id=2129930409]
 transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 0.11304951, 14.3042965, -0.37958658)
 
-[node name="fence_7" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 1.4210855e-14, 0, 1, -5, 0, 3)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_10" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(-4.3711378e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711378e-08, -5, 0, -3)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_12" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, 3)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_9" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 1.4210855e-14, 0, 1, -7, 0, -1)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="card_item" parent="." instance=ExtResource("8_exdps")]
+[node name="card_item" parent="." unique_id=1990620469 instance=ExtResource("8_exdps")]
 transform = Transform3D(-7, 0, -6.119594e-07, 0, 7, 0, 6.119594e-07, 0, -7, -7, 0, -5)
 cover = ExtResource("9_sor00")
 actor = ExtResource("10_sor00")
 card_piece = 114
 progress_key = "piece_rook_card"
 
-[node name="fence_13" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -1)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_turn_3" parent="." instance=ExtResource("7_b17ph")]
-transform = Transform3D(1, 0, 1.7484601e-07, 0, 1, 0, -1.7484601e-07, 0, 1, -1, 0, 3)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_17" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -3)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_turn_4" parent="." instance=ExtResource("7_b17ph")]
-transform = Transform3D(0.9999574, 0, 0.009232803, 0, 1, 0, -0.009232803, 0, 0.9999574, 3, 0, 7)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_18" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -3)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_19" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -3, 0, 3)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_22" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -5)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_23" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -5)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_24" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -7)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_25" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -7)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_26" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 1, 0, 7)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_27" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 0, 5)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_30" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, 7)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_31" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -5, 0, 7)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_32" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -3, 0, 7)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_33" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -1, 0, 7)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_34" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, 1)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_turn_6" parent="." instance=ExtResource("7_b17ph")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -5, 0, -1)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="teleport_pointer" parent="." instance=ExtResource("10_sfjwe")]
+[node name="teleport_pointer" parent="." unique_id=2052920556 instance=ExtResource("10_sfjwe")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 5)
 to = "res://scene/level/outside_3.tscn"
 args = {
 "by": 103
 }
 
-[node name="fence_36" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1.3113417e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113417e-07, -5, 0, -5)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="teleport_pointer_2" parent="." instance=ExtResource("10_sfjwe")]
+[node name="teleport_pointer_2" parent="." unique_id=53098602 instance=ExtResource("10_sfjwe")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 1)
 to = "res://scene/level/outside_3.tscn"
 args = {
 "by": 71
 }
 
-[node name="teleport_pointer_3" parent="." instance=ExtResource("10_sfjwe")]
+[node name="teleport_pointer_3" parent="." unique_id=1917448840 instance=ExtResource("10_sfjwe")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, -3.000271)
 to = "res://scene/level/outside_3.tscn"
 args = {
 "by": 39
 }
 
-[node name="fence_turn_5" parent="." instance=ExtResource("7_b17ph")]
-transform = Transform3D(-2.185574e-07, 0, 1, 0, 1, 0, -1, 0, -2.185574e-07, -5, 0, -7)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="fence_11" parent="." instance=ExtResource("5_i4gxw")]
-transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 1.4210855e-14, 0, 1, -7, 0, -7)
-script = ExtResource("6_356mc")
-piece_type = 35
-
-[node name="teleport_pointer_4" parent="." instance=ExtResource("10_sfjwe")]
+[node name="teleport_pointer_4" parent="." unique_id=711173659 instance=ExtResource("10_sfjwe")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -3, 0, -7)
 to = "res://scene/level/outside_6.tscn"
 args = {
 "by": 114
 }
 
-[node name="teleport_pointer_5" parent="." instance=ExtResource("10_sfjwe")]
+[node name="teleport_pointer_5" parent="." unique_id=1403431641 instance=ExtResource("10_sfjwe")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1, 0, -7)
 to = "res://scene/level/outside_6.tscn"
 args = {
 "by": 116
 }
 
-[node name="csg_box_3d" type="CSGBox3D" parent="."]
+[node name="csg_box_3d" type="CSGBox3D" parent="." unique_id=1461961985]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -0.2512207, -8.760193)
 size = Vector3(16, 0.4975586, 1.4796143)
 material = SubResource("StandardMaterial3D_sor00")
 
-[node name="csg_box_3d_2" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_2" type="CSGBox3D" parent="." unique_id=1045468377]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.507315, -0.2512207, 0)
 size = Vector3(1.238739, 0.4975586, 19)
 material = SubResource("StandardMaterial3D_sor00")
 
-[node name="csg_box_3d_3" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_3" type="CSGBox3D" parent="." unique_id=187700317]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.578018, -0.2512207, 0)
 size = Vector3(1.238739, 0.4975586, 19)
 material = SubResource("StandardMaterial3D_sor00")
 
-[node name="csg_box_3d_4" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_4" type="CSGBox3D" parent="." unique_id=1864594127]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, -0.2512207, 8.76297)
 size = Vector3(16.021355, 0.4975586, 1.5)
 material = SubResource("StandardMaterial3D_sor00")
