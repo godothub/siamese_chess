@@ -6,6 +6,7 @@ var standard_history_event:Array[Dictionary] = []
 @onready var standard_history_document:Document = load("res://scene/history.tscn").instantiate()
 var standard_engine:ChessEngine = PastorEngine.new()
 var chessboard_state:String = ""
+var player_group:int = 0
 
 func _ready() -> void:
 	super._ready()
@@ -36,6 +37,22 @@ func interact_pastor(custom_state:bool) -> void:
 			return
 	else:
 		state = Chess.create_initial_state()
+	Dialog.push_selection(["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM", "SELECTION_CANCEL"], "", true, false)
+	await Dialog.on_next
+	if Dialog.selected == "SELECTION_CANCEL":
+		return
+	elif Dialog.selected == "SELECTION_PLAY_AS_WHITE":
+		player_group = 0
+	elif Dialog.selected == "SELECTION_PLAY_AS_BLACK":
+		player_group = 1
+	elif Dialog.selected == "SELECTION_PLAY_AS_RANDOM":
+		player_group = randi() % 2
+	if player_group == 0:
+		$table_0/chessboard_standard.rotation.y = 0
+	else:
+		$table_0/chessboard_standard.rotation.y = PI
+		
+
 	var from:int = $chessboard.state.bit_index(ord("k"))[0]
 	from = Chess.to_x88(from)
 	if from != 0x54:
@@ -52,15 +69,10 @@ var game_premove_to:int = -1
 
 func game_premove_init() -> void:
 	if game_premove_from == -1:
-		var start_from:int = $table_0/chessboard_standard.state.get_bit(ord("k")) | \
-							 $table_0/chessboard_standard.state.get_bit(ord("q")) | \
-							 $table_0/chessboard_standard.state.get_bit(ord("r")) | \
-							 $table_0/chessboard_standard.state.get_bit(ord("b")) | \
-							 $table_0/chessboard_standard.state.get_bit(ord("n")) | \
-							 $table_0/chessboard_standard.state.get_bit(ord("p"))
+		var start_from:int = $table_0/chessboard_standard.state.get_bit(ord('A') if player_group == 0 else ord('a'))
 		$table_0/chessboard_standard.set_square_selection(start_from)
 	elif game_premove_to == -1:
-		var move_list:PackedInt32Array = Chess.generate_premove($table_0/chessboard_standard.state, 1)
+		var move_list:PackedInt32Array = Chess.generate_premove($table_0/chessboard_standard.state, player_group)
 		var selection:int = 0
 		for iter:int in move_list:
 			if Chess.from(iter) == game_premove_from:
@@ -68,16 +80,11 @@ func game_premove_init() -> void:
 		$table_0/chessboard_standard.set_square_selection(selection)
 
 func game_premove_pressed() -> void:
-	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord("k")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("q")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("r")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("b")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("n")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("p"))
+	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord('A') if player_group == 0 else ord('a'))
 	if game_premove_from == -1 || game_premove_to != -1:
 		game_premove_to = -1
 		$table_0/chessboard_standard.clear_pointer("premove")
-		var move_list:PackedInt32Array = Chess.generate_premove($table_0/chessboard_standard.state, 1)
+		var move_list:PackedInt32Array = Chess.generate_premove($table_0/chessboard_standard.state, player_group)
 		var selection:int = 0
 		game_premove_from = $table_0/chessboard_standard.selected
 		for iter:int in move_list:
@@ -91,12 +98,7 @@ func game_premove_pressed() -> void:
 		$table_0/chessboard_standard.set_square_selection(start_from)
 
 func game_premove_cancel() -> void:
-	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord("k")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("q")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("r")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("b")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("n")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("p"))
+	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord('A') if player_group == 0 else ord('a'))
 	game_premove_from = -1
 	game_premove_to = -1
 	$table_0/chessboard_standard.clear_pointer("premove")
@@ -108,7 +110,7 @@ func state_ready_in_game_start(_arg:Dictionary) -> void:
 	$table_0/chessboard_standard.add_default_piece_set()
 	history_document.set_state($table_0/chessboard_standard.state)
 	history_document.set_filename("history." + String.num_int64(Time.get_unix_time_from_system()) + ".json")
-	if $table_0/chessboard_standard.state.get_turn() == 0:
+	if $table_0/chessboard_standard.state.get_turn() != player_group:
 		change_state("in_game_enemy")
 	else:
 		change_state("in_game_player")
@@ -132,7 +134,7 @@ func state_ready_in_game_enemy(_arg:Dictionary) -> void:
 		standard_engine.set_max_depth(2)
 		standard_engine.set_quies(false)
 	standard_engine.set_think_time(3)
-	standard_engine.start_search($table_0/chessboard_standard.state, 0, standard_history_state, Callable())
+	standard_engine.start_search($table_0/chessboard_standard.state, 1 - player_group, standard_history_state, Callable())
 	game_premove_init()
 
 func state_ready_in_game_waiting() -> void:
@@ -150,10 +152,10 @@ func state_ready_in_game_move(_arg:Dictionary) -> void:
 	standard_history_event.push_back(rollback_event)
 	if Chess.get_end_type($table_0/chessboard_standard.state) != "":
 		change_state("game_end")
-	elif $table_0/chessboard_standard.state.get_turn() == 0:
+	elif $table_0/chessboard_standard.state.get_turn() != player_group:
 		change_state("in_game_enemy")
 	elif game_premove_from != -1 && game_premove_to != -1:
-		change_state("in_game_check_move", {"from": game_premove_from, "to": game_premove_to, "move_list": Chess.generate_valid_move($table_0/chessboard_standard.state, 1)})
+		change_state("in_game_check_move", {"from": game_premove_from, "to": game_premove_to, "move_list": Chess.generate_valid_move($table_0/chessboard_standard.state, player_group)})
 		game_premove_from = -1
 		game_premove_to = -1
 	elif game_premove_from != -1:
@@ -163,26 +165,14 @@ func state_ready_in_game_move(_arg:Dictionary) -> void:
 	game_premove_init()
 
 func state_ready_in_game_player(_arg:Dictionary) -> void:
-	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord("k")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("q")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("r")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("b")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("n")) | \
-						 $table_0/chessboard_standard.state.get_bit(ord("p"))
+	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord('A') if player_group == 0 else ord('a'))
 	state_signal_connect(Dialog.on_next, func () -> void:
 		if Dialog.selected == "SELECTION_TAKE_BACK":
 			if standard_history_event.size() <= 1:
 				Dialog.push_selection(["SELECTION_LEAVE_GAME"], "HINT_TAKE_BACKED", false, false)
 				return
 			$table_0/chessboard_standard.state = standard_history_state[-2]
-			$table_0/chessboard_standard.set_square_selection(
-				$table_0/chessboard_standard.state.get_bit(ord("k")) |
-				$table_0/chessboard_standard.state.get_bit(ord("q")) |
-				$table_0/chessboard_standard.state.get_bit(ord("r")) |
-				$table_0/chessboard_standard.state.get_bit(ord("b")) |
-				$table_0/chessboard_standard.state.get_bit(ord("n")) |
-				$table_0/chessboard_standard.state.get_bit(ord("p"))
-			)
+			$table_0/chessboard_standard.set_square_selection(ord('A') if player_group == 0 else ord('a'))
 			$table_0/chessboard_standard.receive_rollback_event(standard_history_event[-1])
 			$table_0/chessboard_standard.receive_rollback_event(standard_history_event[-2])
 			standard_history_zobrist.resize(standard_history_zobrist.size() - 2)
@@ -211,7 +201,7 @@ func state_exit_in_game_player() -> void:
 	Dialog.clear()
 
 func state_ready_in_game_ready_to_move(_arg:Dictionary) -> void:
-	var move_list:PackedInt32Array = Chess.generate_valid_move($table_0/chessboard_standard.state, 1)
+	var move_list:PackedInt32Array = Chess.generate_valid_move($table_0/chessboard_standard.state, player_group)
 	var selection:int = 0
 	var from:int = _arg["from"]
 	for iter:int in move_list:
