@@ -28,6 +28,7 @@ class PastorEngine : public ChessEngine
 		int get_beta_cutoff();
 		int get_transposition_table_cutoff();
 		void set_max_depth(int _max_depth);
+		void set_quies(bool _can_quies);
 		void set_despise_factor(int _despise_factor);
 		void set_think_time(double _think_time);
 		void set_transposition_table(const godot::Ref<TranspositionTable> &transposition_table);
@@ -37,6 +38,7 @@ class PastorEngine : public ChessEngine
 		godot::Ref<TranspositionTable> transposition_table;
 		godot::Ref<OpeningBook> opening_book;
 		int max_depth;
+		bool can_quies = true;
 		int WIN = 50000;
 		int THRESHOLD = 60000;
 		int MAX_PLY = 50;

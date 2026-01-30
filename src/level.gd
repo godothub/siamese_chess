@@ -284,8 +284,10 @@ func state_ready_versus_enemy(_arg:Dictionary) -> void:
 	)
 	if !Progress.get_value("relax", false):
 		engine.set_max_depth(20)
+		engine.set_quies(false)
 	else:
 		engine.set_max_depth(2)
+		engine.set_quies(true)
 	engine.set_think_time(2)
 	engine.start_search(chessboard.state, 0, history_state, Callable())
 	premove_init()

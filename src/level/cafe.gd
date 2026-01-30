@@ -16,10 +16,6 @@ func _ready() -> void:
 	$chessboard.state.add_piece(cheshire_by, ord("k"))
 	$chessboard.add_piece_instance(cheshire_instance, cheshire_by)
 	
-	if Progress.get_value("relax", false):
-		standard_engine.set_max_depth(20)
-	else:
-		standard_engine.set_max_depth(2)
 	standard_engine.set_think_time(INF)
 	$player.force_set_camera($camera)
 	$table_0/chessboard_standard.set_enabled(false)
@@ -131,8 +127,10 @@ func state_ready_in_game_enemy(_arg:Dictionary) -> void:
 	)
 	if !Progress.get_value("relax", false):
 		standard_engine.set_max_depth(20)
+		standard_engine.set_quies(true)
 	else:
 		standard_engine.set_max_depth(2)
+		standard_engine.set_quies(false)
 	standard_engine.set_think_time(3)
 	standard_engine.start_search($table_0/chessboard_standard.state, 0, standard_history_state, Callable())
 	game_premove_init()

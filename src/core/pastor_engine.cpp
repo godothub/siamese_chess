@@ -571,7 +571,14 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 	if (_depth <= 0)
 	{
 		evaluated_position++;
-		return quies(_state, _alpha, _beta, _group, _ply + 1);
+		if (can_quies)
+		{
+			return quies(_state, _alpha, _beta, _group, _ply + 1);
+		}
+		else
+		{
+			return _group == 0 ? evaluate(_state) : -evaluate(_state);
+		}
 	}
 	if (_ply > 0 && map_history_state.count(_state->get_zobrist()))
 	{
@@ -587,7 +594,14 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 	}
 	if (time_passed() >= think_time || interrupted)
 	{
-		return quies(_state, _alpha, _beta, _group, _ply + 1);
+		if (can_quies)
+		{
+			return quies(_state, _alpha, _beta, _group, _ply + 1);
+		}
+		else
+		{
+			return _group == 0 ? evaluate(_state) : -evaluate(_state);
+		}
 	}
 
 	unsigned char flag = ALPHA;
@@ -737,6 +751,11 @@ void PastorEngine::set_max_depth(int _max_depth)
 	max_depth = _max_depth;
 }
 
+void PastorEngine::set_quies(bool _can_quies)
+{
+	can_quies = _can_quies;
+}
+
 void PastorEngine::set_despise_factor(int _despise_factor)
 {
 	despise_factor = _despise_factor;
@@ -769,6 +788,7 @@ void PastorEngine::_bind_methods()
 	godot::ClassDB::bind_method(godot::D_METHOD("get_transposition_table_cutoff"), &PastorEngine::get_transposition_table_cutoff);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_principal_variation"), &PastorEngine::get_principal_variation);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_max_depth"), &PastorEngine::set_max_depth);
+	godot::ClassDB::bind_method(godot::D_METHOD("set_quies"), &PastorEngine::set_quies);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_despise_factor"), &PastorEngine::set_despise_factor);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_think_time"), &PastorEngine::set_think_time);
 	// godot::ClassDB::bind_method(godot::D_METHOD("set_transposition_table", "transposition_table"), &PastorEngine::set_transposition_table);
