@@ -1562,6 +1562,26 @@ void Chess::_internal_generate_move(godot::PackedInt32Array &output, const godot
 			}
 		}
 	}
+	//摆放棋子部分
+	int64_t empty_bit = ~_state->get_bit(ALL_PIECE);
+	int64_t storage_piece = _state->get_storage_piece();
+	//每种棋子存放最多8颗，意味着每种棋子占4位，那就需要4 * 5 * 2 = 40位
+	//棋子的顺序：QRBNPqrbnp
+	int storage_piece_order[10] = {'Q', 'R', 'B', 'N', 'P', 'q', 'r', 'b', 'n', 'p'};
+	while (empty_bit)
+	{
+		int by_64 = Chess::first_bit(by_64);
+		int by = Chess::to_x88(by_64);
+		for (int i = 0; i < 5; i++)
+		{
+			int shift = _group == 0 ? i : i + 5;
+			if ((storage_piece >> (4 * shift)) & 0xF)
+			{
+				output.push_back(Chess::create(by, by, storage_piece_order[shift]));
+			}
+		}
+		empty_bit = Chess::next_bit(empty_bit);
+	}
 }
 
 godot::PackedInt32Array Chess::generate_valid_move(const godot::Ref<State> &_state, int _group)
@@ -1802,8 +1822,36 @@ void Chess::apply_move(const godot::Ref<State> &_state, int _move)
 	int from_group = Chess::group(from_piece);
 	int to = Chess::to(_move);
 	int to_piece = _state->get_piece(to);
+	int extra = Chess::extra(_move);
+	if (from == to)
+	{
+		if (from_piece)
+		{
+			_state->capture_piece(from);
+		}
+		else if (extra)
+		{
+			_state->add_piece(to, extra);
+			int64_t storage_piece = _state->get_storage_piece();
+			switch (extra)
+			{
+				case 'Q': storage_piece -= 1ll; break;
+				case 'R': storage_piece -= 1ll << 4; break;
+				case 'B': storage_piece -= 1ll << 8; break;
+				case 'N': storage_piece -= 1ll << 12; break;
+				case 'P': storage_piece -= 1ll << 16; break;
+				case 'q': storage_piece -= 1ll << 20; break;
+				case 'r': storage_piece -= 1ll << 24; break;
+				case 'b': storage_piece -= 1ll << 28; break;
+				case 'n': storage_piece -= 1ll << 32; break;
+				case 'p': storage_piece -= 1ll << 36; break;
+			}
+			_state->set_storage_piece(storage_piece);
+		}
+		return;
+	}
+
 	bool dont_move = false;
-	bool has_grafting = false;
 	bool has_en_passant = false;
 	bool has_king_passant = false;
 	if (to_piece)	//在apply_move阶段其实就默许了吃同阵营棋子的情况。
@@ -1871,7 +1919,7 @@ void Chess::apply_move(const godot::Ref<State> &_state, int _move)
 		{
 			_state->set_castle(_state->get_castle() & 12);
 		}
-		if (Chess::extra(_move))
+		if (extra)
 		{
 			if (to == Chess::g1())
 			{
@@ -1909,20 +1957,16 @@ void Chess::apply_move(const godot::Ref<State> &_state, int _move)
 		{
 			_state->capture_piece(to - front);
 		}
-		if (Chess::extra(_move))
+		if (extra)
 		{
 			dont_move = true;
 			_state->capture_piece(from);
-			_state->add_piece(to, Chess::extra(_move));
+			_state->add_piece(to, extra);
 		}
 	}
 	if (!dont_move)
 	{
 		_state->move_piece(from, to);
-	}
-	if (has_grafting)
-	{
-		_state->add_piece(from, to_piece);
 	}
 
 	if (!has_en_passant)
@@ -1944,6 +1988,23 @@ godot::Dictionary Chess::apply_move_custom(const godot::Ref<State> &_state, int 
 	int from_group = Chess::group(from_piece);
 	int to = Chess::to(_move);
 	int to_piece = _state->get_piece(to);
+	int extra = Chess::extra(_move);
+	if (from == to)
+	{
+		if (from_piece)
+		{
+			output["type"] = "leave";
+			output["by"] = from;
+			return output;
+		}
+		else if (extra)
+		{
+			output["type"] = "introduce";
+			output["by"] = from;
+			output["piece"] = extra;
+			return output;
+		}
+	}
 	if ((from_piece & 95) == 'P')
 	{
 		int front = direction(from_piece, 0);
@@ -1956,20 +2017,20 @@ godot::Dictionary Chess::apply_move_custom(const godot::Ref<State> &_state, int 
 			output["captured"] = captured;
 			return output;
 		}
-		if (Chess::extra(_move))
+		if (extra)
 		{
 			if (to_piece)
 			{
 				output["type"] = "promotion&capture";
 				output["from"] = from;
 				output["to"] = to;
-				output["piece"] = Chess::extra(_move);
+				output["piece"] = extra;
 				return output;
 			}
 			output["type"] = "promotion";
 			output["from"] = from;
 			output["to"] = to;
-			output["piece"] = Chess::extra(_move);
+			output["piece"] = extra;
 			return output;
 		}
 	}
@@ -1982,9 +2043,9 @@ godot::Dictionary Chess::apply_move_custom(const godot::Ref<State> &_state, int 
 	}
 	if ((from_piece & 95) == 'K')
 	{
-		if (Chess::extra(_move))
+		if (extra)
 		{
-			if (Chess::extra(_move) == 'E')
+			if (extra == 'E')
 			{
 				output["type"] = "king_explore";
 				output["from"] = from;

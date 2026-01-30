@@ -232,6 +232,16 @@ void State::set_king_passant(int64_t _king_passant)
 	bit[KING_PASSANT] = _king_passant;
 }
 
+int64_t State::get_storage_piece()
+{
+	return bit[STORAGE_PIECE];
+}
+
+void State::set_storage_piece(int64_t _storage_piece)
+{
+	bit[STORAGE_PIECE] = _storage_piece;
+}
+
 int64_t State::get_zobrist()
 {
 	return bit[ZOBRIST_HASH];
