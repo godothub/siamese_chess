@@ -1825,11 +1825,7 @@ void Chess::apply_move(const godot::Ref<State> &_state, int _move)
 	int extra = Chess::extra(_move);
 	if (from == to)
 	{
-		if (from_piece)
-		{
-			_state->capture_piece(from);
-		}
-		else if (extra)
+		if (extra)
 		{
 			_state->add_piece(to, extra);
 			int64_t storage_piece = _state->get_storage_piece();
@@ -1991,19 +1987,14 @@ godot::Dictionary Chess::apply_move_custom(const godot::Ref<State> &_state, int 
 	int extra = Chess::extra(_move);
 	if (from == to)
 	{
-		if (from_piece)
-		{
-			output["type"] = "leave";
-			output["by"] = from;
-			return output;
-		}
-		else if (extra)
+		if (extra)
 		{
 			output["type"] = "introduce";
 			output["by"] = from;
 			output["piece"] = extra;
 			return output;
 		}
+		return output;
 	}
 	if ((from_piece & 95) == 'P')
 	{

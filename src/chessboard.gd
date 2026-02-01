@@ -11,7 +11,9 @@ signal animation_finished()
 @export var COLOR_POINTER:Color = Color(0.176, 0.176, 0.176, 1.0)
 
 @onready var fallback_piece:Actor = load("res://scene/actor/piece_shrub.tscn").instantiate()
-var backup_piece:Array = []	#  被吃的子统一放这里管理
+var backup_piece:Array = []	# 被吃的子统一放这里管理
+var steady_piece:Array = {}	# 待加入棋盘中的后备棋子放这里管理，跟被吃棋子区别在于这些棋子可以派上场
+# 格式：{ 棋子编号: [对象1、 对象2] }
 var mouse_start_position_name:String = ""
 var mouse_moved:bool = false
 var state:State = null
@@ -188,8 +190,8 @@ func receive_event(event:Dictionary) -> Dictionary:
 				"from": event["from"],
 				"to": event["to"]
 			}
-		"grafting":
-			graft_piece_instance(event["from"], event["to"])
+		"introduce":
+			move_piece_instance_from_steady(event["by"], event["extra"])
 			return event.duplicate()
 		"king_explore":
 			king_explore_instance(event["from"], event["path"])
@@ -219,8 +221,8 @@ func receive_rollback_event(event:Dictionary) -> void:
 		"en_passant":
 			move_piece_instance(event["to"], event["from"])
 			move_piece_instance_from_backup(event["captured"], event["captured_instance"])
-		"grafting":
-			graft_piece_instance(event["to"], event["from"])
+		"introduce":
+			move_piece_instance_to_backup(event["by"])
 		"king_explore":
 			move_piece_instance(event["to"], event["from"])
 
@@ -237,6 +239,22 @@ func add_piece_instance(instance:Actor, by:int) -> void:	# 注意根据state摆�
 		if state.get_piece(by) == ord("k"):
 			king_instance[1] = instance
 		instance.introduce(get_node(Chess.to_position_name(by)).global_position)
+
+func add_piece_instance_to_steady(instance:Actor, piece:int) -> void:
+	steady_piece.get(piece, []).push_back(instance)
+	$pieces.add_child(instance)
+	instance.visible = false
+
+func move_piece_instance_to_steady(leaved_instance, instance:Actor, by:ievent["extra"]nt, piece:int) -> void:
+	var instance:Actor = chessboard_piece[by]
+	chessboard_piece.erase(by)
+	steady_piece.get(piece, []).push_back(instance)
+
+func move_piece_instance_from_steady(by:int, piece:int) -> void:
+	var instance:Actor = steady_piece[piece][-1]
+	steady_piece[piece].pop_back()
+	chessboard_piece[by] = instance
+	instance.introduce(get_node(Chess.to_position_name(by)).global_position)
 
 func remove_piece_instance(instance:Actor) -> void:
 	var by:Variant = chessboard_piece.find_key(instance)
@@ -286,18 +304,6 @@ func capture_piece_instance(from:int, to:int) -> void:
 	await instance_from.animation_finished
 	animation_finished.emit.call_deferred()
 
-func graft_piece_instance(from:int, to:int) -> void:
-	var instance_1:Actor = chessboard_piece[from]
-	var instance_2:Actor = chessboard_piece[to]
-	chessboard_piece.erase(from)
-	chessboard_piece.erase(to)
-	instance_1.move(get_node(Chess.to_position_name(to)).global_position)
-	instance_2.move(get_node(Chess.to_position_name(from)).global_position)
-	chessboard_piece[from] = instance_2
-	chessboard_piece[to] = instance_1
-	await instance_1.animation_finished
-	animation_finished.emit.call_deferred()
-
 func promote_piece_instance(from:int, to:int, piece:int) -> void:
 	var instance:Actor = chessboard_piece[from]
 	instance.promote(get_node(Chess.to_position_name(to)).global_position, piece)
@@ -333,7 +339,7 @@ func move_piece_instance_to_backup(by:int) -> void:
 	#instance.visible = !pieces[instance]["hide_piece"]
 	#instance.move(to_global(pieces[instance]["initial_position"]))
 
-func exit_piece_instance(by:int, pos:Vector3) -> void:
+func leave_piece_instance(by:int, pos:Vector3) -> void:
 	var instance:Actor = chessboard_piece[by]
 	chessboard_piece.erase(by)
 	instance.move(pos)
