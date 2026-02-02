@@ -29,6 +29,7 @@ func _ready() -> void:
 func introduce(_pos:Vector3) -> void:	# 登场动画
 	visible = true
 	global_position = _pos
+	animation_finished.emit.call_deferred()
 
 func move(_pos:Vector3) -> void:
 	var tween:Tween = create_tween()
