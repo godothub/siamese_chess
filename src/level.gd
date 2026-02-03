@@ -60,12 +60,7 @@ var premove_to:int = -1
 
 func premove_init(explore:bool = false) -> void:
 	if premove_from == -1:
-		var start_from:int = chessboard.state.get_bit(ord("k")) | \
-							 chessboard.state.get_bit(ord("q")) | \
-							 chessboard.state.get_bit(ord("r")) | \
-							 chessboard.state.get_bit(ord("b")) | \
-							 chessboard.state.get_bit(ord("n")) | \
-							 chessboard.state.get_bit(ord("p"))
+		var start_from:int = chessboard.state.get_bit(ord("a"))
 		chessboard.set_square_selection(start_from)
 	elif premove_to == -1:
 		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if !explore else Chess.generate_explore_move(chessboard.state, 1)
@@ -76,12 +71,7 @@ func premove_init(explore:bool = false) -> void:
 		chessboard.set_square_selection(selection)
 
 func premove_pressed(explore:bool = false) -> void:
-	var start_from:int = chessboard.state.get_bit(ord("k")) | \
-						 chessboard.state.get_bit(ord("q")) | \
-						 chessboard.state.get_bit(ord("r")) | \
-						 chessboard.state.get_bit(ord("b")) | \
-						 chessboard.state.get_bit(ord("n")) | \
-						 chessboard.state.get_bit(ord("p"))
+	var start_from:int = chessboard.state.get_bit(ord("a"))
 	if premove_from == -1 || premove_to != -1:
 		premove_to = -1
 		chessboard.clear_pointer("premove")
@@ -99,12 +89,7 @@ func premove_pressed(explore:bool = false) -> void:
 		chessboard.set_square_selection(start_from)
 
 func premove_cancel() -> void:
-	var start_from:int = chessboard.state.get_bit(ord("k")) | \
-						 chessboard.state.get_bit(ord("q")) | \
-						 chessboard.state.get_bit(ord("r")) | \
-						 chessboard.state.get_bit(ord("b")) | \
-						 chessboard.state.get_bit(ord("n")) | \
-						 chessboard.state.get_bit(ord("p"))
+	var start_from:int = chessboard.state.get_bit(ord("a"))
 	premove_from = -1
 	premove_to = -1
 	chessboard.clear_pointer("premove")
@@ -113,17 +98,14 @@ func premove_cancel() -> void:
 func state_ready_explore_idle(_arg:Dictionary) -> void:
 	var by:int = Chess.to_x88(chessboard.state.bit_index(ord("k"))[0])
 	var selection:PackedStringArray = []
-	var start_from:int = chessboard.state.get_bit(ord("K")) | chessboard.state.get_bit(ord("k")) | \
-						 chessboard.state.get_bit(ord("Q")) | chessboard.state.get_bit(ord("q")) | \
-						 chessboard.state.get_bit(ord("R")) | chessboard.state.get_bit(ord("r")) | \
-						 chessboard.state.get_bit(ord("B")) | chessboard.state.get_bit(ord("b")) | \
-						 chessboard.state.get_bit(ord("N")) | chessboard.state.get_bit(ord("n")) | \
-						 chessboard.state.get_bit(ord("P")) | chessboard.state.get_bit(ord("p"))
+	var start_from:int = chessboard.state.get_bit(ord("a"))
 	state_signal_connect(Dialog.on_next, change_state.bind("dialog"))
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("explore_ready_to_move", {"from": chessboard.selected})
 	)
-	state_signal_connect(chessboard.click_empty, change_state.bind("explore_select_piece"))
+	state_signal_connect(chessboard.click_empty, func () -> void:
+		change_state.bind("explore_select_piece", {"by": chessboard.selected})
+	)
 	if chessboard.state.get_bit(ord("z")) & Chess.mask(Chess.to_64(by)):
 		selection = interact_list[by].keys()
 		Dialog.push_selection(selection, title[by], false, false)
@@ -157,7 +139,9 @@ func state_ready_explore_ready_to_move(_arg:Dictionary) -> void:
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("explore_check_move", {"from": from, "to": chessboard.selected, "move_list": move_list})
 	)
-	state_signal_connect(chessboard.click_empty, change_state.bind("explore_select_piece"))
+	state_signal_connect(chessboard.click_empty, func () -> void:
+		change_state.bind("explore_select_piece", {"by": chessboard.selected})
+	)
 	Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"], "", false, false)
 	chessboard.set_square_selection(selection)
 
@@ -270,7 +254,11 @@ func state_ready_explore_using_card(_arg:Dictionary) -> void:
 
 func state_ready_explore_select_piece(_arg:Dictionary) -> void:
 	var storage_piece:int = chessboard.state.get_bit(ord("6"))
-	var by:int = chessboard.selected
+	var by:int = _arg["by"]
+	var start_from:int = chessboard.state.get_bit(ord("a"))
+	if chessboard.state.has_piece(by):
+		change_state("explore_idle")
+		return
 	var selection:Array = []
 	if (storage_piece >> (5 * 4)) & 0xF:
 		selection.push_back("PIECE_QUEEN")
@@ -298,9 +286,14 @@ func state_ready_explore_select_piece(_arg:Dictionary) -> void:
 			"PIECE_PAWN":
 				change_state("explore_move", {"move": Chess.create(by, by, ord("p"))})
 	)
-	state_signal_connect(chessboard.click_empty, change_state.bind("explore_select_piece"))
-	state_signal_connect(chessboard.click_selection, change_state.bind("explore_ready_to_move"))
+	state_signal_connect(chessboard.click_empty, func () -> void:
+		change_state.bind("explore_select_piece", {"by": chessboard.selected})
+	)
+	state_signal_connect(chessboard.click_selection, func () -> void:
+		change_state("explore_ready_to_move", {"from": chessboard.selected})
+	)
 	Dialog.push_selection(selection, "HINT_ADD_PIECE", false, false)
+	chessboard.set_square_selection(start_from)
 
 func state_exit_explore_select_piece() -> void:
 	Dialog.clear()
