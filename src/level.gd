@@ -125,7 +125,7 @@ func state_ready_explore_ready_to_move(_arg:Dictionary) -> void:
 	state_signal_connect(Dialog.on_next, func() -> void:
 		match Dialog.selected:
 			"SELECTION_PIECES":
-				change_state("explore_select_card", {"selection": selection})
+				change_state("explore_select_empty_square", {"selection": selection})
 			"SELECTION_DOCUMENTS":
 				Archive.open()
 				change_state("explore_idle")
@@ -217,38 +217,13 @@ func state_ready_explore_check_premove(_arg:Dictionary) -> void:
 	else:
 		change_state("explore_idle")
 
-func state_ready_explore_select_card(_arg:Dictionary) -> void:
-	state_signal_connect(Dialog.on_next, change_state.bind("explore_idle"))
-	state_signal_connect(HoldCard.selected, change_state.bind("explore_use_card", _arg))
-	Dialog.push_selection(["SELECTION_CANCEL"], "HINT_USE_PIECE", false, false)
-	HoldCard.show_card()
-
-func state_exit_explore_select_card() -> void:
-	Dialog.clear()
-	HoldCard.hide_card()
-
-func state_ready_explore_use_card(_arg:Dictionary) -> void:
-	if HoldCard.selected_card.use_directly:
-		change_state("explore_using_card")
-		return
+func state_ready_explore_select_empty_square(_arg:Dictionary) -> void:
 	state_signal_connect(Dialog.on_next, change_state.bind("explore_idle"))
 	state_signal_connect(chessboard.click_selection, func () -> void:
-		change_state("explore_using_card", {"by": chessboard.selected})
+		change_state("explore_select_piece", {"by": chessboard.selected})
 	)
 	Dialog.push_selection(["SELECTION_CANCEL"], "HINT_SELECT_SQUARE", false, false)
-	chessboard.set_square_selection(_arg["selection"])
-
-func state_exit_explore_use_card() -> void:
-	Dialog.clear()
-
-func state_ready_explore_using_card(_arg:Dictionary) -> void:
-	var card:Card = HoldCard.selected_card
-	if card.use_directly:
-		card.use_card_directly()
-	else:
-		var by:int = _arg["by"]
-		card.use_card_on_chessboard(chessboard, by)
-	change_state("explore_check_attack")
+	chessboard.set_square_selection(~chessboard.state.get_bit(ord(".")))
 
 func state_ready_explore_select_piece(_arg:Dictionary) -> void:
 	var storage_piece:int = chessboard.state.get_bit(ord("6"))
