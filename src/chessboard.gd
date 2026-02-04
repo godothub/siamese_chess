@@ -211,6 +211,9 @@ func receive_event(event:Dictionary) -> Dictionary:
 		"introduce":
 			move_piece_instance_from_steady(event["by"], event["piece"])
 			return event.duplicate()
+		"leave":
+			move_piece_instance_to_steady(event["by"], event["piece"])
+			return event.duplicate()
 		"king_explore":
 			king_explore_instance(event["from"], event["path"])
 			return {
@@ -241,6 +244,8 @@ func receive_rollback_event(event:Dictionary) -> void:
 			move_piece_instance_from_backup(event["captured"], event["captured_instance"])
 		"introduce":
 			move_piece_instance_to_steady(event["by"], event["piece"])
+		"leave":
+			move_piece_instance_from_steady(event["by"], event["piece"])
 		"king_explore":
 			move_piece_instance(event["to"], event["from"])
 
