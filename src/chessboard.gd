@@ -4,6 +4,10 @@ class_name Chessboard
 signal clicked()
 signal click_selection()
 signal click_empty()
+signal selection_down()
+signal empty_down()
+signal selection_up()
+signal empty_up()
 signal animation_finished()
 
 @export var COLOR_LAST_MOVE:Color = Color(0.569, 0.569, 0.569, 1.0)
@@ -78,12 +82,12 @@ func input(_from:Node3D, _to:Area3D, _event:InputEvent, _event_position:Vector3,
 	if _event is InputEventMouseButton:
 		if _event.pressed && _event.button_index == MOUSE_BUTTON_LEFT:
 			finger_on_position(_to.get_name())
-			tap_position(_to.get_name())
+			tap_position(_to.get_name(), true)
 			mouse_moved = false
 			mouse_start_position_name = _to.get_name()
 			clicked.emit.call_deferred()
 		elif !_event.pressed && mouse_moved && _event.button_index == MOUSE_BUTTON_LEFT:
-			tap_position(_to.get_name())
+			tap_position(_to.get_name(), false)
 			finger_up()
 			mouse_start_position_name = ""
 	if _event is InputEventMouseMotion:
@@ -111,12 +115,20 @@ func get_position_name(_position:Vector3) -> String:
 func convert_name_to_position(_position_name:String) -> Vector3:
 	return get_node(_position_name).position
 
-func tap_position(position_name:String) -> void:
+func tap_position(position_name:String, down:bool = true) -> void:
 	selected = Chess.to_position_int(position_name)
 	if square_selection != -1 && (Chess.mask(Chess.to_64(selected)) & square_selection):
+		if down:
+			selection_down.emit.call_deferred()
+		else:
+			selection_up.emit.call_deferred()
 		click_selection.emit.call_deferred()
 		return
 	click_empty.emit.call_deferred()
+	if down:
+		empty_down.emit.call_deferred()
+	else:
+		empty_up.emit.call_deferred()
 
 func finger_on_position(position_name:String) -> void:
 	$canvas.clear_pointer("pointer")
