@@ -1570,7 +1570,7 @@ void Chess::_internal_generate_move(godot::PackedInt32Array &output, const godot
 	int storage_piece_order[10] = {'Q', 'R', 'B', 'N', 'P', 'q', 'r', 'b', 'n', 'p'};
 	while (empty_bit)
 	{
-		int by_64 = Chess::first_bit(by_64);
+		int by_64 = Chess::first_bit(empty_bit);
 		int by = Chess::to_x88(by_64);
 		for (int i = 0; i < 5; i++)
 		{
@@ -1829,8 +1829,9 @@ void Chess::apply_move(const godot::Ref<State> &_state, int _move)
 		{
 			_state->capture_piece(from);
 		}
-		if (extra)
+		else if (extra)
 		{
+			DEV_ASSERT(extra >= 'A' && extra <= 'Z' || extra >= 'a' && extra <= 'z');
 			_state->add_piece(to, extra);
 			int64_t storage_piece = _state->get_storage_piece();
 			switch (extra)
@@ -1998,14 +1999,13 @@ godot::Dictionary Chess::apply_move_custom(const godot::Ref<State> &_state, int 
 			output["piece"] = from_piece;
 			return output;
 		} 
-		if (extra)
+		else if (extra)
 		{
 			output["type"] = "introduce";
 			output["by"] = from;
 			output["piece"] = extra;
 			return output;
 		}
-		return output;
 	}
 	if ((from_piece & 95) == 'P')
 	{

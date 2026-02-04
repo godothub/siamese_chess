@@ -115,6 +115,7 @@ void State::capture_piece(int _by)
 	{
 		int by_64 = Chess::to_64(_by);
 		int piece = pieces[_by];
+		DEV_ASSERT(piece != 0);
 		int64_t by_mask = Chess::mask(by_64);
 		bit[ZOBRIST_HASH] ^= ZobristHash::get_singleton()->hash_piece(piece, _by);
 		bit[piece] ^= by_mask;
@@ -133,6 +134,7 @@ void State::move_piece(int _from, int _to)
 	int from_64 = Chess::to_64(_from);
 	int to_64 = Chess::to_64(_to);
 	int piece = get_piece(_from);
+	DEV_ASSERT(piece >= 'A' && piece <= 'Z' || piece >= 'a' && piece <= 'z');
 	int64_t from_mask = Chess::mask(from_64);
 	int64_t to_mask = Chess::mask(to_64);
 	bit[ZOBRIST_HASH] ^= ZobristHash::get_singleton()->hash_piece(piece, _from);
