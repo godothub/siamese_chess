@@ -1543,11 +1543,11 @@ void Chess::_internal_generate_move(godot::PackedInt32Array &output, const godot
 				{
 					if ((from_piece & 95) == 'R' && (to_piece & 95) == 'K')
 					{
-						if ((_from & 15) >= 4 && (_group == 0 && (_state->get_castle() & 8) || _group == 1 && (_state->get_castle() & 2)))
+						if (_group == 0 && _from == Chess::h1() && to == Chess::e1() && (_state->get_castle() & 8) || _group == 1 && _from == Chess::h8() && to == Chess::e8() && (_state->get_castle() & 2))
 						{
 							output.push_back(Chess::create(to, _group == 0 ? Chess::g1() : Chess::g8(), 'K'));
 						}
-						else if ((_from & 15) <= 3 && (_group == 0 && (_state->get_castle() & 4) || _group == 1 && (_state->get_castle() & 1)))
+						else if (_group == 0 && _from == Chess::a1() && to == Chess::e1() && (_state->get_castle() & 4) || _group == 1 && _from == Chess::a8() && to == Chess::e8() && (_state->get_castle() & 1))
 						{
 							output.push_back(Chess::create(to, _group == 0 ? Chess::c1() : Chess::c8(), 'Q'));
 						}
@@ -1597,7 +1597,7 @@ void Chess::_internal_generate_valid_move(godot::PackedInt32Array &output, const
 	_internal_generate_move(move_list, _state, _group);
 	for (int i = 0; i < move_list.size(); i++)
 	{
-		godot::Ref<State>test_state = _state->duplicate();
+		godot::Ref<State> test_state = _state->duplicate();
 		apply_move(test_state, move_list[i]);
 		if (!is_check(test_state, 1 - _group))
 		{
