@@ -14,9 +14,11 @@ func _ready() -> void:
 func introduce(_pos:Vector3) -> void:	# 登场动画
 	visible = true
 	global_position = _pos
+	animation_finished.emit.call_deferred()
 
 func leave() -> void:
 	visible = false
+	animation_finished.emit.call_deferred()
 
 func capturing(_pos:Vector3, _captured:Actor) -> void:	# 攻击
 	var tween:Tween = create_tween()

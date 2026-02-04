@@ -26,11 +26,6 @@ func _ready() -> void:
 	#	position_name = chessboard.get_position_name(position)
 	#	position = chessboard.convert_name_to_position(position_name)
 
-func introduce(_pos:Vector3) -> void:	# 登场动画
-	visible = true
-	global_position = _pos
-	animation_finished.emit.call_deferred()
-
 func move(_pos:Vector3) -> void:
 	var tween:Tween = create_tween()
 	tween.tween_callback(sfx.play)

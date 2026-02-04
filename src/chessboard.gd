@@ -272,6 +272,9 @@ func move_piece_instance_to_steady(by:int, piece:int) -> void:
 	var instance:Actor = chessboard_piece[by]
 	chessboard_piece.erase(by)
 	steady_piece.get_or_add(piece, []).push_back(instance)
+	instance.leave()
+	await instance.animation_finished
+	animation_finished.emit.call_deferred()
 
 func move_piece_instance_from_steady(by:int, piece:int) -> void:
 	var instance:Actor = steady_piece[piece][-1]

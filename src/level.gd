@@ -119,6 +119,7 @@ func state_ready_explore_ready_to_move(_arg:Dictionary) -> void:
 	var move_list:PackedInt32Array = Chess.generate_explore_move(chessboard.state, 1)
 	var selection:int = 0
 	var from:int = _arg["from"]
+	var from_piece:int = chessboard.state.get_piece(from)
 	for iter:int in move_list:
 		if Chess.from(iter) == from:
 			selection |= Chess.mask(Chess.to_64(Chess.to(iter)))
@@ -135,12 +136,19 @@ func state_ready_explore_ready_to_move(_arg:Dictionary) -> void:
 			"SELECTION_SETTINGS":
 				Setting.open()
 				change_state("explore_idle")
+			"SELECTION_REMOVE_PIECE":
+				change_state("explore_move", {"move": Chess.create(from, from, 0)})
+			"SELECTION_CANCEL":
+				change_state("explore_idle")
 	)
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("explore_check_move", {"from": from, "to": chessboard.selected, "move_list": move_list})
 	)
 	state_signal_connect(chessboard.click_empty, change_state.bind("explore_idle"))
-	Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"], "", false, false)
+	if from_piece == ord("k"):
+		Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS", "SELECTION_CANCEL"], "", false, false)
+	else:
+		Dialog.push_selection(["SELECTION_REMOVE_PIECE", "SELECTION_CANCEL"], "", false, false)
 	chessboard.set_square_selection(selection)
 
 func state_exit_explore_ready_to_move() -> void:
