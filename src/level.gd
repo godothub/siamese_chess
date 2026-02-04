@@ -103,8 +103,8 @@ func state_ready_explore_idle(_arg:Dictionary) -> void:
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("explore_ready_to_move", {"from": chessboard.selected})
 	)
-	state_signal_connect(chessboard.click_empty, func () -> void:
-		change_state.bind("explore_select_piece", {"by": chessboard.selected})
+	state_signal_connect(chessboard.empty_double_click, func () -> void:
+		change_state("explore_select_piece", {"by": chessboard.selected})
 	)
 	if chessboard.state.get_bit(ord("z")) & Chess.mask(Chess.to_64(by)):
 		selection = interact_list[by].keys()
@@ -139,9 +139,7 @@ func state_ready_explore_ready_to_move(_arg:Dictionary) -> void:
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("explore_check_move", {"from": from, "to": chessboard.selected, "move_list": move_list})
 	)
-	state_signal_connect(chessboard.click_empty, func () -> void:
-		change_state.bind("explore_select_piece", {"by": chessboard.selected})
-	)
+	state_signal_connect(chessboard.click_empty, change_state.bind("explore_idle"))
 	Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"], "", false, false)
 	chessboard.set_square_selection(selection)
 
@@ -286,9 +284,10 @@ func state_ready_explore_select_piece(_arg:Dictionary) -> void:
 			"PIECE_PAWN":
 				change_state("explore_move", {"move": Chess.create(by, by, ord("p"))})
 	)
-	state_signal_connect(chessboard.click_empty, func () -> void:
-		change_state.bind("explore_select_piece", {"by": chessboard.selected})
+	state_signal_connect(chessboard.empty_double_click, func () -> void:
+		change_state("explore_select_piece", {"by": chessboard.selected})
 	)
+	state_signal_connect(chessboard.click_empty, change_state.bind("explore_idle"))
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("explore_ready_to_move", {"from": chessboard.selected})
 	)

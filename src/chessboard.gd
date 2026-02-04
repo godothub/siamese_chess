@@ -8,6 +8,7 @@ signal selection_down()
 signal empty_down()
 signal selection_up()
 signal empty_up()
+signal empty_double_click()
 signal animation_finished()
 
 @export var COLOR_LAST_MOVE:Color = Color(0.569, 0.569, 0.569, 1.0)
@@ -26,6 +27,7 @@ var king_instance:Array[Actor] = [null, null]
 
 var square_selection:int = 0
 var selected:int = -1
+var double_click_timer:float = 0
 
 func _ready() -> void:
 	super._ready()
@@ -126,6 +128,11 @@ func tap_position(position_name:String, down:bool = true) -> void:
 		return
 	click_empty.emit.call_deferred()
 	if down:
+		if (Time.get_unix_time_from_system() - double_click_timer <= 0.3):
+			empty_double_click.emit.call_deferred()
+			double_click_timer = 0
+		else:
+			double_click_timer = Time.get_unix_time_from_system()
 		empty_down.emit.call_deferred()
 	else:
 		empty_up.emit.call_deferred()
