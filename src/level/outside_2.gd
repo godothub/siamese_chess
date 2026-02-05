@@ -24,6 +24,11 @@ func _ready() -> void:
 			actor.position = $chessboard.convert_name_to_position(Chess.to_position_name(piece_pos))
 			$chessboard.state.add_piece(piece_pos, iter["piece"])
 			$chessboard.add_piece_instance(actor, piece_pos)
+		var storage_state:int = $chessboard.state.get_bit(ord("6"))
+		storage_state += 4 << (4 * 4);
+		for i:int in 4:
+			$chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_pawn_white.tscn").instantiate().set_larger_scale(), ord("P"))
+		$chessboard.state.set_bit(ord("6"), storage_state)
 	connect("level_state_changed", on_level_state_changed)
 
 func on_level_state_changed(state:String) -> void:
