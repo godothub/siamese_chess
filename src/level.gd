@@ -355,21 +355,21 @@ func state_ready_versus_move(_arg:Dictionary) -> void:
 		else:
 			change_state("versus_player"))
 	
-	assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(_arg["move"]))))
+	assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(_arg["move"]))) 
+	|| Chess.from(_arg["move"]) == Chess.to(_arg["move"]) && !chessboard.state.has_piece(Chess.from(_arg["move"])))
 	chessboard.execute_move(_arg["move"])
 	premove_init()
 
 func state_ready_versus_player(_arg:Dictionary) -> void:
 	var start_from:int = 0
 	var can_introduce:bool = false
-	if Chess.is_check(chessboard.state, 0):
-		var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1)
-		for iter:int in move_list:
-			if Chess.from(iter) == Chess.to(iter):
-				can_introduce = true
+	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1)
+	for iter:int in move_list:
+		if Chess.from(iter) == Chess.to(iter):
+			can_introduce = true
+		else:
 			start_from |= Chess.mask(Chess.to_64(Chess.from(iter)))
-	else:
-		can_introduce = true
+
 
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("versus_ready_to_move", {"from": chessboard.selected})
