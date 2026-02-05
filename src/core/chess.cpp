@@ -1723,6 +1723,16 @@ godot::String Chess::get_move_name(const godot::Ref<State> &_state, int move)
 		}
 	}
 	godot::String ans;
+	
+	if (from == to && extra)
+	{
+		ans += (from_piece & 95);
+		ans += '@';
+		ans += (to & 0x0F) + 'a';
+		ans +=  7 - (to >> 4) + '1';
+		return ans;
+	}
+
 	if ((from_piece & 95) != 'P')
 	{
 		ans += (from_piece & 95);
