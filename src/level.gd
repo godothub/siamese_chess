@@ -33,17 +33,22 @@ func _ready() -> void:
 			interact_list[by][node.selection] = node.event
 			title[by] = ""
 	var storage_piece:int = 0
-	storage_piece += 1 << (5 * 4)
-	storage_piece += 1 << (6 * 4)
-	storage_piece += 1 << (7 * 4)
-	storage_piece += 1 << (8 * 4)
-	storage_piece += 1 << (9 * 4)
+	storage_piece += Progress.get_value("storage_queen", 0) << (5 * 4)
+	storage_piece += Progress.get_value("storage_rook", 0) << (6 * 4)
+	storage_piece += Progress.get_value("storage_bishop", 0) << (7 * 4)
+	storage_piece += Progress.get_value("storage_knight", 0) << (8 * 4)
+	storage_piece += Progress.get_value("storage_pawn", 0) << (9 * 4)
 	state.set_bit(ord("6"), storage_piece)
-	chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_queen_black.tscn").instantiate().set_larger_scale(), ord("q"))
-	chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_rook_black.tscn").instantiate().set_larger_scale(), ord("r"))
-	chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_bishop_black.tscn").instantiate().set_larger_scale(), ord("b"))
-	chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_knight_black.tscn").instantiate().set_larger_scale(), ord("n"))
-	chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_pawn_black.tscn").instantiate().set_larger_scale(), ord("p"))
+	for i:int in Progress.get_value("storage_queen", 0):
+		chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_queen_black.tscn").instantiate().set_larger_scale(), ord("q"))
+	for i:int in Progress.get_value("storage_rook", 0):
+		chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_rook_black.tscn").instantiate().set_larger_scale(), ord("r"))
+	for i:int in Progress.get_value("storage_bishop", 0):
+		chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_bishop_black.tscn").instantiate().set_larger_scale(), ord("b"))
+	for i:int in Progress.get_value("storage_knight", 0):
+		chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_knight_black.tscn").instantiate().set_larger_scale(), ord("n"))
+	for i:int in Progress.get_value("storage_pawn", 0):
+		chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_pawn_black.tscn").instantiate().set_larger_scale(), ord("p"))
 
 	chessboard.set_state(state)
 	for node:Node in get_children():
