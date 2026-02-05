@@ -33,11 +33,11 @@ func _ready() -> void:
 			interact_list[by][node.selection] = node.event
 			title[by] = ""
 	var storage_piece:int = 0
-	storage_piece += Progress.get_value("storage_queen", 0) << (5 * 4)
-	storage_piece += Progress.get_value("storage_rook", 0) << (6 * 4)
-	storage_piece += Progress.get_value("storage_bishop", 0) << (7 * 4)
-	storage_piece += Progress.get_value("storage_knight", 0) << (8 * 4)
-	storage_piece += Progress.get_value("storage_pawn", 0) << (9 * 4)
+	storage_piece += int(Progress.get_value("storage_queen", 0)) << (5 * 4)
+	storage_piece += int(Progress.get_value("storage_rook", 0)) << (6 * 4)
+	storage_piece += int(Progress.get_value("storage_bishop", 0)) << (7 * 4)
+	storage_piece += int(Progress.get_value("storage_knight", 0)) << (8 * 4)
+	storage_piece += int(Progress.get_value("storage_pawn", 0)) << (9 * 4)
 	state.set_bit(ord("6"), storage_piece)
 	for i:int in Progress.get_value("storage_queen", 0):
 		chessboard.add_piece_instance_to_steady(load("res://scene/actor/piece_queen_black.tscn").instantiate().set_larger_scale(), ord("q"))
@@ -290,7 +290,7 @@ func state_ready_versus_alert(_arg:Dictionary) -> void:
 	Dialog.push_dialog("HINT_ENEMY_SPOTTED", "", true, true)
 
 func state_ready_versus_start(_arg:Dictionary) -> void:
-	Clock.set_time(30, 1)
+	Clock.set_time(Progress.get_value("time_left", 60 * 15), 5)
 	chessboard.state.set_turn(0)
 	chessboard.state.set_castle(0xF)
 	chessboard.state.set_step_to_draw(0)
@@ -518,6 +518,7 @@ func state_ready_versus_select_piece(_arg:Dictionary) -> void:
 
 func state_ready_black_win(_arg:Dictionary) -> void:
 	history_document.save_file()
+	Progress.set_value("time_left", Clock.get_time_left())
 	var bit:int = chessboard.state.get_bit(ord("A"))
 	while bit:
 		chessboard.state.capture_piece(Chess.to_x88(Chess.first_bit(bit)))

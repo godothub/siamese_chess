@@ -1726,7 +1726,7 @@ godot::String Chess::get_move_name(const godot::Ref<State> &_state, int move)
 	
 	if (from == to && extra)
 	{
-		ans += (from_piece & 95);
+		ans += (extra & 95);
 		ans += '@';
 		ans += (to & 0x0F) + 'a';
 		ans +=  7 - (to >> 4) + '1';
