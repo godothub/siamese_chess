@@ -17,11 +17,17 @@ func event() -> void:
 		return
 	taken = true
 	Progress.set_value(progress_key, true)
+	match card_piece:
+		ord("q"):
+			Progress.accumulate("storage_queen", 1)
+		ord("r"):
+			Progress.accumulate("storage_rook", 1)
+		ord("b"):
+			Progress.accumulate("storage_bishop", 1)
+		ord("n"):
+			Progress.accumulate("storage_knight", 1)
+		ord("p"):
+			Progress.accumulate("storage_pawn", 1)
 	visible = false
-	var card:CardTarot = CardTarot.new()
-	card.cover = cover
-	card.piece = card_piece
-	card.actor = actor.instantiate().set_larger_scale()
-	HoldCard.add_card(card)
 	Dialog.push_dialog(comment, "HINT_GET_PIECE", false, false, false)
 	level.change_state("explore_idle")
