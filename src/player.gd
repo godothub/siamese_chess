@@ -2,7 +2,6 @@ extends Node3D
 @onready var ray_cast:RayCast3D = $ray_cast
 
 var mouse_moved:bool = false
-var mouse_start_position_name:String = ""
 var can_move:bool = true
 
 func _ready() -> void:
@@ -19,7 +18,9 @@ func _unhandled_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton || event is InputEventMouseMotion:
 		var area:Area3D = click_area(event.position)
 		if is_instance_valid(area):
-			area.emit_signal("input", self, area, event, $ray_cast.get_collision_point(), $ray_cast.get_collision_normal())
+			var instant:bool = event is InputEventMouseButton
+			var pressed:bool = event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT || event is InputEventMouseMotion && (event.button_mask & MOUSE_BUTTON_MASK_LEFT)
+			area.emit_signal("input", self, area, instant, pressed, $ray_cast.get_collision_point(), $ray_cast.get_collision_normal())
 		get_viewport().set_input_as_handled()
 
 func click_area(screen_position:Vector2) -> Area3D:

@@ -375,7 +375,6 @@ func state_ready_versus_player(_arg:Dictionary) -> void:
 		else:
 			start_from |= Chess.mask(Chess.to_64(Chess.from(iter)))
 
-
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("versus_ready_to_move", {"from": chessboard.selected})
 	)

@@ -60,17 +60,17 @@ func _physics_process(delta: float) -> void:
 	last_event_polar_position = polar_position
 	fill_buffer(delta)
 
-func input(_from:Node3D, _to:Area3D, _event:InputEvent, _event_position:Vector3, _normal:Vector3) -> void:
+func input(_from:Node3D, _to:Area3D, instant:bool, pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
 	if _to == area_stylus:
-		if _event is InputEventMouseButton:
-			if _event.pressed && _event.button_index == MOUSE_BUTTON_LEFT:
+		if instant:
+			if pressed:
 				playing = !playing
 				if playing:
 					create_tween().tween_property($stylus, "rotation_degrees:y", -16.6, 0.2).set_trans(Tween.TRANS_SINE)
 				else:
 					create_tween().tween_property($stylus, "rotation_degrees:y", 0, 0.2).set_trans(Tween.TRANS_SINE)
 	elif _to == area_vinyl:
-		if _event is InputEventMouseMotion && (_event.button_mask & MOUSE_BUTTON_MASK_LEFT):
+		if !instant && pressed:
 			is_pressed = true
 			var collision_shape:CollisionShape3D = area_vinyl.get_node("collision_shape_3d")
 			var event_position_3d:Vector3 = collision_shape.global_transform.affine_inverse() * _event_position
@@ -79,11 +79,11 @@ func input(_from:Node3D, _to:Area3D, _event:InputEvent, _event_position:Vector3,
 		else:
 			is_pressed = false
 	elif _to == area_volume:
-		if _event is InputEventMouseButton && _event.pressed && _event.button_index == MOUSE_BUTTON_LEFT:
+		if instant && pressed:
 			volume = fmod(volume + 0.2, 1.2)
 			create_tween().tween_property($knob_2, "rotation:y", -PI * volume, 0.2).set_trans(Tween.TRANS_SINE)
 	elif _to == area_pitch:
-		if _event is InputEventMouseButton && _event.pressed && _event.button_index == MOUSE_BUTTON_LEFT:
+		if instant && pressed:
 			pitch = fmod(pitch + 2 + 0.5, 4.5) - 2
 			create_tween().tween_property($knob_1, "rotation:y", -PI * ((pitch + 2) / 4.0), 0.2).set_trans(Tween.TRANS_SINE)
 

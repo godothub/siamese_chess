@@ -15,7 +15,7 @@ func set_enabled(enabled:bool) -> void:
 		if enabled:
 			iter.collision_layer |= 2
 		else:  
-			iter.collision_layer &= ~2
+			iter.collision_layer &= ~2		
 
-func input(_from:Node3D, _to:Area3D, _event:InputEvent, _event_position:Vector3, _normal:Vector3) -> void:
+func input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
 	pass

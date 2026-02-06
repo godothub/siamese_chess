@@ -80,19 +80,19 @@ func remove_piece_set() -> void:
 	chessboard_piece.clear()
 	backup_piece.clear()
 
-func input(_from:Node3D, _to:Area3D, _event:InputEvent, _event_position:Vector3, _normal:Vector3) -> void:
-	if _event is InputEventMouseButton:
-		if _event.pressed && _event.button_index == MOUSE_BUTTON_LEFT:
+func input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
+	if _instant:
+		if _pressed:
 			finger_on_position(_to.get_name())
 			tap_position(_to.get_name(), true)
 			mouse_moved = false
 			mouse_start_position_name = _to.get_name()
 			clicked.emit.call_deferred()
-		elif !_event.pressed && mouse_moved && _event.button_index == MOUSE_BUTTON_LEFT:
+		elif mouse_moved && !_pressed:
 			tap_position(_to.get_name(), false)
 			finger_up()
 			mouse_start_position_name = ""
-	if _event is InputEventMouseMotion:
+	else:
 		var position_name:String = _to.get_name()
 		if mouse_start_position_name != position_name:
 			mouse_moved = true
