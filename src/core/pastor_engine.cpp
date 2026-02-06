@@ -464,6 +464,8 @@ int PastorEngine::evaluate(const godot::Ref<State> &_state)
 
 int PastorEngine::compare_move(int a, int b, int best_move, int killer_1, int killer_2, const godot::Ref<State> &state)
 {
+	if (a == b)
+		return false;
 	if (best_move == a)
 		return true;
 	if (best_move == b)
