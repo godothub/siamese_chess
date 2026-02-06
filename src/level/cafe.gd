@@ -40,6 +40,7 @@ func interact_pastor(custom_state:bool) -> void:
 	Dialog.push_selection(["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM", "SELECTION_CANCEL"], "", true, false)
 	await Dialog.on_next
 	if Dialog.selected == "SELECTION_CANCEL":
+		change_state("explore_idle")
 		return
 	elif Dialog.selected == "SELECTION_PLAY_AS_WHITE":
 		player_group = 0
