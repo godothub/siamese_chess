@@ -464,7 +464,7 @@ func state_ready_versus_extra_move(_arg:Dictionary) -> void:
 	Dialog.push_selection(decision_list, "HINT_EXTRA_MOVE", true, true)
 
 func state_ready_versus_select_empty_square(_arg:Dictionary) -> void:
-	state_signal_connect(Dialog.on_next, change_state.bind("explore_idle"))
+	state_signal_connect(Dialog.on_next, change_state.bind("versus_player"))
 	state_signal_connect(chessboard.click_selection, func () -> void:
 		change_state("versus_select_piece", {"by": chessboard.selected})
 	)
