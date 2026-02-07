@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwvyc2qlcdag0"]
+[gd_scene format=3 uid="uid://dwvyc2qlcdag0"]
 
 [ext_resource type="PackedScene" uid="uid://ccddjb14lyird" path="res://assets/model/chessboard_blank.glb" id="1_x56hs"]
 [ext_resource type="Script" uid="uid://d1qn0lbk66o3i" path="res://src/chessboard.gd" id="2_j52ln"]
 [ext_resource type="PackedScene" uid="uid://bmt1hscjfvqcg" path="res://scene/canvas.tscn" id="3_vvu1j"]
 
-[node name="chessboard_large" instance=ExtResource("1_x56hs")]
+[node name="chessboard_large" unique_id=1662556525 instance=ExtResource("1_x56hs")]
 script = ExtResource("2_j52ln")
 
-[node name="canvas" parent="." index="67" instance=ExtResource("3_vvu1j")]
+[node name="canvas" parent="." index="67" unique_id=1598752436 instance=ExtResource("3_vvu1j")]
 transform = Transform3D(-16, 0, -2.41593e-06, 0, 16, 0, 2.41593e-06, 0, -16, 0, 0.0786357, 0)
 
-[node name="pieces" type="Node3D" parent="." index="68"]
+[node name="pieces" type="Node3D" parent="." index="68" unique_id=671258824]

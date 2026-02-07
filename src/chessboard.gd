@@ -21,6 +21,8 @@ var steady_piece:Dictionary = {}	# 待加入棋盘中的后备棋子放这里管
 # 格式：{ 棋子编号: [对象1、 对象2] }
 var mouse_start_position_name:String = ""
 var mouse_moved:bool = false
+var button_input_pointer:int = 0
+
 var state:State = null
 var chessboard_piece:Dictionary[int, Actor] = {}
 var king_instance:Array[Actor] = [null, null]
@@ -80,7 +82,44 @@ func remove_piece_set() -> void:
 	chessboard_piece.clear()
 	backup_piece.clear()
 
-func input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
+func button_input(_button:String, _pressed:bool) -> void:
+	match _button:
+		"up":
+			if !_pressed:
+				return
+			mouse_moved = true
+			if !((button_input_pointer - 16) & 0x88):
+				button_input_pointer -= 16
+				finger_on_position(Chess.to_position_name(button_input_pointer))
+		"down":
+			if !_pressed:
+				return
+			mouse_moved = true
+			if !((button_input_pointer + 16) & 0x88):
+				button_input_pointer += 16
+				finger_on_position(Chess.to_position_name(button_input_pointer))
+		"left":
+			if !_pressed:
+				return
+			mouse_moved = true
+			if !((button_input_pointer - 1) & 0x88):
+				button_input_pointer -= 1
+				finger_on_position(Chess.to_position_name(button_input_pointer))
+		"right":
+			if !_pressed:
+				return
+			mouse_moved = true
+			if !((button_input_pointer + 1) & 0x88):
+				button_input_pointer += 1
+				finger_on_position(Chess.to_position_name(button_input_pointer))
+		"accept":
+			if _pressed:
+				mouse_moved = false
+				tap_position(Chess.to_position_name(button_input_pointer), true)
+			elif mouse_moved:
+				tap_position(Chess.to_position_name(button_input_pointer), false)
+
+func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
 	if _instant:
 		if _pressed:
 			finger_on_position(_to.get_name())
@@ -387,8 +426,8 @@ func king_explore_instance(from:int, path:PackedInt32Array) -> void:
 		await instance.animation_finished
 	animation_finished.emit.call_deferred()
 
-func set_enabled(enabled:bool) -> void:
-	super.set_enabled(enabled)
+func set_enabled(_enabled:bool) -> void:
+	super.set_enabled(_enabled)
 	if !enabled:
 		$canvas.clear_pointer("move")
 		$canvas.clear_pointer("pointer")

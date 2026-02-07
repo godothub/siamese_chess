@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3ml34bssywkr"]
+[gd_scene format=3 uid="uid://b3ml34bssywkr"]
 
 [ext_resource type="Script" uid="uid://b7tmywppqk1qn" path="res://src/player.gd" id="1_tpg0u"]
 [ext_resource type="Script" uid="uid://wa2q0lswte4p" path="res://addons/gdtim/InputManager.gd" id="2_5do82"]
@@ -10,27 +10,26 @@ random_volume_offset_db = 0.89
 streams_count = 1
 stream_0/stream = ExtResource("3_uowm0")
 
-[node name="player" type="Node3D"]
+[node name="player" type="Node3D" unique_id=1111666]
 script = ExtResource("1_tpg0u")
 
-[node name="touch_input_manager" type="Node" parent="."]
+[node name="touch_input_manager" type="Node" parent="." unique_id=505832653]
 script = ExtResource("2_5do82")
 metadata/_custom_type_script = "uid://wa2q0lswte4p"
 
-[node name="ray_cast" type="RayCast3D" parent="."]
+[node name="ray_cast" type="RayCast3D" parent="." unique_id=717643212]
 top_level = true
 exclude_parent = false
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="head" type="Node3D" parent="."]
+[node name="head" type="Node3D" parent="." unique_id=1480674479]
 
-[node name="camera" type="Camera3D" parent="head"]
+[node name="camera" type="Camera3D" parent="head" unique_id=1586596249]
 current = true
 
-[node name="audio_stream_player" type="AudioStreamPlayer" parent="."]
+[node name="audio_stream_player" type="AudioStreamPlayer" parent="." unique_id=760675229]
 stream = SubResource("AudioStreamRandomizer_uowm0")
 volume_db = -2.261
 pitch_scale = 0.74
 max_polyphony = 10
-bus = &"Wind"
