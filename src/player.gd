@@ -13,6 +13,16 @@ func _physics_process(_delta:float) -> void:
 	$head/camera.set_rotation(Vector3(deg_to_rad(sin(Time.get_unix_time_from_system())), 0, 0))
 	#$head/camera.set_rotation(Vector3(0, deg_to_rad(sin(Time.get_unix_time_from_system() + 5)) * 0.5, 0))
 	#$head/camera.set_rotation(Vector3(0, 0, deg_to_rad(sin(Time.get_unix_time_from_system()) * 0.5)))
+	if !can_move:
+		return
+	if Dialog.block_input():
+		if Input.is_action_just_pressed("ui_left"):
+			Dialog.direction(-1)
+		if Input.is_action_just_pressed("ui_right"):
+			Dialog.direction(1)		
+		if Input.is_action_just_pressed("ui_accept"):
+			Dialog.next()
+		return
 	for item:InspectableItem in inspectable_item_list:
 		if !item.enabled:
 			continue

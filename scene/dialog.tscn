@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://kqoc0aycgs35"]
+[gd_scene format=3 uid="uid://kqoc0aycgs35"]
 
 [ext_resource type="Script" uid="uid://dljb1yngj8m5g" path="res://src/dialog.gd" id="1_up5xw"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_ow5ht"]
@@ -17,11 +17,11 @@ colors = PackedColorArray(0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_up5xw"]
 gradient = SubResource("Gradient_j3y3i")
 
-[node name="dialog" type="CanvasLayer"]
+[node name="dialog" type="CanvasLayer" unique_id=898879890]
 layer = 2
 script = ExtResource("1_up5xw")
 
-[node name="texture_rect_top" type="TextureRect" parent="."]
+[node name="texture_rect_top" type="TextureRect" parent="." unique_id=1615102547]
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.105
@@ -32,7 +32,7 @@ texture = SubResource("GradientTexture1D_ggi1b")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="label_hint_left" type="RichTextLabel" parent="texture_rect_top"]
+[node name="label_hint_left" type="RichTextLabel" parent="texture_rect_top" unique_id=698309725]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.020000001
@@ -45,7 +45,7 @@ theme_override_font_sizes/normal_font_size = 23
 bbcode_enabled = true
 vertical_alignment = 1
 
-[node name="label_hint_right" type="RichTextLabel" parent="texture_rect_top"]
+[node name="label_hint_right" type="RichTextLabel" parent="texture_rect_top" unique_id=359217512]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.82000005
@@ -59,7 +59,7 @@ bbcode_enabled = true
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="label" type="RichTextLabel" parent="texture_rect_top"]
+[node name="label" type="RichTextLabel" parent="texture_rect_top" unique_id=1155701715]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.18
@@ -75,7 +75,7 @@ bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="texture_rect_bottom" type="TextureRect" parent="."]
+[node name="texture_rect_bottom" type="TextureRect" parent="." unique_id=442265193]
 anchors_preset = -1
 anchor_top = 0.895
 anchor_right = 1.0
@@ -87,7 +87,7 @@ texture = SubResource("GradientTexture1D_ggi1b")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="label" type="RichTextLabel" parent="texture_rect_bottom"]
+[node name="label" type="RichTextLabel" parent="texture_rect_bottom" unique_id=1669040657]
 z_index = 3
 layout_mode = 1
 anchors_preset = -1
@@ -102,7 +102,7 @@ bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="texture_rect_full" type="TextureRect" parent="."]
+[node name="texture_rect_full" type="TextureRect" parent="." unique_id=1796467031]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
