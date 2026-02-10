@@ -28,8 +28,9 @@
 [ext_resource type="PackedScene" uid="uid://h3wcv7lnqe8x" path="res://assets/model/painting_frame_square.glb" id="26_88lxp"]
 [ext_resource type="PackedScene" uid="uid://culu2eni4tooo" path="res://assets/model/curtain.glb" id="27_rjel0"]
 [ext_resource type="PackedScene" uid="uid://cpgbfn65ff3ca" path="res://assets/model/curtain_support.glb" id="28_q2hjl"]
-[ext_resource type="Script" path="res://src/marker_bit.gd" id="29_q2hjl"]
+[ext_resource type="Script" uid="uid://chtqhpiu556i1" path="res://src/marker_bit.gd" id="29_q2hjl"]
 [ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="30_3aose"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/marker_camera.gd" id="31_njksd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e1edc"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -61,7 +62,7 @@ environment = SubResource("Environment_ve7rb")
 [node name="chessboard" parent="." unique_id=1440653359 instance=ExtResource("3_w2bcl")]
 
 [node name="camera" type="Camera3D" parent="." unique_id=2144305316]
-transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, -1.830138, 11.636706, 0.35143906)
+transform = Transform3D(-0.65081406, -0.37961856, 0.65751874, 5.580079e-08, 0.8660254, 0.5, -0.7592372, 0.3254071, -0.56362146, 2.4173315, 2.841991, -3.5870302)
 fov = 58.5874
 
 [node name="window" parent="." unique_id=384622266 instance=ExtResource("4_4jgku")]
@@ -591,5 +592,20 @@ light_color = Color(1, 0.935, 0.87, 1)
 light_energy = 4.24
 omni_range = 251.57
 omni_attenuation = 1.331
+
+[node name="marker_camera" type="Node3D" parent="." unique_id=1299424814 node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
+script = ExtResource("31_njksd")
+camera = NodePath("camera_3d")
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+
+[node name="camera_3d" type="Camera3D" parent="marker_camera" unique_id=2001745757]
+transform = Transform3D(0.25881892, -0.6830127, 0.6830127, -6.890503e-08, 0.7071067, 0.7071068, -0.9659259, -0.18301266, 0.18301256, 3.4320922, 3, 1.1385322)
+
+[node name="marker_camera_2" type="Node3D" parent="." unique_id=66818583 node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+script = ExtResource("31_njksd")
+camera = NodePath("../camera")
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [editable path="door_2"]
