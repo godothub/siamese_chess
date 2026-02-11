@@ -16,9 +16,9 @@ func _ready() -> void:
 	chessboard = $chessboard
 	$player.add_inspectable_item(chessboard)
 	for node:Node in get_children():
-		if node is Actor && node.piece_type != 0:
+		if node is MarkerActor:
 			var by:int = Chess.to_position_int(chessboard.get_position_name(node.position))
-			state.add_piece(by, node.piece_type)
+			state.add_piece(by, node.piece)
 		if node is MarkerBit:
 			var by:int = Chess.to_position_int(chessboard.get_position_name(node.position))
 			state.set_bit(node.piece, state.get_bit(node.piece) | Chess.mask(Chess.to_64(by)))
@@ -53,10 +53,11 @@ func _ready() -> void:
 
 	chessboard.set_state(state)
 	for node:Node in get_children():
-		if node is Actor && node.piece_type != 0:
+		if node is MarkerActor:
 			var by:int = Chess.to_position_int(chessboard.get_position_name(node.position))
-			node.get_parent().remove_child(node)
-			chessboard.add_piece_instance(node, by)
+			var instance:Actor = node.instantiate()
+			if is_instance_valid(instance):
+				chessboard.add_piece_instance(instance, by)
 	Progress.create_if_not_exist("obtains", 0)
 	Progress.create_if_not_exist("wins", 0)
 	change_state("explore_idle")
