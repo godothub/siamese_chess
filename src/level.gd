@@ -240,7 +240,7 @@ func state_ready_explore_select_empty_square(_arg:Dictionary) -> void:
 	chessboard.set_square_selection(~chessboard.state.get_bit(ord(".")))
 
 func state_ready_explore_select_piece(_arg:Dictionary) -> void:
-	var storage_piece:int = chessboard.state.get_bit(ord("6"))
+	var storage_piece:int = chessboard.state.get_storage_piece()
 	var by:int = _arg["by"]
 	var start_from:int = chessboard.state.get_bit(ord("a"))
 	if chessboard.state.has_piece(by):
@@ -472,7 +472,7 @@ func state_ready_versus_select_empty_square(_arg:Dictionary) -> void:
 	chessboard.set_square_selection(_arg["introduce_selection"])
 
 func state_ready_versus_select_piece(_arg:Dictionary) -> void:
-	var storage_piece:int = chessboard.state.get_bit(ord("6"))
+	var storage_piece:int = chessboard.state.get_storage_piece()
 	var by:int = _arg["by"]
 	var start_from:int = chessboard.state.get_bit(ord("a"))
 	if chessboard.state.has_piece(by):

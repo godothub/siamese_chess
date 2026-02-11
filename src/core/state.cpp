@@ -347,6 +347,8 @@ void State::_bind_methods()
 	godot::ClassDB::bind_method(godot::D_METHOD("set_round"), &State::set_round);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_king_passant"), &State::get_king_passant);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_king_passant"), &State::set_king_passant);
+	godot::ClassDB::bind_method(godot::D_METHOD("get_storage_piece"), &State::get_storage_piece);
+	godot::ClassDB::bind_method(godot::D_METHOD("set_storage_piece"), &State::set_storage_piece);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_zobrist"), &State::get_zobrist);
 	godot::ClassDB::bind_method(godot::D_METHOD("print_board"), &State::print_board);
 	godot::ClassDB::bind_method(godot::D_METHOD("print_bit_square"), &State::print_bit_square);
