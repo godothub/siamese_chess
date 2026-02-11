@@ -17,17 +17,24 @@ func event() -> void:
 		return
 	taken = true
 	Progress.set_value(progress_key, true)
+	var storage_piece:int = level.chessboard.state.get_storage_piece()
 	match card_piece:
 		ord("q"):
 			Progress.accumulate("storage_queen", 1)
+			storage_piece += 1 << (5 * 4)
 		ord("r"):
 			Progress.accumulate("storage_rook", 1)
+			storage_piece += 1 << (6 * 4)
 		ord("b"):
 			Progress.accumulate("storage_bishop", 1)
+			storage_piece += 1 << (7 * 4)
 		ord("n"):
 			Progress.accumulate("storage_knight", 1)
+			storage_piece += 1 << (8 * 4)
 		ord("p"):
 			Progress.accumulate("storage_pawn", 1)
+			storage_piece += 1 << (9 * 4)
 	visible = false
+	level.chessboard.state.set_storage_piece(storage_piece)
 	Dialog.push_dialog(comment, "HINT_GET_PIECE", false, false, false)
 	level.change_state("explore_idle")
