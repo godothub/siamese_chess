@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://i5cotwjboy0g"]
+[gd_scene format=3 uid="uid://i5cotwjboy0g"]
 
 [ext_resource type="Script" uid="uid://diiqv0o1t35ue" path="res://src/test/actor_stage.gd" id="1_iy66g"]
 [ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="1_pvi36"]
+[ext_resource type="PackedScene" uid="uid://bi6pvnsvmtkfx" path="res://scene/actor/stranger.tscn" id="3_irduh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iy66g"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -21,22 +22,25 @@ size = Vector2(30, 30)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_iy66g"]
 data = PackedVector3Array(15, 0, 15, -15, 0, 15, 15, 0, -15, -15, 0, 15, -15, 0, -15, 15, 0, -15)
 
-[node name="test_actor" type="Node3D"]
+[node name="test_actor" type="Node3D" unique_id=478583030]
 script = ExtResource("1_iy66g")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1668481500]
 environment = SubResource("Environment_fvrth")
 
-[node name="ground" type="MeshInstance3D" parent="."]
+[node name="ground" type="MeshInstance3D" parent="." unique_id=571189269]
 mesh = SubResource("PlaneMesh_iy66g")
 
-[node name="camera_3d" type="Camera3D" parent="."]
+[node name="camera_3d" type="Camera3D" parent="." unique_id=736743309]
 transform = Transform3D(0.848446, -0.27651, 0.451312, -4.17995e-08, 0.852686, 0.522424, -0.529283, -0.443248, 0.723458, 7.54211, 3.80473, 12.0658)
 
-[node name="cheshire" parent="." instance=ExtResource("1_pvi36")]
+[node name="cheshire" parent="." unique_id=2081135011 instance=ExtResource("1_pvi36")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0676162, 0, 0.0165617)
 
-[node name="area_3d" type="Area3D" parent="."]
+[node name="area_3d" type="Area3D" parent="." unique_id=239686190]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="area_3d"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="area_3d" unique_id=970964240]
 shape = SubResource("ConcavePolygonShape3D_iy66g")
+
+[node name="stranger" parent="." unique_id=1968960436 instance=ExtResource("3_irduh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8848066, 0, 0.7625699)
