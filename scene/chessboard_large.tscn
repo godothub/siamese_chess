@@ -11,3 +11,259 @@ script = ExtResource("2_j52ln")
 transform = Transform3D(-16, 0, -2.41593e-06, 0, 16, 0, 2.41593e-06, 0, -16, 0, 0.0786357, 0)
 
 [node name="pieces" type="Node3D" parent="." index="68" unique_id=671258824]
+
+[node name="a1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h8" parent="."]
+monitoring = false
+monitorable = false

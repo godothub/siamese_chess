@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1s6qj7aofldk"]
+[gd_scene format=3 uid="uid://d1s6qj7aofldk"]
 
 [ext_resource type="PackedScene" uid="uid://dk81n85kf8ln0" path="res://assets/model/chessboard.glb" id="1_tntyj"]
 [ext_resource type="Script" uid="uid://d1qn0lbk66o3i" path="res://src/chessboard.gd" id="2_m6gnn"]
@@ -41,7 +41,7 @@ shader_parameter/value_mult = 0.932
 shader_parameter/brightness_add = -0.035
 shader_parameter/contrast_mult = 0.792
 
-[node name="chessboard" instance=ExtResource("1_tntyj")]
+[node name="chessboard" unique_id=1999765771 instance=ExtResource("1_tntyj")]
 script = ExtResource("2_m6gnn")
 
 [node name="chessbase" parent="." index="0"]
@@ -49,6 +49,262 @@ surface_material_override/0 = SubResource("ShaderMaterial_bbdsi")
 surface_material_override/1 = SubResource("ShaderMaterial_lln3j")
 surface_material_override/2 = SubResource("ShaderMaterial_07eby")
 
-[node name="canvas" parent="." index="3" instance=ExtResource("5_07eby")]
+[node name="canvas" parent="." index="3" unique_id=1342178563 instance=ExtResource("5_07eby")]
 
-[node name="pieces" type="Node3D" parent="." index="4"]
+[node name="pieces" type="Node3D" parent="." index="4" unique_id=1814395742]
+
+[node name="a1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="a8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="b8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="c8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="d8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="e8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="f8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="g8" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h1" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h2" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h3" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h4" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h5" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h6" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h7" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="h8" parent="."]
+monitoring = false
+monitorable = false
