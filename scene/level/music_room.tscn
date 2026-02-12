@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://bilgu8ya10l7g"]
+[gd_scene format=3 uid="uid://bilgu8ya10l7g"]
 
 [ext_resource type="Script" uid="uid://dv6xi5e2p0qcl" path="res://src/level/music_room.gd" id="1_a43ts"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_exu1i"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_fjtbx"]
 [ext_resource type="PackedScene" uid="uid://rxu1cqxjo2dn" path="res://scene/upright_piano.tscn" id="7_qe74a"]
+[ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/marker_actor.gd" id="7_qtr2s"]
 [ext_resource type="PackedScene" uid="uid://cjtow7squ3ylg" path="res://assets/model/chapel_chair.glb" id="8_jad32"]
 [ext_resource type="PackedScene" uid="uid://bw127d1iawnv3" path="res://assets/model/radermachera_sinica.glb" id="11_mytjl"]
 [ext_resource type="PackedScene" uid="uid://c3peh1jag1bb1" path="res://assets/model/reception_chair.glb" id="11_qtr2s"]
-[ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="14_sshdh"]
 [ext_resource type="PackedScene" uid="uid://cingkxj4uodjo" path="res://assets/model/window.glb" id="15_okh5y"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="16_7f6gv"]
 [ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/marker_teleport.gd" id="18_lay20"]
@@ -28,35 +28,35 @@ sky = SubResource("Sky_cw0l5")
 ssr_enabled = true
 fog_light_color = Color(1, 1, 1, 1)
 
-[node name="music_room" type="Node3D"]
+[node name="music_room" type="Node3D" unique_id=402173173]
 script = ExtResource("1_a43ts")
 metadata/by = 33
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=344393294]
 environment = SubResource("Environment_ve7rb")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1824262689]
 transform = Transform3D(0.840762, 0.239459, -0.485571, 0.242345, 0.635549, 0.733039, 0.484137, -0.733987, 0.476313, 4.61496, 2.82427, 0)
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("2_exu1i")]
+[node name="player" parent="." unique_id=1727028123 instance=ExtResource("2_exu1i")]
 
-[node name="chessboard" parent="." instance=ExtResource("3_fjtbx")]
+[node name="chessboard" parent="." unique_id=1923671082 instance=ExtResource("3_fjtbx")]
 
-[node name="camera" type="Camera3D" parent="."]
+[node name="camera" type="Camera3D" parent="." unique_id=895779528]
 transform = Transform3D(-4.2222e-08, 0.466387, -0.884581, -1.13133e-08, 0.884581, 0.466387, 1, 2.96993e-08, -3.20724e-08, -8.6211, 3.60401, 0.66703)
 fov = 58.5874
 
-[node name="window" parent="." instance=ExtResource("15_okh5y")]
+[node name="window" parent="." unique_id=781463162 instance=ExtResource("15_okh5y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
 
-[node name="window_2" parent="." instance=ExtResource("15_okh5y")]
+[node name="window_2" parent="." unique_id=2143090950 instance=ExtResource("15_okh5y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
 
-[node name="door" parent="." instance=ExtResource("16_7f6gv")]
+[node name="door" parent="." unique_id=297185897 instance=ExtResource("16_7f6gv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4)
 
-[node name="marker_teleport" type="Marker3D" parent="."]
+[node name="marker_teleport" type="Marker3D" parent="." unique_id=1071533856]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 script = ExtResource("18_lay20")
 to = "res://scene/level/hallway_2f.tscn"
@@ -65,310 +65,310 @@ args = {
 }
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
-[node name="actor_y_7" type="Node3D" parent="."]
+[node name="actor_y_7" type="Marker3D" parent="." unique_id=335053907]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="upright_piano" parent="." instance=ExtResource("7_qe74a")]
+[node name="upright_piano" parent="." unique_id=1934805423 instance=ExtResource("7_qe74a")]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 5, 0, 1)
 
-[node name="chairs" type="Node3D" parent="."]
+[node name="chairs" type="Node3D" parent="." unique_id=1288346873]
 
-[node name="chapel_chair_1" parent="chairs" instance=ExtResource("8_jad32")]
+[node name="chapel_chair_1" parent="chairs" unique_id=1588703119 instance=ExtResource("8_jad32")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -2)
 
-[node name="chapel_chair_2" parent="chairs" instance=ExtResource("8_jad32")]
+[node name="chapel_chair_2" parent="chairs" unique_id=1577508507 instance=ExtResource("8_jad32")]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 1, 0, 4)
 
-[node name="chapel_chair_3" parent="chairs" instance=ExtResource("8_jad32")]
+[node name="chapel_chair_3" parent="chairs" unique_id=1644144299 instance=ExtResource("8_jad32")]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 1, 0, -2)
 
-[node name="chapel_chair_4" parent="chairs" instance=ExtResource("8_jad32")]
+[node name="chapel_chair_4" parent="chairs" unique_id=1746944110 instance=ExtResource("8_jad32")]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 3, 0, 4)
 
-[node name="chapel_chair_5" parent="chairs" instance=ExtResource("8_jad32")]
+[node name="chapel_chair_5" parent="chairs" unique_id=1275445549 instance=ExtResource("8_jad32")]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -1, 0, 4)
 
-[node name="chapel_chair_6" parent="chairs" instance=ExtResource("8_jad32")]
+[node name="chapel_chair_6" parent="chairs" unique_id=879424801 instance=ExtResource("8_jad32")]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -1, 0, -2)
 
-[node name="chapel_chair_7" parent="chairs" instance=ExtResource("8_jad32")]
+[node name="chapel_chair_7" parent="chairs" unique_id=1096720958 instance=ExtResource("8_jad32")]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -3, 0, 4)
 
-[node name="chapel_chair_8" parent="chairs" instance=ExtResource("8_jad32")]
+[node name="chapel_chair_8" parent="chairs" unique_id=1183966817 instance=ExtResource("8_jad32")]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -3, 0, -2)
 
-[node name="radermachera_sinica_1" parent="." instance=ExtResource("11_mytjl")]
+[node name="radermachera_sinica_1" parent="." unique_id=1857982996 instance=ExtResource("11_mytjl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7257, 0, -0.346018)
 
-[node name="radermachera_sinica_2" parent="." instance=ExtResource("11_mytjl")]
+[node name="radermachera_sinica_2" parent="." unique_id=517954823 instance=ExtResource("11_mytjl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7257, 0, 2.2609)
 
-[node name="actor_y_0" type="Node3D" parent="."]
+[node name="actor_y_0" type="Marker3D" parent="." unique_id=1435962220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_1" type="Node3D" parent="."]
+[node name="actor_y_1" type="Marker3D" parent="." unique_id=1418376121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_2" type="Node3D" parent="."]
+[node name="actor_y_2" type="Marker3D" parent="." unique_id=388493826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_3" type="Node3D" parent="."]
+[node name="actor_y_3" type="Marker3D" parent="." unique_id=99088024]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_4" type="Node3D" parent="."]
+[node name="actor_y_4" type="Marker3D" parent="." unique_id=528211932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_5" type="Node3D" parent="."]
+[node name="actor_y_5" type="Marker3D" parent="." unique_id=1900378176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_6" type="Node3D" parent="."]
+[node name="actor_y_6" type="Marker3D" parent="." unique_id=1192298061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_8" type="Node3D" parent="."]
+[node name="actor_y_8" type="Marker3D" parent="." unique_id=2025380118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_9" type="Node3D" parent="."]
+[node name="actor_y_9" type="Marker3D" parent="." unique_id=1132265213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_10" type="Node3D" parent="."]
+[node name="actor_y_10" type="Marker3D" parent="." unique_id=1726612145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_11" type="Node3D" parent="."]
+[node name="actor_y_11" type="Marker3D" parent="." unique_id=2059623441]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_12" type="Node3D" parent="."]
+[node name="actor_y_12" type="Marker3D" parent="." unique_id=339183334]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_13" type="Node3D" parent="."]
+[node name="actor_y_13" type="Marker3D" parent="." unique_id=252203403]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_14" type="Node3D" parent="."]
+[node name="actor_y_14" type="Marker3D" parent="." unique_id=1944676882]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_15" type="Node3D" parent="."]
+[node name="actor_y_15" type="Marker3D" parent="." unique_id=1883267220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_16" type="Node3D" parent="."]
+[node name="actor_y_16" type="Marker3D" parent="." unique_id=861843778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_17" type="Node3D" parent="."]
+[node name="actor_y_17" type="Marker3D" parent="." unique_id=1094252091]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_18" type="Node3D" parent="."]
+[node name="actor_y_18" type="Marker3D" parent="." unique_id=668582212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_19" type="Node3D" parent="."]
+[node name="actor_y_19" type="Marker3D" parent="." unique_id=2011246635]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_20" type="Node3D" parent="."]
+[node name="actor_y_20" type="Marker3D" parent="." unique_id=1936732799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_21" type="Node3D" parent="."]
+[node name="actor_y_21" type="Marker3D" parent="." unique_id=984243371]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_22" type="Node3D" parent="."]
+[node name="actor_y_22" type="Marker3D" parent="." unique_id=750997500]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_23" type="Node3D" parent="."]
+[node name="actor_y_23" type="Marker3D" parent="." unique_id=1657944823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_24" type="Node3D" parent="."]
+[node name="actor_y_24" type="Marker3D" parent="." unique_id=893936455]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_25" type="Node3D" parent="."]
+[node name="actor_y_25" type="Marker3D" parent="." unique_id=1385179668]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_26" type="Node3D" parent="."]
+[node name="actor_y_26" type="Marker3D" parent="." unique_id=674874247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_27" type="Node3D" parent="."]
+[node name="actor_y_27" type="Marker3D" parent="." unique_id=376979229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_28" type="Node3D" parent="."]
+[node name="actor_y_28" type="Marker3D" parent="." unique_id=1834727596]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_29" type="Node3D" parent="."]
+[node name="actor_y_29" type="Marker3D" parent="." unique_id=1647809899]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_30" type="Node3D" parent="."]
+[node name="actor_y_30" type="Marker3D" parent="." unique_id=1870693795]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_31" type="Node3D" parent="."]
+[node name="actor_y_31" type="Marker3D" parent="." unique_id=573537921]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_32" type="Node3D" parent="."]
+[node name="actor_y_32" type="Marker3D" parent="." unique_id=1452381255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_33" type="Node3D" parent="."]
+[node name="actor_y_33" type="Marker3D" parent="." unique_id=749215223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_34" type="Node3D" parent="."]
+[node name="actor_y_34" type="Marker3D" parent="." unique_id=511867562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_35" type="Node3D" parent="."]
+[node name="actor_y_35" type="Marker3D" parent="." unique_id=1531815963]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_36" type="Node3D" parent="."]
+[node name="actor_y_36" type="Marker3D" parent="." unique_id=1372437164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_37" type="Node3D" parent="."]
+[node name="actor_y_37" type="Marker3D" parent="." unique_id=761312781]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_38" type="Node3D" parent="."]
+[node name="actor_y_38" type="Marker3D" parent="." unique_id=626104981]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_39" type="Node3D" parent="."]
+[node name="actor_y_39" type="Marker3D" parent="." unique_id=1210815567]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_40" type="Node3D" parent="."]
+[node name="actor_y_40" type="Marker3D" parent="." unique_id=1028926964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_41" type="Node3D" parent="."]
+[node name="actor_y_41" type="Marker3D" parent="." unique_id=415886109]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_42" type="Node3D" parent="."]
+[node name="actor_y_42" type="Marker3D" parent="." unique_id=6622729]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_43" type="Node3D" parent="."]
+[node name="actor_y_43" type="Marker3D" parent="." unique_id=178989521]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="actor_y_44" type="Node3D" parent="."]
+[node name="actor_y_44" type="Marker3D" parent="." unique_id=1358467831]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7)
-script = ExtResource("14_sshdh")
-piece_type = 35
-metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+script = ExtResource("7_qtr2s")
+piece = 35
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="reception_chair2" parent="." instance=ExtResource("11_qtr2s")]
+[node name="reception_chair2" parent="." unique_id=1528458521 instance=ExtResource("11_qtr2s")]
 transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 5.35379, 0, -3.42516)
