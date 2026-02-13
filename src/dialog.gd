@@ -71,13 +71,16 @@ func clear() -> void:
 	$texture_rect_top/label.text = ""
 	click_anywhere = false
 	force_selection = false
+	waiting = false
+	selection.clear()
+	select_focus = -1
 
 func next() -> void:
 	$texture_rect_bottom/label.text = ""
 	$texture_rect_top/label.text = ""
 	click_anywhere = false
-	waiting = false
 	force_selection = false
+	waiting = false
 	selection.clear()
 	select_focus = -1
 	on_next.emit.call_deferred()
