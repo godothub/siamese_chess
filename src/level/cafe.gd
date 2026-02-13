@@ -27,6 +27,15 @@ func _ready() -> void:
 	title[0x54] = "CHAR_YULAN"
 	interact_list[0x55] = {"YULAN_INTERACT_PLAY_CHESS": interact_pastor.bind(false), "YULAN_INTERACT_CUSTOM_POSITION": interact_pastor.bind(true)}
 	title[0x55] = "CHAR_YULAN"
+	state_machine.add_state("in_game_start", state_ready_in_game_start)
+	state_machine.add_state("in_game_enemy", state_ready_in_game_enemy)
+	state_machine.add_state("in_game_waiting", state_ready_in_game_waiting)
+	state_machine.add_state("in_game_move", state_ready_in_game_move)
+	state_machine.add_state("in_game_player", state_ready_in_game_player, state_exit_in_game_player)
+	state_machine.add_state("in_game_ready_to_move", state_ready_in_game_ready_to_move)
+	state_machine.add_state("in_game_check_move", state_ready_in_game_check_move)
+	state_machine.add_state("in_game_extra_move", state_ready_in_game_extra_move)
+	state_machine.add_state("game_end", state_ready_game_end)
 
 func interact_pastor(custom_state:bool) -> void:
 	var state:State = null
@@ -42,7 +51,7 @@ func interact_pastor(custom_state:bool) -> void:
 	Dialog.push_selection(["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM", "SELECTION_CANCEL"], "", true, false)
 	await Dialog.on_next
 	if Dialog.selected == "SELECTION_CANCEL":
-		change_state("explore_idle")
+		state_machine.change_state("explore_idle")
 		return
 	elif Dialog.selected == "SELECTION_PLAY_AS_WHITE":
 		player_group = 0
@@ -65,7 +74,7 @@ func interact_pastor(custom_state:bool) -> void:
 	$chessboard/pieces/cheshire.set_position($chessboard.convert_name_to_position("e2"))
 	$chessboard/pieces/cheshire.play_animation("thinking")
 	$player.force_set_camera($camera_chessboard)
-	change_state("in_game_start", {"state": state})
+	state_machine.change_state("in_game_start", {"state": state})
 
 var game_premove_from:int = -1
 var game_premove_to:int = -1
@@ -114,21 +123,21 @@ func state_ready_in_game_start(_arg:Dictionary) -> void:
 	history_document.set_state($table_0/chessboard_standard.state)
 	history_document.set_filename("history." + String.num_int64(Time.get_unix_time_from_system()) + ".json")
 	if $table_0/chessboard_standard.state.get_turn() != player_group:
-		change_state("in_game_enemy")
+		state_machine.change_state("in_game_enemy")
 	else:
-		change_state("in_game_player")
+		state_machine.change_state("in_game_player")
 
 func state_ready_in_game_enemy(_arg:Dictionary) -> void:
-	state_signal_connect($table_0/chessboard_standard.click_selection, game_premove_pressed)
-	state_signal_connect($table_0/chessboard_standard.click_empty, game_premove_cancel)
-	state_signal_connect(standard_engine.search_finished, func() -> void:
+	state_machine.state_signal_connect($table_0/chessboard_standard.click_selection, game_premove_pressed)
+	state_machine.state_signal_connect($table_0/chessboard_standard.click_empty, game_premove_cancel)
+	state_machine.state_signal_connect(standard_engine.search_finished, func() -> void:
 		print("score: ", standard_engine.get_score())
 		print("deepest depth: ", standard_engine.get_deepest_depth())
 		print("deepest ply: ", standard_engine.get_deepest_ply())
 		print("evaluated_position: ", standard_engine.get_evaluated_position())
 		print("beta_cutoff: ", standard_engine.get_beta_cutoff())
 		print("transposition_table_cutoff: ", standard_engine.get_transposition_table_cutoff())
-		change_state("in_game_move", {"move": standard_engine.get_search_result()})
+		state_machine.change_state("in_game_move", {"move": standard_engine.get_search_result()})
 	)
 	if !Progress.get_value("relax", false):
 		standard_engine.set_max_depth(20)
@@ -141,12 +150,12 @@ func state_ready_in_game_enemy(_arg:Dictionary) -> void:
 	game_premove_init()
 
 func state_ready_in_game_waiting() -> void:
-	state_signal_connect(standard_engine.search_finished, change_state.bind("in_game_enemy"))
+	state_machine.state_signal_connect(standard_engine.search_finished, state_machine.change_state.bind("in_game_enemy"))
 	standard_engine.stop_search()
 
 func state_ready_in_game_move(_arg:Dictionary) -> void:
-	state_signal_connect($table_0/chessboard_standard.click_selection, game_premove_pressed)
-	state_signal_connect($table_0/chessboard_standard.click_empty, game_premove_cancel)
+	state_machine.state_signal_connect($table_0/chessboard_standard.click_selection, game_premove_pressed)
+	state_machine.state_signal_connect($table_0/chessboard_standard.click_empty, game_premove_cancel)
 	history_document.push_move(_arg["move"])
 	history_document.save_file()
 	standard_history_state.push_back($table_0/chessboard_standard.state.duplicate())
@@ -154,22 +163,22 @@ func state_ready_in_game_move(_arg:Dictionary) -> void:
 	var rollback_event:Dictionary = $table_0/chessboard_standard.execute_move(_arg["move"])
 	standard_history_event.push_back(rollback_event)
 	if Chess.get_end_type($table_0/chessboard_standard.state) != "":
-		change_state("game_end")
+		state_machine.change_state("game_end")
 	elif $table_0/chessboard_standard.state.get_turn() != player_group:
-		change_state("in_game_enemy")
+		state_machine.change_state("in_game_enemy")
 	elif game_premove_from != -1 && game_premove_to != -1:
-		change_state("in_game_check_move", {"from": game_premove_from, "to": game_premove_to, "move_list": Chess.generate_valid_move($table_0/chessboard_standard.state, player_group)})
+		state_machine.change_state("in_game_check_move", {"from": game_premove_from, "to": game_premove_to, "move_list": Chess.generate_valid_move($table_0/chessboard_standard.state, player_group)})
 		game_premove_from = -1
 		game_premove_to = -1
 	elif game_premove_from != -1:
-		change_state("in_game_ready_to_move", {"from": game_premove_from})
+		state_machine.change_state("in_game_ready_to_move", {"from": game_premove_from})
 	else:
-		change_state("in_game_player")
+		state_machine.change_state("in_game_player")
 	game_premove_init()
 
 func state_ready_in_game_player(_arg:Dictionary) -> void:
 	var start_from:int = $table_0/chessboard_standard.state.get_bit(ord('A') if player_group == 0 else ord('a'))
-	state_signal_connect(Dialog.on_next, func () -> void:
+	state_machine.state_signal_connect(Dialog.on_next, func () -> void:
 		if Dialog.selected == "SELECTION_TAKE_BACK":
 			if standard_history_event.size() <= 1:
 				Dialog.push_selection(["SELECTION_LEAVE_GAME"], "HINT_TAKE_BACKED", false, false)
@@ -188,10 +197,10 @@ func state_ready_in_game_player(_arg:Dictionary) -> void:
 			else:
 				Dialog.push_selection(["SELECTION_TAKE_BACK", "SELECTION_LEAVE_GAME"], "HINT_TAKE_BACKED", false, false)
 		elif Dialog.selected == "SELECTION_LEAVE_GAME":
-			change_state("game_end")
+			state_machine.change_state("game_end")
 	)
-	state_signal_connect($table_0/chessboard_standard.click_selection, func () -> void:
-		change_state("in_game_ready_to_move", {"from": $table_0/chessboard_standard.selected})
+	state_machine.state_signal_connect($table_0/chessboard_standard.click_selection, func () -> void:
+		state_machine.change_state("in_game_ready_to_move", {"from": $table_0/chessboard_standard.selected})
 	)
 
 	if standard_history_event.size() <= 1:
@@ -210,10 +219,10 @@ func state_ready_in_game_ready_to_move(_arg:Dictionary) -> void:
 	for iter:int in move_list:
 		if Chess.from(iter) == from:
 			selection |= Chess.mask(Chess.to_64(Chess.to(iter)))
-	state_signal_connect($table_0/chessboard_standard.click_selection, func () -> void:
-		change_state("in_game_check_move", {"from": from, "to": $table_0/chessboard_standard.selected, "move_list": move_list})
+	state_machine.state_signal_connect($table_0/chessboard_standard.click_selection, func () -> void:
+		state_machine.change_state("in_game_check_move", {"from": from, "to": $table_0/chessboard_standard.selected, "move_list": move_list})
 	)
-	state_signal_connect($table_0/chessboard_standard.click_empty, change_state.bind("in_game_player"))
+	state_machine.state_signal_connect($table_0/chessboard_standard.click_empty, state_machine.change_state.bind("in_game_player"))
 	$table_0/chessboard_standard.set_square_selection(selection)
 
 func state_ready_in_game_check_move(_arg:Dictionary) -> void:
@@ -221,12 +230,12 @@ func state_ready_in_game_check_move(_arg:Dictionary) -> void:
 	var to:int = _arg["to"]
 	var move_list:PackedInt32Array = Array(_arg["move_list"]).filter(func (move:int) -> bool: return from == Chess.from(move) && to == Chess.to(move))
 	if move_list.size() == 0:
-		change_state("in_game_player", {})
+		state_machine.change_state("in_game_player", {})
 		return
 	elif move_list.size() > 1:
-		change_state("in_game_extra_move", {"move_list": move_list})
+		state_machine.change_state("in_game_extra_move", {"move_list": move_list})
 	else:
-		change_state("in_game_move", {"move": move_list[0]})
+		state_machine.change_state("in_game_move", {"move": move_list[0]})
 
 func state_ready_in_game_extra_move(_arg:Dictionary) -> void:
 	var decision_list:PackedStringArray = []
@@ -235,11 +244,11 @@ func state_ready_in_game_extra_move(_arg:Dictionary) -> void:
 		decision_list.push_back("%c" % Chess.extra(iter))
 		decision_to_move[decision_list[-1]] = iter
 	decision_list.push_back("cancel")
-	state_signal_connect(Dialog.on_next, func () -> void:
+	state_machine.state_signal_connect(Dialog.on_next, func () -> void:
 		if Dialog.selected == "cancel":
-			change_state("in_game_player")
+			state_machine.change_state("in_game_player")
 		else:
-			change_state("in_game_move", {"move": decision_to_move[Dialog.selected]})
+			state_machine.change_state("in_game_move", {"move": decision_to_move[Dialog.selected]})
 	)
 	Dialog.push_selection(decision_list, "HINT_EXTRA_MOVE", true, true)
 
@@ -266,4 +275,4 @@ func state_ready_game_end(_arg:Dictionary) -> void:
 	$chessboard/pieces/cheshire.set_position($chessboard.convert_name_to_position("e3"))
 	$chessboard.set_enabled(true)
 	$table_0/chessboard_standard.set_enabled(false)
-	change_state("explore_idle")
+	state_machine.change_state("explore_idle")
