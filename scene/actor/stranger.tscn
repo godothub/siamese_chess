@@ -555,11 +555,10 @@ animation = &"idle"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iqosf"]
-xfade_time = 0.5
+xfade_time = 0.2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0hfyq"]
-xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6t2tw"]
 xfade_time = 0.3
@@ -577,22 +576,13 @@ states/walk/position = Vector2(402, 134)
 transitions = ["evade", "idle", SubResource("AnimationNodeStateMachineTransition_iqosf"), "idle", "evade", SubResource("AnimationNodeStateMachineTransition_0hfyq"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_6t2tw"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_84t0p")]
 
 [node name="stranger" unique_id=921327352 instance=ExtResource("1_atibo")]
+motion_mode = 1
 script = ExtResource("2_mx01q")
 
-[node name="Skeleton3D" parent="skeleton" parent_id_path=PackedInt32Array(680318898) index="0" unique_id=7283108]
+[node name="Skeleton3D" parent="skeleton" parent_id_path=PackedInt32Array(1206379940) index="0" unique_id=1865241051]
 transform = Transform3D(0.99981266, -0.019354494, 0, 0.019354494, 0.99981266, 0, 0, 0, 1, 0, 0, 0)
 bones/0/position = Vector3(0.0011517571, 0.05949736, 0)
-bones/0/rotation = Quaternion(0.0068624914, 0.96628726, 0.006862489, 0.25728375)
 bones/19/rotation = Quaternion(-0.035929106, 0.036424782, 0.030002736, 0.9982396)
-bones/20/position = Vector3(-2.3813347e-09, 0.36857888, -6.6817742e-09)
-bones/21/position = Vector3(1.8357722e-08, 0.4541586, -1.982704e-08)
-bones/35/rotation = Quaternion(-0.17315687, 0.029259259, -0.04874947, 0.9832518)
-bones/39/rotation = Quaternion(-0.07340543, -0.0061723464, -0.08446998, 0.9936994)
-bones/47/position = Vector3(3.7896288e-07, 0.28597212, 1.4776394e-07)
-bones/57/rotation = Quaternion(0.086083375, -0.47903943, -0.1430733, 0.8617663)
-bones/61/rotation = Quaternion(-0.049203582, 0.96227264, 0.04508395, -0.26377597)
-bones/65/rotation = Quaternion(-0.008062219, 0.9951245, -0.014939865, 0.09715464)
-bones/69/rotation = Quaternion(-0.10604533, 0.54213053, -0.06425098, 0.8310961)
 
 [node name="two_bone_ik_left_foot" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" index="1" unique_id=1742183838]
 transform = Transform3D(2.8105686, 0, 0, 0, 2.8105686, 0, 0, 0, 2.8105686, 0, 0, 0)
@@ -719,6 +709,5 @@ transform = Transform3D(0.3557999, 0, 0, 0, 0.35579994, 0, 0, 0, 0.35579994, -0.
 libraries/ = SubResource("AnimationLibrary_iqosf")
 
 [node name="animation_tree" type="AnimationTree" parent="." index="8" unique_id=251224311]
-active = false
 tree_root = SubResource("AnimationNodeStateMachine_0hfyq")
 anim_player = NodePath("../animation_player")
