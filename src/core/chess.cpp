@@ -1561,6 +1561,7 @@ void Chess::_internal_generate_move(godot::PackedInt32Array &output, const godot
 	}
 	//摆放棋子部分
 	int64_t empty_bit = ~_state->get_bit(ALL_PIECE);
+	empty_bit &= king_attacks[Chess::first_bit(_state->get_bit(_group == 0 ? 'K' : 'k'))];
 	int64_t storage_piece = _state->get_storage_piece();
 	//每种棋子存放最多8颗，意味着每种棋子占4位，那就需要4 * 5 * 2 = 40位
 	//棋子的顺序：QRBNPqrbnp

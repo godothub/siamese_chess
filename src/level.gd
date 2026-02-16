@@ -134,14 +134,22 @@ func premove_cancel() -> void:
 func state_ready_explore_idle(_arg:Dictionary) -> void:
 	var by:int = Chess.to_x88(chessboard.state.bit_index(ord("k"))[0])
 	var selection:PackedStringArray = []
-	var start_from:int = chessboard.state.get_bit(ord("a"))
+	var can_introduce:bool = false
+	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1)
+	var start_from:int = 0
+	for iter:int in move_list:
+		if Chess.from(iter) == Chess.to(iter):
+			can_introduce = true
+		else:
+			start_from |= Chess.mask(Chess.to_64(Chess.from(iter)))
 	state_machine.state_signal_connect(Dialog.on_next, state_machine.change_state.bind("dialog"))
 	state_machine.state_signal_connect(chessboard.click_selection, func () -> void:
 		state_machine.change_state("explore_ready_to_move", {"from": chessboard.selected})
 	)
-	state_machine.state_signal_connect(chessboard.empty_double_click, func () -> void:
-		state_machine.change_state("explore_select_piece", {"by": chessboard.selected})
-	)
+	if can_introduce:
+		state_machine.state_signal_connect(chessboard.empty_double_click, func () -> void:
+			state_machine.change_state("explore_select_piece", {"by": chessboard.selected})
+		)
 	if chessboard.state.get_bit(ord("z")) & Chess.mask(Chess.to_64(by)):
 		selection = interact_list[by].keys()
 		Dialog.push_selection(selection, title[by], false, false)
@@ -276,9 +284,17 @@ func state_ready_explore_select_piece(_arg:Dictionary) -> void:
 	var storage_piece:int = chessboard.state.get_storage_piece()
 	var by:int = _arg["by"]
 	var start_from:int = chessboard.state.get_bit(ord("a"))
-	if chessboard.state.has_piece(by):
+	
+	var move_valid:bool = false
+	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1)
+	for iter:int in move_list:
+		if Chess.from(iter) == Chess.to(iter) && Chess.from(iter) == by:
+			move_valid = true
+			break
+	if !move_valid:
 		state_machine.change_state("explore_idle")
 		return
+	
 	var selection:Array = []
 	if (storage_piece >> (5 * 4)) & 0xF:
 		selection.push_back("PIECE_QUEEN")
@@ -512,9 +528,17 @@ func state_ready_versus_select_piece(_arg:Dictionary) -> void:
 	var storage_piece:int = chessboard.state.get_storage_piece()
 	var by:int = _arg["by"]
 	var start_from:int = chessboard.state.get_bit(ord("a"))
-	if chessboard.state.has_piece(by):
+
+	var move_valid:bool = false
+	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1)
+	for iter:int in move_list:
+		if Chess.from(iter) == Chess.to(iter) && Chess.from(iter) == by:
+			move_valid = true
+			break
+	if !move_valid:
 		state_machine.change_state("versus_player")
 		return
+
 	var selection:Array = []
 	if (storage_piece >> (5 * 4)) & 0xF:
 		selection.push_back("PIECE_QUEEN")
