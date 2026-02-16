@@ -221,6 +221,7 @@ func state_ready_explore_check_interact(_arg:Dictionary) -> void:
 
 func state_ready_explore_check_premove(_arg:Dictionary) -> void:
 	if premove_from != -1 && premove_to != -1:
+		chessboard.clear_pointer("premove")
 		change_state("explore_check_move", {"from": premove_from, "to": premove_to, "move_list": Chess.generate_explore_move(chessboard.state, 1)})
 		premove_from = -1
 		premove_to = -1
@@ -353,6 +354,7 @@ func state_ready_versus_move(_arg:Dictionary) -> void:
 		elif chessboard.state.get_turn() == 0:
 			change_state("versus_enemy")
 		elif premove_from != -1 && premove_to != -1:
+			chessboard.clear_pointer("premove")
 			change_state("versus_check_move", {"from": premove_from, "to": premove_to, "move_list": Chess.generate_valid_move(chessboard.state, 1)})
 			premove_from = -1
 			premove_to = -1
