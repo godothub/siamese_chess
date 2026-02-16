@@ -65,7 +65,15 @@ func _unhandled_input(event:InputEvent) -> void:
 			var instant:bool = event is InputEventMouseButton
 			var pressed:bool = event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT || event is InputEventMouseMotion && (event.button_mask & MOUSE_BUTTON_MASK_LEFT)
 			current_area.emit_signal("input", self, current_area, instant, pressed, $ray_cast.get_collision_point(), $ray_cast.get_collision_normal())
-		get_viewport().set_input_as_handled()
+	elif event is InputEventMultiScreenDrag:
+		if event.fingers == 2:
+			$head.global_rotation.y -= event.relative.x / 200
+			$head.global_rotation.x -= event.relative.y / 100
+		else:
+			$head.global_position += -$head.global_basis.x * event.relative.x / 100 + $head.global_basis.y * event.relative.y / 100
+	elif event is InputEventScreenPinch:
+		$head.global_position += -$head.global_basis.z * event.relative / 100
+	get_viewport().set_input_as_handled()
 
 func click_area(screen_position:Vector2) -> Area3D:
 	var from:Vector3 = $head/camera.project_ray_origin(screen_position)
