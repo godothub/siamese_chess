@@ -16,6 +16,12 @@ func _physics_process(_delta:float) -> void:
 	#$head/camera.set_rotation(Vector3(0, 0, deg_to_rad(sin(Time.get_unix_time_from_system()) * 0.5)))
 	if !can_move:
 		return
+	var vision_look_at:Vector2 = Input.get_vector("vision_look_up", "vision_look_down", "vision_look_left", "vision_look_right")
+	$head.global_rotation.x -= vision_look_at.x / 100
+	$head.global_rotation.y -= vision_look_at.y / 50
+	var vision_move:Vector2 = Input.get_vector("vision_move_left", "vision_move_right", "vision_move_forward", "vision_move_back")
+	$head.global_position += $head.global_basis.x * vision_move.x / 20 + $head.global_basis.z * vision_move.y / 20
+	$head.global_position += $head.global_basis.y * Input.get_axis("vision_move_down", "vision_move_up") / 20
 	if Dialog.block_input() || using_dialog:
 		if Input.is_action_just_pressed("ui_left"):
 			Dialog.direction(-1)
