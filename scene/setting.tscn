@@ -69,7 +69,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_xthoy")
 theme_override_font_sizes/font_size = 24
-current_tab = 0
+current_tab = 2
 tab_0/title = "SETTINGS_TAB_GAME"
 tab_1/title = "SETTINGS_TAB_VIDEO_AUDIO"
 tab_2/title = "SETTINGS_TAB_CONTROL"
@@ -77,6 +77,7 @@ tab_3/title = "SETTINGS_TAB_ACCESSIBILITY"
 tab_4/title = "SETTINGS_TAB_FILES"
 
 [node name="game" type="Control" parent="texture_rect/tab_container" unique_id=1922696552]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "SETTINGS_TAB_GAME"
@@ -280,10 +281,79 @@ layout_mode = 2
 focus_mode = 3
 
 [node name="control" type="Control" parent="texture_rect/tab_container" unique_id=8294422]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 metadata/_tab_name = "SETTINGS_TAB_CONTROL"
+
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/control" unique_id=232586342]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin_container_camera_move_speed" type="MarginContainer" parent="texture_rect/tab_container/control/v_box_container" unique_id=1568874275]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed" unique_id=33171018]
+layout_mode = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container" unique_id=18742728]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container" unique_id=746796860]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "SETTINGS_CAMERA_MOVE_SPEED"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="label_value" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container" unique_id=2110073987]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "0%"
+label_settings = SubResource("LabelSettings_ahr6q")
+horizontal_alignment = 2
+
+[node name="h_slider" type="HSlider" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container" unique_id=988718259]
+layout_mode = 2
+focus_mode = 3
+
+[node name="margin_container_camera_rotate_sensitive" type="MarginContainer" parent="texture_rect/tab_container/control/v_box_container" unique_id=1036904096]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive" unique_id=600505173]
+layout_mode = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container" unique_id=615895235]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container" unique_id=339773240]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "SETTINGS_CAMERA_ROTATE_SENSITIVE"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="label_value" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container" unique_id=1507362058]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "0%"
+label_settings = SubResource("LabelSettings_ahr6q")
+horizontal_alignment = 2
+
+[node name="h_slider" type="HSlider" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container" unique_id=148927077]
+layout_mode = 2
+focus_mode = 3
 
 [node name="accessibility" type="Control" parent="texture_rect/tab_container" unique_id=822844970]
 visible = false
