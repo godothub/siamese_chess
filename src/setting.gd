@@ -18,18 +18,18 @@ var languages:Dictionary[String, String] = {
 	"zh_CN": "简体中文"
 }
 
-@onready var resolution_input:OptionButton = $texture_rect/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/option_button
-@onready var fullscreen_input:CheckBox = $texture_rect/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/check_box
-@onready var master_volume_input:HSlider = $texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container/h_slider
-@onready var master_volume_value:Label = $texture_rect/h_box_container/v_box_container_left/margin_container_master_volume/v_box_container/h_box_container/label_value
-@onready var sfx_volume_input:HSlider = $texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container/h_slider
-@onready var sfx_volume_value:Label = $texture_rect/h_box_container/v_box_container_left/margin_container_sfx_volume/v_box_container/h_box_container/label_value
-@onready var env_volume_input:HSlider = $texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container/h_slider
-@onready var env_volume_value:Label = $texture_rect/h_box_container/v_box_container_left/margin_container_env_volume/v_box_container/h_box_container/label_value
-@onready var language_input:OptionButton = $texture_rect/h_box_container/v_box_container_right/margin_container_language/h_box_container/option_button
-@onready var relax_input:CheckBox = $texture_rect/h_box_container/v_box_container_right/margin_container_relax/v_box_container/h_box_container/check_box
-@onready var clean_archive_input:Button = $texture_rect/h_box_container/v_box_container_right/margin_container_clean_archive/h_box_container/button
-@onready var reset_progress_input:Button = $texture_rect/h_box_container/v_box_container_right/margin_container_reset_progress/h_box_container/button
+@onready var resolution_input:OptionButton = $texture_rect/tab_container/video_audio/v_box_container/margin_container_resolution/h_box_container/option_button
+@onready var fullscreen_input:CheckBox = $texture_rect/tab_container/video_audio/v_box_container/margin_container_fullscreen/h_box_container/check_box
+@onready var master_volume_input:HSlider = $texture_rect/tab_container/video_audio/v_box_container/margin_container_master_volume/v_box_container/h_slider
+@onready var master_volume_value:Label = $texture_rect/tab_container/video_audio/v_box_container/margin_container_master_volume/v_box_container/h_box_container/label_value
+@onready var sfx_volume_input:HSlider = $texture_rect/tab_container/video_audio/v_box_container/margin_container_sfx_volume/v_box_container/h_slider
+@onready var sfx_volume_value:Label = $texture_rect/tab_container/video_audio/v_box_container/margin_container_sfx_volume/v_box_container/h_box_container/label_value
+@onready var env_volume_input:HSlider = $texture_rect/tab_container/video_audio/v_box_container/margin_container_env_volume/v_box_container/h_slider
+@onready var env_volume_value:Label = $texture_rect/tab_container/video_audio/v_box_container/margin_container_env_volume/v_box_container/h_box_container/label_value
+@onready var language_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/option_button
+@onready var relax_input:CheckBox = $texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container/check_box
+@onready var clean_archive_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/button
+@onready var reset_progress_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/button
 
 func _ready() -> void:
 	for iter:Vector2i in resolutions:
