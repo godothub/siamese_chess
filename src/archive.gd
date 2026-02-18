@@ -21,6 +21,7 @@ func _ready() -> void:
 	$texture_rect/h_box_container/button_delete.connect("button_up", delete_pressed)
 
 func open() -> void:
+	$texture_rect/button_close.grab_focus()
 	visible = true
 	update_list()
 
@@ -53,7 +54,6 @@ func update_list() -> void:
 		button.add_theme_color_override("font_pressed_color", Color(0.6, 0.6, 0.6, 1))
 		button.add_theme_font_size_override("font_size", 30)
 		button.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
-		button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 		button.add_theme_stylebox_override("hover", StyleBoxEmpty.new())
 		button.add_theme_stylebox_override("pressed", StyleBoxEmpty.new())
 		button.add_theme_font_override("font", preload("res://assets/fonts/FangZhengShuSongJianTi-1.ttf"))

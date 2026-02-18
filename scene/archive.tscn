@@ -17,8 +17,6 @@ gradient = SubResource("Gradient_j3y3i")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x4nah"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w5kv4"]
-
 [node name="archive" type="CanvasLayer" unique_id=427270618]
 layer = 3
 script = ExtResource("1_550ee")
@@ -45,6 +43,8 @@ offset_left = -0.3840027
 offset_top = 0.039985657
 offset_right = -0.5680237
 offset_bottom = 0.21594238
+follow_focus = true
+draw_focus_border = true
 
 [node name="v_box_container" type="VBoxContainer" parent="texture_rect/scroll_container" unique_id=1533975025]
 layout_mode = 2
@@ -76,7 +76,6 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uibjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_buvmo")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_x4nah")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w5kv4")
 text = ""
 
 [node name="h_box_container" type="HBoxContainer" parent="texture_rect" unique_id=1804693783]
@@ -103,7 +102,6 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uibjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_buvmo")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_x4nah")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w5kv4")
 text = ""
 
 [node name="button_delete" type="Button" parent="texture_rect/h_box_container" unique_id=30893415]
@@ -118,7 +116,6 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uibjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_buvmo")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_x4nah")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w5kv4")
 text = ""
 
 [node name="button_duplicate" type="Button" parent="texture_rect/h_box_container" unique_id=1826444670]
@@ -133,7 +130,6 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uibjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_buvmo")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_x4nah")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w5kv4")
 text = ""
 
 [node name="button_add_empty" type="Button" parent="texture_rect/h_box_container" unique_id=2124856900]
@@ -148,5 +144,4 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uibjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_buvmo")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_x4nah")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_w5kv4")
 text = ""

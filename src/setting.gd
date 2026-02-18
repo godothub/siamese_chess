@@ -97,6 +97,7 @@ func _ready() -> void:
 
 func open() -> void:
 	visible = true
+	$texture_rect/tab_container.get_tab_bar().grab_focus()
 
 func close() -> void:
 	save_file()

@@ -25,8 +25,6 @@ font_size = 26
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8pksm"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fhdrf"]
-
 [node name="setting" type="CanvasLayer" unique_id=1363617514]
 layer = 5
 script = ExtResource("1_ahr6q")
@@ -111,7 +109,6 @@ label_settings = SubResource("LabelSettings_ahr6q")
 self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)
 layout_mode = 2
 size_flags_horizontal = 10
-focus_mode = 3
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container" unique_id=352134125]
 layout_mode = 2
@@ -157,7 +154,6 @@ label_settings = SubResource("LabelSettings_ahr6q")
 [node name="option_button" type="OptionButton" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container" unique_id=1012661039]
 layout_mode = 2
 size_flags_horizontal = 10
-focus_mode = 3
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -187,7 +183,6 @@ label_settings = SubResource("LabelSettings_ahr6q")
 self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)
 layout_mode = 2
 size_flags_horizontal = 10
-focus_mode = 3
 
 [node name="margin_container_fps" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left" unique_id=1144323822]
 layout_mode = 2
@@ -208,7 +203,6 @@ label_settings = SubResource("LabelSettings_ahr6q")
 [node name="option_button" type="OptionButton" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container" unique_id=403374600]
 layout_mode = 2
 size_flags_horizontal = 10
-focus_mode = 3
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -253,7 +247,6 @@ label_settings = SubResource("LabelSettings_ahr6q")
 self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)
 layout_mode = 2
 size_flags_horizontal = 10
-focus_mode = 3
 
 [node name="v_box_container_right" type="VBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container" unique_id=1696291894]
 layout_mode = 2
@@ -288,7 +281,6 @@ horizontal_alignment = 2
 
 [node name="h_slider" type="HSlider" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container" unique_id=927328205]
 layout_mode = 2
-focus_mode = 3
 
 [node name="margin_container_sfx_volume" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right" unique_id=2075423611]
 layout_mode = 2
@@ -320,7 +312,6 @@ horizontal_alignment = 2
 
 [node name="h_slider" type="HSlider" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container" unique_id=1205003451]
 layout_mode = 2
-focus_mode = 3
 
 [node name="margin_container_env_volume" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right" unique_id=677013504]
 layout_mode = 2
@@ -351,7 +342,6 @@ horizontal_alignment = 2
 
 [node name="h_slider" type="HSlider" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container" unique_id=470739025]
 layout_mode = 2
-focus_mode = 3
 
 [node name="control" type="Control" parent="texture_rect/tab_container" unique_id=8294422]
 visible = false
@@ -396,7 +386,6 @@ horizontal_alignment = 2
 
 [node name="h_slider" type="HSlider" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container" unique_id=988718259]
 layout_mode = 2
-focus_mode = 3
 
 [node name="margin_container_camera_rotate_sensitive" type="MarginContainer" parent="texture_rect/tab_container/control/v_box_container" unique_id=1036904096]
 layout_mode = 2
@@ -427,7 +416,6 @@ horizontal_alignment = 2
 
 [node name="h_slider" type="HSlider" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container" unique_id=148927077]
 layout_mode = 2
-focus_mode = 3
 
 [node name="margin_container_camera_rotate_axis" type="MarginContainer" parent="texture_rect/tab_container/control/v_box_container" unique_id=1680703829]
 layout_mode = 2
@@ -448,7 +436,6 @@ label_settings = SubResource("LabelSettings_ahr6q")
 [node name="option_button" type="OptionButton" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container" unique_id=1694842823]
 layout_mode = 2
 size_flags_horizontal = 10
-focus_mode = 3
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -596,5 +583,4 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_2wb80")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_123qk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8pksm")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fhdrf")
 text = ""
