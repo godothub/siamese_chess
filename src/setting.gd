@@ -76,7 +76,7 @@ func _ready() -> void:
 	resolution_input.select(table.get_or_add("resolution", 0))
 	set_resolution(table.get_or_add("resolution"))
 	fullscreen_input.set_pressed(table.get_or_add("fullscreen", false))
-	fps_input.select(table.get_or_add("fps", 2))
+	fps_input.select(table.get_or_add("fps", 6))
 	set_fps(table.get_or_add("fps"))
 	vsync_input.set_pressed(table.get_or_add("vsync", true))
 	master_volume_input.set_value(table.get_or_add("master_volume", 80))
@@ -132,10 +132,18 @@ func set_fps(index:int) -> void:
 	table.set("fps", index)
 	match index:
 		0:
-			Engine.max_fps = 30
+			Engine.max_fps = 10
 		1:
-			Engine.max_fps = 60
+			Engine.max_fps = 30
 		2:
+			Engine.max_fps = 60
+		3:
+			Engine.max_fps = 90
+		4:
+			Engine.max_fps = 120
+		5:
+			Engine.max_fps = 144
+		6:
 			Engine.max_fps = -1
 
 func set_vsync(toggled_on:bool) -> void:
