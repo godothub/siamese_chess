@@ -1573,6 +1573,10 @@ void Chess::_internal_generate_move(godot::PackedInt32Array &output, const godot
 		for (int i = 0; i < 5; i++)
 		{
 			int shift = _group == 0 ? i : i + 5;
+			if ((storage_piece_order[shift] & 95) == 'P' && (by < 0x10 || by >= 0x70))
+			{
+				continue;
+			}
 			if ((storage_piece >> (4 * shift)) & 0xF)
 			{
 				output.push_back(Chess::create(by, by, storage_piece_order[shift]));

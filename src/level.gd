@@ -287,10 +287,12 @@ func state_ready_explore_select_piece(_arg:Dictionary) -> void:
 	
 	var move_valid:bool = false
 	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1)
+	var pawn_available:bool = false
 	for iter:int in move_list:
 		if Chess.from(iter) == Chess.to(iter) && Chess.from(iter) == by:
 			move_valid = true
-			break
+			if Chess.extra(iter) & 95 == ord("P"):
+				pawn_available = true
 	if !move_valid:
 		state_machine.change_state("explore_idle")
 		return
@@ -304,7 +306,7 @@ func state_ready_explore_select_piece(_arg:Dictionary) -> void:
 		selection.push_back("PIECE_BISHOP")
 	if (storage_piece >> (8 * 4)) & 0xF:
 		selection.push_back("PIECE_KNIGHT")
-	if (storage_piece >> (9 * 4)) & 0xF:
+	if ((storage_piece >> (9 * 4)) & 0xF) && pawn_available:
 		selection.push_back("PIECE_PAWN")
 	selection.push_back("SELECTION_CANCEL")
 	state_machine.state_signal_connect(Dialog.on_next, func () -> void:
@@ -531,10 +533,12 @@ func state_ready_versus_select_piece(_arg:Dictionary) -> void:
 
 	var move_valid:bool = false
 	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1)
+	var pawn_available:bool = false 
 	for iter:int in move_list:
 		if Chess.from(iter) == Chess.to(iter) && Chess.from(iter) == by:
 			move_valid = true
-			break
+			if Chess.extra(iter) & 95 == ord("P"):
+				pawn_available = true
 	if !move_valid:
 		state_machine.change_state("versus_player")
 		return
@@ -548,7 +552,7 @@ func state_ready_versus_select_piece(_arg:Dictionary) -> void:
 		selection.push_back("PIECE_BISHOP")
 	if (storage_piece >> (8 * 4)) & 0xF:
 		selection.push_back("PIECE_KNIGHT")
-	if (storage_piece >> (9 * 4)) & 0xF:
+	if ((storage_piece >> (9 * 4)) & 0xF) && pawn_available:
 		selection.push_back("PIECE_PAWN")
 	selection.push_back("SELECTION_CANCEL")
 	state_machine.state_signal_connect(Dialog.on_next, func () -> void:
