@@ -167,6 +167,7 @@ func state_ready_in_game_move(_arg:Dictionary) -> void:
 	elif $table_0/chessboard_standard.state.get_turn() != player_group:
 		state_machine.change_state("in_game_enemy")
 	elif game_premove_from != -1 && game_premove_to != -1:
+		$table_0/chessboard_standard.clear_pointer("premove")
 		state_machine.change_state("in_game_check_move", {"from": game_premove_from, "to": game_premove_to, "move_list": Chess.generate_valid_move($table_0/chessboard_standard.state, player_group)})
 		game_premove_from = -1
 		game_premove_to = -1
