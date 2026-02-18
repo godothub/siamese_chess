@@ -120,6 +120,9 @@ func state_ready_in_game_start(_arg:Dictionary) -> void:
 	$table_0/chessboard_standard.state = _arg["state"]
 	$table_0/chessboard_standard.remove_piece_set()
 	$table_0/chessboard_standard.add_default_piece_set()
+	standard_history_state.clear()
+	standard_history_zobrist.clear()
+	standard_history_event.clear()
 	history_document.set_state($table_0/chessboard_standard.state)
 	history_document.set_filename("history." + String.num_int64(Time.get_unix_time_from_system()) + ".json")
 	if $table_0/chessboard_standard.state.get_turn() != player_group:
