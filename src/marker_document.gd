@@ -17,4 +17,4 @@ func event() -> void:
 		file.close()
 	Archive.open()
 	Archive.open_document(file_path)
-	level.change_state("explore_idle")
+	level.state_machine.change_state("explore_idle")

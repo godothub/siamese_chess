@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func event() -> void:
 	if taken:
-		level.change_state("explore_idle")
+		level.state_machine.change_state("explore_idle")
 		return
 	taken = true
 	Progress.set_value(progress_key, true)
@@ -42,4 +42,4 @@ func event() -> void:
 	visible = false
 	level.chessboard.state.set_storage_piece(storage_piece)
 	Dialog.push_dialog(comment, "HINT_GET_PIECE", false, false, false)
-	level.change_state("explore_idle")
+	level.state_machine.change_state("explore_idle")
