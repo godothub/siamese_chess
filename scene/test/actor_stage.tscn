@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://diiqv0o1t35ue" path="res://src/test/actor_stage.gd" id="1_iy66g"]
 [ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="1_pvi36"]
-[ext_resource type="PackedScene" uid="uid://bi6pvnsvmtkfx" path="res://scene/actor/stranger.tscn" id="3_irduh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iy66g"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -42,5 +41,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0676162, 0, 0.0165617)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="area_3d" unique_id=970964240]
 shape = SubResource("ConcavePolygonShape3D_iy66g")
 
-[node name="stranger" parent="." unique_id=1968960436 instance=ExtResource("3_irduh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8848066, 0, 0.7625699)
+[node name="timer" type="Timer" parent="." unique_id=317558053]
+wait_time = 0.5
+autostart = true

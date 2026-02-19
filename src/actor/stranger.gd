@@ -30,7 +30,7 @@ func state_ready_move(_arg:Dictionary) -> void:
 	)
 
 func state_process_move(_delta:float) -> void:
-	velocity = direction
+	velocity = direction * 2
 	global_rotation.y = Vector3.BACK.angle_to(direction)
 	move_and_slide()
 
