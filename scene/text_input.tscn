@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dweywda5mojmf"]
+[gd_scene format=3 uid="uid://dweywda5mojmf"]
 
 [ext_resource type="Script" uid="uid://bvuqnv0fsx2gn" path="res://src/text_input.gd" id="1_nu684"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_l1wpo"]
@@ -17,11 +17,11 @@ gradient = SubResource("Gradient_j3y3i")
 [sub_resource type="LabelSettings" id="LabelSettings_nu684"]
 font_size = 26
 
-[node name="text_input" type="CanvasLayer"]
+[node name="text_input" type="CanvasLayer" unique_id=1826723918]
 layer = 4
 script = ExtResource("1_nu684")
 
-[node name="texture_rect" type="TextureRect" parent="."]
+[node name="texture_rect" type="TextureRect" parent="." unique_id=395520202]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,7 +33,7 @@ expand_mode = 1
 stretch_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="line_edit" type="LineEdit" parent="texture_rect"]
+[node name="line_edit" type="LineEdit" parent="texture_rect" unique_id=1902509598]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.196
@@ -53,7 +53,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_nu684")
 flat = true
 draw_control_chars = true
 
-[node name="label" type="Label" parent="texture_rect"]
+[node name="label" type="Label" parent="texture_rect" unique_id=2056629895]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.227

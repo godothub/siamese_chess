@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://q25etby31xos"]
+[gd_scene format=3 uid="uid://q25etby31xos"]
 
 [ext_resource type="PackedScene" uid="uid://c8n5jjfq744oc" path="res://assets/model/safe_lock.glb" id="1_10wmd"]
 [ext_resource type="Script" uid="uid://1r18nc4ioehj" path="res://src/safe_lock.gd" id="2_nf5fv"]
@@ -32,12 +32,12 @@ shader_parameter/value_mult = 0.638
 shader_parameter/brightness_add = 0.15
 shader_parameter/contrast_mult = 1.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ttt6v"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_uvudv"]
 viewport_path = NodePath("sub_viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klmvq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sywe0"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_ttt6v")
+albedo_texture = SubResource("ViewportTexture_uvudv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nf5fv"]
 size = Vector3(0.041008, 0.186157, 0.0473633)
@@ -45,38 +45,38 @@ size = Vector3(0.041008, 0.186157, 0.0473633)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ttt6v"]
 size = Vector3(0.412598, 0.610291, 0.0458069)
 
-[node name="safe_lock" instance=ExtResource("1_10wmd")]
+[node name="safe_lock" unique_id=1192291511 instance=ExtResource("1_10wmd")]
 script = ExtResource("2_nf5fv")
 
-[node name="body" parent="." index="0"]
+[node name="body" parent="." index="0" unique_id=675703628]
 surface_material_override/0 = SubResource("ShaderMaterial_uvudv")
 
-[node name="door" parent="." index="1"]
+[node name="door" parent="." index="1" unique_id=2064609642]
 surface_material_override/0 = SubResource("ShaderMaterial_sywe0")
-surface_material_override/2 = SubResource("StandardMaterial3D_klmvq")
+surface_material_override/2 = SubResource("StandardMaterial3D_sywe0")
 
-[node name="area_handle" type="Area3D" parent="door/handle" index="0"]
+[node name="area_handle" type="Area3D" parent="door/handle" parent_id_path=PackedInt32Array(1629113051) index="0" unique_id=939817006]
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="door/handle/area_handle" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="door/handle/area_handle" index="0" unique_id=1486726231]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000576019, -0.0014038, 0.00659178)
 shape = SubResource("BoxShape3D_nf5fv")
 
-[node name="area_close" type="Area3D" parent="door" index="17"]
+[node name="area_close" type="Area3D" parent="door" index="17" unique_id=1576956804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208273, 0, 0)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="door/area_close" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="door/area_close" index="0" unique_id=827670762]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00512695, -0.0093689, 0.0437038)
 shape = SubResource("BoxShape3D_ttt6v")
 
-[node name="sub_viewport" type="SubViewport" parent="." index="2"]
+[node name="sub_viewport" type="SubViewport" parent="." index="2" unique_id=2065458529]
 transparent_bg = true
 size = Vector2i(256, 48)
 
-[node name="label" type="Label" parent="sub_viewport" index="0"]
+[node name="label" type="Label" parent="sub_viewport" index="0" unique_id=308849672]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -88,14 +88,14 @@ theme_override_font_sizes/font_size = 30
 text = "PASSWORD"
 vertical_alignment = 1
 
-[node name="audio_stream_player_button" type="AudioStreamPlayer3D" parent="." index="3"]
+[node name="audio_stream_player_button" type="AudioStreamPlayer3D" parent="." index="3" unique_id=609067594]
 stream = ExtResource("4_klmvq")
 
-[node name="audio_stream_player_unlock" type="AudioStreamPlayer3D" parent="." index="4"]
+[node name="audio_stream_player_unlock" type="AudioStreamPlayer3D" parent="." index="4" unique_id=599884157]
 stream = ExtResource("5_tk2a2")
 
-[node name="audio_stream_player_opening" type="AudioStreamPlayer3D" parent="." index="5"]
+[node name="audio_stream_player_opening" type="AudioStreamPlayer3D" parent="." index="5" unique_id=1829007617]
 stream = ExtResource("8_nnnbh")
 
-[node name="audio_stream_player_closing" type="AudioStreamPlayer3D" parent="." index="6"]
+[node name="audio_stream_player_closing" type="AudioStreamPlayer3D" parent="." index="6" unique_id=18809465]
 stream = ExtResource("9_uvudv")

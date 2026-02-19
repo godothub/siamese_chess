@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://y13y4nucxo2v"]
+[gd_scene format=3 uid="uid://y13y4nucxo2v"]
 
 [ext_resource type="PackedScene" uid="uid://bcu5vlysl22wu" path="res://assets/model/bible.glb" id="1_hgbbb"]
 
@@ -490,9 +490,9 @@ _data = {
 &"prev": SubResource("Animation_3g04l")
 }
 
-[node name="bible" instance=ExtResource("1_hgbbb")]
+[node name="bible" unique_id=1263647484 instance=ExtResource("1_hgbbb")]
 
-[node name="Skeleton3D" parent="skeleton" index="0"]
+[node name="Skeleton3D" parent="skeleton" parent_id_path=PackedInt32Array(1451759670) index="0" unique_id=1525021018]
 bones/1/rotation = Quaternion(6.95875e-08, 1.85722e-15, -0.291871, 0.956458)
 bones/2/rotation = Quaternion(4.03966e-08, 8.56148e-15, -0.169436, 0.985541)
 bones/3/rotation = Quaternion(2.72853e-08, -6.70539e-16, -0.114443, 0.99343)
@@ -518,10 +518,8 @@ bones/15/scale = Vector3(1, 1, 1)
 bones/17/scale = Vector3(1, 1, 1)
 bones/19/scale = Vector3(1, 1, 1)
 
-[node name="single_page" parent="skeleton/Skeleton3D" index="4"]
+[node name="single_page" parent="skeleton/Skeleton3D" index="4" unique_id=1178624749]
 visible = false
 
-[node name="animation_player" type="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_hjen1")
-}
+[node name="animation_player" type="AnimationPlayer" parent="." index="1" unique_id=1593180325]
+libraries/ = SubResource("AnimationLibrary_hjen1")

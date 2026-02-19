@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_exu1i"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_fjtbx"]
 [ext_resource type="PackedScene" uid="uid://rxu1cqxjo2dn" path="res://scene/upright_piano.tscn" id="7_qe74a"]
-[ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/marker_actor.gd" id="7_qtr2s"]
+[ext_resource type="Script" path="res://src/marker_actor.gd" id="7_qtr2s"]
 [ext_resource type="PackedScene" uid="uid://cjtow7squ3ylg" path="res://assets/model/chapel_chair.glb" id="8_jad32"]
 [ext_resource type="PackedScene" uid="uid://bw127d1iawnv3" path="res://assets/model/radermachera_sinica.glb" id="11_mytjl"]
 [ext_resource type="PackedScene" uid="uid://c3peh1jag1bb1" path="res://assets/model/reception_chair.glb" id="11_qtr2s"]
@@ -69,7 +69,6 @@ metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="upright_piano" parent="." unique_id=1934805423 instance=ExtResource("7_qe74a")]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 5, 0, 1)
@@ -110,265 +109,221 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7257, 0, 2.2609)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_1" type="Marker3D" parent="." unique_id=1418376121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_2" type="Marker3D" parent="." unique_id=388493826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_3" type="Marker3D" parent="." unique_id=99088024]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_4" type="Marker3D" parent="." unique_id=528211932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_5" type="Marker3D" parent="." unique_id=1900378176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_6" type="Marker3D" parent="." unique_id=1192298061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_8" type="Marker3D" parent="." unique_id=2025380118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_9" type="Marker3D" parent="." unique_id=1132265213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_10" type="Marker3D" parent="." unique_id=1726612145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_11" type="Marker3D" parent="." unique_id=2059623441]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_12" type="Marker3D" parent="." unique_id=339183334]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_13" type="Marker3D" parent="." unique_id=252203403]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_14" type="Marker3D" parent="." unique_id=1944676882]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_15" type="Marker3D" parent="." unique_id=1883267220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_16" type="Marker3D" parent="." unique_id=861843778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_17" type="Marker3D" parent="." unique_id=1094252091]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_18" type="Marker3D" parent="." unique_id=668582212]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_19" type="Marker3D" parent="." unique_id=2011246635]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_20" type="Marker3D" parent="." unique_id=1936732799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_21" type="Marker3D" parent="." unique_id=984243371]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_22" type="Marker3D" parent="." unique_id=750997500]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_23" type="Marker3D" parent="." unique_id=1657944823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_24" type="Marker3D" parent="." unique_id=893936455]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_25" type="Marker3D" parent="." unique_id=1385179668]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_26" type="Marker3D" parent="." unique_id=674874247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_27" type="Marker3D" parent="." unique_id=376979229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_28" type="Marker3D" parent="." unique_id=1834727596]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_29" type="Marker3D" parent="." unique_id=1647809899]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_30" type="Marker3D" parent="." unique_id=1870693795]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_31" type="Marker3D" parent="." unique_id=573537921]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_32" type="Marker3D" parent="." unique_id=1452381255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_33" type="Marker3D" parent="." unique_id=749215223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_34" type="Marker3D" parent="." unique_id=511867562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_35" type="Marker3D" parent="." unique_id=1531815963]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_36" type="Marker3D" parent="." unique_id=1372437164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_37" type="Marker3D" parent="." unique_id=761312781]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_38" type="Marker3D" parent="." unique_id=626104981]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_39" type="Marker3D" parent="." unique_id=1210815567]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_40" type="Marker3D" parent="." unique_id=1028926964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_41" type="Marker3D" parent="." unique_id=415886109]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_42" type="Marker3D" parent="." unique_id=6622729]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_43" type="Marker3D" parent="." unique_id=178989521]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_44" type="Marker3D" parent="." unique_id=1358467831]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7)
 script = ExtResource("7_qtr2s")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="reception_chair2" parent="." unique_id=1528458521 instance=ExtResource("11_qtr2s")]
 transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 5.35379, 0, -3.42516)

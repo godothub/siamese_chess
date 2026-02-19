@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bv1nocfh3i556"]
+[gd_scene format=3 uid="uid://bv1nocfh3i556"]
 
 [ext_resource type="Script" uid="uid://co15mhip5ijel" path="res://src/test/opening_editor.gd" id="1_1g675"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="2_0yhrm"]
@@ -18,28 +18,28 @@ background_mode = 2
 sky = SubResource("Sky_31ryr")
 tonemap_mode = 2
 
-[node name="sandbox" type="Node3D"]
+[node name="sandbox" type="Node3D" unique_id=1238031932]
 script = ExtResource("1_1g675")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1967183876]
 environment = SubResource("Environment_htjak")
 
-[node name="chessboard" parent="." instance=ExtResource("2_0yhrm")]
+[node name="chessboard" parent="." unique_id=1393140369 instance=ExtResource("2_0yhrm")]
 
-[node name="camera_3d" type="Camera3D" parent="."]
+[node name="camera_3d" type="Camera3D" parent="." unique_id=413765247]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.425, 0.946, 0)
 
-[node name="player" parent="." instance=ExtResource("3_85lqa")]
+[node name="player" parent="." unique_id=1437426929 instance=ExtResource("3_85lqa")]
 
-[node name="interact" type="Area3D" parent="." node_paths=PackedStringArray("camera", "inspectable_item")]
+[node name="interact" type="Area3D" parent="." unique_id=2116217727 node_paths=PackedStringArray("camera", "inspectable_item")]
 script = ExtResource("4_2v8s7")
 camera = NodePath("../camera_3d")
 inspectable_item = [NodePath("../chessboard")]
 metadata/_custom_type_script = "uid://dg85frcnjlauy"
 
-[node name="canvas_layer" type="CanvasLayer" parent="."]
+[node name="canvas_layer" type="CanvasLayer" parent="." unique_id=458974992]
 
-[node name="panel" type="Panel" parent="canvas_layer"]
+[node name="panel" type="Panel" parent="canvas_layer" unique_id=1536386980]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -48,7 +48,7 @@ offset_left = -362.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="v_box_container" type="VBoxContainer" parent="canvas_layer/panel"]
+[node name="v_box_container" type="VBoxContainer" parent="canvas_layer/panel" unique_id=615976015]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="margin_container_1" type="MarginContainer" parent="canvas_layer/panel/v_box_container"]
+[node name="margin_container_1" type="MarginContainer" parent="canvas_layer/panel/v_box_container" unique_id=233921422]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -65,10 +65,10 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="text_edit_name" type="TextEdit" parent="canvas_layer/panel/v_box_container/margin_container_1"]
+[node name="text_edit_name" type="TextEdit" parent="canvas_layer/panel/v_box_container/margin_container_1" unique_id=2047138542]
 layout_mode = 2
 
-[node name="margin_container_2" type="MarginContainer" parent="canvas_layer/panel/v_box_container"]
+[node name="margin_container_2" type="MarginContainer" parent="canvas_layer/panel/v_box_container" unique_id=1764961896]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
@@ -76,42 +76,42 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="text_edit_description" type="TextEdit" parent="canvas_layer/panel/v_box_container/margin_container_2"]
+[node name="text_edit_description" type="TextEdit" parent="canvas_layer/panel/v_box_container/margin_container_2" unique_id=1971211429]
 layout_mode = 2
 
-[node name="margin_container_3" type="MarginContainer" parent="canvas_layer/panel/v_box_container"]
+[node name="margin_container_3" type="MarginContainer" parent="canvas_layer/panel/v_box_container" unique_id=923955405]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="text_edit_move" type="TextEdit" parent="canvas_layer/panel/v_box_container/margin_container_3"]
+[node name="text_edit_move" type="TextEdit" parent="canvas_layer/panel/v_box_container/margin_container_3" unique_id=321434646]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="margin_container" type="MarginContainer" parent="canvas_layer/panel/v_box_container"]
+[node name="margin_container" type="MarginContainer" parent="canvas_layer/panel/v_box_container" unique_id=2121110938]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 21
 
-[node name="h_box_container" type="HBoxContainer" parent="canvas_layer/panel/v_box_container/margin_container"]
+[node name="h_box_container" type="HBoxContainer" parent="canvas_layer/panel/v_box_container/margin_container" unique_id=1458250585]
 layout_mode = 2
 
-[node name="button_prev" type="Button" parent="canvas_layer/panel/v_box_container/margin_container/h_box_container"]
+[node name="button_prev" type="Button" parent="canvas_layer/panel/v_box_container/margin_container/h_box_container" unique_id=22889662]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_0yhrm")
 text = "上一步"
 
-[node name="button_save" type="Button" parent="canvas_layer/panel/v_box_container/margin_container/h_box_container"]
+[node name="button_save" type="Button" parent="canvas_layer/panel/v_box_container/margin_container/h_box_container" unique_id=629283179]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_0yhrm")
 text = "保存"
 
-[node name="button_next" type="Button" parent="canvas_layer/panel/v_box_container/margin_container/h_box_container"]
+[node name="button_next" type="Button" parent="canvas_layer/panel/v_box_container/margin_container/h_box_container" unique_id=2118016441]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("5_0yhrm")

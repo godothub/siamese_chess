@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dkha0s03djtdq"]
+[gd_scene format=3 uid="uid://dkha0s03djtdq"]
 
 [ext_resource type="PackedScene" uid="uid://dtfiqcyb2edwn" path="res://assets/model/phonograph.glb" id="1_ux6jj"]
 [ext_resource type="Shader" uid="uid://dd7xsr1eeq6mo" path="res://src/unmoving_plaid.gdshader" id="2_cvdbm"]
@@ -80,75 +80,74 @@ radius = 0.0166016
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_qow6u"]
 buffer_length = 0.1
 
-[node name="phonograph" instance=ExtResource("1_ux6jj")]
+[node name="phonograph" unique_id=547127165 instance=ExtResource("1_ux6jj")]
 script = ExtResource("2_qow6u")
 
-[node name="body" parent="." index="0"]
+[node name="body" parent="." index="0" unique_id=1759458540]
 surface_material_override/0 = SubResource("ShaderMaterial_jkwwu")
 
-[node name="vinyl_base" parent="." index="1"]
+[node name="vinyl_base" parent="." index="1" unique_id=783184152]
 surface_material_override/0 = SubResource("ShaderMaterial_8wbsc")
 
-[node name="stylus" parent="." index="2"]
+[node name="stylus" parent="." index="2" unique_id=153789561]
 surface_material_override/0 = SubResource("ShaderMaterial_raspe")
 
-[node name="area_stylus" type="Area3D" parent="stylus" index="0"]
+[node name="area_stylus" type="Area3D" parent="stylus" index="0" unique_id=1723206268]
 transform = Transform3D(4.37517, 0, 0, 0, 4.37517, 0, 0, 0, 4.37517, -0.708232, -0.99874, 0.495516)
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="stylus/area_stylus" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="stylus/area_stylus" index="0" unique_id=379666364]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.160622, 0.244064, -0.0286865)
 shape = SubResource("BoxShape3D_ux6jj")
 
-[node name="stylus_base" parent="." index="3"]
+[node name="stylus_base" parent="." index="3" unique_id=1679716546]
 surface_material_override/0 = SubResource("ShaderMaterial_raspe")
 
-[node name="knob_1" parent="." index="4"]
+[node name="knob_1" parent="." index="4" unique_id=740242964]
 surface_material_override/0 = SubResource("ShaderMaterial_raspe")
 
-[node name="vinyl" parent="." index="5"]
+[node name="vinyl" parent="." index="5" unique_id=984350193]
 surface_material_override/0 = SubResource("ShaderMaterial_raspe")
 surface_material_override/1 = SubResource("ShaderMaterial_cvdbm")
 
-[node name="axis" parent="." index="6"]
+[node name="axis" parent="." index="6" unique_id=203156218]
 surface_material_override/0 = SubResource("ShaderMaterial_577lu")
 
-[node name="cover" parent="." index="7"]
+[node name="cover" parent="." index="7" unique_id=1057396424]
 transform = Transform3D(0.22856298, 0, 0, 0, 0.2285628, 0, 0, 0, 0.2285628, 0.000909835, 0.204559, -0.183626)
 
-[node name="knob_2" parent="." index="8"]
+[node name="knob_2" parent="." index="8" unique_id=1967069409]
 surface_material_override/0 = SubResource("ShaderMaterial_raspe")
 
-[node name="area_vinyl" type="Area3D" parent="." index="9"]
+[node name="area_vinyl" type="Area3D" parent="." index="9" unique_id=1030032462]
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_vinyl" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_vinyl" index="0" unique_id=1887670047]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0322797, 0.220947, 0.015853)
 shape = SubResource("CylinderShape3D_ux6jj")
 
-[node name="area_volume" type="Area3D" parent="." index="10"]
+[node name="area_volume" type="Area3D" parent="." index="10" unique_id=391544089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13889, 0.215103, 0.169916)
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_volume" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_volume" index="0" unique_id=743711749]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00190341, 0.00195313, -0.00195244)
 shape = SubResource("CylinderShape3D_qow6u")
 
-[node name="area_pitch" type="Area3D" parent="." index="11"]
+[node name="area_pitch" type="Area3D" parent="." index="11" unique_id=449975729]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.187138, 0.215103, 0.169916)
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_pitch" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_pitch" index="0" unique_id=2139592353]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00190341, 0.00195313, -0.00195244)
 shape = SubResource("CylinderShape3D_8wbsc")
 
-[node name="audio_stream_player_3d" type="AudioStreamPlayer3D" parent="." index="12"]
+[node name="audio_stream_player_3d" type="AudioStreamPlayer3D" parent="." index="12" unique_id=974390401]
 stream = SubResource("AudioStreamGenerator_qow6u")
 volume_db = 0.75
 autoplay = true
-bus = &"Music"
 playback_type = 1

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://u7ee82m7mrun"]
+[gd_scene format=3 uid="uid://u7ee82m7mrun"]
 
 [ext_resource type="Script" uid="uid://cgjcqf3snbeen" path="res://src/test/test_transposition_table.gd" id="1_2s4yb"]
 
-[node name="test_transposition_table" type="Control"]
+[node name="test_transposition_table" type="Control" unique_id=922191379]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgh28yukno0u7"]
+[gd_scene format=3 uid="uid://cgh28yukno0u7"]
 
-[ext_resource type="Script" uid="uid://cvkn4b0pkklap" path="res://src/printed_paper.gd" id="1_wvpc7"]
+[ext_resource type="Script" path="res://src/printed_paper.gd" id="1_wvpc7"]
 
-[node name="printed_paper" type="Node2D"]
+[node name="printed_paper" type="Node2D" unique_id=579878372]
 script = ExtResource("1_wvpc7")
 metadata/_custom_type_script = "uid://yldiqj24uchh"
 
-[node name="sprite_2d" type="Sprite2D" parent="."]
+[node name="sprite_2d" type="Sprite2D" parent="." unique_id=943027423]

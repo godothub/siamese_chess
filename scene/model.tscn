@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcu8cfedvwgsy"]
+[gd_scene format=3 uid="uid://dcu8cfedvwgsy"]
 
 [ext_resource type="Script" uid="uid://b7bd7gor6auwu" path="res://src/model.gd" id="1_36njv"]
 
@@ -19,25 +19,25 @@ background_mode = 2
 sky = SubResource("Sky_x0vwd")
 tonemap_mode = 2
 
-[node name="model" type="Node2D"]
+[node name="model" type="Node2D" unique_id=1712911378]
 script = ExtResource("1_36njv")
 
-[node name="sprite_2d" type="Sprite2D" parent="."]
+[node name="sprite_2d" type="Sprite2D" parent="." unique_id=592815335]
 texture = SubResource("ViewportTexture_36njv")
 
-[node name="sub_viewport" type="SubViewport" parent="."]
+[node name="sub_viewport" type="SubViewport" parent="." unique_id=17345409]
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(1028, 1028)
 render_target_update_mode = 4
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="sub_viewport"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="sub_viewport" unique_id=1200064168]
 environment = SubResource("Environment_mi8yu")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="sub_viewport"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="sub_viewport" unique_id=5504033]
 transform = Transform3D(0.936434, -0.303841, 0.175422, 0, 0.5, 0.866025, -0.350845, -0.810975, 0.468217, 0, 0, 0)
 shadow_enabled = true
 
-[node name="camera_3d" type="Camera3D" parent="sub_viewport"]
+[node name="camera_3d" type="Camera3D" parent="sub_viewport" unique_id=325277294]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.105904, 0.437064)
 current = true

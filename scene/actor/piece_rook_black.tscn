@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7uycfov8t6ed"]
+[gd_scene format=3 uid="uid://b7uycfov8t6ed"]
 
 [ext_resource type="PackedScene" uid="uid://b6l1w8csg7tim" path="res://assets/model/piece_rook.glb" id="1_4fjsw"]
 [ext_resource type="Script" uid="uid://pofjvdbbj3iy" path="res://src/actor/piece.gd" id="2_fmjvr"]
@@ -24,8 +24,8 @@ shader_parameter/value_mult = 1.0
 shader_parameter/brightness_add = -0.055
 shader_parameter/contrast_mult = 1.0
 
-[node name="piece_rook" instance=ExtResource("1_4fjsw")]
+[node name="piece_rook" unique_id=1521051294 instance=ExtResource("1_4fjsw")]
 script = ExtResource("2_fmjvr")
 
-[node name="piece" parent="." index="0"]
+[node name="piece" parent="." index="0" unique_id=169348020]
 surface_material_override/0 = SubResource("ShaderMaterial_217ym")

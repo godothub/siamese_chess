@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://se3688koenkw"]
+[gd_scene format=3 uid="uid://se3688koenkw"]
 
 [ext_resource type="Script" uid="uid://bddt5onsahqla" path="res://src/artwork.gd" id="1_t8tho"]
 
-[node name="artwork" type="Node2D"]
+[node name="artwork" type="Node2D" unique_id=534642711]
 script = ExtResource("1_t8tho")
 metadata/_custom_type_script = "uid://yldiqj24uchh"
 
-[node name="sprite" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="." unique_id=1804396413]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmwl65mg7565u"]
+[gd_scene format=3 uid="uid://dmwl65mg7565u"]
 
 [ext_resource type="PackedScene" uid="uid://bxkjv5s5sxkbk" path="res://assets/model/piece_pawn.glb" id="1_wvvgf"]
 [ext_resource type="Script" uid="uid://pofjvdbbj3iy" path="res://src/actor/piece.gd" id="2_p51lj"]
@@ -24,8 +24,8 @@ shader_parameter/value_mult = 1.0
 shader_parameter/brightness_add = -0.055
 shader_parameter/contrast_mult = 1.0
 
-[node name="piece_pawn" instance=ExtResource("1_wvvgf")]
+[node name="piece_pawn" unique_id=440476368 instance=ExtResource("1_wvvgf")]
 script = ExtResource("2_p51lj")
 
-[node name="piece" parent="." index="0"]
+[node name="piece" parent="." index="0" unique_id=658224853]
 surface_material_override/0 = SubResource("ShaderMaterial_s3eqc")

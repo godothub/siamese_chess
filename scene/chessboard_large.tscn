@@ -7,263 +7,263 @@
 [node name="chessboard_large" unique_id=1662556525 instance=ExtResource("1_x56hs")]
 script = ExtResource("2_j52ln")
 
+[node name="a1" parent="." index="66" unique_id=2115514985]
+monitoring = false
+monitorable = false
+
 [node name="canvas" parent="." index="67" unique_id=1598752436 instance=ExtResource("3_vvu1j")]
 transform = Transform3D(-16, 0, -2.41593e-06, 0, 16, 0, 2.41593e-06, 0, -16, 0, 0.0786357, 0)
 
 [node name="pieces" type="Node3D" parent="." index="68" unique_id=671258824]
 
-[node name="a1" parent="."]
+[node name="a2" parent="." index="69" unique_id=119975878]
 monitoring = false
 monitorable = false
 
-[node name="a2" parent="."]
+[node name="a3" parent="." index="70" unique_id=1819779784]
 monitoring = false
 monitorable = false
 
-[node name="a3" parent="."]
+[node name="a4" parent="." index="71" unique_id=23863689]
 monitoring = false
 monitorable = false
 
-[node name="a4" parent="."]
+[node name="a5" parent="." index="72" unique_id=643545436]
 monitoring = false
 monitorable = false
 
-[node name="a5" parent="."]
+[node name="a6" parent="." index="73" unique_id=1471371171]
 monitoring = false
 monitorable = false
 
-[node name="a6" parent="."]
+[node name="a7" parent="." index="74" unique_id=1915798391]
 monitoring = false
 monitorable = false
 
-[node name="a7" parent="."]
+[node name="a8" parent="." index="75" unique_id=1693919504]
 monitoring = false
 monitorable = false
 
-[node name="a8" parent="."]
+[node name="b1" parent="." index="76" unique_id=1642970954]
 monitoring = false
 monitorable = false
 
-[node name="b1" parent="."]
+[node name="b2" parent="." index="77" unique_id=1592089549]
 monitoring = false
 monitorable = false
 
-[node name="b2" parent="."]
+[node name="b3" parent="." index="78" unique_id=164412863]
 monitoring = false
 monitorable = false
 
-[node name="b3" parent="."]
+[node name="b4" parent="." index="79" unique_id=1031970247]
 monitoring = false
 monitorable = false
 
-[node name="b4" parent="."]
+[node name="b5" parent="." index="80" unique_id=688631584]
 monitoring = false
 monitorable = false
 
-[node name="b5" parent="."]
+[node name="b6" parent="." index="81" unique_id=625662428]
 monitoring = false
 monitorable = false
 
-[node name="b6" parent="."]
+[node name="b7" parent="." index="82" unique_id=1880858267]
 monitoring = false
 monitorable = false
 
-[node name="b7" parent="."]
+[node name="b8" parent="." index="83" unique_id=520829543]
 monitoring = false
 monitorable = false
 
-[node name="b8" parent="."]
+[node name="c1" parent="." index="84" unique_id=1715436993]
 monitoring = false
 monitorable = false
 
-[node name="c1" parent="."]
+[node name="c2" parent="." index="85" unique_id=1907035903]
 monitoring = false
 monitorable = false
 
-[node name="c2" parent="."]
+[node name="c3" parent="." index="86" unique_id=2111644754]
 monitoring = false
 monitorable = false
 
-[node name="c3" parent="."]
+[node name="c4" parent="." index="87" unique_id=641952405]
 monitoring = false
 monitorable = false
 
-[node name="c4" parent="."]
+[node name="c5" parent="." index="88" unique_id=58340784]
 monitoring = false
 monitorable = false
 
-[node name="c5" parent="."]
+[node name="c6" parent="." index="89" unique_id=1256036418]
 monitoring = false
 monitorable = false
 
-[node name="c6" parent="."]
+[node name="c7" parent="." index="90" unique_id=146511230]
 monitoring = false
 monitorable = false
 
-[node name="c7" parent="."]
+[node name="c8" parent="." index="91" unique_id=282649858]
 monitoring = false
 monitorable = false
 
-[node name="c8" parent="."]
+[node name="d1" parent="." index="92" unique_id=1066932701]
 monitoring = false
 monitorable = false
 
-[node name="d1" parent="."]
+[node name="d2" parent="." index="93" unique_id=1911117014]
 monitoring = false
 monitorable = false
 
-[node name="d2" parent="."]
+[node name="d3" parent="." index="94" unique_id=1045391255]
 monitoring = false
 monitorable = false
 
-[node name="d3" parent="."]
+[node name="d4" parent="." index="95" unique_id=828328867]
 monitoring = false
 monitorable = false
 
-[node name="d4" parent="."]
+[node name="d5" parent="." index="96" unique_id=680038756]
 monitoring = false
 monitorable = false
 
-[node name="d5" parent="."]
+[node name="d6" parent="." index="97" unique_id=1697551401]
 monitoring = false
 monitorable = false
 
-[node name="d6" parent="."]
+[node name="d7" parent="." index="98" unique_id=202223291]
 monitoring = false
 monitorable = false
 
-[node name="d7" parent="."]
+[node name="d8" parent="." index="99" unique_id=1372427347]
 monitoring = false
 monitorable = false
 
-[node name="d8" parent="."]
+[node name="e1" parent="." index="100" unique_id=491321873]
 monitoring = false
 monitorable = false
 
-[node name="e1" parent="."]
+[node name="e2" parent="." index="101" unique_id=35295175]
 monitoring = false
 monitorable = false
 
-[node name="e2" parent="."]
+[node name="e3" parent="." index="102" unique_id=1988939214]
 monitoring = false
 monitorable = false
 
-[node name="e3" parent="."]
+[node name="e4" parent="." index="103" unique_id=1815902409]
 monitoring = false
 monitorable = false
 
-[node name="e4" parent="."]
+[node name="e5" parent="." index="104" unique_id=1873025855]
 monitoring = false
 monitorable = false
 
-[node name="e5" parent="."]
+[node name="e6" parent="." index="105" unique_id=1715008728]
 monitoring = false
 monitorable = false
 
-[node name="e6" parent="."]
+[node name="e7" parent="." index="106" unique_id=919947333]
 monitoring = false
 monitorable = false
 
-[node name="e7" parent="."]
+[node name="e8" parent="." index="107" unique_id=610413816]
 monitoring = false
 monitorable = false
 
-[node name="e8" parent="."]
+[node name="f1" parent="." index="108" unique_id=235984923]
 monitoring = false
 monitorable = false
 
-[node name="f1" parent="."]
+[node name="f2" parent="." index="109" unique_id=635593600]
 monitoring = false
 monitorable = false
 
-[node name="f2" parent="."]
+[node name="f3" parent="." index="110" unique_id=1902659912]
 monitoring = false
 monitorable = false
 
-[node name="f3" parent="."]
+[node name="f4" parent="." index="111" unique_id=1860827880]
 monitoring = false
 monitorable = false
 
-[node name="f4" parent="."]
+[node name="f5" parent="." index="112" unique_id=2051584876]
 monitoring = false
 monitorable = false
 
-[node name="f5" parent="."]
+[node name="f6" parent="." index="113" unique_id=1098964648]
 monitoring = false
 monitorable = false
 
-[node name="f6" parent="."]
+[node name="f7" parent="." index="114" unique_id=1036658201]
 monitoring = false
 monitorable = false
 
-[node name="f7" parent="."]
+[node name="f8" parent="." index="115" unique_id=1722822334]
 monitoring = false
 monitorable = false
 
-[node name="f8" parent="."]
+[node name="g1" parent="." index="116" unique_id=2008637151]
 monitoring = false
 monitorable = false
 
-[node name="g1" parent="."]
+[node name="g2" parent="." index="117" unique_id=172070881]
 monitoring = false
 monitorable = false
 
-[node name="g2" parent="."]
+[node name="g3" parent="." index="118" unique_id=49737793]
 monitoring = false
 monitorable = false
 
-[node name="g3" parent="."]
+[node name="g4" parent="." index="119" unique_id=1770120441]
 monitoring = false
 monitorable = false
 
-[node name="g4" parent="."]
+[node name="g5" parent="." index="120" unique_id=1934136385]
 monitoring = false
 monitorable = false
 
-[node name="g5" parent="."]
+[node name="g6" parent="." index="121" unique_id=1696083953]
 monitoring = false
 monitorable = false
 
-[node name="g6" parent="."]
+[node name="g7" parent="." index="122" unique_id=690048775]
 monitoring = false
 monitorable = false
 
-[node name="g7" parent="."]
+[node name="g8" parent="." index="123" unique_id=1359009442]
 monitoring = false
 monitorable = false
 
-[node name="g8" parent="."]
+[node name="h1" parent="." index="124" unique_id=935988639]
 monitoring = false
 monitorable = false
 
-[node name="h1" parent="."]
+[node name="h2" parent="." index="125" unique_id=1089250991]
 monitoring = false
 monitorable = false
 
-[node name="h2" parent="."]
+[node name="h3" parent="." index="126" unique_id=208351003]
 monitoring = false
 monitorable = false
 
-[node name="h3" parent="."]
+[node name="h4" parent="." index="127" unique_id=1943195949]
 monitoring = false
 monitorable = false
 
-[node name="h4" parent="."]
+[node name="h5" parent="." index="128" unique_id=1400554396]
 monitoring = false
 monitorable = false
 
-[node name="h5" parent="."]
+[node name="h6" parent="." index="129" unique_id=133461881]
 monitoring = false
 monitorable = false
 
-[node name="h6" parent="."]
+[node name="h7" parent="." index="130" unique_id=1207874611]
 monitoring = false
 monitorable = false
 
-[node name="h7" parent="."]
-monitoring = false
-monitorable = false
-
-[node name="h8" parent="."]
+[node name="h8" parent="." index="131" unique_id=1393630494]
 monitoring = false
 monitorable = false

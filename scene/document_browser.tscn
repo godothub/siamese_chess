@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsobwdwnm840s"]
+[gd_scene format=3 uid="uid://bsobwdwnm840s"]
 
 [ext_resource type="Script" uid="uid://dpwx8x2545los" path="res://src/document_browser.gd" id="1_cflc6"]
 [ext_resource type="Script" uid="uid://wa2q0lswte4p" path="res://addons/gdtim/InputManager.gd" id="2_y0c1r"]
@@ -10,7 +10,7 @@ colors = PackedColorArray(0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_cflc6"]
 gradient = SubResource("Gradient_gckm1")
 
-[node name="document_browser" type="Control"]
+[node name="document_browser" type="Control" unique_id=1062477393]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,11 +19,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cflc6")
 
-[node name="touch_input_manager" type="Node" parent="."]
+[node name="touch_input_manager" type="Node" parent="." unique_id=906038595]
 script = ExtResource("2_y0c1r")
 metadata/_custom_type_script = "uid://wa2q0lswte4p"
 
-[node name="texture_rect_left" type="TextureRect" parent="."]
+[node name="texture_rect_left" type="TextureRect" parent="." unique_id=1556696489]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.087
@@ -34,7 +34,7 @@ texture = SubResource("GradientTexture1D_cflc6")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="texture_rect_right" type="TextureRect" parent="."]
+[node name="texture_rect_right" type="TextureRect" parent="." unique_id=1926182000]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.913
@@ -47,7 +47,7 @@ texture = SubResource("GradientTexture1D_cflc6")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="sub_viewport_container" type="SubViewportContainer" parent="."]
+[node name="sub_viewport_container" type="SubViewportContainer" parent="." unique_id=1765219254]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.087
@@ -57,7 +57,7 @@ offset_left = -0.224007
 offset_right = 0.223999
 stretch = true
 
-[node name="sub_viewport" type="SubViewport" parent="sub_viewport_container"]
+[node name="sub_viewport" type="SubViewport" parent="sub_viewport_container" unique_id=456677478]
 handle_input_locally = false
 size = Vector2i(952, 648)
 render_target_update_mode = 4

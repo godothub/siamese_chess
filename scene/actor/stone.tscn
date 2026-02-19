@@ -6,7 +6,6 @@
 
 [node name="stone" type="Node3D" unique_id=1581460868]
 script = ExtResource("1_5bpc2")
-piece_type = 35
 metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
 
 [node name="0" parent="." unique_id=1659126381 instance=ExtResource("2_5bpc2")]

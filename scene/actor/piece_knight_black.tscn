@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgoyrycf6ngyw"]
+[gd_scene format=3 uid="uid://cgoyrycf6ngyw"]
 
 [ext_resource type="PackedScene" uid="uid://d3hqei5f4weey" path="res://assets/model/piece_knight.glb" id="1_ma7dk"]
 [ext_resource type="Script" uid="uid://pofjvdbbj3iy" path="res://src/actor/piece.gd" id="2_mgj2t"]
@@ -24,8 +24,8 @@ shader_parameter/value_mult = 1.0
 shader_parameter/brightness_add = -0.055
 shader_parameter/contrast_mult = 1.0
 
-[node name="piece_knight" instance=ExtResource("1_ma7dk")]
+[node name="piece_knight" unique_id=1431110616 instance=ExtResource("1_ma7dk")]
 script = ExtResource("2_mgj2t")
 
-[node name="piece" parent="." index="0"]
+[node name="piece" parent="." index="0" unique_id=1706018440]
 surface_material_override/0 = SubResource("ShaderMaterial_0txx3")

@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnxosopniliec"]
+[gd_scene format=3 uid="uid://bnxosopniliec"]
 
 [ext_resource type="Script" uid="uid://bsajskxatnrhs" path="res://src/chessboard_flat.gd" id="1_a2xtl"]
 [ext_resource type="Texture2D" uid="uid://bqswpy1vatpto" path="res://assets/texture/chessboard_flat.png" id="1_xd6o5"]
 
-[node name="chessboard_flat" type="Node2D"]
+[node name="chessboard_flat" type="Node2D" unique_id=1363646548]
 script = ExtResource("1_a2xtl")
 
-[node name="sprite_chessboard" type="Sprite2D" parent="."]
+[node name="sprite_chessboard" type="Sprite2D" parent="." unique_id=1349624682]
 texture = ExtResource("1_xd6o5")
 centered = false

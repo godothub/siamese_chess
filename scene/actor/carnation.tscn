@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1orpuo40iup6"]
+[gd_scene format=3 uid="uid://d1orpuo40iup6"]
 
 [ext_resource type="PackedScene" uid="uid://c6jort6rt0j8h" path="res://assets/model/carnation.glb" id="1_74he7"]
 [ext_resource type="Script" uid="uid://dt43fcqhq8wr6" path="res://src/actor/carnation.gd" id="2_eoyf3"]
@@ -10,10 +10,9 @@ animation = &"idle"
 states/idle/node = SubResource("AnimationNodeAnimation_74he7")
 states/idle/position = Vector2(565, 106)
 
-[node name="carnation" instance=ExtResource("1_74he7")]
+[node name="carnation" unique_id=226847651 instance=ExtResource("1_74he7")]
 script = ExtResource("2_eoyf3")
-piece_type = [122]
 
-[node name="animation_tree" type="AnimationTree" parent="." index="3"]
+[node name="animation_tree" type="AnimationTree" parent="." index="3" unique_id=296152206]
 tree_root = SubResource("AnimationNodeStateMachine_74he7")
 anim_player = NodePath("../AnimationPlayer")

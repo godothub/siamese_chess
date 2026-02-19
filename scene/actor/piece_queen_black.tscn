@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://wlf2bpitdmjk"]
+[gd_scene format=3 uid="uid://wlf2bpitdmjk"]
 
 [ext_resource type="PackedScene" uid="uid://3uniw2jsey4r" path="res://assets/model/piece_queen.glb" id="1_hcmrp"]
 [ext_resource type="Script" uid="uid://pofjvdbbj3iy" path="res://src/actor/piece.gd" id="2_heo6i"]
@@ -24,8 +24,8 @@ shader_parameter/value_mult = 1.0
 shader_parameter/brightness_add = -0.055
 shader_parameter/contrast_mult = 1.0
 
-[node name="piece_queen" instance=ExtResource("1_hcmrp")]
+[node name="piece_queen" unique_id=564171690 instance=ExtResource("1_hcmrp")]
 script = ExtResource("2_heo6i")
 
-[node name="piece" parent="." index="0"]
+[node name="piece" parent="." index="0" unique_id=887344523]
 surface_material_override/0 = SubResource("ShaderMaterial_nfx3c")

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b00nn8gq4ybud"]
+[gd_scene format=3 uid="uid://b00nn8gq4ybud"]
 
 [ext_resource type="Script" uid="uid://bhbtth11qi5dn" path="res://src/test/database_generator.gd" id="1_tn6e1"]
 
-[node name="database_generator" type="Control"]
+[node name="database_generator" type="Control" unique_id=210819743]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tn6e1")
 
-[node name="panel" type="Panel" parent="."]
+[node name="panel" type="Panel" parent="." unique_id=2092433341]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.037
@@ -25,7 +25,7 @@ offset_bottom = -478.008
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="margin_container" type="MarginContainer" parent="panel"]
+[node name="margin_container" type="MarginContainer" parent="panel" unique_id=194336884]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,10 +37,10 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="label" type="Label" parent="panel/margin_container"]
+[node name="label" type="Label" parent="panel/margin_container" unique_id=434814501]
 layout_mode = 2
 
-[node name="panel_2" type="Panel" parent="."]
+[node name="panel_2" type="Panel" parent="." unique_id=718881870]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.037
@@ -54,7 +54,7 @@ offset_bottom = -0.00799561
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="margin_container" type="MarginContainer" parent="panel_2"]
+[node name="margin_container" type="MarginContainer" parent="panel_2" unique_id=2096189670]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,5 +66,5 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="h_box_container" type="HBoxContainer" parent="panel_2/margin_container"]
+[node name="h_box_container" type="HBoxContainer" parent="panel_2/margin_container" unique_id=1418122]
 layout_mode = 2

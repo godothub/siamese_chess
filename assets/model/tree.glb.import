@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/tree.glb-fc6ab78095acb2b901990ca8f80f1ada.scn
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Node3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true

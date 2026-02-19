@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhbpxlimf5g8k"]
+[gd_scene format=3 uid="uid://bhbpxlimf5g8k"]
 
 [ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/document.gd" id="1_8dpj7"]
 
-[node name="draft" type="Node2D"]
+[node name="draft" type="Node2D" unique_id=2511551]
 script = ExtResource("1_8dpj7")
 metadata/_custom_type_script = "uid://yldiqj24uchh"

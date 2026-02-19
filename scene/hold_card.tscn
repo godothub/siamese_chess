@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://oyog0g8p65cj"]
+[gd_scene format=3 uid="uid://oyog0g8p65cj"]
 
 [ext_resource type="Script" uid="uid://dshl854mfrege" path="res://src/hold_card.gd" id="1_wpu43"]
 
-[node name="hold_card" type="CanvasLayer"]
+[node name="hold_card" type="CanvasLayer" unique_id=997377888]
 layer = 3
 script = ExtResource("1_wpu43")
 
-[node name="card_list" type="Control" parent="."]
+[node name="card_list" type="Control" parent="." unique_id=1828265976]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0

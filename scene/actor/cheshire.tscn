@@ -136,8 +136,9 @@ albedo_color = Color(0.16, 0.0784, 0.0784, 1)
 material = SubResource("StandardMaterial3D_ftdew")
 size = Vector2(0.1, 0.1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_n5sec"]
-radius = 1.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n5sec"]
+radius = 0.3251953
+height = 1.690918
 
 [node name="cheshire" unique_id=1598402161 instance=ExtResource("1_lkfns")]
 collision_mask = 0
@@ -175,4 +176,4 @@ bus = &"SFX"
 
 [node name="collision_shape_3d" type="CollisionShape3D" parent="." index="6" unique_id=1470868309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003988564, 0.86261296, 0.0020794868)
-shape = SubResource("SphereShape3D_n5sec")
+shape = SubResource("CapsuleShape3D_n5sec")

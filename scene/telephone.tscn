@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bst0x07bms637"]
+[gd_scene format=3 uid="uid://bst0x07bms637"]
 
 [ext_resource type="PackedScene" uid="uid://cwa4q7nd31h3k" path="res://assets/model/telephone.glb" id="1_doli6"]
 [ext_resource type="Script" uid="uid://cgjalk6ns1btj" path="res://src/telephone.gd" id="2_xqtbd"]
@@ -14,125 +14,125 @@ size = Vector3(0.240482, 0.0483856, 0.0671349)
 [sub_resource type="SphereShape3D" id="SphereShape3D_xqtbd"]
 radius = 0.005
 
-[node name="telephone" instance=ExtResource("1_doli6")]
+[node name="telephone" unique_id=448065669 instance=ExtResource("1_doli6")]
 script = ExtResource("2_xqtbd")
 
-[node name="microphone" parent="." index="1"]
+[node name="microphone" parent="." index="1" unique_id=1755362843]
 rotation_edit_mode = 2
 
-[node name="area_3d" type="Area3D" parent="microphone" index="0"]
+[node name="area_3d" type="Area3D" parent="microphone" index="0" unique_id=1446647580]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.108036, -0.0522975)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="microphone/area_3d" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="microphone/area_3d" index="0" unique_id=1061179286]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00242037, -0.0238877, 0.0221767)
 shape = SubResource("BoxShape3D_xqtbd")
 
-[node name="audio_stream_player_phone" type="AudioStreamPlayer3D" parent="microphone" index="1"]
+[node name="audio_stream_player_phone" type="AudioStreamPlayer3D" parent="microphone" index="1" unique_id=516142670]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0870356, 0.061742, -0.0299011)
 stream = ExtResource("3_qx5oj")
 max_db = -6.239
 playback_type = 1
 
-[node name="area_1" type="Area3D" parent="." index="3"]
+[node name="area_1" type="Area3D" parent="." index="3" unique_id=1536387702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136629, 0.0619239, 0.00580481)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_1" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_1" index="0" unique_id=1559287415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000670195, 0, -0.00085118)
 shape = SubResource("SphereShape3D_xqtbd")
 
-[node name="area_2" type="Area3D" parent="." index="4"]
+[node name="area_2" type="Area3D" parent="." index="4" unique_id=1648734106]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00275162, 0.0651992, 0.00244183)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_2" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_2" index="0" unique_id=1044180773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00085118)
 shape = SubResource("SphereShape3D_xqtbd")
 
-[node name="area_3" type="Area3D" parent="." index="5"]
+[node name="area_3" type="Area3D" parent="." index="5" unique_id=149490250]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0090953, 0.0640354, 0.0028486)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_3" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_3" index="0" unique_id=880569180]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00085118)
 shape = SubResource("SphereShape3D_xqtbd")
 
-[node name="area_4" type="Area3D" parent="." index="6"]
+[node name="area_4" type="Area3D" parent="." index="6" unique_id=674215650]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0180937, 0.0600629, 0.00753065)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_4" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_4" index="0" unique_id=1170459158]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00085118)
 shape = SubResource("SphereShape3D_xqtbd")
 
-[node name="area_5" type="Area3D" parent="." index="7"]
+[node name="area_5" type="Area3D" parent="." index="7" unique_id=549316284]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0239628, 0.052921, 0.0145091)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_5" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_5" index="0" unique_id=670396870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00085118)
 shape = SubResource("SphereShape3D_xqtbd")
 
-[node name="area_6" type="Area3D" parent="." index="8"]
+[node name="area_6" type="Area3D" parent="." index="8" unique_id=1429724002]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0250723, 0.0438518, 0.023556)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_6" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_6" index="0" unique_id=1925166548]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00085118)
 shape = SubResource("SphereShape3D_xqtbd")
 
-[node name="area_7" type="Area3D" parent="." index="9"]
+[node name="area_7" type="Area3D" parent="." index="9" unique_id=1384547532]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019103, 0.0371307, 0.0304843)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_7" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_7" index="0" unique_id=555097932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00085118)
 shape = SubResource("SphereShape3D_xqtbd")
 
-[node name="area_8" type="Area3D" parent="." index="10"]
+[node name="area_8" type="Area3D" parent="." index="10" unique_id=1990022565]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00938326, 0.0334307, 0.0350077)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_8" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_8" index="0" unique_id=1056612926]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00085118)
 shape = SubResource("SphereShape3D_xqtbd")
 
-[node name="area_9" type="Area3D" parent="." index="11"]
+[node name="area_9" type="Area3D" parent="." index="11" unique_id=280771532]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00245496, 0.0310786, 0.0370762)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_9" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_9" index="0" unique_id=692653786]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00085118)
 shape = SubResource("SphereShape3D_xqtbd")
 
-[node name="area_0" type="Area3D" parent="." index="12"]
+[node name="area_0" type="Area3D" parent="." index="12" unique_id=603357018]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144675, 0.0336285, 0.0338506)
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_0" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_0" index="0" unique_id=1777427148]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00085118)
 shape = SubResource("SphereShape3D_xqtbd")
 
-[node name="audio_stream_player_hang_off" type="AudioStreamPlayer3D" parent="." index="13"]
+[node name="audio_stream_player_hang_off" type="AudioStreamPlayer3D" parent="." index="13" unique_id=89439070]
 stream = ExtResource("3_geet0")
 
-[node name="audio_stream_player_hung_up" type="AudioStreamPlayer3D" parent="." index="14"]
+[node name="audio_stream_player_hung_up" type="AudioStreamPlayer3D" parent="." index="14" unique_id=2117814654]
 stream = ExtResource("4_0rpnm")
 
-[node name="audio_stream_player_dial_up" type="AudioStreamPlayer3D" parent="." index="15"]
+[node name="audio_stream_player_dial_up" type="AudioStreamPlayer3D" parent="." index="15" unique_id=1284871840]
 stream = ExtResource("4_ap1kh")
 
-[node name="audio_stream_player_dial_down" type="AudioStreamPlayer3D" parent="." index="16"]
+[node name="audio_stream_player_dial_down" type="AudioStreamPlayer3D" parent="." index="16" unique_id=1927641039]
 stream = ExtResource("5_geet0")

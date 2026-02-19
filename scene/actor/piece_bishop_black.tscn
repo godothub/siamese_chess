@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://8fh667jl5ppl"]
+[gd_scene format=3 uid="uid://8fh667jl5ppl"]
 
 [ext_resource type="PackedScene" uid="uid://biryspvlw2sv7" path="res://assets/model/piece_bishop.glb" id="1_0yd1k"]
 [ext_resource type="Script" uid="uid://pofjvdbbj3iy" path="res://src/actor/piece.gd" id="2_g7twr"]
@@ -24,8 +24,8 @@ shader_parameter/value_mult = 1.0
 shader_parameter/brightness_add = -0.055
 shader_parameter/contrast_mult = 1.0
 
-[node name="piece_bishop" instance=ExtResource("1_0yd1k")]
+[node name="piece_bishop" unique_id=196413377 instance=ExtResource("1_0yd1k")]
 script = ExtResource("2_g7twr")
 
-[node name="piece" parent="." index="0"]
+[node name="piece" parent="." index="0" unique_id=1098151843]
 surface_material_override/0 = SubResource("ShaderMaterial_frws6")

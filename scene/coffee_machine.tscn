@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://wcdgbubct3po"]
+[gd_scene format=3 uid="uid://wcdgbubct3po"]
 
 [ext_resource type="PackedScene" uid="uid://ba012g1wjar5t" path="res://assets/model/coffee_machine.glb" id="1_qxyb3"]
 [ext_resource type="Script" uid="uid://b1gkqmcq8v0xg" path="res://src/coffee_machine.gd" id="2_qlned"]
 
-[node name="coffee_machine" instance=ExtResource("1_qxyb3")]
+[node name="coffee_machine" unique_id=2026317355 instance=ExtResource("1_qxyb3")]
 script = ExtResource("2_qlned")

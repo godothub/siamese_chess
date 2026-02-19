@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddr2g4hp76oyy"]
+[gd_scene format=3 uid="uid://ddr2g4hp76oyy"]
 
 [ext_resource type="Script" uid="uid://dyc3o5kkjqcjy" path="res://src/conclude.gd" id="1_30lk5"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_we61h"]
@@ -21,7 +21,7 @@ font_size = 32
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ryvsa"]
 
-[node name="conclude" type="Control"]
+[node name="conclude" type="Control" unique_id=1357296021]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +32,7 @@ script = ExtResource("1_30lk5")
 metadata/obtain = 10
 metadata/wins = 1
 
-[node name="texture_rect" type="TextureRect" parent="."]
+[node name="texture_rect" type="TextureRect" parent="." unique_id=596286880]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +43,7 @@ texture = SubResource("GradientTexture1D_enhkt")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="label_title" type="Label" parent="texture_rect"]
+[node name="label_title" type="Label" parent="texture_rect" unique_id=898584992]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.13100001
@@ -60,7 +60,7 @@ text = "结局"
 label_settings = SubResource("LabelSettings_30lk5")
 horizontal_alignment = 1
 
-[node name="label_title_obtain" type="Label" parent="texture_rect"]
+[node name="label_title_obtain" type="Label" parent="texture_rect" unique_id=1507084393]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.23400001
@@ -77,7 +77,7 @@ theme_override_fonts/font = ExtResource("1_we61h")
 text = "获得棋子："
 label_settings = SubResource("LabelSettings_30lk5")
 
-[node name="label_value_obtain" type="Label" parent="texture_rect"]
+[node name="label_value_obtain" type="Label" parent="texture_rect" unique_id=398264530]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.53800005
@@ -95,7 +95,7 @@ text = "0"
 label_settings = SubResource("LabelSettings_30lk5")
 horizontal_alignment = 2
 
-[node name="label_title_wins" type="Label" parent="texture_rect"]
+[node name="label_title_wins" type="Label" parent="texture_rect" unique_id=197699388]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.23400001
@@ -112,7 +112,7 @@ theme_override_fonts/font = ExtResource("1_we61h")
 text = "赢下对局："
 label_settings = SubResource("LabelSettings_30lk5")
 
-[node name="label_value_wins" type="Label" parent="texture_rect"]
+[node name="label_value_wins" type="Label" parent="texture_rect" unique_id=254319125]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.53800005
@@ -130,7 +130,7 @@ text = "0"
 label_settings = SubResource("LabelSettings_30lk5")
 horizontal_alignment = 2
 
-[node name="button" type="Button" parent="texture_rect"]
+[node name="button" type="Button" parent="texture_rect" unique_id=868905460]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.71800005

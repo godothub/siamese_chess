@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://de73qrhtkiaka"]
+[gd_scene format=3 uid="uid://de73qrhtkiaka"]
 
 [ext_resource type="Script" uid="uid://chan7t6vhukc6" path="res://src/chessboard_draft.gd" id="1_8dpj7"]
 
@@ -18,20 +18,20 @@ albedo_texture = SubResource("ViewportTexture_8dpj7")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8dpj7"]
 data = PackedVector3Array(0.25, 0, 0.25, -0.25, 0, 0.25, 0.25, 0, -0.25, -0.25, 0, 0.25, -0.25, 0, -0.25, 0.25, 0, -0.25)
 
-[node name="draft" type="Node3D"]
+[node name="draft" type="Node3D" unique_id=698466666]
 script = ExtResource("1_8dpj7")
 
-[node name="mesh_instance" type="MeshInstance3D" parent="."]
+[node name="mesh_instance" type="MeshInstance3D" parent="." unique_id=689709842]
 mesh = SubResource("PlaneMesh_8dpj7")
 surface_material_override/0 = SubResource("StandardMaterial3D_q33qg")
 
-[node name="area_3d" type="Area3D" parent="."]
+[node name="area_3d" type="Area3D" parent="." unique_id=1889906849]
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape" type="CollisionShape3D" parent="area_3d"]
+[node name="collision_shape" type="CollisionShape3D" parent="area_3d" unique_id=1962530000]
 shape = SubResource("ConcavePolygonShape3D_8dpj7")
 
-[node name="sub_viewport" type="SubViewport" parent="."]
+[node name="sub_viewport" type="SubViewport" parent="." unique_id=722047373]
 transparent_bg = true
 size = Vector2i(384, 512)

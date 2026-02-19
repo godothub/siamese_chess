@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqom50qugj77u"]
+[gd_scene format=3 uid="uid://cqom50qugj77u"]
 
 [ext_resource type="PackedScene" uid="uid://bujgvbqsjgnrk" path="res://assets/model/radio.glb" id="1_6yaaa"]
 [ext_resource type="Script" uid="uid://3vjynq4h5njx" path="res://src/radio.gd" id="2_a3dfu"]
@@ -14,27 +14,27 @@ albedo_texture = SubResource("ViewportTexture_a3dfu")
 height = 0.03
 radius = 0.05
 
-[node name="radio" instance=ExtResource("1_6yaaa")]
+[node name="radio" unique_id=133682968 instance=ExtResource("1_6yaaa")]
 script = ExtResource("2_a3dfu")
 
-[node name="body" parent="." index="0"]
+[node name="body" parent="." index="0" unique_id=713109187]
 surface_material_override/3 = SubResource("StandardMaterial3D_osh7q")
 
-[node name="area_3d" type="Area3D" parent="interface/knob_freq" index="0"]
+[node name="area_3d" type="Area3D" parent="interface/knob_freq" parent_id_path=PackedInt32Array(442899745) index="0" unique_id=1514773793]
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="interface/knob_freq/area_3d" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="interface/knob_freq/area_3d" index="0" unique_id=548729226]
 transform = Transform3D(1, 0, 0, 0, 1, -7.45058e-07, 0, 7.45058e-07, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_a3dfu")
 
-[node name="area_3d" type="Area3D" parent="interface/knob_volume" index="0"]
+[node name="area_3d" type="Area3D" parent="interface/knob_volume" parent_id_path=PackedInt32Array(2043390862) index="0" unique_id=1759151445]
 collision_layer = 2
 collision_mask = 0
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="interface/knob_volume/area_3d" index="0"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="interface/knob_volume/area_3d" index="0" unique_id=2094981755]
 transform = Transform3D(1, 0, 0, 0, 1, -7.45058e-07, 0, 7.45058e-07, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_a3dfu")
 
-[node name="sub_viewport" type="SubViewport" parent="." index="2"]
+[node name="sub_viewport" type="SubViewport" parent="." index="2" unique_id=710560190]
 size = Vector2i(512, 64)

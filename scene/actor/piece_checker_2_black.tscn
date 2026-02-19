@@ -1,8 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c16fmk2rmx4tw"]
+[gd_scene format=3 uid="uid://c16fmk2rmx4tw"]
 
 [ext_resource type="PackedScene" uid="uid://btg6rrhxs3pt5" path="res://assets/model/piece_checker_2.glb" id="1_ulftp"]
 [ext_resource type="Script" uid="uid://pofjvdbbj3iy" path="res://src/actor/piece.gd" id="2_fl07x"]
 
-[node name="piece_checker_2" instance=ExtResource("1_ulftp")]
+[node name="piece_checker_2" unique_id=112265640 instance=ExtResource("1_ulftp")]
 script = ExtResource("2_fl07x")
-piece_type = [120]

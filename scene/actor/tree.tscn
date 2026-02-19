@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfl3bn4u2am21"]
+[gd_scene format=3 uid="uid://dydsqdsvyya2m"]
 
 [ext_resource type="PackedScene" uid="uid://dbxji8pi5nulg" path="res://assets/model/tree.glb" id="1_dcgk5"]
-[ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="2_lutej"]
+[ext_resource type="Script" uid="uid://r84cy7gvn2eo" path="res://src/actor/barrier.gd" id="1_i86dk"]
 
-[node name="tree" instance=ExtResource("1_dcgk5")]
-script = ExtResource("2_lutej")
-piece_type = 35
+[node name="tree" type="CharacterBody3D" unique_id=2031013278]
+script = ExtResource("1_i86dk")
+metadata/_custom_type_script = "uid://r84cy7gvn2eo"
+
+[node name="0" parent="." unique_id=277642928 instance=ExtResource("1_dcgk5")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://8niy1q4npun7"]
+[gd_scene format=3 uid="uid://8niy1q4npun7"]
 
 [ext_resource type="Script" uid="uid://burk5l10a1ndc" path="res://src/a4paper.gd" id="1_aw2hb"]
 
@@ -15,21 +15,21 @@ albedo_texture = SubResource("ViewportTexture_ysvxy")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_aw2hb"]
 data = PackedVector3Array(0.15, 0, 0.2, -0.15, 0, 0.2, 0.15, 0, -0.2, -0.15, 0, 0.2, -0.15, 0, -0.2, 0.15, 0, -0.2)
 
-[node name="a4paper" type="Node3D"]
+[node name="a4paper" type="Node3D" unique_id=1583714312]
 script = ExtResource("1_aw2hb")
 
-[node name="mesh_instance_3d" type="MeshInstance3D" parent="."]
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="." unique_id=1120424006]
 mesh = SubResource("PlaneMesh_6vnsk")
 surface_material_override/0 = SubResource("StandardMaterial3D_o7yno")
 
-[node name="area_3d" type="Area3D" parent="."]
+[node name="area_3d" type="Area3D" parent="." unique_id=242589591]
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="collision_shape_3d" type="CollisionShape3D" parent="area_3d"]
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_3d" unique_id=904995373]
 shape = SubResource("ConcavePolygonShape3D_aw2hb")
 
-[node name="sub_viewport" type="SubViewport" parent="."]
+[node name="sub_viewport" type="SubViewport" parent="." unique_id=16349316]
 size = Vector2i(552, 780)

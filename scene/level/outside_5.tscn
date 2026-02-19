@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://du05mqguyrd2v"]
+[gd_scene format=3 uid="uid://du05mqguyrd2v"]
 
 [ext_resource type="Script" uid="uid://cjddqgsgfo4hw" path="res://src/level/outside.gd" id="1_vytyt"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_l5cec"]
@@ -14,286 +14,251 @@
 metallic = 1.0
 roughness = 0.0
 
-[node name="outside" type="Node3D"]
+[node name="outside" type="Node3D" unique_id=1801792981]
 script = ExtResource("1_vytyt")
 metadata/by = 114
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=726351885]
 environment = ExtResource("2_v3bhc")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1320616832]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 light_color = Color(0.419813, 0.419813, 0.419813, 1)
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("2_l5cec")]
+[node name="player" parent="." unique_id=747241506 instance=ExtResource("2_l5cec")]
 
-[node name="chessboard" parent="." instance=ExtResource("3_dogrf")]
+[node name="chessboard" parent="." unique_id=1779957837 instance=ExtResource("3_dogrf")]
 metadata/_edit_lock_ = true
 
-[node name="camera" type="Camera3D" parent="."]
+[node name="camera" type="Camera3D" parent="." unique_id=369488157]
 transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 0.11304951, 14.3042965, -0.37958658)
 
-[node name="fence_7" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_7" parent="." unique_id=308071649 instance=ExtResource("4_32lb7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_8" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_8" parent="." unique_id=1379392688 instance=ExtResource("4_32lb7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 5)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_10" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_10" parent="." unique_id=974087952 instance=ExtResource("4_32lb7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 1)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_11" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_11" parent="." unique_id=1871697544 instance=ExtResource("4_32lb7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, -1)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_turn_2" parent="." instance=ExtResource("6_vvg8p")]
+[node name="fence_turn_2" parent="." unique_id=518410106 instance=ExtResource("6_vvg8p")]
 transform = Transform3D(-2.1855737e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855737e-07, -5, 0, -3)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_12" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_12" parent="." unique_id=984807291 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, -3)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_9" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_9" parent="." unique_id=648453218 instance=ExtResource("4_32lb7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 3)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_13" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_13" parent="." unique_id=1047238987 instance=ExtResource("4_32lb7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, 5)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_14" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_14" parent="." unique_id=1875836402 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 1, 0, 1)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_turn_3" parent="." instance=ExtResource("6_vvg8p")]
+[node name="fence_turn_3" parent="." unique_id=196229500 instance=ExtResource("6_vvg8p")]
 transform = Transform3D(-1, 0, -8.7423224e-08, 0, 1, 0, 8.7423224e-08, 0, -1, -1, 0, 1)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_15" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_15" parent="." unique_id=668625205 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 3, 0, 1)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_16" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_16" parent="." unique_id=1115606356 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 5, 0, 1)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_17" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_17" parent="." unique_id=797503999 instance=ExtResource("4_32lb7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, 3)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_turn_4" parent="." instance=ExtResource("6_vvg8p")]
+[node name="fence_turn_4" parent="." unique_id=859848487 instance=ExtResource("6_vvg8p")]
 transform = Transform3D(-1, 0, -8.7423224e-08, 0, 1, 0, 8.7423224e-08, 0, -1, 3, 0, 5)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_19" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_19" parent="." unique_id=845694642 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 7, 0, 1)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_34" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_34" parent="." unique_id=733192775 instance=ExtResource("4_32lb7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, 7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="teleport_pointer_2" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer_2" parent="." unique_id=531832015 instance=ExtResource("10_n131h")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, -5)
 to = "res://scene/level/outside_7.tscn"
 args = {
 "by": 23
 }
 
-[node name="teleport_pointer" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer" parent="." unique_id=1643707070 instance=ExtResource("10_n131h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
 to = "res://scene/level/outside_3.tscn"
 args = {
 "by": 0
 }
 
-[node name="teleport_pointer_3" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer_3" parent="." unique_id=541245113 instance=ExtResource("10_n131h")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, 7)
 to = "res://scene/level/outside_6.tscn"
 args = {
 "by": 112
 }
 
-[node name="teleport_pointer_4" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer_4" parent="." unique_id=1355866257 instance=ExtResource("10_n131h")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, 3)
 to = "res://scene/level/outside_6.tscn"
 args = {
 "by": 80
 }
 
-[node name="teleport_pointer_5" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer_5" parent="." unique_id=2018926788 instance=ExtResource("10_n131h")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, -1)
 to = "res://scene/level/outside_6.tscn"
 args = {
 "by": 48
 }
 
-[node name="fence_36" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_36" parent="." unique_id=1296133439 instance=ExtResource("4_32lb7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, 7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_26" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_26" parent="." unique_id=152299960 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 5, 0, 5)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_27" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_27" parent="." unique_id=1527302975 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 7, 0, 5)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="shrub" parent="." instance=ExtResource("11_l5cec")]
+[node name="shrub" parent="." unique_id=738336154 instance=ExtResource("11_l5cec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
-piece_type = 42
 
-[node name="shrub_2" parent="." instance=ExtResource("11_l5cec")]
+[node name="shrub_2" parent="." unique_id=1985795344 instance=ExtResource("11_l5cec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
-piece_type = 42
 
-[node name="shrub_3" parent="." instance=ExtResource("11_l5cec")]
+[node name="shrub_3" parent="." unique_id=6672890 instance=ExtResource("11_l5cec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
-piece_type = 42
 
-[node name="shrub_4" parent="." instance=ExtResource("11_l5cec")]
+[node name="shrub_4" parent="." unique_id=582071661 instance=ExtResource("11_l5cec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
-piece_type = 42
 
-[node name="shrub_5" parent="." instance=ExtResource("11_l5cec")]
+[node name="shrub_5" parent="." unique_id=102112176 instance=ExtResource("11_l5cec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
-piece_type = 42
 
-[node name="shrub_6" parent="." instance=ExtResource("11_l5cec")]
+[node name="shrub_6" parent="." unique_id=623903920 instance=ExtResource("11_l5cec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
-piece_type = 42
 
-[node name="shrub_7" parent="." instance=ExtResource("11_l5cec")]
+[node name="shrub_7" parent="." unique_id=438381876 instance=ExtResource("11_l5cec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
-piece_type = 42
 
-[node name="shrub_8" parent="." instance=ExtResource("11_l5cec")]
+[node name="shrub_8" parent="." unique_id=1152529222 instance=ExtResource("11_l5cec")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
-piece_type = 42
 
-[node name="fence_18" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_18" parent="." unique_id=142495363 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 1, 0, -7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_20" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_20" parent="." unique_id=519819984 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 3, 0, -7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_21" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_21" parent="." unique_id=784720005 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 5, 0, -7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_22" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_22" parent="." unique_id=287884578 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 7, 0, -7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_23" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_23" parent="." unique_id=1253954257 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -7, 0, -7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_24" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_24" parent="." unique_id=1128472215 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -5, 0, -7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_25" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_25" parent="." unique_id=485430314 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -3, 0, -7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="fence_28" parent="." instance=ExtResource("4_32lb7")]
+[node name="fence_28" parent="." unique_id=1676333210 instance=ExtResource("4_32lb7")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, -1, 0, -7)
 script = ExtResource("5_nym1x")
-piece_type = 35
 
-[node name="teleport_pointer_6" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer_6" parent="." unique_id=845380140 instance=ExtResource("10_n131h")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, -3)
 to = "res://scene/level/outside_6.tscn"
 args = {
 "by": 32
 }
 
-[node name="teleport_pointer_7" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer_7" parent="." unique_id=2136369162 instance=ExtResource("10_n131h")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, -5)
 to = "res://scene/level/outside_6.tscn"
 args = {
 "by": 16
 }
 
-[node name="teleport_pointer_8" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer_8" parent="." unique_id=935109186 instance=ExtResource("10_n131h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
 to = "res://scene/level/outside_3.tscn"
 args = {
 "by": 2
 }
 
-[node name="teleport_pointer_9" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer_9" parent="." unique_id=643688995 instance=ExtResource("10_n131h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
 to = "res://scene/level/outside_3.tscn"
 args = {
 "by": 4
 }
 
-[node name="teleport_pointer_10" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer_10" parent="." unique_id=1334328106 instance=ExtResource("10_n131h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
 to = "res://scene/level/outside_3.tscn"
 args = {
 "by": 6
 }
 
-[node name="teleport_pointer_11" parent="." instance=ExtResource("10_n131h")]
+[node name="teleport_pointer_11" parent="." unique_id=1384877593 instance=ExtResource("10_n131h")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, -1)
 to = "res://scene/level/outside_7.tscn"
 args = {
 "by": 55
 }
 
-[node name="csg_box_3d" type="CSGBox3D" parent="."]
+[node name="csg_box_3d" type="CSGBox3D" parent="." unique_id=1353983305]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -0.2512207, -8.760193)
 size = Vector3(16, 0.4975586, 1.4796143)
 material = SubResource("StandardMaterial3D_vytyt")
 
-[node name="csg_box_3d_2" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_2" type="CSGBox3D" parent="." unique_id=775255479]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.507315, -0.2512207, 0)
 size = Vector3(1.238739, 0.4975586, 19)
 material = SubResource("StandardMaterial3D_vytyt")
 
-[node name="csg_box_3d_3" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_3" type="CSGBox3D" parent="." unique_id=2080689844]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.578018, -0.2512207, 0)
 size = Vector3(1.238739, 0.4975586, 19)
 material = SubResource("StandardMaterial3D_vytyt")
 
-[node name="csg_box_3d_4" type="CSGBox3D" parent="."]
+[node name="csg_box_3d_4" type="CSGBox3D" parent="." unique_id=730298344]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, -0.2512207, 8.76297)
 size = Vector3(16.021355, 0.4975586, 1.5)
 material = SubResource("StandardMaterial3D_vytyt")

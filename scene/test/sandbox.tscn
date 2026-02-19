@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx261kx0v8vew"]
+[gd_scene format=3 uid="uid://bx261kx0v8vew"]
 
 [ext_resource type="Script" uid="uid://df1jvoew7cb6y" path="res://src/test/sandbox.gd" id="1_23ueg"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="1_h0kme"]
@@ -16,20 +16,20 @@ background_mode = 2
 sky = SubResource("Sky_31ryr")
 tonemap_mode = 2
 
-[node name="sandbox" type="Node3D"]
+[node name="sandbox" type="Node3D" unique_id=418668532]
 script = ExtResource("1_23ueg")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2067897496]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2021610505]
 environment = SubResource("Environment_htjak")
 
-[node name="chessboard" parent="." instance=ExtResource("1_h0kme")]
+[node name="chessboard" parent="." unique_id=216840032 instance=ExtResource("1_h0kme")]
 
-[node name="camera_3d" type="Camera3D" parent="."]
+[node name="camera_3d" type="Camera3D" parent="." unique_id=1041015604]
 transform = Transform3D(1, 0, 0, 0, 0.643977, 0.765045, 0, -0.765045, 0.643977, 0, 0.683727, 0.778705)
 
-[node name="player" parent="." instance=ExtResource("3_htjak")]
+[node name="player" parent="." unique_id=142166179 instance=ExtResource("3_htjak")]
 transform = Transform3D(1, 0, 0, 0, 0.859808, 0.510618, 0, -0.510618, 0.859808, 0, 0.822969, 1.26042)

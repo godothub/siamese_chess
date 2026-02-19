@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://crucchfeabm"]
+[gd_scene format=3 uid="uid://crucchfeabm"]
 
 [ext_resource type="PackedScene" uid="uid://fpjpqr5sn1q7" path="res://assets/model/pastor.glb" id="1_np4ha"]
 [ext_resource type="Script" uid="uid://bx2k1annb145y" path="res://src/actor/pastor.gd" id="2_0fow0"]
@@ -15,9 +15,9 @@ states/battle_idle/position = Vector2(467, 87)
 states/thinking/node = SubResource("AnimationNodeAnimation_nmmxa")
 states/thinking/position = Vector2(353.714, 148.286)
 
-[node name="pastor" instance=ExtResource("1_np4ha")]
+[node name="pastor" unique_id=452469260 instance=ExtResource("1_np4ha")]
 script = ExtResource("2_0fow0")
 
-[node name="animation_tree" type="AnimationTree" parent="." index="2"]
+[node name="animation_tree" type="AnimationTree" parent="." index="2" unique_id=155939613]
 tree_root = SubResource("AnimationNodeStateMachine_nmmxa")
 anim_player = NodePath("../AnimationPlayer")

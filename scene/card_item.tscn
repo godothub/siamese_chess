@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7joe7stxo7vb"]
+[gd_scene format=3 uid="uid://c7joe7stxo7vb"]
 
 [ext_resource type="PackedScene" uid="uid://dkrv34o5bsdmd" path="res://assets/model/card.glb" id="1_26sn6"]
 [ext_resource type="Script" uid="uid://bogx4ceoewi0b" path="res://src/card_item.gd" id="2_26sn6"]
@@ -149,14 +149,12 @@ _data = {
 &"idle": SubResource("Animation_2v88n")
 }
 
-[node name="card_item" instance=ExtResource("1_26sn6")]
+[node name="card_item" unique_id=1982034492 instance=ExtResource("1_26sn6")]
 script = ExtResource("2_26sn6")
 
-[node name="card" parent="." index="0"]
+[node name="card" parent="." index="0" unique_id=1742046553]
 transform = Transform3D(1, 4.46638e-06, -1.616825e-11, 0, -3.6199901e-06, -1, -4.46638e-06, 1, -3.6199901e-06, 0, 0.13174, 0)
 
-[node name="animation_player" type="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_hhnru")
-}
-autoplay = "idle"
+[node name="animation_player" type="AnimationPlayer" parent="." index="1" unique_id=1497250295]
+libraries/ = SubResource("AnimationLibrary_hhnru")
+autoplay = &"idle"

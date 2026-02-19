@@ -1,8 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2sl82d6k212u"]
+[gd_scene format=3 uid="uid://b2sl82d6k212u"]
 
 [ext_resource type="PackedScene" uid="uid://cw0abs7jq1okt" path="res://assets/model/piece_checker_3.glb" id="1_vrx8t"]
 [ext_resource type="Script" uid="uid://pofjvdbbj3iy" path="res://src/actor/piece.gd" id="2_fjp8c"]
 
-[node name="piece_checker_3" instance=ExtResource("1_vrx8t")]
+[node name="piece_checker_3" unique_id=504598236 instance=ExtResource("1_vrx8t")]
 script = ExtResource("2_fjp8c")
-piece_type = 35

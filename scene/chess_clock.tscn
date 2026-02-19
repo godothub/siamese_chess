@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://n5i2mcgyqj3k"]
+[gd_scene format=3 uid="uid://n5i2mcgyqj3k"]
 
 [ext_resource type="PackedScene" uid="uid://dmo5204uinktq" path="res://assets/model/chess_clock.glb" id="1_jy1k2"]
 [ext_resource type="Shader" uid="uid://dd7xsr1eeq6mo" path="res://src/unmoving_plaid.gdshader" id="3_41mnw"]
@@ -16,26 +16,26 @@ shader_parameter/value_mult = 0.749
 shader_parameter/brightness_add = -0.207
 shader_parameter/contrast_mult = 0.781
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_vaj2q"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_46iv7"]
 viewport_path = NodePath("sub_viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbuvm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_htbmt"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_vaj2q")
+albedo_texture = SubResource("ViewportTexture_46iv7")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41mnw"]
 bg_color = Color(0.0503998, 0.111772, 0.0784249, 1)
 
-[node name="clock" instance=ExtResource("1_jy1k2")]
+[node name="clock" unique_id=66658481 instance=ExtResource("1_jy1k2")]
 
-[node name="body" parent="." index="0"]
+[node name="body" parent="." index="0" unique_id=1620949827]
 surface_material_override/0 = SubResource("ShaderMaterial_sn2cr")
-surface_material_override/1 = SubResource("StandardMaterial3D_mbuvm")
+surface_material_override/1 = SubResource("StandardMaterial3D_htbmt")
 
-[node name="sub_viewport" type="SubViewport" parent="." index="2"]
+[node name="sub_viewport" type="SubViewport" parent="." index="2" unique_id=1486706302]
 size = Vector2i(256, 32)
 
-[node name="panel" type="Panel" parent="sub_viewport" index="0"]
+[node name="panel" type="Panel" parent="sub_viewport" index="0" unique_id=385295363]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_41mnw")
 
-[node name="label" type="Label" parent="sub_viewport/panel" index="0"]
+[node name="label" type="Label" parent="sub_viewport/panel" index="0" unique_id=2140391781]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

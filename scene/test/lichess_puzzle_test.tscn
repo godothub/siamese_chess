@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3p5psdmqx0ik"]
+[gd_scene format=3 uid="uid://c3p5psdmqx0ik"]
 
 [ext_resource type="Script" uid="uid://h5ueof8nkv7" path="res://src/test/lichess_puzzle_test.gd" id="1_dvaev"]
 [ext_resource type="PackedScene" uid="uid://bnxosopniliec" path="res://scene/chessboard_flat.tscn" id="2_l76ae"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="3_fdngn"]
 
-[node name="lichess_puzzle_test" type="Control"]
+[node name="lichess_puzzle_test" type="Control" unique_id=1899233429]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,13 +13,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dvaev")
 
-[node name="chessboard_flat" parent="." instance=ExtResource("2_l76ae")]
+[node name="chessboard_flat" parent="." unique_id=1576392029 instance=ExtResource("2_l76ae")]
 position = Vector2(389, 148)
 scale = Vector2(0.329108, 0.329108)
 
-[node name="http_request" type="HTTPRequest" parent="."]
+[node name="http_request" type="HTTPRequest" parent="." unique_id=165651012]
 
-[node name="label" type="Label" parent="."]
+[node name="label" type="Label" parent="." unique_id=301279984]
 layout_mode = 0
 offset_left = 785.0
 offset_top = 115.0

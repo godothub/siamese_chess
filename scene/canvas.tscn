@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmt1hscjfvqcg"]
+[gd_scene format=3 uid="uid://bmt1hscjfvqcg"]
 
 [ext_resource type="Script" uid="uid://ghqa0vob53fm" path="res://src/canvas.gd" id="1_m4lpw"]
 
@@ -13,15 +13,15 @@ resource_local_to_scene = true
 transparency = 1
 albedo_texture = SubResource("ViewportTexture_lelh2")
 
-[node name="canvas" type="Node3D"]
+[node name="canvas" type="Node3D" unique_id=1376579142]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_m4lpw")
 
-[node name="mesh_instance" type="MeshInstance3D" parent="."]
+[node name="mesh_instance" type="MeshInstance3D" parent="." unique_id=2118189188]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("PlaneMesh_lelh2")
 surface_material_override/0 = SubResource("StandardMaterial3D_2pvxu")
 
-[node name="sub_viewport" type="SubViewport" parent="."]
+[node name="sub_viewport" type="SubViewport" parent="." unique_id=1097387074]
 disable_3d = true
 transparent_bg = true

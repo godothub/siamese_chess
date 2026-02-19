@@ -1,24 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0ots07uggqyg"]
+[gd_scene format=3 uid="uid://b0ots07uggqyg"]
 
 [ext_resource type="Script" uid="uid://dovrsks1cn8gl" path="res://src/history.gd" id="1_1i63t"]
 [ext_resource type="Theme" uid="uid://d32bwe36vwxip" path="res://assets/theme.tres" id="2_ysvxy"]
 [ext_resource type="Texture2D" uid="uid://b4743axykk2uc" path="res://assets/texture/history.svg" id="3_o7yno"]
 [ext_resource type="PackedScene" uid="uid://bnxosopniliec" path="res://scene/chessboard_flat.tscn" id="4_cer4d"]
 
-[node name="history" type="Node2D"]
+[node name="history" type="Node2D" unique_id=603375675]
 script = ExtResource("1_1i63t")
 metadata/_edit_horizontal_guides_ = [780.0]
 metadata/_edit_vertical_guides_ = [552.0]
 
-[node name="history" type="Sprite2D" parent="."]
+[node name="history" type="Sprite2D" parent="." unique_id=1225388766]
 scale = Vector2(0.695, 0.695)
 texture = ExtResource("3_o7yno")
 
-[node name="chessboard_flat" parent="." instance=ExtResource("4_cer4d")]
+[node name="chessboard_flat" parent="." unique_id=2003418096 instance=ExtResource("4_cer4d")]
 position = Vector2(33, -386)
 scale = Vector2(0.215, 0.215)
 
-[node name="label_title" type="Label" parent="."]
+[node name="label_title" type="Label" parent="." unique_id=1741921688]
 offset_left = -154.0
 offset_top = -367.0
 offset_right = -85.0
@@ -27,7 +27,7 @@ theme = ExtResource("2_ysvxy")
 text = "Notation"
 metadata/_edit_use_anchors_ = true
 
-[node name="label_date" type="Label" parent="."]
+[node name="label_date" type="Label" parent="." unique_id=991759260]
 offset_left = -217.0
 offset_top = -322.0
 offset_right = -176.0
@@ -36,7 +36,7 @@ theme = ExtResource("2_ysvxy")
 text = "Date:"
 metadata/_edit_use_anchors_ = true
 
-[node name="label_event" type="Label" parent="."]
+[node name="label_event" type="Label" parent="." unique_id=1836170620]
 offset_left = -223.0
 offset_top = -286.0
 offset_right = -175.0
@@ -45,7 +45,7 @@ theme = ExtResource("2_ysvxy")
 text = "Event:"
 metadata/_edit_use_anchors_ = true
 
-[node name="label_white" type="Label" parent="."]
+[node name="label_white" type="Label" parent="." unique_id=1878315815]
 offset_left = -224.0
 offset_top = -247.0
 offset_right = -174.0
@@ -54,7 +54,7 @@ theme = ExtResource("2_ysvxy")
 text = "White:"
 metadata/_edit_use_anchors_ = true
 
-[node name="label_black" type="Label" parent="."]
+[node name="label_black" type="Label" parent="." unique_id=1409593625]
 offset_left = -222.0
 offset_top = -213.0
 offset_right = -176.0
@@ -63,7 +63,7 @@ theme = ExtResource("2_ysvxy")
 text = "Black:"
 metadata/_edit_use_anchors_ = true
 
-[node name="label_recorder" type="Label" parent="."]
+[node name="label_recorder" type="Label" parent="." unique_id=1487671086]
 offset_left = -249.0
 offset_top = -179.0
 offset_right = -174.0
@@ -72,7 +72,7 @@ theme = ExtResource("2_ysvxy")
 text = "Recorder:"
 metadata/_edit_use_anchors_ = true
 
-[node name="header" type="Control" parent="."]
+[node name="header" type="Control" parent="." unique_id=1385032680]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -276.0
@@ -82,7 +82,7 @@ offset_bottom = -350.0
 theme = ExtResource("2_ysvxy")
 metadata/_edit_use_anchors_ = true
 
-[node name="label_1" type="Label" parent="header"]
+[node name="label_1" type="Label" parent="header" unique_id=1031405052]
 layout_mode = 0
 offset_left = 79.0
 offset_top = 263.0
@@ -92,7 +92,7 @@ text = "White"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_2" type="Label" parent="header"]
+[node name="label_2" type="Label" parent="header" unique_id=294977700]
 layout_mode = 0
 offset_left = 142.0
 offset_top = 263.0
@@ -102,7 +102,7 @@ text = "Black"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_3" type="Label" parent="header"]
+[node name="label_3" type="Label" parent="header" unique_id=1494708398]
 layout_mode = 0
 offset_left = 254.0
 offset_top = 263.0
@@ -112,7 +112,7 @@ text = "White"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_4" type="Label" parent="header"]
+[node name="label_4" type="Label" parent="header" unique_id=647015489]
 layout_mode = 0
 offset_left = 317.0
 offset_top = 263.0
@@ -122,7 +122,7 @@ text = "Black"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_5" type="Label" parent="header"]
+[node name="label_5" type="Label" parent="header" unique_id=2061579622]
 layout_mode = 0
 offset_left = 429.0
 offset_top = 263.0
@@ -132,7 +132,7 @@ text = "White"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_6" type="Label" parent="header"]
+[node name="label_6" type="Label" parent="header" unique_id=497746504]
 layout_mode = 0
 offset_left = 491.0
 offset_top = 263.0
@@ -142,7 +142,7 @@ text = "Black"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="sequence" type="Control" parent="."]
+[node name="sequence" type="Control" parent="." unique_id=2133288965]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -155.0
@@ -152,7 +152,7 @@ offset_bottom = -337.0
 theme = ExtResource("2_ysvxy")
 metadata/_edit_use_anchors_ = true
 
-[node name="label_1" type="Label" parent="sequence"]
+[node name="label_1" type="Label" parent="sequence" unique_id=690667077]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 275.0
@@ -162,7 +162,7 @@ text = "1"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_2" type="Label" parent="sequence"]
+[node name="label_2" type="Label" parent="sequence" unique_id=552648651]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 299.0
@@ -172,7 +172,7 @@ text = "2"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_3" type="Label" parent="sequence"]
+[node name="label_3" type="Label" parent="sequence" unique_id=436093473]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 322.0
@@ -182,7 +182,7 @@ text = "3"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_4" type="Label" parent="sequence"]
+[node name="label_4" type="Label" parent="sequence" unique_id=27914789]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 346.0
@@ -192,7 +192,7 @@ text = "4"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_5" type="Label" parent="sequence"]
+[node name="label_5" type="Label" parent="sequence" unique_id=172445160]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 370.0
@@ -202,7 +202,7 @@ text = "5"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_6" type="Label" parent="sequence"]
+[node name="label_6" type="Label" parent="sequence" unique_id=1184287949]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 393.0
@@ -212,7 +212,7 @@ text = "6"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_7" type="Label" parent="sequence"]
+[node name="label_7" type="Label" parent="sequence" unique_id=3540726]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 418.0
@@ -222,7 +222,7 @@ text = "7"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_8" type="Label" parent="sequence"]
+[node name="label_8" type="Label" parent="sequence" unique_id=1833679604]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 442.0
@@ -232,7 +232,7 @@ text = "8"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_9" type="Label" parent="sequence"]
+[node name="label_9" type="Label" parent="sequence" unique_id=824433945]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 465.0
@@ -242,7 +242,7 @@ text = "9"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_10" type="Label" parent="sequence"]
+[node name="label_10" type="Label" parent="sequence" unique_id=559452509]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 489.0
@@ -252,7 +252,7 @@ text = "10"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_11" type="Label" parent="sequence"]
+[node name="label_11" type="Label" parent="sequence" unique_id=36123224]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 513.0
@@ -262,7 +262,7 @@ text = "11"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_12" type="Label" parent="sequence"]
+[node name="label_12" type="Label" parent="sequence" unique_id=1213817959]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 536.0
@@ -272,7 +272,7 @@ text = "12"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_13" type="Label" parent="sequence"]
+[node name="label_13" type="Label" parent="sequence" unique_id=1829073465]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 560.0
@@ -282,7 +282,7 @@ text = "13"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_14" type="Label" parent="sequence"]
+[node name="label_14" type="Label" parent="sequence" unique_id=2010806596]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 584.0
@@ -292,7 +292,7 @@ text = "14"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_15" type="Label" parent="sequence"]
+[node name="label_15" type="Label" parent="sequence" unique_id=520326723]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 607.0
@@ -302,7 +302,7 @@ text = "15"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_16" type="Label" parent="sequence"]
+[node name="label_16" type="Label" parent="sequence" unique_id=1959702390]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 631.0
@@ -312,7 +312,7 @@ text = "16"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_17" type="Label" parent="sequence"]
+[node name="label_17" type="Label" parent="sequence" unique_id=1903969835]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 655.0
@@ -322,7 +322,7 @@ text = "17"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_18" type="Label" parent="sequence"]
+[node name="label_18" type="Label" parent="sequence" unique_id=32942519]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 678.0
@@ -332,7 +332,7 @@ text = "18"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_19" type="Label" parent="sequence"]
+[node name="label_19" type="Label" parent="sequence" unique_id=1946392500]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 703.0
@@ -342,7 +342,7 @@ text = "19"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_20" type="Label" parent="sequence"]
+[node name="label_20" type="Label" parent="sequence" unique_id=1567042458]
 layout_mode = 0
 offset_left = -99.0
 offset_top = 727.0
@@ -352,7 +352,7 @@ text = "20"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_21" type="Label" parent="sequence"]
+[node name="label_21" type="Label" parent="sequence" unique_id=334569608]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 275.0
@@ -362,7 +362,7 @@ text = "21"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_22" type="Label" parent="sequence"]
+[node name="label_22" type="Label" parent="sequence" unique_id=26190512]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 299.0
@@ -372,7 +372,7 @@ text = "22"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_23" type="Label" parent="sequence"]
+[node name="label_23" type="Label" parent="sequence" unique_id=595813183]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 322.0
@@ -382,7 +382,7 @@ text = "23"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_24" type="Label" parent="sequence"]
+[node name="label_24" type="Label" parent="sequence" unique_id=861927527]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 346.0
@@ -392,7 +392,7 @@ text = "24"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_25" type="Label" parent="sequence"]
+[node name="label_25" type="Label" parent="sequence" unique_id=1553356759]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 370.0
@@ -402,7 +402,7 @@ text = "25"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_26" type="Label" parent="sequence"]
+[node name="label_26" type="Label" parent="sequence" unique_id=1060440444]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 393.0
@@ -412,7 +412,7 @@ text = "26"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_27" type="Label" parent="sequence"]
+[node name="label_27" type="Label" parent="sequence" unique_id=1206807227]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 418.0
@@ -422,7 +422,7 @@ text = "27"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_28" type="Label" parent="sequence"]
+[node name="label_28" type="Label" parent="sequence" unique_id=1156169680]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 442.0
@@ -432,7 +432,7 @@ text = "28"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_29" type="Label" parent="sequence"]
+[node name="label_29" type="Label" parent="sequence" unique_id=1738692060]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 465.0
@@ -442,7 +442,7 @@ text = "29"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_30" type="Label" parent="sequence"]
+[node name="label_30" type="Label" parent="sequence" unique_id=1450818717]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 489.0
@@ -452,7 +452,7 @@ text = "30"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_31" type="Label" parent="sequence"]
+[node name="label_31" type="Label" parent="sequence" unique_id=1432150490]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 513.0
@@ -462,7 +462,7 @@ text = "31"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_32" type="Label" parent="sequence"]
+[node name="label_32" type="Label" parent="sequence" unique_id=947360832]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 536.0
@@ -472,7 +472,7 @@ text = "32"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_33" type="Label" parent="sequence"]
+[node name="label_33" type="Label" parent="sequence" unique_id=667616285]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 560.0
@@ -482,7 +482,7 @@ text = "33"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_34" type="Label" parent="sequence"]
+[node name="label_34" type="Label" parent="sequence" unique_id=91045976]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 584.0
@@ -492,7 +492,7 @@ text = "34"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_35" type="Label" parent="sequence"]
+[node name="label_35" type="Label" parent="sequence" unique_id=794340168]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 607.0
@@ -502,7 +502,7 @@ text = "35"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_36" type="Label" parent="sequence"]
+[node name="label_36" type="Label" parent="sequence" unique_id=899914230]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 631.0
@@ -512,7 +512,7 @@ text = "36"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_37" type="Label" parent="sequence"]
+[node name="label_37" type="Label" parent="sequence" unique_id=333537120]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 655.0
@@ -522,7 +522,7 @@ text = "37"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_38" type="Label" parent="sequence"]
+[node name="label_38" type="Label" parent="sequence" unique_id=508079970]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 678.0
@@ -532,7 +532,7 @@ text = "38"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_39" type="Label" parent="sequence"]
+[node name="label_39" type="Label" parent="sequence" unique_id=1272052296]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 703.0
@@ -542,7 +542,7 @@ text = "39"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_40" type="Label" parent="sequence"]
+[node name="label_40" type="Label" parent="sequence" unique_id=1769895115]
 layout_mode = 0
 offset_left = 77.0
 offset_top = 727.0
@@ -552,7 +552,7 @@ text = "40"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_41" type="Label" parent="sequence"]
+[node name="label_41" type="Label" parent="sequence" unique_id=1668120147]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 275.0
@@ -562,7 +562,7 @@ text = "41"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_42" type="Label" parent="sequence"]
+[node name="label_42" type="Label" parent="sequence" unique_id=1770505356]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 299.0
@@ -572,7 +572,7 @@ text = "42"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_43" type="Label" parent="sequence"]
+[node name="label_43" type="Label" parent="sequence" unique_id=1302698060]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 322.0
@@ -582,7 +582,7 @@ text = "43"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_44" type="Label" parent="sequence"]
+[node name="label_44" type="Label" parent="sequence" unique_id=2093264584]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 346.0
@@ -592,7 +592,7 @@ text = "44"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_45" type="Label" parent="sequence"]
+[node name="label_45" type="Label" parent="sequence" unique_id=1286874103]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 370.0
@@ -602,7 +602,7 @@ text = "45"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_46" type="Label" parent="sequence"]
+[node name="label_46" type="Label" parent="sequence" unique_id=1061105139]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 393.0
@@ -612,7 +612,7 @@ text = "46"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_47" type="Label" parent="sequence"]
+[node name="label_47" type="Label" parent="sequence" unique_id=153824119]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 418.0
@@ -622,7 +622,7 @@ text = "47"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_48" type="Label" parent="sequence"]
+[node name="label_48" type="Label" parent="sequence" unique_id=612138161]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 442.0
@@ -632,7 +632,7 @@ text = "48"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_49" type="Label" parent="sequence"]
+[node name="label_49" type="Label" parent="sequence" unique_id=605768350]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 465.0
@@ -642,7 +642,7 @@ text = "49"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_50" type="Label" parent="sequence"]
+[node name="label_50" type="Label" parent="sequence" unique_id=1996873534]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 489.0
@@ -652,7 +652,7 @@ text = "50"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_51" type="Label" parent="sequence"]
+[node name="label_51" type="Label" parent="sequence" unique_id=1923772914]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 513.0
@@ -662,7 +662,7 @@ text = "51"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_52" type="Label" parent="sequence"]
+[node name="label_52" type="Label" parent="sequence" unique_id=1402670858]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 536.0
@@ -672,7 +672,7 @@ text = "52"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_53" type="Label" parent="sequence"]
+[node name="label_53" type="Label" parent="sequence" unique_id=370030155]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 560.0
@@ -682,7 +682,7 @@ text = "53"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_54" type="Label" parent="sequence"]
+[node name="label_54" type="Label" parent="sequence" unique_id=1597991541]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 584.0
@@ -692,7 +692,7 @@ text = "54"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_55" type="Label" parent="sequence"]
+[node name="label_55" type="Label" parent="sequence" unique_id=36604812]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 607.0
@@ -702,7 +702,7 @@ text = "55"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_56" type="Label" parent="sequence"]
+[node name="label_56" type="Label" parent="sequence" unique_id=1722237009]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 631.0
@@ -712,7 +712,7 @@ text = "56"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_57" type="Label" parent="sequence"]
+[node name="label_57" type="Label" parent="sequence" unique_id=2091967286]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 655.0
@@ -722,7 +722,7 @@ text = "57"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_58" type="Label" parent="sequence"]
+[node name="label_58" type="Label" parent="sequence" unique_id=1184523148]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 678.0
@@ -732,7 +732,7 @@ text = "58"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_59" type="Label" parent="sequence"]
+[node name="label_59" type="Label" parent="sequence" unique_id=27394358]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 703.0
@@ -742,7 +742,7 @@ text = "59"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_60" type="Label" parent="sequence"]
+[node name="label_60" type="Label" parent="sequence" unique_id=1367670157]
 layout_mode = 0
 offset_left = 252.0
 offset_top = 727.0
@@ -752,7 +752,7 @@ text = "60"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="white" type="Control" parent="."]
+[node name="white" type="Control" parent="." unique_id=1529634194]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -91.0
@@ -762,7 +762,7 @@ offset_bottom = -337.0
 theme = ExtResource("2_ysvxy")
 metadata/_edit_use_anchors_ = true
 
-[node name="label_1" type="Label" parent="white"]
+[node name="label_1" type="Label" parent="white" unique_id=1672488266]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 275.0
@@ -771,7 +771,7 @@ offset_bottom = 298.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_2" type="Label" parent="white"]
+[node name="label_2" type="Label" parent="white" unique_id=814339013]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 299.0
@@ -780,7 +780,7 @@ offset_bottom = 322.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_3" type="Label" parent="white"]
+[node name="label_3" type="Label" parent="white" unique_id=695693478]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 322.0
@@ -789,7 +789,7 @@ offset_bottom = 345.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_4" type="Label" parent="white"]
+[node name="label_4" type="Label" parent="white" unique_id=661232271]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 346.0
@@ -798,7 +798,7 @@ offset_bottom = 369.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_5" type="Label" parent="white"]
+[node name="label_5" type="Label" parent="white" unique_id=1943993850]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 370.0
@@ -807,7 +807,7 @@ offset_bottom = 393.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_6" type="Label" parent="white"]
+[node name="label_6" type="Label" parent="white" unique_id=1387204319]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 393.0
@@ -816,7 +816,7 @@ offset_bottom = 416.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_7" type="Label" parent="white"]
+[node name="label_7" type="Label" parent="white" unique_id=1907107289]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 418.0
@@ -825,7 +825,7 @@ offset_bottom = 441.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_8" type="Label" parent="white"]
+[node name="label_8" type="Label" parent="white" unique_id=1233892839]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 442.0
@@ -834,7 +834,7 @@ offset_bottom = 465.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_9" type="Label" parent="white"]
+[node name="label_9" type="Label" parent="white" unique_id=1980845661]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 465.0
@@ -843,7 +843,7 @@ offset_bottom = 488.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_10" type="Label" parent="white"]
+[node name="label_10" type="Label" parent="white" unique_id=354342011]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 489.0
@@ -852,7 +852,7 @@ offset_bottom = 512.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_11" type="Label" parent="white"]
+[node name="label_11" type="Label" parent="white" unique_id=1058889253]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 513.0
@@ -861,7 +861,7 @@ offset_bottom = 536.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_12" type="Label" parent="white"]
+[node name="label_12" type="Label" parent="white" unique_id=400974486]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 536.0
@@ -870,7 +870,7 @@ offset_bottom = 559.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_13" type="Label" parent="white"]
+[node name="label_13" type="Label" parent="white" unique_id=835078753]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 560.0
@@ -879,7 +879,7 @@ offset_bottom = 583.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_14" type="Label" parent="white"]
+[node name="label_14" type="Label" parent="white" unique_id=1192826319]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 584.0
@@ -888,7 +888,7 @@ offset_bottom = 607.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_15" type="Label" parent="white"]
+[node name="label_15" type="Label" parent="white" unique_id=1825144674]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 607.0
@@ -897,7 +897,7 @@ offset_bottom = 630.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_16" type="Label" parent="white"]
+[node name="label_16" type="Label" parent="white" unique_id=1956247171]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 631.0
@@ -906,7 +906,7 @@ offset_bottom = 654.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_17" type="Label" parent="white"]
+[node name="label_17" type="Label" parent="white" unique_id=510431769]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 655.0
@@ -915,7 +915,7 @@ offset_bottom = 678.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_18" type="Label" parent="white"]
+[node name="label_18" type="Label" parent="white" unique_id=722408740]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 678.0
@@ -924,7 +924,7 @@ offset_bottom = 701.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_19" type="Label" parent="white"]
+[node name="label_19" type="Label" parent="white" unique_id=1229747695]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 703.0
@@ -933,7 +933,7 @@ offset_bottom = 726.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_20" type="Label" parent="white"]
+[node name="label_20" type="Label" parent="white" unique_id=694422571]
 layout_mode = 0
 offset_left = -119.0
 offset_top = 727.0
@@ -942,7 +942,7 @@ offset_bottom = 750.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_21" type="Label" parent="white"]
+[node name="label_21" type="Label" parent="white" unique_id=692805908]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 275.0
@@ -951,7 +951,7 @@ offset_bottom = 298.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_22" type="Label" parent="white"]
+[node name="label_22" type="Label" parent="white" unique_id=1396863035]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 299.0
@@ -960,7 +960,7 @@ offset_bottom = 322.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_23" type="Label" parent="white"]
+[node name="label_23" type="Label" parent="white" unique_id=1170931513]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 322.0
@@ -969,7 +969,7 @@ offset_bottom = 345.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_24" type="Label" parent="white"]
+[node name="label_24" type="Label" parent="white" unique_id=912195271]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 346.0
@@ -978,7 +978,7 @@ offset_bottom = 369.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_25" type="Label" parent="white"]
+[node name="label_25" type="Label" parent="white" unique_id=1771669941]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 370.0
@@ -987,7 +987,7 @@ offset_bottom = 393.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_26" type="Label" parent="white"]
+[node name="label_26" type="Label" parent="white" unique_id=187881309]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 393.0
@@ -996,7 +996,7 @@ offset_bottom = 416.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_27" type="Label" parent="white"]
+[node name="label_27" type="Label" parent="white" unique_id=1893790022]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 418.0
@@ -1005,7 +1005,7 @@ offset_bottom = 441.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_28" type="Label" parent="white"]
+[node name="label_28" type="Label" parent="white" unique_id=1456048745]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 442.0
@@ -1014,7 +1014,7 @@ offset_bottom = 465.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_29" type="Label" parent="white"]
+[node name="label_29" type="Label" parent="white" unique_id=17856024]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 465.0
@@ -1023,7 +1023,7 @@ offset_bottom = 488.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_30" type="Label" parent="white"]
+[node name="label_30" type="Label" parent="white" unique_id=1964967160]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 489.0
@@ -1032,7 +1032,7 @@ offset_bottom = 512.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_31" type="Label" parent="white"]
+[node name="label_31" type="Label" parent="white" unique_id=1928161013]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 513.0
@@ -1041,7 +1041,7 @@ offset_bottom = 536.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_32" type="Label" parent="white"]
+[node name="label_32" type="Label" parent="white" unique_id=204514382]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 536.0
@@ -1050,7 +1050,7 @@ offset_bottom = 559.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_33" type="Label" parent="white"]
+[node name="label_33" type="Label" parent="white" unique_id=258388024]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 560.0
@@ -1059,7 +1059,7 @@ offset_bottom = 583.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_34" type="Label" parent="white"]
+[node name="label_34" type="Label" parent="white" unique_id=1769883358]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 584.0
@@ -1068,7 +1068,7 @@ offset_bottom = 607.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_35" type="Label" parent="white"]
+[node name="label_35" type="Label" parent="white" unique_id=1899423096]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 607.0
@@ -1077,7 +1077,7 @@ offset_bottom = 630.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_36" type="Label" parent="white"]
+[node name="label_36" type="Label" parent="white" unique_id=1186405119]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 631.0
@@ -1086,7 +1086,7 @@ offset_bottom = 654.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_37" type="Label" parent="white"]
+[node name="label_37" type="Label" parent="white" unique_id=598073833]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 655.0
@@ -1095,7 +1095,7 @@ offset_bottom = 678.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_38" type="Label" parent="white"]
+[node name="label_38" type="Label" parent="white" unique_id=157264234]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 678.0
@@ -1104,7 +1104,7 @@ offset_bottom = 701.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_39" type="Label" parent="white"]
+[node name="label_39" type="Label" parent="white" unique_id=169719250]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 703.0
@@ -1113,7 +1113,7 @@ offset_bottom = 726.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_40" type="Label" parent="white"]
+[node name="label_40" type="Label" parent="white" unique_id=1316835333]
 layout_mode = 0
 offset_left = 57.0
 offset_top = 727.0
@@ -1122,7 +1122,7 @@ offset_bottom = 750.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_41" type="Label" parent="white"]
+[node name="label_41" type="Label" parent="white" unique_id=1939161162]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 275.0
@@ -1131,7 +1131,7 @@ offset_bottom = 298.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_42" type="Label" parent="white"]
+[node name="label_42" type="Label" parent="white" unique_id=1052203555]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 299.0
@@ -1140,7 +1140,7 @@ offset_bottom = 322.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_43" type="Label" parent="white"]
+[node name="label_43" type="Label" parent="white" unique_id=1734395594]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 322.0
@@ -1149,7 +1149,7 @@ offset_bottom = 345.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_44" type="Label" parent="white"]
+[node name="label_44" type="Label" parent="white" unique_id=727755462]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 346.0
@@ -1158,7 +1158,7 @@ offset_bottom = 369.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_45" type="Label" parent="white"]
+[node name="label_45" type="Label" parent="white" unique_id=430178232]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 370.0
@@ -1167,7 +1167,7 @@ offset_bottom = 393.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_46" type="Label" parent="white"]
+[node name="label_46" type="Label" parent="white" unique_id=1243994118]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 393.0
@@ -1176,7 +1176,7 @@ offset_bottom = 416.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_47" type="Label" parent="white"]
+[node name="label_47" type="Label" parent="white" unique_id=741741797]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 418.0
@@ -1185,7 +1185,7 @@ offset_bottom = 441.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_48" type="Label" parent="white"]
+[node name="label_48" type="Label" parent="white" unique_id=1800290651]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 442.0
@@ -1194,7 +1194,7 @@ offset_bottom = 465.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_49" type="Label" parent="white"]
+[node name="label_49" type="Label" parent="white" unique_id=1604332392]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 465.0
@@ -1203,7 +1203,7 @@ offset_bottom = 488.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_50" type="Label" parent="white"]
+[node name="label_50" type="Label" parent="white" unique_id=1877340807]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 489.0
@@ -1212,7 +1212,7 @@ offset_bottom = 512.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_51" type="Label" parent="white"]
+[node name="label_51" type="Label" parent="white" unique_id=1314793301]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 513.0
@@ -1221,7 +1221,7 @@ offset_bottom = 536.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_52" type="Label" parent="white"]
+[node name="label_52" type="Label" parent="white" unique_id=700460790]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 536.0
@@ -1230,7 +1230,7 @@ offset_bottom = 559.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_53" type="Label" parent="white"]
+[node name="label_53" type="Label" parent="white" unique_id=1459624367]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 560.0
@@ -1239,7 +1239,7 @@ offset_bottom = 583.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_54" type="Label" parent="white"]
+[node name="label_54" type="Label" parent="white" unique_id=1664519814]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 584.0
@@ -1248,7 +1248,7 @@ offset_bottom = 607.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_55" type="Label" parent="white"]
+[node name="label_55" type="Label" parent="white" unique_id=1402901481]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 607.0
@@ -1257,7 +1257,7 @@ offset_bottom = 630.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_56" type="Label" parent="white"]
+[node name="label_56" type="Label" parent="white" unique_id=320592228]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 631.0
@@ -1266,7 +1266,7 @@ offset_bottom = 654.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_57" type="Label" parent="white"]
+[node name="label_57" type="Label" parent="white" unique_id=1544215643]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 655.0
@@ -1275,7 +1275,7 @@ offset_bottom = 678.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_58" type="Label" parent="white"]
+[node name="label_58" type="Label" parent="white" unique_id=347339327]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 678.0
@@ -1284,7 +1284,7 @@ offset_bottom = 701.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_59" type="Label" parent="white"]
+[node name="label_59" type="Label" parent="white" unique_id=133759683]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 703.0
@@ -1293,7 +1293,7 @@ offset_bottom = 726.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_60" type="Label" parent="white"]
+[node name="label_60" type="Label" parent="white" unique_id=1312124807]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 727.0
@@ -1302,7 +1302,7 @@ offset_bottom = 750.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="black" type="Control" parent="."]
+[node name="black" type="Control" parent="." unique_id=971032947]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -91.0
@@ -1312,7 +1312,7 @@ offset_bottom = -337.0
 theme = ExtResource("2_ysvxy")
 metadata/_edit_use_anchors_ = true
 
-[node name="label_1" type="Label" parent="black"]
+[node name="label_1" type="Label" parent="black" unique_id=964905895]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 275.0
@@ -1321,7 +1321,7 @@ offset_bottom = 298.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_2" type="Label" parent="black"]
+[node name="label_2" type="Label" parent="black" unique_id=200639567]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 299.0
@@ -1330,7 +1330,7 @@ offset_bottom = 322.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_3" type="Label" parent="black"]
+[node name="label_3" type="Label" parent="black" unique_id=626748700]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 322.0
@@ -1339,7 +1339,7 @@ offset_bottom = 345.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_4" type="Label" parent="black"]
+[node name="label_4" type="Label" parent="black" unique_id=1822083415]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 346.0
@@ -1348,7 +1348,7 @@ offset_bottom = 369.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_5" type="Label" parent="black"]
+[node name="label_5" type="Label" parent="black" unique_id=2108608961]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 370.0
@@ -1357,7 +1357,7 @@ offset_bottom = 393.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_6" type="Label" parent="black"]
+[node name="label_6" type="Label" parent="black" unique_id=190899497]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 393.0
@@ -1366,7 +1366,7 @@ offset_bottom = 416.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_7" type="Label" parent="black"]
+[node name="label_7" type="Label" parent="black" unique_id=1525356635]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 418.0
@@ -1375,7 +1375,7 @@ offset_bottom = 441.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_8" type="Label" parent="black"]
+[node name="label_8" type="Label" parent="black" unique_id=1228297908]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 442.0
@@ -1384,7 +1384,7 @@ offset_bottom = 465.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_9" type="Label" parent="black"]
+[node name="label_9" type="Label" parent="black" unique_id=1556135512]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 465.0
@@ -1393,7 +1393,7 @@ offset_bottom = 488.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_10" type="Label" parent="black"]
+[node name="label_10" type="Label" parent="black" unique_id=289510452]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 489.0
@@ -1402,7 +1402,7 @@ offset_bottom = 512.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_11" type="Label" parent="black"]
+[node name="label_11" type="Label" parent="black" unique_id=1888879089]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 513.0
@@ -1411,7 +1411,7 @@ offset_bottom = 536.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_12" type="Label" parent="black"]
+[node name="label_12" type="Label" parent="black" unique_id=1018461310]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 536.0
@@ -1420,7 +1420,7 @@ offset_bottom = 559.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_13" type="Label" parent="black"]
+[node name="label_13" type="Label" parent="black" unique_id=218964017]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 560.0
@@ -1429,7 +1429,7 @@ offset_bottom = 583.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_14" type="Label" parent="black"]
+[node name="label_14" type="Label" parent="black" unique_id=248715330]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 584.0
@@ -1438,7 +1438,7 @@ offset_bottom = 607.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_15" type="Label" parent="black"]
+[node name="label_15" type="Label" parent="black" unique_id=345040282]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 607.0
@@ -1447,7 +1447,7 @@ offset_bottom = 630.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_16" type="Label" parent="black"]
+[node name="label_16" type="Label" parent="black" unique_id=250509092]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 631.0
@@ -1456,7 +1456,7 @@ offset_bottom = 654.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_17" type="Label" parent="black"]
+[node name="label_17" type="Label" parent="black" unique_id=469947278]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 655.0
@@ -1465,7 +1465,7 @@ offset_bottom = 678.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_18" type="Label" parent="black"]
+[node name="label_18" type="Label" parent="black" unique_id=895380521]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 678.0
@@ -1474,7 +1474,7 @@ offset_bottom = 701.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_19" type="Label" parent="black"]
+[node name="label_19" type="Label" parent="black" unique_id=982414214]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 703.0
@@ -1483,7 +1483,7 @@ offset_bottom = 726.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_20" type="Label" parent="black"]
+[node name="label_20" type="Label" parent="black" unique_id=1586092927]
 layout_mode = 0
 offset_left = -57.0
 offset_top = 727.0
@@ -1492,7 +1492,7 @@ offset_bottom = 750.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_21" type="Label" parent="black"]
+[node name="label_21" type="Label" parent="black" unique_id=1850126802]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 275.0
@@ -1501,7 +1501,7 @@ offset_bottom = 298.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_22" type="Label" parent="black"]
+[node name="label_22" type="Label" parent="black" unique_id=1025219749]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 299.0
@@ -1510,7 +1510,7 @@ offset_bottom = 322.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_23" type="Label" parent="black"]
+[node name="label_23" type="Label" parent="black" unique_id=1744617830]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 322.0
@@ -1519,7 +1519,7 @@ offset_bottom = 345.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_24" type="Label" parent="black"]
+[node name="label_24" type="Label" parent="black" unique_id=287897081]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 346.0
@@ -1528,7 +1528,7 @@ offset_bottom = 369.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_25" type="Label" parent="black"]
+[node name="label_25" type="Label" parent="black" unique_id=251815281]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 370.0
@@ -1537,7 +1537,7 @@ offset_bottom = 393.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_26" type="Label" parent="black"]
+[node name="label_26" type="Label" parent="black" unique_id=1266272603]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 393.0
@@ -1546,7 +1546,7 @@ offset_bottom = 416.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_27" type="Label" parent="black"]
+[node name="label_27" type="Label" parent="black" unique_id=1622122445]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 418.0
@@ -1555,7 +1555,7 @@ offset_bottom = 441.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_28" type="Label" parent="black"]
+[node name="label_28" type="Label" parent="black" unique_id=1546304602]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 442.0
@@ -1564,7 +1564,7 @@ offset_bottom = 465.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_29" type="Label" parent="black"]
+[node name="label_29" type="Label" parent="black" unique_id=488747564]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 465.0
@@ -1573,7 +1573,7 @@ offset_bottom = 488.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_30" type="Label" parent="black"]
+[node name="label_30" type="Label" parent="black" unique_id=104452834]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 489.0
@@ -1582,7 +1582,7 @@ offset_bottom = 512.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_31" type="Label" parent="black"]
+[node name="label_31" type="Label" parent="black" unique_id=2027795012]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 513.0
@@ -1591,7 +1591,7 @@ offset_bottom = 536.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_32" type="Label" parent="black"]
+[node name="label_32" type="Label" parent="black" unique_id=356106875]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 536.0
@@ -1600,7 +1600,7 @@ offset_bottom = 559.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_33" type="Label" parent="black"]
+[node name="label_33" type="Label" parent="black" unique_id=1501347277]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 560.0
@@ -1609,7 +1609,7 @@ offset_bottom = 583.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_34" type="Label" parent="black"]
+[node name="label_34" type="Label" parent="black" unique_id=2063924911]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 584.0
@@ -1618,7 +1618,7 @@ offset_bottom = 607.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_35" type="Label" parent="black"]
+[node name="label_35" type="Label" parent="black" unique_id=285437219]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 607.0
@@ -1627,7 +1627,7 @@ offset_bottom = 630.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_36" type="Label" parent="black"]
+[node name="label_36" type="Label" parent="black" unique_id=237928741]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 631.0
@@ -1636,7 +1636,7 @@ offset_bottom = 654.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_37" type="Label" parent="black"]
+[node name="label_37" type="Label" parent="black" unique_id=1534296751]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 655.0
@@ -1645,7 +1645,7 @@ offset_bottom = 678.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_38" type="Label" parent="black"]
+[node name="label_38" type="Label" parent="black" unique_id=1681779709]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 678.0
@@ -1654,7 +1654,7 @@ offset_bottom = 701.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_39" type="Label" parent="black"]
+[node name="label_39" type="Label" parent="black" unique_id=1035833691]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 703.0
@@ -1663,7 +1663,7 @@ offset_bottom = 726.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_40" type="Label" parent="black"]
+[node name="label_40" type="Label" parent="black" unique_id=861337627]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 727.0
@@ -1672,7 +1672,7 @@ offset_bottom = 750.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_41" type="Label" parent="black"]
+[node name="label_41" type="Label" parent="black" unique_id=1282242335]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 275.0
@@ -1681,7 +1681,7 @@ offset_bottom = 298.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_42" type="Label" parent="black"]
+[node name="label_42" type="Label" parent="black" unique_id=1552523970]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 299.0
@@ -1690,7 +1690,7 @@ offset_bottom = 322.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_43" type="Label" parent="black"]
+[node name="label_43" type="Label" parent="black" unique_id=1652260821]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 322.0
@@ -1699,7 +1699,7 @@ offset_bottom = 345.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_44" type="Label" parent="black"]
+[node name="label_44" type="Label" parent="black" unique_id=260529406]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 346.0
@@ -1708,7 +1708,7 @@ offset_bottom = 369.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_45" type="Label" parent="black"]
+[node name="label_45" type="Label" parent="black" unique_id=593466837]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 370.0
@@ -1717,7 +1717,7 @@ offset_bottom = 393.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_46" type="Label" parent="black"]
+[node name="label_46" type="Label" parent="black" unique_id=1114629110]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 393.0
@@ -1726,7 +1726,7 @@ offset_bottom = 416.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_47" type="Label" parent="black"]
+[node name="label_47" type="Label" parent="black" unique_id=1714993006]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 418.0
@@ -1735,7 +1735,7 @@ offset_bottom = 441.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_48" type="Label" parent="black"]
+[node name="label_48" type="Label" parent="black" unique_id=1770671445]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 442.0
@@ -1744,7 +1744,7 @@ offset_bottom = 465.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_49" type="Label" parent="black"]
+[node name="label_49" type="Label" parent="black" unique_id=1094954808]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 465.0
@@ -1753,7 +1753,7 @@ offset_bottom = 488.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_50" type="Label" parent="black"]
+[node name="label_50" type="Label" parent="black" unique_id=1558499486]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 489.0
@@ -1762,7 +1762,7 @@ offset_bottom = 512.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_51" type="Label" parent="black"]
+[node name="label_51" type="Label" parent="black" unique_id=582557429]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 513.0
@@ -1771,7 +1771,7 @@ offset_bottom = 536.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_52" type="Label" parent="black"]
+[node name="label_52" type="Label" parent="black" unique_id=1631466773]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 536.0
@@ -1780,7 +1780,7 @@ offset_bottom = 559.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_53" type="Label" parent="black"]
+[node name="label_53" type="Label" parent="black" unique_id=569215925]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 560.0
@@ -1789,7 +1789,7 @@ offset_bottom = 583.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_54" type="Label" parent="black"]
+[node name="label_54" type="Label" parent="black" unique_id=673445450]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 584.0
@@ -1798,7 +1798,7 @@ offset_bottom = 607.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_55" type="Label" parent="black"]
+[node name="label_55" type="Label" parent="black" unique_id=469546985]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 607.0
@@ -1807,7 +1807,7 @@ offset_bottom = 630.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_56" type="Label" parent="black"]
+[node name="label_56" type="Label" parent="black" unique_id=547412506]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 631.0
@@ -1816,7 +1816,7 @@ offset_bottom = 654.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_57" type="Label" parent="black"]
+[node name="label_57" type="Label" parent="black" unique_id=478876675]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 655.0
@@ -1825,7 +1825,7 @@ offset_bottom = 678.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_58" type="Label" parent="black"]
+[node name="label_58" type="Label" parent="black" unique_id=1922299886]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 678.0
@@ -1834,7 +1834,7 @@ offset_bottom = 701.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_59" type="Label" parent="black"]
+[node name="label_59" type="Label" parent="black" unique_id=1525244489]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 703.0
@@ -1843,7 +1843,7 @@ offset_bottom = 726.0
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="label_60" type="Label" parent="black"]
+[node name="label_60" type="Label" parent="black" unique_id=97297238]
 layout_mode = 0
 offset_left = 294.0
 offset_top = 727.0

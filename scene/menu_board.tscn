@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://du7djoab5q014"]
+[gd_scene format=3 uid="uid://du7djoab5q014"]
 
 [ext_resource type="PackedScene" uid="uid://doi00wvde4ogg" path="res://assets/model/menu.glb" id="1_e5g8k"]
 [ext_resource type="Texture2D" uid="uid://ltk36w4qbu0i" path="res://assets/texture/menu.png" id="2_8hxod"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo06a"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3j6ls"]
 resource_local_to_scene = true
 albedo_texture = ExtResource("2_8hxod")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15se8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ti5dm"]
 resource_local_to_scene = true
 albedo_texture = ExtResource("2_8hxod")
 
-[node name="menu" instance=ExtResource("1_e5g8k")]
+[node name="menu" unique_id=1649725236 instance=ExtResource("1_e5g8k")]
 
-[node name="menu" parent="." index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_bo06a")
-surface_material_override/1 = SubResource("StandardMaterial3D_15se8")
+[node name="menu" parent="." index="0" unique_id=593779434]
+surface_material_override/0 = SubResource("StandardMaterial3D_3j6ls")
+surface_material_override/1 = SubResource("StandardMaterial3D_ti5dm")

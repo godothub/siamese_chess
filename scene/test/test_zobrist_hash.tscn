@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfu0tlksoyjuc"]
+[gd_scene format=3 uid="uid://bfu0tlksoyjuc"]
 
 [ext_resource type="Script" uid="uid://dsv60m8abrndo" path="res://src/test/test_zobrist_hash.gd" id="1_hl5hf"]
 
-[node name="test_zobrist_hash" type="Control"]
+[node name="test_zobrist_hash" type="Control" unique_id=837851469]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

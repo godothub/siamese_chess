@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxsyg5lji0s5g"]
+[gd_scene format=3 uid="uid://bxsyg5lji0s5g"]
 
 [ext_resource type="PackedScene" uid="uid://bopgdgv46gefh" path="res://assets/model/piece_king.glb" id="1_o5l3u"]
 [ext_resource type="Script" uid="uid://pofjvdbbj3iy" path="res://src/actor/piece.gd" id="2_j4cai"]
@@ -24,8 +24,8 @@ shader_parameter/value_mult = 1.0
 shader_parameter/brightness_add = -0.055
 shader_parameter/contrast_mult = 1.0
 
-[node name="chess_king" instance=ExtResource("1_o5l3u")]
+[node name="chess_king" unique_id=194634613 instance=ExtResource("1_o5l3u")]
 script = ExtResource("2_j4cai")
 
-[node name="piece" parent="." index="0"]
+[node name="piece" parent="." index="0" unique_id=1743513027]
 surface_material_override/0 = SubResource("ShaderMaterial_pq4fm")

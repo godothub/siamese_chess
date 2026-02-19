@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbudevre061ao"]
+[gd_scene format=3 uid="uid://bbudevre061ao"]
 
 [ext_resource type="Script" uid="uid://dyvyua4el5408" path="res://src/test/score_test.gd" id="1_rly3c"]
 
-[node name="perft_test" type="Control"]
+[node name="perft_test" type="Control" unique_id=628234892]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

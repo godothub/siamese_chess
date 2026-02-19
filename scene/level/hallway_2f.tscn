@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="5_gs125"]
 [ext_resource type="Script" uid="uid://chtqhpiu556i1" path="res://src/marker_bit.gd" id="6_y4d10"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="8_37aeh"]
-[ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/marker_actor.gd" id="8_vf3t0"]
+[ext_resource type="Script" path="res://src/marker_actor.gd" id="8_vf3t0"]
 [ext_resource type="PackedScene" uid="uid://324uto1yslin" path="res://assets/model/painting_frame_rect.glb" id="9_n2gtx"]
 [ext_resource type="PackedScene" uid="uid://h3wcv7lnqe8x" path="res://assets/model/painting_frame_square.glb" id="10_vf3t0"]
 
@@ -114,97 +114,81 @@ args = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_1" type="Marker3D" parent="." unique_id=1669712829]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_2" type="Marker3D" parent="." unique_id=611921477]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_3" type="Marker3D" parent="." unique_id=1480218698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_4" type="Marker3D" parent="." unique_id=78741223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_5" type="Marker3D" parent="." unique_id=799219879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_6" type="Marker3D" parent="." unique_id=55034364]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_7" type="Marker3D" parent="." unique_id=1166003780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_8" type="Marker3D" parent="." unique_id=86240728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_9" type="Marker3D" parent="." unique_id=1087650858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_10" type="Marker3D" parent="." unique_id=1056098065]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_11" type="Marker3D" parent="." unique_id=588662178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_12" type="Marker3D" parent="." unique_id=943738052]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_13" type="Marker3D" parent="." unique_id=1953179856]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_14" type="Marker3D" parent="." unique_id=533899695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="actor_y_15" type="Marker3D" parent="." unique_id=225213800]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
 script = ExtResource("8_vf3t0")
 piece = 35
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="painting_frame_rect_3" parent="." unique_id=299697362 instance=ExtResource("9_n2gtx")]
 transform = Transform3D(2.6226832e-07, -8.742276e-08, 2, -2, -8.742278e-08, 2.6226832e-07, 8.742276e-08, -2, -8.742278e-08, -5.803107, 1.6737189, 2.6371717)

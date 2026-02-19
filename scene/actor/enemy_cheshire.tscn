@@ -154,29 +154,29 @@ radius = 1.0
 collision_mask = 0
 script = ExtResource("2_i4qp0")
 
-[node name="body" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1490513832) index="0" unique_id=690757128]
+[node name="body" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(556710853) index="0" unique_id=739228805]
 surface_material_override/0 = SubResource("StandardMaterial3D_i4qp0")
 surface_material_override/1 = SubResource("StandardMaterial3D_i4qp0")
 surface_material_override/2 = SubResource("StandardMaterial3D_i4qp0")
 surface_material_override/3 = SubResource("StandardMaterial3D_i4qp0")
 
-[node name="clothes" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1490513832) index="1" unique_id=1032643509]
+[node name="clothes" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(556710853) index="1" unique_id=1448939172]
 surface_material_override/0 = SubResource("StandardMaterial3D_i4qp0")
 
-[node name="coat" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1490513832) index="2" unique_id=1463501376]
+[node name="coat" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(556710853) index="2" unique_id=1106988947]
 surface_material_override/0 = SubResource("StandardMaterial3D_i4qp0")
 
-[node name="pants" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1490513832) index="3" unique_id=1157029106]
+[node name="pants" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(556710853) index="3" unique_id=839580836]
 surface_material_override/0 = SubResource("StandardMaterial3D_i4qp0")
 
-[node name="shoes" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1490513832) index="4" unique_id=936961664]
+[node name="shoes" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(556710853) index="4" unique_id=238322978]
 surface_material_override/0 = SubResource("StandardMaterial3D_i4qp0")
 
-[node name="sword" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1490513832) index="5" unique_id=1350659695]
+[node name="sword" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(556710853) index="5" unique_id=1168794942]
 surface_material_override/0 = SubResource("StandardMaterial3D_i4qp0")
 surface_material_override/1 = SubResource("StandardMaterial3D_q7635")
 
-[node name="sword_cover" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1490513832) index="6" unique_id=886172519]
+[node name="sword_cover" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(556710853) index="6" unique_id=844248064]
 surface_material_override/0 = SubResource("StandardMaterial3D_i4qp0")
 
 [node name="animation_tree" type="AnimationTree" parent="." index="2" unique_id=68152215]

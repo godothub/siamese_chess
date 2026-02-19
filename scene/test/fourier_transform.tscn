@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3xu6qyp306wd"]
+[gd_scene format=3 uid="uid://b3xu6qyp306wd"]
 
 [ext_resource type="Script" uid="uid://bfff5rgan7dp" path="res://src/test/fourier_transform.gd" id="1_3x8bn"]
 [ext_resource type="AudioStream" uid="uid://bv4gfki3r3dqx" path="res://assets/audio/400329__n-razm__door_open.wav" id="2_67shk"]
 
-[node name="fourier_transform" type="Node2D"]
+[node name="fourier_transform" type="Node2D" unique_id=2144720998]
 script = ExtResource("1_3x8bn")
 audio_stream = ExtResource("2_67shk")
 
-[node name="audio_stream_player" type="AudioStreamPlayer" parent="."]
+[node name="audio_stream_player" type="AudioStreamPlayer" parent="." unique_id=1428383478]
