@@ -3,547 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cyjn8gwybcvvb" path="res://assets/model/stranger.glb" id="1_atibo"]
 [ext_resource type="Script" uid="uid://bfok7caluxy5t" path="res://src/actor/stranger.gd" id="2_mx01q"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_mx01q"]
-radius = 1.0
-
-[sub_resource type="Animation" id="Animation_mx01q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("marker_3d_left_foot_target:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.09552938, 0.04380393, 0.13808304)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("marker_3d_right_foot_target:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.067197114, 0.15086597, -0.41110128)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("marker_3d_left_hand_target:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.29437834, 0.8838041, -0.18058306)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("marker_3d_right_hand_target:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.26305172, 0.8489895, 0.15736866)]
-}
-tracks/4/type = "position_3d"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("skeleton/Skeleton3D:root")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0.0011517571, 0.05949736, 0)
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("marker_3d_left_foot_target/marker_3d_left_foot_pole:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.27430105, 0.39013207)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("marker_3d_right_foot_target/marker_3d_right_foot_pole:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.12189633, 0.4350025, 0.34933406)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("marker_3d_left_hand_target/marker_3d_left_hand_pole:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.023319095, 0.054380774, -0.20134437)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("marker_3d_right_hand_target/marker_3d_right_hand_pole:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.099920794, -0.11968601, -0.098269284)]
-}
-tracks/9/type = "rotation_3d"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("skeleton/Skeleton3D:waist")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, -0.035929102, 0.03642478, 0.03000273, 0.9982395)
-
-[sub_resource type="Animation" id="Animation_iqosf"]
-resource_name = "evade"
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("skeleton/Skeleton3D:root")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.0068624914, 0.9662872, 0.0068624886, 0.25728372, 0.16666667, 1, 0.0068624914, 0.96628726, 0.006862489, 0.25728375)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("skeleton/Skeleton3D:waist")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.035929102, 0.03642478, 0.03000273, 0.9982395)
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("marker_3d_left_foot_target:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.24233146, 0.035838038, -0.014141023)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("marker_3d_left_foot_target/marker_3d_left_foot_pole:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.27430105, 0.39013207)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("marker_3d_right_foot_target:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.18357298, 0.12486735, -0.031140089), Vector3(-0.30865583, 0.040329725, -0.031140089)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("marker_3d_right_foot_target/marker_3d_right_foot_pole:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.15279093, 0.4350025, 0.12690878)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("marker_3d_left_hand_target:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.20567232, 1.0008843, -0.33598736), Vector3(0.106671035, 1.0008843, -0.33598736)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("marker_3d_left_hand_target/marker_3d_left_hand_pole:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.22010425, 0.054380774, -0.20134434)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("marker_3d_right_hand_target:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.17857167, 1.0890745, 0.24737316), Vector3(-0.06374088, 0.93677676, 0.24737316)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("marker_3d_right_hand_target/marker_3d_right_hand_pole:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.099920794, -0.11968601, -0.098269284)]
-}
-tracks/10/type = "position_3d"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("skeleton/Skeleton3D:chest")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, 1.8357722e-08, 0.4541586, -1.982704e-08)
-tracks/11/type = "position_3d"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("skeleton/Skeleton3D:spine")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = PackedFloat32Array(0, 1, -2.3813347e-09, 0.36857888, -6.6817742e-09)
-tracks/12/type = "position_3d"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("skeleton/Skeleton3D:root")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = PackedFloat32Array(0, 1, 0.36570364, -0.0070793405, 0, 0.16666667, 1, 0, 0, 0)
-
-[sub_resource type="Animation" id="Animation_vy2n6"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("marker_3d_left_foot_target:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.15317093, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("marker_3d_right_foot_target:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.100813866, 0, 0)]
-}
-tracks/2/type = "rotation_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("skeleton/Skeleton3D:root")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0.70710665, 0, 0.7071069)
-tracks/3/type = "position_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("skeleton/Skeleton3D:root")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("marker_3d_left_hand_target:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.16804808, 0.94371235, 0.00039324164)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("marker_3d_left_hand_target/marker_3d_left_hand_pole:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.023319095, 0.054380774, -0.20134437)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("marker_3d_left_foot_target/marker_3d_left_foot_pole:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.27430105, 0.39013207)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("marker_3d_right_foot_target/marker_3d_right_foot_pole:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.12189633, 0.4350025, 0.34933406)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("marker_3d_right_hand_target:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.004913226, 1.1657367, -0.15950096)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("marker_3d_right_hand_target/marker_3d_right_hand_pole:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.099920794, -0.11968601, -0.098269284)]
-}
-
-[sub_resource type="Animation" id="Animation_ilm8f"]
-resource_name = "walk"
-loop_mode = 1
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("marker_3d_left_foot_target:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.09552938, 0.04380393, 0.13808304), Vector3(0.08126469, 0.026267871, -0.13645849), Vector3(0.067, 0.151, -0.411), Vector3(0.082, 0.186, -0.137)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("marker_3d_right_foot_target:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.067197114, 0.15086597, -0.41110128), Vector3(-0.08159856, 0.18635042, -0.13655064), Vector3(-0.096, 0.044, 0.138), Vector3(-0.081, 0.031, -0.147)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("marker_3d_left_hand_target:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.263, 0.849, 0.157), Vector3(0.29437834, 0.8838041, -0.18058306)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("marker_3d_right_hand_target:position")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.3, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.294, 0.884, -0.181), Vector3(-0.26305172, 0.8489895, 0.15736866)]
-}
-tracks/4/type = "position_3d"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("skeleton/Skeleton3D:root")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.25, 1, 0.0011517571, 0.05949736, 0, 0.5, 1, 0, 0, 0, 0.75, 1, 0.0011517571, 0.05949736, 0)
-tracks/5/type = "rotation_3d"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("skeleton/Skeleton3D:root")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0.14999998, 1, 0, 0.70710665, 0, 0.7071069, 0.39999998, 1, 0.007, 0.707, -0.007, 0.707, 0.65, 1, 0, 0.70710665, 0, 0.7071069, 0.9, 1, -0.007, 0.707, 0.007, 0.707)
-tracks/6/type = "position_3d"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("skeleton/Skeleton3D:left_pinkie_1")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 3.7896288e-07, 0.28597212, 1.4776394e-07)
-tracks/7/type = "rotation_3d"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("skeleton/Skeleton3D:left_ringfinger_1")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, -0.0010350284, -0.046182174, -0.07209786, 0.9963273)
-tracks/8/type = "rotation_3d"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("skeleton/Skeleton3D:left_middlefinger_1")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, -0.073405415, -0.0061723455, -0.08446998, 0.9936993)
-tracks/9/type = "rotation_3d"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("skeleton/Skeleton3D:left_indexfinger_1")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, -0.17315686, 0.029259255, -0.04874947, 0.9832518)
-tracks/10/type = "rotation_3d"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("skeleton/Skeleton3D:right_indexfinger_1")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, 0.08608336, -0.4790394, -0.14307329, 0.8617662)
-tracks/11/type = "rotation_3d"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("skeleton/Skeleton3D:right_middlefinger_1")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = PackedFloat32Array(0, 1, -0.049203593, 0.96227264, 0.04508395, -0.26377597)
-tracks/12/type = "rotation_3d"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("skeleton/Skeleton3D:right_ringfinger_1")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = PackedFloat32Array(0, 1, -0.008062218, 0.9951245, -0.014939865, 0.09715465)
-tracks/13/type = "rotation_3d"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("skeleton/Skeleton3D:right_pinkie_1")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = PackedFloat32Array(0, 1, -0.10604532, 0.5421305, -0.064250976, 0.8310961)
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("marker_3d_left_foot_target/marker_3d_left_foot_pole:position")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.27430105, 0.39013207)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("marker_3d_right_foot_target/marker_3d_right_foot_pole:position")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.12189633, 0.4350025, 0.6970173)]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("marker_3d_left_hand_target/marker_3d_left_hand_pole:position")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.060889184, 0.054380774, -0.1835348)]
-}
-tracks/17/type = "value"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("marker_3d_right_hand_target/marker_3d_right_hand_pole:position")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -0.14554119, -0.36086726)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_iqosf"]
-_data = {
-&"RESET": SubResource("Animation_mx01q"),
-&"evade": SubResource("Animation_iqosf"),
-&"idle": SubResource("Animation_vy2n6"),
-&"walk": SubResource("Animation_ilm8f")
-}
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx01q"]
+radius = 0.3251953
+height = 1.690918
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mx01q"]
 animation = &"evade"
@@ -556,6 +18,8 @@ animation = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iqosf"]
 xfade_time = 0.2
+break_loop_at_end = true
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0hfyq"]
@@ -566,148 +30,88 @@ xfade_time = 0.3
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_84t0p"]
 xfade_time = 0.3
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mx01q"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vy2n6"]
+xfade_time = 0.3
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0hfyq"]
 states/evade/node = SubResource("AnimationNodeAnimation_mx01q")
 states/evade/position = Vector2(680, 134)
 states/idle/node = SubResource("AnimationNodeAnimation_vy2n6")
 states/idle/position = Vector2(531, 43)
 states/walk/node = SubResource("AnimationNodeAnimation_ilm8f")
-states/walk/position = Vector2(402, 134)
-transitions = ["evade", "idle", SubResource("AnimationNodeStateMachineTransition_iqosf"), "idle", "evade", SubResource("AnimationNodeStateMachineTransition_0hfyq"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_6t2tw"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_84t0p")]
+states/walk/position = Vector2(402, 134.48979)
+transitions = ["evade", "idle", SubResource("AnimationNodeStateMachineTransition_iqosf"), "idle", "evade", SubResource("AnimationNodeStateMachineTransition_0hfyq"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_6t2tw"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_84t0p"), "walk", "evade", SubResource("AnimationNodeStateMachineTransition_mx01q"), "evade", "walk", SubResource("AnimationNodeStateMachineTransition_vy2n6")]
 
-[node name="stranger" unique_id=921327352 instance=ExtResource("1_atibo")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_mx01q"]
+radius = 1.1904546
+
+[node name="stranger" unique_id=824909588 instance=ExtResource("1_atibo")]
+collision_layer = 4
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("2_mx01q")
 
-[node name="Skeleton3D" parent="skeleton" parent_id_path=PackedInt32Array(1206379940) index="0" unique_id=1865241051]
-transform = Transform3D(0.99981266, -0.019354494, 0, 0.019354494, 0.99981266, 0, 0, 0, 1, 0, 0, 0)
-bones/0/position = Vector3(0.0011517571, 0.05949736, 0)
-bones/19/rotation = Quaternion(-0.035929106, 0.036424782, 0.030002736, 0.9982396)
-
-[node name="two_bone_ik_left_foot" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" index="1" unique_id=1742183838]
-transform = Transform3D(2.8105686, 0, 0, 0, 2.8105686, 0, 0, 0, 2.8105686, 0, 0, 0)
-setting_count = 1
-settings/0/target_node = NodePath("../../../marker_3d_left_foot_target")
-settings/0/pole_node = NodePath("../../../marker_3d_left_foot_target/marker_3d_left_foot_pole")
-settings/0/root_bone_name = "left_thigh"
-settings/0/root_bone = 2
-settings/0/middle_bone_name = "left_calf"
-settings/0/middle_bone = 3
-settings/0/pole_direction = 0
-settings/0/end_bone_name = "left_foot_0"
-settings/0/end_bone = 4
-settings/0/use_virtual_end = false
-settings/0/extend_end_bone = false
-
-[node name="two_bone_ik_right_foot" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" index="2" unique_id=457104678]
-transform = Transform3D(2.8105686, 0, 0, 0, 2.8105686, 0, 0, 0, 2.8105686, 0, 0, 0)
-setting_count = 1
-settings/0/target_node = NodePath("../../../marker_3d_right_foot_target")
-settings/0/pole_node = NodePath("../../../marker_3d_right_foot_target/marker_3d_right_foot_pole")
-settings/0/root_bone_name = "right_thigh"
-settings/0/root_bone = 15
-settings/0/middle_bone_name = "right_calf"
-settings/0/middle_bone = 16
-settings/0/pole_direction = 0
-settings/0/end_bone_name = "right_foot_0"
-settings/0/end_bone = 17
-settings/0/use_virtual_end = false
-settings/0/extend_end_bone = false
-
-[node name="two_bone_ik_left_hand" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" index="3" unique_id=620077039]
-transform = Transform3D(2.8105686, 0, 0, 0, 2.8105686, 0, 0, 0, 2.8105686, 0, 0, 0)
-setting_count = 1
-settings/0/target_node = NodePath("../../../marker_3d_left_hand_target")
-settings/0/pole_node = NodePath("../../../marker_3d_left_hand_target/marker_3d_left_hand_pole")
-settings/0/root_bone_name = "left_upper_limbs"
-settings/0/root_bone = 32
-settings/0/middle_bone_name = "left_lower_limbs"
-settings/0/middle_bone = 33
-settings/0/pole_direction = 0
-settings/0/end_bone_name = "left_indexfinger_0"
-settings/0/end_bone = 34
-settings/0/use_virtual_end = false
-settings/0/extend_end_bone = true
-settings/0/end_bone/direction = 6
-settings/0/end_bone/length = 0.0
-
-[node name="two_bone_ik_right_hand" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" index="4" unique_id=557972979]
-transform = Transform3D(2.8105686, 0, 0, 0, 2.8105686, 0, 0, 0, 2.8105686, 0, 0, 0)
-setting_count = 1
-settings/0/target_node = NodePath("../../../marker_3d_right_hand_target")
-settings/0/pole_node = NodePath("../../../marker_3d_right_hand_target/marker_3d_right_hand_pole")
-settings/0/root_bone_name = "right_upper_limbs"
-settings/0/root_bone = 54
-settings/0/middle_bone_name = "right_lower_limbs"
-settings/0/middle_bone = 55
-settings/0/pole_direction = 0
-settings/0/end_bone_name = "right_indexfinger_0"
-settings/0/end_bone = 56
-settings/0/use_virtual_end = false
-settings/0/extend_end_bone = true
-settings/0/end_bone/direction = 6
-settings/0/end_bone/length = 0.0
-
-[node name="fabrik_3d" type="FABRIK3D" parent="skeleton/Skeleton3D" index="5" unique_id=1362508651]
-setting_count = 1
-settings/0/target_node = NodePath("../../../marker_3d_tail")
-settings/0/root_bone_name = "tail_0"
-settings/0/root_bone = 6
-settings/0/end_bone_name = "tail_7"
-settings/0/end_bone = 13
-settings/0/extend_end_bone = false
-settings/0/joint_count = 8
-settings/0/joints/0/rotation_axis = 3
-settings/0/joints/0/limitation = null
-settings/0/joints/1/rotation_axis = 3
-settings/0/joints/1/limitation = null
-settings/0/joints/2/rotation_axis = 3
-settings/0/joints/2/limitation = null
-settings/0/joints/3/rotation_axis = 3
-settings/0/joints/3/limitation = null
-settings/0/joints/4/rotation_axis = 3
-settings/0/joints/4/limitation = null
-settings/0/joints/5/rotation_axis = 3
-settings/0/joints/5/limitation = null
-settings/0/joints/6/rotation_axis = 3
-settings/0/joints/6/limitation = null
-settings/0/joints/7/rotation_axis = 3
-settings/0/joints/7/limitation = null
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(268464248) index="0" unique_id=472034616]
+bones/0/position = Vector3(0.049221084, 0.021622114, -1.021178)
+bones/0/rotation = Quaternion(-0.7109983, -0.05519951, 0.014210541, 0.70087993)
+bones/1/rotation = Quaternion(-0.023798637, 0.0029655562, 0.015226025, 0.9995965)
+bones/2/rotation = Quaternion(0.018790407, 0.0047797756, 0.027589966, 0.9994314)
+bones/3/rotation = Quaternion(0.018790457, 0.004779773, 0.027589966, 0.9994314)
+bones/4/rotation = Quaternion(-0.060814112, -0.001471377, 0.007835076, 0.9981173)
+bones/5/rotation = Quaternion(0.028944904, 0.008604279, -0.049675968, 0.9983089)
+bones/7/rotation = Quaternion(-0.63545793, -0.34876403, 0.58135927, -0.36956495)
+bones/8/rotation = Quaternion(0.4637509, 0.18969199, 0.06957022, 0.8626193)
+bones/9/rotation = Quaternion(-0.03828733, 0.0070956973, 0.13522266, 0.9900499)
+bones/10/rotation = Quaternion(-0.090912245, -0.11025481, 0.13055652, 0.98108816)
+bones/11/rotation = Quaternion(0.13063635, -0.037715744, 0.055475112, 0.98915833)
+bones/12/rotation = Quaternion(0.23227517, 0.038524285, -0.08948595, 0.9677585)
+bones/15/rotation = Quaternion(0.15366109, -0.039219137, 0.06958924, 0.9848896)
+bones/16/rotation = Quaternion(0.13630714, 0.004980049, -0.010961601, 0.9905935)
+bones/19/rotation = Quaternion(0.13320504, -0.0017109143, 0.0034614075, 0.991081)
+bones/20/rotation = Quaternion(0.09514426, -0.0002097817, 0.0012566769, 0.9954627)
+bones/23/rotation = Quaternion(0.21939546, -0.00036115086, -0.11120629, 0.96927744)
+bones/24/rotation = Quaternion(0.102590546, -0.0009195616, -0.0033516008, 0.99471766)
+bones/27/rotation = Quaternion(0.31020114, -0.014427626, -0.26204056, 0.91372967)
+bones/28/rotation = Quaternion(0.12527508, -0.00040972026, 0.018162895, 0.9919557)
+bones/31/rotation = Quaternion(0.60729206, -0.3770627, 0.5927658, 0.37101045)
+bones/32/rotation = Quaternion(0.44469535, -0.26949376, -0.04633278, 0.85292)
+bones/33/rotation = Quaternion(-0.035920415, -0.00949833, -0.16347916, 0.98584694)
+bones/34/rotation = Quaternion(-0.18885633, 0.23126175, -0.08798545, 0.95032096)
+bones/35/rotation = Quaternion(0.10416409, 0.071164355, -0.050469548, 0.9907262)
+bones/36/rotation = Quaternion(0.27936834, -0.046050258, 0.12442017, 0.9509744)
+bones/39/rotation = Quaternion(0.18960851, 0.035958182, -0.09945633, 0.9761476)
+bones/40/rotation = Quaternion(0.12767185, -0.0002939552, 0.008770965, 0.9917777)
+bones/43/rotation = Quaternion(0.22836715, -0.005609114, -0.005107237, 0.9735456)
+bones/44/rotation = Quaternion(0.14370771, 0.0005165873, -0.005528179, 0.98960465)
+bones/47/rotation = Quaternion(0.2782709, 0.030729463, 0.100546144, 0.95473117)
+bones/48/rotation = Quaternion(0.13864379, 0.0028637166, -0.0042379918, 0.99032915)
+bones/51/rotation = Quaternion(0.3017096, 0.042646997, 0.1955173, 0.9321618)
+bones/52/rotation = Quaternion(0.13574778, 0.0051842686, -0.035577953, 0.99009085)
+bones/55/rotation = Quaternion(0.024482999, 0.121181674, 0.9888793, -0.08266392)
+bones/56/rotation = Quaternion(-0.1508696, -0.000599376, -0.017194394, 0.988404)
+bones/57/rotation = Quaternion(0.41827527, -0.17089896, 0.04624426, 0.890899)
+bones/58/rotation = Quaternion(0.33864602, -0.06964074, 0.036425438, 0.9376259)
+bones/60/rotation = Quaternion(-0.061030686, 0.019855812, 0.99661183, -0.05143791)
+bones/61/rotation = Quaternion(-0.09928583, -0.00023046898, 0.01440474, 0.9949547)
+bones/62/rotation = Quaternion(0.48434687, 0.08852534, -0.07017785, 0.8675521)
+bones/63/rotation = Quaternion(0.3655713, 0.042459458, -0.010541371, 0.9297547)
 
 [node name="collision_shape_3d" type="CollisionShape3D" parent="." index="1" unique_id=200913038]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003988564, 0.86261296, 0.0020794868)
-shape = SubResource("SphereShape3D_mx01q")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003988564, 0.70807195, 0.0020794868)
+shape = SubResource("CapsuleShape3D_mx01q")
 
-[node name="marker_3d_left_foot_target" type="Marker3D" parent="." index="2" unique_id=591387482]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09552938, 0.04380393, 0.13808304)
-
-[node name="marker_3d_left_foot_pole" type="Marker3D" parent="marker_3d_left_foot_target" index="0" unique_id=1554238859]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27430105, 0.39013207)
-
-[node name="marker_3d_right_foot_target" type="Marker3D" parent="." index="3" unique_id=1178738749]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.067197114, 0.15086597, -0.41110128)
-
-[node name="marker_3d_right_foot_pole" type="Marker3D" parent="marker_3d_right_foot_target" index="0" unique_id=1207631538]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12189633, 0.4350025, 0.34933406)
-
-[node name="marker_3d_left_hand_target" type="Marker3D" parent="." index="4" unique_id=210858809]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29437834, 0.8838041, -0.18058306)
-
-[node name="marker_3d_left_hand_pole" type="Marker3D" parent="marker_3d_left_hand_target" index="0" unique_id=21625834]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023319095, 0.054380774, -0.20134437)
-
-[node name="marker_3d_right_hand_target" type="Marker3D" parent="." index="5" unique_id=1428795767]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26305172, 0.8489895, 0.15736866)
-
-[node name="marker_3d_right_hand_pole" type="Marker3D" parent="marker_3d_right_hand_target" index="0" unique_id=1448905001]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.099920794, -0.11968601, -0.098269284)
-
-[node name="marker_3d_tail" type="Marker3D" parent="." index="6" unique_id=847955044]
-transform = Transform3D(0.3557999, 0, 0, 0, 0.35579994, 0, 0, 0, 0.35579994, -0.023061693, 0.5218923, -0.5513779)
-
-[node name="animation_player" type="AnimationPlayer" parent="." index="7" unique_id=1565349407]
-libraries/ = SubResource("AnimationLibrary_iqosf")
-
-[node name="animation_tree" type="AnimationTree" parent="." index="8" unique_id=251224311]
+[node name="animation_tree" type="AnimationTree" parent="." index="3" unique_id=251224311]
 tree_root = SubResource("AnimationNodeStateMachine_0hfyq")
-anim_player = NodePath("../animation_player")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="area_3d" type="Area3D" parent="." index="4" unique_id=1172186000]
+collision_layer = 0
+monitorable = false
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_3d" index="0" unique_id=1463815566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93384314, 0.8265623)
+shape = SubResource("SphereShape3D_mx01q")
