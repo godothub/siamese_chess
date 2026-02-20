@@ -11,6 +11,9 @@ var template_list:Dictionary = {
 var document:Document = null
 var document_list:PackedStringArray = []
 var button_list:Array[Button] = []
+var mouse_move_start:Vector2 = Vector2()
+var mouse_moved:bool = false
+var scroll_velocity:float = 0
 
 func _ready() -> void:
 	visible = false
@@ -19,6 +22,11 @@ func _ready() -> void:
 	$texture_rect/h_box_container/button_add_empty.connect("button_up", add_empty_pressed)
 	$texture_rect/h_box_container/button_duplicate.connect("button_up", duplicate_pressed)
 	$texture_rect/h_box_container/button_delete.connect("button_up", delete_pressed)
+	$texture_rect/scroll_container.connect("gui_input", scroll_container_input)
+
+func _process(_delta:float) -> void:
+	$texture_rect/scroll_container.scroll_vertical -= scroll_velocity
+	scroll_velocity = max(0, abs(scroll_velocity) - 1) if scroll_velocity > 0 else -max(0, abs(scroll_velocity) - 1)
 
 func open() -> void:
 	$texture_rect/button_close.grab_focus()
@@ -57,10 +65,26 @@ func update_list() -> void:
 		button.add_theme_stylebox_override("hover", StyleBoxEmpty.new())
 		button.add_theme_stylebox_override("pressed", StyleBoxEmpty.new())
 		button.add_theme_font_override("font", preload("res://assets/fonts/FangZhengShuSongJianTi-1.ttf"))
-		button.connect("button_up", open_document.bind(iter))
+		button.mouse_filter = Control.MOUSE_FILTER_PASS
+		button.connect("pressed", func () -> void:
+			if !mouse_moved:
+				open_document(iter)
+		)
+		button.connect("gui_input", button_input.bind(button))
 		$texture_rect/scroll_container/v_box_container.add_child(button)
 		button_list.push_back(button)
-	
+
+func button_input(event:InputEvent, button:Button) -> void:
+	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			mouse_move_start = event.global_position
+			mouse_moved = false
+
+func scroll_container_input(event:InputEvent) -> void:
+	if event is InputEventMouseMotion && (event.button_mask & MOUSE_BUTTON_MASK_LEFT) && (mouse_moved || event.global_position.distance_squared_to(mouse_move_start) > 400):
+		mouse_moved = true
+		scroll_velocity = event.relative.y
+
 func open_document(filename:String) -> void:
 	if is_instance_valid(document):
 		document.save_file()

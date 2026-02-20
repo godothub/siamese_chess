@@ -45,6 +45,7 @@ offset_right = -0.5680237
 offset_bottom = 0.21594238
 follow_focus = true
 draw_focus_border = true
+horizontal_scroll_mode = 0
 
 [node name="v_box_container" type="VBoxContainer" parent="texture_rect/scroll_container" unique_id=1533975025]
 layout_mode = 2
