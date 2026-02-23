@@ -19,7 +19,9 @@ func _ready() -> void:
 func _physics_process(_delta:float) -> void:
 	var vision_look_at:Vector2 = Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
 	head.global_rotation.y -= vision_look_at.x / 1000 * Setting.get_value("camera_rotate_sensitive") * Setting.axis[Setting.get_value("camera_rotate_axis")].x
-	head.global_rotation.x -= vision_look_at.y / 2000 * Setting.get_value("camera_rotate_sensitive") * Setting.axis[Setting.get_value("camera_rotate_axis")].y
+	var yaw:float = head.global_rotation.x - vision_look_at.y / 2000 * Setting.get_value("camera_rotate_sensitive") * Setting.axis[Setting.get_value("camera_rotate_axis")].y
+	yaw = clamp(yaw, -PI / 2, PI * 2 / 6)
+	head.global_rotation.x = yaw
 	if zoom_plus.button_pressed:
 		zoom_camera(slider.value - _delta * Setting.get_value("camera_move_speed"))
 	if zoom_minus.button_pressed:
@@ -30,9 +32,11 @@ func sub_viewport_container_gui_input(event:InputEvent) -> void:
 		if !(event.button_mask & MOUSE_BUTTON_MASK_LEFT):
 			return
 		head.global_rotation.y -= event.relative.x / 20000 * Setting.get_value("camera_rotate_sensitive") * Setting.axis[Setting.get_value("camera_rotate_axis")].x
-		head.global_rotation.x += event.relative.y / 10000 * Setting.get_value("camera_rotate_sensitive") * Setting.axis[Setting.get_value("camera_rotate_axis")].y
+		var yaw:float = head.global_rotation.x + event.relative.y / 10000 * Setting.get_value("camera_rotate_sensitive") * Setting.axis[Setting.get_value("camera_rotate_axis")].y
+		yaw = clamp(yaw, -PI / 2, PI * 2 / 6)
+		head.global_rotation.x = yaw
 	elif event is InputEventScreenPinch:
-		zoom_camera(slider.value - event.relative / 1000 * Setting.get_value("camera_move_speed"))
+		zoom_camera(slider.value + event.relative / 1000 * Setting.get_value("camera_move_speed"))
 
 func open() -> void:
 	zoom_camera(0)

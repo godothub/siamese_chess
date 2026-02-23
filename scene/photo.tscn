@@ -22,10 +22,6 @@ layer = 5
 visible = false
 script = ExtResource("1_uxrgg")
 
-[node name="touch_input_manager" type="Node" parent="." unique_id=1340904596]
-script = ExtResource("3_w3k4a")
-metadata/_custom_type_script = "uid://wa2q0lswte4p"
-
 [node name="texture_rect" type="TextureRect" parent="." unique_id=1806762942]
 anchors_preset = 15
 anchor_right = 1.0
@@ -179,3 +175,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_uxrgg")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_w3k4a")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_uj1is")
 text = ""
+
+[node name="touch_input_manager" type="Node" parent="." unique_id=1340904596]
+script = ExtResource("3_w3k4a")
+metadata/_custom_type_script = "uid://wa2q0lswte4p"
