@@ -36,42 +36,26 @@ texture = SubResource("GradientTexture1D_lqkdx")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="margin_container" type="MarginContainer" parent="texture_rect" unique_id=1453437168]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect" unique_id=767148151]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
 
-[node name="sub_viewport_container" type="SubViewportContainer" parent="texture_rect/margin_container" unique_id=2060842346]
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/h_box_container" unique_id=1460773848]
 layout_mode = 2
-stretch = true
 
-[node name="sub_viewport" type="SubViewport" parent="texture_rect/margin_container/sub_viewport_container" unique_id=1685809639]
-handle_input_locally = false
-size = Vector2i(952, 448)
-render_target_update_mode = 0
+[node name="margin_container_close" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container" unique_id=16071581]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="head" type="Node3D" parent="texture_rect/margin_container/sub_viewport_container/sub_viewport" unique_id=1308556348]
-
-[node name="camera_3d" type="Camera3D" parent="texture_rect/margin_container/sub_viewport_container/sub_viewport/head" unique_id=334749899]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.41930068)
-
-[node name="button_close" type="Button" parent="." unique_id=820626953]
-anchors_preset = -1
-anchor_left = 0.013
-anchor_top = 0.029
-anchor_right = 0.076
-anchor_bottom = 0.14
-offset_left = 0.0240002
-offset_top = 0.208
-offset_right = 0.447998
-offset_bottom = 0.279999
+[node name="button_close" type="Button" parent="texture_rect/h_box_container/v_box_container/margin_container_close" unique_id=820626953]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_pressed_color = Color(0.6, 0.6, 0.6, 1)
@@ -83,16 +67,108 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_w3k4a")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_uj1is")
 text = ""
 
-[node name="button_shot" type="Button" parent="." unique_id=1800064315]
-anchors_preset = -1
-anchor_left = 0.92100006
-anchor_top = 0.86600006
-anchor_right = 0.984
-anchor_bottom = 0.97700006
-offset_left = 0.00793457
-offset_top = -0.16802979
-offset_right = 0.43200684
-offset_bottom = -0.0960083
+[node name="margin_container" type="MarginContainer" parent="texture_rect/h_box_container" unique_id=1453437168]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 70
+
+[node name="sub_viewport_container" type="SubViewportContainer" parent="texture_rect/h_box_container/margin_container" unique_id=2060842346]
+layout_mode = 2
+stretch = true
+
+[node name="sub_viewport" type="SubViewport" parent="texture_rect/h_box_container/margin_container/sub_viewport_container" unique_id=1685809639]
+handle_input_locally = false
+size = Vector2i(964, 508)
+render_target_update_mode = 0
+
+[node name="head" type="Node3D" parent="texture_rect/h_box_container/margin_container/sub_viewport_container/sub_viewport" unique_id=1308556348]
+
+[node name="camera_3d" type="Camera3D" parent="texture_rect/h_box_container/margin_container/sub_viewport_container/sub_viewport/head" unique_id=334749899]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.41930068)
+
+[node name="v_box_container_2" type="VBoxContainer" parent="texture_rect/h_box_container" unique_id=203973085]
+layout_mode = 2
+
+[node name="margin_container_close" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_2" unique_id=1264826223]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="margin_container_plus" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_2" unique_id=1427945094]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="button_plus" type="Button" parent="texture_rect/h_box_container/v_box_container_2/margin_container_plus" unique_id=7396637]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_aquyh")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uxrgg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_w3k4a")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uj1is")
+text = ""
+
+[node name="margin_container_slider" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_2" unique_id=307054457]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="v_slider" type="VSlider" parent="texture_rect/h_box_container/v_box_container_2/margin_container_slider" unique_id=605358268]
+layout_mode = 2
+size_flags_horizontal = 4
+step = -1.0
+value = 100.0
+tick_count = 5
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="margin_container_minus" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_2" unique_id=1965738602]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="button_minus" type="Button" parent="texture_rect/h_box_container/v_box_container_2/margin_container_minus" unique_id=2051553981]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_aquyh")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uxrgg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_w3k4a")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uj1is")
+text = ""
+
+[node name="margin_container_shot" type="MarginContainer" parent="texture_rect/h_box_container/v_box_container_2" unique_id=145512768]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="button_shot" type="Button" parent="texture_rect/h_box_container/v_box_container_2/margin_container_shot" unique_id=1409379994]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_pressed_color = Color(0.6, 0.6, 0.6, 1)
