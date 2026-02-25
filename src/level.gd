@@ -33,7 +33,10 @@ func _ready() -> void:
 			state.set_bit(ord("Z"), state.get_bit(ord("Z")) | node.bit)
 			var bit:int = node.bit
 			while bit:
-				interact_list[Chess.to_x88(Chess.first_bit(bit))] = {"": node.event}
+				var by:int = Chess.to_x88(Chess.first_bit(bit))
+				if !interact_list.has(by):
+					interact_list[by] = {}
+				interact_list[by][""] = node.event
 				bit = Chess.next_bit(bit)
 		if node is MarkerSelection:
 			state.set_bit(ord("z"), state.get_bit(ord("z")) | node.bit)
@@ -234,7 +237,8 @@ func state_ready_versus_player(_arg:Dictionary) -> void:
 		)
 	state_machine.state_signal_connect(Dialog.on_next, state_machine.change_state.bind("dialog"))
 	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.bind("white_win"))
-	Clock.resume()
+	if chessboard.state.get_bit(ord("A")):
+		Clock.resume()
 	chessboard.clear_pointer("premove")
 	premove_from = -1
 	premove_to = -1
