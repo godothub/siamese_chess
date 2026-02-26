@@ -193,7 +193,7 @@ func state_ready_in_game_player(_arg:Dictionary) -> void:
 				Dialog.push_selection(["SELECTION_LEAVE_GAME"], "HINT_TAKE_BACKED", false, false)
 				return
 			$table_0/chessboard_standard.state = standard_history_state[-2]
-			$table_0/chessboard_standard.set_square_selection(ord('A') if standard_player_group == 0 else ord('a'))
+			$table_0/chessboard_standard.set_square_selection($table_0/chessboard_standard.state.get_bit(ord('A') if standard_player_group == 0 else ord('a')))
 			$table_0/chessboard_standard.receive_rollback_event(standard_history_event[-1])
 			$table_0/chessboard_standard.receive_rollback_event(standard_history_event[-2])
 			standard_history_zobrist.resize(standard_history_zobrist.size() - 2)
