@@ -1,6 +1,12 @@
 extends Node3D
 class_name Level
 
+var player_group:int = 0
+var player_all:int = 0
+var player_king:int = 0
+var enemy_all:int = 0
+var enemy_king:int = 0
+
 var engine:ChessEngine = null	# 有可能会出现多线作战，共用同一个引擎显然不好
 var chessboard:Chessboard = null
 var in_battle:bool = false
@@ -12,6 +18,10 @@ var title:Dictionary[int, String] = {}
 var state_machine:StateMachine = null
 
 func _ready() -> void:
+	player_all = ord("A") if player_group == 0 else ord("a")
+	player_king = ord("K") if player_group == 0 else ord("k")
+	enemy_all = ord("a") if player_group == 0 else ord("A")
+	enemy_king = ord("k") if player_group == 0 else ord("K")
 	engine = PastorEngine.new()
 	state_machine = StateMachine.new()
 	var state = State.new()
@@ -85,8 +95,8 @@ func _ready() -> void:
 	state_machine.add_state("versus_extra_move", state_ready_versus_extra_move)
 	state_machine.add_state("versus_select_empty_square", state_ready_versus_select_empty_square)
 	state_machine.add_state("versus_select_piece", state_ready_versus_select_piece)
-	state_machine.add_state("black_win", state_ready_black_win)
-	state_machine.add_state("white_win", state_ready_white_win)
+	state_machine.add_state("player_win", state_ready_player_win)
+	state_machine.add_state("enemy_win", state_ready_enemy_win)
 	state_machine.add_state("conclude", state_ready_conclude)
 	state_machine.add_state("draw", state_ready_draw)
 	state_machine.add_state("dialog", state_ready_dialog)
@@ -98,10 +108,10 @@ var premove_to:int = -1
 
 func premove_init() -> void:
 	if premove_from == -1:
-		var start_from:int = chessboard.state.get_bit(ord("a"))
+		var start_from:int = chessboard.state.get_bit(player_all)
 		chessboard.set_square_selection(start_from)
 	elif premove_to == -1:
-		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if chessboard.state.get_bit(ord("A")) else Chess.generate_explore_move(chessboard.state, 1)
+		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if chessboard.state.get_bit(enemy_all) else Chess.generate_explore_move(chessboard.state, player_group)
 		var selection:int = 0
 		for iter:int in move_list:
 			if Chess.from(iter) == premove_from:
@@ -109,11 +119,11 @@ func premove_init() -> void:
 		chessboard.set_square_selection(selection)
 
 func premove_pressed() -> void:
-	var start_from:int = chessboard.state.get_bit(ord("a"))
+	var start_from:int = chessboard.state.get_bit(player_all)
 	if premove_from == -1 || premove_to != -1:
 		premove_to = -1
 		chessboard.clear_pointer("premove")
-		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if chessboard.state.get_bit(ord("A")) else Chess.generate_explore_move(chessboard.state, 1)
+		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if chessboard.state.get_bit(enemy_all) else Chess.generate_explore_move(chessboard.state, player_group)
 		var selection:int = 0
 		premove_from = chessboard.selected
 		for iter:int in move_list:
@@ -127,7 +137,7 @@ func premove_pressed() -> void:
 		chessboard.set_square_selection(start_from)
 
 func premove_cancel() -> void:
-	var start_from:int = chessboard.state.get_bit(ord("a"))
+	var start_from:int = chessboard.state.get_bit(player_all)
 	premove_from = -1
 	premove_to = -1
 	chessboard.clear_pointer("premove")
@@ -142,16 +152,16 @@ func state_ready_versus_start(_arg:Dictionary) -> void:
 	history_document.set_state(chessboard.state)
 	history_document.set_filename("history." + String.num_int64(Time.get_unix_time_from_system()) + ".json")
 	if Chess.get_end_type(chessboard.state) == "checkmate_black":
-		state_machine.change_state("black_win")
+		state_machine.change_state("player_win")
 	elif Chess.get_end_type(chessboard.state) == "checkmate_white":
-		state_machine.change_state("white_win")
-	elif chessboard.state.get_turn() == 0:
+		state_machine.change_state("enemy_win")
+	elif chessboard.state.get_turn() != player_group:
 		state_machine.change_state("versus_enemy")
 	else:
 		state_machine.change_state("versus_player")
 
 func state_ready_versus_enemy(_arg:Dictionary) -> void:
-	if !chessboard.state.get_bit(ord("A")):
+	if !chessboard.state.get_bit(enemy_all):
 		state_machine.change_state("versus_move", {"move": -1})
 		return
 	state_machine.state_signal_connect(chessboard.click_selection, premove_pressed)
@@ -167,7 +177,7 @@ func state_ready_versus_enemy(_arg:Dictionary) -> void:
 		engine.set_max_depth(2)
 		engine.set_quies(true)
 	engine.set_think_time(2)
-	engine.start_search(chessboard.state, 0, history_state, Callable())
+	engine.start_search(chessboard.state, 1 - player_group, history_state, Callable())
 	premove_init()
 
 func state_ready_versus_waiting() -> void:
@@ -185,20 +195,20 @@ func state_ready_versus_move(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(chessboard.animation_finished, func() -> void:
 		var end_type:String = Chess.get_end_type(chessboard.state)
 		if end_type == "checkmate_black":
-			state_machine.change_state("black_win")
+			state_machine.change_state("player_win")
 		elif end_type == "checkmate_white":
-			state_machine.change_state("white_win")
+			state_machine.change_state("enemy_win")
 		elif end_type == "stalemate_black":
 			state_machine.change_state("draw")
 		elif end_type == "stalemate_white":
 			state_machine.change_state("draw")
 		#elif end_type == "not_enough_piece":
 		#	state_machine.change_state("draw")
-		elif chessboard.state.get_turn() == 0 && chessboard.state.get_bit(ord("A")):
+		elif chessboard.state.get_turn() != player_group && chessboard.state.get_bit(enemy_all):
 			state_machine.change_state("versus_enemy")
 		elif premove_from != -1 && premove_to != -1:
 			chessboard.clear_pointer("premove")
-			state_machine.change_state("versus_check_move", {"from": premove_from, "to": premove_to, "move_list": Chess.generate_valid_move(chessboard.state, 1) if chessboard.state.get_bit(ord("A")) else Chess.generate_explore_move(chessboard.state, 1)})
+			state_machine.change_state("versus_check_move", {"from": premove_from, "to": premove_to, "move_list": Chess.generate_valid_move(chessboard.state, player_group) if chessboard.state.get_bit(enemy_all) else Chess.generate_explore_move(chessboard.state, player_group)})
 			premove_from = -1
 			premove_to = -1
 		elif chessboard.state.get_bit(ord("Z")) & Chess.mask(Chess.to_64(Chess.to(_arg["move"]))):
@@ -221,7 +231,7 @@ func state_ready_versus_move(_arg:Dictionary) -> void:
 func state_ready_versus_player(_arg:Dictionary) -> void:
 	var start_from:int = 0
 	var can_introduce:bool = false
-	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1)
+	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, player_group)
 	for iter:int in move_list:
 		if Chess.from(iter) == Chess.to(iter):
 			can_introduce = true
@@ -236,13 +246,13 @@ func state_ready_versus_player(_arg:Dictionary) -> void:
 			state_machine.change_state("versus_select_piece", {"by": chessboard.selected})
 		)
 	state_machine.state_signal_connect(Dialog.on_next, state_machine.change_state.bind("dialog"))
-	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.bind("white_win"))
-	if chessboard.state.get_bit(ord("A")):
+	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.bind("enemy_win"))
+	if chessboard.state.get_bit(enemy_all):
 		Clock.resume()
 	chessboard.clear_pointer("premove")
 	premove_from = -1
 	premove_to = -1
-	var by:int = Chess.to_x88(Chess.first_bit(chessboard.state.get_bit(ord("k"))))
+	var by:int = Chess.to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
 	var selection:PackedStringArray = []
 	if chessboard.state.get_bit(ord("z")) & Chess.mask(Chess.to_64(by)):
 		selection = interact_list[by].keys()
@@ -254,7 +264,7 @@ func state_exit_versus_player() -> void:
 	Dialog.clear()
 
 func state_ready_versus_ready_to_move(_arg:Dictionary) -> void:
-	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1) if chessboard.state.get_bit(ord("A")) else Chess.generate_explore_move(chessboard.state, 1)
+	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, player_group) if chessboard.state.get_bit(enemy_all) else Chess.generate_explore_move(chessboard.state, player_group)
 	var selection:int = 0
 	var dialog_selection:PackedStringArray = []
 	var introduce_selection:int = 0
@@ -276,7 +286,7 @@ func state_ready_versus_ready_to_move(_arg:Dictionary) -> void:
 		actor.idle()
 		state_machine.change_state("versus_player")
 	)
-	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.bind("white_win"))
+	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.bind("enemy_win"))
 	state_machine.state_signal_connect(Dialog.on_next, func() -> void:
 		match Dialog.selected:
 			"SELECTION_PIECES":
@@ -300,7 +310,7 @@ func state_ready_versus_ready_to_move(_arg:Dictionary) -> void:
 			"SELECTION_CANCEL":
 				state_machine.change_state("versus_player")
 	)
-	if from_piece == ord("k"):
+	if from_piece == player_king:
 		if introduce_selection:
 			Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_CAMERA", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS", "SELECTION_CANCEL"], "", false, false)
 		else:
@@ -340,7 +350,7 @@ func state_ready_versus_extra_move(_arg:Dictionary) -> void:
 		else:
 			state_machine.change_state("versus_move", {"move": decision_to_move[Dialog.selected]})
 	)
-	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.bind("white_win"))
+	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.bind("enemy_win"))
 	Dialog.push_selection(decision_list, "HINT_EXTRA_MOVE", true, true)
 
 func state_ready_versus_select_empty_square(_arg:Dictionary) -> void:
@@ -354,10 +364,10 @@ func state_ready_versus_select_empty_square(_arg:Dictionary) -> void:
 func state_ready_versus_select_piece(_arg:Dictionary) -> void:
 	var storage_piece:int = chessboard.state.get_storage_piece()
 	var by:int = _arg["by"]
-	var start_from:int = chessboard.state.get_bit(ord("a"))
+	var start_from:int = chessboard.state.get_bit(player_all)
 
 	var move_valid:bool = false
-	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, 1)
+	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, player_group)
 	var pawn_available:bool = false 
 	for iter:int in move_list:
 		if Chess.from(iter) == Chess.to(iter) && Chess.from(iter) == by:
@@ -405,10 +415,10 @@ func state_ready_versus_select_piece(_arg:Dictionary) -> void:
 	chessboard.set_square_selection(start_from)
 
 
-func state_ready_black_win(_arg:Dictionary) -> void:
+func state_ready_player_win(_arg:Dictionary) -> void:
 	history_document.save_file()
 	Progress.set_value("time_left", Clock.get_time_left())
-	var bit:int = chessboard.state.get_bit(ord("A"))
+	var bit:int = chessboard.state.get_bit(enemy_all)
 	while bit:
 		chessboard.state.capture_piece(Chess.to_x88(Chess.first_bit(bit)))
 		chessboard.chessboard_piece[Chess.to_x88(Chess.first_bit(bit))].captured()
@@ -417,9 +427,9 @@ func state_ready_black_win(_arg:Dictionary) -> void:
 	Progress.accumulate("wins", 1)
 	Dialog.push_dialog("HINT_YOU_WIN", "", true, true)
 
-func state_ready_white_win(_arg:Dictionary) -> void:
+func state_ready_enemy_win(_arg:Dictionary) -> void:
 	history_document.save_file()
-	var by:int = Chess.to_x88(chessboard.state.bit_index(ord("k"))[0])
+	var by:int = Chess.to_x88(Chess.first_bit($chessboard.state.get_bit(player_king)))
 	chessboard.state.capture_piece(Chess.to_x88(by))
 	#chessboard.chessboard_piece[Chess.to_x88(by)].captured()
 	state_machine.state_signal_connect(Dialog.on_next, state_machine.change_state.bind("conclude"))
@@ -430,7 +440,7 @@ func state_ready_conclude(_arg:Dictionary) -> void:
 
 func state_ready_draw(_arg:Dictionary) -> void:
 	history_document.save_file()
-	var bit:int = chessboard.state.get_bit(ord("A"))
+	var bit:int = chessboard.state.get_bit(enemy_all)
 	while bit:
 		chessboard.state.capture_piece(Chess.to_x88(Chess.first_bit(bit)))
 		chessboard.chessboard_piece[Chess.to_x88(Chess.first_bit(bit))].leave()
@@ -439,7 +449,7 @@ func state_ready_draw(_arg:Dictionary) -> void:
 	Dialog.push_dialog("平局", "", true, true)
 
 func state_ready_dialog(_arg:Dictionary) -> void:
-	var by:int = Chess.to_x88(chessboard.state.bit_index(ord("k"))[0])
+	var by:int = Chess.to_x88(Chess.first_bit($chessboard.state.get_bit(player_king)))
 	state_machine.change_state("interact", {"callback": interact_list[by][Dialog.selected]})
 
 func state_ready_interact(_arg:Dictionary) -> void:
