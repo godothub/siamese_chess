@@ -544,6 +544,29 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _beta, 
 	return _alpha;
 }
 
+void PastorEngine::all_move(const godot::Ref<State> &_state, int _depth, int _group, bool _can_null, const godot::Callable &_debug_output)
+{
+	godot::PackedInt32Array move_list;
+	Chess::_internal_generate_valid_move(move_list, _state, _group);
+	for (int i = 0; i < move_list.size(); i++)
+	{
+		if (_debug_output.is_valid())
+		{
+			_debug_output.call(_state->get_zobrist(), 0, i, move_list.size());
+		}
+		godot::Ref<State> &test_state = state_pool[0];
+		_state->_internal_duplicate(test_state);
+		Chess::apply_move(test_state, move_list[i]);
+		int next_score = 0;
+		next_score = -alphabeta(test_state, -WIN, WIN, _depth - 1, 1 - _group, 1, _can_null, false, nullptr, nullptr, _debug_output);
+		searched_move[move_list[i]] = next_score;
+		if (!principal_move || searched_move[principal_move] < next_score)
+		{
+			principal_move = move_list[i];
+		}
+	}
+}
+
 int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _beta, int _depth, int _group, int _ply, bool _can_null, bool _is_null, int *killer_1, int *killer_2, const godot::Callable &_debug_output)
 {
 	godot::PackedInt32Array move_list;
@@ -566,7 +589,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 		}
 	}
 	Chess::_internal_generate_valid_move(move_list, _state, _group);
-	if (move_list.size() == 0)
+	if (!move_list.size())
 	{
 		return _group == 0 ? despise_factor : -despise_factor;
 	}
@@ -679,17 +702,18 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	evaluated_position = 0;
 	beta_cutoff = 0;
 	transposition_table_cutoff = 0;
-
 	if (opening_book->has_record(_state))
 	{
 		godot::PackedInt32Array suggest_move = opening_book->get_suggest_move(_state);
 		if (suggest_move.size())
 		{
 			std::mt19937_64 rng(time(nullptr));
-			searched_move = suggest_move[rng() % suggest_move.size()];
+			principal_move = suggest_move[rng() % suggest_move.size()];
 			return;
 		}
 	}
+	principal_move = 0;
+	searched_move.clear();
 	map_history_state.clear();
 	history_table.fill(0);
 	for (int i = 0; i < history_state.size(); i++)
@@ -698,19 +722,17 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	}
 	for (int i = 2; i <= max_depth; i += 2)
 	{
-		alphabeta(_state, -THRESHOLD, THRESHOLD, i, _group, 0, true, false, nullptr, nullptr, _debug_output);
+		all_move(_state, i, _group, true, _debug_output);
 		if (time_passed() >= think_time || interrupted)
 		{
 			break;
 		}
 	}
-	searched_move = transposition_table->best_move(_state->get_zobrist());
-	searched_score = transposition_table->probe_hash(_state->get_zobrist(), 1, -THRESHOLD, THRESHOLD);
 }
 
 int PastorEngine::get_search_result()
 {
-	return searched_move;
+	return principal_move;
 }
 
 godot::PackedInt32Array PastorEngine::get_principal_variation()
@@ -720,7 +742,7 @@ godot::PackedInt32Array PastorEngine::get_principal_variation()
 
 int PastorEngine::get_score()
 {
-	return searched_score;
+	return searched_move[principal_move];
 }
 
 int PastorEngine::get_deepest_ply()
