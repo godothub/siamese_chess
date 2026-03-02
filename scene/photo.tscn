@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://bq5ty1txvcybm" path="res://assets/fonts/Font Awesome 7 Free-Regular-400.otf" id="1_aquyh"]
 [ext_resource type="Script" uid="uid://cj6qxacwoc51v" path="res://src/photo.gd" id="1_uxrgg"]
+[ext_resource type="Texture2D" uid="uid://dikg6r3lq8w5x" path="res://assets/texture/camera_guideline.svg" id="3_uj1is"]
 [ext_resource type="Script" uid="uid://wa2q0lswte4p" path="res://addons/gdtim/InputManager.gd" id="3_w3k4a"]
 
 [sub_resource type="Gradient" id="Gradient_j3y3i"]
@@ -84,6 +85,11 @@ render_target_update_mode = 0
 
 [node name="camera_3d" type="Camera3D" parent="texture_rect/h_box_container/margin_container/sub_viewport_container/sub_viewport/head" unique_id=334749899]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.41930068)
+
+[node name="texture_rect" type="TextureRect" parent="texture_rect/h_box_container/margin_container" unique_id=1470011981]
+layout_mode = 2
+texture = ExtResource("3_uj1is")
+expand_mode = 2
 
 [node name="v_box_container_2" type="VBoxContainer" parent="texture_rect/h_box_container" unique_id=203973085]
 layout_mode = 2
