@@ -69,9 +69,9 @@ func _ready() -> void:
 	camera_rotate_axis_input.connect("item_selected", set_camera_rotate_axis)
 	language_input.connect("item_selected", set_language)
 	relax_input.connect("toggled", set_relax)
-	clean_archive_input.connect("button_down", set_clean_archive)
-	reset_progress_input.connect("button_down", set_reset_progress)
-	$texture_rect/button_close.connect("button_down", close)
+	clean_archive_input.connect("pressed", set_clean_archive)
+	reset_progress_input.connect("pressed", set_reset_progress)
+	$texture_rect/button_close.connect("pressed", close)
 
 	resolution_input.select(table.get_or_add("resolution", 0))
 	set_resolution(table.get_or_add("resolution"))

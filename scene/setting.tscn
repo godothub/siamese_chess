@@ -25,6 +25,12 @@ font_size = 26
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8pksm"]
 
+[sub_resource type="InputEventAction" id="InputEventAction_g2to7"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_2wb80"]
+events = [SubResource("InputEventAction_g2to7")]
+
 [node name="setting" type="CanvasLayer" unique_id=1363617514]
 layer = 5
 script = ExtResource("1_ahr6q")
@@ -583,4 +589,5 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_2wb80")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_123qk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8pksm")
+shortcut = SubResource("Shortcut_2wb80")
 text = ""

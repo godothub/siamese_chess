@@ -17,6 +17,12 @@ gradient = SubResource("Gradient_w5kv4")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x4nah"]
 
+[sub_resource type="InputEventAction" id="InputEventAction_w5kv4"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_x4nah"]
+events = [SubResource("InputEventAction_w5kv4")]
+
 [node name="archive" type="CanvasLayer" unique_id=427270618]
 layer = 3
 script = ExtResource("1_550ee")
@@ -77,6 +83,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uibjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_buvmo")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_x4nah")
+shortcut = SubResource("Shortcut_x4nah")
 text = ""
 
 [node name="h_box_container" type="HBoxContainer" parent="texture_rect" unique_id=1804693783]

@@ -18,11 +18,11 @@ var scroll_velocity:float = 0
 
 func _ready() -> void:
 	visible = false
-	$texture_rect/button_close.connect("button_up", close)
-	$texture_rect/h_box_container/button_rename.connect("button_up", rename_pressed)
-	$texture_rect/h_box_container/button_add_empty.connect("button_up", add_empty_pressed)
-	$texture_rect/h_box_container/button_duplicate.connect("button_up", duplicate_pressed)
-	$texture_rect/h_box_container/button_delete.connect("button_up", delete_pressed)
+	$texture_rect/button_close.connect("pressed", close)
+	$texture_rect/h_box_container/button_rename.connect("pressed", rename_pressed)
+	$texture_rect/h_box_container/button_add_empty.connect("pressed", add_empty_pressed)
+	$texture_rect/h_box_container/button_duplicate.connect("pressed", duplicate_pressed)
+	$texture_rect/h_box_container/button_delete.connect("pressed", delete_pressed)
 	$texture_rect/scroll_container.connect("gui_input", scroll_container_input)
 	set_process(false)
 

@@ -11,6 +11,7 @@ extends CanvasLayer
 @onready var sub_viewport:SubViewport = $texture_rect/h_box_container/margin_container/sub_viewport_container/sub_viewport
 
 func _ready() -> void:
+	visible = false
 	button_close.connect("pressed", close)
 	button_shot.connect("pressed", capture)
 	sub_viewport_container.connect("gui_input", sub_viewport_container_gui_input)
