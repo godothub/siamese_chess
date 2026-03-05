@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://h3wcv7lnqe8x" path="res://assets/model/painting_frame_square.glb" id="15_pgyt1"]
 [ext_resource type="PackedScene" uid="uid://d4j8pwy7ljqhy" path="res://assets/model/table_low.glb" id="16_pgyt1"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="17_088yb"]
+[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/marker_callback.gd" id="17_fhf0e"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/marker_camera.gd" id="18_fhf0e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j5fnc"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -46,10 +48,6 @@ metadata/_custom_type_script = "uid://rhdq34na2j5m"
 metadata/by = 80
 
 [node name="player" parent="." unique_id=2004397747 instance=ExtResource("2_gimty")]
-
-[node name="camera" type="Camera3D" parent="." unique_id=1746372595]
-transform = Transform3D(0.985733, 0.11429672, -0.123559184, 1.93588e-08, 0.73408616, 0.6790564, 0.168317, -0.66936827, 0.72361284, -1.8114014, 11.159217, 13.41664)
-fov = 58.5874
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1316976406]
 environment = SubResource("Environment_sb1hd")
@@ -208,3 +206,59 @@ light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
 [node name="spot_light_3d_5" type="SpotLight3D" parent="." unique_id=909032068]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.03634739, 3.18505, 4.8886986)
 light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
+
+[node name="marker_callback_2f" type="Node3D" parent="." unique_id=1124459732 node_paths=PackedStringArray("node")]
+script = ExtResource("17_fhf0e")
+node = NodePath("..")
+method_name = &"elevator_2f"
+selection = "2F"
+bit = 2
+metadata/_custom_type_script = "uid://cpyviir7sli6u"
+
+[node name="marker_callback_3f" type="Node3D" parent="." unique_id=1385071600 node_paths=PackedStringArray("node")]
+script = ExtResource("17_fhf0e")
+node = NodePath("..")
+method_name = &"elevator_3f"
+selection = "3F"
+bit = 2
+metadata/_custom_type_script = "uid://cpyviir7sli6u"
+
+[node name="camera_cafe" type="Camera3D" parent="." unique_id=1746372595]
+transform = Transform3D(0.92948073, 0.25048393, -0.2707828, 1.93588e-08, 0.73408616, 0.67905635, 0.36887062, -0.63116986, 0.6823189, -6.667514, 3.7496367, 7.977865)
+fov = 58.5874
+
+[node name="marker_camera_cafe" type="Node3D" parent="." unique_id=1303561354 node_paths=PackedStringArray("camera")]
+script = ExtResource("18_fhf0e")
+camera = NodePath("../camera_cafe")
+bit = 847736349917184
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+
+[node name="camera_overall" type="Camera3D" parent="." unique_id=1434869583]
+transform = Transform3D(0.7549041, -0.44534913, 0.4814396, 6.6509315e-08, 0.7340862, 0.67905647, -0.6558354, -0.5126224, 0.55416465, 6.114976, 5.8209233, 6.95804)
+fov = 58.5874
+
+[node name="marker_camera_overall" type="Node3D" parent="." unique_id=1779513574 node_paths=PackedStringArray("camera")]
+script = ExtResource("18_fhf0e")
+camera = NodePath("../camera_overall")
+bit = -1736985392701703944
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+
+[node name="camera_elevator" type="Camera3D" parent="." unique_id=1248793151]
+transform = Transform3D(0.87938297, 0.32330889, -0.3495096, 6.536113e-08, 0.7340862, 0.6790563, 0.4761151, -0.59715056, 0.6455429, -6.098369, 4.4444137, 0.49767017)
+fov = 58.5874
+
+[node name="marker_camera_elevator" type="Node3D" parent="." unique_id=959922331 node_paths=PackedStringArray("camera")]
+script = ExtResource("18_fhf0e")
+camera = NodePath("../camera_elevator")
+bit = 460551
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+
+[node name="camera_gate" type="Camera3D" parent="." unique_id=671097813]
+transform = Transform3D(-0.9862884, 0.11206528, -0.12114674, 1.0684363e-07, 0.73408616, 0.67905635, 0.16503078, 0.6697454, -0.7240207, -0.7083812, 4.4444137, 2.4456153)
+fov = 58.5874
+
+[node name="marker_camera_gate" type="Node3D" parent="." unique_id=1287083462 node_paths=PackedStringArray("camera")]
+script = ExtResource("18_fhf0e")
+camera = NodePath("../camera_gate")
+bit = 1736137656351326208
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"

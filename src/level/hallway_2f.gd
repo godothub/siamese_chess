@@ -7,10 +7,13 @@ func _ready() -> void:
 	var cheshire_instance:Actor = load("res://scene/actor/cheshire.tscn").instantiate()
 	cheshire_instance.position = $chessboard.x88_to_vector3(cheshire_by)
 	title[0x02] = "电梯"
-	interact_list[0x02] = {
-		"1F": Loading.change_scene.bind("res://scene/level/reception_lobby.tscn", {"by": 1}),
-		"3F": Loading.change_scene.bind("res://scene/level/hallway_3f.tscn", {"by": 2})}
 	$chessboard.state.add_piece(cheshire_by, player_king)
 	$chessboard.add_piece_instance(cheshire_instance, cheshire_by)
 	chessboard.button_input_pointer = cheshire_by
 	$player.force_set_camera($camera)
+
+func elevator_1f() -> void:
+	Loading.change_scene("res://scene/level/reception_lobby.tscn", {"by": 1})
+
+func elevator_3f() -> void:
+	Loading.change_scene("res://scene/level/hallway_3f.tscn", {"by": 2})

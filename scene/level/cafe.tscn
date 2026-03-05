@@ -325,8 +325,12 @@ visible = false
 visible = false
 
 [node name="camera" type="Camera3D" parent="." unique_id=546823115]
-transform = Transform3D(1.3044414e-07, 0.7638636, -0.64537776, 7.736119e-09, 0.64537776, 0.7638636, 1, -1.0463425e-07, 7.82764e-08, -5.501005, 6.3051796, 3.2519171)
+transform = Transform3D(1.2288378e-07, 0.54927075, -0.8356445, 4.4442086e-08, 0.8356445, 0.54927075, 1, -1.0463425e-07, 7.827639e-08, -5.720485, 3.4710846, 3.2519171)
 fov = 72.17557
+
+[node name="camera_pastor" type="Camera3D" parent="." unique_id=1321780903]
+transform = Transform3D(-0.19467205, 0.4867464, -0.8515755, -0.0049543786, 0.8676862, 0.49708766, 0.98085594, 0.10098808, -0.16650273, -2.298256, 2.46423, 3.04269)
+fov = 51.3432
 
 [node name="table_0" parent="." unique_id=241443587 instance=ExtResource("6_ecjec")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0.0249235, 5)
@@ -513,10 +517,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.6798
 [node name="radermachera_sinica_4" parent="." unique_id=245832707 instance=ExtResource("13_fsnob")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.90683, 0, -0.247615)
 
-[node name="camera_pastor" type="Camera3D" parent="." unique_id=1321780903]
-transform = Transform3D(-0.19467205, 0.4867464, -0.8515755, -0.0049543786, 0.8676862, 0.49708766, 0.98085594, 0.10098808, -0.16650273, -2.298256, 2.46423, 3.04269)
-fov = 51.3432
-
 [node name="camera_chessboard" type="Camera3D" parent="." unique_id=489509762]
 transform = Transform3D(-4.21108e-08, 0.7114499, -0.7027369, 1.17203e-08, 0.7027369, 0.7114499, 1, 2.1723435e-08, -3.793122e-08, 1.6484116, 1.24647, 5.02685)
 fov = 63.9549
@@ -621,26 +621,6 @@ selection = "DOCUMENT_TITLE_CHESS_MOVEMENT"
 bit = 274877906944
 metadata/_custom_type_script = "uid://dc4n8wl381mqw"
 
-[node name="csg_wall_6" type="CSGBox3D" parent="." unique_id=1497509967]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 1.51379, 2.0978413)
-size = Vector3(0.408875, 3, 8.191406)
-material = SubResource("StandardMaterial3D_2nvbi")
-
-[node name="csg_wall_7" type="CSGBox3D" parent="." unique_id=2145217246]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.203891, 1.51379, 2.1015034)
-size = Vector3(0.408875, 3, 8.19873)
-material = SubResource("StandardMaterial3D_2nvbi")
-
-[node name="csg_wall_8" type="CSGBox3D" parent="." unique_id=1286210515]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.719086, 1.51379, 6.3762484)
-size = Vector3(4.873535, 3, 0.43603516)
-material = SubResource("StandardMaterial3D_2nvbi")
-
-[node name="csg_wall_9" type="CSGBox3D" parent="." unique_id=1756542337]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86279774, 1.51379, -2.248186)
-size = Vector3(14.635178, 3, 0.43603516)
-material = SubResource("StandardMaterial3D_2nvbi")
-
 [node name="spot_light_3d" type="SpotLight3D" parent="." unique_id=1436247631]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.8269051, 3.18505, 4.67948)
 light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
@@ -665,14 +645,41 @@ light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.712865, 3.18505, 1.300142)
 light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
 
-[node name="csg_wall_10" type="CSGBox3D" parent="." unique_id=1479229998]
+[node name="csg_combiner_3d" type="CSGCombiner3D" parent="." unique_id=70494328]
+
+[node name="csg_wall_10" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1479229998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42219305, 1.51379, 6.3762484)
 size = Vector3(1.4410095, 3, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
-[node name="csg_wall_11" type="CSGBox3D" parent="." unique_id=304530948]
+[node name="csg_wall_11" type="CSGBox3D" parent="csg_combiner_3d" unique_id=304530948]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3064857, 1.51379, 6.3762484)
 size = Vector3(2.24115, 3, 0.43603516)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="csg_wall_6" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1497509967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 1.9118003, 2.0639057)
+size = Vector3(0.408875, 3.7960205, 8.259277)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="csg_wall_7" type="CSGBox3D" parent="csg_combiner_3d" unique_id=2145217246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.203891, 1.9175986, 2.078432)
+size = Vector3(0.408875, 3.8076172, 8.244873)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="csg_wall_8" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1286210515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.719086, 1.51379, 6.3762484)
+size = Vector3(4.873535, 3, 0.43603516)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="csg_wall_9" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1756542337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86279774, 1.9082144, -2.248186)
+size = Vector3(14.635178, 3.7888489, 0.43603516)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="csg_wall_12" type="CSGBox3D" parent="csg_combiner_3d" unique_id=569339108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8656316, 3.4188347, 6.3762484)
+size = Vector3(14.580444, 0.8158264, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="marker_camera" type="Node3D" parent="." unique_id=1459029983 node_paths=PackedStringArray("camera")]

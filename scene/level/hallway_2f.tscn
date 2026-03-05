@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/marker_multi_actor.gd" id="8_vf3t0"]
 [ext_resource type="PackedScene" uid="uid://324uto1yslin" path="res://assets/model/painting_frame_rect.glb" id="9_n2gtx"]
 [ext_resource type="PackedScene" uid="uid://h3wcv7lnqe8x" path="res://assets/model/painting_frame_square.glb" id="10_vf3t0"]
+[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/marker_callback.gd" id="11_37aeh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ka0b7"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -151,3 +152,19 @@ material = SubResource("StandardMaterial3D_vf3t0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.991712, 2.8370323, -8.2439575)
 size = Vector3(2.2494354, 0.35351563, 0.4732666)
 material = SubResource("StandardMaterial3D_vf3t0")
+
+[node name="marker_callback_1f" type="Node3D" parent="." unique_id=1619598393 node_paths=PackedStringArray("node")]
+script = ExtResource("11_37aeh")
+node = NodePath("..")
+method_name = &"elevator_1f"
+selection = "1F"
+bit = 4
+metadata/_custom_type_script = "uid://cpyviir7sli6u"
+
+[node name="marker_callback_3f" type="Node3D" parent="." unique_id=2143552007 node_paths=PackedStringArray("node")]
+script = ExtResource("11_37aeh")
+node = NodePath("..")
+method_name = &"elevator_3f"
+selection = "3F"
+bit = 4
+metadata/_custom_type_script = "uid://cpyviir7sli6u"

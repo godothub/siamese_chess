@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://h3wcv7lnqe8x" path="res://assets/model/painting_frame_square.glb" id="10_md6wq"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/marker_multi_actor.gd" id="11_pjyyy"]
 [ext_resource type="PackedScene" uid="uid://324uto1yslin" path="res://assets/model/painting_frame_rect.glb" id="11_unvbp"]
+[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/marker_callback.gd" id="12_6v2ut"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="12_pjyyy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ka0b7"]
@@ -167,3 +168,19 @@ script = ExtResource("11_pjyyy")
 piece = 35
 bit = -1012762419733073423
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
+
+[node name="marker_callback_1f" type="Node3D" parent="." unique_id=1859186669 node_paths=PackedStringArray("node")]
+script = ExtResource("12_6v2ut")
+node = NodePath("..")
+method_name = &"elevator_1f"
+selection = "1F"
+bit = 4
+metadata/_custom_type_script = "uid://cpyviir7sli6u"
+
+[node name="marker_callback_2f" type="Node3D" parent="." unique_id=875432640 node_paths=PackedStringArray("node")]
+script = ExtResource("12_6v2ut")
+node = NodePath("..")
+method_name = &"elevator_2f"
+selection = "2F"
+bit = 4
+metadata/_custom_type_script = "uid://cpyviir7sli6u"
