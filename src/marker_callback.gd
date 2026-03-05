@@ -6,4 +6,4 @@ class_name MarkerCallback
 @export var arg:Array = []
 
 func event() -> void:
-	node.callv("method_name", arg)
+	node.callv(method_name, arg)

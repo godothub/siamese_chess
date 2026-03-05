@@ -155,6 +155,8 @@ func state_ready_versus_start(_arg:Dictionary) -> void:
 		state_machine.change_state("player_win")
 	elif Chess.get_end_type(chessboard.state) == "checkmate_white":
 		state_machine.change_state("enemy_win")
+	elif chessboard.state.get_bit(ord("Z")) & chessboard.state.get_bit(player_king):
+		state_machine.change_state("interact", {"callback": interact_list[Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))][""]})
 	elif chessboard.state.get_turn() != player_group:
 		state_machine.change_state("versus_enemy")
 	else:
