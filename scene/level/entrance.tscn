@@ -36,52 +36,52 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
 metadata/_edit_lock_ = true
 
-[node name="f6_001" parent="chessboard" index="20" unique_id=1905342937]
+[node name="f6_001" parent="chessboard" index="20"]
 visible = false
 
-[node name="f5_001" parent="chessboard" index="21" unique_id=1349862213]
+[node name="f5_001" parent="chessboard" index="21"]
 visible = false
 
-[node name="f4_001" parent="chessboard" index="22" unique_id=2010896522]
+[node name="f4_001" parent="chessboard" index="22"]
 visible = false
 
-[node name="f3_001" parent="chessboard" index="23" unique_id=811664143]
+[node name="f3_001" parent="chessboard" index="23"]
 visible = false
 
-[node name="e6_001" parent="chessboard" index="28" unique_id=760722487]
+[node name="e6_001" parent="chessboard" index="28"]
 visible = false
 
-[node name="e5_001" parent="chessboard" index="29" unique_id=367166236]
+[node name="e5_001" parent="chessboard" index="29"]
 visible = false
 
-[node name="e4_001" parent="chessboard" index="30" unique_id=1710784981]
+[node name="e4_001" parent="chessboard" index="30"]
 visible = false
 
-[node name="e3_001" parent="chessboard" index="31" unique_id=713567511]
+[node name="e3_001" parent="chessboard" index="31"]
 visible = false
 
-[node name="d6_001" parent="chessboard" index="36" unique_id=1983266635]
+[node name="d6_001" parent="chessboard" index="36"]
 visible = false
 
-[node name="d5_001" parent="chessboard" index="37" unique_id=609311913]
+[node name="d5_001" parent="chessboard" index="37"]
 visible = false
 
-[node name="d4_001" parent="chessboard" index="38" unique_id=2109372378]
+[node name="d4_001" parent="chessboard" index="38"]
 visible = false
 
-[node name="d3_001" parent="chessboard" index="39" unique_id=1338851531]
+[node name="d3_001" parent="chessboard" index="39"]
 visible = false
 
-[node name="c6_001" parent="chessboard" index="44" unique_id=1936897563]
+[node name="c6_001" parent="chessboard" index="44"]
 visible = false
 
-[node name="c5_001" parent="chessboard" index="45" unique_id=1998258835]
+[node name="c5_001" parent="chessboard" index="45"]
 visible = false
 
-[node name="c4_001" parent="chessboard" index="46" unique_id=64261827]
+[node name="c4_001" parent="chessboard" index="46"]
 visible = false
 
-[node name="c3_001" parent="chessboard" index="47" unique_id=1432937449]
+[node name="c3_001" parent="chessboard" index="47"]
 visible = false
 
 [node name="pool" parent="." unique_id=1988405554 instance=ExtResource("4_vie8g")]
@@ -248,5 +248,10 @@ size = Vector3(1.238739, 0.4975586, 21.074768)
 [node name="csg_box_3d_4" type="CSGBox3D" parent="." unique_id=1837926434]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, -0.2512207, 9.793869)
 size = Vector3(16.021355, 0.4975586, 3.561798)
+
+[node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=1549429842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94150615, 0)
+box_projection = true
+interior = true
 
 [editable path="chessboard"]

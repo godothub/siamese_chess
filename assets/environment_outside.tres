@@ -13,7 +13,6 @@ sky_material = SubResource("ProceduralSkyMaterial_w25ob")
 background_mode = 2
 sky = SubResource("Sky_cdevh")
 ambient_light_color = Color(0.7490196, 0.2, 0.1882353, 1)
-ssr_enabled = true
 sdfgi_read_sky_light = false
 fog_enabled = true
 fog_mode = 1

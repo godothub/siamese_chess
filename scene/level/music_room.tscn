@@ -25,7 +25,6 @@ sky_material = SubResource("ProceduralSkyMaterial_e1edc")
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_cw0l5")
-ssr_enabled = true
 fog_light_color = Color(1, 1, 1, 1)
 
 [node name="music_room" type="Node3D" unique_id=402173173]
@@ -110,3 +109,9 @@ script = ExtResource("11_tkywf")
 piece = 35
 bit = -18650183629930497
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
+
+[node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=477710130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15586448, 1.626729, 0.97574234)
+update_mode = 1
+size = Vector3(13.955143, 11.148132, 12.183032)
+box_projection = true

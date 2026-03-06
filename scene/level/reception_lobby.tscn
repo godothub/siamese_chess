@@ -32,13 +32,9 @@ sky_material = SubResource("ProceduralSkyMaterial_j5fnc")
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_gimty")
-ssr_enabled = true
-sdfgi_enabled = true
 sdfgi_read_sky_light = false
-fog_enabled = true
-fog_mode = 1
-fog_light_color = Color(0, 0, 0, 1)
-fog_density = 1.0
+glow_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gimty"]
 
@@ -171,18 +167,13 @@ args = {
 bit = 1729382256910270464
 
 [node name="csg_wall_2" type="CSGBox3D" parent="." unique_id=76291114]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0408626, 1.51379, -8.2439575)
-size = Vector3(11.855515, 3, 0.4732666)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1125674, 1.51379, -8.2439575)
+size = Vector3(11.998924, 3, 0.4732666)
 material = SubResource("StandardMaterial3D_gimty")
 
 [node name="csg_elevator_wall_4" type="CSGBox3D" parent="." unique_id=570162492]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1305356, 1.51379, -8.2439575)
 size = Vector3(2.0584414, 3, 0.4732666)
-material = SubResource("StandardMaterial3D_gimty")
-
-[node name="csg_elevator_wall_5" type="CSGBox3D" parent="." unique_id=1181042249]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.991712, 2.8370323, -8.2439575)
-size = Vector3(2.2494354, 0.35351563, 0.4732666)
 material = SubResource("StandardMaterial3D_gimty")
 
 [node name="csg_wall_6" type="CSGBox3D" parent="." unique_id=935140248]
@@ -191,21 +182,31 @@ size = Vector3(0.408875, 3, 4.441066)
 material = SubResource("StandardMaterial3D_gimty")
 
 [node name="csg_wall_7" type="CSGBox3D" parent="." unique_id=426345695]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.201963, 1.51379, -0.2517252)
-size = Vector3(0.3688584, 3, 16.490627)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.201963, 2.9630089, -0.2517252)
+size = Vector3(0.3688584, 5.8984375, 16.490627)
 material = SubResource("StandardMaterial3D_gimty")
 
 [node name="spot_light_3d_3" type="SpotLight3D" parent="." unique_id=1097205919]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -6.230714, 3.8614793, 3.300142)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -6.230714, 5.7127357, 3.300142)
 light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
 
 [node name="spot_light_3d_4" type="SpotLight3D" parent="." unique_id=307010632]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.5326414, 3.18505, -4.6998577)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.5326414, 5.0363064, -4.6998577)
 light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
+light_energy = 1.821
+spot_range = 5.537
+spot_attenuation = -0.23
+spot_angle = 53.83
+spot_angle_attenuation = 0.70710677
 
 [node name="spot_light_3d_5" type="SpotLight3D" parent="." unique_id=909032068]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.03634739, 3.18505, 4.8886986)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.03634739, 4.6345663, 5.7894387)
 light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
+light_energy = 1.821
+spot_range = 5.537
+spot_attenuation = -0.23
+spot_angle = 53.83
+spot_angle_attenuation = 0.70710677
 
 [node name="marker_callback_2f" type="Node3D" parent="." unique_id=1124459732 node_paths=PackedStringArray("node")]
 script = ExtResource("17_fhf0e")
@@ -262,3 +263,41 @@ script = ExtResource("18_fhf0e")
 camera = NodePath("../camera_gate")
 bit = 1736137656351326208
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+
+[node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=236591818]
+
+[node name="lightmap_probe" type="LightmapProbe" parent="." unique_id=401793183]
+
+[node name="csg_elevator_wall_6" type="CSGBox3D" parent="." unique_id=1280688838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 4.3542066, -0.13716602)
+size = Vector3(0.408875, 3.1582031, 16.63684)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_wall_3" type="CSGBox3D" parent="." unique_id=952107714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09738684, 4.2813425, -8.2439575)
+size = Vector3(16.037853, 3.269043, 0.4732666)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_wall_4" type="CSGBox3D" parent="." unique_id=1920344153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.78464, 1.51379, 7.9541235)
+size = Vector3(7.1799374, 3, 0.4732666)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_elevator_wall_5" type="CSGBox3D" parent="." unique_id=1168354562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6618085, 1.51379, 7.9541235)
+size = Vector3(6.9958954, 3, 0.4732666)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_wall_5" type="CSGBox3D" parent="." unique_id=1506556411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22678137, 4.233857, 7.9541235)
+size = Vector3(16.296642, 3.3640137, 0.4732666)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="spot_light_3d_6" type="SpotLight3D" parent="." unique_id=984294076]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.8358903, 5.0363064, -4.6998577)
+light_color = Color(1.6358014, 1.347788, 1.1557788, 1)
+light_energy = 1.821
+spot_range = 5.537
+spot_attenuation = -0.23
+spot_angle = 53.83
+spot_angle_attenuation = 0.70710677
