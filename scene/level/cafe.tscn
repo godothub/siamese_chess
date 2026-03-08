@@ -526,7 +526,7 @@ bit = 52776558133248
 metadata/_custom_type_script = "uid://chtqhpiu556i1"
 
 [node name="door_2" parent="." unique_id=828687556 instance=ExtResource("18_e7kou")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6, 0, 5)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6.673354, 0, 5)
 
 [node name="teleport_pointer" parent="." unique_id=221900182 instance=ExtResource("19_m8sl2")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3, 0, -1)
@@ -656,7 +656,7 @@ size = Vector3(2.24115, 3, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_wall_6" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1497509967]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 1.9118003, 2.0639057)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9772916, 1.9118003, 2.0639057)
 size = Vector3(0.408875, 3.7960205, 8.259277)
 material = SubResource("StandardMaterial3D_2nvbi")
 
@@ -666,23 +666,23 @@ size = Vector3(0.408875, 3.8076172, 8.244873)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_wall_8" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1286210515]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.719086, 1.51379, 6.3762484)
-size = Vector3(4.873535, 3, 0.43603516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.234345, 1.51379, 6.3762484)
+size = Vector3(3.9040527, 3, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_wall_9" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1756542337]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86279774, 1.9082144, -2.248186)
-size = Vector3(14.635178, 3.7888489, 0.43603516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35837078, 1.9082144, -2.248186)
+size = Vector3(13.626324, 3.7888489, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_wall_12" type="CSGBox3D" parent="csg_combiner_3d" unique_id=569339108]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8656316, 3.2180061, 6.3762484)
-size = Vector3(14.580444, 1.2174835, 0.43603516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3833623, 3.2180061, 6.3762484)
+size = Vector3(13.615906, 1.2174835, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_wall_13" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1302466628]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8656316, 0.43882036, 6.3762484)
-size = Vector3(14.580444, 0.87848854, 0.43603516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38018847, 0.43882036, 6.3762484)
+size = Vector3(13.609558, 0.87848854, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="marker_camera" type="Node3D" parent="." unique_id=1459029983 node_paths=PackedStringArray("camera")]
