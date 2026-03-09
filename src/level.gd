@@ -297,7 +297,7 @@ func state_ready_versus_ready_to_move(_arg:Dictionary) -> void:
 				Archive.open()
 				state_machine.change_state("versus_player")
 			"SELECTION_STATUS":
-				Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"], 
+				Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_CAMERA", "SELECTION_THIRD_EYE", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"], 
 					tr("HINT_STATUS") % [Progress.get_value("obtains", 0), Progress.get_value("wins", 0)], false, false)
 			"SELECTION_CAMERA":
 				var from_position:Vector3 = chessboard.chessboard_piece[from].global_position
@@ -305,6 +305,11 @@ func state_ready_versus_ready_to_move(_arg:Dictionary) -> void:
 				var from_rotation:Vector3 = chessboard.chessboard_piece[from].global_rotation
 				Photo.move_camera(from_position, from_rotation)
 				Photo.open()
+				state_machine.change_state("versus_player")
+			"SELECTION_THIRD_EYE":
+				ThirdEye3D.set_pov($player.get_camera())
+				ThirdEye3D.set_state(chessboard.state)
+				ThirdEye3D.open()
 				state_machine.change_state("versus_player")
 			"SELECTION_SETTINGS":
 				Setting.open()
@@ -314,9 +319,9 @@ func state_ready_versus_ready_to_move(_arg:Dictionary) -> void:
 	)
 	if from_piece == player_king:
 		if introduce_selection:
-			Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_CAMERA", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS", "SELECTION_CANCEL"], "", false, false)
+			Dialog.push_selection(["SELECTION_STATUS", "SELECTION_PIECES", "SELECTION_CAMERA", "SELECTION_THIRD_EYE", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS", "SELECTION_CANCEL"], "", false, false)
 		else:
-			Dialog.push_selection(["SELECTION_STATUS", "SELECTION_CAMERA", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS", "SELECTION_CANCEL"], "", false, false)
+			Dialog.push_selection(["SELECTION_STATUS", "SELECTION_CAMERA", "SELECTION_THIRD_EYE", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS", "SELECTION_CANCEL"], "", false, false)
 	else:
 		Dialog.push_selection(["SELECTION_CANCEL"], "", false, false)
 		Dialog.push_selection(dialog_selection, "", false, false)

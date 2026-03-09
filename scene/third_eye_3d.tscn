@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://ev40jhv8rt4p"]
+
+[ext_resource type="Script" uid="uid://4ck7m3xduthp" path="res://src/third_eye_3d.gd" id="1_fjgkq"]
+[ext_resource type="PackedScene" uid="uid://bcfafdue4esy7" path="res://assets/model/reception_table.glb" id="1_vfm8v"]
+[ext_resource type="FontFile" uid="uid://bq5ty1txvcybm" path="res://assets/fonts/Font Awesome 7 Free-Regular-400.otf" id="2_6c1pi"]
+[ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="2_67cuj"]
+
+[sub_resource type="Gradient" id="Gradient_j3y3i"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_67cuj"]
+gradient = SubResource("Gradient_j3y3i")
+
+[sub_resource type="Environment" id="Environment_fjgkq"]
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8fiwy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jni17"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tugep"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_uj1is"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_3hc4g"]
+events = [SubResource("InputEventAction_uj1is")]
+
+[node name="third_eye_3d" type="CanvasLayer" unique_id=1143011719]
+layer = 5
+script = ExtResource("1_fjgkq")
+
+[node name="texture_rect" type="TextureRect" parent="." unique_id=102942441]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_67cuj")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="sub_viewport_container" type="SubViewportContainer" parent="texture_rect" unique_id=2096573875]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+stretch = true
+
+[node name="sub_viewport" type="SubViewport" parent="texture_rect/sub_viewport_container" unique_id=1551144004]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="world_environment" type="WorldEnvironment" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=1649281733]
+environment = SubResource("Environment_fjgkq")
+
+[node name="camera" type="Camera3D" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=1734036704]
+
+[node name="reception_table2" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=467573000 instance=ExtResource("1_vfm8v")]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, -19.60735, 0)
+
+[node name="chessboard" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=1999765771 instance=ExtResource("2_67cuj")]
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 0, 0, 0)
+
+[node name="reflection_probe" type="ReflectionProbe" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=1070655826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32375884, 0)
+update_mode = 1
+box_projection = true
+
+[node name="directional_light_3d" type="DirectionalLight3D" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=187459222]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 4.8619776, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="margin_container_close" type="MarginContainer" parent="texture_rect" unique_id=309889439]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 91.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="button_close" type="Button" parent="texture_rect/margin_container_close" unique_id=1586918767]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_6c1pi")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8fiwy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jni17")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tugep")
+shortcut = SubResource("Shortcut_3hc4g")
+text = ""

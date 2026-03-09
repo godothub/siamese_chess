@@ -119,5 +119,8 @@ func force_set_camera(other:Camera3D) -> void:
 	$head.global_transform = other.global_transform
 	$head/camera.fov = other.fov
 
+func get_camera() -> Camera3D:
+	return $head/camera
+
 func add_inspectable_item(_inspectable_item:InspectableItem) -> void:
 	inspectable_item_list.push_back(_inspectable_item)
