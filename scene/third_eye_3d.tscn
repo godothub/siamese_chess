@@ -15,7 +15,7 @@ gradient = SubResource("Gradient_j3y3i")
 [sub_resource type="Environment" id="Environment_fjgkq"]
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0, 0, 0, 1)
+fog_light_color = Color(1, 1, 1, 1)
 fog_density = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8fiwy"]
