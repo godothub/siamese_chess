@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="5_xj5v5"]
 [ext_resource type="PackedScene" uid="uid://famkj12ufimp" path="res://scene/chessboard_blank.tscn" id="7_a77ny"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/marker_camera.gd" id="8_5cfv0"]
+[ext_resource type="LightmapGIData" uid="uid://bdxsaqpli7ebs" path="res://assets/train_carriage.lmbake" id="8_667th"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/marker_multi_actor.gd" id="9_667th"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
@@ -179,7 +180,11 @@ metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23651123, 1.4169769, 1.9835205)
 size = Vector3(5.8065186, 4.7654114, 14.313232)
 
-[node name="marker_multi_actor" type="Node3D" parent="." index="33" unique_id=764538665]
+[node name="lightmap_gi" type="LightmapGI" parent="." index="33" unique_id=503829778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9515369, 1.0791093, 3.5639553)
+light_data = ExtResource("8_667th")
+
+[node name="marker_multi_actor" type="Node3D" parent="." index="34" unique_id=764538665]
 script = ExtResource("9_667th")
 piece = 35
 bit = -1731642956030941193
