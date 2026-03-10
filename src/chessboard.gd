@@ -305,6 +305,7 @@ func receive_rollback_event(event:Dictionary) -> void:
 
 func add_piece_instance(instance:Actor, by:int) -> void:	# 注意根据state摆放棋盘
 	$pieces.add_child(instance)
+	instance.scale /= scale
 	if by == -1:
 		instance.visible = false
 		backup_piece.push_back(instance)
