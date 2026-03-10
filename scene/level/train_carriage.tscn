@@ -2,29 +2,185 @@
 
 [ext_resource type="PackedScene" uid="uid://d3hydaycubbdl" path="res://assets/model/train_carriage.glb" id="1_krrqq"]
 [ext_resource type="Script" uid="uid://dq6lcfkrdndxy" path="res://src/level/train_carriage.gd" id="2_ixuif"]
-[ext_resource type="Environment" uid="uid://dpl334n3lt1ig" path="res://assets/environment_outside.tres" id="2_qu1c6"]
-[ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="3_i5amg"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="5_n8eqm"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="5_xj5v5"]
+[ext_resource type="PackedScene" uid="uid://famkj12ufimp" path="res://scene/chessboard_blank.tscn" id="7_a77ny"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/marker_camera.gd" id="8_5cfv0"]
+[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/marker_multi_actor.gd" id="9_667th"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+sky_curve = 0.5795615
+ground_bottom_color = Color(0.22258106, 0.28460556, 0.31847093, 1)
+
+[sub_resource type="Sky" id="Sky_cdevh"]
+sky_material = SubResource("ProceduralSkyMaterial_w25ob")
+
+[sub_resource type="Environment" id="Environment_5cfv0"]
+background_mode = 1
+sky = SubResource("Sky_cdevh")
+ambient_light_color = Color(0.7490196, 0.2, 0.1882353, 1)
+sdfgi_read_sky_light = false
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+volumetric_fog_albedo = Color(0.88, 0.79816, 0.6072, 1)
+volumetric_fog_emission = Color(1, 1, 1, 1)
+adjustment_enabled = true
 
 [node name="train_carriage" unique_id=92410552 instance=ExtResource("1_krrqq")]
 script = ExtResource("2_ixuif")
+metadata/by = 3
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="19" unique_id=1112494628]
-environment = ExtResource("2_qu1c6")
+[node name="train_001" parent="." index="0" unique_id=2127793068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, 5.3030715)
 
-[node name="camera_3d" type="Camera3D" parent="." index="20" unique_id=1144580176]
-transform = Transform3D(-0.7916815, 0.5645834, -0.23342226, 0.09903436, 0.49561867, 0.86287564, 0.6028537, 0.6600059, -0.44828528, 0.20313555, 2.2856023, -0.6831463)
-
-[node name="cheshire" parent="." index="21" unique_id=618807034 instance=ExtResource("3_i5amg")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.2692413, 0.09528524, 0.7884095)
-
-[node name="player" parent="." index="22" unique_id=1492182796 instance=ExtResource("5_n8eqm")]
-
-[node name="chessboard" parent="." index="23" unique_id=993752608 instance=ExtResource("5_xj5v5")]
-transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 1.3180614, 0.88824224, 0.014529258)
-
-[node name="omni_light_3d" type="SpotLight3D" parent="." index="24" unique_id=18524146]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.0445119, 2.0848434, 0)
+[node name="omni_light_3d" type="SpotLight3D" parent="train_001" index="18" unique_id=72102590]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.0396456, 2.0848434, -4.766783)
 light_color = Color(0.68, 0.64668, 0.5848, 1)
+light_energy = 2.053
+shadow_enabled = true
 spot_angle = 62.11
+
+[node name="omni_light_3d_2" type="OmniLight3D" parent="train_001" index="19" unique_id=181980080]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7858801, 2.4143808, -4.639909)
+shadow_enabled = true
+
+[node name="train_002" parent="." index="1" unique_id=804038513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, 8.226805)
+
+[node name="omni_light_3d" type="SpotLight3D" parent="train_002" index="0" unique_id=18524146]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.0396456, 2.0848434, -4.766783)
+light_color = Color(0.68, 0.64668, 0.5848, 1)
+light_energy = 2.053
+shadow_enabled = true
+spot_angle = 62.11
+
+[node name="omni_light_3d_2" type="OmniLight3D" parent="train_002" index="19" unique_id=1124977291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7858801, 2.4143808, -4.639909)
+shadow_enabled = true
+
+[node name="train_004" parent="." index="2" unique_id=929998944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, 11.147057)
+
+[node name="omni_light_3d" type="SpotLight3D" parent="train_004" index="18" unique_id=1370278301]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.0396456, 2.0848434, -4.766783)
+light_color = Color(0.68, 0.64668, 0.5848, 1)
+light_energy = 2.053
+shadow_enabled = true
+spot_angle = 62.11
+
+[node name="omni_light_3d_2" type="OmniLight3D" parent="train_004" index="19" unique_id=25425260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7858801, 2.4143808, -4.639909)
+shadow_enabled = true
+
+[node name="train_003" parent="." index="3" unique_id=1683058046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, -3.2102308)
+
+[node name="curtain_support_0014" parent="." index="4" unique_id=1083047891]
+transform = Transform3D(1.7881393e-07, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 1.7881393e-07, -1.3477396, 2.0310612, -2.281695)
+
+[node name="curtain_0024" parent="." index="5" unique_id=1602206620]
+transform = Transform3D(1.192093e-07, 0, 1, 0, 1, 0, 1, 0, -1.192093e-07, -1.3477396, 2.0310612, -3.0189095)
+
+[node name="curtain_0034" parent="." index="6" unique_id=250550235]
+transform = Transform3D(1.192093e-07, 0, -1, 0, 1, 0, -1, 0, -1.192093e-07, -1.3477396, 2.0310612, -1.5116408)
+
+[node name="train4" parent="." index="7" unique_id=146584993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, -3.2801604)
+
+[node name="curtain_0064" parent="." index="8" unique_id=385816555]
+transform = Transform3D(1.192093e-07, 0, 1, 0, 1, 0, 1, 0, -1.192093e-07, 1.7563896, 2.0310612, -3.1272888)
+
+[node name="curtain_0074" parent="." index="9" unique_id=1077901862]
+transform = Transform3D(1.192093e-07, 0, -1, 0, 1, 0, -1, 0, -1.192093e-07, 1.7563896, 2.0310612, -1.6200206)
+
+[node name="curtain_support_0034" parent="." index="10" unique_id=947672529]
+transform = Transform3D(1.7881393e-07, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 1.7881393e-07, 1.7563896, 2.0310612, -2.3900743)
+
+[node name="hang_light_1_0014" parent="." index="11" unique_id=831330541]
+transform = Transform3D(0.69514805, 0, 0, 0, 0.69514805, 0, 0, 0, 0.69514805, 1.1858474, 2.5836952, -2.3900743)
+
+[node name="shelf_0024" parent="." index="12" unique_id=573016314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.061223954, 2.1595802, -1.1065576)
+
+[node name="shelf_0034" parent="." index="13" unique_id=785896023]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 1.8151816, 2.1595802, -3.6678648)
+
+[node name="sofa_0024" parent="." index="14" unique_id=846903843]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.91544235, 0.6685862, -1.3733022)
+
+[node name="sofa_0034" parent="." index="15" unique_id=955464188]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.91544235, 0.6685862, -3.389617)
+
+[node name="table_0014" parent="." index="16" unique_id=506306385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6516018, 0, -2.3900743)
+
+[node name="wall_0034" parent="." index="17" unique_id=700031664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9301599, 1.0773802, -1.0736625)
+
+[node name="wall_door_0014" parent="." index="18" unique_id=1534990479]
+transform = Transform3D(0.976466, 0, 0, 0, 0.976466, 0, 0, 0, 0.976466, -0.029748365, 0.7199571, -3.3273706)
+
+[node name="lightmap4" parent="." index="19" unique_id=518447043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 1.301571, -2.12086)
+
+[node name="window4" parent="." index="20" unique_id=568474124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4647429, 1.4921811, -2.3034654)
+
+[node name="window_0014" parent="." index="21" unique_id=1439940939]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 1.8843696, 1.4921811, -2.3034654)
+
+[node name="omni_light_3d_2" type="OmniLight3D" parent="." index="22" unique_id=563321957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6319177, 2.4143808, -2.579705)
+shadow_enabled = true
+
+[node name="omni_light_3d" type="SpotLight3D" parent="." index="23" unique_id=1539366531]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.1971245, 2.0848434, -2.3635304)
+light_color = Color(0.68, 0.64668, 0.5848, 1)
+light_energy = 2.053
+shadow_enabled = true
+spot_angle = 62.11
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="24" unique_id=1112494628]
+environment = SubResource("Environment_5cfv0")
+
+[node name="player" parent="." index="25" unique_id=1492182796 instance=ExtResource("5_n8eqm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0841686)
+
+[node name="chessboard_standard" parent="." index="26" unique_id=993752608 instance=ExtResource("5_xj5v5")]
+transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 1.3180614, 0.88824224, 3.4745507)
+
+[node name="chessboard" parent="." index="27" unique_id=1825934021 instance=ExtResource("7_a77ny")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.241, 0.063, 0)
+
+[node name="camera_hallway" type="Camera3D" parent="." index="28" unique_id=1610245985]
+transform = Transform3D(1, 0, 0, 0, 0.92467237, 0.38076377, 0, -0.38076377, 0.92467237, -0.5916452, 2.201571, 6.4728713)
+fov = 54.457367
+
+[node name="camera_room" type="Camera3D" parent="." index="29" unique_id=1144580176]
+transform = Transform3D(0.99337375, -0.1000595, -0.056539778, 0.09903438, 0.49561864, 0.86287564, -0.058316737, -0.8627574, 0.5022439, 0.88129383, 2.2856023, 4.2092085)
+
+[node name="marker_camera_hallway" type="Node3D" parent="." index="30" unique_id=1236427570 node_paths=PackedStringArray("camera")]
+script = ExtResource("8_5cfv0")
+camera = NodePath("../camera_hallway")
+bit = 2260630401189896
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+
+[node name="marker_camera_room" type="Node3D" parent="." index="31" unique_id=1843103096 node_paths=PackedStringArray("camera")]
+script = ExtResource("8_5cfv0")
+camera = NodePath("../camera_room")
+bit = 1729382256910270464
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+
+[node name="reflection_probe" type="ReflectionProbe" parent="." index="32" unique_id=1115290017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23651123, 1.4169769, 1.9835205)
+size = Vector3(5.8065186, 4.7654114, 14.313232)
+
+[node name="marker_multi_actor" type="Node3D" parent="." index="33" unique_id=764538665]
+script = ExtResource("9_667th")
+piece = 35
+bit = -1731642956030941193
+metadata/_custom_type_script = "uid://c07j5dqfy7nsx"

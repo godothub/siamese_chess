@@ -1,15 +1,10 @@
-extends Node3D
-
-var state_machine:StateMachine = null
+extends Level
 
 func _ready() -> void:
-	state_machine = StateMachine.new()
-	$cheshire.play_animation("thinking")
-	$chessboard.state = Chess.create_initial_state()
-	$chessboard.add_default_piece_set()
-	$player.force_set_camera($camera_3d)
-	state_machine.add_state("idle", state_ready_idle)
-	state_machine.change_state("idle")
-
-func state_ready_idle(_arg:Dictionary) -> void:
-	pass
+	super._ready()
+	var cheshire_by:int = get_meta("by")
+	var cheshire_instance:Actor = load("res://scene/actor/cheshire.tscn").instantiate()
+	cheshire_instance.position = $chessboard.x88_to_vector3(cheshire_by)
+	$chessboard.state.add_piece(cheshire_by, player_king)
+	$chessboard.add_piece_instance(cheshire_instance, cheshire_by)
+	chessboard.button_input_pointer = cheshire_by
