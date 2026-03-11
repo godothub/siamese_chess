@@ -41,12 +41,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, 5.3030715)
 [node name="omni_light_3d" type="SpotLight3D" parent="train_001" index="18" unique_id=72102590]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.0396456, 2.0848434, -4.766783)
 light_color = Color(0.68, 0.64668, 0.5848, 1)
-light_energy = 2.053
+light_energy = 5.0
 shadow_enabled = true
 spot_angle = 62.11
 
 [node name="omni_light_3d_2" type="OmniLight3D" parent="train_001" index="19" unique_id=181980080]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7858801, 2.4143808, -4.639909)
+light_color = Color(1, 0.796, 0.65999997, 1)
 shadow_enabled = true
 
 [node name="train_002" parent="." index="1" unique_id=804038513]
@@ -55,12 +56,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, 8.226805)
 [node name="omni_light_3d" type="SpotLight3D" parent="train_002" index="0" unique_id=18524146]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.0396456, 2.0848434, -4.766783)
 light_color = Color(0.68, 0.64668, 0.5848, 1)
-light_energy = 2.053
+light_energy = 5.0
 shadow_enabled = true
 spot_angle = 62.11
 
 [node name="omni_light_3d_2" type="OmniLight3D" parent="train_002" index="19" unique_id=1124977291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7858801, 2.4143808, -4.639909)
+light_color = Color(1, 0.796, 0.65999997, 1)
 shadow_enabled = true
 
 [node name="train_004" parent="." index="2" unique_id=929998944]
@@ -69,12 +71,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, 11.147057)
 [node name="omni_light_3d" type="SpotLight3D" parent="train_004" index="18" unique_id=1370278301]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.0396456, 2.0848434, -4.766783)
 light_color = Color(0.68, 0.64668, 0.5848, 1)
-light_energy = 2.053
+light_energy = 5.0
 shadow_enabled = true
 spot_angle = 62.11
 
 [node name="omni_light_3d_2" type="OmniLight3D" parent="train_004" index="19" unique_id=25425260]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7858801, 2.4143808, -4.639909)
+light_color = Color(1, 0.796, 0.65999997, 1)
 shadow_enabled = true
 
 [node name="train_003" parent="." index="3" unique_id=1683058046]
@@ -136,12 +139,13 @@ transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 1.88
 
 [node name="omni_light_3d_2" type="OmniLight3D" parent="." index="22" unique_id=563321957]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6319177, 2.4143808, -2.579705)
+light_color = Color(1, 0.796, 0.65999997, 1)
 shadow_enabled = true
 
 [node name="omni_light_3d" type="SpotLight3D" parent="." index="23" unique_id=1539366531]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.1971245, 2.0848434, -2.3635304)
 light_color = Color(0.68, 0.64668, 0.5848, 1)
-light_energy = 2.053
+light_energy = 5.0
 shadow_enabled = true
 spot_angle = 62.11
 
