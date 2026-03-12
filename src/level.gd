@@ -460,4 +460,5 @@ func state_ready_dialog(_arg:Dictionary) -> void:
 	state_machine.change_state("interact", {"callback": interact_list[by][Dialog.selected]})
 
 func state_ready_interact(_arg:Dictionary) -> void:
-	_arg["callback"].call()
+	await _arg["callback"].call()
+	state_machine.change_state("versus_player")

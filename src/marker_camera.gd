@@ -6,4 +6,3 @@ class_name MarkerCamera
 func event() -> void:
 	if camera:
 		level.get_node("player").force_set_camera(camera)
-	level.state_machine.change_state("versus_player")

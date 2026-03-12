@@ -1,7 +1,7 @@
 extends Node3D
 class_name StateMachine
 
-signal level_state_changed(state:String)
+signal state_changed(state:String)
 var current_state:String = ""
 var last_state:String = ""
 var state_list:Dictionary = {}
@@ -28,11 +28,12 @@ func change_state(next_state:String, arg:Dictionary = {}) -> void:
 	last_state = current_state
 	current_state = next_state
 	# 执行状态退出方法
+	print(current_state)
 	if last_state && state_list[last_state]["exit"].is_valid():
 		state_list[last_state]["exit"].call()
 	state_list[current_state]["ready"].call_deferred(arg)
 	set_physics_process(state_list[current_state]["process"].is_valid())
-	level_state_changed.emit.call_deferred(current_state)
+	state_changed.emit.call_deferred(current_state)
 	mutex.unlock()
 
 func state_signal_connect(_signal:Signal, _method:Callable) -> void:

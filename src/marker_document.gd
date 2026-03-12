@@ -17,4 +17,3 @@ func event() -> void:
 		file.close()
 	Archive.open()
 	Archive.open_document(file_path)
-	level.state_machine.change_state("versus_player")
