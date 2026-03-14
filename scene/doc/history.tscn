@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b0ots07uggqyg"]
 
-[ext_resource type="Script" uid="uid://dovrsks1cn8gl" path="res://src/history.gd" id="1_1i63t"]
+[ext_resource type="Script" uid="uid://dovrsks1cn8gl" path="res://src/doc/history.gd" id="1_1i63t"]
 [ext_resource type="Theme" uid="uid://d32bwe36vwxip" path="res://assets/theme.tres" id="2_ysvxy"]
 [ext_resource type="Texture2D" uid="uid://b4743axykk2uc" path="res://assets/texture/history.svg" id="3_o7yno"]
 [ext_resource type="PackedScene" uid="uid://bnxosopniliec" path="res://scene/chessboard_flat.tscn" id="4_cer4d"]
