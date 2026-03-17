@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://iyfh8kkmuf77"]
+
+[ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/document.gd" id="1_bih3g"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_ct7ke"]
+
+[sub_resource type="Gradient" id="Gradient_w5kv4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bw0j0"]
+gradient = SubResource("Gradient_w5kv4")
+
+[node name="welcome" type="Node2D" unique_id=1484973461]
+script = ExtResource("1_bih3g")
+metadata/_custom_type_script = "uid://yldiqj24uchh"
+
+[node name="texture_rect" type="TextureRect" parent="." unique_id=1636202968]
+offset_left = -252.0
+offset_top = -366.0
+offset_right = 252.0
+offset_bottom = 307.0
+texture = SubResource("GradientTexture1D_bw0j0")
+
+[node name="rich_text_label" type="RichTextLabel" parent="texture_rect" unique_id=1545919967]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 58.0
+offset_right = 475.0
+offset_bottom = 642.0
+theme_override_fonts/normal_font = ExtResource("2_ct7ke")
+bbcode_enabled = true
+text = "Curabitur varius congue felis, in euismod elit aliquet vitae. Vivamus tortor magna, euismod quis felis ut, faucibus mattis felis. Curabitur elementum quam eros, et consequat velit imperdiet non. Phasellus malesuada facilisis mi eu aliquet. Mauris vitae fringilla leo. Pellentesque sed ultrices odio. Curabitur bibendum ligula eros, id scelerisque risus gravida ut. Morbi congue nisl vel diam luctus, quis finibus dui hendrerit. Nullam convallis placerat metus, quis bibendum diam consequat a. Cras finibus sem dolor, vel blandit dui euismod in. Vestibulum pharetra maximus velit, id placerat dui porttitor et. Proin vulputate augue nec efficitur accumsan. Nunc quis orci elit.
+
+Phasellus varius, est quis semper mattis, eros tellus suscipit turpis, in rhoncus nunc enim non ipsum. Pellentesque tempus sodales porta. Fusce sed erat vitae eros pharetra iaculis vel eget enim. Suspendisse ullamcorper vehicula sagittis. Etiam semper id ante at aliquet. Praesent sit amet nulla quam. Nulla ut sem id tortor facilisis vestibulum. Proin dignissim, dui feugiat ultrices mollis, tortor purus mollis orci, nec pulvinar orci sapien eu nisi. Aliquam erat volutpat. Morbi nulla quam, bibendum nec fringilla a, ultricies eget velit.
+
+Pellentesque ipsum enim, egestas venenatis tempor a, aliquam in dolor. Aliquam purus leo, lobortis eu mi a, porttitor efficitur enim. Etiam feugiat sapien nibh, eget convallis magna varius imperdiet. Cras bibendum non justo vitae iaculis. In neque odio, condimentum ut orci vestibulum, sodales iaculis sapien. Vestibulum fringilla pellentesque pulvinar. Quisque id felis metus. Proin laoreet enim in nisl dictum pretium. Sed erat odio, posuere gravida ornare sit amet, posuere vitae mi. Etiam commodo ante congue elementum dictum. Aenean volutpat risus ut sem posuere maximus. Maecenas massa ipsum, aliquet ac elit ac, vestibulum imperdiet dui. Nunc posuere nec turpis quis bibendum."

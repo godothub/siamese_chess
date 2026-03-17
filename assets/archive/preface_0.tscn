@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://jduksop4p3bt"]
+
+[ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/document.gd" id="1_2pj5q"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_akbmg"]
+
+[sub_resource type="Gradient" id="Gradient_w5kv4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bw0j0"]
+gradient = SubResource("Gradient_w5kv4")
+
+[node name="welcome" type="Node2D" unique_id=1484973461]
+script = ExtResource("1_2pj5q")
+metadata/_custom_type_script = "uid://yldiqj24uchh"
+
+[node name="texture_rect" type="TextureRect" parent="." unique_id=1636202968]
+offset_left = -252.0
+offset_top = -366.0
+offset_right = 252.0
+offset_bottom = 307.0
+texture = SubResource("GradientTexture1D_bw0j0")
+
+[node name="rich_text_label" type="RichTextLabel" parent="texture_rect" unique_id=1545919967]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 58.0
+offset_right = 475.0
+offset_bottom = 642.0
+theme_override_fonts/normal_font = ExtResource("2_akbmg")
+bbcode_enabled = true
+text = "Quisque vel suscipit lorem. Nam iaculis velit sit amet commodo hendrerit. Nulla sed pretium tortor, id tincidunt libero. Phasellus purus orci, dapibus quis ligula sodales, egestas tempor felis. Phasellus sed magna dolor. Aliquam porta urna in consectetur scelerisque. Nunc vel porta orci, et eleifend eros. Praesent a lorem et arcu ornare faucibus elementum id quam. Suspendisse potenti. Fusce dictum justo diam, quis aliquam enim porta at. Suspendisse vitae lorem interdum, porta tellus id, molestie felis. Nam sed turpis tincidunt nisl porttitor sollicitudin ut sed nisl. Sed ac nisi suscipit, pharetra nulla id, dapibus turpis.
+
+Duis dignissim leo vel enim rutrum, non sollicitudin erat tempus. Nulla sed orci metus. Nam vel malesuada elit, eu tristique lorem. Phasellus quis gravida orci. Mauris blandit iaculis porta. Donec convallis velit dui. Nulla sapien nibh, ultrices in elit eu, fringilla interdum velit. Nullam id finibus metus. Mauris eget leo turpis. Mauris nunc risus, facilisis sed iaculis eget, pharetra et neque. Integer metus orci, cursus blandit nisl vel, congue porta velit.
+
+Vivamus viverra at lectus quis placerat. Aenean eget sodales augue, at interdum ex. Curabitur at dui massa. Maecenas tempor lacinia pretium. Quisque faucibus nulla ac tempus pulvinar. Phasellus metus magna, pellentesque eu faucibus non, luctus eget nisi. In hac habitasse platea dictumst. Donec mi tellus, aliquam et est ut, sagittis volutpat sapien. Vestibulum justo ligula, dapibus non augue vitae, eleifend posuere orci. Morbi non bibendum elit, non sodales neque. Nunc ullamcorper venenatis justo vitae bibendum. Phasellus erat felis, venenatis ut finibus non, mollis id turpis. Curabitur ultrices sapien felis, sed euismod dolor commodo at. Sed pretium molestie molestie. In sit amet suscipit ligula, eget ultricies quam."

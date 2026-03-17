@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bijrl4b8ue0by"]
+
+[ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/document.gd" id="1_83tht"]
+
+[node name="book" type="Node2D" unique_id=1256828070]
+script = ExtResource("1_83tht")
+metadata/_custom_type_script = "uid://yldiqj24uchh"
