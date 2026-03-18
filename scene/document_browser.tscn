@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dpwx8x2545los" path="res://src/document_browser.gd" id="1_cflc6"]
 [ext_resource type="Script" uid="uid://wa2q0lswte4p" path="res://addons/gdtim/InputManager.gd" id="2_y0c1r"]
+[ext_resource type="FontFile" uid="uid://bq5ty1txvcybm" path="res://assets/fonts/Font Awesome 7 Free-Regular-400.otf" id="3_wgkkr"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="4_glkdv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf1p1"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="document_browser" type="Control" unique_id=1062477393]
 layout_mode = 3
@@ -30,3 +35,125 @@ mouse_target = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
+
+[node name="margin_container_zoom" type="MarginContainer" parent="." unique_id=1506133026]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="panel" type="Panel" parent="margin_container_zoom" unique_id=1464606862]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tf1p1")
+
+[node name="h_box_container" type="HBoxContainer" parent="margin_container_zoom" unique_id=10071786]
+layout_mode = 2
+
+[node name="button_zoom_out" type="Button" parent="margin_container_zoom/h_box_container" unique_id=111017959]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wgkkr")
+text = ""
+
+[node name="label" type="Label" parent="margin_container_zoom/h_box_container" unique_id=1016273773]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_glkdv")
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="button_zoom_in" type="Button" parent="margin_container_zoom/h_box_container" unique_id=1242158105]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wgkkr")
+text = ""
+
+[node name="margin_container_tool" type="MarginContainer" parent="." unique_id=886828161]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -44.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="panel" type="Panel" parent="margin_container_tool" unique_id=1209012784]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tf1p1")
+
+[node name="h_box_container" type="HBoxContainer" parent="margin_container_tool" unique_id=1577721951]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="button_zoom_edit" type="Button" parent="margin_container_tool/h_box_container" unique_id=2082976078]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_wgkkr")
+text = ""
+
+[node name="button_zoom_draw" type="Button" parent="margin_container_tool/h_box_container" unique_id=714205056]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_wgkkr")
+text = ""
+
+[node name="button_zoom_eraser" type="Button" parent="margin_container_tool/h_box_container" unique_id=590334146]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_wgkkr")
+text = ""
+
+[node name="margin_container_page" type="MarginContainer" parent="." unique_id=1101905937]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -44.0
+offset_right = 55.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="panel" type="Panel" parent="margin_container_page" unique_id=1546467138]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tf1p1")
+
+[node name="h_box_container" type="HBoxContainer" parent="margin_container_page" unique_id=655373813]
+layout_mode = 2
+
+[node name="button_prev" type="Button" parent="margin_container_page/h_box_container" unique_id=1542986240]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wgkkr")
+text = ""
+
+[node name="label" type="Label" parent="margin_container_page/h_box_container" unique_id=178867690]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_glkdv")
+text = "1/1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="button_next" type="Button" parent="margin_container_page/h_box_container" unique_id=70967676]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wgkkr")
+text = ""
