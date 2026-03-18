@@ -98,19 +98,19 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tf1p1")
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="button_zoom_edit" type="Button" parent="margin_container_tool/h_box_container" unique_id=2082976078]
+[node name="button_edit" type="Button" parent="margin_container_tool/h_box_container" unique_id=2082976078]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_wgkkr")
 text = ""
 
-[node name="button_zoom_draw" type="Button" parent="margin_container_tool/h_box_container" unique_id=714205056]
+[node name="button_draw" type="Button" parent="margin_container_tool/h_box_container" unique_id=714205056]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_wgkkr")
 text = ""
 
-[node name="button_zoom_eraser" type="Button" parent="margin_container_tool/h_box_container" unique_id=590334146]
+[node name="button_eraser" type="Button" parent="margin_container_tool/h_box_container" unique_id=590334146]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_wgkkr")
