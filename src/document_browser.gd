@@ -10,6 +10,7 @@ var current_tool:int = 0
 # 曲线函数：(x / 2) ^ 2 * 0.95 + 0.1
 # 反函数： sqrt((y - 0.1) / 0.95) * 2
 var zoom_mapped:float = 1
+var zoom_local:float = 1
 
 func _ready() -> void:
 	$margin_container_zoom/h_box_container/button_zoom_out.connect("pressed", change_zoom.bind(-0.1))
@@ -64,7 +65,9 @@ func set_document(_document) -> void:
 	var rect:Rect2 = document.get_rect()
 	zoom_mapped = min($sub_viewport_container/sub_viewport.size.x / rect.size.x, $sub_viewport_container/sub_viewport.size.y / rect.size.y)
 	zoom = sqrt((zoom_mapped - 0.1) / 0.95) * 2
+	zoom_local = 1
 	offset = $sub_viewport_container/sub_viewport.size / 2
+	$margin_container_zoom/h_box_container/label.text = "%d%%" % (zoom_local * 100)
 	$sub_viewport_container/sub_viewport.add_child(document)
 	update_transform()
 
@@ -79,9 +82,12 @@ func update_transform() -> void:
 	document.position = offset
 
 func change_zoom(relative:float) -> void:
-	zoom += relative
-	zoom = clamp(zoom, 0.1, 2.0)
+	var last_zoom_local:float = zoom_local
+	zoom_local += relative
+	zoom_local = clamp(zoom_local, 0.1, 2.0)
+	zoom += zoom_local - last_zoom_local
 	zoom_mapped = pow(zoom / 2, 2) * 0.95 + 0.1
+	$margin_container_zoom/h_box_container/label.text = "%d%%" % (zoom_local * 100)
 	update_transform()
 
 func change_offset(relative:Vector2) -> void:
