@@ -11,6 +11,7 @@ var current_tool:int = 0
 # 反函数： sqrt((y - 0.1) / 0.95) * 2
 var zoom_mapped:float = 1
 var zoom_local:float = 1
+var page:int = 0
 
 func _ready() -> void:
 	$margin_container_zoom/h_box_container/button_zoom_out.connect("pressed", change_zoom.bind(-0.1))
@@ -18,6 +19,8 @@ func _ready() -> void:
 	$margin_container_tool/h_box_container/button_edit.connect("pressed", set_current_tool.bind(0))
 	$margin_container_tool/h_box_container/button_draw.connect("pressed", set_current_tool.bind(1))
 	$margin_container_tool/h_box_container/button_eraser.connect("pressed", set_current_tool.bind(2))
+	$margin_container_page/h_box_container/button_prev.connect("pressed", change_page.bind(-1))
+	$margin_container_page/h_box_container/button_next.connect("pressed", change_page.bind(+1))
 	set_process_input(false)
 
 func _input(event:InputEvent) -> void:
@@ -96,3 +99,7 @@ func change_offset(relative:Vector2) -> void:
 
 func set_current_tool(_current_tool:int) -> void:
 	current_tool = _current_tool
+
+func change_page(dir:int) -> void:
+	page += dir
+	page = clamp(page, 0, document.page_count())
