@@ -24,8 +24,9 @@ func save_file() -> void:
 	file.close()
 
 func load_file() -> void:
-	var data:String = FileAccess.get_file_as_string("user://archive/" + filename)
-	parse(data)
+	if FileAccess.file_exists("user://archive/" + filename):
+		var data:String = FileAccess.get_file_as_string("user://archive/" + filename)
+		parse(data)
 
 func clear_file() -> void:
 	DirAccess.remove_absolute("user://archive/" + filename)

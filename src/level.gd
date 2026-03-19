@@ -24,6 +24,10 @@ func _ready() -> void:
 	enemy_king = ord("k") if player_group == 0 else ord("K")
 	engine = PastorEngine.new()
 	state_machine = StateMachine.new()
+	
+	history_document.set_filename("history." + name + ".json")
+	history_document.load_file()
+
 	var state = State.new()
 	chessboard = $chessboard
 	$player.add_inspectable_item(chessboard)
@@ -149,8 +153,8 @@ func state_ready_start(_arg:Dictionary) -> void:
 	chessboard.state.set_castle(0xF)
 	chessboard.state.set_step_to_draw(0)
 	chessboard.state.set_round(1)
+	history_document.new_page()
 	history_document.set_state(chessboard.state)
-	history_document.set_filename("history." + String.num_int64(Time.get_unix_time_from_system()) + ".json")
 	if Chess.get_end_type(chessboard.state) == "checkmate_black":
 		state_machine.change_state("player_win")
 	elif Chess.get_end_type(chessboard.state) == "checkmate_white":
@@ -189,7 +193,6 @@ func state_ready_waiting() -> void:
 func state_ready_move(_arg:Dictionary) -> void:
 	Clock.pause()
 	history_document.push_move(_arg["move"])
-	history_document.save_file()
 	history_state.push_back(chessboard.state.get_zobrist())
 
 	state_machine.state_signal_connect(chessboard.click_selection, premove_pressed)

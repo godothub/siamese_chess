@@ -11,6 +11,8 @@ var standard_player_group:int = 0
 
 func _ready() -> void:
 	super._ready()
+	standard_history_document.set_filename("history.match_with_yulan.json")
+	standard_history_document.load_file()
 	Ambient.change_environment_sound(load("res://assets/audio/52645__kstein1__white-noise.wav"))
 	var cheshire_by:int = get_meta("by")
 	var cheshire_instance:Actor = load("res://scene/actor/cheshire.tscn").instantiate()
@@ -126,8 +128,8 @@ func state_ready_in_game_start(_arg:Dictionary) -> void:
 	standard_history_state.clear()
 	standard_history_zobrist.clear()
 	standard_history_event.clear()
+	standard_history_document.new_page()
 	standard_history_document.set_state($table_0/chessboard_standard.state)
-	standard_history_document.set_filename("history." + String.num_int64(Time.get_unix_time_from_system()) + ".json")
 	if $table_0/chessboard_standard.state.get_turn() != standard_player_group:
 		standard_state_machine.change_state("opponent")
 	else:
@@ -163,7 +165,6 @@ func state_ready_in_game_move(_arg:Dictionary) -> void:
 	standard_state_machine.state_signal_connect($table_0/chessboard_standard.click_selection, game_premove_pressed)
 	standard_state_machine.state_signal_connect($table_0/chessboard_standard.click_empty, game_premove_cancel)
 	standard_history_document.push_move(_arg["move"])
-	standard_history_document.save_file()
 	standard_history_state.push_back($table_0/chessboard_standard.state.duplicate())
 	standard_history_zobrist.push_back($table_0/chessboard_standard.state.get_zobrist())
 	var rollback_event:Dictionary = $table_0/chessboard_standard.execute_move(_arg["move"])

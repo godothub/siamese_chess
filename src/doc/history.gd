@@ -1,51 +1,82 @@
 extends Notable
 
-var state:State = null
-var history:PackedStringArray = []
+class HistoryPage extends RefCounted:
+	var state:State = null
+	var history:PackedStringArray = []
+	var lines:Array = []
+
+var page_list:Array[HistoryPage] = []
+var current_page:int = 0
+var current_page_instance:HistoryPage = null
 
 func parse(data:String) -> void:
-	super.parse(data)
-	var data_dict:Dictionary = JSON.parse_string(data)
-	var fen:String = data_dict["state"]
-	state = Chess.parse(fen)
-	history = data_dict["history"]
+	var data_arr:Array = JSON.parse_string(data)
+	for data_dict:Dictionary in data_arr:
+		var page:HistoryPage = HistoryPage.new()
+		var fen:String = data_dict["state"]
+		page.state = Chess.parse(fen)
+		page.history = data_dict["history"]
+		page.lines = data_dict["lines"]
+		page_list.push_back(page)
+	current_page = 0
+	current_page_instance = page_list[current_page]
 	update_table()
 
 func stringify() -> String:
-	var data_dict:Dictionary = JSON.parse_string(super.stringify())
-	var fen:String = Chess.stringify(state)
-	data_dict["state"] = fen
-	data_dict["history"] = history
-	return JSON.stringify(data_dict)
+	var data_arr:Array = []
+	for page:HistoryPage in page_list:
+		var data_dict:Dictionary = {}
+		var fen:String = Chess.stringify(page.state)
+		data_dict["state"] = fen
+		data_dict["history"] = page.history
+		data_dict["lines"] = page.lines
+		data_arr.push_back(data_dict)
+	return JSON.stringify(data_arr)
 
 func get_rect() -> Rect2:
 	return $history.get_rect() * $history.transform
 
 func set_state(_state:State) -> void:
-	state = _state.duplicate()
-	history.clear()
+	current_page_instance.state = _state.duplicate()
+	current_page_instance.history.clear()
 	update_table()
 
 func push_move(move:int) -> void:
-	if history.size() >= 120:
+	if current_page_instance.history.size() >= 120:
 		return
-	history.push_back(Chess.get_move_name(state, move))
-	Chess.apply_move(state, move)
+	current_page_instance.history.push_back(Chess.get_move_name(current_page_instance.state, move))
+	Chess.apply_move(current_page_instance.state, move)
 	update_table()
 
 func rollback(_state:State, pop_count:int = 1) -> void:
-	history.resize(history.size() - pop_count)
-	state = _state.duplicate()
+	current_page_instance.history.resize(current_page_instance.history.size() - pop_count)
+	current_page_instance.state = _state.duplicate()
 	update_table()
 
 func update_table() -> void:
-	$chessboard_flat.set_state(state)
-	for i:int in range(history.size()):
+	$chessboard_flat.set_state(current_page_instance.state)
+	for i:int in range(current_page_instance.history.size()):
 		if i % 2 == 0:
-			get_node("white/label_%d" % (i / 2 + 1)).text = history[i]
+			get_node("white/label_%d" % (i / 2 + 1)).text = current_page_instance.history[i]
 		else:
-			get_node("black/label_%d" % (i / 2 + 1)).text = history[i]
+			get_node("black/label_%d" % (i / 2 + 1)).text = current_page_instance.history[i]
 
 func add_blank_line() -> void:
-	history.push_back("")
-	history.push_back("")
+	current_page_instance.history.push_back("")
+	current_page_instance.history.push_back("")
+
+func new_page() -> void:
+	var page:HistoryPage = HistoryPage.new()
+	page_list.push_back(page)
+	current_page = page_list.size() - 1
+	current_page_instance = page
+
+func turn_page(_page:int) -> void:
+	current_page = _page
+	current_page_instance = page_list[current_page]
+	update_table()
+	clear_lines()
+	draw_lines(current_page_instance.lines)
+
+func page_count() -> int:
+	return page_list.size()

@@ -61,7 +61,7 @@ func close() -> void:
 	visible = false
 	set_process_input(false)
 
-func set_document(_document) -> void:
+func set_document(_document:Document) -> void:
 	if is_instance_valid(document):
 		$sub_viewport_container/sub_viewport.remove_child(document)
 	document = _document
@@ -71,6 +71,7 @@ func set_document(_document) -> void:
 	zoom_local = 1
 	offset = $sub_viewport_container/sub_viewport.size / 2
 	$margin_container_zoom/h_box_container/label.text = "%d%%" % (zoom_local * 100)
+	$margin_container_page/h_box_container/label.text = "%d/%d" % [page + 1, document.page_count()]
 	$sub_viewport_container/sub_viewport.add_child(document)
 	update_transform()
 
@@ -102,4 +103,6 @@ func set_current_tool(_current_tool:int) -> void:
 
 func change_page(dir:int) -> void:
 	page += dir
-	page = clamp(page, 0, document.page_count())
+	page = clamp(page, 0, document.page_count() - 1)
+	document.turn_page(page)
+	$margin_container_page/h_box_container/label.text = "%d/%d" % [page + 1, document.page_count()]
