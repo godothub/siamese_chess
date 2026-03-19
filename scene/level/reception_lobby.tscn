@@ -26,13 +26,13 @@ sky_horizon_color = Color(1, 1, 1, 1)
 ground_bottom_color = Color(0, 0, 0, 1)
 ground_horizon_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Sky" id="Sky_gimty"]
+[sub_resource type="Sky" id="Sky_ehpdt"]
 sky_material = SubResource("ProceduralSkyMaterial_j5fnc")
 
 [sub_resource type="Environment" id="Environment_sb1hd"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
-sky = SubResource("Sky_gimty")
+sky = SubResource("Sky_ehpdt")
 sdfgi_read_sky_light = false
 glow_enabled = true
 fog_light_color = Color(1, 1, 1, 1)
@@ -95,14 +95,14 @@ transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, 5.08
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, 6.9556065, 0, 7.368108)
 
 [node name="bookshelf_3" parent="." unique_id=1458255319 instance=ExtResource("12_r1xpb")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 1.5337944, 0, -7)
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 3.2329605, 0, -7)
 
 [node name="radermachera_sinica_4" parent="." unique_id=1562566797 instance=ExtResource("13_uoe5a")]
 transform = Transform3D(-4.371141e-08, 0, -1, 0, 1, 0, 1, 0, -4.371141e-08, -7.1206746, 0, -7.232878)
 metadata/_edit_group_ = true
 
 [node name="bookshelf_4" parent="." unique_id=1752632557 instance=ExtResource("12_r1xpb")]
-transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 3.2895036, 0, -7)
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 4.9886694, 0, -7)
 
 [node name="radermachera_sinica_5" parent="." unique_id=139500288 instance=ExtResource("13_uoe5a")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.412306, 0, 1.5537703)
@@ -231,8 +231,9 @@ bit = 1736137656351326208
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=236591818]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0668335, 0)
-size = Vector3(20, 8.379761, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07611084, 3.3391647, 0.24499512)
+blend_distance = 0.2
+size = Vector3(16.49524, 7.2009125, 16.09253)
 
 [node name="csg_elevator_wall_6" type="CSGBox3D" parent="." unique_id=1280688838]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 4.3542066, -0.13716602)
@@ -259,6 +260,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22678137, 4.233857, 7.95412
 size = Vector3(16.296642, 3.3640137, 0.4732666)
 material = SubResource("StandardMaterial3D_gimty")
 
+[node name="csg_stair_wall_7" type="CSGPolygon3D" parent="." unique_id=767912487]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.2049098, 1.91379, -3.3911686)
+polygon = PackedVector2Array(-5, -2, -4.9, 3.3, -3.9, 3.3, 4.6, -2)
+material = SubResource("StandardMaterial3D_gimty")
+
 [node name="hotel_hall_stair" parent="." unique_id=957326864 instance=ExtResource("19_ehpdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
@@ -271,3 +277,13 @@ script = ExtResource("18_fhf0e")
 camera = NodePath("../camera_under_stair")
 bit = 14392
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+
+[node name="csg_stair_wall_8" type="CSGPolygon3D" parent="." unique_id=1083393577]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.3345649, 1.91379, -3.3911686)
+polygon = PackedVector2Array(-5, -2, -4.9, 3.3, -3.9, 3.3, 4.6, -2)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_2f" type="CSGBox3D" parent="." unique_id=538597633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09738684, 4.7713757, -9.079849)
+size = Vector3(16.037853, 0.87950134, 3.7547913)
+material = SubResource("StandardMaterial3D_gimty")
