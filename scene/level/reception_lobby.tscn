@@ -231,9 +231,12 @@ bit = 1736137656351326208
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=236591818]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07611084, 3.3391647, 0.24499512)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07611084, 2.8812017, -1.4908447)
 blend_distance = 0.2
-size = Vector3(16.49524, 7.2009125, 16.09253)
+max_distance = 20.0
+size = Vector3(16.49524, 6.5286975, 19.741455)
+origin_offset = Vector3(0, 0, 4)
+box_projection = true
 
 [node name="csg_elevator_wall_6" type="CSGBox3D" parent="." unique_id=1280688838]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 4.3542066, -0.13716602)
