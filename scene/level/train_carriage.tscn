@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/marker_multi_actor.gd" id="9_667th"]
 [ext_resource type="PackedScene" uid="uid://blfa7tg8uh5xo" path="res://assets/model/book_stack_0.glb" id="9_ii2qt"]
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/marker_callback.gd" id="10_ii2qt"]
+[ext_resource type="Script" uid="uid://dc4n8wl381mqw" path="res://src/marker_document.gd" id="11_5tiqh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -210,3 +211,15 @@ metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
 [node name="camera_chessboard" type="Camera3D" parent="." index="37" unique_id=1639503970]
 transform = Transform3D(1, 0, 0, 0, 0.48231944, 0.8759954, 0, -0.8759954, 0.48231944, 1.2977567, 1.2738005, 3.758492)
+
+[node name="marker_document_chess_movements" type="Node3D" parent="." index="38" unique_id=1220767615]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
+script = ExtResource("11_5tiqh")
+file_path = "user://archive/printed.chess_movements.json"
+file_content = {
+"lines": [],
+"path": "res://assets/texture/chess_movements.png"
+}
+selection = "DOCUMENT_TITLE_CHESS_MOVEMENT"
+bit = 1152921504606846976
+metadata/_custom_type_script = "uid://dc4n8wl381mqw"
