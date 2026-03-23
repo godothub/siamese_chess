@@ -37,6 +37,12 @@ sdfgi_read_sky_light = false
 glow_enabled = true
 fog_light_color = Color(1, 1, 1, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ehpdt"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h5tcc"]
+size = Vector3(2, 2, 2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gimty"]
 
 [node name="reception_lobby" type="Node3D" unique_id=2123137394]
@@ -55,6 +61,62 @@ shadow_enabled = true
 
 [node name="chessboard" parent="." unique_id=2022015716 instance=ExtResource("2_s8vca")]
 
+[node name="d5" parent="chessboard" index="96" unique_id=625711656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.1058521, -1)
+
+[node name="CollisionShape3D" parent="chessboard/d5" index="0" unique_id=1498437682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ehpdt")
+
+[node name="d6" parent="chessboard" index="97" unique_id=1581286568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5068617, -3)
+
+[node name="CollisionShape3D" parent="chessboard/d6" index="0" unique_id=873566175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ehpdt")
+
+[node name="d7" parent="chessboard" index="98" unique_id=1134152700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.9149883, -5)
+
+[node name="CollisionShape3D" parent="chessboard/d7" index="0" unique_id=1848101594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ehpdt")
+
+[node name="d8" parent="chessboard" index="99" unique_id=1657380520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.0748553, -7)
+
+[node name="CollisionShape3D" parent="chessboard/d8" index="0" unique_id=1712443992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ehpdt")
+
+[node name="e5" parent="chessboard" index="104" unique_id=1525399267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1058521, -1)
+
+[node name="CollisionShape3D" parent="chessboard/e5" index="0" unique_id=1227723034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ehpdt")
+
+[node name="e6" parent="chessboard" index="105" unique_id=420504885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5068617, -3)
+
+[node name="CollisionShape3D" parent="chessboard/e6" index="0" unique_id=883516797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_h5tcc")
+
+[node name="e7" parent="chessboard" index="106" unique_id=1373537873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.9149883, -5)
+
+[node name="CollisionShape3D" parent="chessboard/e7" index="0" unique_id=719123570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ehpdt")
+
+[node name="e8" parent="chessboard" index="107" unique_id=1631801450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.0748553, -7)
+
+[node name="CollisionShape3D" parent="chessboard/e8" index="0" unique_id=1262332617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ehpdt")
+
 [node name="door_1" parent="." unique_id=960502572 instance=ExtResource("3_aion5")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, 3)
 
@@ -63,11 +125,6 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.85
 
 [node name="elevator" parent="." unique_id=2088646010 instance=ExtResource("7_s7rcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
-
-[node name="csg_elevator_wall_3" type="CSGBox3D" parent="." unique_id=2043390162]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 1.51379, -2.79782)
-size = Vector3(0.408875, 3, 10.4044)
-material = SubResource("StandardMaterial3D_gimty")
 
 [node name="marker_elevator" type="Node3D" parent="." unique_id=812682779]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
@@ -154,26 +211,6 @@ args = {
 }
 bit = 1729382256910270464
 
-[node name="csg_wall_2" type="CSGBox3D" parent="." unique_id=76291114]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1125674, 1.51379, -8.2439575)
-size = Vector3(11.998924, 3, 0.4732666)
-material = SubResource("StandardMaterial3D_gimty")
-
-[node name="csg_elevator_wall_4" type="CSGBox3D" parent="." unique_id=570162492]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1305356, 1.51379, -8.2439575)
-size = Vector3(2.0584414, 3, 0.4732666)
-material = SubResource("StandardMaterial3D_gimty")
-
-[node name="csg_wall_6" type="CSGBox3D" parent="." unique_id=935140248]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 1.51379, 5.797713)
-size = Vector3(0.408875, 3, 4.441066)
-material = SubResource("StandardMaterial3D_gimty")
-
-[node name="csg_wall_7" type="CSGBox3D" parent="." unique_id=426345695]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.201963, 2.9630089, -0.2517252)
-size = Vector3(0.3688584, 5.8984375, 16.490627)
-material = SubResource("StandardMaterial3D_gimty")
-
 [node name="marker_callback_2f" type="Node3D" parent="." unique_id=1124459732 node_paths=PackedStringArray("node")]
 script = ExtResource("17_fhf0e")
 node = NodePath("..")
@@ -190,24 +227,24 @@ selection = "3F"
 bit = 2
 metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
-[node name="camera_cafe" type="Camera3D" parent="." unique_id=1746372595]
-transform = Transform3D(0.92948073, 0.25048393, -0.2707828, 1.93588e-08, 0.73408616, 0.67905635, 0.36887062, -0.63116986, 0.6823189, -6.667514, 3.7496367, 7.4141483)
+[node name="camera_queen_side" type="Camera3D" parent="." unique_id=1746372595]
+transform = Transform3D(0.9297765, 0.14561, -0.33810264, 0, 0.91844636, 0.3955455, 0.36812454, -0.3677689, 0.85394984, -6.667514, 2.3204718, 7.4141483)
 fov = 58.5874
 
-[node name="marker_camera_cafe" type="Node3D" parent="." unique_id=1303561354 node_paths=PackedStringArray("camera")]
+[node name="marker_camera_queen_side" type="Node3D" parent="." unique_id=1303561354 node_paths=PackedStringArray("camera")]
 script = ExtResource("18_fhf0e")
-camera = NodePath("../camera_cafe")
-bit = 847736349917184
+camera = NodePath("../camera_queen_side")
+bit = 506381209866076160
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="camera_overall" type="Camera3D" parent="." unique_id=1434869583]
-transform = Transform3D(0.754904, -0.44534922, 0.4814396, 6.650931e-08, 0.73408616, 0.6790564, -0.65583533, -0.5126223, 0.5541646, 6.114976, 7.771739, 6.95804)
-fov = 58.5874
+transform = Transform3D(1, 0, 0, 0, 0.6312852, 0.77555084, 0, -0.77555084, 0.6312852, 0, 7.2873273, 7.582612)
+fov = 90.89497
 
 [node name="marker_camera_overall" type="Node3D" parent="." unique_id=1779513574 node_paths=PackedStringArray("camera")]
 script = ExtResource("18_fhf0e")
 camera = NodePath("../camera_overall")
-bit = -1736985392701718336
+bit = 6781891203563520
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="camera_elevator" type="Camera3D" parent="." unique_id=1248793151]
@@ -227,66 +264,102 @@ fov = 58.5874
 [node name="marker_camera_gate" type="Node3D" parent="." unique_id=1287083462 node_paths=PackedStringArray("camera")]
 script = ExtResource("18_fhf0e")
 camera = NodePath("../camera_gate")
-bit = 1736137656351326208
+bit = 1729382256910270464
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
-[node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=236591818]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07611084, 2.8812017, -1.4908447)
-blend_distance = 0.2
-max_distance = 20.0
-size = Vector3(16.49524, 6.5286975, 19.741455)
-origin_offset = Vector3(0, 0, 4)
-box_projection = true
+[node name="camera_king_side" type="Camera3D" parent="." unique_id=617284860]
+transform = Transform3D(0.93105584, -0.19819175, 0.30635783, 0, 0.83961993, 0.5431745, -0.3648768, -0.50572574, 0.781733, 6.717693, 2.7836637, 7.326113)
+fov = 58.5874
 
-[node name="csg_elevator_wall_6" type="CSGBox3D" parent="." unique_id=1280688838]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 4.3542066, -0.13716602)
-size = Vector3(0.408875, 3.1582031, 16.63684)
-material = SubResource("StandardMaterial3D_gimty")
-
-[node name="csg_wall_3" type="CSGBox3D" parent="." unique_id=952107714]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09738684, 3.5266428, -8.2439575)
-size = Vector3(16.037853, 1.7596436, 0.4732666)
-material = SubResource("StandardMaterial3D_gimty")
-
-[node name="csg_wall_4" type="CSGBox3D" parent="." unique_id=1920344153]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.78464, 1.51379, 7.9541235)
-size = Vector3(7.1799374, 3, 0.4732666)
-material = SubResource("StandardMaterial3D_gimty")
-
-[node name="csg_elevator_wall_5" type="CSGBox3D" parent="." unique_id=1168354562]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6618085, 1.51379, 7.9541235)
-size = Vector3(6.9958954, 3, 0.4732666)
-material = SubResource("StandardMaterial3D_gimty")
-
-[node name="csg_wall_5" type="CSGBox3D" parent="." unique_id=1506556411]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22678137, 4.233857, 7.9541235)
-size = Vector3(16.296642, 3.3640137, 0.4732666)
-material = SubResource("StandardMaterial3D_gimty")
-
-[node name="csg_stair_wall_7" type="CSGPolygon3D" parent="." unique_id=767912487]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.2049098, 1.91379, -3.3911686)
-polygon = PackedVector2Array(-5, -2, -4.9, 3.3, -3.9, 3.3, 4.6, -2)
-material = SubResource("StandardMaterial3D_gimty")
+[node name="marker_camera_king_side" type="Node3D" parent="." unique_id=778137627 node_paths=PackedStringArray("camera")]
+script = ExtResource("18_fhf0e")
+camera = NodePath("../camera_king_side")
+bit = -2242545357980376864
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="hotel_hall_stair" parent="." unique_id=957326864 instance=ExtResource("19_ehpdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
-[node name="camera_under_stair" type="Camera3D" parent="." unique_id=617284860]
-transform = Transform3D(-0.014642773, -0.31395882, 0.9493237, 2.2079802e-10, 0.9494255, 0.3139925, -0.99989283, 0.0045977207, -0.013902222, 6.717693, 2.7836637, -4.5405917)
-fov = 58.5874
+[node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=236591818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11633301, 3.14961, -3.2429128)
+blend_distance = 0.2
+max_distance = 20.0
+size = Vector3(4.922119, 7.0655146, 9.305766)
+origin_offset = Vector3(0, 0.415, 2.35)
+box_projection = true
 
-[node name="marker_camera_under_stair" type="Node3D" parent="." unique_id=778137627 node_paths=PackedStringArray("camera")]
-script = ExtResource("18_fhf0e")
-camera = NodePath("../camera_under_stair")
-bit = 14392
-metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+[node name="reflection_probe_2" type="ReflectionProbe" parent="." unique_id=1473877400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.998871, 2.7839296, 0.025652885)
+blend_distance = 0.2
+size = Vector3(6.345276, 6.3341537, 16.557821)
+box_projection = true
 
-[node name="csg_stair_wall_8" type="CSGPolygon3D" parent="." unique_id=1083393577]
+[node name="reflection_probe_3" type="ReflectionProbe" parent="." unique_id=161468027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0515137, 2.9161506, -0.37909126)
+blend_distance = 0.2
+size = Vector3(6.5444336, 6.5985956, 16.931927)
+box_projection = true
+
+[node name="reflection_probe_4" type="ReflectionProbe" parent="." unique_id=952283185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11633301, 2.792167, 4.8802757)
+blend_distance = 0.2
+size = Vector3(4.922119, 6.3506284, 6.782766)
+origin_offset = Vector3(0, -2.68, 0)
+box_projection = true
+
+[node name="csg_combiner_3d" type="CSGCombiner3D" parent="." unique_id=769690270]
+
+[node name="csg_wall_7" type="CSGBox3D" parent="csg_combiner_3d" unique_id=426345695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.201963, 2.9630089, -0.2517252)
+size = Vector3(0.3688584, 5.8984375, 16.490627)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_elevator_wall_6" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1280688838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96607, 2.9333081, -0.13716602)
+size = Vector3(0.408875, 6, 16.63684)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_wall_3" type="CSGBox3D" parent="csg_combiner_3d" unique_id=952107714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09738684, 2.2064645, -8.2439575)
+size = Vector3(16.037853, 4.4, 0.4732666)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_elevator_wall_5" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1168354562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010801315, 1.51379, 7.9216986)
+operation = 2
+size = Vector3(2.362277, 3, 0.64590454)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_wall_5" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1506556411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22678137, 2.915864, 7.9541235)
+size = Vector3(16.296642, 6, 0.4732666)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_stair_wall_7" type="CSGPolygon3D" parent="csg_combiner_3d" unique_id=767912487]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.2049098, 1.91379, -3.3911686)
+polygon = PackedVector2Array(-5, -2, -4.9, 3.3, -3.9, 3.3, 4.6, -2)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_stair_wall_8" type="CSGPolygon3D" parent="csg_combiner_3d" unique_id=1083393577]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.3345649, 1.91379, -3.3911686)
 polygon = PackedVector2Array(-5, -2, -4.9, 3.3, -3.9, 3.3, 4.6, -2)
 material = SubResource("StandardMaterial3D_gimty")
 
-[node name="csg_2f" type="CSGBox3D" parent="." unique_id=538597633]
+[node name="csg_2f" type="CSGBox3D" parent="csg_combiner_3d" unique_id=538597633]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09738684, 4.7713757, -9.079849)
 size = Vector3(16.037853, 0.87950134, 3.7547913)
 material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_door_elevator" type="CSGBox3D" parent="csg_combiner_3d" unique_id=76291114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0129333, 1.3389243, -8.665194)
+operation = 2
+size = Vector3(2.1406002, 2.6502686, 1.7309074)
+material = SubResource("StandardMaterial3D_gimty")
+
+[node name="csg_door_cafe" type="CSGBox3D" parent="csg_combiner_3d" unique_id=935140248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9951153, 1.3738974, 2.9983535)
+operation = 2
+size = Vector3(0.7009126, 2.7202148, 1.149329)
+material = SubResource("StandardMaterial3D_gimty")
+
+[editable path="chessboard"]
