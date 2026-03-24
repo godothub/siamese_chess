@@ -364,7 +364,7 @@ light_energy = 0.1
 omni_range = 5.54
 
 [node name="camera_3d" type="Camera3D" parent="." unique_id=1334859970]
-transform = Transform3D(-0.80175364, 0.42219582, -0.4230152, 0.007905273, 0.7152216, 0.6988531, 0.5976025, 0.5569639, -0.57676905, -6.572996, 3.0934687, -7.0327725)
+transform = Transform3D(-0.80592823, 0.4134711, -0.4236996, 0, 0.71569276, 0.6984153, 0.59201324, 0.5628726, -0.576797, -6.572996, 3.0934687, -7.0327725)
 fov = 102.04714
 
 [node name="player" parent="." unique_id=1111666 instance=ExtResource("10_mtw5c")]
