@@ -216,7 +216,8 @@ spot_angle = 74.63
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
 light_color = Color(0.75, 0.714, 0.6825, 1)
 light_energy = 0.3
-omni_range = 6.2362084
+light_specular = 0.0
+omni_range = 10.077
 
 [node name="hang_light_03" parent="." unique_id=1075693000 instance=ExtResource("8_7262k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3)
@@ -246,7 +247,8 @@ spot_angle = 74.63
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
 light_color = Color(0.75, 0.714, 0.6825, 1)
 light_energy = 0.3
-omni_range = 6.2362084
+light_specular = 0.0
+omni_range = 10.077
 
 [node name="hang_light_04" parent="." unique_id=1880830678 instance=ExtResource("8_7262k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 3)
@@ -276,7 +278,8 @@ spot_angle = 74.63
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
 light_color = Color(0.75, 0.714, 0.6825, 1)
 light_energy = 0.3
-omni_range = 6.2362084
+light_specular = 0.0
+omni_range = 10.077
 
 [node name="hang_light_05" parent="." unique_id=1796143951 instance=ExtResource("8_7262k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
@@ -306,7 +309,8 @@ spot_angle = 74.63
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
 light_color = Color(0.75, 0.714, 0.6825, 1)
 light_energy = 0.3
-omni_range = 6.2362084
+light_specular = 0.0
+omni_range = 10.077
 
 [node name="hang_light_06" parent="." unique_id=1617089856 instance=ExtResource("8_7262k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
@@ -336,7 +340,8 @@ spot_angle = 74.63
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
 light_color = Color(0.75, 0.714, 0.6825, 1)
 light_energy = 0.3
-omni_range = 6.2362084
+light_specular = 0.0
+omni_range = 10.077
 
 [node name="hang_light_07" parent="." unique_id=85200325 instance=ExtResource("8_7262k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
@@ -366,7 +371,8 @@ spot_angle = 74.63
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
 light_color = Color(0.75, 0.714, 0.6825, 1)
 light_energy = 0.3
-omni_range = 6.2362084
+light_specular = 0.0
+omni_range = 10.077
 
 [node name="hotel_door_large" parent="." unique_id=1943249449 instance=ExtResource("9_7pf3j")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
@@ -380,7 +386,8 @@ transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.893
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=1404077087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1006167, 0.9903178)
 light_energy = 0.1
-omni_range = 5.54
+light_specular = 0.0
+omni_range = 10.077
 
 [node name="camera_3d" type="Camera3D" parent="." unique_id=1334859970]
 transform = Transform3D(-0.80592823, 0.4134711, -0.4236996, 0, 0.71569276, 0.6984153, 0.59201324, 0.5628726, -0.576797, -6.572996, 3.0934687, -7.0327725)
