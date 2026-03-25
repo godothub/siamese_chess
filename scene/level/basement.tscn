@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bt5m0eox0615k" path="res://assets/model/hotel_room_desk.glb" id="11_74xdv"]
 [ext_resource type="PackedScene" uid="uid://u1ropnj7v0ap" path="res://assets/model/hotel_room_desk_chair.glb" id="12_vykmq"]
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/marker_callback.gd" id="13_vykmq"]
+[ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="14_nwskg"]
 
 [sub_resource type="Environment" id="Environment_ywqhp"]
 background_mode = 2
@@ -24,10 +25,10 @@ fog_density = 1.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pf3j"]
 metallic = 0.81
 
-[node name="basement" type="Node3D" unique_id=587138851]
+[node name="marker_callback_light" type="Node3D" unique_id=587138851]
 script = ExtResource("1_mtw5c")
 metadata/_custom_type_script = "uid://rhdq34na2j5m"
-metadata/by = 16
+metadata/by = 48
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1875977362]
 environment = SubResource("Environment_ywqhp")
@@ -50,7 +51,7 @@ size = Vector3(6, 17, 28)
 material = SubResource("StandardMaterial3D_7pf3j")
 
 [node name="csg_box_3d" type="CSGBox3D" parent="csg_box_3d_3" unique_id=191024852]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041511536, 1.6265564, -5.0044928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041511536, 1.6265564, -0.0044927597)
 operation = 2
 size = Vector3(6.3842773, 2.7022095, 2.2370605)
 
@@ -114,7 +115,7 @@ actor = ExtResource("4_d5w51")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="marker_actor_handcart" type="Marker3D" parent="." unique_id=1018678253]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
 script = ExtResource("3_ywqhp")
 piece = 35
 actor = ExtResource("6_vjidp")
@@ -128,7 +129,7 @@ actor = ExtResource("7_h64pl")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="marker_actor_handcart_2" type="Marker3D" parent="." unique_id=1878005695]
-transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -7, 0, 1)
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -7, 0, -5)
 script = ExtResource("3_ywqhp")
 piece = 35
 actor = ExtResource("6_vjidp")
@@ -168,6 +169,23 @@ script = ExtResource("3_ywqhp")
 piece = 35
 actor = ExtResource("5_80gqw")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
+[node name="teleport_pointer_basement" parent="." unique_id=82850098 instance=ExtResource("14_nwskg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, -7)
+to = "res://scene/level/hallway_minus_1.tscn"
+args = {
+"by": 1
+}
+bit = 4311744512
+
+[node name="marker_callback_light" type="Node3D" parent="." unique_id=627516111 node_paths=PackedStringArray("node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
+script = ExtResource("13_vykmq")
+node = NodePath("..")
+method_name = &"change_light"
+selection = "开关"
+bit = 4311744512
+metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
 [node name="hang_light_02" parent="." unique_id=1369491943 instance=ExtResource("8_7262k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 3)
@@ -350,12 +368,12 @@ light_energy = 0.3
 omni_range = 6.2362084
 
 [node name="hotel_door_large" parent="." unique_id=1943249449 instance=ExtResource("9_7pf3j")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, -5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="1" unique_id=1074130197]
+[node name="door_large_face_l" parent="hotel_door_large" index="1" unique_id=627746975]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="2" unique_id=1383251871]
+[node name="door_large_face_r" parent="hotel_door_large" index="2" unique_id=1541761361]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=1404077087]
@@ -430,14 +448,5 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 
 
 [node name="hotel_room_desk_chair" parent="." unique_id=1431607268 instance=ExtResource("12_vykmq")]
 transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, -0.39965963, 0, 6.567529)
-
-[node name="marker_callback" type="Node3D" parent="." unique_id=627516111 node_paths=PackedStringArray("node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
-script = ExtResource("13_vykmq")
-node = NodePath("..")
-method_name = &"change_light"
-selection = "开关"
-bit = 256
-metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
 [editable path="hotel_door_large"]
