@@ -15,8 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://cwjgphuayqvy3" path="res://assets/model/hotel_door_large.glb" id="13_b3cnt"]
 
 [sub_resource type="Environment" id="Environment_reac2"]
-background_mode = 2
-background_color = Color(1, 1, 1, 1)
+background_mode = 1
+ambient_light_source = 1
 sdfgi_read_sky_light = false
 fog_mode = 1
 fog_light_color = Color(1, 1, 1, 1)
@@ -57,7 +57,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 8.351872e-23, 0, 8.351872e-23, 1, 0, 0, -1.7850118)
 light_color = Color(0.59, 0.5137916, 0.4071, 1)
 light_energy = 0.2
-shadow_enabled = true
 
 [node name="door_1" parent="." unique_id=1394656701 instance=ExtResource("5_htcqt")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, -1)
@@ -222,7 +221,6 @@ transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.893
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1006167, 0.9903178)
 light_color = Color(0.59, 0.5137916, 0.4071, 1)
 light_energy = 0.1
-shadow_enabled = true
 omni_range = 5.54
 
 [node name="spot_light_3d" type="SpotLight3D" parent="." unique_id=355292908]
@@ -234,7 +232,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5735877)
 light_color = Color(0.59, 0.5137916, 0.4071, 1)
 light_energy = 0.2
-shadow_enabled = true
 
 [node name="spot_light_3d_2" type="SpotLight3D" parent="." unique_id=1709512362]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5, 3.0337195, -1.802)
@@ -245,7 +242,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5735877)
 light_color = Color(0.59, 0.5137916, 0.4071, 1)
 light_energy = 0.2
-shadow_enabled = true
 
 [node name="spot_light_3d_3" type="SpotLight3D" parent="." unique_id=1487914074]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5, 3.0337195, 2.198)
@@ -256,7 +252,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5735877)
 light_color = Color(0.59, 0.5137916, 0.4071, 1)
 light_energy = 0.2
-shadow_enabled = true
 
 [node name="spot_light_3d_4" type="SpotLight3D" parent="." unique_id=1616329215]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5, 3.0337195, 5.198)
@@ -267,7 +262,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5735877)
 light_color = Color(0.59, 0.5137916, 0.4071, 1)
 light_energy = 0.2
-shadow_enabled = true
 
 [node name="teleport_pointer_basement" parent="." unique_id=82850098 instance=ExtResource("10_ttrbh")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, -7)

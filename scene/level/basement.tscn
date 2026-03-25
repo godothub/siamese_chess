@@ -16,7 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="14_nwskg"]
 
 [sub_resource type="Environment" id="Environment_ywqhp"]
-background_mode = 2
+background_mode = 1
+ambient_light_source = 1
 sdfgi_read_sky_light = false
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
