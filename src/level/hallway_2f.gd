@@ -12,8 +12,11 @@ func _ready() -> void:
 	chessboard.button_input_pointer = cheshire_by
 	$player.force_set_camera($camera)
 
+func elevator_minus_1f() -> void:
+	Loading.change_scene("res://scene/level/hallway_minus_1f.tscn", {"by": 0x10})
+
 func elevator_1f() -> void:
-	Loading.change_scene("res://scene/level/reception_lobby.tscn", {"by": 1})
+	Loading.change_scene("res://scene/level/reception_lobby.tscn", {"by": 0x10})
 
 func elevator_3f() -> void:
-	Loading.change_scene("res://scene/level/hallway_3f.tscn", {"by": 2})
+	Loading.change_scene("res://scene/level/hallway_3f.tscn", {"by": 0x10})
