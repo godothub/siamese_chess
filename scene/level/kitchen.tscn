@@ -3,13 +3,25 @@
 [ext_resource type="Script" uid="uid://bdbwfocvgq0f7" path="res://src/level/kitchen.gd" id="1_54xsr"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_3kqsp"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_6t8s2"]
+[ext_resource type="PackedScene" uid="uid://dd5y2wcjnmlqy" path="res://assets/model/archive_shelf.glb" id="4_y7840"]
 [ext_resource type="PackedScene" uid="uid://b4sp8vdkwakx0" path="res://assets/model/kitchen_table.glb" id="9_n2oby"]
 [ext_resource type="PackedScene" uid="uid://pv3iyrbqj56g" path="res://assets/model/kitchen_fridge.glb" id="9_tttbs"]
 [ext_resource type="PackedScene" uid="uid://d2kxa4bgjrhgy" path="res://assets/model/kitchen_washbasin.glb" id="10_tttbs"]
 [ext_resource type="PackedScene" uid="uid://c5bxmxcbilfv4" path="res://assets/model/kitchen_stove.glb" id="11_54xsr"]
+[ext_resource type="PackedScene" uid="uid://c3jp51b0aamue" path="res://assets/model/kitchen_range_hood.glb" id="12_y888p"]
+[ext_resource type="PackedScene" uid="uid://cuu3yjt7ru2ah" path="res://assets/model/hang_shelf.glb" id="13_nkxss"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/marker_multi_actor.gd" id="14_hqxra"]
+[ext_resource type="PackedScene" uid="uid://brwklx5c0sjbo" path="res://assets/model/cafe_washbasin.glb" id="15_fis72"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="16_uhj53"]
+[ext_resource type="PackedScene" uid="uid://b63o3y2sbsav0" path="res://assets/model/table_high.glb" id="16_x83ls"]
+[ext_resource type="Shader" uid="uid://dd7xsr1eeq6mo" path="res://src/unmoving_plaid.gdshader" id="17_66531"]
+[ext_resource type="Texture2D" uid="uid://h85ppsibn8xk" path="res://assets/texture/Texturelabs_Wood_256S.jpg" id="18_u4clk"]
+[ext_resource type="PackedScene" uid="uid://ppw81bokufcf" path="res://assets/model/chair_high.glb" id="19_h1446"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="19_qj1je"]
+[ext_resource type="PackedScene" uid="uid://c2r0g1i6eu65r" path="res://assets/model/table.glb" id="20_2gvqm"]
+[ext_resource type="PackedScene" uid="uid://df443q5sl4vaj" path="res://assets/model/sofa.glb" id="21_cwpkv"]
+[ext_resource type="Texture2D" uid="uid://d15qcqdl3xuf3" path="res://assets/texture/Texturelabs_Fabric_186S.jpg" id="22_e37jg"]
+[ext_resource type="PackedScene" uid="uid://ylr82inm0vxe" path="res://assets/model/counter.glb" id="23_66531"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/marker_camera.gd" id="32_twdgb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2nvbi"]
@@ -33,6 +45,83 @@ fog_density = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nvbi"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ff8rw"]
+render_priority = 0
+shader = ExtResource("17_66531")
+shader_parameter/texture_albedo = ExtResource("18_u4clk")
+shader_parameter/scale = 1.0
+shader_parameter/hue_shift = 0.0
+shader_parameter/saturation_mult = 1.0
+shader_parameter/value_mult = 0.133
+shader_parameter/brightness_add = -0.1
+shader_parameter/contrast_mult = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hv0vr"]
+render_priority = 0
+shader = ExtResource("17_66531")
+shader_parameter/texture_albedo = ExtResource("18_u4clk")
+shader_parameter/scale = 1.0
+shader_parameter/hue_shift = 0.0
+shader_parameter/saturation_mult = 1.0
+shader_parameter/value_mult = 0.133
+shader_parameter/brightness_add = -0.1
+shader_parameter/contrast_mult = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5ukh"]
+render_priority = 0
+shader = ExtResource("17_66531")
+shader_parameter/texture_albedo = ExtResource("22_e37jg")
+shader_parameter/scale = 1.0
+shader_parameter/hue_shift = 0.0
+shader_parameter/saturation_mult = 0.76
+shader_parameter/value_mult = 0.77
+shader_parameter/brightness_add = -0.1
+shader_parameter/contrast_mult = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3kqsp"]
+render_priority = 0
+shader = ExtResource("17_66531")
+shader_parameter/texture_albedo = ExtResource("18_u4clk")
+shader_parameter/scale = 1.0
+shader_parameter/hue_shift = 0.0
+shader_parameter/saturation_mult = 1.0
+shader_parameter/value_mult = 0.133
+shader_parameter/brightness_add = -0.1
+shader_parameter/contrast_mult = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6t8s2"]
+render_priority = 0
+shader = ExtResource("17_66531")
+shader_parameter/texture_albedo = ExtResource("22_e37jg")
+shader_parameter/scale = 1.0
+shader_parameter/hue_shift = 0.0
+shader_parameter/saturation_mult = 0.76
+shader_parameter/value_mult = 0.77
+shader_parameter/brightness_add = -0.1
+shader_parameter/contrast_mult = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vbqe"]
+render_priority = 0
+shader = ExtResource("17_66531")
+shader_parameter/texture_albedo = ExtResource("18_u4clk")
+shader_parameter/scale = 1.0
+shader_parameter/hue_shift = 0.0
+shader_parameter/saturation_mult = 0.76
+shader_parameter/value_mult = 0.133
+shader_parameter/brightness_add = -0.1
+shader_parameter/contrast_mult = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_imp7c"]
+render_priority = 0
+shader = ExtResource("17_66531")
+shader_parameter/texture_albedo = ExtResource("18_u4clk")
+shader_parameter/scale = 1.0
+shader_parameter/hue_shift = 0.0
+shader_parameter/saturation_mult = 0.76
+shader_parameter/value_mult = 0.133
+shader_parameter/brightness_add = -0.1
+shader_parameter/contrast_mult = 1.0
+
 [node name="kitchen" type="Node3D" unique_id=1397432663]
 script = ExtResource("1_54xsr")
 metadata/by = 102
@@ -44,182 +133,185 @@ environment = SubResource("Environment_ve7rb")
 
 [node name="chessboard" parent="." unique_id=2031875546 instance=ExtResource("3_6t8s2")]
 
-[node name="h8_001" parent="chessboard" index="2" unique_id=1530834262]
+[node name="h8_001" parent="chessboard" index="2" unique_id=1853462811]
 visible = false
 
-[node name="h7_001" parent="chessboard" index="3" unique_id=1860964823]
+[node name="h7_001" parent="chessboard" index="3" unique_id=367582968]
 visible = false
 
-[node name="h6_001" parent="chessboard" index="4" unique_id=1975032164]
+[node name="h6_001" parent="chessboard" index="4" unique_id=1239186851]
 visible = false
 
-[node name="h5_001" parent="chessboard" index="5" unique_id=732751438]
+[node name="h5_001" parent="chessboard" index="5" unique_id=908011794]
 visible = false
 
-[node name="h4_001" parent="chessboard" index="6" unique_id=97247153]
+[node name="h4_001" parent="chessboard" index="6" unique_id=1541577642]
 visible = false
 
-[node name="h3_001" parent="chessboard" index="7" unique_id=320469533]
+[node name="h3_001" parent="chessboard" index="7" unique_id=882098627]
 visible = false
 
-[node name="h2_001" parent="chessboard" index="8" unique_id=106350508]
+[node name="h2_001" parent="chessboard" index="8" unique_id=250515179]
 visible = false
 
-[node name="h1_001" parent="chessboard" index="9" unique_id=918497896]
+[node name="h1_001" parent="chessboard" index="9" unique_id=1136447702]
 visible = false
 
-[node name="g8_001" parent="chessboard" index="10" unique_id=1532959301]
+[node name="g8_001" parent="chessboard" index="10" unique_id=715451904]
 visible = false
 
-[node name="g7_001" parent="chessboard" index="11" unique_id=1796178304]
+[node name="g7_001" parent="chessboard" index="11" unique_id=1770034095]
 visible = false
 
-[node name="g6_001" parent="chessboard" index="12" unique_id=1687491941]
+[node name="g6_001" parent="chessboard" index="12" unique_id=1570435544]
 visible = false
 
-[node name="f8_001" parent="chessboard" index="18" unique_id=792672971]
+[node name="f8_001" parent="chessboard" index="18" unique_id=1029829439]
 visible = false
 
-[node name="f7_001" parent="chessboard" index="19" unique_id=1661686316]
+[node name="f7_001" parent="chessboard" index="19" unique_id=1045149633]
 visible = false
 
-[node name="f6_001" parent="chessboard" index="20" unique_id=1905342937]
+[node name="f6_001" parent="chessboard" index="20" unique_id=530827156]
 visible = false
 
-[node name="e8_001" parent="chessboard" index="26" unique_id=151896323]
+[node name="e8_001" parent="chessboard" index="26" unique_id=252231148]
 visible = false
 
-[node name="e7_001" parent="chessboard" index="27" unique_id=994832604]
+[node name="e7_001" parent="chessboard" index="27" unique_id=365452616]
 visible = false
 
-[node name="e6_001" parent="chessboard" index="28" unique_id=760722487]
+[node name="e6_001" parent="chessboard" index="28" unique_id=545412094]
 visible = false
 
-[node name="d8_001" parent="chessboard" index="34" unique_id=977767109]
+[node name="d8_001" parent="chessboard" index="34" unique_id=2135637919]
 visible = false
 
-[node name="d7_001" parent="chessboard" index="35" unique_id=1953773732]
+[node name="d7_001" parent="chessboard" index="35" unique_id=1107781550]
 visible = false
 
-[node name="d6_001" parent="chessboard" index="36" unique_id=1983266635]
+[node name="d6_001" parent="chessboard" index="36" unique_id=1457561340]
 visible = false
 
-[node name="c8_001" parent="chessboard" index="42" unique_id=465236761]
+[node name="c8_001" parent="chessboard" index="42" unique_id=1297517436]
 visible = false
 
-[node name="c7_001" parent="chessboard" index="43" unique_id=2105179173]
+[node name="c7_001" parent="chessboard" index="43" unique_id=1381124225]
 visible = false
 
-[node name="c6_001" parent="chessboard" index="44" unique_id=1936897563]
+[node name="c6_001" parent="chessboard" index="44" unique_id=803008408]
 visible = false
 
-[node name="b8_001" parent="chessboard" index="50" unique_id=2026627261]
+[node name="b8_001" parent="chessboard" index="50" unique_id=43453676]
 visible = false
 
-[node name="b7_001" parent="chessboard" index="51" unique_id=2122330267]
+[node name="b7_001" parent="chessboard" index="51" unique_id=737592452]
 visible = false
 
-[node name="b6_001" parent="chessboard" index="52" unique_id=739733738]
+[node name="b6_001" parent="chessboard" index="52" unique_id=1660217347]
 visible = false
 
-[node name="a8_001" parent="chessboard" index="58" unique_id=41119403]
+[node name="a8_001" parent="chessboard" index="58" unique_id=115299515]
 visible = false
 
-[node name="a7_001" parent="chessboard" index="59" unique_id=2069720561]
+[node name="a7_001" parent="chessboard" index="59" unique_id=124795654]
 visible = false
 
-[node name="a6_001" parent="chessboard" index="60" unique_id=920382488]
+[node name="a6_001" parent="chessboard" index="60" unique_id=94037163]
 visible = false
 
 [node name="canvas" parent="chessboard" index="66" unique_id=1598752436]
-transform = Transform3D(-16, 0, -2.41593e-06, 0, 16, 0, 2.41593e-06, 0, -16, -0.06555557, 0.07045222, 0.031120777)
+transform = Transform3D(-16, 0, -2.41593e-06, 0, 16, 0, 2.41593e-06, 0, -16, -0.07062602, 0.07351304, 0.032589078)
 
-[node name="CollisionShape3D" parent="chessboard/a6" parent_id_path=PackedInt32Array(2031875546, 1471371171) index="0" unique_id=1885185919]
+[node name="CollisionShape3D" parent="chessboard/a6" parent_id_path=PackedInt32Array(2031875546, 156167347) index="0" unique_id=1539661892]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/a7" parent_id_path=PackedInt32Array(2031875546, 1915798391) index="0" unique_id=445704181]
+[node name="CollisionShape3D" parent="chessboard/a7" parent_id_path=PackedInt32Array(2031875546, 1499354905) index="0" unique_id=927645608]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/a8" parent_id_path=PackedInt32Array(2031875546, 1693919504) index="0" unique_id=387449111]
+[node name="CollisionShape3D" parent="chessboard/a8" parent_id_path=PackedInt32Array(2031875546, 241652003) index="0" unique_id=657187195]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/b6" parent_id_path=PackedInt32Array(2031875546, 625662428) index="0" unique_id=414170588]
+[node name="CollisionShape3D" parent="chessboard/b6" parent_id_path=PackedInt32Array(2031875546, 1940495084) index="0" unique_id=1550524494]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/b7" parent_id_path=PackedInt32Array(2031875546, 1880858267) index="0" unique_id=1997287694]
+[node name="CollisionShape3D" parent="chessboard/b7" parent_id_path=PackedInt32Array(2031875546, 923363171) index="0" unique_id=1833867079]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/b8" parent_id_path=PackedInt32Array(2031875546, 520829543) index="0" unique_id=919794070]
+[node name="CollisionShape3D" parent="chessboard/b8" parent_id_path=PackedInt32Array(2031875546, 174096298) index="0" unique_id=1619699028]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/c6" parent_id_path=PackedInt32Array(2031875546, 1256036418) index="0" unique_id=159104879]
+[node name="CollisionShape3D" parent="chessboard/c6" parent_id_path=PackedInt32Array(2031875546, 705310852) index="0" unique_id=1457370511]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/c7" parent_id_path=PackedInt32Array(2031875546, 146511230) index="0" unique_id=1204443960]
+[node name="CollisionShape3D" parent="chessboard/c7" parent_id_path=PackedInt32Array(2031875546, 1838056622) index="0" unique_id=699016492]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/c8" parent_id_path=PackedInt32Array(2031875546, 282649858) index="0" unique_id=1738475295]
+[node name="CollisionShape3D" parent="chessboard/c8" parent_id_path=PackedInt32Array(2031875546, 1608544403) index="0" unique_id=2118934676]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/d6" parent_id_path=PackedInt32Array(2031875546, 1697551401) index="0" unique_id=1723863557]
+[node name="CollisionShape3D" parent="chessboard/d6" parent_id_path=PackedInt32Array(2031875546, 1581286568) index="0" unique_id=873566175]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/d7" parent_id_path=PackedInt32Array(2031875546, 202223291) index="0" unique_id=1828052045]
+[node name="CollisionShape3D" parent="chessboard/d7" parent_id_path=PackedInt32Array(2031875546, 1134152700) index="0" unique_id=1848101594]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/d8" parent_id_path=PackedInt32Array(2031875546, 1372427347) index="0" unique_id=1968189367]
+[node name="CollisionShape3D" parent="chessboard/d8" parent_id_path=PackedInt32Array(2031875546, 1657380520) index="0" unique_id=1712443992]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/e6" parent_id_path=PackedInt32Array(2031875546, 1715008728) index="0" unique_id=1854782322]
+[node name="CollisionShape3D" parent="chessboard/e6" parent_id_path=PackedInt32Array(2031875546, 420504885) index="0" unique_id=883516797]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/e7" parent_id_path=PackedInt32Array(2031875546, 919947333) index="0" unique_id=646881609]
+[node name="CollisionShape3D" parent="chessboard/e7" parent_id_path=PackedInt32Array(2031875546, 1373537873) index="0" unique_id=719123570]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/e8" parent_id_path=PackedInt32Array(2031875546, 610413816) index="0" unique_id=83576288]
+[node name="CollisionShape3D" parent="chessboard/e8" parent_id_path=PackedInt32Array(2031875546, 1631801450) index="0" unique_id=1262332617]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/f6" parent_id_path=PackedInt32Array(2031875546, 1098964648) index="0" unique_id=528482108]
+[node name="CollisionShape3D" parent="chessboard/f6" parent_id_path=PackedInt32Array(2031875546, 725307067) index="0" unique_id=431996035]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/f7" parent_id_path=PackedInt32Array(2031875546, 1036658201) index="0" unique_id=1090227194]
+[node name="CollisionShape3D" parent="chessboard/f7" parent_id_path=PackedInt32Array(2031875546, 1874056103) index="0" unique_id=2035472755]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/f8" parent_id_path=PackedInt32Array(2031875546, 1722822334) index="0" unique_id=366923529]
+[node name="CollisionShape3D" parent="chessboard/f8" parent_id_path=PackedInt32Array(2031875546, 1755764439) index="0" unique_id=871276690]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/g6" parent_id_path=PackedInt32Array(2031875546, 1696083953) index="0" unique_id=1739049534]
+[node name="CollisionShape3D" parent="chessboard/g6" parent_id_path=PackedInt32Array(2031875546, 1603896696) index="0" unique_id=70744182]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/g7" parent_id_path=PackedInt32Array(2031875546, 690048775) index="0" unique_id=609350553]
+[node name="CollisionShape3D" parent="chessboard/g7" parent_id_path=PackedInt32Array(2031875546, 1150825376) index="0" unique_id=1058173959]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/g8" parent_id_path=PackedInt32Array(2031875546, 1359009442) index="0" unique_id=1054970563]
+[node name="CollisionShape3D" parent="chessboard/g8" parent_id_path=PackedInt32Array(2031875546, 257885624) index="0" unique_id=182087032]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h1" parent_id_path=PackedInt32Array(2031875546, 935988639) index="0" unique_id=307597103]
+[node name="CollisionShape3D" parent="chessboard/h1" parent_id_path=PackedInt32Array(2031875546, 1319834615) index="0" unique_id=1765770093]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h2" parent_id_path=PackedInt32Array(2031875546, 1089250991) index="0" unique_id=1045655139]
+[node name="CollisionShape3D" parent="chessboard/h2" parent_id_path=PackedInt32Array(2031875546, 2113577195) index="0" unique_id=509865159]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h3" parent_id_path=PackedInt32Array(2031875546, 208351003) index="0" unique_id=291092946]
+[node name="CollisionShape3D" parent="chessboard/h3" parent_id_path=PackedInt32Array(2031875546, 953847895) index="0" unique_id=1967954344]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h4" parent_id_path=PackedInt32Array(2031875546, 1943195949) index="0" unique_id=312954058]
+[node name="CollisionShape3D" parent="chessboard/h4" parent_id_path=PackedInt32Array(2031875546, 154430158) index="0" unique_id=384380390]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h5" parent_id_path=PackedInt32Array(2031875546, 1400554396) index="0" unique_id=1379090482]
+[node name="CollisionShape3D" parent="chessboard/h5" parent_id_path=PackedInt32Array(2031875546, 650617356) index="0" unique_id=63447521]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h6" parent_id_path=PackedInt32Array(2031875546, 133461881) index="0" unique_id=976470351]
+[node name="CollisionShape3D" parent="chessboard/h6" parent_id_path=PackedInt32Array(2031875546, 1097955131) index="0" unique_id=883341463]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h7" parent_id_path=PackedInt32Array(2031875546, 1207874611) index="0" unique_id=791032667]
+[node name="CollisionShape3D" parent="chessboard/h7" parent_id_path=PackedInt32Array(2031875546, 1912457852) index="0" unique_id=747429513]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h8" parent_id_path=PackedInt32Array(2031875546, 1393630494) index="0" unique_id=2018020642]
+[node name="CollisionShape3D" parent="chessboard/h8" parent_id_path=PackedInt32Array(2031875546, 1559628694) index="0" unique_id=877367780]
 visible = false
+
+[node name="archive_shelf2" parent="chessboard" unique_id=123540915 instance=ExtResource("4_y7840")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7029557, 0, 5)
 
 [node name="camera" type="Camera3D" parent="." unique_id=546823115]
 transform = Transform3D(-0.55484444, -0.6465498, 0.5235657, 0, 0.6293204, 0.777146, -0.8319541, 0.43119514, -0.34917492, 5.420564, 4.410783, -0.40979874)
@@ -232,7 +324,7 @@ bit = -33909453996687361
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
 [node name="door_2" parent="." unique_id=828687556 instance=ExtResource("16_uhj53")]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 6.223225, 0, 5)
+transform = Transform3D(-2.1855678e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855678e-07, 6.223225, 0, 5)
 
 [node name="teleport_pointer" parent="." unique_id=221900182 instance=ExtResource("19_qj1je")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 5, 0, 5)
@@ -255,19 +347,29 @@ size = Vector3(0.408875, 3.8076172, 7.6766357)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_wall_9" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1756542337]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6182785, 1.9082144, -1.2915599)
-size = Vector3(9.673025, 3.7888489, 0.43603516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.68175, 1.9082144, -1.2915599)
+size = Vector3(23.79997, 3.7888489, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_wall_12" type="CSGBox3D" parent="csg_combiner_3d" unique_id=569339108]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5955653, 1.8767478, 6.3762484)
-size = Vector3(9.658051, 3.9, 0.43603516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.766541, 1.8767478, 6.3762484)
+size = Vector3(24, 3.9, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_door" type="CSGBox3D" parent="csg_combiner_3d" unique_id=783132780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1051445, 1.3817252, 5.0034313)
 operation = 2
 size = Vector3(0.8137932, 2.771698, 1.1607666)
+material = SubResource("StandardMaterial3D_2nvbi")
+
+[node name="csg_hole" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1419239206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1743135, 1.5834644, 0.85286117)
+operation = 2
+size = Vector3(1, 0.89572144, 1.5336304)
+
+[node name="csg_wall_8" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1584830817]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.551067, 1.9175986, 2.3625507)
+size = Vector3(0.408875, 3.8076172, 7.6766357)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="marker_camera" type="Node3D" parent="." unique_id=1459029983 node_paths=PackedStringArray("camera")]
@@ -277,23 +379,23 @@ bit = 33909456009953280
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=1935367432]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.597276, 1.768002, 2.5358572)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.597276, 1.9937329, 2.5358572)
 blend_distance = 0.2
-size = Vector3(9.49202, 4.2359924, 7.9300413)
+size = Vector3(9.49202, 4.687454, 7.9300413)
 box_projection = true
 interior = true
 
 [node name="kitchen_table_2" parent="." unique_id=651608821 instance=ExtResource("9_n2oby")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1.6447396)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2.6447396)
 
 [node name="kitchen_table_3" parent="." unique_id=170758475 instance=ExtResource("9_n2oby")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.6447396)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2.6447396)
 
 [node name="kitchen_table_4" parent="." unique_id=1571815271 instance=ExtResource("9_n2oby")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2.3671298)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3.3671298)
 
 [node name="kitchen_table_5" parent="." unique_id=410274834 instance=ExtResource("9_n2oby")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2.3671298)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3.3671298)
 
 [node name="kitchen_fridge" parent="." unique_id=1015479088 instance=ExtResource("9_tttbs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3082137, 0, -0.55619574)
@@ -304,10 +406,216 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5696084, 0, -0.65205806)
 [node name="kitchen_washbasin" parent="." unique_id=1865443054 instance=ExtResource("10_tttbs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46145195, 0, -0.6559479)
 
-[node name="kitchen_stove" parent="." unique_id=769767177 instance=ExtResource("11_54xsr")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.489925, 0, 0.6626897)
+[node name="kitchen_stove" parent="." unique_id=590650860 instance=ExtResource("11_54xsr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.4063084, 0, 0.6626897)
 
-[node name="kitchen_stove_2" parent="." unique_id=883140881 instance=ExtResource("11_54xsr")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.489925, 0, 1.9544544)
+[node name="kitchen_stove_2" parent="." unique_id=1657823811 instance=ExtResource("11_54xsr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.4063084, 0, 1.9146235)
+
+[node name="kitchen_range_hood" parent="." unique_id=1124384775 instance=ExtResource("12_y888p")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.4030037, 0, 1.284999)
+
+[node name="kitchen_table_7" parent="." unique_id=1773134495 instance=ExtResource("9_n2oby")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.59333, 0, 0.80015767)
+
+[node name="hang_shelf_2" parent="." unique_id=1516630918 instance=ExtResource("13_nkxss")]
+transform = Transform3D(1, 0, -1.7484557e-07, 0, 1, 0, 1.7484557e-07, 0, 1, 0.56291676, 2.1997807, 5.9598713)
+
+[node name="hang_shelf_3" parent="." unique_id=1854577875 instance=ExtResource("13_nkxss")]
+transform = Transform3D(1, 0, -1.7484557e-07, 0, 1, 0, 1.7484557e-07, 0, 1, 2.5629168, 2.1997807, 5.9598713)
+
+[node name="cafe" type="Node3D" parent="." unique_id=874419815]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.621901, 0, 2.29696)
+
+[node name="table_1" parent="cafe" unique_id=1325274477 instance=ExtResource("20_2gvqm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.70304, 0.0249235, 3.5780993)
+
+[node name="table_000" parent="cafe/table_1" index="0" unique_id=1265366848]
+surface_material_override/0 = SubResource("ShaderMaterial_ff8rw")
+
+[node name="sofa_0" parent="cafe/table_1" unique_id=497057507 instance=ExtResource("21_cwpkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045349, 0, -0.90022)
+
+[node name="sofa" parent="cafe/table_1/sofa_0" index="0" unique_id=534597635]
+transform = Transform3D(1.78814e-07, 0, -1, 0, 1, 0, 1, 0, 1.78814e-07, 0, 0, -0.116446)
+surface_material_override/0 = SubResource("ShaderMaterial_hv0vr")
+surface_material_override/1 = SubResource("ShaderMaterial_q5ukh")
+surface_material_override/2 = SubResource("ShaderMaterial_q5ukh")
+
+[node name="sofa_1" parent="cafe/table_1" unique_id=856514142 instance=ExtResource("21_cwpkv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.048802, 0, 1.09839)
+
+[node name="sofa" parent="cafe/table_1/sofa_1" index="0" unique_id=534597635]
+surface_material_override/0 = SubResource("ShaderMaterial_3kqsp")
+surface_material_override/1 = SubResource("ShaderMaterial_6t8s2")
+surface_material_override/2 = SubResource("ShaderMaterial_6t8s2")
+
+[node name="counter" parent="cafe" unique_id=1267380667 instance=ExtResource("23_66531")]
+
+[node name="table_high_2" parent="cafe" unique_id=1703734992 instance=ExtResource("16_x83ls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2969601, 0, 2.5780993)
+
+[node name="table_001" parent="cafe/table_high_2" index="0" unique_id=1755956780]
+surface_material_override/0 = SubResource("ShaderMaterial_1vbqe")
+
+[node name="chair_high_0" parent="cafe/table_high_2" unique_id=318497756 instance=ExtResource("19_h1446")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.716291, 0, -0.518619)
+
+[node name="chair" parent="cafe/table_high_2/chair_high_0" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_1" parent="cafe/table_high_2" unique_id=2081775807 instance=ExtResource("19_h1446")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0418291, 0, -0.518619)
+
+[node name="chair" parent="cafe/table_high_2/chair_high_1" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_2" parent="cafe/table_high_2" unique_id=276326181 instance=ExtResource("19_h1446")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.689076, 0, -0.518619)
+
+[node name="chair" parent="cafe/table_high_2/chair_high_2" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_3" parent="cafe/table_high_2" unique_id=1828667350 instance=ExtResource("19_h1446")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.716291, 0, 0.481381)
+
+[node name="chair" parent="cafe/table_high_2/chair_high_3" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_4" parent="cafe/table_high_2" unique_id=1051730177 instance=ExtResource("19_h1446")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0174162, 0, 0.481381)
+
+[node name="chair" parent="cafe/table_high_2/chair_high_4" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_5" parent="cafe/table_high_2" unique_id=1160127280 instance=ExtResource("19_h1446")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.661157, 0, 0.481381)
+
+[node name="chair" parent="cafe/table_high_2/chair_high_5" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="kitchen_table" parent="cafe" unique_id=805518138 instance=ExtResource("15_fis72")]
+transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 2.1316282e-14, 0, 1, 0.29696035, 0, -1.8038707)
+
+[node name="hang_shelf_4" parent="cafe" unique_id=317035773 instance=ExtResource("13_nkxss")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.36291122, 2.1997807, -1.9971409)
+
+[node name="table_high_0" parent="cafe" unique_id=501887965 instance=ExtResource("16_x83ls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29696, 0, 4.5780993)
+
+[node name="table_001" parent="cafe/table_high_0" index="0" unique_id=1755956780]
+surface_material_override/0 = SubResource("ShaderMaterial_1vbqe")
+
+[node name="chair_high_0" parent="cafe/table_high_0" unique_id=1710116188 instance=ExtResource("19_h1446")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.716291, 0, -0.518619)
+
+[node name="chair" parent="cafe/table_high_0/chair_high_0" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_1" parent="cafe/table_high_0" unique_id=1612416286 instance=ExtResource("19_h1446")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0418291, 0, -0.518619)
+
+[node name="chair" parent="cafe/table_high_0/chair_high_1" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_2" parent="cafe/table_high_0" unique_id=145061900 instance=ExtResource("19_h1446")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.689076, 0, -0.518619)
+
+[node name="chair" parent="cafe/table_high_0/chair_high_2" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_3" parent="cafe/table_high_0" unique_id=1427122471 instance=ExtResource("19_h1446")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.716291, 0, 0.481381)
+
+[node name="chair" parent="cafe/table_high_0/chair_high_3" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_4" parent="cafe/table_high_0" unique_id=1147807592 instance=ExtResource("19_h1446")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0174162, 0, 0.481381)
+
+[node name="chair" parent="cafe/table_high_0/chair_high_4" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_5" parent="cafe/table_high_0" unique_id=35884806 instance=ExtResource("19_h1446")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.661157, 0, 0.481381)
+
+[node name="chair" parent="cafe/table_high_0/chair_high_5" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="table_high_1" parent="cafe" unique_id=1113883865 instance=ExtResource("16_x83ls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2969599, 0, 6.5780993)
+
+[node name="table_001" parent="cafe/table_high_1" index="0" unique_id=1755956780]
+surface_material_override/0 = SubResource("ShaderMaterial_1vbqe")
+
+[node name="chair_high_0" parent="cafe/table_high_1" unique_id=989389042 instance=ExtResource("19_h1446")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.716291, 0, -0.518619)
+
+[node name="chair" parent="cafe/table_high_1/chair_high_0" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_1" parent="cafe/table_high_1" unique_id=1865286473 instance=ExtResource("19_h1446")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0418291, 0, -0.518619)
+
+[node name="chair" parent="cafe/table_high_1/chair_high_1" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_2" parent="cafe/table_high_1" unique_id=5218416 instance=ExtResource("19_h1446")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.689076, 0, -0.518619)
+
+[node name="chair" parent="cafe/table_high_1/chair_high_2" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_3" parent="cafe/table_high_1" unique_id=1079630183 instance=ExtResource("19_h1446")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.716291, 0, 0.481381)
+
+[node name="chair" parent="cafe/table_high_1/chair_high_3" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_4" parent="cafe/table_high_1" unique_id=1490564479 instance=ExtResource("19_h1446")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0174162, 0, 0.481381)
+
+[node name="chair" parent="cafe/table_high_1/chair_high_4" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chair_high_5" parent="cafe/table_high_1" unique_id=403909485 instance=ExtResource("19_h1446")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.661157, 0, 0.481381)
+
+[node name="chair" parent="cafe/table_high_1/chair_high_5" index="0" unique_id=1545652913]
+surface_material_override/0 = SubResource("ShaderMaterial_imp7c")
+
+[node name="chessboard" parent="cafe" unique_id=1662556525 instance=ExtResource("3_6t8s2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.3589854, 0, 6)
+
+[node name="reflection_probe" type="ReflectionProbe" parent="cafe" unique_id=537910911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16403556, 1.9937329, 4.801527)
+blend_distance = 0.2
+size = Vector3(8.05843, 4.687454, 14.711026)
+box_projection = true
+interior = true
 
 [editable path="chessboard"]
+[editable path="cafe/table_1"]
+[editable path="cafe/table_1/sofa_0"]
+[editable path="cafe/table_1/sofa_1"]
+[editable path="cafe/table_high_2"]
+[editable path="cafe/table_high_2/chair_high_0"]
+[editable path="cafe/table_high_2/chair_high_1"]
+[editable path="cafe/table_high_2/chair_high_2"]
+[editable path="cafe/table_high_2/chair_high_3"]
+[editable path="cafe/table_high_2/chair_high_4"]
+[editable path="cafe/table_high_2/chair_high_5"]
+[editable path="cafe/table_high_0"]
+[editable path="cafe/table_high_0/chair_high_0"]
+[editable path="cafe/table_high_0/chair_high_1"]
+[editable path="cafe/table_high_0/chair_high_2"]
+[editable path="cafe/table_high_0/chair_high_3"]
+[editable path="cafe/table_high_0/chair_high_4"]
+[editable path="cafe/table_high_0/chair_high_5"]
+[editable path="cafe/table_high_1"]
+[editable path="cafe/table_high_1/chair_high_0"]
+[editable path="cafe/table_high_1/chair_high_1"]
+[editable path="cafe/table_high_1/chair_high_2"]
+[editable path="cafe/table_high_1/chair_high_3"]
+[editable path="cafe/table_high_1/chair_high_4"]
+[editable path="cafe/table_high_1/chair_high_5"]
