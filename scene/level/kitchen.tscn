@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bx6jrii5qygn0"]
 
-[ext_resource type="Script" uid="uid://cln6ksgl3ll6o" path="res://src/level/cafe.gd" id="1_q5ukh"]
+[ext_resource type="Script" uid="uid://bdbwfocvgq0f7" path="res://src/level/kitchen.gd" id="1_54xsr"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_3kqsp"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_6t8s2"]
 [ext_resource type="PackedScene" uid="uid://b4sp8vdkwakx0" path="res://assets/model/kitchen_table.glb" id="9_n2oby"]
@@ -33,9 +33,9 @@ fog_density = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nvbi"]
 
-[node name="marker_callback_pastor_custom_position" type="Node3D" unique_id=1397432663]
-script = ExtResource("1_q5ukh")
-metadata/by = 53
+[node name="kitchen" type="Node3D" unique_id=1397432663]
+script = ExtResource("1_54xsr")
+metadata/by = 102
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=85210075]
 environment = SubResource("Environment_ve7rb")
@@ -44,191 +44,191 @@ environment = SubResource("Environment_ve7rb")
 
 [node name="chessboard" parent="." unique_id=2031875546 instance=ExtResource("3_6t8s2")]
 
-[node name="h8_001" parent="chessboard" index="2" unique_id=1853462811]
+[node name="h8_001" parent="chessboard" index="2" unique_id=1530834262]
 visible = false
 
-[node name="h7_001" parent="chessboard" index="3" unique_id=367582968]
+[node name="h7_001" parent="chessboard" index="3" unique_id=1860964823]
 visible = false
 
-[node name="h6_001" parent="chessboard" index="4" unique_id=1239186851]
+[node name="h6_001" parent="chessboard" index="4" unique_id=1975032164]
 visible = false
 
-[node name="h5_001" parent="chessboard" index="5" unique_id=908011794]
+[node name="h5_001" parent="chessboard" index="5" unique_id=732751438]
 visible = false
 
-[node name="h4_001" parent="chessboard" index="6" unique_id=1541577642]
+[node name="h4_001" parent="chessboard" index="6" unique_id=97247153]
 visible = false
 
-[node name="h3_001" parent="chessboard" index="7" unique_id=882098627]
+[node name="h3_001" parent="chessboard" index="7" unique_id=320469533]
 visible = false
 
-[node name="h2_001" parent="chessboard" index="8" unique_id=250515179]
+[node name="h2_001" parent="chessboard" index="8" unique_id=106350508]
 visible = false
 
-[node name="h1_001" parent="chessboard" index="9" unique_id=1136447702]
+[node name="h1_001" parent="chessboard" index="9" unique_id=918497896]
 visible = false
 
-[node name="g8_001" parent="chessboard" index="10" unique_id=715451904]
+[node name="g8_001" parent="chessboard" index="10" unique_id=1532959301]
 visible = false
 
-[node name="g7_001" parent="chessboard" index="11" unique_id=1770034095]
+[node name="g7_001" parent="chessboard" index="11" unique_id=1796178304]
 visible = false
 
-[node name="g6_001" parent="chessboard" index="12" unique_id=1570435544]
+[node name="g6_001" parent="chessboard" index="12" unique_id=1687491941]
 visible = false
 
-[node name="f8_001" parent="chessboard" index="18" unique_id=1029829439]
+[node name="f8_001" parent="chessboard" index="18" unique_id=792672971]
 visible = false
 
-[node name="f7_001" parent="chessboard" index="19" unique_id=1045149633]
+[node name="f7_001" parent="chessboard" index="19" unique_id=1661686316]
 visible = false
 
-[node name="f6_001" parent="chessboard" index="20" unique_id=530827156]
+[node name="f6_001" parent="chessboard" index="20" unique_id=1905342937]
 visible = false
 
-[node name="e8_001" parent="chessboard" index="26" unique_id=252231148]
+[node name="e8_001" parent="chessboard" index="26" unique_id=151896323]
 visible = false
 
-[node name="e7_001" parent="chessboard" index="27" unique_id=365452616]
+[node name="e7_001" parent="chessboard" index="27" unique_id=994832604]
 visible = false
 
-[node name="e6_001" parent="chessboard" index="28" unique_id=545412094]
+[node name="e6_001" parent="chessboard" index="28" unique_id=760722487]
 visible = false
 
-[node name="d8_001" parent="chessboard" index="34" unique_id=2135637919]
+[node name="d8_001" parent="chessboard" index="34" unique_id=977767109]
 visible = false
 
-[node name="d7_001" parent="chessboard" index="35" unique_id=1107781550]
+[node name="d7_001" parent="chessboard" index="35" unique_id=1953773732]
 visible = false
 
-[node name="d6_001" parent="chessboard" index="36" unique_id=1457561340]
+[node name="d6_001" parent="chessboard" index="36" unique_id=1983266635]
 visible = false
 
-[node name="c8_001" parent="chessboard" index="42" unique_id=1297517436]
+[node name="c8_001" parent="chessboard" index="42" unique_id=465236761]
 visible = false
 
-[node name="c7_001" parent="chessboard" index="43" unique_id=1381124225]
+[node name="c7_001" parent="chessboard" index="43" unique_id=2105179173]
 visible = false
 
-[node name="c6_001" parent="chessboard" index="44" unique_id=803008408]
+[node name="c6_001" parent="chessboard" index="44" unique_id=1936897563]
 visible = false
 
-[node name="b8_001" parent="chessboard" index="50" unique_id=43453676]
+[node name="b8_001" parent="chessboard" index="50" unique_id=2026627261]
 visible = false
 
-[node name="b7_001" parent="chessboard" index="51" unique_id=737592452]
+[node name="b7_001" parent="chessboard" index="51" unique_id=2122330267]
 visible = false
 
-[node name="b6_001" parent="chessboard" index="52" unique_id=1660217347]
+[node name="b6_001" parent="chessboard" index="52" unique_id=739733738]
 visible = false
 
-[node name="a8_001" parent="chessboard" index="58" unique_id=115299515]
+[node name="a8_001" parent="chessboard" index="58" unique_id=41119403]
 visible = false
 
-[node name="a7_001" parent="chessboard" index="59" unique_id=124795654]
+[node name="a7_001" parent="chessboard" index="59" unique_id=2069720561]
 visible = false
 
-[node name="a6_001" parent="chessboard" index="60" unique_id=94037163]
+[node name="a6_001" parent="chessboard" index="60" unique_id=920382488]
 visible = false
 
 [node name="canvas" parent="chessboard" index="66" unique_id=1598752436]
-transform = Transform3D(-16, 0, -2.41593e-06, 0, 16, 0, 2.41593e-06, 0, -16, -0.005507469, 0.093189724, -0.0053195953)
+transform = Transform3D(-16, 0, -2.41593e-06, 0, 16, 0, 2.41593e-06, 0, -16, -0.06555557, 0.07045222, 0.031120777)
 
-[node name="CollisionShape3D" parent="chessboard/a6" parent_id_path=PackedInt32Array(2031875546, 156167347) index="0" unique_id=1539661892]
+[node name="CollisionShape3D" parent="chessboard/a6" parent_id_path=PackedInt32Array(2031875546, 1471371171) index="0" unique_id=1885185919]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/a7" parent_id_path=PackedInt32Array(2031875546, 1499354905) index="0" unique_id=927645608]
+[node name="CollisionShape3D" parent="chessboard/a7" parent_id_path=PackedInt32Array(2031875546, 1915798391) index="0" unique_id=445704181]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/a8" parent_id_path=PackedInt32Array(2031875546, 241652003) index="0" unique_id=657187195]
+[node name="CollisionShape3D" parent="chessboard/a8" parent_id_path=PackedInt32Array(2031875546, 1693919504) index="0" unique_id=387449111]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/b6" parent_id_path=PackedInt32Array(2031875546, 1940495084) index="0" unique_id=1550524494]
+[node name="CollisionShape3D" parent="chessboard/b6" parent_id_path=PackedInt32Array(2031875546, 625662428) index="0" unique_id=414170588]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/b7" parent_id_path=PackedInt32Array(2031875546, 923363171) index="0" unique_id=1833867079]
+[node name="CollisionShape3D" parent="chessboard/b7" parent_id_path=PackedInt32Array(2031875546, 1880858267) index="0" unique_id=1997287694]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/b8" parent_id_path=PackedInt32Array(2031875546, 174096298) index="0" unique_id=1619699028]
+[node name="CollisionShape3D" parent="chessboard/b8" parent_id_path=PackedInt32Array(2031875546, 520829543) index="0" unique_id=919794070]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/c6" parent_id_path=PackedInt32Array(2031875546, 705310852) index="0" unique_id=1457370511]
+[node name="CollisionShape3D" parent="chessboard/c6" parent_id_path=PackedInt32Array(2031875546, 1256036418) index="0" unique_id=159104879]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/c7" parent_id_path=PackedInt32Array(2031875546, 1838056622) index="0" unique_id=699016492]
+[node name="CollisionShape3D" parent="chessboard/c7" parent_id_path=PackedInt32Array(2031875546, 146511230) index="0" unique_id=1204443960]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/c8" parent_id_path=PackedInt32Array(2031875546, 1608544403) index="0" unique_id=2118934676]
+[node name="CollisionShape3D" parent="chessboard/c8" parent_id_path=PackedInt32Array(2031875546, 282649858) index="0" unique_id=1738475295]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/d6" parent_id_path=PackedInt32Array(2031875546, 1581286568) index="0" unique_id=873566175]
+[node name="CollisionShape3D" parent="chessboard/d6" parent_id_path=PackedInt32Array(2031875546, 1697551401) index="0" unique_id=1723863557]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/d7" parent_id_path=PackedInt32Array(2031875546, 1134152700) index="0" unique_id=1848101594]
+[node name="CollisionShape3D" parent="chessboard/d7" parent_id_path=PackedInt32Array(2031875546, 202223291) index="0" unique_id=1828052045]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/d8" parent_id_path=PackedInt32Array(2031875546, 1657380520) index="0" unique_id=1712443992]
+[node name="CollisionShape3D" parent="chessboard/d8" parent_id_path=PackedInt32Array(2031875546, 1372427347) index="0" unique_id=1968189367]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/e6" parent_id_path=PackedInt32Array(2031875546, 420504885) index="0" unique_id=883516797]
+[node name="CollisionShape3D" parent="chessboard/e6" parent_id_path=PackedInt32Array(2031875546, 1715008728) index="0" unique_id=1854782322]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/e7" parent_id_path=PackedInt32Array(2031875546, 1373537873) index="0" unique_id=719123570]
+[node name="CollisionShape3D" parent="chessboard/e7" parent_id_path=PackedInt32Array(2031875546, 919947333) index="0" unique_id=646881609]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/e8" parent_id_path=PackedInt32Array(2031875546, 1631801450) index="0" unique_id=1262332617]
+[node name="CollisionShape3D" parent="chessboard/e8" parent_id_path=PackedInt32Array(2031875546, 610413816) index="0" unique_id=83576288]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/f6" parent_id_path=PackedInt32Array(2031875546, 725307067) index="0" unique_id=431996035]
+[node name="CollisionShape3D" parent="chessboard/f6" parent_id_path=PackedInt32Array(2031875546, 1098964648) index="0" unique_id=528482108]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/f7" parent_id_path=PackedInt32Array(2031875546, 1874056103) index="0" unique_id=2035472755]
+[node name="CollisionShape3D" parent="chessboard/f7" parent_id_path=PackedInt32Array(2031875546, 1036658201) index="0" unique_id=1090227194]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/f8" parent_id_path=PackedInt32Array(2031875546, 1755764439) index="0" unique_id=871276690]
+[node name="CollisionShape3D" parent="chessboard/f8" parent_id_path=PackedInt32Array(2031875546, 1722822334) index="0" unique_id=366923529]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/g6" parent_id_path=PackedInt32Array(2031875546, 1603896696) index="0" unique_id=70744182]
+[node name="CollisionShape3D" parent="chessboard/g6" parent_id_path=PackedInt32Array(2031875546, 1696083953) index="0" unique_id=1739049534]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/g7" parent_id_path=PackedInt32Array(2031875546, 1150825376) index="0" unique_id=1058173959]
+[node name="CollisionShape3D" parent="chessboard/g7" parent_id_path=PackedInt32Array(2031875546, 690048775) index="0" unique_id=609350553]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/g8" parent_id_path=PackedInt32Array(2031875546, 257885624) index="0" unique_id=182087032]
+[node name="CollisionShape3D" parent="chessboard/g8" parent_id_path=PackedInt32Array(2031875546, 1359009442) index="0" unique_id=1054970563]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h1" parent_id_path=PackedInt32Array(2031875546, 1319834615) index="0" unique_id=1765770093]
+[node name="CollisionShape3D" parent="chessboard/h1" parent_id_path=PackedInt32Array(2031875546, 935988639) index="0" unique_id=307597103]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h2" parent_id_path=PackedInt32Array(2031875546, 2113577195) index="0" unique_id=509865159]
+[node name="CollisionShape3D" parent="chessboard/h2" parent_id_path=PackedInt32Array(2031875546, 1089250991) index="0" unique_id=1045655139]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h3" parent_id_path=PackedInt32Array(2031875546, 953847895) index="0" unique_id=1967954344]
+[node name="CollisionShape3D" parent="chessboard/h3" parent_id_path=PackedInt32Array(2031875546, 208351003) index="0" unique_id=291092946]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h4" parent_id_path=PackedInt32Array(2031875546, 154430158) index="0" unique_id=384380390]
+[node name="CollisionShape3D" parent="chessboard/h4" parent_id_path=PackedInt32Array(2031875546, 1943195949) index="0" unique_id=312954058]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h5" parent_id_path=PackedInt32Array(2031875546, 650617356) index="0" unique_id=63447521]
+[node name="CollisionShape3D" parent="chessboard/h5" parent_id_path=PackedInt32Array(2031875546, 1400554396) index="0" unique_id=1379090482]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h6" parent_id_path=PackedInt32Array(2031875546, 1097955131) index="0" unique_id=883341463]
+[node name="CollisionShape3D" parent="chessboard/h6" parent_id_path=PackedInt32Array(2031875546, 133461881) index="0" unique_id=976470351]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h7" parent_id_path=PackedInt32Array(2031875546, 1912457852) index="0" unique_id=747429513]
+[node name="CollisionShape3D" parent="chessboard/h7" parent_id_path=PackedInt32Array(2031875546, 1207874611) index="0" unique_id=791032667]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h8" parent_id_path=PackedInt32Array(2031875546, 1559628694) index="0" unique_id=877367780]
+[node name="CollisionShape3D" parent="chessboard/h8" parent_id_path=PackedInt32Array(2031875546, 1393630494) index="0" unique_id=2018020642]
 visible = false
 
 [node name="camera" type="Camera3D" parent="." unique_id=546823115]
-transform = Transform3D(-0.5548444, -0.42224863, 0.7168359, 0, 0.8616291, 0.5075384, -0.83195406, 0.28160486, -0.47807014, 5.420564, 3.4710846, -1.05779)
+transform = Transform3D(-0.55484444, -0.6465498, 0.5235657, 0, 0.6293204, 0.777146, -0.8319541, 0.43119514, -0.34917492, 5.420564, 4.410783, -0.40979874)
 fov = 99.098564
 
 [node name="multi_actor_barrier" type="Node3D" parent="." unique_id=673254517]
 script = ExtResource("14_hqxra")
 piece = 35
-bit = -35039771210285057
+bit = -33909453996687361
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
 [node name="door_2" parent="." unique_id=828687556 instance=ExtResource("16_uhj53")]
@@ -236,16 +236,16 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 6.223225
 
 [node name="teleport_pointer" parent="." unique_id=221900182 instance=ExtResource("19_qj1je")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 5, 0, 5)
-to = "res://scene/level/reception_lobby.tscn"
+to = "res://scene/level/cafe.tscn"
 args = {
-"by": 80
+"by": 97
 }
-bit = 536870912
+bit = 18014398509481984
 
 [node name="csg_combiner_3d" type="CSGCombiner3D" parent="." unique_id=70494328]
 
 [node name="csg_wall_6" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1497509967]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9772916, 1.9118003, 2.342287)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9930284, 1.9118003, 2.342287)
 size = Vector3(0.408875, 3.7960205, 7.7025146)
 material = SubResource("StandardMaterial3D_2nvbi")
 
@@ -255,13 +255,13 @@ size = Vector3(0.408875, 3.8076172, 7.6766357)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_wall_9" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1756542337]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35837078, 1.9082144, -1.2915599)
-size = Vector3(13.626324, 3.7888489, 0.43603516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6182785, 1.9082144, -1.2915599)
+size = Vector3(9.673025, 3.7888489, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_wall_12" type="CSGBox3D" parent="csg_combiner_3d" unique_id=569339108]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3833623, 1.8767478, 6.3762484)
-size = Vector3(13.615906, 3.9, 0.43603516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5955653, 1.8767478, 6.3762484)
+size = Vector3(9.658051, 3.9, 0.43603516)
 material = SubResource("StandardMaterial3D_2nvbi")
 
 [node name="csg_door" type="CSGBox3D" parent="csg_combiner_3d" unique_id=783132780]
@@ -273,13 +273,13 @@ material = SubResource("StandardMaterial3D_2nvbi")
 [node name="marker_camera" type="Node3D" parent="." unique_id=1459029983 node_paths=PackedStringArray("camera")]
 script = ExtResource("32_twdgb")
 camera = NodePath("../camera")
-bit = 18098238385029120
+bit = 33909456009953280
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=1935367432]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.459769, 1.768002, 1.988317)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.597276, 1.768002, 2.5358572)
 blend_distance = 0.2
-size = Vector3(13.60611, 4.2359924, 9.025122)
+size = Vector3(9.49202, 4.2359924, 7.9300413)
 box_projection = true
 interior = true
 
@@ -306,5 +306,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46145195, 0, -0.6559479)
 
 [node name="kitchen_stove" parent="." unique_id=769767177 instance=ExtResource("11_54xsr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.489925, 0, 0.6626897)
+
+[node name="kitchen_stove_2" parent="." unique_id=883140881 instance=ExtResource("11_54xsr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.489925, 0, 1.9544544)
 
 [editable path="chessboard"]
