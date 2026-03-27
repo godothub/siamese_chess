@@ -161,10 +161,8 @@ func state_ready_start(_arg:Dictionary) -> void:
 		state_machine.change_state("enemy_win")
 	elif chessboard.state.get_bit(ord("Z")) & chessboard.state.get_bit(player_king):
 		state_machine.change_state("interact", {"callback": interact_list[Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))][""]})
-	elif chessboard.state.get_turn() != player_group:
-		state_machine.change_state("enemy")
 	else:
-		state_machine.change_state("player")
+		back_to_game()
 
 func state_ready_enemy(_arg:Dictionary) -> void:
 	if !chessboard.state.get_bit(enemy_all):
@@ -211,21 +209,8 @@ func state_ready_move(_arg:Dictionary) -> void:
 		#	state_machine.change_state("draw")
 		elif _arg["move"] != -1 && (chessboard.state.get_bit(ord("Z")) & Chess.mask(Chess.x88_to_c64(Chess.to(_arg["move"])))):
 			state_machine.change_state("interact", {"callback": interact_list[Chess.to(_arg["move"])][""]})
-		elif chessboard.state.get_turn() != player_group:
-			state_machine.change_state("enemy")
-		elif premove_from != -1 && premove_to != -1:
-			chessboard.clear_pointer("premove")
-			state_machine.change_state("check_move", {"from": premove_from, "to": premove_to, "move_list": Chess.generate_valid_move(chessboard.state, player_group) if chessboard.state.get_bit(enemy_all) else Chess.generate_explore_move(chessboard.state, player_group)})
-			premove_from = -1
-			premove_to = -1
-		elif premove_from != -1 && (chessboard.mouse_hold || chessboard.button_input_hold):
-			state_machine.change_state("ready_to_move", {"from": premove_from})
-			premove_from = -1
-			premove_to = -1
 		else:
-			state_machine.change_state("player")
-			premove_from = -1
-			premove_to = -1
+			back_to_game()
 	)
 	
 	assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(_arg["move"]))) 
@@ -456,7 +441,7 @@ func state_ready_draw(_arg:Dictionary) -> void:
 		chessboard.state.capture_piece(Chess.c64_to_x88(Chess.first_bit(bit)))
 		chessboard.chessboard_piece[Chess.c64_to_x88(Chess.first_bit(bit))].leave()
 		bit = Chess.next_bit(bit)
-	state_machine.state_signal_connect(Dialog.on_next, state_machine.change_state.bind("player"))
+	state_machine.state_signal_connect(Dialog.on_next, back_to_game)
 	Dialog.push_dialog("平局", "", true, true)
 
 func state_ready_dialog(_arg:Dictionary) -> void:
@@ -465,7 +450,9 @@ func state_ready_dialog(_arg:Dictionary) -> void:
 
 func state_ready_interact(_arg:Dictionary) -> void:
 	await _arg["callback"].call()
-	
+	back_to_game()
+
+func back_to_game() -> void:
 	if chessboard.state.get_turn() != player_group:
 		state_machine.change_state("enemy")
 	elif premove_from != -1 && premove_to != -1:
