@@ -22,7 +22,6 @@ func _ready() -> void:
 	chessboard.button_input_pointer = cheshire_by
 	
 	standard_engine.set_think_time(INF)
-	$player.force_set_camera($camera)
 	$table_0/chessboard_standard.set_enabled(false)
 	$player.add_inspectable_item($table_0/chessboard_standard)
 	$pastor.play_animation("thinking")
