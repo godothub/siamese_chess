@@ -3,35 +3,36 @@ extends Notable
 class HistoryPage extends RefCounted:
 	var state:State = null
 	var history:PackedStringArray = []
-	var lines:Array = []
 
 var page_list:Array[HistoryPage] = []
 var current_page:int = 0
 var current_page_instance:HistoryPage = null
 
 func parse(data:String) -> void:
-	var data_arr:Array = JSON.parse_string(data)
-	for data_dict:Dictionary in data_arr:
+	super.parse(data)
+	var data_dict:Dictionary = JSON.parse_string(data)
+	var data_arr:Array = data_dict["history"]
+	for iter:Dictionary in data_arr:
 		var page:HistoryPage = HistoryPage.new()
-		var fen:String = data_dict["state"]
+		var fen:String = iter["state"]
 		page.state = Chess.parse(fen)
-		page.history = data_dict["history"]
-		page.lines = data_dict["lines"]
+		page.history = iter["history"]
 		page_list.push_back(page)
 	current_page = 0
 	current_page_instance = page_list[current_page]
 	update_table()
 
 func stringify() -> String:
+	var data_dict:Dictionary = JSON.parse_string(super.stringify())
 	var data_arr:Array = []
 	for page:HistoryPage in page_list:
-		var data_dict:Dictionary = {}
+		var iter:Dictionary = {}
 		var fen:String = Chess.stringify(page.state)
-		data_dict["state"] = fen
-		data_dict["history"] = page.history
-		data_dict["lines"] = page.lines
-		data_arr.push_back(data_dict)
-	return JSON.stringify(data_arr)
+		iter["state"] = fen
+		iter["history"] = page.history
+		data_arr.push_back(iter)
+	data_dict["history"] = data_arr
+	return JSON.stringify(data_dict)
 
 func get_rect() -> Rect2:
 	return $history.get_rect() * $history.transform
@@ -66,17 +67,20 @@ func add_blank_line() -> void:
 	current_page_instance.history.push_back("")
 
 func new_page() -> void:
+	super.new_page()
 	var page:HistoryPage = HistoryPage.new()
 	page_list.push_back(page)
 	current_page = page_list.size() - 1
 	current_page_instance = page
 
 func turn_page(_page:int) -> void:
+	super.turn_page(_page)
 	current_page = _page
 	current_page_instance = page_list[current_page]
 	update_table()
-	clear_lines()
-	draw_lines(current_page_instance.lines)
 
 func page_count() -> int:
 	return page_list.size()
+
+func page_index() -> int:
+	return current_page

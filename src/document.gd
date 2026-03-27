@@ -58,8 +58,14 @@ func cancel_dragging() -> void:
 func erase(_drawing_position:Vector2) -> void:
 	pass
 
+func new_page() -> void:
+	pass
+
 func turn_page(_page:int) -> void:
 	pass
 
 func page_count() -> int:
+	return 0
+
+func page_index() -> int:
 	return 1

@@ -6,13 +6,29 @@ var drawing_line:Line2D = null
 var width:float = 3
 var color:Color = Color(0.1, 0.1, 0.1, 1)
 
+class NotablePage extends RefCounted:
+	var lines:Array = []
+
+var notable_page_list:Array[NotablePage] = []
+
 func parse(_data:String) -> void:
 	var data_dict:Dictionary = JSON.parse_string(_data)
-	draw_lines(data_dict["lines"])
+	var data_arr:Array = data_dict["notable"]
+	for iter:Dictionary in data_arr:
+		var page:NotablePage = NotablePage.new()
+		page.lines = iter["lines"]
+		notable_page_list.push_back(page)
+	draw_lines(notable_page_list[page_index()].lines)
 
 func stringify() -> String:
+	notable_page_list[page_index()].lines = get_lines()
 	var data_dict:Dictionary = {}
-	data_dict["lines"] = get_lines()
+	var data_arr:Array = []
+	for page:NotablePage in notable_page_list:
+		var iter:Dictionary = {}
+		iter["lines"] = page.lines
+		data_arr.push_back(iter)
+	data_dict["notable"] = data_arr
 	return JSON.stringify(data_dict)
 
 func get_rect() -> Rect2:
@@ -103,3 +119,12 @@ func draw_lines(_lines:Array) -> void:
 			line.add_point(point)
 		add_child(line)
 		lines.push_back(line)
+
+func new_page() -> void:
+	var page:NotablePage = NotablePage.new()
+	notable_page_list.push_back(page)
+
+func turn_page(_page:int) -> void:
+	notable_page_list[page_index()].lines = get_lines()
+	clear_lines()
+	draw_lines(notable_page_list[_page].lines)
