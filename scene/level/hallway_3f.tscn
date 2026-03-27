@@ -13,19 +13,9 @@
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/marker_callback.gd" id="12_6v2ut"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="12_pjyyy"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ka0b7"]
-sky_top_color = Color(1, 1, 1, 1)
-sky_horizon_color = Color(1, 1, 1, 1)
-ground_bottom_color = Color(1, 1, 1, 1)
-ground_horizon_color = Color(1, 1, 1, 1)
-
-[sub_resource type="Sky" id="Sky_kgksa"]
-sky_material = SubResource("ProceduralSkyMaterial_ka0b7")
-
 [sub_resource type="Environment" id="Environment_reac2"]
-background_mode = 2
 background_color = Color(1, 1, 1, 1)
-sky = SubResource("Sky_kgksa")
+ambient_light_source = 1
 sdfgi_read_sky_light = false
 fog_enabled = true
 fog_mode = 1
@@ -37,6 +27,8 @@ fog_density = 1.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6v2ut"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d844s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqsqx"]
 
 [node name="hallway_3f" type="Node3D" unique_id=1786252264]
 script = ExtResource("1_1xocg")
@@ -50,7 +42,7 @@ environment = SubResource("Environment_reac2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="camera" type="Camera3D" parent="." unique_id=2111512209]
-transform = Transform3D(1, 7.0633055e-09, 3.741493e-08, -2.36979e-08, 0.8845808, 0.46638688, -2.98023e-08, -0.46638688, 0.8845808, -5.20776, 4.32631, 10.7629)
+transform = Transform3D(1, 7.0633113e-09, 3.7414928e-08, -2.2294117e-08, 0.9052056, 0.42497396, -3.0866477e-08, -0.42497396, 0.9052056, -5.20776, 2.6508784, 7.438856)
 fov = 58.5874
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=125944513]
@@ -199,8 +191,57 @@ operation = 2
 size = Vector3(1.0507, 2.7558594, 1.1787102)
 material = SubResource("StandardMaterial3D_d844s")
 
+[node name="csg_ceiling" type="CSGBox3D" parent="csg_combiner_3d" unique_id=262796366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.05, 3.4725227, -0.15000033)
+size = Vector3(6.5, 0.7189453, 16.5)
+
+[node name="csg_elevator_wall_4" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1679276549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.159756, 1.66379, 7.7560425)
+size = Vector3(6, 3.3, 0.4732666)
+material = SubResource("StandardMaterial3D_bqsqx")
+
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=62474941]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0660076, 1.5556679, -0.87646484)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0660076, 1.5338631, -0.87646484)
 blend_distance = 0.1
-size = Vector3(6.449805, 3.3725586, 18.24707)
+size = Vector3(6.449805, 3.7777405, 18.24707)
 box_projection = true
+
+[node name="spot_light_3d" type="SpotLight3D" parent="." unique_id=737097017]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5, 2.9594493, -5.802)
+light_color = Color(0.928774, 0.8997323, 0.8593145, 1)
+shadow_enabled = true
+
+[node name="omni_light_3d" type="OmniLight3D" parent="spot_light_3d" unique_id=1525380195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5735877)
+light_energy = 0.569
+light_specular = 0.0
+
+[node name="spot_light_3d_2" type="SpotLight3D" parent="." unique_id=1146703503]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5, 2.9594493, -1.802)
+light_color = Color(0.928774, 0.8997323, 0.8593145, 1)
+shadow_enabled = true
+
+[node name="omni_light_3d" type="OmniLight3D" parent="spot_light_3d_2" unique_id=1920743216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5735877)
+light_energy = 0.569
+light_specular = 0.0
+
+[node name="spot_light_3d_3" type="SpotLight3D" parent="." unique_id=1337733273]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5, 2.9594493, 2.198)
+light_color = Color(0.928774, 0.8997323, 0.8593145, 1)
+shadow_enabled = true
+
+[node name="omni_light_3d" type="OmniLight3D" parent="spot_light_3d_3" unique_id=950226393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5735877)
+light_energy = 0.569
+light_specular = 0.0
+
+[node name="spot_light_3d_4" type="SpotLight3D" parent="." unique_id=1847256937]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -5, 2.9594493, 5.198)
+light_color = Color(0.928774, 0.8997323, 0.8593145, 1)
+shadow_enabled = true
+
+[node name="omni_light_3d" type="OmniLight3D" parent="spot_light_3d_4" unique_id=399909462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5735877)
+light_energy = 0.569
+light_specular = 0.0
