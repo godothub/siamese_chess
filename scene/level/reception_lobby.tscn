@@ -25,8 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://du20bw8426w4" path="res://assets/model/hotel_hall_stair.glb" id="19_ehpdt"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/marker_multi_actor.gd" id="20_h5tcc"]
 [ext_resource type="PackedScene" uid="uid://bq8nyp56cwxfl" path="res://assets/model/fence_metal.glb" id="25_mv43g"]
-[ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/marker_actor.gd" id="26_de6hv"]
-[ext_resource type="PackedScene" uid="uid://cyd48dquqk0a0" path="res://scene/actor/piece_bishop_white.tscn" id="27_fb5cd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j5fnc"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -425,23 +423,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
 
 [node name="fence_metal2_22" parent="2f" unique_id=1805689012 instance=ExtResource("25_mv43g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
-
-[node name="marker_actor" type="Marker3D" parent="." unique_id=1313055592]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
-script = ExtResource("26_de6hv")
-piece = 66
-actor = ExtResource("27_fb5cd")
-meta = {
-"larger_scale": true
-}
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
-
-[node name="marker_actor_2" type="Marker3D" parent="." unique_id=1838755026]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
-script = ExtResource("26_de6hv")
-piece = 66
-actor = ExtResource("27_fb5cd")
-meta = {
-"larger_scale": true
-}
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
