@@ -23,7 +23,6 @@ config/icon="uid://gdemlmk1r3x4"
 [autoload]
 
 Archive="*res://scene/archive.tscn"
-HoldCard="*res://scene/hold_card.tscn"
 Dialog="*res://scene/dialog.tscn"
 Loading="*res://scene/loading.tscn"
 Progress="*res://src/progress.gd"
