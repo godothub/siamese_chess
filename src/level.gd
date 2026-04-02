@@ -85,6 +85,7 @@ func _ready() -> void:
 		if node is MarkerActor:
 			var by:int = chessboard.vector3_to_x88(node.position)
 			var instance:Actor = node.instantiate()
+			instance.transform = node.transform
 			if is_instance_valid(instance):
 				chessboard.add_piece_instance(instance, by)
 	Progress.create_if_not_exist("obtains", 0)
