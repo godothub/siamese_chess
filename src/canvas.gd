@@ -8,7 +8,9 @@ class ChessboardPointer extends Node2D:
 	var resolution:float = 512
 	var color:Color = Color(0, 0, 0, 1)
 	func _draw() -> void:
-		#draw_rect(Rect2(-resolution / 16, -resolution / 16, resolution / 8, resolution / 8), color.lightened(0.1))
+		var transparent:Color = color
+		transparent.a = 0.5
+		draw_rect(Rect2(-resolution / 16, -resolution / 16, resolution / 8, resolution / 8), transparent)
 		draw_rect(Rect2(-resolution / 16, -resolution / 16, resolution / 8, resolution / 8), color, false, 10)
 
 class ChessboardGrid extends Node2D:
