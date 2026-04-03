@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c4wyvxxvc66cl" path="res://scene/actor/shrub.tscn" id="13_5hf7g"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="13_as14m"]
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/marker_callback.gd" id="15_toco3"]
+[ext_resource type="PackedScene" uid="uid://jeaolg2mf178" path="res://assets/model/tree_1.glb" id="16_ysi5d"]
 
 [node name="entrance" type="Node3D" unique_id=437690800]
 script = ExtResource("1_vie8g")
@@ -38,52 +39,52 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
 metadata/_edit_lock_ = true
 
-[node name="f6_001" parent="chessboard" index="20" unique_id=1905342937]
+[node name="f6_001" parent="chessboard" index="20" unique_id=530827156]
 visible = false
 
-[node name="f5_001" parent="chessboard" index="21" unique_id=1349862213]
+[node name="f5_001" parent="chessboard" index="21" unique_id=1961780791]
 visible = false
 
-[node name="f4_001" parent="chessboard" index="22" unique_id=2010896522]
+[node name="f4_001" parent="chessboard" index="22" unique_id=678813257]
 visible = false
 
-[node name="f3_001" parent="chessboard" index="23" unique_id=811664143]
+[node name="f3_001" parent="chessboard" index="23" unique_id=925230766]
 visible = false
 
-[node name="e6_001" parent="chessboard" index="28" unique_id=760722487]
+[node name="e6_001" parent="chessboard" index="28" unique_id=545412094]
 visible = false
 
-[node name="e5_001" parent="chessboard" index="29" unique_id=367166236]
+[node name="e5_001" parent="chessboard" index="29" unique_id=833988260]
 visible = false
 
-[node name="e4_001" parent="chessboard" index="30" unique_id=1710784981]
+[node name="e4_001" parent="chessboard" index="30" unique_id=2078926685]
 visible = false
 
-[node name="e3_001" parent="chessboard" index="31" unique_id=713567511]
+[node name="e3_001" parent="chessboard" index="31" unique_id=158473746]
 visible = false
 
-[node name="d6_001" parent="chessboard" index="36" unique_id=1983266635]
+[node name="d6_001" parent="chessboard" index="36" unique_id=1457561340]
 visible = false
 
-[node name="d5_001" parent="chessboard" index="37" unique_id=609311913]
+[node name="d5_001" parent="chessboard" index="37" unique_id=1495947544]
 visible = false
 
-[node name="d4_001" parent="chessboard" index="38" unique_id=2109372378]
+[node name="d4_001" parent="chessboard" index="38" unique_id=1903758524]
 visible = false
 
-[node name="d3_001" parent="chessboard" index="39" unique_id=1338851531]
+[node name="d3_001" parent="chessboard" index="39" unique_id=1080431377]
 visible = false
 
-[node name="c6_001" parent="chessboard" index="44" unique_id=1936897563]
+[node name="c6_001" parent="chessboard" index="44" unique_id=803008408]
 visible = false
 
-[node name="c5_001" parent="chessboard" index="45" unique_id=1998258835]
+[node name="c5_001" parent="chessboard" index="45" unique_id=337913602]
 visible = false
 
-[node name="c4_001" parent="chessboard" index="46" unique_id=64261827]
+[node name="c4_001" parent="chessboard" index="46" unique_id=1760944915]
 visible = false
 
-[node name="c3_001" parent="chessboard" index="47" unique_id=1432937449]
+[node name="c3_001" parent="chessboard" index="47" unique_id=166157551]
 visible = false
 
 [node name="pool" parent="." unique_id=1988405554 instance=ExtResource("4_vie8g")]
@@ -272,5 +273,85 @@ method_name = &"inspect_door"
 selection = "SELECTION_GOTO?"
 bit = 24
 metadata/_custom_type_script = "uid://cpyviir7sli6u"
+
+[node name="trees" type="Node3D" parent="." unique_id=1004270595]
+
+[node name="tree_1" parent="trees" unique_id=1985216244 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, 11.285105, 0, 0)
+
+[node name="tree_2" parent="trees" unique_id=53004008 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(0.2588191, 0, 0.9659258, 0, 1.1503415, 0, -0.9659258, 0, 0.2588191, 11.285105, 0, 2.9999995)
+
+[node name="tree_3" parent="trees" unique_id=78368360 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, 11.285105, 0, 6.0000005)
+
+[node name="tree_4" parent="trees" unique_id=610253123 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(1, 0, -1.4901161e-08, 0, 1.0667725, 0, 1.4901161e-08, 0, 1, 11.219965, 0, 9.330243)
+
+[node name="tree_6" parent="trees" unique_id=525023358 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(-0.5217381, 0, 1.0362408, 0, 1.0436014, 0, -0.9036768, 0, -0.5982739, 11.285109, 0, -9.000006)
+
+[node name="tree_7" parent="trees" unique_id=39088980 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(0.47684234, 0, -0.767913, 0, 1.1348952, 0, 0.8259153, 0, 0.44335473, 11.285108, 0, -6.000001)
+
+[node name="tree_8" parent="trees" unique_id=554782538 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(-7.4505806e-08, 0, -1, 0, 1, 0, 1, 0, -7.4505806e-08, 11.285104, 0, -2.999999)
+
+[node name="tree_12" parent="trees" unique_id=1460442003 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.868065, 0, 3.697454)
+
+[node name="tree_13" parent="trees" unique_id=1198524507 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(0.2588191, 0, 0.9659258, 0, 1.1042289, 0, -0.9659258, 0, 0.2588191, 14.868069, 0, 6.6974554)
+
+[node name="tree_14" parent="trees" unique_id=1687540893 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(0.8899077, 0, 2.9802322e-08, 0, 0.8653053, 0, 0, 0, 1, 14.868064, 0, 9.697454)
+
+[node name="tree_17" parent="trees" unique_id=2029848896 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(-0.5, 0, 0.8660255, 0, 0.8827427, 0, -0.8660255, 0, -0.5, 14.868068, 0, -5.3025503)
+
+[node name="tree_18" parent="trees" unique_id=1183699210 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(0.49999994, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, 0.49999994, 14.868067, 0, -2.3025475)
+
+[node name="tree_19" parent="trees" unique_id=1581914924 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(-2.9802322e-08, 0, -1, 0, 1.1003658, 0, 1, 0, -2.9802322e-08, 14.868067, 0, 0.69745445)
+
+[node name="tree_5" parent="trees" unique_id=1373788570 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, -14.578123, 0, 0)
+
+[node name="tree_9" parent="trees" unique_id=605022994 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(0.2588191, 0, 0.9659258, 0, 1.1503415, 0, -0.9659258, 0, 0.2588191, -14.578123, 0, 2.9999995)
+
+[node name="tree_10" parent="trees" unique_id=1754208304 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, -14.578123, 0, 6.0000005)
+
+[node name="tree_11" parent="trees" unique_id=2075303651 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(1, 0, -1.4901161e-08, 0, 1.0667725, 0, 1.4901161e-08, 0, 1, -14.643263, 0, 9.330243)
+
+[node name="tree_15" parent="trees" unique_id=1034841453 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(-0.5217381, 0, 1.0362408, 0, 1.0436014, 0, -0.9036768, 0, -0.5982739, -10.88502, 0, -9.000006)
+
+[node name="tree_16" parent="trees" unique_id=1407063425 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(0.47684234, 0, -0.767913, 0, 1.1348952, 0, 0.8259153, 0, 0.44335473, -14.57812, 0, -6.000001)
+
+[node name="tree_20" parent="trees" unique_id=424601043 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(-7.4505806e-08, 0, -1, 0, 1, 0, 1, 0, -7.4505806e-08, -14.578124, 0, -2.999999)
+
+[node name="tree_21" parent="trees" unique_id=995037743 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.995163, 0, 3.697454)
+
+[node name="tree_22" parent="trees" unique_id=762488578 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(0.2588191, 0, 0.9659258, 0, 1.1042289, 0, -0.9659258, 0, 0.2588191, -10.995159, 0, 6.6974554)
+
+[node name="tree_23" parent="trees" unique_id=1366674774 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(0.8899077, 0, 2.9802322e-08, 0, 0.8653053, 0, 0, 0, 1, -10.995164, 0, 9.697454)
+
+[node name="tree_24" parent="trees" unique_id=2017475219 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(-0.5, 0, 0.8660255, 0, 0.8827427, 0, -0.8660255, 0, -0.5, -10.99516, 0, -5.3025503)
+
+[node name="tree_25" parent="trees" unique_id=465537329 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(0.49999994, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, 0.49999994, -10.995161, 0, -2.3025475)
+
+[node name="tree_26" parent="trees" unique_id=2127501872 instance=ExtResource("16_ysi5d")]
+transform = Transform3D(-2.9802322e-08, 0, -1, 0, 1.1003658, 0, 1, 0, -2.9802322e-08, -10.995161, 0, 0.69745445)
 
 [editable path="chessboard"]
