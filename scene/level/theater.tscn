@@ -1,46 +1,44 @@
 [gd_scene format=3 uid="uid://5i80dafunym2"]
 
-[ext_resource type="Script" uid="uid://rhdq34na2j5m" path="res://src/level.gd" id="1_rl35c"]
+[ext_resource type="Script" uid="uid://devrkfts50x1v" path="res://src/level/theater.gd" id="1_vm1e8"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_ev634"]
 [ext_resource type="Environment" uid="uid://dpl334n3lt1ig" path="res://assets/environment_outside.tres" id="3_vm1e8"]
 [ext_resource type="PackedScene" uid="uid://famkj12ufimp" path="res://scene/chessboard_blank.tscn" id="4_b4xfv"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/marker_camera.gd" id="5_b4xfv"]
 
 [node name="theater" type="Node3D" unique_id=1648142630]
-script = ExtResource("1_rl35c")
+script = ExtResource("1_vm1e8")
 metadata/_custom_type_script = "uid://rhdq34na2j5m"
+metadata/by = 0
 
 [node name="player" parent="." unique_id=1111666 instance=ExtResource("2_ev634")]
 
 [node name="camera" type="Camera3D" parent="." unique_id=526292626]
-transform = Transform3D(1, 0, 0, 0, 0.73372984, 0.67944133, 0, -0.67944133, 0.73372984, 0.20078707, 8.345562, 9.162331)
+transform = Transform3D(1, 0, 0, 0, 0.73372984, 0.67944133, 0, -0.67944133, 0.73372984, 0.20078707, 8.345562, 7.077478)
 fov = 58.5874
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1067205583]
 environment = ExtResource("3_vm1e8")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=97478100]
-transform = Transform3D(-0.48413697, 0.73398685, -0.47631383, 0.24234493, 0.63554907, 0.73303914, 0.8407617, 0.23945893, -0.48557106, 4.61496, 2.82427, 0)
-light_color = Color(0.9, 0.8433, 0.738, 1)
-shadow_enabled = true
-
 [node name="chessboard" parent="." unique_id=1825934021 instance=ExtResource("4_b4xfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03303051, -9.536743e-07, -0.071175575)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.03303051, 1.499999, -2.3711755)
+actor_scale_factor = 2.0
 
 [node name="csg_box_floor" type="CSGBox3D" parent="." unique_id=189169694]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 7)
 size = Vector3(20, 2, 34)
 
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=413779486]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8126154, 9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9997797, 7.1362305)
 blend_distance = 0.1
-size = Vector3(20, 12, 38)
+size = Vector3(20, 13.853943, 34.27246)
 box_projection = true
 interior = true
 enable_shadows = true
 
 [node name="csg_box_3d" type="CSGBox3D" parent="." unique_id=413516291]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-size = Vector3(16, 1, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3)
+size = Vector3(18, 2, 10)
 
 [node name="csg_box_wall" type="CSGBox3D" parent="." unique_id=562159551]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -9)
@@ -61,3 +59,29 @@ size = Vector3(20, 2, 34)
 [node name="csg_box_wall_4" type="CSGBox3D" parent="." unique_id=1203564772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 23.06382)
 size = Vector3(20, 14, 2)
+
+[node name="spot_light_3d" type="SpotLight3D" parent="." unique_id=724658543]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 6.845164, -2.6354008)
+light_color = Color(1, 0.923, 0.78, 1)
+shadow_enabled = true
+spot_range = 9.011914
+
+[node name="omni_light_3d" type="OmniLight3D" parent="spot_light_3d" unique_id=448312076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6766858)
+light_color = Color(1, 0.95016664, 0.87, 1)
+light_energy = 0.262
+omni_range = 18.93521
+
+[node name="marker_camera" type="Node3D" parent="." unique_id=1411355540 node_paths=PackedStringArray("camera")]
+script = ExtResource("5_b4xfv")
+camera = NodePath("../camera")
+bit = -1
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+
+[node name="spot_light_follow_cheshire" type="SpotLight3D" parent="." unique_id=259738214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1594996, 7.473479, 1.1112814)
+light_color = Color(1, 0.8725, 0.55, 1)
+light_energy = 3.0
+shadow_enabled = true
+spot_range = 20.939524
+spot_angle = 13.89728
