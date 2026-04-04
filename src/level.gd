@@ -16,6 +16,7 @@ var history_state:PackedInt64Array = []
 var interact_list:Dictionary[int, Dictionary] = {}
 var title:Dictionary[int, String] = {}
 var state_machine:StateMachine = null
+var premove_state_machine:StateMachine = null
 
 func _ready() -> void:
 	player_all = ord("A") if player_group == 0 else ord("a")
@@ -24,6 +25,7 @@ func _ready() -> void:
 	enemy_king = ord("k") if player_group == 0 else ord("K")
 	engine = PastorEngine.new()
 	state_machine = StateMachine.new()
+	premove_state_machine = StateMachine.new()
 	
 	history_document.set_filename("history." + name + ".json")
 	history_document.load_file()
@@ -107,46 +109,89 @@ func _ready() -> void:
 	state_machine.add_state("dialog", state_ready_dialog)
 	state_machine.add_state("interact", state_ready_interact)
 	state_machine.change_state("start")
+	premove_state_machine.add_state("start", state_premove_start_ready)
+	premove_state_machine.add_state("from", state_premove_from_ready)
+	premove_state_machine.add_state("to", state_premove_to_ready)
+	premove_state_machine.add_state("extra", state_premove_extra_ready, state_premove_extra_exit)
+	premove_state_machine.add_state("select_piece", state_premove_select_piece_ready)
+	premove_state_machine.add_state("confirm", state_premove_confirm_ready)
+	premove_state_machine.add_state("stop", state_premove_stop_ready)
 
 var premove_from:int = -1
 var premove_to:int = -1
 
-func premove_init() -> void:
-	if premove_from == -1:
-		var start_from:int = chessboard.state.get_bit(player_all)
-		chessboard.set_square_selection(start_from)
-	elif premove_to == -1:
-		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if chessboard.state.get_bit(enemy_all) else Chess.generate_explore_move(chessboard.state, player_group)
-		var selection:int = 0
-		for iter:int in move_list:
-			if Chess.from(iter) == premove_from:
-				selection |= Chess.mask(Chess.x88_to_c64(Chess.to(iter)))
-		chessboard.set_square_selection(selection)
-
-func premove_pressed() -> void:
-	var start_from:int = chessboard.state.get_bit(player_all)
-	if premove_from == -1 || premove_to != -1:
-		premove_to = -1
-		chessboard.clear_pointer("premove")
-		var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if chessboard.state.get_bit(enemy_all) else Chess.generate_explore_move(chessboard.state, player_group)
-		var selection:int = 0
-		premove_from = chessboard.selected
-		for iter:int in move_list:
-			if Chess.from(iter) == premove_from:
-				selection |= Chess.mask(Chess.x88_to_c64(Chess.to(iter)))
-		chessboard.set_square_selection(selection)
-	else:
-		premove_to = chessboard.selected
-		chessboard.draw_pointer("premove", Color(0.64, 0.051, 0.198, 1.0), premove_from, 1)
-		chessboard.draw_pointer("premove", Color(0.639, 0.051, 0.196, 1.0), premove_to, 1)
-		chessboard.set_square_selection(start_from)
-
-func premove_cancel() -> void:
-	var start_from:int = chessboard.state.get_bit(player_all)
+func state_premove_start_ready(_arg:Dictionary) -> void:
 	premove_from = -1
 	premove_to = -1
-	chessboard.clear_pointer("premove")
+	premove_state_machine.change_state("from")
+
+func state_premove_from_ready(_arg:Dictionary) -> void:
+	var start_from:int = 0
+	var can_introduce:bool = false
+	var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if chessboard.state.get_bit(enemy_all) else Chess.generate_explore_move(chessboard.state, player_group)
+	for iter:int in move_list:
+		if Chess.from(iter) == Chess.to(iter):
+			can_introduce = true
+		else:
+			start_from |= Chess.mask(Chess.x88_to_c64(Chess.from(iter)))
+
+	premove_state_machine.state_signal_connect(chessboard.click_selection, func () -> void:
+		premove_from = chessboard.selected
+		premove_state_machine.change_state("to", {"from": chessboard.selected})
+	)
+	#if can_introduce:
+	#	premove_state_machine.state_signal_connect(chessboard.empty_double_click, func () -> void:
+	#		premove_state_machine.change_state("select_piece", {"by": chessboard.selected})
+	#	)
 	chessboard.set_square_selection(start_from)
+
+func state_premove_to_ready(_arg:Dictionary) -> void:
+	var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, 1) if chessboard.state.get_bit(enemy_all) else Chess.generate_explore_move(chessboard.state, player_group)
+	var selection:int = 0
+	var has_extra:int = 0
+	for iter:int in move_list:
+		if Chess.from(iter) == premove_from:
+			selection |= Chess.mask(Chess.x88_to_c64(Chess.to(iter)))
+			if Chess.extra(iter):
+				has_extra |= Chess.mask(Chess.x88_to_c64(Chess.to(iter)))
+	premove_state_machine.state_signal_connect(chessboard.click_selection, func() -> void:
+		premove_to = chessboard.selected
+		premove_state_machine.change_state("confirm")
+	)
+	chessboard.set_square_selection(selection)
+
+func state_premove_extra_ready(_arg:Dictionary) -> void:
+	var move_list:PackedInt32Array = Chess.generate_premove(chessboard.state, player_group)
+	var decision_list:PackedStringArray = []
+	var decision_to_move:Dictionary = {}
+	for iter:int in move_list:
+		if Chess.from(iter) == premove_from && Chess.to(iter) == premove_to:
+			decision_list.push_back("%c" % Chess.extra(iter))
+			decision_to_move[decision_list[-1]] = iter
+	decision_list.push_back("SELECTION_CANCEL")
+	premove_state_machine.state_signal_connect(Dialog.on_next, func () -> void:
+		if Dialog.selected == "SELECTION_CANCEL":
+			premove_state_machine.change_state("from")
+		else:
+			premove_state_machine.change_state("confirm", {"move": decision_to_move[Dialog.selected]})
+	)
+	premove_state_machine.state_signal_connect(Clock.timeout, premove_state_machine.change_state.bind("enemy_win"))
+	Dialog.push_selection(decision_list, "HINT_EXTRA_MOVE", true, true)
+
+func state_premove_extra_exit() -> void:
+	Dialog.clear()
+
+func state_premove_select_piece_ready(_arg:Dictionary) -> void:
+	pass
+
+func state_premove_confirm_ready(_arg:Dictionary) -> void:
+	chessboard.clear_pointer("premove")
+	chessboard.draw_pointer("premove", Color(0.64, 0.051, 0.198, 1.0), premove_from, 1)
+	chessboard.draw_pointer("premove", Color(0.639, 0.051, 0.196, 1.0), premove_to, 1)
+	premove_state_machine.change_state("from")
+
+func state_premove_stop_ready(_arg:Dictionary) -> void:
+	pass
 
 func state_ready_start(_arg:Dictionary) -> void:
 	Clock.set_time(Progress.get_value("time_left", 60 * 15), 5)
@@ -169,8 +214,6 @@ func state_ready_enemy(_arg:Dictionary) -> void:
 	if !chessboard.state.get_bit(enemy_all):
 		state_machine.change_state("move", {"move": -1})
 		return
-	state_machine.state_signal_connect(chessboard.click_selection, premove_pressed)
-	state_machine.state_signal_connect(chessboard.click_empty, premove_cancel)
 	state_machine.state_signal_connect(engine.search_finished, func() -> void:
 		assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(engine.get_search_result()))))
 		state_machine.change_state("move", {"move": engine.get_search_result()})
@@ -183,7 +226,8 @@ func state_ready_enemy(_arg:Dictionary) -> void:
 		engine.set_quies(true)
 	engine.set_think_time(2)
 	engine.start_search(chessboard.state, 1 - player_group, history_state, Callable())
-	premove_init()
+	if premove_state_machine.current_state == "stop":
+		premove_state_machine.change_state("start")
 
 func state_ready_waiting() -> void:
 	state_machine.state_signal_connect(engine.search_finished, state_machine.change_state.bind("enemy"))
@@ -193,9 +237,8 @@ func state_ready_move(_arg:Dictionary) -> void:
 	Clock.pause()
 	history_document.push_move(_arg["move"])
 	history_state.push_back(chessboard.state.get_zobrist())
-
-	state_machine.state_signal_connect(chessboard.click_selection, premove_pressed)
-	state_machine.state_signal_connect(chessboard.click_empty, premove_cancel)
+	if premove_state_machine.current_state == "stop":
+		premove_state_machine.change_state("start")
 	state_machine.state_signal_connect(chessboard.animation_finished, func() -> void:
 		var end_type:String = Chess.get_end_type(chessboard.state)
 		if end_type == "checkmate_black":
@@ -217,7 +260,6 @@ func state_ready_move(_arg:Dictionary) -> void:
 	assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(_arg["move"]))) 
 	|| Chess.from(_arg["move"]) == Chess.to(_arg["move"]) && !chessboard.state.has_piece(Chess.from(_arg["move"])))
 	chessboard.execute_move(_arg["move"])
-	premove_init()
 
 func state_ready_player(_arg:Dictionary) -> void:
 	var start_from:int = 0
@@ -240,9 +282,6 @@ func state_ready_player(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.bind("enemy_win"))
 	if chessboard.state.get_bit(enemy_all):
 		Clock.resume()
-	chessboard.clear_pointer("premove")
-	premove_from = -1
-	premove_to = -1
 	var by:int = Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
 	var selection:PackedStringArray = []
 	if chessboard.state.get_bit(ord("z")) & Chess.mask(Chess.x88_to_c64(by)):
@@ -411,7 +450,6 @@ func state_ready_select_piece(_arg:Dictionary) -> void:
 	Dialog.push_selection(selection, "HINT_ADD_PIECE", false, false)
 	chessboard.set_square_selection(start_from)
 
-
 func state_ready_player_win(_arg:Dictionary) -> void:
 	history_document.save_file()
 	Progress.set_value("time_left", Clock.get_time_left())
@@ -456,18 +494,13 @@ func state_ready_interact(_arg:Dictionary) -> void:
 func back_to_game() -> void:
 	if is_queued_for_deletion():
 		return
+	premove_state_machine.change_state("stop")
 	if chessboard.state.get_turn() != player_group:
 		state_machine.change_state("enemy")
 	elif premove_from != -1 && premove_to != -1:
 		chessboard.clear_pointer("premove")
 		state_machine.change_state("check_move", {"from": premove_from, "to": premove_to, "move_list": Chess.generate_valid_move(chessboard.state, player_group) if chessboard.state.get_bit(enemy_all) else Chess.generate_explore_move(chessboard.state, player_group)})
-		premove_from = -1
-		premove_to = -1
 	elif premove_from != -1 && (chessboard.mouse_hold || chessboard.button_input_hold):
 		state_machine.change_state("ready_to_move", {"from": premove_from})
-		premove_from = -1
-		premove_to = -1
 	else:
 		state_machine.change_state("player")
-		premove_from = -1
-		premove_to = -1
