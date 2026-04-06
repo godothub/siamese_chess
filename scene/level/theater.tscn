@@ -20,13 +20,16 @@ sky = SubResource("Sky_cdevh")
 ambient_light_source = 1
 reflected_light_source = 1
 sdfgi_read_sky_light = false
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.129
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ev634"]
 albedo_color = Color(0.45, 0.12599999, 0.12599999, 1)
 metallic = 0.08
 roughness = 0.74
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vm1e8"]
+shading_mode = 0
+albedo_color = Color(0.8745098, 0.7529412, 0.56078434, 1)
 
 [node name="theater" type="Node3D" unique_id=1648142630]
 script = ExtResource("1_vm1e8")
@@ -103,9 +106,19 @@ bit = -1
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="spot_light_follow_cheshire" type="SpotLight3D" parent="." unique_id=259738214]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.84050035, 7.473479, -2.1809893)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15949965, 7.473479, 1.8190107)
 light_color = Color(0.9999996, 0.8598639, 0.64391696, 1)
-light_energy = 7.41
+light_energy = 8.581
+light_specular = 16.0
 shadow_enabled = true
 spot_range = 57.669
 spot_angle = 19.67
+
+[node name="csg_cylinder_3d" type="CSGCylinder3D" parent="spot_light_follow_cheshire" unique_id=555254994]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -7.7230225)
+flip_faces = true
+radius = 4.848633
+height = 17.446045
+sides = 20
+cone = true
+material = SubResource("StandardMaterial3D_vm1e8")
