@@ -133,26 +133,23 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.380
 [node name="hotel_closet" parent="." unique_id=719889956 instance=ExtResource("19_grsh5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3.56392)
 
+[node name="hotel_washbasin" parent="." unique_id=1680428330 instance=ExtResource("20_ijqg8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4.37805)
+
+[node name="hotel_mirror" parent="." unique_id=1905596220 instance=ExtResource("21_5ans0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4.72086)
+
+[node name="hotel_toilet" parent="." unique_id=1707718825 instance=ExtResource("22_ncv1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4284925, 0, 4.37157)
+
+[node name="hotel_bathtub" parent="." unique_id=474647173 instance=ExtResource("23_skhdv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8343501, 0, 3.399881)
+
 [node name="door_2" parent="." unique_id=1775898386 instance=ExtResource("5_10bqq")]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -3, 0, 2)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -5, 0, 2)
 
-[node name="structure" parent="door_2" index="0" unique_id=153858056]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="face" parent="door_2" index="1" unique_id=1176201569]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.4775381, 1.01108, 0.14069605)
-
-[node name="hotel_washbasin" parent="door_2" unique_id=1680428330 instance=ExtResource("20_ijqg8")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 2, 0, 2.3780499)
-
-[node name="hotel_mirror" parent="door_2" unique_id=1905596220 instance=ExtResource("21_5ans0")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 2, 0, 2.72086)
-
-[node name="hotel_toilet" parent="door_2" unique_id=1707718825 instance=ExtResource("22_ncv1s")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 3.5715077, 0, 2.37157)
-
-[node name="hotel_bathtub" parent="door_2" unique_id=474647173 instance=ExtResource("23_skhdv")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 5.16565, 0, 1.3998809)
+[node name="face" parent="door_2" index="1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.5224618, 1.0110773, 0.14069557)
 
 [node name="phonograph" parent="." unique_id=624737484 instance=ExtResource("24_ncv1s")]
 transform = Transform3D(0.06923409, 0, -0.99760044, 0, 1, 0, 0.99760044, 0, 0.06923409, 1.8726802, 0.6171086, -2.3264616)
@@ -160,8 +157,8 @@ transform = Transform3D(0.06923409, 0, -0.99760044, 0, 1, 0, 0.99760044, 0, 0.06
 [node name="csg_combiner_3d" type="CSGCombiner3D" parent="." unique_id=816710709]
 
 [node name="csg_box_3d_10" type="CSGBox3D" parent="csg_combiner_3d" unique_id=192814990]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999695, 1.7884891, -1.0086517)
-size = Vector3(0.08630371, 3.8576279, 6.140106)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999695, 1.7884891, 0.42129517)
+size = Vector3(0.08630371, 3.8576279, 9)
 
 [node name="csg_box_3d_4" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1203308932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.473526, 1.8784103, -4.0745516)
@@ -172,11 +169,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.477035, 1.8567963, 1.98770
 size = Vector3(9.019022, 3.721527, 0.13623632)
 
 [node name="csg_box_3d_3" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1987343586]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9996948, 1.8535004, 3.4159164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9996948, 1.8535004, 3.4159164)
 size = Vector3(0.08630371, 3.7227478, 2.7566986)
 
 [node name="csg_box_3d_6" type="CSGBox3D" parent="csg_combiner_3d" unique_id=598768873]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49471116, 1.8568573, 4.8156233)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.505289, 1.8568573, 4.8156233)
 size = Vector3(5.0555315, 3.7216492, 0.13623632)
 
 [node name="csg_box_3d_7" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1362665479]
@@ -194,16 +191,16 @@ operation = 2
 size = Vector3(0.34140015, 1.790268, 2.9401093)
 
 [node name="csg_box_3d_13" type="CSGBox3D" parent="csg_combiner_3d" unique_id=510273112]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0155106, 1.3766274, 1.9911003)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0155106, 1.3766274, 1.9911003)
 operation = 2
 size = Vector3(1.137619, 2.7592292, 0.51317596)
 
 [node name="csg_box_3d" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1340471956]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4999998, 3.9182553, -0.9999999)
-size = Vector3(9.2, 0.40820313, 6.2000003)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4737527, 3.9182553, -1.0002946)
+size = Vector3(9.131055, 0.40820313, 6.2000003)
 
 [node name="csg_box_3d_2" type="CSGBox3D" parent="csg_combiner_3d" unique_id=691703971]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5275147, 3.9182553, 3.4836135)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4724855, 3.9182553, 3.4836135)
 size = Vector3(5.144971, 0.40820313, 2.8017914)
 
 [node name="painting_frame_rect_6" parent="." unique_id=469426294 instance=ExtResource("25_skhdv")]
@@ -234,21 +231,21 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.79
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 script = ExtResource("29_q2hjl")
 piece = 45
-bit = 68719476736
+bit = 51539607552
 metadata/_custom_type_script = "uid://chtqhpiu556i1"
 
 [node name="marker_bit_wall_diag_2" type="Node3D" parent="." unique_id=11937126]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
 script = ExtResource("29_q2hjl")
 piece = 43
-bit = 51539607552
+bit = 30064771072
 metadata/_custom_type_script = "uid://chtqhpiu556i1"
 
 [node name="multi_actor_barrier" type="Node3D" parent="." unique_id=808772955]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
 script = ExtResource("30_njksd")
 piece = 35
-bit = -26517633368065
+bit = -6726424068097
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
 [node name="spot_light_3d" type="SpotLight3D" parent="." unique_id=1944436160]
@@ -272,7 +269,7 @@ light_color = Color(0.9, 0.80684996, 0.69299996, 1)
 light_energy = 0.723
 
 [node name="spot_light_3d_3" type="SpotLight3D" parent="." unique_id=523697818]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.44254977, 3.253437, 3.4329073)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.4425497, 3.253437, 3.4329073)
 light_color = Color(1, 0.935, 0.87, 1)
 light_energy = 2.067
 
@@ -282,7 +279,7 @@ light_color = Color(0.9, 0.80684996, 0.69299996, 1)
 light_energy = 0.723
 
 [node name="spot_light_3d_4" type="SpotLight3D" parent="." unique_id=595302635]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.4064023, 3.253437, 3.4329073)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.5935977, 3.253437, 3.4329073)
 light_color = Color(1, 0.935, 0.87, 1)
 light_energy = 2.067
 
@@ -325,11 +322,11 @@ light_energy = 0.723
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
 script = ExtResource("31_njksd")
 camera = NodePath("camera")
-bit = 26388279066624
+bit = 6597069766656
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="camera" type="Camera3D" parent="marker_camera" unique_id=2001745757]
-transform = Transform3D(-0.7317487, 0.41632628, -0.5396446, -0.025687927, 0.7743531, 0.6322321, 0.6810903, 0.47649738, -0.5559373, -0.28349996, 1.9174926, -1.5232575)
+transform = Transform3D(-0.7317487, 0.41632628, -0.5396446, -0.025687927, 0.7743531, 0.6322321, 0.6810903, 0.47649738, -0.5559373, -4.3761883, 1.9174926, -1.5232575)
 fov = 106.10179
 
 [node name="marker_camera_2" type="Node3D" parent="." unique_id=66818583 node_paths=PackedStringArray("camera")]
@@ -351,8 +348,17 @@ box_projection = true
 interior = true
 enable_shadows = true
 
+[node name="reflection_probe_3" type="ReflectionProbe" parent="." unique_id=861702572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5058703, 1.9633994, 3.4275222)
+intensity = 0.38
+blend_distance = 0.2
+size = Vector3(5.4467335, 4.1448936, 3.0888336)
+box_projection = true
+interior = true
+enable_shadows = true
+
 [node name="reflection_probe_2" type="ReflectionProbe" parent="." unique_id=1916311939]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.954494, 1.6123319, 4.3116965)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.954494, 1.6123319, 4.3116965)
 update_mode = 1
 blend_distance = 0.1
 max_distance = 20.0
@@ -361,17 +367,8 @@ box_projection = true
 interior = true
 enable_shadows = true
 
-[node name="reflection_probe_3" type="ReflectionProbe" parent="." unique_id=861702572]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49412954, 1.9633994, 3.4275222)
-intensity = 0.38
-blend_distance = 0.2
-size = Vector3(5.4467335, 4.1448936, 3.0888336)
-box_projection = true
-interior = true
-enable_shadows = true
-
 [node name="curtain_support2_2" parent="." unique_id=1038777782 instance=ExtResource("28_q2hjl")]
-transform = Transform3D(-2.7975288e-08, 0, 0.64, 0, 0.64, 0, -0.64, 0, -2.7975288e-08, 1.357294, 3.074512, 3.4383953)
+transform = Transform3D(-2.7975288e-08, 0, 0.64, 0, 0.64, 0, -0.64, 0, -2.7975288e-08, -2.642706, 3.074512, 3.4383953)
 
 [node name="curtain" parent="curtain_support2_2" unique_id=677423093 instance=ExtResource("27_rjel0")]
 transform = Transform3D(1.5624998, 0, -3.4769573e-07, 0, 1.5625, 0, 3.4769573e-07, 0, 1.5624998, 0.9085841, 0.0024824142, 0.023418427)
