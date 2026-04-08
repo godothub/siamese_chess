@@ -3,13 +3,17 @@ extends Marker3D
 class_name MarkerActor
 
 @export var piece:int = 0
-@export var actor:PackedScene = null
+@export var actor:PackedScene = null: set = set_actor, get = get_actor
 @export var meta:Dictionary = {}
+var editor_instance:Actor = null
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		var new_instance:Actor = instantiate()
 		if new_instance:
+			editor_instance = new_instance
+			for key:Variant in meta:
+				new_instance.set_meta(key, meta[key])
 			add_child(new_instance)
 
 func instantiate() -> Actor:
@@ -19,3 +23,25 @@ func instantiate() -> Actor:
 	for iter:Variant in meta:
 		new_instance.set_meta(iter, meta[iter])
 	return new_instance
+
+func set_actor(_actor:PackedScene) -> void:
+	actor = _actor
+	if Engine.is_editor_hint():
+		if editor_instance:
+			editor_instance.queue_free()
+		var new_instance:Actor = instantiate()
+		if new_instance:
+			editor_instance = new_instance
+			for key:Variant in meta:
+				new_instance.set_meta(key, meta[key])
+			add_child(new_instance)
+
+func set_actor_meta(_meta:Dictionary) -> void:
+	meta = _meta
+	if Engine.is_editor_hint():
+		if editor_instance:
+			for key:Variant in meta:
+				editor_instance.set_meta(key, meta[key])
+
+func get_actor() -> PackedScene:
+	return actor
