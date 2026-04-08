@@ -328,6 +328,9 @@ func state_ready_ready_to_move(_arg:Dictionary) -> void:
 		#actor.idle()
 		#state_machine.change_state.call_deferred("player", {"from_last": from})
 		var to:int = chessboard.selected
+		if from == to:
+			state_machine.change_state.call_deferred("player")
+			return
 		var path:PackedInt32Array = Chess.generate_path(chessboard.state, from)
 		var iter:int = to
 		var path_to:PackedInt32Array = []
