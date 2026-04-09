@@ -35,7 +35,8 @@ func _ready() -> void:
 	standard_state_machine.add_state("ready_to_move", state_ready_in_game_ready_to_move)
 	standard_state_machine.add_state("check_move", state_ready_in_game_check_move)
 	standard_state_machine.add_state("extra_move", state_ready_in_game_extra_move)
-	standard_state_machine.add_state("game_end", state_ready_game_end)
+	standard_state_machine.add_state("result", state_ready_result)
+	standard_state_machine.add_state("end", state_ready_end)
 
 func interact_pastor(custom_state:bool) -> void:
 	var state:State = null
@@ -77,7 +78,7 @@ func interact_pastor(custom_state:bool) -> void:
 	standard_state_machine.change_state("start", {"state": state})
 	while true:
 		await standard_state_machine.state_changed
-		if standard_state_machine.current_state == "game_end":
+		if standard_state_machine.current_state == "end":
 			break
 
 var game_premove_from:int = -1
@@ -169,7 +170,7 @@ func state_ready_in_game_move(_arg:Dictionary) -> void:
 	var rollback_event:Dictionary = $table_0/chessboard_standard.execute_move(_arg["move"])
 	standard_history_event.push_back(rollback_event)
 	if Chess.get_end_type($table_0/chessboard_standard.state) != "":
-		standard_state_machine.change_state("game_end")
+		standard_state_machine.change_state("result")
 	elif $table_0/chessboard_standard.state.get_turn() != standard_player_group:
 		standard_state_machine.change_state("opponent")
 	elif game_premove_from != -1 && game_premove_to != -1:
@@ -208,7 +209,7 @@ func state_ready_in_game_player(_arg:Dictionary) -> void:
 			else:
 				Dialog.push_selection(["SELECTION_TAKE_BACK", "SELECTION_LEAVE_GAME"], "HINT_TAKE_BACKED", false, false)
 		elif Dialog.selected == "SELECTION_LEAVE_GAME":
-			standard_state_machine.change_state("game_end")
+			standard_state_machine.change_state("end")
 	)
 	standard_state_machine.state_signal_connect($table_0/chessboard_standard.click_selection, func () -> void:
 		standard_state_machine.change_state("ready_to_move", {"from": $table_0/chessboard_standard.selected})
@@ -268,24 +269,22 @@ func state_ready_in_game_extra_move(_arg:Dictionary) -> void:
 	)
 	Dialog.push_selection(decision_list, "HINT_EXTRA_MOVE", true, true)
 
-func state_ready_game_end(_arg:Dictionary) -> void:
+func state_ready_result(_arg:Dictionary) -> void:
 	standard_history_document.save_file()
 	match Chess.get_end_type($table_0/chessboard_standard.state):
 		"checkmate_black":
 			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "", true, true)
-			await Dialog.on_next
 		"checkmate_white":
 			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "", true, true)
-			await Dialog.on_next
 		"stalemate_black":
 			Dialog.push_dialog("HINT_DRAW", "", true, true)
-			await Dialog.on_next
 		"stalemate_white":
 			Dialog.push_dialog("HINT_DRAW", "", true, true)
-			await Dialog.on_next
 		"50_moves":
 			Dialog.push_dialog("HINT_DRAW", "", true, true)
-			await Dialog.on_next
+	standard_state_machine.state_signal_connect(Dialog.on_next, standard_state_machine.change_state.bind("end"))
+
+func state_ready_end(_arg:Dictionary) -> void:
 	$player.force_set_camera($camera)
 	$chessboard/pieces/cheshire.play_animation("battle_idle")
 	$chessboard/pieces/cheshire.set_position($chessboard.name_to_vector3("e3"))
