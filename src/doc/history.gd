@@ -55,6 +55,9 @@ func rollback(_state:State, pop_count:int = 1) -> void:
 
 func update_table() -> void:
 	$chessboard_flat.set_state(current_page_instance.state)
+	for i:int in range(60):
+		get_node("white/label_%d" % (i + 1)).text = ""
+		get_node("black/label_%d" % (i + 1)).text = ""
 	for i:int in range(current_page_instance.history.size()):
 		if i % 2 == 0:
 			get_node("white/label_%d" % (i / 2 + 1)).text = current_page_instance.history[i]
