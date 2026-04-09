@@ -212,8 +212,8 @@ bit = 256
 metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
 [node name="camera_white_side" type="Camera3D" parent="." unique_id=1746372595]
-transform = Transform3D(0.6827384, -0.2890105, 0.67107475, 1.0970966e-08, 0.91844654, 0.3955456, -0.730663, -0.2700541, 0.6270586, 6.9096737, 2.3204718, 7.4141483)
-fov = 58.5874
+transform = Transform3D(-1, 7.789426e-08, -3.9689112e-08, -9.399129e-09, 0.3555638, 0.93465203, 8.691604e-08, 0.93465203, -0.3555638, 0.08276367, 6.8607984, 0.64996505)
+fov = 85.829895
 
 [node name="marker_camera_white_side" type="Node3D" parent="." unique_id=1303561354 node_paths=PackedStringArray("camera")]
 script = ExtResource("18_fhf0e")
