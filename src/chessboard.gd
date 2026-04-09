@@ -20,6 +20,22 @@ signal animation_finished()
 var backup_piece:Array = []	# 被吃的子统一放这里管理
 var steady_piece:Dictionary = {}	# 待加入棋盘中的后备棋子放这里管理，跟被吃棋子区别在于这些棋子可以派上场
 # 格式：{ 棋子编号: [对象1、 对象2] }
+
+var fallback_piece:Dictionary = {
+	ord("K"): {"actor": load("res://scene/actor/piece_king_white.tscn"), "meta": {}},
+	ord("Q"): {"actor": load("res://scene/actor/piece_queen_white.tscn"), "meta": {}},
+	ord("R"): {"actor": load("res://scene/actor/piece_rook_white.tscn"), "meta": {}},
+	ord("B"): {"actor": load("res://scene/actor/piece_bishop_white.tscn"), "meta": {}},
+	ord("N"): {"actor": load("res://scene/actor/piece_knight_white.tscn"), "meta": {}},
+	ord("P"): {"actor": load("res://scene/actor/piece_pawn_white.tscn"), "meta": {}},
+	ord("k"): {"actor": load("res://scene/actor/piece_king_black.tscn"), "meta": {}},
+	ord("q"): {"actor": load("res://scene/actor/piece_queen_black.tscn"), "meta": {}},
+	ord("r"): {"actor": load("res://scene/actor/piece_rook_black.tscn"), "meta": {}},
+	ord("b"): {"actor": load("res://scene/actor/piece_bishop_black.tscn"), "meta": {}},
+	ord("n"): {"actor": load("res://scene/actor/piece_knight_black.tscn"), "meta": {}},
+	ord("p"): {"actor": load("res://scene/actor/piece_pawn_black.tscn"), "meta": {}}
+}
+
 var mouse_start_position_name:String = ""
 var mouse_hold:bool = false
 var mouse_moved:bool = false
@@ -338,6 +354,11 @@ func move_piece_instance_to_steady(by:int, piece:int) -> void:
 	animation_finished.emit.call_deferred()
 
 func move_piece_instance_from_steady(by:int, piece:int) -> void:
+	if !steady_piece.get_or_add(piece, []).size():
+		var new_instance:Actor = fallback_piece[piece]["actor"].instantiate()
+		for key:Variant in fallback_piece[piece]["meta"]:
+			new_instance.set_meta(key, fallback_piece[piece]["meta"][key])
+		steady_piece[piece].push_back(new_instance)
 	var instance:Actor = steady_piece[piece][-1]
 	steady_piece[piece].pop_back()
 	chessboard_piece[by] = instance
