@@ -70,14 +70,19 @@ func move(_pos:Vector3) -> void:	# 单纯的移动
 	target_angle = global_rotation.y + angle_difference(global_rotation.y, target_angle)
 	if tween && tween.is_running():
 		tween.kill()
+
+	var subtween = create_tween()
+	subtween.tween_interval(global_position.distance_to(_pos) / 5 - 0.1)
+	subtween.tween_callback(animation_finished.emit)
+
 	tween = create_tween()
 	if has_node("animation_tree"):
 		tween.tween_callback($animation_tree.get("parameters/playback").travel.bind("battle_move"))
 	tween.tween_property(self, "global_rotation:y", target_angle, 0.1).set_trans(Tween.TRANS_SINE)
 	tween.set_parallel(true)
+	tween.tween_subtween(subtween)
 	tween.tween_property(self, "global_position", _pos, global_position.distance_to(_pos) / 5)
 	tween.set_parallel(false)
-	tween.tween_callback(animation_finished.emit)
 	if has_node("animation_tree"):
 		tween.tween_callback($animation_tree.get("parameters/playback").travel.bind("battle_idle"))
 
