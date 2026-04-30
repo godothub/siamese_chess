@@ -17,11 +17,11 @@ func _physics_process(_delta:float) -> void:
 
 func set_state(_state:State) -> void:
 	chessboard.state = _state
-	chessboard.remove_piece_set()
-	chessboard.add_default_piece_set()
 
 func open() -> void:
 	set_physics_process(true)
+	chessboard.remove_piece_set()
+	chessboard.add_default_piece_set()
 	visible = true
 	if tween:
 		tween.kill()
