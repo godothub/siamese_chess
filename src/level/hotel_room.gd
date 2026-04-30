@@ -26,15 +26,12 @@ func _ready() -> void:
 	sandbox_state_machine.add_state("game_end", state_ready_game_end)
 
 func use_chessboard() -> void:
+	state_machine.change_state("stop")
 	$chessboard.set_enabled(false)
 	chessboard_sandbox.set_enabled(true)
 	var state:State = Chess.create_initial_state()
 	sandbox_state_machine.change_state("start", {"state": state})
 	$player.force_set_camera($camera_chessboard)
-	while true:
-		await sandbox_state_machine.state_changed
-		if sandbox_state_machine.current_state == "game_end":
-			break
 
 func state_ready_in_game_start(_arg:Dictionary) -> void:
 	chessboard_sandbox.state = _arg["state"]
@@ -73,8 +70,8 @@ func state_ready_in_game_player(_arg:Dictionary) -> void:
 		elif Dialog.selected == "SELECTION_LEAVE_GAME":
 			sandbox_state_machine.change_state("game_end")
 	)
-	sandbox_state_machine.state_signal_connect(chessboard_sandbox.click_selection, func () -> void:
-		sandbox_state_machine.change_state("ready_to_move", {"from": chessboard_sandbox.selected})
+	sandbox_state_machine.state_signal_connect(chessboard_sandbox.click_selection, func (_selected:int) -> void:
+		sandbox_state_machine.change_state("ready_to_move", {"from": _selected})
 	)
 
 	if sandbox_history_event.size() <= 0:
@@ -93,10 +90,10 @@ func state_ready_in_game_ready_to_move(_arg:Dictionary) -> void:
 	for iter:int in sandbox_move_list:
 		if Chess.from(iter) == from:
 			selection |= Chess.mask(Chess.x88_to_c64(Chess.to(iter)))
-	sandbox_state_machine.state_signal_connect(chessboard_sandbox.click_selection, func () -> void:
-		sandbox_state_machine.change_state("check_move", {"from": from, "to": chessboard_sandbox.selected})
+	sandbox_state_machine.state_signal_connect(chessboard_sandbox.click_selection, func (_selected:int) -> void:
+		sandbox_state_machine.change_state("check_move", {"from": from, "to": _selected})
 	)
-	sandbox_state_machine.state_signal_connect(chessboard_sandbox.click_empty, func () -> void:
+	sandbox_state_machine.state_signal_connect(chessboard_sandbox.click_empty, func (_selected:int) -> void:
 		actor.idle()
 		sandbox_state_machine.change_state("player")
 	)
@@ -149,3 +146,4 @@ func state_ready_game_end(_arg:Dictionary) -> void:
 	$chessboard.set_enabled(true)
 	chessboard_sandbox.set_enabled(false)
 	$player.force_set_camera($marker_camera_2/camera)
+	state_machine.change_state("resume")
