@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://chkp5305aorwt"]
 
-[ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor.gd" id="1_iv082"]
+[ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor/actor.gd" id="1_iv082"]
 [ext_resource type="PackedScene" uid="uid://5oaqxvj8u6sk" path="res://assets/model/archive_safe.glb" id="2_hqly4"]
 
 [node name="basement_safe" type="CharacterBody3D" unique_id=1759131978]

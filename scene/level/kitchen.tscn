@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c5bxmxcbilfv4" path="res://assets/model/kitchen_stove.glb" id="11_54xsr"]
 [ext_resource type="PackedScene" uid="uid://c3jp51b0aamue" path="res://assets/model/kitchen_range_hood.glb" id="12_y888p"]
 [ext_resource type="PackedScene" uid="uid://cuu3yjt7ru2ah" path="res://assets/model/hang_shelf.glb" id="13_nkxss"]
-[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/marker_multi_actor.gd" id="14_hqxra"]
+[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="14_hqxra"]
 [ext_resource type="PackedScene" uid="uid://brwklx5c0sjbo" path="res://assets/model/cafe_washbasin.glb" id="15_fis72"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="16_uhj53"]
 [ext_resource type="PackedScene" uid="uid://b63o3y2sbsav0" path="res://assets/model/table_high.glb" id="16_x83ls"]
@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cerfodh7auoqx" path="res://assets/model/wine_bottle.glb" id="24_h1446"]
 [ext_resource type="PackedScene" uid="uid://c7in6lrql532h" path="res://assets/model/kitchen_frying_pan.glb" id="27_cwpkv"]
 [ext_resource type="PackedScene" uid="uid://dmkd8xgnie7uq" path="res://assets/model/kitchen_pot.glb" id="28_e37jg"]
-[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/marker_camera.gd" id="32_twdgb"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="32_twdgb"]
 
 [sub_resource type="Environment" id="Environment_x83ls"]
 background_mode = 2

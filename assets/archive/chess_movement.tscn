@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://choxe0co6xah3"]
 
-[ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/document.gd" id="1_8bfrn"]
+[ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/doc/document.gd" id="1_8bfrn"]
 [ext_resource type="Texture2D" uid="uid://dts7elg3ioqy4" path="res://assets/texture/chess_movements.png" id="1_d6c5a"]
 
 [node name="chess_movement" type="Node2D" unique_id=424632159]

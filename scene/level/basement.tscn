@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://esfde7td2hli" path="res://src/level/basement.gd" id="1_mtw5c"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="2_3cgcv"]
-[ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/marker_actor.gd" id="3_ywqhp"]
+[ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/event/marker_actor.gd" id="3_ywqhp"]
 [ext_resource type="PackedScene" uid="uid://btdxda3dhe5ji" path="res://scene/actor/box_stack.tscn" id="4_d5w51"]
 [ext_resource type="PackedScene" uid="uid://d4fh7xfnsf31v" path="res://scene/actor/basement_shelf.tscn" id="5_80gqw"]
 [ext_resource type="PackedScene" uid="uid://cc47gv2sinn3k" path="res://scene/actor/library_handcart.tscn" id="6_vjidp"]
@@ -12,10 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="10_mtw5c"]
 [ext_resource type="PackedScene" uid="uid://bt5m0eox0615k" path="res://assets/model/hotel_room_desk.glb" id="11_74xdv"]
 [ext_resource type="PackedScene" uid="uid://u1ropnj7v0ap" path="res://assets/model/hotel_room_desk_chair.glb" id="12_vykmq"]
-[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/marker_callback.gd" id="13_vykmq"]
+[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="13_vykmq"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="14_nwskg"]
 [ext_resource type="PackedScene" uid="uid://dvfilx1shno5w" path="res://scene/actor/piece_king_white.tscn" id="16_ati7g"]
-[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/marker_camera.gd" id="16_idfw3"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="16_idfw3"]
 [ext_resource type="PackedScene" uid="uid://wlf2bpitdmjk" path="res://scene/actor/piece_queen_black.tscn" id="17_ati7g"]
 [ext_resource type="LightmapGIData" uid="uid://ckp82lkp2mvma" path="res://assets/basement.lmbake" id="18_x66wa"]
 

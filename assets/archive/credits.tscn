@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://iyfh8kkmuf77"]
 
-[ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/document.gd" id="1_bih3g"]
+[ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/doc/document.gd" id="1_bih3g"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_ct7ke"]
 
 [sub_resource type="Gradient" id="Gradient_w5kv4"]
@@ -49,7 +49,7 @@ text = "[center][font_size=30]名单[/font_size]
 [/center]
 
 [center][font_size=16]致谢[/font_size]
-[font_size=12]acknowledge[/font_size]
+[font_size=12]Acknowledge[/font_size]
 [font_size=14][table=4][cell padding=5,5,5,5]Cherz[/cell] [cell padding=5,5,5,5]老蔡-omto[/cell] [cell padding=5,5,5,5]Floodin13[/cell] [cell padding=5,5,5,5]fdsts[/cell] [cell padding=5,5,5,5]Kinbote[/cell] [cell padding=5,5,5,5]负离子[/cell] [cell padding=5,5,5,5]正离子[/cell][/table][/font_size]
 [font_size=12]以上成员对于本游戏及其作者给予积极的反馈和精神支持。[/font_size]
 [font_size=10]the members who support this game and its author, in various ways.[/font_size]

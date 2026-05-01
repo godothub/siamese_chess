@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jduksop4p3bt"]
 
-[ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/document.gd" id="1_2pj5q"]
+[ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/doc/document.gd" id="1_2pj5q"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_akbmg"]
 
 [sub_resource type="Gradient" id="Gradient_w5kv4"]

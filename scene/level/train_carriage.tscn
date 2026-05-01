@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="5_n8eqm"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="5_xj5v5"]
 [ext_resource type="PackedScene" uid="uid://famkj12ufimp" path="res://scene/chessboard_blank.tscn" id="7_a77ny"]
-[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/marker_camera.gd" id="8_5cfv0"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="8_5cfv0"]
 [ext_resource type="LightmapGIData" uid="uid://bdxsaqpli7ebs" path="res://assets/train_carriage.lmbake" id="8_667th"]
-[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/marker_multi_actor.gd" id="9_667th"]
+[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="9_667th"]
 [ext_resource type="PackedScene" uid="uid://blfa7tg8uh5xo" path="res://assets/model/book_stack_0.glb" id="9_ii2qt"]
-[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/marker_callback.gd" id="10_ii2qt"]
-[ext_resource type="Script" uid="uid://dc4n8wl381mqw" path="res://src/marker_document.gd" id="11_5tiqh"]
+[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="10_ii2qt"]
+[ext_resource type="Script" uid="uid://dc4n8wl381mqw" path="res://src/event/marker_document.gd" id="11_5tiqh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)

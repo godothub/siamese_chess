@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgvq7kuhcahlb"]
 
-[ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/marker_teleport.gd" id="1_q3eg8"]
+[ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/marker_teleport.gd" id="1_q3eg8"]
 [ext_resource type="Texture2D" uid="uid://drc3hxgn43pjk" path="res://assets/texture/arrow.svg" id="2_ntu5p"]
 
 [node name="teleport_pointer" type="Node3D" unique_id=82850098]
