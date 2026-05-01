@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b2ogs7b5atv4k"
+
+[deps]
+
+files=["res://assets/text/talk.zh_CN.translation", "res://assets/text/talk.en.translation"]
+
+source_file="res://assets/text/talk.csv"
+dest_files=["res://assets/text/talk.zh_CN.translation", "res://assets/text/talk.en.translation"]
+
+[params]
+
+compress=0
+delimiter=0
+unescape_keys=false
+unescape_translations=true

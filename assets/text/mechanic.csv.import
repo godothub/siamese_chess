@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://csienluxj828v"
+
+[deps]
+
+files=["res://assets/text/mechanic.zh_CN.translation", "res://assets/text/mechanic.en.translation"]
+
+source_file="res://assets/text/mechanic.csv"
+dest_files=["res://assets/text/mechanic.zh_CN.translation", "res://assets/text/mechanic.en.translation"]
+
+[params]
+
+compress=0
+delimiter=0
+unescape_keys=false
+unescape_translations=true
