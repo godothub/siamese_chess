@@ -155,6 +155,7 @@ func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_p
 		var position_name:String = _to.get_name()
 		if mouse_start_position_name != position_name:
 			mouse_moved = true
+		button_input_pointer = Chess.name_to_x88(position_name)
 		finger_on_position(position_name)
 
 func set_state(_state:State) -> void:
