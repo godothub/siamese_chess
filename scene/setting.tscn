@@ -528,6 +528,37 @@ text = "SETTINGS_DIALOG_BORDER_EXPLAIN"
 label_settings = SubResource("LabelSettings_g2to7")
 autowrap_mode = 3
 
+[node name="margin_container_text_to_speech" type="MarginContainer" parent="texture_rect/tab_container/accessibility/v_box_container" unique_id=1884395552]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech" unique_id=190087903]
+layout_mode = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container" unique_id=1429894072]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container" unique_id=964531419]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "SETTINGS_TEXT_TO_SPEECH"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="check_box" type="CheckBox" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container" unique_id=186905322]
+self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="label_explain" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container" unique_id=342479593]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "SETTINGS_TEXT_TO_SPEECH_EXPLAIN"
+label_settings = SubResource("LabelSettings_g2to7")
+autowrap_mode = 3
+
 [node name="files" type="Control" parent="texture_rect/tab_container" unique_id=1232943850]
 visible = false
 layout_mode = 2

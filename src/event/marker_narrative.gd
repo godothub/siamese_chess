@@ -26,6 +26,8 @@ func _ready() -> void:
 		placeholder_expression[key] = expression
 
 func on_start() -> void:
+	if !Setting.get_value("text_to_speech"):
+		return
 	if condition:
 		var result:Variant = condition_expression.execute([level, Setting, Progress, Chess])
 		if condition_expression.has_execute_failed():
