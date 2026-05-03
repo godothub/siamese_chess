@@ -1345,7 +1345,7 @@ godot::PackedInt32Array Chess::generate_premove(const godot::Ref<State> &_state,
 					output.push_back(Chess::create(_from, _from + front_capture_right, _group == 0 ? 'B' : 'b'));
 				}
 			}
-			else
+			else if (!((_from + front) & 0x88))
 			{
 				output.push_back(Chess::create(_from, _from + front, 0));
 				if (!((_from + front_capture_left) & 0x88))
