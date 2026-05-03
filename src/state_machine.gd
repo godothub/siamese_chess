@@ -8,18 +8,22 @@ var state_list:Dictionary = {}
 var	connection_list:Array = []
 var mutex:Mutex = Mutex.new()
 
-func add_state(new_state:String, ready_callback:Callable = Callable(), exit_callback:Callable = Callable(), process_callback:Callable = Callable()) -> void:
+func add_state(new_state:String, ready_callback:Callable = Callable(), exit_callback:Callable = Callable(), process_callback:Callable = Callable(), input_callback:Callable = Callable(),) -> void:
 	assert(new_state)
-	assert(ready_callback.is_valid())
 	state_list[new_state] = {
 		"ready": ready_callback,
 		"exit": exit_callback,
 		"process": process_callback,
+		"input": input_callback
 	}
 
 func process(_delta:float) -> void:
 	if state_list[current_state]["process"].is_valid():
 		state_list[current_state]["process"].call(_delta)
+
+func input(_event:InputEvent) -> void:
+	if state_list[current_state]["input"].is_valid():
+		state_list[current_state]["input"].call(_event)
 
 func change_state(next_state:String, arg:Dictionary = {}) -> void:
 	mutex.lock()
@@ -35,7 +39,8 @@ func change_state(next_state:String, arg:Dictionary = {}) -> void:
 		state_list[last_state]["exit"].call()
 	set_physics_process(state_list[current_state]["process"].is_valid())
 	mutex.unlock()
-	state_list[current_state]["ready"].call(arg)
+	if state_list[current_state]["ready"].is_valid():
+		state_list[current_state]["ready"].call(arg)
 	state_changed.emit.call_deferred(current_state)
 
 func state_signal_connect(_signal:Signal, _method:Callable) -> void:

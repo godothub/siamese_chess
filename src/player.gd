@@ -2,45 +2,24 @@ extends Node3D
 class_name Player
 @onready var ray_cast:RayCast3D = $ray_cast
 
+var state_machine:StateMachine = StateMachine.new()
 var mouse_moved:bool = false
 var can_move:bool = true
 var inspectable_item_list:Array[InspectableItem] = []
 var current_area:Area3D = null
-var using_dialog:bool = false
 var target_camera:Camera3D = null
 
 func _ready() -> void:
 	Setting.connect("dialog_border_changed", refresh_camera)
+	state_machine.name = "player"
+	state_machine.add_state("inspect", Callable(), Callable(), state_process_inspect, state_input_inspect)
+	state_machine.add_state("dialog", Callable(), Callable(), state_process_dialog)
+	state_machine.add_state("stop")
+	state_machine.change_state("inspect")
 
-func _physics_process(_delta:float) -> void:
-	$head/camera.set_rotation(Vector3(deg_to_rad(sin(Time.get_unix_time_from_system())), 0, 0))
-	if Setting.visible || Archive.visible || Photo.visible:
-		return
-	if Dialog.block_input() || using_dialog:
-		if Input.is_action_just_pressed("ui_left") || Input.is_action_just_pressed("tab_left"):
-			Dialog.direction(-1)
-		if Input.is_action_just_pressed("ui_right") || Input.is_action_just_pressed("tab_right"):
-			Dialog.direction(1)		
-		if Input.is_action_just_released("ui_accept"):
-			Dialog.confirm()
-			using_dialog = false
-		if Input.is_action_just_pressed("ui_cancel"):
-			using_dialog = false
-			Dialog.cancel_focus()
-			Dialog.hide_global_selection()
-		if Input.is_action_just_pressed("menu"):
-			using_dialog = false
-			Dialog.cancel_focus()
-			Dialog.hide_global_selection()
-		if Input.is_action_just_pressed("select"):
-			using_dialog = false
-			Dialog.cancel_focus()
-			Dialog.hide_global_selection()
-		return
-
-	if !can_move:
-		return
-
+func state_process_inspect(_delta:float) -> void:
+	if Dialog.block_input():
+		state_machine.change_state.call_deferred("dialog")
 	for item:InspectableItem in inspectable_item_list:
 		if !item.enabled:
 			continue
@@ -67,22 +46,50 @@ func _physics_process(_delta:float) -> void:
 		if Input.is_action_just_pressed("ui_cancel") && Dialog.cancel_showing:
 			Dialog.on_cancel.emit()
 		elif Input.is_action_just_pressed("select") && Dialog.selection.size():
-			using_dialog = true
 			Dialog.direction(1)
 		elif Input.is_action_just_pressed("menu"):
-			using_dialog = true
 			Dialog.show_global_selection()
 			Dialog.direction(1)
 
-func _unhandled_input(event:InputEvent) -> void:
-	if !can_move || Dialog.block_input() || Setting.visible || Archive.visible || Photo.visible:
-		return
+func state_input_inspect(event:InputEvent) -> void:
 	if event is InputEventMouseButton || event is InputEventMouseMotion:
 		current_area = click_area(event.position)
 		if is_instance_valid(current_area):
 			var instant:bool = event is InputEventMouseButton
 			var pressed:bool = event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT || event is InputEventMouseMotion && (event.button_mask & MOUSE_BUTTON_MASK_LEFT)
 			current_area.emit_signal("input", self, current_area, instant, pressed, $ray_cast.get_collision_point(), $ray_cast.get_collision_normal())
+
+func state_process_dialog(_delta:float) -> void:
+	if !Dialog.block_input():
+		state_machine.change_state.call_deferred("inspect")
+	if Input.is_action_just_pressed("ui_left") || Input.is_action_just_pressed("tab_left"):
+		Dialog.direction(-1)
+	if Input.is_action_just_pressed("ui_right") || Input.is_action_just_pressed("tab_right"):
+		Dialog.direction(1)		
+	if Input.is_action_just_pressed("ui_accept"):
+		Dialog.confirm()
+	if Dialog.force_selection:
+		if Input.is_action_just_pressed("ui_cancel"):
+			Dialog.on_cancel.emit()
+		return
+	if Input.is_action_just_pressed("ui_cancel"):
+		Dialog.on_cancel.emit()
+		Dialog.cancel_focus()
+		Dialog.hide_global_selection()
+	if Input.is_action_just_pressed("menu"):
+		Dialog.cancel_focus()
+		Dialog.hide_global_selection()
+	if Input.is_action_just_pressed("select"):
+		Dialog.cancel_focus()
+		Dialog.hide_global_selection()
+	return
+
+func _physics_process(_delta:float) -> void:
+	$head/camera.set_rotation(Vector3(deg_to_rad(sin(Time.get_unix_time_from_system())), 0, 0))
+	state_machine.process(_delta)
+
+func _unhandled_input(event:InputEvent) -> void:
+	state_machine.input(event)
 	get_viewport().set_input_as_handled()
 
 func click_area(screen_position:Vector2) -> Area3D:

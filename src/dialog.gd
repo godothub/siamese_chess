@@ -3,6 +3,7 @@ extends CanvasLayer
 signal on_next()
 signal on_select(selected:String)
 signal on_cancel()
+signal on_focus()
 
 const packed_scene:PackedScene = preload("res://scene/dialog.tscn")
 
@@ -62,6 +63,8 @@ func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_a
 		tween.kill()
 	if text_label.text != "" || title_label.text != "":
 		clear()
+	if click_anywhere:
+		on_focus.emit()
 	tween = create_tween()
 	force_selection = false	
 	waiting = _waiting
@@ -84,6 +87,8 @@ func push_selection(_selection:PackedStringArray, _title:String, _force_selectio
 		tween.kill()
 	if text_label.text != "" || title_label.text != "":
 		clear()
+	if force_selection:
+		on_focus.emit()
 	tween = create_tween()
 	if blackscreen:
 		tween.tween_property($texture_rect_full, "visible", true, 0)
@@ -142,6 +147,7 @@ func direction(axis:int) -> void:
 		return
 	if select_focus == -1:
 		select_focus = 0 if axis == 1 else selection.size() - 1
+		on_focus.emit()
 	else:
 		select_focus += axis
 	
@@ -205,7 +211,7 @@ func selection_to_bbcode(_selection:PackedStringArray, _select_focus:int = -1) -
 	return bbcode
 
 func block_input() -> bool:
-	return click_anywhere || force_selection || Time.get_unix_time_from_system() - click_cooldown < 0.3
+	return click_anywhere || force_selection || select_focus != -1 || Time.get_unix_time_from_system() - click_cooldown < 0.3
 
 func update_dialog() -> void:
 	set_border_position(Setting.get_value("dialog_border"))

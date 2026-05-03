@@ -13,4 +13,4 @@ func show_selection() -> String:
 	return ""
 
 func on_selection() -> void:
-	await node.callv(method_name, arg)
+	node.callv.call_deferred(method_name, arg)
