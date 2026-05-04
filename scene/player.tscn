@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b3ml34bssywkr"]
 
 [ext_resource type="Script" uid="uid://b7tmywppqk1qn" path="res://src/player.gd" id="1_tpg0u"]
-[ext_resource type="Script" uid="uid://wa2q0lswte4p" path="res://addons/gdtim/InputManager.gd" id="2_5do82"]
 [ext_resource type="AudioStream" uid="uid://bjkdx77erva8r" path="res://assets/audio/719560__dartekz_gamez__wind-whirl-small-air-blow.mp3" id="3_uowm0"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uowm0"]
@@ -12,10 +11,6 @@ stream_0/stream = ExtResource("3_uowm0")
 
 [node name="player" type="Node3D" unique_id=1111666]
 script = ExtResource("1_tpg0u")
-
-[node name="touch_input_manager" type="Node" parent="." unique_id=505832653]
-script = ExtResource("2_5do82")
-metadata/_custom_type_script = "uid://wa2q0lswte4p"
 
 [node name="ray_cast" type="RayCast3D" parent="." unique_id=717643212]
 top_level = true

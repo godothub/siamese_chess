@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bsobwdwnm840s"]
 
 [ext_resource type="Script" uid="uid://dpwx8x2545los" path="res://src/document_browser.gd" id="1_cflc6"]
-[ext_resource type="Script" uid="uid://wa2q0lswte4p" path="res://addons/gdtim/InputManager.gd" id="2_y0c1r"]
 [ext_resource type="FontFile" uid="uid://bq5ty1txvcybm" path="res://assets/fonts/Font Awesome 7 Free-Regular-400.otf" id="3_wgkkr"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="4_glkdv"]
 
@@ -16,10 +15,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cflc6")
-
-[node name="touch_input_manager" type="Node" parent="." unique_id=906038595]
-script = ExtResource("2_y0c1r")
-metadata/_custom_type_script = "uid://wa2q0lswte4p"
 
 [node name="sub_viewport_container" type="SubViewportContainer" parent="." unique_id=1765219254]
 layout_mode = 1
