@@ -48,6 +48,7 @@ var table:Dictionary = {}
 @onready var language_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/option_button
 @onready var dialog_border_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/check_box
 @onready var text_to_speech_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/check_box
+@onready var touch_gesture_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/h_box_container/check_box
 @onready var relax_input:CheckBox = $texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container/check_box
 @onready var clean_archive_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/button
 @onready var reset_progress_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/button
@@ -75,6 +76,7 @@ func _ready() -> void:
 	language_input.connect("item_selected", set_language)
 	dialog_border_input.connect("toggled", set_dialog_border)
 	text_to_speech_input.connect("toggled", set_text_to_speech)
+	touch_gesture_input.connect("toggled", set_touch_gesture)
 	relax_input.connect("toggled", set_relax)
 	clean_archive_input.connect("pressed", set_clean_archive)
 	reset_progress_input.connect("pressed", set_reset_progress)
@@ -95,6 +97,7 @@ func _ready() -> void:
 	language_input.select(table.get_or_add("language", languages.keys().find(TranslationServer.get_locale())))
 	dialog_border_input.set_pressed(table.get_or_add("dialog_border", false))
 	text_to_speech_input.set_pressed(table.get_or_add("text_to_speech", false))
+	touch_gesture_input.set_pressed(table.get_or_add("touch_gesture", false))
 	relax_input.set_pressed(table.get_or_add("relax", false))
 	camera_move_speed_input.set_value(table.get_or_add("camera_move_speed", 50))
 	camera_move_speed_value.text = "%d%%" % (table.get_or_add("camera_move_speed", 50))
@@ -200,6 +203,9 @@ func set_dialog_border(toggled_on:bool) -> void:
 
 func set_text_to_speech(toggled_on:bool) -> void:
 	table.set("text_to_speech", toggled_on)
+
+func set_touch_gesture(toggled_on:bool) -> void:
+	table.set("touch_gesture", toggled_on)
 
 func set_relax(toggled_on:bool) -> void:
 	table.set("relax", toggled_on)
