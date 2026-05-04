@@ -12,14 +12,22 @@ var target_camera:Camera3D = null
 func _ready() -> void:
 	Setting.connect("dialog_border_changed", refresh_camera)
 	state_machine.name = "player"
-	state_machine.add_state("inspect", Callable(), Callable(), state_process_inspect, state_input_inspect)
-	state_machine.add_state("inspect_gesture", Callable(), Callable(), state_process_inspect, state_input_inspect_gesture)
+	state_machine.add_state("inspect", state_ready_inspect, Callable(), state_process_inspect, state_input_inspect)
+	state_machine.add_state("inspect_gesture", state_ready_inspect, Callable(), state_process_inspect, state_input_inspect_gesture)
 	state_machine.add_state("dialog", Callable(), Callable(), state_process_dialog)
 	state_machine.add_state("stop")
 	if Setting.get_value("touch_gesture"):
 		state_machine.change_state("inspect_gesture")
 	else:
 		state_machine.change_state("inspect")
+
+func state_ready_inspect(_arg:Dictionary) -> void:
+	state_machine.state_signal_connect(Setting.touch_gesture_changed, func () -> void:
+		if Setting.get_value("touch_gesture"):
+			state_machine.change_state.call_deferred("inspect_gesture")
+		else:
+			state_machine.change_state.call_deferred("inspect")
+	)
 
 func state_process_inspect(_delta:float) -> void:
 	if Dialog.block_input():

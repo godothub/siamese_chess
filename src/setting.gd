@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal language_changed()
 signal dialog_border_changed()
+signal touch_gesture_changed()
 
 var resolutions:Array[Vector2i] = [
 	Vector2i(800, 600),
@@ -206,6 +207,7 @@ func set_text_to_speech(toggled_on:bool) -> void:
 
 func set_touch_gesture(toggled_on:bool) -> void:
 	table.set("touch_gesture", toggled_on)
+	touch_gesture_changed.emit()
 
 func set_relax(toggled_on:bool) -> void:
 	table.set("relax", toggled_on)
