@@ -7,7 +7,7 @@ class_name TouchInputManager
 # Config #
 ##########
 
-const DEFAULT_BINDIGS : bool = true
+const DEFAULT_BINDIGS : bool = false
 
 const DEBUG : bool = false 
 

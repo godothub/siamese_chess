@@ -124,10 +124,6 @@ menu={
 ]
 }
 
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
-
 [internationalization]
 
 locale/translations=PackedStringArray("res://assets/text/mechanic.en.translation", "res://assets/text/mechanic.zh_CN.translation", "res://assets/text/narrative.en.translation", "res://assets/text/narrative.zh_CN.translation", "res://assets/text/talk.en.translation", "res://assets/text/talk.zh_CN.translation")
