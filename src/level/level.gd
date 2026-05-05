@@ -266,6 +266,8 @@ func state_ready_move(_arg:Dictionary) -> void:
 	Clock.pause()
 	history_document.push_move(_arg["move"])
 	history_state.push_back(chessboard.state.get_zobrist())
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_speak(Chess.get_move_name(chessboard.state, _arg["move"]), Setting.get_value("voice"), 50, 1, 1, 0, true)
 	if premove_state_machine.current_state == "stop":
 		premove_state_machine.change_state.call_deferred("start")
 	state_machine.state_signal_connect(chessboard.animation_finished, func () -> void:

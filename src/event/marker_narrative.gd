@@ -35,10 +35,6 @@ func on_start() -> void:
 			return
 		if !result:
 			return
-	var voices:PackedStringArray = DisplayServer.tts_get_voices_for_language(TranslationServer.get_locale())
-	if voices.size() == 0:
-		return
-	var voice:String = voices[0]
 	var text_translated:String = tr(text)
 	var placeholder_result:Dictionary = {}
 	for key:String in placeholder_expression:
@@ -48,4 +44,4 @@ func on_start() -> void:
 			return
 		placeholder_result[key] = result
 	text_translated = text_translated.format(placeholder_result)
-	DisplayServer.tts_speak(text_translated, voice)
+	DisplayServer.tts_speak(text_translated, Setting.get_value("voice"))

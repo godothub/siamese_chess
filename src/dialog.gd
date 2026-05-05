@@ -35,12 +35,20 @@ func _ready() -> void:
 	$texture_rect_right/label.connect("meta_clicked", clicked_selection)
 	$texture_rect_top/label.connect("meta_clicked", clicked_global_selection)
 	$texture_rect_left/label.connect("meta_clicked", clicked_global_selection)
+	$texture_rect_bottom/label.connect("meta_hover_started", hover_selection)
+	$texture_rect_right/label.connect("meta_hover_started", hover_selection)
+	$texture_rect_top/label.connect("meta_hover_started", hover_selection)
+	$texture_rect_left/label.connect("meta_hover_started", hover_selection)
 	$texture_rect_top/label.connect("mouse_entered", show_global_selection)
 	$texture_rect_top/label.connect("mouse_exited", hide_global_selection)
 	$texture_rect_left/label.connect("mouse_entered", show_global_selection.call_deferred)
 	$texture_rect_left/label.connect("mouse_exited", hide_global_selection)
 	$texture_rect_top/label_hint_left.connect("gui_input", cancel_gui_input)
+	$texture_rect_top/label_hint_left.connect("mouse_entered", hover_label.bind($texture_rect_top/label_hint_left))
+	$texture_rect_top/label_hint_right.connect("mouse_entered", hover_label.bind($texture_rect_top/label_hint_right))
 	$texture_rect_left/label_hint_up.connect("gui_input", cancel_gui_input)
+	$texture_rect_left/label_hint_up.connect("mouse_entered", hover_label.bind($texture_rect_left/label_hint_up))
+	$texture_rect_left/label_hint_down.connect("mouse_entered", hover_label.bind($texture_rect_left/label_hint_down))
 	Setting.connect("language_changed", update_dialog)
 	Setting.connect("dialog_border_changed", update_dialog)
 
@@ -77,6 +85,10 @@ func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_a
 	tween.tween_property(title_label, "text", tr(title), 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
 
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_stop()
+		DisplayServer.tts_speak(tr(_text), Setting.get_value("voice"))
+
 func push_selection(_selection:PackedStringArray, _title:String, _force_selection:bool = true, blackscreen:bool = false) -> void:
 	click_anywhere = false
 	force_selection = _force_selection
@@ -96,6 +108,8 @@ func push_selection(_selection:PackedStringArray, _title:String, _force_selectio
 	tween.tween_property(text_label, "text", text, 0)
 	tween.tween_property(title_label, "text", tr(title), 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr(_title), Setting.get_value("voice"))
 
 func show_global_selection() -> void:
 	global_selection_showing = true
@@ -150,16 +164,21 @@ func direction(axis:int) -> void:
 		on_focus.emit()
 	else:
 		select_focus += axis
-	
 	if global_selection_showing:
 		select_focus = (select_focus + global_selection.size()) % global_selection.size()
 	else:
 		select_focus = (select_focus + selection.size()) % selection.size()
 	if global_selection_showing:
 		title_label.text = selection_to_bbcode(global_selection, select_focus)
+		if Setting.get_value("text_to_speech"):
+			DisplayServer.tts_stop()
+			DisplayServer.tts_speak(tr(global_selection[select_focus]), Setting.get_value("voice"))
 	else:
 		selected = selection[select_focus]
 		text_label.text = selection_to_bbcode(selection, select_focus)
+		if Setting.get_value("text_to_speech"):
+			DisplayServer.tts_stop()
+			DisplayServer.tts_speak(tr(selection[select_focus]), Setting.get_value("voice"))
 
 func confirm() -> void:
 	if global_selection_showing:
@@ -194,6 +213,15 @@ func clicked_global_selection(_selected:String) -> void:
 			ThirdEye3D.open()
 		"SELECTION_SETTINGS":
 			Setting.open()
+
+func hover_label(label:RichTextLabel) -> void:
+	DisplayServer.tts_stop()
+	DisplayServer.tts_speak(tr(label.text), Setting.get_value("voice"))
+
+func hover_selection(_selected:String) -> void:
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_stop()
+		DisplayServer.tts_speak(tr(_selected), Setting.get_value("voice"))
 
 func selection_to_bbcode(_selection:PackedStringArray, _select_focus:int = -1) -> String:
 	var bbcode:String = ""

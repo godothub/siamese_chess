@@ -20,7 +20,7 @@ const MULTI_FINGER_RELEASE_THRESHOLD : float = 0.1
 const TAP_TIME_LIMIT     : float = 0.2
 const TAP_DISTANCE_LIMIT : float = 25.0
 
-const LONG_PRESS_TIME_THRESHOLD : float = 0.75
+const LONG_PRESS_TIME_THRESHOLD : float = 0.3
 const LONG_PRESS_DISTANCE_LIMIT : float = 25.0
 
 const SWIPE_TIME_LIMIT         : float = 0.5

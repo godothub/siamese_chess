@@ -245,6 +245,8 @@ func state_ready_in_game_move(_arg:Dictionary) -> void:
 	standard_history_document.push_move(_arg["move"])
 	standard_history_state.push_back(standard_chessboard.state.duplicate())
 	standard_history_zobrist.push_back(standard_chessboard.state.get_zobrist())
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_speak(Chess.get_move_name(standard_chessboard.state, _arg["move"]), Setting.get_value("voice"), 50, 1, 1, 0, true)
 	var rollback_event:Dictionary = standard_chessboard.execute_move(_arg["move"])
 	standard_history_event.push_back(rollback_event)
 	if Chess.get_end_type(standard_chessboard.state) != "":

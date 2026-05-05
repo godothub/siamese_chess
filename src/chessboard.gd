@@ -36,6 +36,7 @@ var fallback_piece:Dictionary = {
 	ord("p"): {"actor": load("res://scene/actor/piece_pawn_black.tscn"), "meta": {}}
 }
 
+var pointer_position_name:String = ""
 var mouse_start_position_name:String = ""
 var mouse_hold:bool = false
 var mouse_moved:bool = false
@@ -212,6 +213,29 @@ func finger_on_position(position_name:String) -> void:
 	$canvas.clear_pointer("pointer")
 	if !position_name:
 		return
+	if position_name != pointer_position_name && Setting.get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr(position_name), Setting.get_value("voice"), 50, 1, 2, 0, true)
+		if state.get_piece(Chess.name_to_x88(position_name)):
+			const map:Dictionary = {
+				ord("K"): "PIECE_WHITE_KING",
+				ord("Q"): "PIECE_WHITE_QUEEN",
+				ord("R"): "PIECE_WHITE_ROOK",
+				ord("B"): "PIECE_WHITE_BISHOP",
+				ord("N"): "PIECE_WHITE_KNIGHT",
+				ord("P"): "PIECE_WHITE_PAWN",
+				ord("k"): "PIECE_BLACK_KING",
+				ord("q"): "PIECE_BLACK_QUEEN",
+				ord("r"): "PIECE_BLACK_ROOK",
+				ord("b"): "PIECE_BLACK_BISHOP",
+				ord("n"): "PIECE_BLACK_KNIGHT",
+				ord("p"): "PIECE_BLACK_PAWN",
+				ord("#"): "PIECE_BARRIER",
+				ord("*"): "PIECE_BREAKABLE_BARRIER",
+			}
+			var piece:int = state.get_piece(Chess.name_to_x88(position_name))
+			var piece_name:String = map[piece]
+			DisplayServer.tts_speak(tr("THERE_IS_A_PIECE").format({"piece": tr(piece_name)}), Setting.get_value("voice"), 50, 1, 2, 0, false)
+	pointer_position_name = position_name
 	$canvas.draw_pointer("pointer", COLOR_POINTER, Chess.name_to_x88(position_name))
 
 func finger_up() -> void:

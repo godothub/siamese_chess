@@ -98,6 +98,7 @@ func _ready() -> void:
 	language_input.select(table.get_or_add("language", languages.keys().find(TranslationServer.get_locale())))
 	dialog_border_input.set_pressed(table.get_or_add("dialog_border", false))
 	text_to_speech_input.set_pressed(table.get_or_add("text_to_speech", false))
+	update_voice()
 	touch_gesture_input.set_pressed(table.get_or_add("touch_gesture", false))
 	relax_input.set_pressed(table.get_or_add("relax", false))
 	camera_move_speed_input.set_value(table.get_or_add("camera_move_speed", 50))
@@ -197,6 +198,8 @@ func set_language(index:int) -> void:
 	table.set("language", index)
 	TranslationServer.set_locale(languages.keys()[index])
 	language_changed.emit()
+	if table.get_or_add("text_to_speech", false):
+		update_voice()
 
 func set_dialog_border(toggled_on:bool) -> void:
 	table.set("dialog_border", toggled_on)
@@ -204,6 +207,15 @@ func set_dialog_border(toggled_on:bool) -> void:
 
 func set_text_to_speech(toggled_on:bool) -> void:
 	table.set("text_to_speech", toggled_on)
+	if toggled_on:
+		update_voice()
+
+func update_voice() -> void:
+	var voices:PackedStringArray = DisplayServer.tts_get_voices_for_language(TranslationServer.get_locale())
+	if voices.size() == 0:
+		return
+	var voice:String = voices[0]
+	table.set("voice", voice)
 
 func set_touch_gesture(toggled_on:bool) -> void:
 	table.set("touch_gesture", toggled_on)

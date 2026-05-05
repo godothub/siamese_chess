@@ -91,8 +91,6 @@ func state_input_inspect_gesture(event:InputEvent) -> void:
 		if event is InputEventSingleScreenTap:	# TODO：改为双击
 			item.button_input("accept", true)
 			item.button_input("accept", false)
-		if event is InputEventSingleScreenLongPress && Dialog.cancel_showing:
-			Dialog.on_cancel.emit()
 		elif event is InputEventMultiScreenSwipe && event.relative.angle() > -PI * 3 / 4 && event.relative.angle() < -PI / 4 && Dialog.selection.size():
 			Dialog.direction(1)
 		elif event is InputEventMultiScreenSwipe && event.relative.angle() > PI / 4 && event.relative.angle() < PI * 3 / 4:
@@ -137,7 +135,6 @@ func _physics_process(_delta:float) -> void:
 
 func _unhandled_input(event:InputEvent) -> void:
 	state_machine.input(event)
-	get_viewport().set_input_as_handled()
 
 func click_area(screen_position:Vector2) -> Area3D:
 	var from:Vector3 = $head/camera.project_ray_origin(screen_position)
