@@ -13,29 +13,19 @@ func _ready() -> void:
 	Setting.connect("dialog_border_changed", refresh_camera)
 	state_machine.name = "player"
 	state_machine.add_state("inspect", state_ready_inspect, Callable(), state_process_inspect, state_input_inspect)
-	state_machine.add_state("inspect_gesture", state_ready_inspect, Callable(), state_process_inspect, state_input_inspect_gesture)
 	state_machine.add_state("dialog", Callable(), Callable(), state_process_dialog)
 	state_machine.add_state("interface", state_ready_interface)
-	if Setting.get_value("touch_gesture"):
-		state_machine.change_state("inspect_gesture")
-	else:
-		state_machine.change_state("inspect")
+	state_machine.change_state("inspect")
 
 func on_visibility_changed() -> void:
 	if (Setting.visible || Photo.visible || ThirdEye3D.visible || Archive.visible) && state_machine.current_state != "interface":
 		state_machine.change_state("interface")
 	elif state_machine.current_state == "interface":
-		if Setting.get_value("touch_gesture"):
-			state_machine.change_state.call_deferred("inspect_gesture")
-		else:
-			state_machine.change_state.call_deferred("inspect")
+		state_machine.change_state.call_deferred("inspect")
 
 func state_ready_inspect(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(Setting.touch_gesture_changed, func () -> void:
-		if Setting.get_value("touch_gesture"):
-			state_machine.change_state.call_deferred("inspect_gesture")
-		else:
-			state_machine.change_state.call_deferred("inspect")
+		state_machine.change_state.call_deferred("inspect")
 	)
 
 	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
@@ -85,42 +75,9 @@ func state_input_inspect(event:InputEvent) -> void:
 			var pressed:bool = event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT || event is InputEventMouseMotion && (event.button_mask & MOUSE_BUTTON_MASK_LEFT)
 			current_area.emit_signal("input", self, current_area, instant, pressed, $ray_cast.get_collision_point(), $ray_cast.get_collision_normal())
 
-func state_input_inspect_gesture(event:InputEvent) -> void:
-	for item:InspectableItem in inspectable_item_list:
-		if !item.enabled:
-			continue
-		if event is InputEventSingleScreenSwipe:
-			if event.relative.angle() > -PI / 4 && event.relative.angle() < PI / 4:
-				item.button_input("right", true)
-				item.button_input("right", false)
-			if event.relative.angle() < -PI * 3 / 4 || event.relative.angle() > PI * 3 / 4:
-				item.button_input("left", true)
-				item.button_input("left", false)
-			if event.relative.angle() > -PI * 3 / 4 && event.relative.angle() < -PI / 4:
-				item.button_input("up", true)
-				item.button_input("up", false)
-			if event.relative.angle() > PI / 4 && event.relative.angle() < PI * 3 / 4:
-				item.button_input("down", true)
-				item.button_input("down", false)
-		if event is InputEventSingleScreenTap:	# TODO：改为双击
-			item.button_input("accept", true)
-			item.button_input("accept", false)
-		elif event is InputEventMultiScreenSwipe && event.relative.angle() > -PI * 3 / 4 && event.relative.angle() < -PI / 4 && Dialog.selection.size():
-			Dialog.direction(1)
-		elif event is InputEventMultiScreenSwipe && event.relative.angle() > PI / 4 && event.relative.angle() < PI * 3 / 4:
-			Dialog.show_global_selection()
-			Dialog.direction(1)
-	if event is InputEventSingleScreenLongPress:
-		current_area = click_area(event.position)
-		if is_instance_valid(current_area):
-			current_area.emit_signal("input", self, current_area, false, false, $ray_cast.get_collision_point(), $ray_cast.get_collision_normal())
-
 func state_process_dialog(_delta:float) -> void:
 	if !Dialog.block_input():
-		if Setting.get_value("touch_gesture"):
-			state_machine.change_state.call_deferred("inspect_gesture")
-		else:
-			state_machine.change_state.call_deferred("inspect")
+		state_machine.change_state.call_deferred("inspect")
 	if Input.is_action_just_pressed("ui_left") || Input.is_action_just_pressed("tab_left"):
 		Dialog.direction(-1)
 	if Input.is_action_just_pressed("ui_right") || Input.is_action_just_pressed("tab_right"):
