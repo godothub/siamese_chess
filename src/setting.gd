@@ -114,22 +114,16 @@ func _ready() -> void:
 	$texture_rect/button_close.connect("mouse_entered", read_close)
 	$texture_rect/button_close.connect("focus_entered", read_close)
 	var labels:Array = [
-		$texture_rect/label_title,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container/label_value,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container/label_value,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_value,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/label_name,
 		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container/label_value,
 		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container/label_name,
 		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container/label_value,
 		$texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/label_explain,
 		$texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/label_name,
 		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/label_explain,
@@ -140,7 +134,7 @@ func _ready() -> void:
 		$texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/label_explain,
 		$texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/label_name,
 		$texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/label_name,
-		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/label_name,
+		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/label_explain,
 		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container/label_name
 	]
 	var buttons:Array = [
@@ -190,12 +184,12 @@ func _ready() -> void:
 		iter.connect("focus_entered", hover_slider.bind(iter))
 		iter.connect("value_changed", change_slider.bind(iter))
 func open() -> void:
-	visible = true
+	show()
 	$texture_rect/tab_container.get_tab_bar().grab_focus()
 
 func close() -> void:
 	save_file()
-	visible = false
+	hide()
 
 func load_file() -> void:
 	var file:FileAccess = FileAccess.open("user://settings.json", FileAccess.READ)
