@@ -57,6 +57,7 @@ offset_right = -479.02472
 offset_bottom = -26.751999
 grow_horizontal = 2
 scale = Vector2(1.7118014, 1.7118014)
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 theme_override_font_sizes/font_size = 91
 text = "TITLE_SETTINGS"
@@ -108,6 +109,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container" unique_id=1067911891]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RELAX"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -119,6 +121,7 @@ size_flags_horizontal = 10
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container" unique_id=352134125]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RELAX_EXPLAIN"
 label_settings = SubResource("LabelSettings_g2to7")
@@ -154,6 +157,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container" unique_id=1245557422]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RESOLUTION"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -182,6 +186,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container" unique_id=1601565506]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_FULLSCREEN"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -203,6 +208,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container" unique_id=1195246724]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_FPS"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -246,6 +252,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container" unique_id=1146998594]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_VSYNC"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -274,6 +281,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container" unique_id=874908023]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_MASTER_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -281,6 +289,7 @@ label_settings = SubResource("LabelSettings_ahr6q")
 [node name="label_value" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container" unique_id=1928802745]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "0%"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -305,6 +314,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container" unique_id=1712982765]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_SFX_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -312,6 +322,7 @@ label_settings = SubResource("LabelSettings_ahr6q")
 [node name="label_value" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container" unique_id=251484677]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "0%"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -335,6 +346,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container" unique_id=73645585]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_ENV_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -342,6 +354,7 @@ label_settings = SubResource("LabelSettings_ahr6q")
 [node name="label_value" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container" unique_id=1476094605]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "0%"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -379,6 +392,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container" unique_id=746796860]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_CAMERA_MOVE_SPEED"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -386,6 +400,7 @@ label_settings = SubResource("LabelSettings_ahr6q")
 [node name="label_value" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container" unique_id=2110073987]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "0%"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -409,6 +424,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container" unique_id=339773240]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_CAMERA_ROTATE_SENSITIVE"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -416,6 +432,7 @@ label_settings = SubResource("LabelSettings_ahr6q")
 [node name="label_value" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container" unique_id=1507362058]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "0%"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -436,6 +453,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container" unique_id=2074814429]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_CAMERA_ROTATE_AXIS"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -486,6 +504,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container" unique_id=1306716495]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_LANGUAGE"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -512,6 +531,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container" unique_id=318781154]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_DIALOG_BORDER"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -523,6 +543,7 @@ size_flags_horizontal = 10
 
 [node name="label_explain" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container" unique_id=1193286053]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_DIALOG_BORDER_EXPLAIN"
 label_settings = SubResource("LabelSettings_g2to7")
@@ -543,6 +564,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container" unique_id=964531419]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_TEXT_TO_SPEECH"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -554,6 +576,7 @@ size_flags_horizontal = 10
 
 [node name="label_explain" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container" unique_id=342479593]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_TEXT_TO_SPEECH_EXPLAIN"
 label_settings = SubResource("LabelSettings_g2to7")
@@ -574,6 +597,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/h_box_container" unique_id=365151073]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_TOUCH_GESTURE"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -585,6 +609,7 @@ size_flags_horizontal = 10
 
 [node name="label_explain" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container" unique_id=743621398]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_TOUCH_GESTURE_EXPLAIN"
 label_settings = SubResource("LabelSettings_g2to7")
@@ -616,6 +641,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container" unique_id=556935244]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RESET_DOCUMENTS"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -643,6 +669,7 @@ layout_mode = 2
 
 [node name="label_name" type="Label" parent="texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container" unique_id=1604255752]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RESET_PROGRESS"
 label_settings = SubResource("LabelSettings_ahr6q")
@@ -657,6 +684,7 @@ flat = true
 
 [node name="label_explain" type="Label" parent="texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container" unique_id=1949435898]
 layout_mode = 2
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RESET_PROGRESS_EXPLAIN"
 label_settings = SubResource("LabelSettings_g2to7")

@@ -109,6 +109,86 @@ func _ready() -> void:
 	visible = false
 	set_language(table.get_or_add("language"))
 
+	$texture_rect/tab_container.connect("tab_hovered", hover_tab)
+	$texture_rect/tab_container.connect("tab_selected", selected_tab)
+	$texture_rect/button_close.connect("mouse_entered", read_close)
+	$texture_rect/button_close.connect("focus_entered", read_close)
+	var labels:Array = [
+		$texture_rect/label_title,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container/label_value,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container/label_value,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_value,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/label_name,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container/label_value,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container/label_name,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container/label_value,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/label_explain,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/label_explain,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/label_explain,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/label_name,
+		$texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/label_explain,
+		$texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/label_name,
+		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/label_name,
+		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container/label_name
+	]
+	var buttons:Array = [
+		$texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/button,
+		$texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/button
+	]
+	var check_boxes:Array = [
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/check_box,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container/check_box,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/check_box,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/check_box,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/h_box_container/check_box,
+		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container/check_box
+	]
+	var option_buttons:Array = [
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container/option_button,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/option_button,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/option_button,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/option_button
+	]
+	var sliders:Array = [
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_slider,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_slider,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_slider,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_slider,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_slider
+	]
+	
+	for iter:Label in labels:
+		iter.connect("mouse_entered", hover_label.bind(iter))
+		iter.focus_mode = Control.FOCUS_ALL
+		iter.connect("focus_entered", hover_label.bind(iter))
+	for iter:Button in buttons:
+		iter.connect("mouse_entered", hover_label.bind(iter))
+		iter.connect("focus_entered", hover_label.bind(iter))
+	for iter:CheckBox in check_boxes:
+		iter.connect("mouse_entered", hover_check_box.bind(iter))
+		iter.connect("focus_entered", hover_check_box.bind(iter))
+		iter.connect("toggled", change_check_box)
+	for iter:OptionButton in option_buttons:
+		iter.connect("mouse_entered", hover_option_button.bind(iter))
+		iter.connect("focus_entered", hover_option_button.bind(iter))
+		iter.connect("item_focused", hover_option_button_selection.bind(iter))
+		iter.connect("item_selected", selected_option_button.bind(iter))
+	for iter:Slider in sliders:
+		iter.connect("mouse_entered", hover_slider.bind(iter))
+		iter.connect("focus_entered", hover_slider.bind(iter))
+		iter.connect("value_changed", change_slider.bind(iter))
 func open() -> void:
 	visible = true
 	$texture_rect/tab_container.get_tab_bar().grab_focus()
@@ -131,6 +211,50 @@ func save_file() -> void:
 
 func get_value(key:String) -> Variant:
 	return table[key]
+
+func read_close() -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("ICON_CLOSE"), get_value("voice"), 50, 1, 1, 0, true)
+
+func hover_tab(tab:int) -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab)), get_value("voice"), 50, 1, 1, 0, true)
+
+func selected_tab(tab:int) -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("SETTINGS_TAB_SELECTED").format({"selection": tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab))}), get_value("voice"), 50, 1, 1, 0, true)
+
+func hover_label(label:Control) -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr(label.text), get_value("voice"), 50, 1, 1, 0, true)
+
+func hover_check_box(check_box:CheckBox) -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("ICON_TURN_ON") if check_box.button_pressed else tr("ICON_TURN_OFF"), get_value("voice"), 50, 1, 1, 0, true)
+
+func change_check_box(toggled:bool) -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("SETTINGS_CHECKBOX_ON") if toggled else tr("SETTINGS_CHECKBOX_OFF"), get_value("voice"), 50, 1, 1, 0, true)
+
+func hover_option_button(option_button:OptionButton) -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("SETTINGS_OPTION_BUTTON_HOVERED").format({"selection": tr(option_button.get_item_text(option_button.selected))}), get_value("voice"), 50, 1, 1, 0, true)
+
+func hover_option_button_selection(index:int, option_button:OptionButton) -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr(option_button.get_item_text(index)), get_value("voice"), 50, 1, 1, 0, true)
+
+func selected_option_button(index:int, option_button:OptionButton) -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("SETTINGS_OPTION_BUTTON_SELECTED").format({"selection": tr(option_button.get_item_text(index))}), get_value("voice"), 50, 1, 1, 0, true)
+
+func hover_slider(slider:Slider) -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("SETTINGS_SLIDER_HOVERED") % slider.value, get_value("voice"), 50, 1, 1, 0, true)
+
+func change_slider(value:float, slider:Slider) -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("SETTINGS_SLIDER_CHANGED") % value, get_value("voice"), 50, 1, 1, 0, true)
 
 func set_resolution(index:int) -> void:
 	table.set("resolution", index)

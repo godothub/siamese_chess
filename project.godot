@@ -20,6 +20,10 @@ boot_splash/stretch_mode=0
 boot_splash/use_filter=false
 config/icon="uid://gdemlmk1r3x4"
 
+[audio]
+
+general/text_to_speech=true
+
 [autoload]
 
 Archive="*res://scene/archive.tscn"
@@ -123,6 +127,10 @@ menu={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
