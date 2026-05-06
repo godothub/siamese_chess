@@ -110,6 +110,7 @@ func _ready() -> void:
 	set_language(table.get_or_add("language"))
 
 	$texture_rect/tab_container.connect("tab_hovered", hover_tab)
+	$texture_rect/tab_container.get_tab_bar().connect("focus_entered", focus_tab)
 	$texture_rect/tab_container.connect("tab_selected", selected_tab)
 	$texture_rect/button_close.connect("mouse_entered", read_close)
 	$texture_rect/button_close.connect("focus_entered", read_close)
@@ -182,7 +183,7 @@ func _ready() -> void:
 	for iter:Slider in sliders:
 		iter.connect("mouse_entered", hover_slider.bind(iter))
 		iter.connect("focus_entered", hover_slider.bind(iter))
-		iter.connect("value_changed", change_slider.bind(iter))
+		iter.connect("value_changed", change_slider)
 func open() -> void:
 	show()
 	$texture_rect/tab_container.get_tab_bar().grab_focus()
@@ -209,6 +210,10 @@ func get_value(key:String) -> Variant:
 func read_close() -> void:
 	if get_value("text_to_speech"):
 		DisplayServer.tts_speak(tr("ICON_CLOSE"), get_value("voice"), 50, 1, 1, 0, true)
+
+func focus_tab() -> void:
+	if get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr($texture_rect/tab_container.get_tab_bar().get_tab_title($texture_rect/tab_container.current_tab)), get_value("voice"), 50, 1, 1, 0, true)
 
 func hover_tab(tab:int) -> void:
 	if get_value("text_to_speech"):
@@ -246,7 +251,7 @@ func hover_slider(slider:Slider) -> void:
 	if get_value("text_to_speech"):
 		DisplayServer.tts_speak(tr("SETTINGS_SLIDER_HOVERED") % slider.value, get_value("voice"), 50, 1, 1, 0, true)
 
-func change_slider(value:float, slider:Slider) -> void:
+func change_slider(value:float) -> void:
 	if get_value("text_to_speech"):
 		DisplayServer.tts_speak(tr("SETTINGS_SLIDER_CHANGED") % value, get_value("voice"), 50, 1, 1, 0, true)
 
