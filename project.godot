@@ -36,6 +36,7 @@ Setting="*res://scene/setting.tscn"
 Photo="*uid://msaedai05yen"
 ThirdEye3D="*uid://ev40jhv8rt4p"
 TouchscreenInputManager="*uid://wa2q0lswte4p"
+Gesture="*uid://dsqxbuqwoaoqe"
 
 [debug]
 
