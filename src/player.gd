@@ -15,11 +15,20 @@ func _ready() -> void:
 	state_machine.add_state("inspect", state_ready_inspect, Callable(), state_process_inspect, state_input_inspect)
 	state_machine.add_state("inspect_gesture", state_ready_inspect, Callable(), state_process_inspect, state_input_inspect_gesture)
 	state_machine.add_state("dialog", Callable(), Callable(), state_process_dialog)
-	state_machine.add_state("stop")
+	state_machine.add_state("interface", state_ready_interface)
 	if Setting.get_value("touch_gesture"):
 		state_machine.change_state("inspect_gesture")
 	else:
 		state_machine.change_state("inspect")
+
+func on_visibility_changed() -> void:
+	if (Setting.visible || Photo.visible || ThirdEye3D.visible || Archive.visible) && state_machine.current_state != "interface":
+		state_machine.change_state("interface")
+	elif state_machine.current_state == "interface":
+		if Setting.get_value("touch_gesture"):
+			state_machine.change_state.call_deferred("inspect_gesture")
+		else:
+			state_machine.change_state.call_deferred("inspect")
 
 func state_ready_inspect(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(Setting.touch_gesture_changed, func () -> void:
@@ -28,6 +37,11 @@ func state_ready_inspect(_arg:Dictionary) -> void:
 		else:
 			state_machine.change_state.call_deferred("inspect")
 	)
+
+	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(Photo.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(Archive.visibility_changed, on_visibility_changed)
 
 func state_process_inspect(_delta:float) -> void:
 	if Dialog.block_input():
@@ -128,6 +142,12 @@ func state_process_dialog(_delta:float) -> void:
 		Dialog.cancel_focus()
 		Dialog.hide_global_selection()
 	return
+
+func state_ready_interface(_args:Dictionary) -> void:
+	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(Photo.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(Archive.visibility_changed, on_visibility_changed)
 
 func _physics_process(_delta:float) -> void:
 	$head/camera.set_rotation(Vector3(deg_to_rad(sin(Time.get_unix_time_from_system())), 0, 0))
