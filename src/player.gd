@@ -13,7 +13,7 @@ func _ready() -> void:
 	Setting.connect("dialog_border_changed", refresh_camera)
 	state_machine.name = "player"
 	state_machine.add_state("inspect", state_ready_inspect, Callable(), state_process_inspect, state_input_inspect)
-	state_machine.add_state("dialog", Callable(), Callable(), state_process_dialog)
+	state_machine.add_state("dialog", state_ready_dialog, Callable(), state_process_dialog)
 	state_machine.add_state("interface", state_ready_interface)
 	state_machine.change_state("inspect")
 
@@ -74,6 +74,12 @@ func state_input_inspect(event:InputEvent) -> void:
 			var instant:bool = event is InputEventMouseButton
 			var pressed:bool = event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT || event is InputEventMouseMotion && (event.button_mask & MOUSE_BUTTON_MASK_LEFT)
 			current_area.emit_signal("input", self, current_area, instant, pressed, $ray_cast.get_collision_point(), $ray_cast.get_collision_normal())
+
+func state_ready_dialog(_args:Dictionary) -> void:
+	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(Photo.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(Archive.visibility_changed, on_visibility_changed)
 
 func state_process_dialog(_delta:float) -> void:
 	if !Dialog.block_input():
