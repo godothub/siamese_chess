@@ -23,7 +23,8 @@ var cancel:bool = false
 func _input(event:InputEvent) -> void:
 	if !Setting.get_value("touch_gesture"):
 		return
-	get_viewport().set_input_as_handled()
+	if event is InputEventMouseButton || event is InputEventMouseMotion || event is InputEventScreenTouch || event is InputEventScreenDrag:
+		get_viewport().set_input_as_handled()
 	if event is InputEventMouseButton:
 		if event.button_index != MOUSE_BUTTON_LEFT:
 			return
