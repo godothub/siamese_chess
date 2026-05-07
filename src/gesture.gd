@@ -10,10 +10,10 @@ var start_position:Vector2 = Vector2(0, 0)
 var current_position:Vector2 = Vector2(0, 0)
 var is_hold:bool = false
 var mouse_moved:bool = true
-var is_pressed:bool = true
 var hold_timer:Timer = Timer.new()	# 超时计时用Timer对象会更好
 var double_click_timer:float = -1	# 限时计时用时间戳
-
+var is_multi_finger:bool = false
+var finger_index:Dictionary[int, bool] = {}
 var up:bool = false
 var down:bool = false
 var left:bool = false
@@ -21,6 +21,8 @@ var right:bool = false
 
 var confirm:bool = false
 var cancel:bool = false
+var select:bool = false
+var menu:bool = false
 
 func _ready() -> void:
 	add_child(hold_timer)
@@ -33,6 +35,21 @@ func _input(event:InputEvent) -> void:
 		return
 	if event is InputEventMouseButton || event is InputEventMouseMotion || event is InputEventScreenTouch || event is InputEventScreenDrag:
 		get_viewport().set_input_as_handled()
+	if event is InputEventScreenTouch:
+		if event.pressed && event.index != 0:
+			finger_index[event.index] = true
+			if finger_index.size() > 1:
+				is_hold = false
+				hold_timer.stop()
+				double_click_timer = -1
+				is_multi_finger = true
+		elif event.index != 0:
+			finger_index.erase(event.index)
+			if finger_index.size() == 0:
+				is_multi_finger = false
+				release_menu()
+				release_select()
+				release_cancel()
 	if event is InputEventMouseButton:
 		if event.button_index != MOUSE_BUTTON_LEFT:
 			return
@@ -40,15 +57,14 @@ func _input(event:InputEvent) -> void:
 			start_position = event.position
 			current_position = event.position
 			is_hold = false
-			is_pressed = true
 			mouse_moved = false
+			is_multi_finger = false
 			var current_time:float = Time.get_unix_time_from_system()
 			hold_timer.start(hold_threshold)
 			if current_time <= double_click_timer + double_click_threshold:
 				press_confirm()
 			double_click_timer = current_time
 		else:
-			is_pressed = false
 			is_hold = false
 			hold_timer.stop()
 			release_direction()
@@ -62,10 +78,17 @@ func _input(event:InputEvent) -> void:
 			mouse_moved = true
 			double_click_timer = -1
 			hold_timer.stop()
-		if !is_hold && start_position.distance_to(current_position) >= swipe_distance:
+		if !is_hold && !is_multi_finger && start_position.distance_to(current_position) >= swipe_distance:
 			press_direction(current_position - start_position)
-		if is_hold:
+		if !is_multi_finger && is_hold:
 			move_mouse.emit(event.position)
+		if is_multi_finger:
+			if event.relative.angle() > -PI * 3 / 4 && event.relative.angle() < -PI / 4:
+				press_select()
+			elif event.relative.angle() > PI / 4 && event.relative.angle() < PI * 3 / 4:
+				press_menu()
+			else:
+				press_cancel()
 
 func press_confirm() -> void:
 	confirm = true
@@ -74,6 +97,24 @@ func press_confirm() -> void:
 func release_confirm() -> void:
 	confirm = false
 	push_action("ui_accept", false)
+
+func press_cancel() -> void:
+	push_action("ui_cancel", true)
+
+func release_cancel() -> void:
+	push_action("ui_cancel", false)
+
+func press_menu() -> void:
+	push_action("menu", true)
+
+func release_menu() -> void:
+	push_action("menu", false)
+
+func press_select() -> void:
+	push_action("select", true)
+
+func release_select() -> void:
+	push_action("select", false)
 
 func press_direction(direction:Vector2) -> void:
 	direction = direction.normalized()
