@@ -19,6 +19,8 @@ var scroll_velocity:float = 0
 func _ready() -> void:
 	visible = false
 	$texture_rect/button_close.connect("pressed", close)
+	$texture_rect/button_close.connect("mouse_entered", read_title.bind("ICON_CLOSE"))
+	$texture_rect/button_close.connect("focus_entered", read_title.bind("ICON_CLOSE"))
 	$texture_rect/h_box_container/button_rename.connect("pressed", rename_pressed)
 	$texture_rect/h_box_container/button_add_empty.connect("pressed", add_empty_pressed)
 	$texture_rect/h_box_container/button_duplicate.connect("pressed", duplicate_pressed)
@@ -56,7 +58,7 @@ func update_list() -> void:
 		file_name = dir.get_next()
 
 	for iter:String in document_list:
-		var button = Button.new()
+		var button:Button = Button.new()
 		button.text = iter
 		button.flat = true
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -74,6 +76,8 @@ func update_list() -> void:
 			if !mouse_moved:
 				open_document(iter)
 		)
+		button.connect("mouse_entered", read_title.bind(iter))
+		button.connect("focus_entered", read_title.bind(iter))
 		button.connect("gui_input", button_input)
 		$texture_rect/scroll_container/v_box_container.add_child(button)
 		button_list.push_back(button)
@@ -88,6 +92,10 @@ func scroll_container_input(event:InputEvent) -> void:
 	if event is InputEventMouseMotion && (event.button_mask & MOUSE_BUTTON_MASK_LEFT) && (mouse_moved || event.global_position.distance_squared_to(mouse_move_start) > 400):
 		mouse_moved = true
 		scroll_velocity = event.relative.y
+
+func read_title(text:String) -> void:
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr(text), Setting.get_value("voice"), 50, 1, 1.2, 0, true)
 
 func open_document(filename:String) -> void:
 	if is_instance_valid(document):
