@@ -112,6 +112,7 @@ func push_selection(_selection:PackedStringArray, _title:String, _force_selectio
 		DisplayServer.tts_speak(tr(_title), Setting.get_value("voice"))
 
 func show_global_selection() -> void:
+	click_cooldown = Time.get_unix_time_from_system()
 	global_selection_showing = true
 	title_label.text = selection_to_bbcode(global_selection)
 
@@ -194,11 +195,15 @@ func cancel_focus() -> void:
 	text_label.text = selection_to_bbcode(selection)
 
 func clicked_selection(_selected:String) -> void:
+	if Time.get_unix_time_from_system() - click_cooldown < 0.3:
+		return
 	selected = _selected
 	on_select.emit(_selected)
 	next()
 
 func clicked_global_selection(_selected:String) -> void:
+	if Time.get_unix_time_from_system() - click_cooldown < 0.3:
+		return
 	match _selected:
 		"SELECTION_DOCUMENTS":
 			Archive.open()
