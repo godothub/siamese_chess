@@ -1,5 +1,7 @@
 extends Node
 
+signal move_mouse(position:Vector2)
+
 var swipe_distance:float = 100
 var double_click_threshold:float = 0.3
 var hold_threshold:float = 0.3
@@ -9,8 +11,8 @@ var current_position:Vector2 = Vector2(0, 0)
 var is_hold:bool = false
 var mouse_moved:bool = true
 var is_pressed:bool = true
-var hold_timer:float = -1
-var double_click_timer:float = -1
+var hold_timer:Timer = Timer.new()	# 超时计时用Timer对象会更好
+var double_click_timer:float = -1	# 限时计时用时间戳
 
 var up:bool = false
 var down:bool = false
@@ -19,6 +21,12 @@ var right:bool = false
 
 var confirm:bool = false
 var cancel:bool = false
+
+func _ready() -> void:
+	add_child(hold_timer)
+	hold_timer.connect("timeout", func () -> void:
+		is_hold = true
+	)
 
 func _input(event:InputEvent) -> void:
 	if !Setting.get_value("touch_gesture"):
@@ -35,13 +43,14 @@ func _input(event:InputEvent) -> void:
 			is_pressed = true
 			mouse_moved = false
 			var current_time:float = Time.get_unix_time_from_system()
-			hold_timer = current_time
+			hold_timer.start(hold_threshold)
 			if current_time <= double_click_timer + double_click_threshold:
 				press_confirm()
 			double_click_timer = current_time
 		else:
 			is_pressed = false
 			is_hold = false
+			hold_timer.stop()
 			release_direction()
 			if confirm:
 				release_confirm()
@@ -52,13 +61,11 @@ func _input(event:InputEvent) -> void:
 		if start_position.distance_squared_to(current_position) >= 25:
 			mouse_moved = true
 			double_click_timer = -1
-			hold_timer = -1
-		elif hold_timer != -1 && Time.get_unix_time_from_system() > hold_timer + hold_threshold:
-			is_hold = true
+			hold_timer.stop()
 		if !is_hold && start_position.distance_to(current_position) >= swipe_distance:
 			press_direction(current_position - start_position)
 		if is_hold:
-			move_mouse(event.position)
+			move_mouse.emit(event.position)
 
 func press_confirm() -> void:
 	confirm = true
@@ -112,12 +119,6 @@ func release_direction() -> void:
 	if down:
 		down = false
 		push_action("ui_down", false)
-
-func move_mouse(mouse_position:Vector2) -> void:
-	var event:InputEventMouseMotion = InputEventMouseMotion.new()
-	event.button_mask = 0
-	event.position = mouse_position
-	Input.parse_input_event(event)
 
 func push_action(action:String, pressed:bool) -> void:
 	var event:InputEventAction = InputEventAction.new()
