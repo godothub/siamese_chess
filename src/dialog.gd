@@ -185,6 +185,7 @@ func confirm() -> void:
 	if global_selection_showing:
 		clicked_global_selection(global_selection[select_focus])
 		hide_global_selection()
+		select_focus = -1
 		return
 	if select_focus != -1:
 		on_select.emit(selected)
