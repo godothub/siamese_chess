@@ -21,10 +21,6 @@ func _ready() -> void:
 	$texture_rect/button_close.connect("pressed", close)
 	$texture_rect/button_close.connect("mouse_entered", read_title.bind("ICON_CLOSE"))
 	$texture_rect/button_close.connect("focus_entered", read_title.bind("ICON_CLOSE"))
-	$texture_rect/h_box_container/button_rename.connect("pressed", rename_pressed)
-	$texture_rect/h_box_container/button_add_empty.connect("pressed", add_empty_pressed)
-	$texture_rect/h_box_container/button_duplicate.connect("pressed", duplicate_pressed)
-	$texture_rect/h_box_container/button_delete.connect("pressed", delete_pressed)
 	$texture_rect/scroll_container.connect("gui_input", scroll_container_input)
 	set_process(false)
 
@@ -112,38 +108,3 @@ func close() -> void:
 	$texture_rect/document_browser.close()
 	visible = false
 	set_process(false)
-
-func rename_pressed() -> void:
-	if !is_instance_valid(document):
-		return
-	var filename_splited:PackedStringArray = document.get_filename().split(".")
-	var text_input_instance:TextInput = TextInput.create_text_input_instance("重命名：", filename_splited[1])
-	add_child(text_input_instance)
-	await text_input_instance.confirmed
-	filename_splited[1] = text_input_instance.text
-	document.clear_file()
-	document.set_filename(".".join(filename_splited))
-	document.save_file()
-	update_list()
-
-func duplicate_pressed() -> void:
-	if !is_instance_valid(document):
-		return
-	var filename_splited:PackedStringArray = document.get_filename().split(".")
-	filename_splited[1] += "-dup"
-	document.set_filename(".".join(filename_splited))
-	document.save_file()
-	update_list()
-
-func delete_pressed() -> void:
-	if !is_instance_valid(document):
-		return
-	document.clear_file()
-	document.queue_free()
-	update_list()
-
-func add_empty_pressed() -> void:
-	document = Document.new()
-	document.set_filename("draft.%d.json" % Time.get_unix_time_from_system())
-	document.save_file()
-	update_list()
