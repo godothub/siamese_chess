@@ -89,6 +89,7 @@ func set_document(_document:Document) -> void:
 	zoom_local = 1
 	page = 0
 	offset = $sub_viewport_container/sub_viewport.size / 2
+	offset -= rect.size / 2
 	$margin_container_zoom/h_box_container/label.text = "%d%%" % (zoom_local * 100)
 	$margin_container_page/h_box_container/label.text = "%d/%d" % [page + 1, document.page_count()]
 	update_transform()
