@@ -108,8 +108,10 @@ func read_label(label:Label) -> void:
 		DisplayServer.tts_speak(label.text, Setting.get_value("voice"), 50, 1, 1, 0, true)
 
 func press_direction(_dir:int) -> void:
-	current_focus = current_focus.find_valid_focus_neighbor(_dir)
-	current_focus.grab_focus()
+	var next_focus:Control = current_focus.find_valid_focus_neighbor(_dir)
+	if next_focus:
+		current_focus = next_focus
+		current_focus.grab_focus()
 
 func press_confirm() -> void:
 	if Setting.get_value("text_to_speech"):
