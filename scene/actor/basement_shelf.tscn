@@ -4,9 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dd5y2wcjnmlqy" path="res://assets/model/archive_shelf.glb" id="2_hm58d"]
 [ext_resource type="PackedScene" uid="uid://blfa7tg8uh5xo" path="res://assets/model/book_stack_0.glb" id="3_d0rod"]
 [ext_resource type="PackedScene" uid="uid://bwbf0fpqspq8l" path="res://assets/model/book_tied.glb" id="4_qk4tl"]
-[ext_resource type="PackedScene" uid="uid://dtrbfbjh5ccs0" path="res://assets/model/rose.glb" id="5_d0rod"]
 [ext_resource type="PackedScene" uid="uid://324uto1yslin" path="res://assets/model/painting_frame_rect.glb" id="6_qk4tl"]
-[ext_resource type="PackedScene" uid="uid://b6l1w8csg7tim" path="res://assets/model/piece_rook.glb" id="7_bk1pv"]
 [ext_resource type="PackedScene" uid="uid://fql23rvu2hyk" path="res://assets/model/pen.glb" id="8_7cvlf"]
 [ext_resource type="PackedScene" uid="uid://bw127d1iawnv3" path="res://assets/model/radermachera_sinica.glb" id="8_tl6eo"]
 [ext_resource type="PackedScene" uid="uid://h3wcv7lnqe8x" path="res://assets/model/painting_frame_square.glb" id="10_7cvlf"]
@@ -32,9 +30,6 @@ transform = Transform3D(0.99993974, 0, -0.010978001, 0, 1, 0, 0.010978001, 0, 0.
 [node name="book_stack_1" parent="0" unique_id=814819521 instance=ExtResource("3_d0rod")]
 transform = Transform3D(0.085069075, 0.9963751, 0, -0.9963751, 0.085069075, 0, 0, 0, 1, -0.9330761, 0.27707672, 0.11804247)
 
-[node name="rose2" parent="0" unique_id=484935092 instance=ExtResource("5_d0rod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0630456, 1.7873657, 0.14359117)
-
 [node name="painting_frame_rect" parent="0" unique_id=1770360571 instance=ExtResource("6_qk4tl")]
 transform = Transform3D(1, 0, 0, 0, 0.98671716, 0.16244774, 0, -0.16244774, 0.98671716, -0.47918105, 0.2945795, 0.35950255)
 
@@ -46,9 +41,6 @@ transform = Transform3D(1.2785116, -0.2353684, 0.0031254794, -1.5090316e-09, -0.
 
 [node name="pen2_2" parent="0" unique_id=78908413 instance=ExtResource("8_7cvlf")]
 transform = Transform3D(1.2990075, 0.050783984, -0.00067458826, 1.5095328e-09, -0.017267045, -1.2998853, -0.050788462, 1.2988929, -0.01725386, -0.72932816, 0.6603303, 0.11299825)
-
-[node name="piece_rook" parent="0" unique_id=653429839 instance=ExtResource("7_bk1pv")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.91760373, 1.7676196, 0.17678988)
 
 [node name="painting_frame_rect_2" parent="0" unique_id=763012627 instance=ExtResource("6_qk4tl")]
 transform = Transform3D(1, 0, 0, 0, 0.95610553, 0.29302257, 0, -0.29302257, 0.95610553, -0.4042209, 0.2945795, 0.43269098)

@@ -201,7 +201,7 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hang_light_02" unique_id=1412143284 groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.1779907, 1.3232021)
 light_color = Color(0.75, 0.714, 0.6825, 1)
 light_energy = 0.3
 light_specular = 0.0
@@ -220,7 +220,7 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hang_light_03" unique_id=147973156 groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.0343914, 2.7385068)
 light_color = Color(0.75, 0.714, 0.6825, 1)
 light_energy = 0.3
 light_specular = 0.0
@@ -239,7 +239,7 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hang_light_04" unique_id=1379833310 groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.0343914, 2.7385068)
 light_color = Color(0.75, 0.714, 0.6825, 1)
 light_energy = 0.3
 light_specular = 0.0
