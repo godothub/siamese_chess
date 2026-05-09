@@ -86,8 +86,7 @@ func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_a
 	tween.tween_property($texture_rect_full, "visible", false, 0)
 
 	if Setting.get_value("text_to_speech"):
-		DisplayServer.tts_stop()
-		DisplayServer.tts_speak(tr(_text), Setting.get_value("voice"))
+		DisplayServer.tts_speak(tr(_text), Setting.get_value("voice"), 50, 1, 1, 0, true)
 
 func push_selection(_selection:PackedStringArray, _title:String, _force_selection:bool = true, blackscreen:bool = false) -> void:
 	click_anywhere = false
@@ -108,8 +107,6 @@ func push_selection(_selection:PackedStringArray, _title:String, _force_selectio
 	tween.tween_property(text_label, "text", text, 0)
 	tween.tween_property(title_label, "text", tr(title), 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
-	if Setting.get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr(_title), Setting.get_value("voice"))
 
 func show_global_selection() -> void:
 	click_cooldown = Time.get_unix_time_from_system()
@@ -221,13 +218,12 @@ func clicked_global_selection(_selected:String) -> void:
 			Setting.open()
 
 func hover_label(label:RichTextLabel) -> void:
-	DisplayServer.tts_stop()
-	DisplayServer.tts_speak(tr(label.text), Setting.get_value("voice"))
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr(label.text), Setting.get_value("voice"), 50, 1, 1, 0, true)
 
 func hover_selection(_selected:String) -> void:
 	if Setting.get_value("text_to_speech"):
-		DisplayServer.tts_stop()
-		DisplayServer.tts_speak(tr(_selected), Setting.get_value("voice"))
+		DisplayServer.tts_speak(tr(_selected), Setting.get_value("voice"), 50, 1, 1, 0, true)
 
 func selection_to_bbcode(_selection:PackedStringArray, _select_focus:int = -1) -> String:
 	var bbcode:String = ""
