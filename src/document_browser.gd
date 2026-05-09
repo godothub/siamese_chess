@@ -26,15 +26,21 @@ func _ready() -> void:
 
 func _physics_process(_delta:float) -> void:
 	if Input.is_action_just_pressed("ui_up"):
-		pass
+		document.press_direction(1)
 	if Input.is_action_just_pressed("ui_down"):
-		pass
-	if Input.is_action_just_pressed("ui_accept"):
-		pass
+		document.press_direction(3)
 	if Input.is_action_just_pressed("ui_left"):
-		change_page(1)
+		document.press_direction(0)
 	if Input.is_action_just_pressed("ui_right"):
+		document.press_direction(2)
+	if Input.is_action_just_pressed("ui_accept"):
+		document.press_confirm()
+	if Input.is_action_just_pressed("tab_right"):
+		change_page(1)
+	if Input.is_action_just_pressed("tab_left"):
 		change_page(-1)
+	if Input.is_action_just_pressed("ui_cancel"):
+		close()
 
 func _input(event:InputEvent) -> void:
 	if !document || !visible:
@@ -70,6 +76,7 @@ func _input(event:InputEvent) -> void:
 
 func open() -> void:
 	visible = true
+	$sub_viewport_container.grab_focus()
 	set_process_input(true)
 	set_physics_process(true)
 
