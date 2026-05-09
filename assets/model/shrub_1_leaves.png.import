@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkr6r5kdroidn"
-path.s3tc="res://.godot/imported/shrub_1_shrub_leaves2.png-ec414ffe7e4d0a543f3ea0fdeb4f396b.s3tc.ctex"
-path.etc2="res://.godot/imported/shrub_1_shrub_leaves2.png-ec414ffe7e4d0a543f3ea0fdeb4f396b.etc2.ctex"
+uid="uid://cr1h1n51st2hk"
+path.s3tc="res://.godot/imported/shrub_1_leaves.png-38b04fd5691cc4ca609e8f34566dab04.s3tc.ctex"
+path.etc2="res://.godot/imported/shrub_1_leaves.png-38b04fd5691cc4ca609e8f34566dab04.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "4f7e4ce41b360ba3442662a7b166ff74"
+"md5": "ed0072874f0059b3ba4c4c1c32aa38d1"
 }
 
 [deps]
 
-source_file="res://assets/model/shrub_1_shrub_leaves2.png"
-dest_files=["res://.godot/imported/shrub_1_shrub_leaves2.png-ec414ffe7e4d0a543f3ea0fdeb4f396b.s3tc.ctex", "res://.godot/imported/shrub_1_shrub_leaves2.png-ec414ffe7e4d0a543f3ea0fdeb4f396b.etc2.ctex"]
+source_file="res://assets/model/shrub_1_leaves.png"
+dest_files=["res://.godot/imported/shrub_1_leaves.png-38b04fd5691cc4ca609e8f34566dab04.s3tc.ctex", "res://.godot/imported/shrub_1_leaves.png-38b04fd5691cc4ca609e8f34566dab04.etc2.ctex"]
 
 [params]
 
