@@ -4,7 +4,7 @@ class_name MarkerDocument
 @export var file_path:String = "usr://archive/"
 @export var file_content:Dictionary = {"lines": []}
 @export var comment:String = ""
-@export var bit:int = 0
+@export_custom(PropertyHint.PROPERTY_HINT_FLAGS, "bitboard") var bit:int = 0
 @export var selection:String = ""
 
 func show_selection() -> String:
