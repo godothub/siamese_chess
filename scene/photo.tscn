@@ -19,6 +19,7 @@ gradient = SubResource("Gradient_uj1is")
 
 [sub_resource type="InputEventAction" id="InputEventAction_uj1is"]
 action = &"ui_cancel"
+pressed = true
 
 [sub_resource type="Shortcut" id="Shortcut_fsjox"]
 events = [SubResource("InputEventAction_uj1is")]
@@ -27,6 +28,7 @@ events = [SubResource("InputEventAction_uj1is")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_fsjox"]
 action = &"ui_accept"
+pressed = true
 
 [sub_resource type="Shortcut" id="Shortcut_fa48h"]
 events = [SubResource("InputEventAction_fsjox")]

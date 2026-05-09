@@ -15,6 +15,7 @@ var button_list:Array[Button] = []
 var mouse_move_start:Vector2 = Vector2()
 var mouse_moved:bool = false
 var scroll_velocity:float = 0
+var current_button:Button = null
 
 func _ready() -> void:
 	visible = false
@@ -22,6 +23,12 @@ func _ready() -> void:
 	$texture_rect/button_close.connect("mouse_entered", read_title.bind("ICON_CLOSE"))
 	$texture_rect/button_close.connect("focus_entered", read_title.bind("ICON_CLOSE"))
 	$texture_rect/scroll_container.connect("gui_input", scroll_container_input)
+	$texture_rect/document_browser.connect("hidden", func () -> void:
+		if current_button:
+			current_button.grab_focus()
+		else:
+			$texture_rect/button_close.grab_focus()
+	)
 	set_process(false)
 
 func _process(_delta:float) -> void:
@@ -70,6 +77,7 @@ func update_list() -> void:
 		button.mouse_filter = Control.MOUSE_FILTER_PASS
 		button.connect("pressed", func () -> void:
 			if !mouse_moved:
+				current_button = button
 				open_document(iter)
 		)
 		button.connect("mouse_entered", read_title.bind(iter))

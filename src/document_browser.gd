@@ -82,6 +82,7 @@ func open() -> void:
 
 func close() -> void:
 	visible = false
+	$sub_viewport_container.release_focus()
 	set_process_input(false)
 	set_physics_process(false)
 

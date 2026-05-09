@@ -4,6 +4,7 @@ signal move_mouse(position:Vector2)
 
 var swipe_distance:float = 100
 var double_click_threshold:float = 0.3
+var double_click_range:float = 200
 var hold_threshold:float = 0.3
 
 var start_position:Vector2 = Vector2(0, 0)
@@ -62,7 +63,7 @@ func _input(event:InputEvent) -> void:
 			mouse_moved = false
 			var current_time:float = Time.get_unix_time_from_system()
 			hold_timer.start(hold_threshold)
-			if start_position.distance_to(current_position) < 25 && current_time <= double_click_timer + double_click_threshold:
+			if start_position.distance_to(current_position) < double_click_range && current_time <= double_click_timer + double_click_threshold:
 				press_confirm()
 				hold_timer.stop()
 				is_hold = false
@@ -183,4 +184,6 @@ func push_action(action:String, pressed:bool) -> void:
 	var event:InputEventAction = InputEventAction.new()
 	event.action = action
 	event.pressed = pressed
+	event.event_index = -1
+	event.device = 0
 	Input.parse_input_event(event)
