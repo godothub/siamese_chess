@@ -99,9 +99,9 @@ func open_document(filename:String) -> void:
 	filename = filename.get_file()
 	var filename_splited:PackedStringArray = filename.split(".")	# 模板.名称.json
 	document = load(template_list[filename_splited[0]]).instantiate()
+	$texture_rect/document_browser.set_document(document)
 	document.set_filename(filename)
 	document.load_file()
-	$texture_rect/document_browser.set_document(document)
 	$texture_rect/document_browser.open()
 
 func close() -> void:

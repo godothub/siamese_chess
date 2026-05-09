@@ -34,6 +34,9 @@ theme_override_constants/margin_bottom = 50
 [node name="item_list" type="ItemList" parent="sprite_chessboard/margin_container" unique_id=1627887153]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_a2xtl")
+allow_reselect = true
+allow_search = false
+wraparound_items = false
 max_columns = 8
 same_column_width = true
-fixed_column_width = 124
+fixed_icon_size = Vector2i(124, 124)

@@ -15,6 +15,8 @@ func _ready() -> void:
 	super._ready()
 	standard_history_document.set_filename("history.match_with_yulan.json")
 	standard_history_document.load_file()
+	add_child(standard_history_document)
+	standard_history_document.hide()
 	Ambient.change_environment_sound(load("res://assets/audio/52645__kstein1__white-noise.wav"))
 	var cheshire_by:int = get_meta("by")
 	var cheshire_instance:Actor = load("res://scene/actor/cheshire.tscn").instantiate()
@@ -383,7 +385,6 @@ func state_ready_in_game_extra_move(_arg:Dictionary) -> void:
 	Dialog.push_selection(decision_list, "HINT_EXTRA_MOVE", true, true)
 
 func state_ready_result(_arg:Dictionary) -> void:
-	standard_history_document.save_file()
 	match Chess.get_end_type(standard_chessboard.state):
 		"checkmate_black":
 			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "", true, true)
@@ -398,6 +399,7 @@ func state_ready_result(_arg:Dictionary) -> void:
 	standard_state_machine.state_signal_connect(Dialog.on_next, standard_state_machine.change_state.bind("end"))
 
 func state_ready_end(_arg:Dictionary) -> void:
+	standard_history_document.save_file()
 	$player.force_set_camera($camera)
 	$chessboard/pieces/cheshire.play_animation("battle_idle")
 	$chessboard/pieces/cheshire.set_position($chessboard.name_to_vector3("e3"))
