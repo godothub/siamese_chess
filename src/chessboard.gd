@@ -191,7 +191,7 @@ func tap_position(position_name:String, down:bool = true) -> void:
 		if down:
 			selection_down.emit.call_deferred(selected)
 			get_tree().create_timer(0.3).timeout.connect(func () -> void:
-				if (mouse_hold || button_input_hold) && !mouse_moved && !button_input_moved:
+				if mouse_hold && !mouse_moved || button_input_hold && !button_input_moved:
 					selection_hold.emit.call_deferred(selected)
 			)
 		else:

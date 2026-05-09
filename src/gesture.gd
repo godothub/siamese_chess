@@ -28,6 +28,10 @@ func _ready() -> void:
 	add_child(hold_timer)
 	hold_timer.connect("timeout", func () -> void:
 		is_hold = true
+		if is_multi_finger:
+			press_cancel()
+		else:
+			move_mouse.emit(start_position)
 	)
 
 func _input(event:InputEvent) -> void:
@@ -39,8 +43,6 @@ func _input(event:InputEvent) -> void:
 		if event.pressed && event.index != 0:
 			finger_index[event.index] = true
 			if finger_index.size() > 1:
-				is_hold = false
-				hold_timer.stop()
 				double_click_timer = -1
 				is_multi_finger = true
 		elif event.index != 0:
@@ -50,19 +52,21 @@ func _input(event:InputEvent) -> void:
 				release_menu()
 				release_select()
 				release_cancel()
+				release_tab()
 	if event is InputEventMouseButton:
 		if event.button_index != MOUSE_BUTTON_LEFT:
 			return
 		if event.pressed:
-			start_position = event.position
 			current_position = event.position
 			is_hold = false
 			mouse_moved = false
-			is_multi_finger = false
 			var current_time:float = Time.get_unix_time_from_system()
 			hold_timer.start(hold_threshold)
-			if current_time <= double_click_timer + double_click_threshold:
+			if start_position.distance_to(current_position) < 25 && current_time <= double_click_timer + double_click_threshold:
 				press_confirm()
+				hold_timer.stop()
+				is_hold = false
+			start_position = event.position
 			double_click_timer = current_time
 		else:
 			is_hold = false
@@ -83,12 +87,16 @@ func _input(event:InputEvent) -> void:
 		if !is_multi_finger && is_hold:
 			move_mouse.emit(event.position)
 		if is_multi_finger:
-			if event.relative.angle() > -PI * 3 / 4 && event.relative.angle() < -PI / 4:
+			var angle:float = event.relative.angle()
+			if angle > -PI * 3 / 4 && angle < -PI / 4:
 				press_select()
-			elif event.relative.angle() > PI / 4 && event.relative.angle() < PI * 3 / 4:
+			elif angle > PI / 4 && angle < PI * 3 / 4:
 				press_menu()
+			elif angle > -PI / 4 && angle < PI / 4:
+				press_tab(1)
 			else:
-				press_cancel()
+				press_tab(-1)
+				
 
 func press_confirm() -> void:
 	confirm = true
@@ -160,6 +168,16 @@ func release_direction() -> void:
 	if down:
 		down = false
 		push_action("ui_down", false)
+
+func press_tab(dir:int) -> void:
+	if dir == 1:
+		push_action("tab_right", true)
+	else:
+		push_action("tab_left", true)
+
+func release_tab() -> void:
+	push_action("tab_right", false)
+	push_action("tab_left", false)
 
 func push_action(action:String, pressed:bool) -> void:
 	var event:InputEventAction = InputEventAction.new()
