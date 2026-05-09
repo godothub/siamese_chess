@@ -24,6 +24,8 @@ var state_machine:StateMachine = null
 var premove_state_machine:StateMachine = null
 
 func _ready() -> void:
+	add_child(history_document)
+	history_document.hide()
 	player_all = ord("A") if player_group == 0 else ord("a")
 	player_king = ord("K") if player_group == 0 else ord("k")
 	enemy_all = ord("a") if player_group == 0 else ord("A")
@@ -35,7 +37,7 @@ func _ready() -> void:
 	history_document.set_filename("history." + name + ".json")
 	history_document.load_file()
 
-	var state = State.new()
+	var state:State = State.new()
 	chessboard.set_state(state)
 	player.add_inspectable_item(chessboard)
 	for node:Node in get_children():

@@ -1,7 +1,8 @@
-extends Node3D
+extends RefCounted
 class_name StateMachine
 
 signal state_changed(state:String)
+var name:String = ""
 var current_state:String = ""
 var last_state:String = ""
 var state_list:Dictionary = {}
@@ -37,7 +38,6 @@ func change_state(next_state:String, arg:Dictionary = {}) -> void:
 	print(name + ":" + current_state)
 	if last_state && state_list[last_state]["exit"].is_valid():
 		state_list[last_state]["exit"].call()
-	set_physics_process(state_list[current_state]["process"].is_valid())
 	mutex.unlock()
 	if state_list[current_state]["ready"].is_valid():
 		state_list[current_state]["ready"].call(arg)
