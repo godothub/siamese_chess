@@ -1,5 +1,9 @@
 [gd_resource type="Theme" format=3 uid="uid://d32bwe36vwxip"]
 
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_5x3i2"]
+
 [resource]
 Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 22
+Label/fonts/font = ExtResource("1_5x3i2")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)

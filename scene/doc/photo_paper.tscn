@@ -2,8 +2,15 @@
 
 [ext_resource type="Script" uid="uid://clo5nevnw2rlk" path="res://src/doc/photo_paper.gd" id="1_7fpme"]
 
-[node name="photo_paper" type="Node2D" unique_id=579878372]
+[node name="photo_paper" type="Panel" unique_id=1389246608]
+physics_interpolation_mode = 0
 script = ExtResource("1_7fpme")
 metadata/_custom_type_script = "uid://yldiqj24uchh"
 
-[node name="sprite_2d" type="Sprite2D" parent="." unique_id=943027423]
+[node name="sprite_2d" type="TextureRect" parent="." unique_id=1569406675]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

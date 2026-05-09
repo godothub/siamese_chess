@@ -3,10 +3,20 @@
 [ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/doc/document.gd" id="1_8bfrn"]
 [ext_resource type="Texture2D" uid="uid://dts7elg3ioqy4" path="res://assets/texture/chess_movements.png" id="1_d6c5a"]
 
-[node name="chess_movement" type="Node2D" unique_id=424632159]
+[node name="chess_movement" type="Panel" unique_id=1317284453]
+physics_interpolation_mode = 0
+offset_right = 917.0
+offset_bottom = 648.0
 script = ExtResource("1_8bfrn")
 metadata/_custom_type_script = "uid://yldiqj24uchh"
 
-[node name="sprite_2d" type="Sprite2D" parent="." unique_id=1257358361]
-scale = Vector2(0.24, 0.24)
+[node name="sprite_2d" type="TextureRect" parent="." unique_id=8288066]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_d6c5a")
+expand_mode = 3
+stretch_mode = 5

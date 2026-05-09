@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cvkn4b0pkklap" path="res://src/doc/printed_paper.gd" id="1_wvpc7"]
 
-[node name="printed_paper" type="Node2D" unique_id=579878372]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5frh7"]
+
+[node name="printed_paper" type="Panel" unique_id=1541001119]
+physics_interpolation_mode = 0
+custom_minimum_size = Vector2(504, 673)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5frh7")
 script = ExtResource("1_wvpc7")
 metadata/_custom_type_script = "uid://yldiqj24uchh"

@@ -10,15 +10,19 @@ colors = PackedColorArray(0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_bw0j0"]
 gradient = SubResource("Gradient_w5kv4")
 
-[node name="welcome" type="Node2D" unique_id=1484973461]
+[node name="welcome" type="Panel" unique_id=370912840]
+physics_interpolation_mode = 0
+custom_minimum_size = Vector2(504, 673)
 script = ExtResource("1_bih3g")
 metadata/_custom_type_script = "uid://yldiqj24uchh"
 
 [node name="texture_rect" type="TextureRect" parent="." unique_id=1636202968]
-offset_left = -252.0
-offset_top = -366.0
-offset_right = 252.0
-offset_bottom = 307.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("GradientTexture1D_bw0j0")
 
 [node name="rich_text_label" type="RichTextLabel" parent="texture_rect" unique_id=1545919967]

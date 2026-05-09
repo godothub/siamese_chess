@@ -30,9 +30,6 @@ func dict() -> Dictionary:
 	data["notable"] = data_arr
 	return data
 
-func get_rect() -> Rect2:
-	return Rect2(-552 / 2, -780 / 2, 552, 780)
-
 func click(_click_position:Vector2) -> void:
 	pass
 

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmol3qei3ywb" path="res://src/doc/notable.gd" id="1_dnblf"]
 
-[node name="draft" type="Node2D" unique_id=2511551]
+[node name="draft" type="Panel" unique_id=1609636765]
+physics_interpolation_mode = 0
 script = ExtResource("1_dnblf")
 metadata/_custom_type_script = "uid://yldiqj24uchh"

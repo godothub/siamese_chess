@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://b7bd7gor6auwu" path="res://src/doc/model.gd" id="1_36njv"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_36njv"]
-viewport_path = NodePath("sub_viewport")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_36njv"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -22,25 +21,41 @@ fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 1.0
 
-[node name="model" type="Node2D" unique_id=1712911378]
+[node name="model" type="Panel" unique_id=1077691121]
+custom_minimum_size = Vector2(1024, 1024)
 script = ExtResource("1_36njv")
+metadata/_custom_type_script = "uid://yldiqj24uchh"
 
-[node name="sprite_2d" type="Sprite2D" parent="." unique_id=592815335]
+[node name="sprite_2d" type="TextureRect" parent="." unique_id=349237995]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("ViewportTexture_36njv")
 
-[node name="sub_viewport" type="SubViewport" parent="." unique_id=17345409]
+[node name="sub_viewport_container" type="SubViewportContainer" parent="sprite_2d" unique_id=959752069]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="sub_viewport" type="SubViewport" parent="sprite_2d/sub_viewport_container" unique_id=17345409]
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(1028, 1028)
 render_target_update_mode = 4
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="sub_viewport" unique_id=1200064168]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="sprite_2d/sub_viewport_container/sub_viewport" unique_id=1200064168]
 environment = SubResource("Environment_mi8yu")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="sub_viewport" unique_id=5504033]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="sprite_2d/sub_viewport_container/sub_viewport" unique_id=5504033]
 transform = Transform3D(0.936434, -0.303841, 0.175422, 0, 0.5, 0.866025, -0.350845, -0.810975, 0.468217, 0, 0, 0)
 shadow_enabled = true
 
-[node name="camera_3d" type="Camera3D" parent="sub_viewport" unique_id=325277294]
+[node name="camera_3d" type="Camera3D" parent="sprite_2d/sub_viewport_container/sub_viewport" unique_id=325277294]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.052541316, 0.437)
 current = true

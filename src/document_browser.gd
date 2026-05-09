@@ -22,6 +22,19 @@ func _ready() -> void:
 	$margin_container_page/h_box_container/button_prev.connect("pressed", change_page.bind(-1))
 	$margin_container_page/h_box_container/button_next.connect("pressed", change_page.bind(+1))
 	set_process_input(false)
+	set_physics_process(false)
+
+func _physics_process(_delta:float) -> void:
+	if Input.is_action_just_pressed("ui_up"):
+		pass
+	if Input.is_action_just_pressed("ui_down"):
+		pass
+	if Input.is_action_just_pressed("ui_accept"):
+		pass
+	if Input.is_action_just_pressed("ui_left"):
+		change_page(1)
+	if Input.is_action_just_pressed("ui_right"):
+		change_page(-1)
 
 func _input(event:InputEvent) -> void:
 	if !document || !visible:
@@ -52,19 +65,24 @@ func _input(event:InputEvent) -> void:
 		elif event.button_mask & MOUSE_BUTTON_MASK_RIGHT:
 			document.cancel_dragging()
 			document.erase(actual_position)
+		else:
+			$sub_viewport_container/sub_viewport.push_input(event)
 
 func open() -> void:
 	visible = true
 	set_process_input(true)
+	set_physics_process(true)
 
 func close() -> void:
 	visible = false
 	set_process_input(false)
+	set_physics_process(false)
 
 func set_document(_document:Document) -> void:
 	if is_instance_valid(document):
 		$sub_viewport_container/sub_viewport.remove_child(document)
 	document = _document
+	$sub_viewport_container/sub_viewport.add_child(document)
 	var rect:Rect2 = document.get_rect()
 	zoom_mapped = min($sub_viewport_container/sub_viewport.size.x / rect.size.x, $sub_viewport_container/sub_viewport.size.y / rect.size.y)
 	zoom = sqrt((zoom_mapped - 0.1) / 0.95) * 2
@@ -73,7 +91,6 @@ func set_document(_document:Document) -> void:
 	offset = $sub_viewport_container/sub_viewport.size / 2
 	$margin_container_zoom/h_box_container/label.text = "%d%%" % (zoom_local * 100)
 	$margin_container_page/h_box_container/label.text = "%d/%d" % [page + 1, document.page_count()]
-	$sub_viewport_container/sub_viewport.add_child(document)
 	update_transform()
 
 func update_transform() -> void:

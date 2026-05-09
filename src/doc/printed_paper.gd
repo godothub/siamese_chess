@@ -35,9 +35,6 @@ func dict() -> Dictionary:
 	data["printed"] = data_arr
 	return data
 
-func get_rect() -> Rect2:
-	return super.get_rect()
-
 func new_page() -> void:
 	super.new_page()
 	var page:PrintedPage = PrintedPage.new()

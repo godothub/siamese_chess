@@ -1,4 +1,4 @@
-extends  Notable
+extends Notable
 
 class PhotoPage extends RefCounted:
 	var image:Image = Image.new()
@@ -30,9 +30,6 @@ func dict() -> Dictionary:
 func set_image(_image:Image) -> void:
 	current_page_instance.image = _image
 	$sprite_2d.texture = ImageTexture.create_from_image(current_page_instance.image)
-
-func get_rect() -> Rect2:
-	return $sprite_2d.get_rect() * $sprite_2d.transform
 
 func new_page() -> void:
 	super.new_page()

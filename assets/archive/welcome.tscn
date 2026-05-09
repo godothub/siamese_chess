@@ -18,15 +18,19 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_toenx"]
 gradient = SubResource("Gradient_bw0j0")
 
-[node name="welcome" type="Node2D" unique_id=1484973461]
+[node name="welcome" type="Panel" unique_id=144903324]
+physics_interpolation_mode = 0
+custom_minimum_size = Vector2(504, 673)
 script = ExtResource("1_ol3uf")
 metadata/_custom_type_script = "uid://yldiqj24uchh"
 
 [node name="texture_rect" type="TextureRect" parent="." unique_id=1636202968]
-offset_left = -252.0
-offset_top = -366.0
-offset_right = 252.0
-offset_bottom = 307.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("GradientTexture1D_bw0j0")
 
 [node name="rich_text_label" type="RichTextLabel" parent="texture_rect" unique_id=1545919967]
@@ -39,8 +43,10 @@ theme_override_fonts/normal_font = ExtResource("2_bw0j0")
 bbcode_enabled = true
 text = "[font_size=40][center]SiameseChess[/center][/font_size]"
 
-[node name="texture_rect_2" type="TextureRect" parent="." unique_id=2120816657]
-offset_left = -128.0
-offset_right = 128.0
-offset_bottom = 3.0
+[node name="texture_rect_2" type="TextureRect" parent="texture_rect" unique_id=2120816657]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 366.0
+offset_right = 380.0
+offset_bottom = 369.0
 texture = SubResource("GradientTexture1D_toenx")

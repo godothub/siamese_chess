@@ -1,4 +1,4 @@
-extends Node2D
+extends Panel
 class_name ChessboardFlat
 
 var piece_path:Dictionary = {
@@ -19,26 +19,21 @@ var piece_path:Dictionary = {
 }
 
 var state:State = null
-var upper_left:Vector2 = Vector2(52, 52)
-var pieces:Array[Sprite2D] = []
+@onready var item_list:ItemList = $sprite_chessboard/margin_container/item_list
 
 func draw() -> void:
-	for iter:Sprite2D in pieces:
-		iter.queue_free()
-	pieces.clear()
+	item_list.clear()
+	for i:int in 64:
+		item_list.add_icon_item(null, false)
 	var piece_position:PackedInt32Array = state.get_all_pieces()
 	for by:int in piece_position:
 		var by_piece:int = state.get_piece(by)
 		if !piece_path.has(String.chr(by_piece)):
 			continue
 		var piece_texture:Texture = load(piece_path[String.chr(by_piece)])
-		var piece_instance:Sprite2D = Sprite2D.new()
-		piece_instance.position = upper_left + Vector2(by % 16, by / 16) * 128
-		piece_instance.texture = piece_texture
-		piece_instance.centered = false
-		pieces.push_back(piece_instance)
-		add_child(piece_instance)
+		item_list.set_item_icon(Chess.x88_to_c64(by), piece_texture)
 
 func set_state(_state:State) -> void:
 	state = _state.duplicate()
-	draw()
+	if is_inside_tree():
+		draw()

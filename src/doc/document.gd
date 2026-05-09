@@ -1,4 +1,4 @@
-extends Node2D
+extends Panel
 class_name Document
 # 文档分为模板和实例
 # 实例包含了文件名称和变量
@@ -36,9 +36,6 @@ func set_filename(_filename:String) -> void:
 
 func get_filename() -> String:
 	return filename
-
-func get_rect() -> Rect2:
-	return Rect2(-552 / 2, -780 / 2, 552, 780)
 
 func click(_click_position:Vector2) -> void:
 	pass
