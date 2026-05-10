@@ -4,6 +4,7 @@
 
 [node name="photo_paper" type="Panel" unique_id=1389246608]
 physics_interpolation_mode = 0
+custom_minimum_size = Vector2(1152, 648)
 script = ExtResource("1_7fpme")
 metadata/_custom_type_script = "uid://yldiqj24uchh"
 
