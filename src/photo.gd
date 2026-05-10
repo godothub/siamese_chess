@@ -18,6 +18,7 @@ func _ready() -> void:
 	button_shot.connect("pressed", capture)
 	sub_viewport_container.connect("gui_input", sub_viewport_container_gui_input)
 	slider.connect("value_changed", zoom_camera)
+	set_physics_process(false)
 
 func _physics_process(_delta:float) -> void:
 	var vision_look_at:Vector2 = Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
@@ -29,6 +30,10 @@ func _physics_process(_delta:float) -> void:
 		zoom_camera(slider.value + _delta * Setting.get_value("camera_move_speed"))
 	if zoom_minus.button_pressed || Input.is_action_pressed("tab_left"):
 		zoom_camera(slider.value - _delta * Setting.get_value("camera_move_speed"))
+	if Input.is_action_just_pressed("ui_cancel"):
+		close()
+	if Input.is_action_just_pressed("ui_accept"):
+		capture()
 
 func sub_viewport_container_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseMotion:

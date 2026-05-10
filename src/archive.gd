@@ -29,14 +29,16 @@ func _ready() -> void:
 		else:
 			$texture_rect/button_close.grab_focus()
 	)
-	set_process(false)
+	set_physics_process(false)
 
-func _process(_delta:float) -> void:
+func _physics_process(_delta:float) -> void:
 	$texture_rect/scroll_container.scroll_vertical -= scroll_velocity
 	scroll_velocity = max(0, abs(scroll_velocity) - 1) if scroll_velocity > 0 else -max(0, abs(scroll_velocity) - 1)
+	if Input.is_action_just_pressed("ui_cancel") && !$texture_rect/document_browser.visible:
+		close()
 
 func open() -> void:
-	set_process(true)
+	set_physics_process(true)
 	$texture_rect/button_close.grab_focus()
 	document = null
 	visible = true
@@ -115,4 +117,4 @@ func open_document(filename:String) -> void:
 func close() -> void:
 	$texture_rect/document_browser.close()
 	visible = false
-	set_process(false)
+	set_physics_process(false)

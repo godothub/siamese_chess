@@ -184,12 +184,19 @@ func _ready() -> void:
 		iter.connect("mouse_entered", hover_slider.bind(iter))
 		iter.connect("focus_entered", hover_slider.bind(iter))
 		iter.connect("value_changed", change_slider)
+
+func _physics_process(_delta:float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		close()
+
 func open() -> void:
 	show()
+	set_physics_process(true)
 	$texture_rect/tab_container.get_tab_bar().grab_focus()
 
 func close() -> void:
 	save_file()
+	set_physics_process(false)
 	hide()
 
 func load_file() -> void:

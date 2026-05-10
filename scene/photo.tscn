@@ -17,13 +17,6 @@ gradient = SubResource("Gradient_uj1is")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uj1is"]
 
-[sub_resource type="InputEventAction" id="InputEventAction_uj1is"]
-action = &"ui_cancel"
-pressed = true
-
-[sub_resource type="Shortcut" id="Shortcut_fsjox"]
-events = [SubResource("InputEventAction_uj1is")]
-
 [sub_resource type="Shortcut" id="Shortcut_uj1is"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_fsjox"]
@@ -76,7 +69,6 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uxrgg")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_w3k4a")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_uj1is")
-shortcut = SubResource("Shortcut_fsjox")
 text = ""
 
 [node name="margin_container" type="MarginContainer" parent="texture_rect/h_box_container" unique_id=1453437168]
