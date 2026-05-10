@@ -64,6 +64,7 @@ class Chess : public godot::Object
 		static bool is_check(const godot::Ref<State> &_state, int _group);
 		static bool is_blocked(const godot::Ref<State> &_state, int _from, int _to);
 		static bool is_enemy(const godot::Ref<State> &_state, int _from, int _to);
+		static int64_t get_attack(const godot::Ref<State> &_state, int _group);
 		static bool is_en_passant(const godot::Ref<State> &_state, int _from, int _to);
 		static godot::PackedInt32Array generate_premove(const godot::Ref<State> &_state, int _group);
 		static godot::PackedInt32Array generate_move(const godot::Ref<State> &_state, int _group);
@@ -120,7 +121,7 @@ class Chess : public godot::Object
 		static int64_t diag_a8h1_attacks[64][256];
 		static int64_t horse_attacks[64];
 		static int64_t king_attacks[64];
-		static int64_t pawn_attacks[64][2];	//游戏特殊原因，兵会被设定为八种方向
+		static int64_t pawn_attacks[64][2];
 		const static int directions_diagonal[4];
 		const static int directions_straight[4];
 		const static int directions_eight_way[8];

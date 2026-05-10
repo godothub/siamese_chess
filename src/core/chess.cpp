@@ -1144,87 +1144,7 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 		enemy_king_mask |= Chess::mask(Chess::x88_to_c64(_state->get_king_passant() - 1));
 		enemy_king_mask |= Chess::mask(Chess::x88_to_c64(_state->get_king_passant() + 1));
 	}
-	
-	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? WHITE : BLACK); !iter.end(); iter.next())
-	{
-		int from = iter.pos();
-		int from_c64 = Chess::x88_to_c64(from);
-		int from_piece = iter.piece();
-		if ((from_piece & 95) == 'P')
-		{
-			if (pawn_attacks[from_c64][_group] & enemy_king_mask)
-			{
-				
-				int last_diag_45 = !((from - 1) & 0x88) ? from_c64 - 1 : (!((from - 16) & 0x88) ? from_c64 - 8 : 63);
-				uint64_t wall_45 = Chess::bit_rotate_45(_state->get_bit('+'));
-				uint64_t can_walk_45 = diag_a1h8_wall[from_c64][(wall_45 >> Chess::rotate_45_shift(last_diag_45)) & Chess::rotate_45_length_mask(last_diag_45)];
-				uint64_t wall_315 = Chess::bit_rotate_315(_state->get_bit('+'));
-				uint64_t can_walk_315 = diag_a8h1_wall[from_c64][(wall_315 >> Chess::rotate_315_shift(from_c64)) & Chess::rotate_315_length_mask(from_c64)];
-				return (can_walk_45 | can_walk_315) & enemy_king_mask;
-			}
-			continue;
-		}
-		if ((from_piece & 95) == 'K')
-		{
-			if ((king_attacks[from_c64] & enemy_king_mask))
-			{
-				uint64_t wall_file = Chess::bit_rotate_90(_state->get_bit('-'));
-				uint64_t can_walk_file = file_wall[from_c64][(wall_file >> Chess::rotate_90_shift(from_c64)) & 0xFF];
-				uint64_t wall_rank = _state->get_bit('|');
-				uint64_t can_walk_rank = rank_wall[from_c64][(wall_rank >> Chess::rotate_0_shift(from_c64)) & 0xFF];
-				int last_diag_45 = !((from - 1) & 0x88) ? from_c64 - 1 : (!((from - 16) & 0x88) ? from_c64 - 8 : 63);
-				uint64_t wall_45 = Chess::bit_rotate_45(_state->get_bit('+'));
-				uint64_t can_walk_45 = diag_a1h8_wall[from_c64][(wall_45 >> Chess::rotate_45_shift(last_diag_45)) & Chess::rotate_45_length_mask(last_diag_45)];
-				uint64_t wall_315 = Chess::bit_rotate_315(_state->get_bit('+'));
-				uint64_t can_walk_315 = diag_a8h1_wall[from_c64][(wall_315 >> Chess::rotate_315_shift(from_c64)) & Chess::rotate_315_length_mask(from_c64)];
-				return (can_walk_file | can_walk_rank | can_walk_45 | can_walk_315) & enemy_king_mask;
-			}
-			continue;
-		}
-		if ((from_piece & 95) == 'N')
-		{
-			if (horse_attacks[from_c64] & enemy_king_mask)
-			{
-				return true;
-			}
-			continue;
-		}
-		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'B')
-		{
-			int last_diag_45 = !((from - 1) & 0x88) ? from_c64 - 1 : (!((from - 16) & 0x88) ? from_c64 - 8 : 63);
-			uint64_t wall_45 = Chess::bit_rotate_45(_state->get_bit('+'));
-			uint64_t can_walk_45 = diag_a1h8_wall[from_c64][(wall_45 >> Chess::rotate_45_shift(last_diag_45)) & Chess::rotate_45_length_mask(last_diag_45)];
-			uint64_t wall_315 = Chess::bit_rotate_315(_state->get_bit('+'));
-			uint64_t can_walk_315 = diag_a8h1_wall[from_c64][(wall_315 >> Chess::rotate_315_shift(from_c64)) & Chess::rotate_315_length_mask(from_c64)];
-			uint64_t occupied = _state->get_bit(ALL_PIECE);
-			uint64_t occupied_rotate_45 = bit_rotate_45(occupied);
-			uint64_t occupied_rotate_315 = bit_rotate_315(occupied);
-			int64_t diag_a1h8 = (occupied_rotate_45 >> Chess::rotate_45_shift(from_c64)) & Chess::rotate_45_length_mask(from_c64);
-			int64_t diag_a8h1 = (occupied_rotate_315 >> Chess::rotate_315_shift(from_c64)) & Chess::rotate_315_length_mask(from_c64);
-			int64_t bishop_attacks = (diag_a1h8_attacks[from_c64][diag_a1h8] & can_walk_45) | (diag_a8h1_attacks[from_c64][diag_a8h1] & can_walk_315);
-			if (bishop_attacks & enemy_king_mask)
-			{
-				return true;
-			}
-		}
-		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'R')
-		{
-			uint64_t wall_file = Chess::bit_rotate_90(_state->get_bit('-'));
-			uint64_t can_walk_file = file_wall[from_c64][(wall_file >> Chess::rotate_90_shift(from_c64)) & 0xFF];
-			uint64_t wall_rank = _state->get_bit('|');
-			uint64_t can_walk_rank = rank_wall[from_c64][(wall_rank >> Chess::rotate_0_shift(from_c64)) & 0xFF];
-			uint64_t occupied = _state->get_bit(ALL_PIECE);
-			uint64_t occupied_rotate_90 = bit_rotate_90(occupied);
-			int64_t rank = (occupied >> Chess::rotate_0_shift(from_c64)) & 255;
-			int64_t file = (occupied_rotate_90 >> Chess::rotate_90_shift(from_c64)) & 255;
-			int64_t rook_attacks = (rank_attacks[from_c64][rank] & can_walk_rank) | (file_attacks[from_c64][file] & can_walk_file);
-			if (rook_attacks & enemy_king_mask)
-			{
-				return true;
-			}
-		}
-	}
-	return false;
+	return get_attack(_state, _group) & enemy_king_mask;
 }
 
 bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to)
@@ -1298,6 +1218,79 @@ bool Chess::is_enemy(const godot::Ref<State> &_state, int _from, int _to)
 	DEV_ASSERT(!(_from & 0x88));
 	DEV_ASSERT(!(_to & 0x88));
 	return _state->has_piece(_to) && (!Chess::is_same_group(_state->get_piece(_from), _state->get_piece(_to)) || _state->get_piece(_to) == '*');
+}
+
+int64_t Chess::get_attack(const godot::Ref<State> &_state, int _group)
+{
+	DEV_ASSERT(_state.is_valid());
+	DEV_ASSERT(_group == 0 || _group == 1);
+	uint64_t attack_mask = 0;
+	
+	for (State::PieceIterator iter = _state->piece_iterator_begin(_group == 0 ? WHITE : BLACK); !iter.end(); iter.next())
+	{
+		int from = iter.pos();
+		int from_c64 = Chess::x88_to_c64(from);
+		int from_piece = iter.piece();
+		if ((from_piece & 95) == 'P')
+		{
+			int last_diag_45 = !((from - 1) & 0x88) ? from_c64 - 1 : (!((from - 16) & 0x88) ? from_c64 - 8 : 63);
+			uint64_t wall_45 = Chess::bit_rotate_45(_state->get_bit('+'));
+			uint64_t can_walk_45 = diag_a1h8_wall[from_c64][(wall_45 >> Chess::rotate_45_shift(last_diag_45)) & Chess::rotate_45_length_mask(last_diag_45)];
+			uint64_t wall_315 = Chess::bit_rotate_315(_state->get_bit('+'));
+			uint64_t can_walk_315 = diag_a8h1_wall[from_c64][(wall_315 >> Chess::rotate_315_shift(from_c64)) & Chess::rotate_315_length_mask(from_c64)];
+			attack_mask |= (can_walk_45 | can_walk_315) & pawn_attacks[from_c64][_group];
+			continue;
+		}
+		if ((from_piece & 95) == 'K')
+		{
+			uint64_t wall_file = Chess::bit_rotate_90(_state->get_bit('-'));
+			uint64_t can_walk_file = file_wall[from_c64][(wall_file >> Chess::rotate_90_shift(from_c64)) & 0xFF];
+			uint64_t wall_rank = _state->get_bit('|');
+			uint64_t can_walk_rank = rank_wall[from_c64][(wall_rank >> Chess::rotate_0_shift(from_c64)) & 0xFF];
+			int last_diag_45 = !((from - 1) & 0x88) ? from_c64 - 1 : (!((from - 16) & 0x88) ? from_c64 - 8 : 63);
+			uint64_t wall_45 = Chess::bit_rotate_45(_state->get_bit('+'));
+			uint64_t can_walk_45 = diag_a1h8_wall[from_c64][(wall_45 >> Chess::rotate_45_shift(last_diag_45)) & Chess::rotate_45_length_mask(last_diag_45)];
+			uint64_t wall_315 = Chess::bit_rotate_315(_state->get_bit('+'));
+			uint64_t can_walk_315 = diag_a8h1_wall[from_c64][(wall_315 >> Chess::rotate_315_shift(from_c64)) & Chess::rotate_315_length_mask(from_c64)];
+			attack_mask |= (can_walk_file | can_walk_rank | can_walk_45 | can_walk_315) & king_attacks[from_c64];
+			continue;
+		}
+		if ((from_piece & 95) == 'N')
+		{
+			attack_mask |= horse_attacks[from_c64];
+			continue;
+		}
+		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'B')
+		{
+			int last_diag_45 = !((from - 1) & 0x88) ? from_c64 - 1 : (!((from - 16) & 0x88) ? from_c64 - 8 : 63);
+			uint64_t wall_45 = Chess::bit_rotate_45(_state->get_bit('+'));
+			uint64_t can_walk_45 = diag_a1h8_wall[from_c64][(wall_45 >> Chess::rotate_45_shift(last_diag_45)) & Chess::rotate_45_length_mask(last_diag_45)];
+			uint64_t wall_315 = Chess::bit_rotate_315(_state->get_bit('+'));
+			uint64_t can_walk_315 = diag_a8h1_wall[from_c64][(wall_315 >> Chess::rotate_315_shift(from_c64)) & Chess::rotate_315_length_mask(from_c64)];
+			uint64_t occupied = _state->get_bit(ALL_PIECE);
+			uint64_t occupied_rotate_45 = bit_rotate_45(occupied);
+			uint64_t occupied_rotate_315 = bit_rotate_315(occupied);
+			int64_t diag_a1h8 = (occupied_rotate_45 >> Chess::rotate_45_shift(from_c64)) & Chess::rotate_45_length_mask(from_c64);
+			int64_t diag_a8h1 = (occupied_rotate_315 >> Chess::rotate_315_shift(from_c64)) & Chess::rotate_315_length_mask(from_c64);
+			int64_t bishop_attacks = (diag_a1h8_attacks[from_c64][diag_a1h8] & can_walk_45) | (diag_a8h1_attacks[from_c64][diag_a8h1] & can_walk_315);
+			attack_mask |= bishop_attacks;
+		}
+		if ((from_piece & 95) == 'Q' || (from_piece & 95) == 'R')
+		{
+			uint64_t wall_file = Chess::bit_rotate_90(_state->get_bit('-'));
+			uint64_t can_walk_file = file_wall[from_c64][(wall_file >> Chess::rotate_90_shift(from_c64)) & 0xFF];
+			uint64_t wall_rank = _state->get_bit('|');
+			uint64_t can_walk_rank = rank_wall[from_c64][(wall_rank >> Chess::rotate_0_shift(from_c64)) & 0xFF];
+			uint64_t occupied = _state->get_bit(ALL_PIECE);
+			uint64_t occupied_rotate_90 = bit_rotate_90(occupied);
+			int64_t rank = (occupied >> Chess::rotate_0_shift(from_c64)) & 255;
+			int64_t file = (occupied_rotate_90 >> Chess::rotate_90_shift(from_c64)) & 255;
+			int64_t rook_attacks = (rank_attacks[from_c64][rank] & can_walk_rank) | (file_attacks[from_c64][file] & can_walk_file);
+			attack_mask |= rook_attacks;
+		}
+	}
+	attack_mask &= ~_state->get_bit(_group == 0 ? WHITE : BLACK);
+	return attack_mask;
 }
 
 bool Chess::is_en_passant(const godot::Ref<State> &_state, int _from, int _to)
@@ -2029,6 +2022,10 @@ void Chess::_bind_methods()
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("swap_group"), &Chess::swap_group);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("stringify"), &Chess::stringify);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_check"), &Chess::is_check);
+	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_blocked"), &Chess::is_blocked);
+	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_enemy"), &Chess::is_enemy);
+	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("get_attack"), &Chess::get_attack);
+	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_en_passant"), &Chess::is_en_passant);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("generate_premove"), &Chess::generate_premove);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("generate_move"), &Chess::generate_move);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("generate_valid_move"), &Chess::generate_valid_move);
