@@ -713,6 +713,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 		}
 	}
 	principal_move = -1;
+	transposition_table->clear();
 	searched_move.clear();
 	map_history_state.clear();
 	history_table.fill(0);

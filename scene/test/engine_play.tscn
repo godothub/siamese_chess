@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dy0ip27gmoxl7"]
+
+[ext_resource type="Script" uid="uid://c2ig03qfrprfb" path="res://src/test/engine_play.gd" id="1_xcnj0"]
+[ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="2_iyf27"]
+[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="3_o1cpi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_23ueg"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_31ryr"]
+sky_material = SubResource("ProceduralSkyMaterial_23ueg")
+
+[sub_resource type="Environment" id="Environment_htjak"]
+background_mode = 2
+sky = SubResource("Sky_31ryr")
+tonemap_mode = 2
+
+[node name="engine_play" type="Node3D" unique_id=418668532]
+script = ExtResource("1_xcnj0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2067897496]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2021610505]
+environment = SubResource("Environment_htjak")
+
+[node name="chessboard" parent="." unique_id=216840032 instance=ExtResource("2_iyf27")]
+
+[node name="camera_3d" type="Camera3D" parent="." unique_id=1041015604]
+transform = Transform3D(1, 0, 0, 0, 0.643977, 0.765045, 0, -0.765045, 0.643977, 0, 0.683727, 0.778705)
+current = true
+
+[node name="player" parent="." unique_id=142166179 instance=ExtResource("3_o1cpi")]
+transform = Transform3D(1, 0, 0, 0, 0.859808, 0.510618, 0, -0.510618, 0.859808, 0, 0.822969, 1.26042)
