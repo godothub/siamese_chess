@@ -30,22 +30,31 @@ func select_first() -> void:
 		state.get_bit(ord("N")) | state.get_bit(ord("n")) |
 		state.get_bit(ord("P")) | state.get_bit(ord("p"))
 	)
-	await chessboard.click_selection
-	select_second.call_deferred()
+	chessboard.click_selection.connect(first_selected)
 
-func select_second() -> void:
-	var from:int = chessboard.selected
+func first_selected(selected:int) -> void:
+	chessboard.click_selection.disconnect(first_selected)
+	select_second.call_deferred(selected)
+
+func select_second(from:int) -> void:
 	var move_list:PackedInt32Array = Chess.generate_valid_move(state, state.get_turn())
 	var selection:int = 0
 	for iter:int in move_list:
 		if Chess.from(iter) == from:
 			selection |= Chess.mask(Chess.x88_to_c64(Chess.to(iter)))
 	chessboard.set_square_selection(selection)
-	await chessboard.clicked
-	if Chess.mask(Chess.x88_to_c64(chessboard.selected)) & selection:
-		check_move.call_deferred(from, chessboard.selected, move_list)
-	else:
-		select_first.call_deferred()
+	chessboard.click_selection.connect(second_selected.bind(from, move_list))
+	chessboard.click_empty.connect(second_empty)
+
+func second_selected(to:int, from:int, move_list:PackedInt32Array) -> void:
+	chessboard.click_selection.disconnect(second_selected)
+	chessboard.click_empty.disconnect(second_empty)
+	check_move.call_deferred(from, to, move_list)
+
+func second_empty(_selected:int) -> void:
+	chessboard.click_selection.disconnect(second_selected)
+	chessboard.click_empty.disconnect(second_empty)
+	select_first.call_deferred()
 
 func check_move(from:int, to:int, move_list:PackedInt32Array) -> void:
 	move_list = Array(move_list).filter(func (move:int) -> bool: return from == Chess.from(move) && to == Chess.to(move))
