@@ -162,6 +162,14 @@
 
 许可：CC0
 
+### Tabletop clock ticking, speed ramp down (followup)
+
+文件：assets/audio/556991__ycbcr__tabletop-clock-ticking-speed-ramp-down-followup_*.wav
+
+版权：ycbcr
+
+许可：CC-BY 4.0
+
 ### Wind Whirl (Small Air Blow)
 
 文件：assets/audio/719560__dartekz_gamez__wind-whirl-small-air-blow.mp3
