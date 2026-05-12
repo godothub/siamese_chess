@@ -214,6 +214,7 @@ func finger_on_position(position_name:String) -> void:
 	if !position_name:
 		return
 	if position_name != pointer_position_name:
+		$audio_stream_player_3d.play()
 		Input.vibrate_handheld(50, 0.2)
 		if Setting.get_value("text_to_speech"):
 			DisplayServer.tts_speak(tr(position_name), Setting.get_value("voice"), 50, 1, 2, 0, true)
