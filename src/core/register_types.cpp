@@ -13,6 +13,7 @@
 #include "zobrist_hash.hpp"
 #include "engine.hpp"
 #include "pastor_engine.hpp"
+#include "old_pastor_engine.hpp"
 
 void initialize_siamese_module(godot::ModuleInitializationLevel p_level)
 {
@@ -28,6 +29,7 @@ void initialize_siamese_module(godot::ModuleInitializationLevel p_level)
 	godot::ClassDB::register_class<ZobristHash>();
 	godot::ClassDB::register_abstract_class<ChessEngine>();
 	godot::ClassDB::register_class<PastorEngine>();
+	godot::ClassDB::register_class<OldPastorEngine>();
 	
 	godot::Engine::get_singleton()->register_singleton("Chess", Chess::get_singleton());
 	godot::Engine::get_singleton()->register_singleton("ZobristHash", ZobristHash::get_singleton());
