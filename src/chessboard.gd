@@ -453,11 +453,11 @@ func promote_and_capture_piece_instance(from:int, to:int, piece:int) -> void:
 	var instance_to:Actor = chessboard_piece[to]
 	instance_from.capturing(get_node(Chess.x88_to_name(to)).global_position, instance_to)
 	move_piece_instance_to_backup(to)
+	chessboard_piece.erase(from)
+	chessboard_piece[to] = instance_from
 	await instance_from.animation_finished
 	instance_from.promote(get_node(Chess.x88_to_name(to)).global_position, piece)
 	await instance_from.animation_finished
-	chessboard_piece.erase(from)
-	chessboard_piece[to] = instance_from
 	animation_finished.emit.call_deferred()
 
 func en_passant_piece_instance(from:int, to:int, captured:int) -> void:
