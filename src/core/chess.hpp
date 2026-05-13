@@ -50,6 +50,7 @@ class Chess : public godot::Object
 		static int from(int _move);
 		static int to(int _move);
 		static int extra(int _move);
+		static int uci_to_move(godot::String _uci, int _group = 0);
 		static Chess *get_singleton();
 		static void _bind_methods();
 		

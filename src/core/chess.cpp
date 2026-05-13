@@ -859,6 +859,20 @@ int Chess::extra(int _move)
 	return (_move >> 16) & 0xFF;
 }
 
+int Chess::uci_to_move(godot::String _uci, int _group)
+{
+	int ans = 0;
+	godot::String from_str = _uci.substr(0, 2);
+	godot::String to_str = _uci.substr(2, 2);
+	ans = Chess::name_to_x88(from_str);
+	ans += Chess::name_to_x88(to_str) << 8;
+	if (_uci.length() == 5)
+	{
+		ans += (_group == 1 ? _uci[4] : _uci[4] - 32) << 16;
+	}
+	return ans;
+}
+
 Chess *Chess::get_singleton()
 {
 	if (!singleton)
