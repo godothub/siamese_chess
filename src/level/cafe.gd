@@ -230,10 +230,10 @@ func state_ready_in_game_opponent(_arg:Dictionary) -> void:
 	)
 	if !Setting.get_value("relax"):
 		standard_engine.set_max_depth(20)
-		standard_engine.set_quies(true)
+		standard_engine.set_quies_enabled(true)
 	else:
 		standard_engine.set_max_depth(2)
-		standard_engine.set_quies(false)
+		standard_engine.set_quies_enabled(false)
 	standard_engine.set_think_time(3)
 	standard_engine.start_search(standard_chessboard.state, 1 - standard_player_group, standard_history_state, Callable())
 	if standard_premove_state_machine.current_state == "stop":

@@ -251,11 +251,11 @@ func state_ready_enemy(_arg:Dictionary) -> void:
 	if !Setting.get_value("relax"):
 		engine.set_max_depth(engine_standard_think_depth)
 		engine.set_think_time(engine_standard_think_time)
-		engine.set_quies(false)
+		engine.set_quies_enabled(false)
 	else:
 		engine.set_max_depth(engine_relax_think_depth)
 		engine.set_think_time(engine_relax_think_time)
-		engine.set_quies(true)
+		engine.set_quies_enabled(true)
 	engine.start_search(chessboard.state, 1 - player_group, history_state, Callable())
 	if premove_state_machine.current_state == "stop":
 		premove_state_machine.change_state.call_deferred("start")

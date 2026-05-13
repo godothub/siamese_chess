@@ -25,16 +25,36 @@ func on_request_completed(_result:int, _response_code:int, _headers:PackedString
 
 func solve_puzzle(state:State, correct_answer:PackedStringArray) -> void:
 	for iter:String in correct_answer:
-		engine.set_max_depth(8)
+		engine.set_max_depth(6)
 		engine.set_think_time(INF)
+		engine.set_quies_enabled(false)
+		engine.set_transposition_table_enabled(false)
+		engine.set_principle_variation_enabled(false)
 		engine.start_search(state, state.get_turn(), [], Callable())
 		await engine.search_finished
+
 		var my_move:int = engine.get_search_result()
 		var my_move_str:String = Chess.get_move_name(state, my_move)
 		var correct_move:int = Chess.uci_to_move(iter, state.get_turn())
 		var correct_move_str:String = Chess.get_move_name(state, correct_move)
 		var my_move_state:State = state.duplicate()
 		var correct_move_state:State = state.duplicate()
+		
+		print("principal_move: ", Chess.get_move_name(state, my_move))
+		print("score: ", engine.get_score())
+		print("deepest depth: ", engine.get_deepest_depth())
+		print("deepest ply: ", engine.get_deepest_ply())
+		print("evaluated_position: ", engine.get_evaluated_position())
+		print("beta_cutoff: ", engine.get_beta_cutoff())
+		print("transposition_table_cutoff: ", engine.get_transposition_table_cutoff())
+
+		var move_score:Dictionary = engine.get_searched_move()
+		var move_score_name:Dictionary = {}
+		for key:int in move_score:
+			var key_move:String = Chess.get_move_name(state, key)
+			move_score_name[key_move] = move_score[key]
+		print("searched_move: ", move_score_name)
+		
 		Chess.apply_move(my_move_state, my_move)
 		Chess.apply_move(correct_move_state, correct_move)
 		$chessboard_flat.set_state(my_move_state)

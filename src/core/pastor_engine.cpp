@@ -585,11 +585,14 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 	}
 
 	bool found_pv = false;
-	int transposition_table_score = transposition_table->probe_hash(_state->get_zobrist(), _depth, _alpha, _beta);
-	if (_ply > 0 && transposition_table_score != 65535)
+	if (can_transposition_table)
 	{
-		transposition_table_cutoff++;
-		return transposition_table_score;
+		int transposition_table_score = transposition_table->probe_hash(_state->get_zobrist(), _depth, _alpha, _beta);
+		if (_ply > 0 && transposition_table_score != 65535)
+		{
+			transposition_table_cutoff++;
+			return transposition_table_score;
+		}
 	}
 	if (time_passed() >= think_time || interrupted)
 	{
@@ -604,7 +607,11 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 	}
 
 	unsigned char flag = ALPHA;
-	int pv_move = transposition_table->best_move(_state->get_zobrist());
+	int pv_move = -1;
+	if (can_transposition_table)
+	{
+		pv_move = transposition_table->best_move(_state->get_zobrist());
+	}
 	if (_depth > 2 && _ply > 1 && can_null)
 	{
 		int next_score = -alphabeta(_state, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, true, nullptr, nullptr, _debug_output);
@@ -631,11 +638,11 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, move_list[i]);
 		int next_score = 0;
-		if (found_pv)
+		if (found_pv && can_principle_variation)
 		{
 			next_score = -alphabeta(test_state, -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, _debug_output);
 		}
-		if (!found_pv || next_score > _alpha && next_score < _beta)
+		if (!can_principle_variation || !found_pv || next_score > _alpha && next_score < _beta)
 		{
 			next_score = -alphabeta(test_state, -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, _debug_output);
 		}
@@ -646,7 +653,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 		if (next_score >= _beta)
 		{
 			beta_cutoff++;
-			if (!_is_null)
+			if (!_is_null && can_transposition_table)
 			{
 				transposition_table->record_hash(_state->get_zobrist(), _depth, _beta, BETA, move_list[i]);
 			}
@@ -666,7 +673,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 			history_table[move_list[i] & 0xFFFF] += (1 << _depth);
 		}
 	}
-	if (!_is_null)
+	if (!_is_null && can_transposition_table)
 	{
 		transposition_table->record_hash(_state->get_zobrist(), _depth, _alpha, flag, pv_move);
 	}
@@ -783,14 +790,24 @@ void PastorEngine::set_max_depth(int _max_depth)
 	max_depth = _max_depth;
 }
 
-void PastorEngine::set_null_move(bool _can_null)
+void PastorEngine::set_null_move_enabled(bool _can_null)
 {
 	can_null = _can_null;
 }
 
-void PastorEngine::set_quies(bool _can_quies)
+void PastorEngine::set_quies_enabled(bool _can_quies)
 {
 	can_quies = _can_quies;
+}
+
+void PastorEngine::set_transposition_table_enabled(bool _can_transposition_table)
+{
+	can_transposition_table = _can_transposition_table;
+}
+
+void PastorEngine::set_principle_variation_enabled(bool _can_principle_variation)
+{
+	can_principle_variation = _can_principle_variation;
 }
 
 void PastorEngine::set_despise_factor(int _despise_factor)
@@ -826,8 +843,10 @@ void PastorEngine::_bind_methods()
 	godot::ClassDB::bind_method(godot::D_METHOD("get_searched_move"), &PastorEngine::get_searched_move);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_principal_variation"), &PastorEngine::get_principal_variation);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_max_depth"), &PastorEngine::set_max_depth);
-	godot::ClassDB::bind_method(godot::D_METHOD("set_null_move"), &PastorEngine::set_null_move);
-	godot::ClassDB::bind_method(godot::D_METHOD("set_quies"), &PastorEngine::set_quies);
+	godot::ClassDB::bind_method(godot::D_METHOD("set_null_move_enabled"), &PastorEngine::set_null_move_enabled);
+	godot::ClassDB::bind_method(godot::D_METHOD("set_transposition_table_enabled"), &PastorEngine::set_transposition_table_enabled);
+	godot::ClassDB::bind_method(godot::D_METHOD("set_principle_variation_enabled"), &PastorEngine::set_principle_variation_enabled);
+	godot::ClassDB::bind_method(godot::D_METHOD("set_quies_enabled"), &PastorEngine::set_quies_enabled);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_despise_factor"), &PastorEngine::set_despise_factor);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_think_time"), &PastorEngine::set_think_time);
 	// godot::ClassDB::bind_method(godot::D_METHOD("set_transposition_table", "transposition_table"), &PastorEngine::set_transposition_table);

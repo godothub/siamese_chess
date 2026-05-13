@@ -21,12 +21,13 @@ func _ready() -> void:
 	initial_state = state.duplicate()
 	chessboard.set_state(state.duplicate())
 	chessboard.add_default_piece_set()
-	old_pastor.set_max_depth(20)
-	old_pastor.set_quies(false)
-	old_pastor.set_think_time(5)
-	new_pastor.set_max_depth(20)
-	new_pastor.set_quies(false)
-	new_pastor.set_think_time(5)
+	old_pastor.set_max_depth(8)
+	old_pastor.set_think_time(2)
+	new_pastor.set_max_depth(8)
+	new_pastor.set_quies_enabled(false)
+	new_pastor.set_principle_variation_enabled(false)
+	new_pastor.set_transposition_table_enabled(false)
+	new_pastor.set_think_time(2)
 	play_match()
 
 func play_match() -> void:
@@ -67,6 +68,7 @@ func play_game() -> int:
 		await white_engine.search_finished
 		var move:int = white_engine.get_search_result()
 		
+		print("--white--")
 		print("principal_move: ", Chess.get_move_name(state, move))
 		print("score: ", white_engine.get_score())
 		print("deepest depth: ", white_engine.get_deepest_depth())
@@ -85,6 +87,7 @@ func play_game() -> int:
 		if Chess.get_end_type(state) != "":
 			break
 
+		print("--black--")
 		black_engine.start_search(state, state.get_turn(), [], Callable())
 		await black_engine.search_finished
 		move = black_engine.get_search_result()

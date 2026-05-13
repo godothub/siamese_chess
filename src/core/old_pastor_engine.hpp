@@ -30,7 +30,7 @@ class OldPastorEngine : public ChessEngine
 		int get_transposition_table_cutoff();
 		godot::Dictionary get_searched_move();
 		void set_max_depth(int _max_depth);
-		void set_quies(bool _can_quies);
+		void set_quies_enabled(bool _can_quies);
 		void set_despise_factor(int _despise_factor);
 		void set_think_time(double _think_time);
 		void set_transposition_table(const godot::Ref<TranspositionTable> &transposition_table);

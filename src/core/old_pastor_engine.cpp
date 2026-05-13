@@ -800,7 +800,7 @@ void OldPastorEngine::set_max_depth(int _max_depth)
 	max_depth = _max_depth;
 }
 
-void OldPastorEngine::set_quies(bool _can_quies)
+void OldPastorEngine::set_quies_enabled(bool _can_quies)
 {
 	can_quies = _can_quies;
 }
@@ -838,7 +838,7 @@ void OldPastorEngine::_bind_methods()
 	godot::ClassDB::bind_method(godot::D_METHOD("get_searched_move"), &OldPastorEngine::get_searched_move);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_principal_variation"), &OldPastorEngine::get_principal_variation);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_max_depth"), &OldPastorEngine::set_max_depth);
-	godot::ClassDB::bind_method(godot::D_METHOD("set_quies"), &OldPastorEngine::set_quies);
+	godot::ClassDB::bind_method(godot::D_METHOD("set_quies_enabled"), &OldPastorEngine::set_quies_enabled);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_despise_factor"), &OldPastorEngine::set_despise_factor);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_think_time"), &OldPastorEngine::set_think_time);
 	// godot::ClassDB::bind_method(godot::D_METHOD("set_transposition_table", "transposition_table"), &OldPastorEngine::set_transposition_table);
