@@ -14,7 +14,11 @@ grow_vertical = 2
 script = ExtResource("1_dvaev")
 
 [node name="chessboard_flat" parent="." unique_id=1576392029 instance=ExtResource("2_l76ae")]
-position = Vector2(389, 148)
+layout_mode = 0
+offset_left = 1.0
+offset_top = -236.0
+offset_right = 1126.0
+offset_bottom = 896.0
 scale = Vector2(0.329108, 0.329108)
 
 [node name="http_request" type="HTTPRequest" parent="." unique_id=165651012]

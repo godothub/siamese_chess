@@ -21,12 +21,31 @@ func on_request_completed(_result:int, _response_code:int, _headers:PackedString
 			assert(move != -1)	# 以防某种记谱形式无法识别
 		print(puzzle)	# 调试方便起见输出数据包
 		print(state.print_board())
-		await solve_puzzle(state)
+		await solve_puzzle(state, puzzle["puzzle"]["solution"])
 
-func solve_puzzle(state:State) -> void:
-	engine.set_max_depth(10)
-	engine.set_think_time(20)
-	engine.start_search(state, state.get_turn(), [], Callable())
-	await engine.search_finished
-	var text:String = Chess.get_move_name(state, engine.get_search_result())
-	print("My solution: ", text)
+func solve_puzzle(state:State, correct_answer:PackedStringArray) -> void:
+	for iter:String in correct_answer:
+		engine.set_max_depth(6)
+		engine.set_think_time(INF)
+		engine.start_search(state, state.get_turn(), [], Callable())
+		await engine.search_finished
+		var my_move:int = engine.get_search_result()
+		var my_move_str:String = Chess.get_move_name(state, my_move)
+		var correct_move:int = Chess.uci_to_move(iter, state.get_turn())
+		var correct_move_str:String = Chess.get_move_name(state, correct_move)
+		var my_move_state:State = state.duplicate()
+		var correct_move_state:State = state.duplicate()
+		Chess.apply_move(my_move_state, my_move)
+		Chess.apply_move(correct_move_state, correct_move)
+		$chessboard_flat.set_state(my_move_state)
+		if my_move != correct_move:
+			printerr("Wrong Answer, your move is: ", my_move_str)
+			await get_tree().create_timer(5).timeout
+			$chessboard_flat.set_state(correct_move_state)
+			printerr("Correct Answer is: ", my_move_str)
+			await get_tree().create_timer(5).timeout
+			state = correct_move_state
+			continue
+		print("Correct, move is: ", correct_move_str)
+		state = correct_move_state
+		await get_tree().create_timer(5).timeout
