@@ -5,7 +5,7 @@ var engine:PastorEngine = PastorEngine.new()
 
 func _ready() -> void:
 	$http_request.connect("request_completed", on_request_completed)
-	$http_request.request("https://lichess.org/api/puzzle/batch/mixed?difficulty=normal&nb=5")
+	$http_request.request("https://lichess.org/api/puzzle/batch/mixed?difficulty=easy&nb=5")
 
 func on_request_completed(_result:int, _response_code:int, _headers:PackedStringArray, _body:PackedByteArray) -> void:
 	var json:Dictionary = JSON.parse_string(_body.get_string_from_utf8())
@@ -25,7 +25,7 @@ func on_request_completed(_result:int, _response_code:int, _headers:PackedString
 
 func solve_puzzle(state:State, correct_answer:PackedStringArray) -> void:
 	for iter:String in correct_answer:
-		engine.set_max_depth(6)
+		engine.set_max_depth(8)
 		engine.set_think_time(INF)
 		engine.start_search(state, state.get_turn(), [], Callable())
 		await engine.search_finished
@@ -42,7 +42,7 @@ func solve_puzzle(state:State, correct_answer:PackedStringArray) -> void:
 			printerr("Wrong Answer, your move is: ", my_move_str)
 			await get_tree().create_timer(5).timeout
 			$chessboard_flat.set_state(correct_move_state)
-			printerr("Correct Answer is: ", my_move_str)
+			printerr("Correct Answer is: ", correct_move_str)
 			await get_tree().create_timer(5).timeout
 			state = correct_move_state
 			continue
