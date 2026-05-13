@@ -21,10 +21,12 @@ func _ready() -> void:
 	initial_state = state.duplicate()
 	chessboard.set_state(state.duplicate())
 	chessboard.add_default_piece_set()
-	old_pastor.set_max_depth(8)
-	old_pastor.set_think_time(0.1)
-	new_pastor.set_max_depth(8)
-	new_pastor.set_think_time(0.1)
+	old_pastor.set_max_depth(20)
+	old_pastor.set_quies(false)
+	old_pastor.set_think_time(5)
+	new_pastor.set_max_depth(20)
+	new_pastor.set_quies(false)
+	new_pastor.set_think_time(5)
 	play_match()
 
 func play_match() -> void:
@@ -61,16 +63,16 @@ func play_match() -> void:
 
 func play_game() -> int:
 	while Chess.get_end_type(state) == "":
-		old_pastor.start_search(state, state.get_turn(), [], Callable())
-		await old_pastor.search_finished
-		var move:int = old_pastor.get_search_result()
+		white_engine.start_search(state, state.get_turn(), [], Callable())
+		await white_engine.search_finished
+		var move:int = white_engine.get_search_result()
 		apply_move(move)
 		await get_tree().create_timer(0.1).timeout
 		if Chess.get_end_type(state) != "":
 			break
-		new_pastor.start_search(state, state.get_turn(), [], Callable())
-		await new_pastor.search_finished
-		move = new_pastor.get_search_result()
+		black_engine.start_search(state, state.get_turn(), [], Callable())
+		await black_engine.search_finished
+		move = black_engine.get_search_result()
 		apply_move(move)
 		await get_tree().create_timer(0.1).timeout
 	var result:String = Chess.get_end_type(state)
