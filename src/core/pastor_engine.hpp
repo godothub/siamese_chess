@@ -17,8 +17,7 @@ class PastorEngine : public ChessEngine
 		int compare_move(int a, int b, int best_move, int killer_1, int killer_2, const godot::Ref<State> &state);
 		int quies(const godot::Ref<State> &_state, int alpha, int beta, int _group = 0, int _ply = 0);
 		void generate_good_capture_move(godot::PackedInt32Array &output, const godot::Ref<State> &_state, int _group);
-		void all_move(const godot::Ref<State> &_state, int _depth, int _group = 0, bool _can_null = true, const godot::Callable &_debug_output = godot::Callable());
-		int alphabeta(const godot::Ref<State> &_state, int _alpha, int _beta, int _depth, int _group = 0, int _ply = 0, bool _can_null = true, bool _is_null = false, int *killer_1 = nullptr, int *killer_2 = nullptr, const godot::Callable &_debug_output = godot::Callable());
+		int alphabeta(const godot::Ref<State> &_state, int _alpha, int _beta, int _depth, int _group = 0, int _ply = 0, bool _is_null = false, int *killer_1 = nullptr, int *killer_2 = nullptr, const godot::Callable &_debug_output = godot::Callable());
 		void search(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state, const godot::Callable &_debug_output) override;
 		int get_search_result() override;
 		godot::PackedInt32Array get_principal_variation();
@@ -29,6 +28,7 @@ class PastorEngine : public ChessEngine
 		int get_beta_cutoff();
 		int get_transposition_table_cutoff();
 		void set_max_depth(int _max_depth);
+		void set_null_move(bool _can_null);
 		void set_quies(bool _can_quies);
 		void set_despise_factor(int _despise_factor);
 		void set_think_time(double _think_time);
@@ -40,11 +40,12 @@ class PastorEngine : public ChessEngine
 		godot::Ref<OpeningBook> opening_book;
 		int max_depth;
 		bool can_quies = true;
+		bool can_null = true;
 		int WIN = 50000;
 		int THRESHOLD = 60000;
 		int MAX_PLY = 50;
 		int ALTERNATIVE_THRESHOLD = 25;
-		int despise_factor = -100;
+		int despise_factor = 50;
 		double think_time;
 		int principal_move;
 		std::unordered_map<int, int> searched_move;
