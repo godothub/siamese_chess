@@ -186,6 +186,8 @@ func name_to_vector3(_position_name:String) -> Vector3:
 	return get_node(_position_name).position
 
 func tap_position(position_name:String, down:bool = true) -> void:
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_speak(position_name, Setting.get_value("voice"), 50, 1, 2, 0, true)
 	var selected:int = Chess.name_to_x88(position_name)
 	if square_selection != -1 && (Chess.mask(Chess.x88_to_c64(selected)) & square_selection):
 		if down:
@@ -214,10 +216,16 @@ func finger_on_position(position_name:String) -> void:
 	if !position_name:
 		return
 	if position_name != pointer_position_name:
-		$audio_stream_player_3d.play()
+		var by:int = Chess.name_to_x88(position_name)
+		if by % 2 == 0:
+			$audio_stream_player_tik.global_position = get_node(position_name).global_position
+			$audio_stream_player_tik.play()
+		else:
+			$audio_stream_player_tok.global_position = get_node(position_name).global_position
+			$audio_stream_player_tok.play()
+			
 		Input.vibrate_handheld(50, 0.2)
 		if Setting.get_value("text_to_speech"):
-			DisplayServer.tts_speak(tr(position_name), Setting.get_value("voice"), 50, 1, 2, 0, true)
 			if state.get_piece(Chess.name_to_x88(position_name)):
 				const map:Dictionary = {
 					ord("K"): "PIECE_WHITE_KING",
