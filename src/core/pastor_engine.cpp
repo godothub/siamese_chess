@@ -712,6 +712,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 			principal_move = iter.first;
 		}
 	}
+	acceptable_move.clear();
 	int principal_score = searched_move[principal_move];
 	int total_phase = 24;
 	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 - Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 4;
