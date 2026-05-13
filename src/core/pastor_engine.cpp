@@ -450,7 +450,7 @@ int PastorEngine::evaluate(const godot::Ref<State> &_state)
 	int score = 0;
 	int total_phase = 24;
 	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 -
-			 Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 4;
+			 Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 1;
 	phase = (phase * 256 + (total_phase / 2)) / total_phase;
 
 	for (State::PieceIterator iter = _state->piece_iterator_begin(); !iter.end(); iter.next())
@@ -532,7 +532,7 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _beta, 
 	});
 	for (int i = 0; i < move_list.size(); i++)
 	{
-		godot::Ref<State> &test_state = state_pool[_ply + 1];
+		godot::Ref<State> &test_state = state_pool[_ply];
 		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, move_list[i]);
 		int test_score = -quies(test_state, -_beta, -_alpha, 1 - _group, _ply + 1);
@@ -715,7 +715,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	acceptable_move.clear();
 	int principal_score = searched_move[principal_move];
 	int total_phase = 24;
-	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 - Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 4;
+	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 - Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 1;
 	phase = (phase * 256 + (total_phase / 2)) / total_phase;
 	int alternative_threshold = std::max(32 - phase, 0);
 	for (std::pair<int, int> iter : searched_move)
