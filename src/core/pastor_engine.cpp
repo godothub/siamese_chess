@@ -504,6 +504,11 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _beta, 
 		beta_cutoff++;
 		return _beta;
 	}
+	int big_delta = 975;
+	if (score_relative < _alpha - big_delta)
+	{
+		return _alpha;
+	}
 	if (score_relative > _alpha)
 	{
 		_alpha = score_relative;
@@ -535,6 +540,10 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _beta, 
 		{
 			beta_cutoff++;
 			return _beta;
+		}
+		if (score_relative < _alpha - big_delta)
+		{
+			return _alpha;
 		}
 		if (test_score > _alpha)
 		{
@@ -703,20 +712,22 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 			principal_move = iter.first;
 		}
 	}
-}
-
-int PastorEngine::get_search_result()
-{
 	int principal_score = searched_move[principal_move];
-	std::vector<int> acceptable_move;
+	int total_phase = 24;
+	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 - Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 4;
+	phase = (phase * 256 + (total_phase / 2)) / total_phase;
+	int alternative_threshold = std::max(32 - phase, 0);
 	for (std::pair<int, int> iter : searched_move)
 	{
-		if (abs(iter.second - principal_score) <= ALTERNATIVE_THRESHOLD)
+		if (abs(iter.second - principal_score) <= alternative_threshold)
 		{
 			acceptable_move.push_back(iter.first);
 		}
 	}
-	acceptable_move.push_back(principal_move);	//提高引擎一选的概率
+}
+
+int PastorEngine::get_search_result()
+{
 	std::mt19937_64 rng(time(nullptr));
 	return acceptable_move[rng() % acceptable_move.size()];
 }
@@ -754,6 +765,16 @@ int PastorEngine::get_beta_cutoff()
 int PastorEngine::get_transposition_table_cutoff()
 {
 	return transposition_table_cutoff;
+}
+
+godot::Dictionary PastorEngine::get_searched_move()
+{
+	godot::Dictionary output;
+	for (std::pair<int, int> iter : searched_move)
+	{
+		output[iter.first] = iter.second;
+	}
+	return output;
 }
 
 void PastorEngine::set_max_depth(int _max_depth)
@@ -801,6 +822,7 @@ void PastorEngine::_bind_methods()
 	godot::ClassDB::bind_method(godot::D_METHOD("get_evaluated_position"), &PastorEngine::get_evaluated_position);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_beta_cutoff"), &PastorEngine::get_beta_cutoff);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_transposition_table_cutoff"), &PastorEngine::get_transposition_table_cutoff);
+	godot::ClassDB::bind_method(godot::D_METHOD("get_searched_move"), &PastorEngine::get_searched_move);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_principal_variation"), &PastorEngine::get_principal_variation);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_max_depth"), &PastorEngine::set_max_depth);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_null_move"), &PastorEngine::set_null_move);

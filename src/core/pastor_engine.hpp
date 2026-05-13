@@ -27,6 +27,7 @@ class PastorEngine : public ChessEngine
 		int get_evaluated_position();
 		int get_beta_cutoff();
 		int get_transposition_table_cutoff();
+		godot::Dictionary get_searched_move();
 		void set_max_depth(int _max_depth);
 		void set_null_move(bool _can_null);
 		void set_quies(bool _can_quies);
@@ -44,11 +45,11 @@ class PastorEngine : public ChessEngine
 		int WIN = 50000;
 		int THRESHOLD = 60000;
 		int MAX_PLY = 50;
-		int ALTERNATIVE_THRESHOLD = 25;
 		int despise_factor = 50;
 		double think_time;
 		int principal_move;
 		std::unordered_map<int, int> searched_move;
+		std::vector<int> acceptable_move;
 		godot::PackedInt32Array principal_variation;
 
 		//调试用

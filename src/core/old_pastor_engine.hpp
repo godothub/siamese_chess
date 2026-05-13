@@ -28,6 +28,7 @@ class OldPastorEngine : public ChessEngine
 		int get_evaluated_position();
 		int get_beta_cutoff();
 		int get_transposition_table_cutoff();
+		godot::Dictionary get_searched_move();
 		void set_max_depth(int _max_depth);
 		void set_quies(bool _can_quies);
 		void set_despise_factor(int _despise_factor);

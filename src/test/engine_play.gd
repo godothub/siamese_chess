@@ -66,13 +66,41 @@ func play_game() -> int:
 		white_engine.start_search(state, state.get_turn(), [], Callable())
 		await white_engine.search_finished
 		var move:int = white_engine.get_search_result()
+		
+		print("principal_move: ", Chess.get_move_name(state, move))
+		print("score: ", white_engine.get_score())
+		print("deepest depth: ", white_engine.get_deepest_depth())
+		print("deepest ply: ", white_engine.get_deepest_ply())
+		print("evaluated_position: ", white_engine.get_evaluated_position())
+		print("beta_cutoff: ", white_engine.get_beta_cutoff())
+		print("transposition_table_cutoff: ", white_engine.get_transposition_table_cutoff())
+		var move_score:Dictionary = white_engine.get_searched_move()
+		var move_score_name:Dictionary = {}
+		for key:int in move_score:
+			var key_move:String = Chess.get_move_name(state, key)
+			move_score_name[key_move] = move_score[key]
+		print("searched_move: ", move_score_name)
 		apply_move(move)
 		await get_tree().create_timer(0.1).timeout
 		if Chess.get_end_type(state) != "":
 			break
+
 		black_engine.start_search(state, state.get_turn(), [], Callable())
 		await black_engine.search_finished
 		move = black_engine.get_search_result()
+		print("principal_move: ", Chess.get_move_name(state, move))
+		print("score: ", black_engine.get_score())
+		print("deepest depth: ", black_engine.get_deepest_depth())
+		print("deepest ply: ", black_engine.get_deepest_ply())
+		print("evaluated_position: ", black_engine.get_evaluated_position())
+		print("beta_cutoff: ", black_engine.get_beta_cutoff())
+		print("transposition_table_cutoff: ", black_engine.get_transposition_table_cutoff())
+		move_score = black_engine.get_searched_move()
+		move_score_name = {}
+		for key:int in move_score:
+			var key_move:String = Chess.get_move_name(state, key)
+			move_score_name[key_move] = move_score[key]
+		print("searched_move: ", move_score_name)
 		apply_move(move)
 		await get_tree().create_timer(0.1).timeout
 	var result:String = Chess.get_end_type(state)

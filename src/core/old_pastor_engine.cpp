@@ -785,6 +785,16 @@ int OldPastorEngine::get_transposition_table_cutoff()
 	return transposition_table_cutoff;
 }
 
+godot::Dictionary OldPastorEngine::get_searched_move()
+{
+	godot::Dictionary output;
+	for (std::pair<int, int> iter : searched_move)
+	{
+		output[iter.first] = iter.second;
+	}
+	return output;
+}
+
 void OldPastorEngine::set_max_depth(int _max_depth)
 {
 	max_depth = _max_depth;
@@ -825,6 +835,7 @@ void OldPastorEngine::_bind_methods()
 	godot::ClassDB::bind_method(godot::D_METHOD("get_evaluated_position"), &OldPastorEngine::get_evaluated_position);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_beta_cutoff"), &OldPastorEngine::get_beta_cutoff);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_transposition_table_cutoff"), &OldPastorEngine::get_transposition_table_cutoff);
+	godot::ClassDB::bind_method(godot::D_METHOD("get_searched_move"), &OldPastorEngine::get_searched_move);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_principal_variation"), &OldPastorEngine::get_principal_variation);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_max_depth"), &OldPastorEngine::set_max_depth);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_quies"), &OldPastorEngine::set_quies);
