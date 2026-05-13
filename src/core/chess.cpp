@@ -1484,11 +1484,11 @@ void Chess::_internal_generate_move(godot::PackedInt32Array &output, const godot
 					{
 						if (_group == 0 && _from == Chess::h1() && to == Chess::e1() && (_state->get_castle() & 8) || _group == 1 && _from == Chess::h8() && to == Chess::e8() && (_state->get_castle() & 2))
 						{
-							output.push_back(Chess::create(to, _group == 0 ? Chess::g1() : Chess::g8(), 'K'));
+							output.push_back(Chess::create(to, _group == 0 ? Chess::g1() : Chess::g8(), 0));
 						}
 						else if (_group == 0 && _from == Chess::a1() && to == Chess::e1() && (_state->get_castle() & 4) || _group == 1 && _from == Chess::a8() && to == Chess::e8() && (_state->get_castle() & 1))
 						{
-							output.push_back(Chess::create(to, _group == 0 ? Chess::c1() : Chess::c8(), 'Q'));
+							output.push_back(Chess::create(to, _group == 0 ? Chess::c1() : Chess::c8(), 0));
 						}
 					}
 					break;
@@ -1805,7 +1805,7 @@ void Chess::apply_move(const godot::Ref<State> &_state, int _move)
 		{
 			_state->set_castle(_state->get_castle() & 12);
 		}
-		if (extra == 'K' || extra == 'Q')
+		if (abs(to - from) == 2)
 		{
 			if (to == Chess::g1())
 			{
@@ -1918,7 +1918,7 @@ godot::Dictionary Chess::apply_move_custom(const godot::Ref<State> &_state, int 
 	}
 	if ((from_piece & 95) == 'K')
 	{
-		if (extra)
+		if (abs(to - from) == 2)
 		{
 			if (to == Chess::g1())
 			{
@@ -2012,6 +2012,7 @@ void Chess::_bind_methods()
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("from"), &Chess::from);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("to"), &Chess::to);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("extra"), &Chess::extra);
+	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("uci_to_move"), &Chess::uci_to_move);
 
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("get_end_type"), &Chess::get_end_type);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("parse"), &Chess::parse);
