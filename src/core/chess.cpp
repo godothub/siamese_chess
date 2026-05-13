@@ -1623,13 +1623,13 @@ godot::String Chess::get_move_name(const godot::Ref<State> &_state, int move)
 	int from_piece = _state->get_piece(from);
 	int extra = Chess::extra(move);
 	int group = Chess::group(from_piece);
-	if ((from_piece & 95) == 'K' && extra)
+	if ((from_piece & 95) == 'K' && abs(to - from) == 2)
 	{
-		if ((extra & 95) == 'K')
+		if (to - from == 2)
 		{
 			return "O-O";
 		}
-		else if ((extra & 95) == 'Q')
+		else if (to - from == -2)
 		{
 			return "O-O-O";
 		}
