@@ -452,7 +452,6 @@ int PastorEngine::evaluate(const godot::Ref<State> &_state)
 	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 -
 			 Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 1;
 	phase = (phase * 256 + (total_phase / 2)) / total_phase;
-
 	for (State::PieceIterator iter = _state->piece_iterator_begin(); !iter.end(); iter.next())
 	{
 		int by = iter.pos();
@@ -624,11 +623,10 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 	std::sort(move_list.ptrw(), move_list.ptrw() + move_list.size(), [this, &_state, pv_move, killer_1, killer_2](int a, int b) -> bool{
 		return compare_move(a, b, pv_move,  killer_1 ? *killer_1 : -1, killer_2 ? *killer_2 : -1, _state);
 	});
-	int move_count = move_list.size();
 	int next_killer_1 = -1;
 	int next_killer_2 = -1;
 	pv_move = move_list[0];
-	for (int i = 0; i < move_count; i++)
+	for (int i = 0; i < move_list.size(); i++)
 	{
 		if (_debug_output.is_valid())
 		{

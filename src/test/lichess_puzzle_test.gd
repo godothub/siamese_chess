@@ -28,6 +28,7 @@ func solve_puzzle(state:State, correct_answer:PackedStringArray) -> void:
 		engine.set_max_depth(6)
 		engine.set_think_time(INF)
 		engine.set_quies_enabled(false)
+		engine.set_null_move_enabled(false)
 		engine.set_transposition_table_enabled(false)
 		engine.set_principle_variation_enabled(false)
 		engine.start_search(state, state.get_turn(), [], Callable())
