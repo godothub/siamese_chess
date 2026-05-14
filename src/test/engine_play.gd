@@ -24,9 +24,6 @@ func _ready() -> void:
 	old_pastor.set_max_depth(8)
 	old_pastor.set_think_time(2)
 	new_pastor.set_max_depth(8)
-	new_pastor.set_quies_enabled(false)
-	new_pastor.set_principle_variation_enabled(false)
-	new_pastor.set_transposition_table_enabled(false)
 	new_pastor.set_think_time(2)
 	play_match()
 
