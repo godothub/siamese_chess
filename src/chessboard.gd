@@ -217,7 +217,7 @@ func finger_on_position(position_name:String) -> void:
 		return
 	if position_name != pointer_position_name:
 		var by:int = Chess.name_to_x88(position_name)
-		if by % 2 == 0:
+		if (by / 16 + by % 16) % 2 == 0:
 			$audio_stream_player_tik.global_position = get_node(position_name).global_position
 			$audio_stream_player_tik.play()
 		else:
