@@ -552,7 +552,7 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _beta, 
 	return _alpha;
 }
 
-int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _beta, int _depth, int _group, int _ply, bool _is_null, int *killer_1, int *killer_2, const godot::Callable &_debug_output)
+int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _beta, int _depth, int _group, int _ply, bool _is_null, int *killer_1, int *killer_2, int alternative_threshold, const godot::Callable &_debug_output)
 {
 	godot::PackedInt32Array move_list;
 	deepest_ply = std::max(_ply, deepest_ply);
@@ -613,7 +613,7 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 	}
 	if (_depth > 2 && _ply > 1 && can_null)
 	{
-		int next_score = -alphabeta(_state, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, true, nullptr, nullptr, _debug_output);
+		int next_score = -alphabeta(_state, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, true, nullptr, nullptr, 0, _debug_output);
 		if (next_score >= _beta)
 		{
 			beta_cutoff++;
@@ -636,17 +636,21 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, move_list[i]);
 		int next_score = 0;
-		if (found_pv && can_principle_variation)
-		{
-			next_score = -alphabeta(test_state, -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, _debug_output);
-		}
-		if (!can_principle_variation || !found_pv || next_score > _alpha && next_score < _beta)
-		{
-			next_score = -alphabeta(test_state, -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, _debug_output);
-		}
 		if (_ply == 0)
 		{
+			next_score = -alphabeta(test_state, -_beta, -_alpha + alternative_threshold + 1, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, 0, _debug_output);
 			searched_move[move_list[i]] = next_score;
+		}
+		else
+		{
+			if (found_pv && can_principle_variation)
+			{
+				next_score = -alphabeta(test_state, -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, 0, _debug_output);
+			}
+			if (!can_principle_variation || !found_pv || next_score > _alpha && next_score < _beta)
+			{
+				next_score = -alphabeta(test_state, -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, 0, _debug_output);
+			}
 		}
 		if (next_score >= _beta)
 		{
@@ -680,6 +684,10 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 
 void PastorEngine::search(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state, const godot::Callable &_debug_output)
 {
+	int total_phase = 24;
+	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 - Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 1;
+	phase = (phase * 256 + (total_phase / 2)) / total_phase;
+	int alternative_threshold = std::max(32 - phase, 0);
 	deepest_ply = 0;
 	evaluated_position = 0;
 	beta_cutoff = 0;
@@ -704,7 +712,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	}
 	for (int i = 2; i <= max_depth; i += 2)
 	{
-		alphabeta(_state, -WIN, WIN, i, _group, 0, false, nullptr, nullptr, _debug_output);
+		alphabeta(_state, -WIN, WIN, i, _group, 0, false, nullptr, nullptr, alternative_threshold, _debug_output);
 		if (time_passed() >= think_time || interrupted)
 		{
 			break;
@@ -719,10 +727,6 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	}
 	acceptable_move.clear();
 	int principal_score = searched_move[principal_move];
-	int total_phase = 24;
-	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 - Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 1;
-	phase = (phase * 256 + (total_phase / 2)) / total_phase;
-	int alternative_threshold = std::max(32 - phase, 0);
 	for (std::pair<int, int> iter : searched_move)
 	{
 		if (abs(iter.second - principal_score) <= alternative_threshold)
