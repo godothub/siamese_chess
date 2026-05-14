@@ -138,6 +138,14 @@
 
 许可：CC0
 
+### Button Click
+
+文件：assets/audio/412050__eyenorth__button-click_*.wav
+
+版权：eyenorth
+
+许可：CC-BY-NC 4.0
+
 ### Digital Radio Rack Unit Button Snap 3_4
 
 文件：assets/audio/477690__joao_janz__digital-radio-rack-unit-button-snap-3_4.wav

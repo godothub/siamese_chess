@@ -125,19 +125,23 @@ func button_input(_button:String, _pressed:bool) -> void:
 			finger_on_position(Chess.x88_to_name(button_input_pointer))
 	elif _button =="accept":
 		if _pressed:
+			$audio_stream_player_click_down.play()
 			button_input_hold = true
 			button_input_moved = false
 			tap_position(Chess.x88_to_name(button_input_pointer), true)
 		elif button_input_moved:
+			$audio_stream_player_click_up.play()
 			tap_position(Chess.x88_to_name(button_input_pointer), false)
 			button_input_moved = false
 			button_input_hold = false
 		else:
+			$audio_stream_player_click_up.play()
 			button_input_hold = false
 
 func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
 	if _instant:
 		if _pressed:
+			$audio_stream_player_click_down.play()
 			finger_on_position(_to.get_name())
 			tap_position(_to.get_name(), true)
 			mouse_hold = true
@@ -145,12 +149,14 @@ func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_p
 			mouse_start_position_name = _to.get_name()
 			clicked.emit.call_deferred()
 		elif mouse_moved:
+			$audio_stream_player_click_up.play()
 			tap_position(_to.get_name(), false)
 			finger_up()
 			mouse_start_position_name = ""
 			mouse_moved = false
 			mouse_hold = false
 		else:
+			$audio_stream_player_click_up.play()
 			mouse_hold = false
 	else:
 		var position_name:String = _to.get_name()
