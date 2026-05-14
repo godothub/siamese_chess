@@ -98,6 +98,14 @@
 
 许可：CC-BY 4.0
 
+### Socket Wrench
+
+文件：assets/audio/147018__xxqmanxx__socket-wrench.wav
+
+版权：xxqmanxx
+
+许可：CC0
+
 ### analogic_dial_telephone.wav
 
 文件：assets/audio/190474__trip_sound__analogic_dial_telephone_dial_down.wav assets/audio/190474__trip_sound__analogic_dial_telephone_dial_up.wav
@@ -145,6 +153,14 @@
 版权：eyenorth
 
 许可：CC-BY-NC 4.0
+
+### film camera shutter release.wav
+
+文件：445482__caseymoura__film-camera-shutter-release
+
+版权：caseymoura
+
+许可：CC-BY 3.0
 
 ### Digital Radio Rack Unit Button Snap 3_4
 

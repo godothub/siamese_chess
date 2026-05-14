@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dljb1yngj8m5g" path="res://src/dialog.gd" id="1_up5xw"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_ow5ht"]
+[ext_resource type="AudioStream" uid="uid://bn0efi7nl4ro8" path="res://assets/audio/147018__xxqmanxx__socket-wrench.wav" id="3_ptuym"]
 
 [sub_resource type="Gradient" id="Gradient_gckm1"]
 offsets = PackedFloat32Array(0)
@@ -40,6 +41,7 @@ anchor_right = 0.18
 anchor_bottom = 1.0
 offset_left = -0.040000916
 offset_right = -0.36001587
+mouse_default_cursor_shape = 2
 theme_override_fonts/normal_font = ExtResource("2_ow5ht")
 theme_override_font_sizes/normal_font_size = 23
 bbcode_enabled = true
@@ -120,6 +122,7 @@ anchor_right = 1.0
 anchor_bottom = 0.165
 offset_bottom = 0.0799942
 grow_horizontal = 2
+mouse_default_cursor_shape = 2
 theme_override_fonts/normal_font = ExtResource("2_ow5ht")
 theme_override_font_sizes/normal_font_size = 23
 bbcode_enabled = true
@@ -194,3 +197,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture1D_up5xw")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="audio_stream_player_select" type="AudioStreamPlayer" parent="." unique_id=127484963]
+stream = ExtResource("3_ptuym")
+volume_db = -11.751

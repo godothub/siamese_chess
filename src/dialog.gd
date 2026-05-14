@@ -168,12 +168,14 @@ func direction(axis:int) -> void:
 		select_focus = (select_focus + selection.size()) % selection.size()
 	if global_selection_showing:
 		title_label.text = selection_to_bbcode(global_selection, select_focus)
+		$audio_stream_player_select.play()
 		if Setting.get_value("text_to_speech"):
 			DisplayServer.tts_stop()
 			DisplayServer.tts_speak(tr(global_selection[select_focus]), Setting.get_value("voice"))
 	else:
 		selected = selection[select_focus]
 		text_label.text = selection_to_bbcode(selection, select_focus)
+		$audio_stream_player_select.play()
 		if Setting.get_value("text_to_speech"):
 			DisplayServer.tts_stop()
 			DisplayServer.tts_speak(tr(selection[select_focus]), Setting.get_value("voice"))
@@ -218,10 +220,12 @@ func clicked_global_selection(_selected:String) -> void:
 			Setting.open()
 
 func hover_label(label:RichTextLabel) -> void:
+	$audio_stream_player_select.play()
 	if Setting.get_value("text_to_speech"):
 		DisplayServer.tts_speak(tr(label.text), Setting.get_value("voice"), 50, 1, 1, 0, true)
 
 func hover_selection(_selected:String) -> void:
+	$audio_stream_player_select.play()
 	if Setting.get_value("text_to_speech"):
 		DisplayServer.tts_speak(tr(_selected), Setting.get_value("voice"), 50, 1, 1, 0, true)
 

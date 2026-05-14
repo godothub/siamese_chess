@@ -141,6 +141,7 @@ func button_input(_button:String, _pressed:bool) -> void:
 func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
 	if _instant:
 		if _pressed:
+			$audio_stream_player_click_down.global_position = _to.global_position
 			$audio_stream_player_click_down.play()
 			finger_on_position(_to.get_name())
 			tap_position(_to.get_name(), true)
@@ -149,6 +150,7 @@ func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_p
 			mouse_start_position_name = _to.get_name()
 			clicked.emit.call_deferred()
 		elif mouse_moved:
+			$audio_stream_player_click_up.global_position = _to.global_position
 			$audio_stream_player_click_up.play()
 			tap_position(_to.get_name(), false)
 			finger_up()
@@ -156,6 +158,7 @@ func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_p
 			mouse_moved = false
 			mouse_hold = false
 		else:
+			$audio_stream_player_click_up.global_position = _to.global_position
 			$audio_stream_player_click_up.play()
 			mouse_hold = false
 	else:

@@ -69,6 +69,7 @@ func zoom_camera(_value:float) -> void:
 	camera.fov = _value
 
 func capture() -> void:
+	$audio_stream_player_shutter.play()
 	var tween:Tween = create_tween()
 	tween.tween_property(sub_viewport_container, "visible", false, 0)
 	tween.tween_callback(save_photo)

@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://bq5ty1txvcybm" path="res://assets/fonts/Font Awesome 7 Free-Regular-400.otf" id="1_aquyh"]
 [ext_resource type="Script" uid="uid://cj6qxacwoc51v" path="res://src/photo.gd" id="1_uxrgg"]
 [ext_resource type="Texture2D" uid="uid://dikg6r3lq8w5x" path="res://assets/texture/camera_guideline.svg" id="3_uj1is"]
+[ext_resource type="AudioStream" uid="uid://bkdiut6gmaw3m" path="res://assets/audio/445482__caseymoura__film-camera-shutter-release.wav" id="4_uj1is"]
 
 [sub_resource type="Gradient" id="Gradient_uj1is"]
 offsets = PackedFloat32Array(0)
@@ -192,3 +193,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_w3k4a")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_uj1is")
 shortcut = SubResource("Shortcut_fa48h")
 text = ""
+
+[node name="audio_stream_player_shutter" type="AudioStreamPlayer" parent="." unique_id=2008739907]
+stream = ExtResource("4_uj1is")
