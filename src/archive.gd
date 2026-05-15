@@ -100,10 +100,12 @@ func scroll_container_input(event:InputEvent) -> void:
 		scroll_velocity = event.relative.y
 
 func read_title(text:String) -> void:
+	$audio_stream_player_select.play()
 	if Setting.get_value("text_to_speech"):
 		DisplayServer.tts_speak(tr(text), Setting.get_value("voice"), 50, 1, 1.2, 0, true)
 
 func open_document(filename:String) -> void:
+	$audio_stream_player_confirm.play()
 	if is_instance_valid(document):
 		document.save_file()
 	filename = filename.get_file()
@@ -115,6 +117,7 @@ func open_document(filename:String) -> void:
 	$texture_rect/document_browser.open()
 
 func close() -> void:
+	$audio_stream_player_confirm.play()
 	$texture_rect/document_browser.close()
 	visible = false
 	set_physics_process(false)

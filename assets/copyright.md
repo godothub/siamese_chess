@@ -194,6 +194,14 @@
 
 许可：CC-BY 4.0
 
+### Keyboard, computer, mechanical, typing, individual keys, press, button, click, tap, One Keypress, spacebar_96Khz_Mono_ZoomH4n_NT5.wav
+
+文件：561658__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-one-keypress-spacebar_96khz_mono_zoomh4n_nt5.wav
+
+版权：MattRuthSound
+
+许可：CC-BY 4.0
+
 ### Wind Whirl (Small Air Blow)
 
 文件：assets/audio/719560__dartekz_gamez__wind-whirl-small-air-blow.mp3

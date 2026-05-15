@@ -7,8 +7,9 @@
 [ext_resource type="Shader" uid="uid://dd7xsr1eeq6mo" path="res://src/unmoving_plaid.gdshader" id="4_05abh"]
 [ext_resource type="Texture2D" uid="uid://h85ppsibn8xk" path="res://assets/texture/Texturelabs_Wood_256S.jpg" id="5_vxajr"]
 [ext_resource type="PackedScene" uid="uid://df443q5sl4vaj" path="res://assets/model/sofa.glb" id="6_pp1i2"]
-[ext_resource type="Texture2D" uid="uid://d15qcqdl3xuf3" path="res://assets/texture/Texturelabs_Fabric_186S.jpg" id="7_il6b2"]
+[ext_resource type="AudioStream" uid="uid://bn0efi7nl4ro8" path="res://assets/audio/147018__xxqmanxx__socket-wrench.wav" id="9_05abh"]
 [ext_resource type="PackedScene" uid="uid://crucchfeabm" path="res://scene/actor/pastor.tscn" id="9_810sp"]
+[ext_resource type="AudioStream" uid="uid://bbixsq7mcj4xx" path="res://assets/audio/561658__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-one-keypress-spacebar_96khz_mono_zoomh4n_nt5.wav" id="10_vxajr"]
 
 [sub_resource type="Gradient" id="Gradient_j3y3i"]
 offsets = PackedFloat32Array(0)
@@ -34,50 +35,6 @@ shader_parameter/scale = 1.0
 shader_parameter/hue_shift = 0.0
 shader_parameter/saturation_mult = 1.0
 shader_parameter/value_mult = 0.133
-shader_parameter/brightness_add = -0.1
-shader_parameter/contrast_mult = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ri45m"]
-render_priority = 0
-shader = ExtResource("4_05abh")
-shader_parameter/texture_albedo = ExtResource("5_vxajr")
-shader_parameter/scale = 1.0
-shader_parameter/hue_shift = 0.0
-shader_parameter/saturation_mult = 1.0
-shader_parameter/value_mult = 0.133
-shader_parameter/brightness_add = -0.1
-shader_parameter/contrast_mult = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a5ax6"]
-render_priority = 0
-shader = ExtResource("4_05abh")
-shader_parameter/texture_albedo = ExtResource("7_il6b2")
-shader_parameter/scale = 1.0
-shader_parameter/hue_shift = 0.0
-shader_parameter/saturation_mult = 0.76
-shader_parameter/value_mult = 0.77
-shader_parameter/brightness_add = -0.1
-shader_parameter/contrast_mult = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7e2yv"]
-render_priority = 0
-shader = ExtResource("4_05abh")
-shader_parameter/texture_albedo = ExtResource("5_vxajr")
-shader_parameter/scale = 1.0
-shader_parameter/hue_shift = 0.0
-shader_parameter/saturation_mult = 1.0
-shader_parameter/value_mult = 0.133
-shader_parameter/brightness_add = -0.1
-shader_parameter/contrast_mult = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fs8jp"]
-render_priority = 0
-shader = ExtResource("4_05abh")
-shader_parameter/texture_albedo = ExtResource("7_il6b2")
-shader_parameter/scale = 1.0
-shader_parameter/hue_shift = 0.0
-shader_parameter/saturation_mult = 0.76
-shader_parameter/value_mult = 0.77
 shader_parameter/brightness_add = -0.1
 shader_parameter/contrast_mult = 1.0
 
@@ -141,8 +98,8 @@ render_target_update_mode = 4
 environment = SubResource("Environment_3avyb")
 
 [node name="camera" type="Camera3D" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=211396172]
-transform = Transform3D(-4.21108e-08, 0.7114499, -0.7027369, 1.17203e-08, 0.7027369, 0.7114499, 1, 2.1723437e-08, -3.793122e-08, -0.382, 1.211, 0.027)
-fov = 63.9549
+transform = Transform3D(-4.21108e-08, 0.7114499, -0.7027369, 1.17203e-08, 0.7027369, 0.7114499, 1, 2.1723437e-08, -3.793122e-08, -0.522, 1.386, 0.027)
+fov = 90.4
 
 [node name="chessboard" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=1999765771 instance=ExtResource("2_67cuj")]
 transform = Transform3D(5.5732045e-08, 0, 0.425, 0, 0.425, 0, -0.425, 0, 5.5732045e-08, 0.004413129, 0.88436353, 0.0284882)
@@ -150,25 +107,14 @@ transform = Transform3D(5.5732045e-08, 0, 0.425, 0, 0.425, 0, -0.425, 0, 5.57320
 [node name="table_0" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=1325274477 instance=ExtResource("3_3avyb")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.0249235, 0)
 
-[node name="table_000" parent="texture_rect/sub_viewport_container/sub_viewport/table_0" index="0" unique_id=1265366848]
+[node name="table_000" parent="texture_rect/sub_viewport_container/sub_viewport/table_0" index="0" unique_id=1941210796]
 surface_material_override/0 = SubResource("ShaderMaterial_upbbp")
 
 [node name="sofa_0" parent="texture_rect/sub_viewport_container/sub_viewport/table_0" unique_id=497057507 instance=ExtResource("6_pp1i2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045349, 0, -0.90022)
 
-[node name="sofa" parent="texture_rect/sub_viewport_container/sub_viewport/table_0/sofa_0" index="0" unique_id=534597635]
-transform = Transform3D(1.78814e-07, 0, -1, 0, 1, 0, 1, 0, 1.78814e-07, 0, 0, -0.116446)
-surface_material_override/0 = SubResource("ShaderMaterial_ri45m")
-surface_material_override/1 = SubResource("ShaderMaterial_a5ax6")
-surface_material_override/2 = SubResource("ShaderMaterial_a5ax6")
-
 [node name="sofa_1" parent="texture_rect/sub_viewport_container/sub_viewport/table_0" unique_id=1354336657 instance=ExtResource("6_pp1i2")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.048802, 0, 1.09839)
-
-[node name="sofa" parent="texture_rect/sub_viewport_container/sub_viewport/table_0/sofa_1" index="0" unique_id=534597635]
-surface_material_override/0 = SubResource("ShaderMaterial_7e2yv")
-surface_material_override/1 = SubResource("ShaderMaterial_fs8jp")
-surface_material_override/2 = SubResource("ShaderMaterial_fs8jp")
 
 [node name="pastor" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=452469260 instance=ExtResource("9_810sp")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 0)
@@ -233,6 +179,12 @@ texture = SubResource("GradientTexture1D_8fiwy")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="audio_stream_player_select" type="AudioStreamPlayer" parent="." unique_id=2082200055]
+stream = ExtResource("9_05abh")
+volume_db = -11.751
+
+[node name="audio_stream_player_confirm" type="AudioStreamPlayer" parent="." unique_id=2083165634]
+stream = ExtResource("10_vxajr")
+volume_db = -11.751
+
 [editable path="texture_rect/sub_viewport_container/sub_viewport/table_0"]
-[editable path="texture_rect/sub_viewport_container/sub_viewport/table_0/sofa_0"]
-[editable path="texture_rect/sub_viewport_container/sub_viewport/table_0/sofa_1"]

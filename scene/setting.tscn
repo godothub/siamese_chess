@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://sm17i1s74xa8" path="res://src/setting.gd" id="1_ahr6q"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_xthoy"]
 [ext_resource type="FontFile" uid="uid://bq5ty1txvcybm" path="res://assets/fonts/Font Awesome 7 Free-Regular-400.otf" id="3_g2to7"]
+[ext_resource type="AudioStream" uid="uid://bn0efi7nl4ro8" path="res://assets/audio/147018__xxqmanxx__socket-wrench.wav" id="4_123qk"]
+[ext_resource type="AudioStream" uid="uid://bbixsq7mcj4xx" path="res://assets/audio/561658__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-one-keypress-spacebar_96khz_mono_zoomh4n_nt5.wav" id="5_8pksm"]
 
 [sub_resource type="Gradient" id="Gradient_j3y3i"]
 offsets = PackedFloat32Array(0)
@@ -841,3 +843,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_2wb80")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_123qk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8pksm")
 text = ""
+
+[node name="audio_stream_player_select" type="AudioStreamPlayer" parent="." unique_id=448759147]
+stream = ExtResource("4_123qk")
+volume_db = -11.751
+
+[node name="audio_stream_player_confirm" type="AudioStreamPlayer" parent="." unique_id=961387278]
+stream = ExtResource("5_8pksm")
+volume_db = -11.751

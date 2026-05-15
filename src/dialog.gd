@@ -145,6 +145,7 @@ func clear() -> void:
 	select_focus = -1
 
 func next() -> void:
+	$audio_stream_player_confirm.play()
 	text_label.text = ""
 	title_label.text = ""
 	click_anywhere = false
@@ -204,6 +205,7 @@ func clicked_selection(_selected:String) -> void:
 func clicked_global_selection(_selected:String) -> void:
 	if Time.get_unix_time_from_system() - click_cooldown < 0.3:
 		return
+	$audio_stream_player_confirm.play()
 	match _selected:
 		"SELECTION_DOCUMENTS":
 			Archive.open()

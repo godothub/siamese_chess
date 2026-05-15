@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dljb1yngj8m5g" path="res://src/dialog.gd" id="1_up5xw"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_ow5ht"]
 [ext_resource type="AudioStream" uid="uid://bn0efi7nl4ro8" path="res://assets/audio/147018__xxqmanxx__socket-wrench.wav" id="3_ptuym"]
+[ext_resource type="AudioStream" uid="uid://bbixsq7mcj4xx" path="res://assets/audio/561658__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-one-keypress-spacebar_96khz_mono_zoomh4n_nt5.wav" id="4_1a0ib"]
 
 [sub_resource type="Gradient" id="Gradient_gckm1"]
 offsets = PackedFloat32Array(0)
@@ -200,4 +201,8 @@ stretch_mode = 1
 
 [node name="audio_stream_player_select" type="AudioStreamPlayer" parent="." unique_id=127484963]
 stream = ExtResource("3_ptuym")
+volume_db = -11.751
+
+[node name="audio_stream_player_confirm" type="AudioStreamPlayer" parent="." unique_id=1112342776]
+stream = ExtResource("4_1a0ib")
 volume_db = -11.751

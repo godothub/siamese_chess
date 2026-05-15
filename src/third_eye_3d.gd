@@ -9,6 +9,8 @@ var target_camera:Camera3D = null
 
 func _ready() -> void:
 	button_close.connect("pressed", close)
+	button_close.connect("mouse_entered", read_close)
+	button_close.connect("focus_entered", read_close)
 	visible = false
 
 func _physics_process(_delta:float) -> void:
@@ -17,6 +19,11 @@ func _physics_process(_delta:float) -> void:
 
 func set_state(_state:State) -> void:
 	chessboard.state = _state
+
+func read_close() -> void:
+	$audio_stream_player_select.play()
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("ICON_CLOSE"), Setting.get_value("voice"), 50, 1, 1, 0, true)
 
 func open() -> void:
 	set_physics_process(true)
@@ -28,7 +35,10 @@ func open() -> void:
 	tween = create_tween()
 	$texture_rect.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	tween.tween_property($texture_rect, "modulate", Color(1, 1, 1, 1), 0.1)
+	#if Setting.get_value("text_to_speech"):
+	#	DisplayServer.tts_speak("", Setting.get_value("voice"), 50, 1, 1, 0, true)
 
 func close() -> void:
+	$audio_stream_player_confirm.play()
 	set_physics_process(false)
 	visible = false
