@@ -48,12 +48,13 @@ func _ready() -> void:
 	Progress.create_if_not_exist("obtains", 0)
 	Progress.create_if_not_exist("wins", 0)
 	state_machine.add_state("start", state_ready_start)
+	state_machine.add_state("free", state_ready_free, state_exit_free)
+	state_machine.add_state("travel", state_ready_travel)
 	state_machine.add_state("enemy", state_ready_enemy)
 	state_machine.add_state("waiting", state_ready_waiting)
 	state_machine.add_state("move", state_ready_move)
 	state_machine.add_state("player", state_ready_player, state_exit_player)
 	state_machine.add_state("ready_to_move", state_ready_ready_to_move, state_exit_ready_to_move)
-	state_machine.add_state("travel", state_ready_travel, state_exit_travel)
 	state_machine.add_state("check_move", state_ready_check_move)
 	state_machine.add_state("extra_move", state_ready_extra_move, state_exit_extra_move)
 	state_machine.add_state("player_win", state_ready_player_win)
@@ -65,7 +66,6 @@ func _ready() -> void:
 	premove_state_machine.add_state("start", state_premove_start_ready)
 	premove_state_machine.add_state("from", state_premove_from_ready, state_premove_from_exit)
 	premove_state_machine.add_state("to", state_premove_to_ready)
-	premove_state_machine.add_state("travel", state_premove_travel_ready, state_premove_travel_exit)
 	premove_state_machine.add_state("extra", state_premove_extra_ready, state_premove_extra_exit)
 	premove_state_machine.add_state("confirm", state_premove_confirm_ready)
 	premove_state_machine.add_state("stop", state_premove_stop_ready)
@@ -128,9 +128,6 @@ func state_premove_to_ready(_arg:Dictionary) -> void:
 		elif cnt > 1:
 			premove_state_machine.change_state.call_deferred("extra", {"from": _arg["from"], "to": _selected})
 	)
-	premove_state_machine.state_signal_connect(chessboard.selection_hold, func (_selected:int) -> void:
-		premove_state_machine.change_state.call_deferred("travel", {"from": _selected})
-	)
 	premove_state_machine.state_signal_connect(Dialog.on_cancel, func () -> void:
 		premove_state_machine.change_state.call_deferred("from")
 	)
@@ -141,43 +138,6 @@ func state_premove_to_ready(_arg:Dictionary) -> void:
 	chessboard.set_square_selection(selection)
 
 func state_premove_to_exit() -> void:
-	Dialog.hide_cancel()
-
-func state_premove_travel_ready(_arg:Dictionary) -> void:
-	var from:int = _arg["from"]
-	var path:PackedInt32Array = Chess.generate_path(premove_branch.future_state, from)
-	var bit:int = 0
-	for i:int in path.size():
-		if path[i] != -1:
-			bit |= Chess.mask(i)
-	premove_state_machine.state_signal_connect(chessboard.click_empty, func (_selected:int) -> void:
-		premove_state_machine.change_state("from")
-	)
-	premove_state_machine.state_signal_connect(chessboard.click_selection, func (_selected:int) -> void:
-		var to:int = _selected
-		var iter:int = to
-		var path_to:PackedInt32Array = []
-		while (iter != from):
-			path_to.push_back(Chess.create(path[Chess.x88_to_c64(iter)], iter, 0))
-			iter = path[Chess.x88_to_c64(iter)]
-			chessboard.draw_pointer("premove", Color(0.64, 0.051, 0.198, 1.0), iter)
-			if iter == -1:
-				premove_state_machine.change_state.call_deferred("from")
-				chessboard.clear_pointer("premove")
-				return
-		path_to.reverse()
-		premove_branch.move_order.append_array(path_to)
-		for move:int in path_to:
-			Chess.apply_move(premove_branch.future_state, move)
-		premove_state_machine.change_state.call_deferred("from")
-	)
-	premove_state_machine.state_signal_connect(Dialog.on_cancel, func () -> void:
-		premove_state_machine.change_state.call_deferred("from")
-	)
-	Dialog.show_cancel()
-	chessboard.set_square_selection(bit)
-
-func state_premove_travel_exit() -> void:
 	Dialog.hide_cancel()
 
 func state_premove_extra_ready(_arg:Dictionary) -> void:
@@ -239,6 +199,44 @@ func state_ready_start(_arg:Dictionary) -> void:
 		state_machine.change_state.call_deferred("enemy_win")
 	else:
 		back_to_game()
+
+func state_ready_free(_arg:Dictionary) -> void:
+	premove_state_machine.change_state.call_deferred("stop")
+	var from:int = Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
+	var actor:Actor = chessboard.chessboard_piece[from]
+	state_machine.state_signal_connect(chessboard.click_empty, func (_selected:int) -> void:
+		actor.idle()
+		state_machine.change_state("travel", {"from": from, "to": _selected})
+	)
+	state_machine.state_signal_connect(Dialog.on_select, func(_selected:String) -> void:
+		available_events[_selected].on_selection.call_deferred()
+		show_selection.call_deferred()
+	)
+	show_selection()
+
+func state_exit_free() -> void:
+	Dialog.clear()
+
+func state_ready_travel(_arg:Dictionary) -> void:
+	var from:int = _arg["from"]
+	var to:int = _arg["to"]
+	var iter:int = to
+	var path:PackedInt32Array = Chess.generate_path(chessboard.state, from)
+	var path_to:PackedInt32Array = []
+	while iter != from:
+		path_to.push_back(Chess.create(path[Chess.x88_to_c64(iter)], iter, 0))
+		iter = path[Chess.x88_to_c64(iter)]
+		if iter == -1:
+			state_machine.change_state.call_deferred("free")
+			return
+	if !path_to.size():
+		state_machine.change_state.call_deferred("free")
+		return
+	path_to.reverse()
+	for move:int in path_to:
+		chessboard.execute_move(move)
+		await chessboard.animation_finished
+	state_machine.change_state.call_deferred("free")
 
 func state_ready_enemy(_arg:Dictionary) -> void:
 	if !chessboard.state.get_bit(enemy_all):
@@ -355,9 +353,6 @@ func state_ready_ready_to_move(_arg:Dictionary) -> void:
 		actor.idle()
 		state_machine.change_state.call_deferred("player", {"from_last": from})
 	)
-	state_machine.state_signal_connect(chessboard.selection_hold, func (_selected:int) -> void:
-		state_machine.change_state.call_deferred("travel", {"from": _selected})
-	)
 	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("enemy_win"))
 	state_machine.state_signal_connect(Dialog.on_select, func(_selected:String) -> void:
 		available_events[_selected].on_selection.call_deferred()
@@ -371,64 +366,6 @@ func state_exit_ready_to_move() -> void:
 	chessboard.set_square_selection(0)
 	Dialog.clear()
 	Dialog.hide_cancel()
-
-func state_ready_travel(_arg:Dictionary) -> void:
-	premove_state_machine.change_state.call_deferred("stop")
-	var from:int = _arg["from"]
-	var actor:Actor = chessboard.chessboard_piece[from]
-	var path:PackedInt32Array = Chess.generate_path(chessboard.state, from)
-	var bit:int = 0
-	for i:int in path.size():
-		if path[i] != -1:
-			bit |= Chess.mask(i)
-	state_machine.state_signal_connect(chessboard.click_empty, func (_selected:int) -> void:
-		actor.idle()
-		state_machine.change_state("player")
-	)
-	state_machine.state_signal_connect(chessboard.click_selection, func (_selected:int) -> void:
-		var to:int = _selected
-		var iter:int = to
-		var path_to:PackedInt32Array = []
-		while (iter != from):
-			path_to.push_back(Chess.create(path[Chess.x88_to_c64(iter)], iter, 0))
-			iter = path[Chess.x88_to_c64(iter)]
-			chessboard.draw_pointer("premove", Color(0.64, 0.051, 0.198, 1.0), iter)
-			if iter == -1:
-				actor.idle()
-				state_machine.change_state.call_deferred("player")
-				chessboard.clear_pointer("premove")
-				return
-		if !path_to.size():
-			actor.idle()
-			state_machine.change_state.call_deferred("player")
-			chessboard.clear_pointer("premove")
-			return
-		var first_move:int = path_to[-1]
-		path_to.resize(path_to.size() - 1)
-		path_to.reverse()
-		premove_branch.move_order = path_to
-		premove_branch.future_state = chessboard.state.duplicate()
-		Chess.apply_move(premove_branch.future_state, first_move)
-		for move:int in path_to:
-			Chess.apply_move(premove_branch.future_state, move)
-		state_machine.change_state.call_deferred("check_move", {"from": Chess.from(first_move), "to": Chess.to(first_move)})
-	)
-	state_machine.state_signal_connect(Dialog.on_select, func(_selected:String) -> void:
-		available_events[_selected].on_selection.call_deferred()
-		show_selection.call_deferred()
-	)
-	state_machine.state_signal_connect(Dialog.on_cancel, func () -> void:
-		actor.idle()
-		state_machine.change_state.call_deferred("player")
-	)
-	show_selection()
-	Dialog.show_cancel()
-	chessboard.set_square_selection(bit)
-
-func state_exit_travel() -> void:
-	chessboard.set_square_selection(0)
-	Dialog.hide_cancel()
-	Dialog.clear()
 
 func state_ready_check_move(_arg:Dictionary) -> void:
 	var from:int = _arg["from"]
@@ -527,17 +464,18 @@ func back_to_game() -> void:
 		return
 	for iter:MarkerEvent in events:
 		iter.on_turn()
-	if chessboard.state.get_turn() != player_group:
-		state_machine.change_state.call_deferred("enemy")
-	elif premove_branch && premove_branch.move_order.size():
-		var next_premove:int = premove_branch.move_order[0]
-		premove_branch.move_order.remove_at(0)
-		if premove_branch.move_order.size() == 0:
-			chessboard.clear_pointer("premove")
-		state_machine.change_state.call_deferred("check_move", {"from": Chess.from(next_premove), "to": Chess.to(next_premove), "extra": Chess.extra(next_premove)})
-	elif premove_state_machine.current_state == "to":
-		state_machine.change_state.call_deferred("ready_to_move", {"from": premove_from})
-	elif premove_state_machine.current_state == "travel":
-		state_machine.change_state.call_deferred("travel", {"from": premove_from})
+	if chessboard.state.get_bit(enemy_all):
+		if chessboard.state.get_turn() != player_group:
+			state_machine.change_state.call_deferred("enemy")
+		elif premove_branch && premove_branch.move_order.size():
+			var next_premove:int = premove_branch.move_order[0]
+			premove_branch.move_order.remove_at(0)
+			if premove_branch.move_order.size() == 0:
+				chessboard.clear_pointer("premove")
+			state_machine.change_state.call_deferred("check_move", {"from": Chess.from(next_premove), "to": Chess.to(next_premove), "extra": Chess.extra(next_premove)})
+		elif premove_state_machine.current_state == "to":
+			state_machine.change_state.call_deferred("ready_to_move", {"from": premove_from})
+		else:
+			state_machine.change_state.call_deferred("player")
 	else:
-		state_machine.change_state.call_deferred("player")
+		state_machine.change_state.call_deferred("free")
