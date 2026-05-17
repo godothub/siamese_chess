@@ -200,22 +200,11 @@ func state_ready_start(_arg:Dictionary) -> void:
 	else:
 		back_to_game()
 
+var travel_path:PackedInt32Array = []
+
 func state_ready_free(_arg:Dictionary) -> void:
 	premove_state_machine.change_state.call_deferred("stop")
-	var from:int = Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
-	var path:PackedInt32Array = Chess.generate_path(chessboard.state, from)
-	state_machine.state_signal_connect(chessboard.click_empty, func (_selected:int) -> void:
-		var path_to:PackedInt32Array = []
-		var iter:int = _selected
-		while iter != from:
-			path_to.push_back(Chess.create(path[Chess.x88_to_c64(iter)], iter, 0))
-			iter = path[Chess.x88_to_c64(iter)]
-			if iter == -1:
-				return
-		if !path_to.size():
-			return
-		state_machine.change_state("travel", {"path": path_to})
-	)
+	state_machine.state_signal_connect(chessboard.click_empty, travel_to)
 	state_machine.state_signal_connect(Dialog.on_select, func(_selected:String) -> void:
 		available_events[_selected].on_selection.call_deferred()
 		show_selection.call_deferred()
@@ -226,16 +215,31 @@ func state_exit_free() -> void:
 	Dialog.clear()
 
 func state_ready_travel(_arg:Dictionary) -> void:
-	var path:PackedInt32Array = _arg["path"]
-	chessboard.execute_move(path[-1])
-	path.resize(path.size() - 1)
+	if travel_path.size():
+		chessboard.execute_move(travel_path[-1])
+		travel_path.resize(travel_path.size() - 1)
+	state_machine.state_signal_connect(chessboard.click_empty, travel_to)
 	state_machine.state_signal_connect(chessboard.animation_finished, func () -> void:
-		if path.size():
-			state_machine.change_state.call_deferred("travel", {"path": path} )
+		if travel_path.size():
+			state_machine.change_state.call_deferred("travel")
 		else:
 			state_machine.change_state.call_deferred("free")
 	)
 
+func travel_to(_by:int) -> void:
+	var from:int = Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
+	var path:PackedInt32Array = Chess.generate_path(chessboard.state, from)
+	var path_to:PackedInt32Array = []
+	var iter:int = _by
+	while iter != from:
+		path_to.push_back(Chess.create(path[Chess.x88_to_c64(iter)], iter, 0))
+		iter = path[Chess.x88_to_c64(iter)]
+		if iter == -1:
+			return
+	if !path_to.size():
+		return
+	travel_path = path_to
+	state_machine.change_state("travel")
 
 func state_ready_enemy(_arg:Dictionary) -> void:
 	if !chessboard.state.get_bit(enemy_all):
