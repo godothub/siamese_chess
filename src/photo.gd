@@ -12,6 +12,8 @@ extends CanvasLayer
 
 @onready var photo_document:Document = load("res://scene/doc/photo_paper.tscn").instantiate()
 
+var zoom:float = 0
+
 func _ready() -> void:
 	visible = false
 	button_close.connect("pressed", close)
@@ -63,6 +65,9 @@ func move_camera(_position:Vector3, _rotation:Vector3) -> void:
 
 func zoom_camera(_value:float) -> void:
 	slider.set_value_no_signal(_value)
+	if floor(zoom / 10) != floor(_value / 10):
+		$audio_stream_player_zooming.play(0)
+	zoom = _value
 	_value = 100 - _value
 	_value = _value * 0.8 + 30
 	_value = clamp(_value, 30, 110)
