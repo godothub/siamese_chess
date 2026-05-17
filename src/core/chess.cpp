@@ -1177,6 +1177,10 @@ bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to)
 	{
 		return false;
 	}
+	if (!from_piece && (_state->get_bit(ALL_PIECE) & to_mask))
+	{
+		return true;
+	}
 	if (_state->has_piece(_to) && Chess::is_same_group(from_piece, _state->get_piece(_to)))
 	{
 		return true;
