@@ -5,6 +5,8 @@
 [ext_resource type="FontFile" uid="uid://bq5ty1txvcybm" path="res://assets/fonts/Font Awesome 7 Free-Regular-400.otf" id="3_g2to7"]
 [ext_resource type="AudioStream" uid="uid://bn0efi7nl4ro8" path="res://assets/audio/147018__xxqmanxx__socket-wrench.wav" id="4_123qk"]
 [ext_resource type="AudioStream" uid="uid://bbixsq7mcj4xx" path="res://assets/audio/561658__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-one-keypress-spacebar_96khz_mono_zoomh4n_nt5.wav" id="5_8pksm"]
+[ext_resource type="AudioStream" uid="uid://c0oxhpf58472s" path="res://assets/audio/325279__deleted_user_2104797__briefcase_open.wav" id="6_fhdrf"]
+[ext_resource type="AudioStream" uid="uid://timpmwbx0mbe" path="res://assets/audio/325279__deleted_user_2104797__briefcase_close.wav" id="7_7piks"]
 
 [sub_resource type="Gradient" id="Gradient_j3y3i"]
 offsets = PackedFloat32Array(0)
@@ -851,3 +853,9 @@ volume_db = -11.751
 [node name="audio_stream_player_confirm" type="AudioStreamPlayer" parent="." unique_id=961387278]
 stream = ExtResource("5_8pksm")
 volume_db = -11.751
+
+[node name="audio_stream_player_open" type="AudioStreamPlayer" parent="." unique_id=125692238]
+stream = ExtResource("6_fhdrf")
+
+[node name="audio_stream_player_close" type="AudioStreamPlayer" parent="." unique_id=1537027299]
+stream = ExtResource("7_7piks")

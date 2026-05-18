@@ -122,6 +122,30 @@
 
 许可：CC0
 
+### Briefcase.wav
+
+文件：assets/audio/325279__deleted_user_2104797__briefcase_close_*.wav
+
+版权：deleted_user_2104797
+
+许可：CC0
+
+### Leather jacket - Dress undress
+
+文件：assets/audio/325279__deleted_user_2104797__briefcase_close_*.wav
+
+版权：Vrymaa
+
+许可：CC0
+
+### paper and hand
+
+文件：assets/audio/325279__deleted_user_2104797__briefcase_close_*.wav
+
+版权：pauliperez1999
+
+许可：CC0
+
 ### chess_move_on_alabaster.wav
 
 文件：assets/audio/351518__mh2o__chess_move_on_alabaster.wav

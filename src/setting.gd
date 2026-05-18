@@ -193,10 +193,12 @@ func _physics_process(_delta:float) -> void:
 func open() -> void:
 	show()
 	set_physics_process(true)
+	$audio_stream_player_open.play()
 	$texture_rect/tab_container.get_tab_bar().grab_focus()
 
 func close() -> void:
 	$audio_stream_player_confirm.play()
+	$audio_stream_player_close.play()
 	save_file()
 	set_physics_process(false)
 	hide()

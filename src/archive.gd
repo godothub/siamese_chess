@@ -38,6 +38,7 @@ func _physics_process(_delta:float) -> void:
 		close()
 
 func open() -> void:
+	$audio_stream_player_open.play()
 	set_physics_process(true)
 	$texture_rect/button_close.grab_focus()
 	document = null
@@ -118,6 +119,7 @@ func open_document(filename:String) -> void:
 
 func close() -> void:
 	$audio_stream_player_confirm.play()
+	$audio_stream_player_close.play()
 	$texture_rect/document_browser.close()
 	visible = false
 	set_physics_process(false)
