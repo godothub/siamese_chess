@@ -49,6 +49,7 @@ class PastorEngine : public ChessEngine
 		int WIN = 50000;
 		int THRESHOLD = 60000;
 		int MAX_PLY = 50;
+		int DEPTH_REDUCTION = 3;
 		int despise_factor = 50;
 		double think_time;
 		int principal_move;

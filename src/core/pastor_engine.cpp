@@ -611,9 +611,9 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 	{
 		pv_move = transposition_table->best_move(_state->get_zobrist());
 	}
-	if (_depth > 2 && _ply > 1 && can_null)
+	if (_depth > DEPTH_REDUCTION - 1 && _ply > 1 && can_null)
 	{
-		int next_score = -alphabeta(_state, -_beta, -_beta + 1, _depth - 3, 1 - _group, _ply + 1, true, nullptr, nullptr, 0, _debug_output);
+		int next_score = -alphabeta(_state, -_beta, -_beta + 1, _depth - DEPTH_REDUCTION, 1 - _group, _ply + 1, true, nullptr, nullptr, 0, _debug_output);
 		if (next_score >= _beta)
 		{
 			beta_cutoff++;
