@@ -503,11 +503,6 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _beta, 
 		beta_cutoff++;
 		return _beta;
 	}
-	int big_delta = 975;
-	if (score_relative < _alpha - big_delta)
-	{
-		return _alpha;
-	}
 	if (score_relative > _alpha)
 	{
 		_alpha = score_relative;
@@ -540,7 +535,8 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _beta, 
 			beta_cutoff++;
 			return _beta;
 		}
-		if (score_relative < _alpha - big_delta)
+		int big_delta = 975;
+		if (score_relative < _alpha - big_delta && !Chess::is_promote(_state, move_list[i]))
 		{
 			return _alpha;
 		}
@@ -626,7 +622,8 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 	int next_killer_1 = -1;
 	int next_killer_2 = -1;
 	pv_move = move_list[0];
-	for (int i = 0; i < move_list.size(); i++)
+	int move_size = move_list.size();
+	for (int i = 0; i < move_size; i++)
 	{
 		if (_debug_output.is_valid())
 		{

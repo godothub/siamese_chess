@@ -67,6 +67,7 @@ class Chess : public godot::Object
 		static bool is_enemy(const godot::Ref<State> &_state, int _from, int _to);
 		static int64_t get_attack(const godot::Ref<State> &_state, int _group);
 		static bool is_en_passant(const godot::Ref<State> &_state, int _from, int _to);
+		static bool is_promote(const godot::Ref<State> &_state, int _move);
 		static godot::PackedInt32Array generate_premove(const godot::Ref<State> &_state, int _group);
 		static godot::PackedInt32Array generate_move(const godot::Ref<State> &_state, int _group);
 		static void _internal_generate_move(godot::PackedInt32Array &output, const godot::Ref<State> &_state, int _group);

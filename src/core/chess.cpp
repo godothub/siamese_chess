@@ -1319,6 +1319,15 @@ bool Chess::is_en_passant(const godot::Ref<State> &_state, int _from, int _to)
 	return ((_from >> 4) == 3 || (_from >> 4) == 4) && _state->get_en_passant() == _to;
 }
 
+bool Chess::is_promote(const godot::Ref<State> &_state, int _move)
+{
+	if ((_state->get_piece(Chess::from(_move)) & 95) != 'P')
+	{
+		return false;
+	}
+	return Chess::extra(_move);
+}
+
 godot::PackedInt32Array Chess::generate_premove(const godot::Ref<State> &_state, int _group)
 {
 	DEV_ASSERT(_state.is_valid());
@@ -2045,6 +2054,7 @@ void Chess::_bind_methods()
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_enemy"), &Chess::is_enemy);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("get_attack"), &Chess::get_attack);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_en_passant"), &Chess::is_en_passant);
+	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_promote"), &Chess::is_promote);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("generate_premove"), &Chess::generate_premove);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("generate_move"), &Chess::generate_move);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("generate_valid_move"), &Chess::generate_valid_move);

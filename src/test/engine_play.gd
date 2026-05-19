@@ -21,9 +21,9 @@ func _ready() -> void:
 	initial_state = state.duplicate()
 	chessboard.set_state(state.duplicate())
 	chessboard.add_default_piece_set()
-	old_pastor.set_max_depth(8)
+	old_pastor.set_max_depth(20)
 	old_pastor.set_think_time(2)
-	new_pastor.set_max_depth(8)
+	new_pastor.set_max_depth(20)
 	new_pastor.set_think_time(2)
 	play_match()
 
