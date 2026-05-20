@@ -49,6 +49,7 @@ func sub_viewport_container_gui_input(event:InputEvent) -> void:
 		zoom_camera(slider.value + event.relative / 1000 * Setting.get_value("camera_move_speed"))
 
 func open() -> void:
+	$audio_stream_player_open.play()
 	photo_document.set_filename("photo.camera.json")
 	photo_document.load_file()
 	zoom_camera(0)
@@ -56,6 +57,7 @@ func open() -> void:
 	visible = true
 
 func close() -> void:
+	$audio_stream_player_close.play()
 	set_physics_process(false)
 	visible = false
 
@@ -77,9 +79,9 @@ func capture() -> void:
 	$audio_stream_player_shutter.play()
 	var tween:Tween = create_tween()
 	tween.tween_property(sub_viewport_container, "visible", false, 0)
-	tween.tween_callback(save_photo)
 	tween.tween_interval(0.1)
 	tween.tween_property(sub_viewport_container, "visible", true, 0)
+	tween.tween_callback(save_photo)
 
 func save_photo() -> void:
 	var texture:ViewportTexture = sub_viewport.get_texture()

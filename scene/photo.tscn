@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dikg6r3lq8w5x" path="res://assets/texture/camera_guideline.svg" id="3_uj1is"]
 [ext_resource type="AudioStream" uid="uid://bkdiut6gmaw3m" path="res://assets/audio/445482__caseymoura__film-camera-shutter-release.wav" id="4_uj1is"]
 [ext_resource type="AudioStream" uid="uid://bn0efi7nl4ro8" path="res://assets/audio/147018__xxqmanxx__socket-wrench.wav" id="5_fsjox"]
+[ext_resource type="AudioStream" uid="uid://dowredng1whev" path="res://assets/audio/624936__theplax__camera-beep-and-click.wav" id="6_fa48h"]
+[ext_resource type="AudioStream" uid="uid://bixqmowubxvxk" path="res://assets/audio/557396__jarhead123__leather-bag-cloth-movement-4.wav" id="7_yvr8q"]
 
 [sub_resource type="Gradient" id="Gradient_uj1is"]
 offsets = PackedFloat32Array(0)
@@ -200,3 +202,9 @@ stream = ExtResource("4_uj1is")
 
 [node name="audio_stream_player_zooming" type="AudioStreamPlayer" parent="." unique_id=1833584459]
 stream = ExtResource("5_fsjox")
+
+[node name="audio_stream_player_open" type="AudioStreamPlayer" parent="." unique_id=1469384410]
+stream = ExtResource("6_fa48h")
+
+[node name="audio_stream_player_close" type="AudioStreamPlayer" parent="." unique_id=1340148013]
+stream = ExtResource("7_yvr8q")
