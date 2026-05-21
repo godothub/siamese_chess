@@ -254,7 +254,7 @@ func finger_on_position(position_name:String) -> void:
 				}
 				var piece:int = state.get_piece(Chess.name_to_x88(position_name))
 				var piece_name:String = map[piece]
-				DisplayServer.tts_speak(tr("THERE_IS_A_PIECE").format({"piece": tr(piece_name)}), Setting.get_value("voice"), 50, 1, 2, 0, false)
+				DisplayServer.tts_speak(tr("THERE_IS_A_PIECE").format({"piece": tr(piece_name)}), Setting.get_value("voice"), 50, 1, 2, 0, true)
 	pointer_position_name = position_name
 	$canvas.draw_pointer("pointer", COLOR_POINTER, Chess.name_to_x88(position_name))
 

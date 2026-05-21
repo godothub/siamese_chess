@@ -228,19 +228,19 @@ func state_ready_travel(_arg:Dictionary) -> void:
 	)
 
 func travel_to(_by:int) -> void:
-	if Setting.get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("TRAVEL_TO").format({"by": Chess.x88_to_name(_by)}), Setting.get_value("voice"), 50, 1, 1, 0, false)
 	var from:int = Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
 	var path:PackedInt32Array = Chess.generate_path(chessboard.state, from)
 	var path_to:PackedInt32Array = []
 	var iter:int = _by
 	while iter != from:
+		if path[Chess.x88_to_c64(iter)] == -1:
+			return
 		path_to.push_back(Chess.create(path[Chess.x88_to_c64(iter)], iter, 0))
 		iter = path[Chess.x88_to_c64(iter)]
-		if iter == -1:
-			return
 	if !path_to.size():
 		return
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("TRAVEL_TO").format({"by": Chess.x88_to_name(_by)}), Setting.get_value("voice"), 50, 1, 1, 0, false)
 	travel_path = path_to
 	state_machine.change_state("travel")
 

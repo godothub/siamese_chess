@@ -19,7 +19,6 @@ func _ready() -> void:
 		iter.connect("mouse_entered", read_label.bind(iter))
 		iter.connect("focus_entered", read_label.bind(iter))
 	current_focus = labels[0]
-	current_focus.grab_focus()
 
 func parse(data:Dictionary) -> void:
 	super.parse(data)
