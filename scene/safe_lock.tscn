@@ -90,12 +90,16 @@ vertical_alignment = 1
 
 [node name="audio_stream_player_button" type="AudioStreamPlayer3D" parent="." index="3" unique_id=609067594]
 stream = ExtResource("4_klmvq")
+bus = &"SFX"
 
 [node name="audio_stream_player_unlock" type="AudioStreamPlayer3D" parent="." index="4" unique_id=599884157]
 stream = ExtResource("5_tk2a2")
+bus = &"SFX"
 
 [node name="audio_stream_player_opening" type="AudioStreamPlayer3D" parent="." index="5" unique_id=1829007617]
 stream = ExtResource("8_nnnbh")
+bus = &"SFX"
 
 [node name="audio_stream_player_closing" type="AudioStreamPlayer3D" parent="." index="6" unique_id=18809465]
 stream = ExtResource("9_uvudv")
+bus = &"SFX"

@@ -150,4 +150,5 @@ shape = SubResource("CylinderShape3D_8wbsc")
 stream = SubResource("AudioStreamGenerator_qow6u")
 volume_db = 0.75
 autoplay = true
+bus = &"Ambient"
 playback_type = 1

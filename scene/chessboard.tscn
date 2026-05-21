@@ -48,7 +48,7 @@ shader_parameter/contrast_mult = 0.792
 [node name="chessboard" unique_id=1999765771 instance=ExtResource("1_tntyj")]
 script = ExtResource("2_m6gnn")
 
-[node name="chessbase" parent="." index="0" unique_id=791163512]
+[node name="chessbase" parent="." index="0" unique_id=972303864]
 surface_material_override/0 = SubResource("ShaderMaterial_bbdsi")
 surface_material_override/1 = SubResource("ShaderMaterial_lln3j")
 surface_material_override/2 = SubResource("ShaderMaterial_07eby")
@@ -57,273 +57,277 @@ surface_material_override/2 = SubResource("ShaderMaterial_07eby")
 
 [node name="pieces" type="Node3D" parent="." index="4" unique_id=1814395742]
 
-[node name="a1" parent="." index="5" unique_id=1863248976]
+[node name="a1" parent="." index="5" unique_id=1110996052]
 monitoring = false
 monitorable = false
 
-[node name="a2" parent="." index="6" unique_id=1282852287]
+[node name="a2" parent="." index="6" unique_id=1544373517]
 monitoring = false
 monitorable = false
 
-[node name="a3" parent="." index="7" unique_id=291278288]
+[node name="a3" parent="." index="7" unique_id=1215470935]
 monitoring = false
 monitorable = false
 
-[node name="a4" parent="." index="8" unique_id=219976829]
+[node name="a4" parent="." index="8" unique_id=1664995577]
 monitoring = false
 monitorable = false
 
-[node name="a5" parent="." index="9" unique_id=1809804095]
+[node name="a5" parent="." index="9" unique_id=1901054116]
 monitoring = false
 monitorable = false
 
-[node name="a6" parent="." index="10" unique_id=970775499]
+[node name="a6" parent="." index="10" unique_id=2074208119]
 monitoring = false
 monitorable = false
 
-[node name="a7" parent="." index="11" unique_id=1663771996]
+[node name="a7" parent="." index="11" unique_id=818301976]
 monitoring = false
 monitorable = false
 
-[node name="a8" parent="." index="12" unique_id=1590367542]
+[node name="a8" parent="." index="12" unique_id=1047053726]
 monitoring = false
 monitorable = false
 
-[node name="b1" parent="." index="13" unique_id=44791916]
+[node name="b1" parent="." index="13" unique_id=30121028]
 monitoring = false
 monitorable = false
 
-[node name="b2" parent="." index="14" unique_id=1587103029]
+[node name="b2" parent="." index="14" unique_id=1992970196]
 monitoring = false
 monitorable = false
 
-[node name="b3" parent="." index="15" unique_id=1172384186]
+[node name="b3" parent="." index="15" unique_id=839111230]
 monitoring = false
 monitorable = false
 
-[node name="b4" parent="." index="16" unique_id=228990487]
+[node name="b4" parent="." index="16" unique_id=182647785]
 monitoring = false
 monitorable = false
 
-[node name="b5" parent="." index="17" unique_id=2000294382]
+[node name="b5" parent="." index="17" unique_id=100418342]
 monitoring = false
 monitorable = false
 
-[node name="b6" parent="." index="18" unique_id=2035095443]
+[node name="b6" parent="." index="18" unique_id=1750055998]
 monitoring = false
 monitorable = false
 
-[node name="b7" parent="." index="19" unique_id=59321819]
+[node name="b7" parent="." index="19" unique_id=314008804]
 monitoring = false
 monitorable = false
 
-[node name="b8" parent="." index="20" unique_id=1741310715]
+[node name="b8" parent="." index="20" unique_id=1361518196]
 monitoring = false
 monitorable = false
 
-[node name="c1" parent="." index="21" unique_id=381560383]
+[node name="c1" parent="." index="21" unique_id=1178895060]
 monitoring = false
 monitorable = false
 
-[node name="c2" parent="." index="22" unique_id=103450189]
+[node name="c2" parent="." index="22" unique_id=1961516596]
 monitoring = false
 monitorable = false
 
-[node name="c3" parent="." index="23" unique_id=172643381]
+[node name="c3" parent="." index="23" unique_id=1826639773]
 monitoring = false
 monitorable = false
 
-[node name="c4" parent="." index="24" unique_id=114586029]
+[node name="c4" parent="." index="24" unique_id=1339483769]
 monitoring = false
 monitorable = false
 
-[node name="c5" parent="." index="25" unique_id=939156135]
+[node name="c5" parent="." index="25" unique_id=1066023434]
 monitoring = false
 monitorable = false
 
-[node name="c6" parent="." index="26" unique_id=437411300]
+[node name="c6" parent="." index="26" unique_id=364997610]
 monitoring = false
 monitorable = false
 
-[node name="c7" parent="." index="27" unique_id=780750910]
+[node name="c7" parent="." index="27" unique_id=1793005000]
 monitoring = false
 monitorable = false
 
-[node name="c8" parent="." index="28" unique_id=1605485731]
+[node name="c8" parent="." index="28" unique_id=1519885055]
 monitoring = false
 monitorable = false
 
-[node name="d1" parent="." index="29" unique_id=1945376121]
+[node name="d1" parent="." index="29" unique_id=350071211]
 monitoring = false
 monitorable = false
 
-[node name="d2" parent="." index="30" unique_id=1305827698]
+[node name="d2" parent="." index="30" unique_id=1674554483]
 monitoring = false
 monitorable = false
 
-[node name="d3" parent="." index="31" unique_id=916998059]
+[node name="d3" parent="." index="31" unique_id=1203654738]
 monitoring = false
 monitorable = false
 
-[node name="d4" parent="." index="32" unique_id=1851811155]
+[node name="d4" parent="." index="32" unique_id=194179241]
 monitoring = false
 monitorable = false
 
-[node name="d5" parent="." index="33" unique_id=297120096]
+[node name="d5" parent="." index="33" unique_id=1548171915]
 monitoring = false
 monitorable = false
 
-[node name="d6" parent="." index="34" unique_id=1345242793]
+[node name="d6" parent="." index="34" unique_id=777735307]
 monitoring = false
 monitorable = false
 
-[node name="d7" parent="." index="35" unique_id=302914410]
+[node name="d7" parent="." index="35" unique_id=1781191251]
 monitoring = false
 monitorable = false
 
-[node name="d8" parent="." index="36" unique_id=1439972784]
+[node name="d8" parent="." index="36" unique_id=2134074707]
 monitoring = false
 monitorable = false
 
-[node name="e1" parent="." index="37" unique_id=1728985509]
+[node name="e1" parent="." index="37" unique_id=128837399]
 monitoring = false
 monitorable = false
 
-[node name="e2" parent="." index="38" unique_id=98820876]
+[node name="e2" parent="." index="38" unique_id=615889144]
 monitoring = false
 monitorable = false
 
-[node name="e3" parent="." index="39" unique_id=1294892970]
+[node name="e3" parent="." index="39" unique_id=90011156]
 monitoring = false
 monitorable = false
 
-[node name="e4" parent="." index="40" unique_id=659199276]
+[node name="e4" parent="." index="40" unique_id=492747383]
 monitoring = false
 monitorable = false
 
-[node name="e5" parent="." index="41" unique_id=928193891]
+[node name="e5" parent="." index="41" unique_id=1434377620]
 monitoring = false
 monitorable = false
 
-[node name="e6" parent="." index="42" unique_id=1596808049]
+[node name="e6" parent="." index="42" unique_id=1747356302]
 monitoring = false
 monitorable = false
 
-[node name="e7" parent="." index="43" unique_id=852952958]
+[node name="e7" parent="." index="43" unique_id=1176143575]
 monitoring = false
 monitorable = false
 
-[node name="e8" parent="." index="44" unique_id=414517320]
+[node name="e8" parent="." index="44" unique_id=1751866125]
 monitoring = false
 monitorable = false
 
-[node name="f1" parent="." index="45" unique_id=1471136431]
+[node name="f1" parent="." index="45" unique_id=1059390504]
 monitoring = false
 monitorable = false
 
-[node name="f2" parent="." index="46" unique_id=2123090200]
+[node name="f2" parent="." index="46" unique_id=1462599716]
 monitoring = false
 monitorable = false
 
-[node name="f3" parent="." index="47" unique_id=1544096055]
+[node name="f3" parent="." index="47" unique_id=1763428961]
 monitoring = false
 monitorable = false
 
-[node name="f4" parent="." index="48" unique_id=1756112134]
+[node name="f4" parent="." index="48" unique_id=1336517814]
 monitoring = false
 monitorable = false
 
-[node name="f5" parent="." index="49" unique_id=573688143]
+[node name="f5" parent="." index="49" unique_id=1176579885]
 monitoring = false
 monitorable = false
 
-[node name="f6" parent="." index="50" unique_id=191258622]
+[node name="f6" parent="." index="50" unique_id=1199493132]
 monitoring = false
 monitorable = false
 
-[node name="f7" parent="." index="51" unique_id=1066772945]
+[node name="f7" parent="." index="51" unique_id=1775351781]
 monitoring = false
 monitorable = false
 
-[node name="f8" parent="." index="52" unique_id=94787865]
+[node name="f8" parent="." index="52" unique_id=1115384050]
 monitoring = false
 monitorable = false
 
-[node name="g1" parent="." index="53" unique_id=1109987990]
+[node name="g1" parent="." index="53" unique_id=1073487600]
 monitoring = false
 monitorable = false
 
-[node name="g2" parent="." index="54" unique_id=1512927902]
+[node name="g2" parent="." index="54" unique_id=1395432578]
 monitoring = false
 monitorable = false
 
-[node name="g3" parent="." index="55" unique_id=18946199]
+[node name="g3" parent="." index="55" unique_id=1560882248]
 monitoring = false
 monitorable = false
 
-[node name="g4" parent="." index="56" unique_id=124348849]
+[node name="g4" parent="." index="56" unique_id=1167589931]
 monitoring = false
 monitorable = false
 
-[node name="g5" parent="." index="57" unique_id=67169781]
+[node name="g5" parent="." index="57" unique_id=270734779]
 monitoring = false
 monitorable = false
 
-[node name="g6" parent="." index="58" unique_id=271485966]
+[node name="g6" parent="." index="58" unique_id=1461604674]
 monitoring = false
 monitorable = false
 
-[node name="g7" parent="." index="59" unique_id=1615049640]
+[node name="g7" parent="." index="59" unique_id=486645563]
 monitoring = false
 monitorable = false
 
-[node name="g8" parent="." index="60" unique_id=918516768]
+[node name="g8" parent="." index="60" unique_id=1335716465]
 monitoring = false
 monitorable = false
 
-[node name="h1" parent="." index="61" unique_id=404348624]
+[node name="h1" parent="." index="61" unique_id=618959086]
 monitoring = false
 monitorable = false
 
-[node name="h2" parent="." index="62" unique_id=2143361925]
+[node name="h2" parent="." index="62" unique_id=989938777]
 monitoring = false
 monitorable = false
 
-[node name="h3" parent="." index="63" unique_id=1799220322]
+[node name="h3" parent="." index="63" unique_id=1130384074]
 monitoring = false
 monitorable = false
 
-[node name="h4" parent="." index="64" unique_id=1407824254]
+[node name="h4" parent="." index="64" unique_id=1451956243]
 monitoring = false
 monitorable = false
 
-[node name="h5" parent="." index="65" unique_id=1147608495]
+[node name="h5" parent="." index="65" unique_id=1508121644]
 monitoring = false
 monitorable = false
 
-[node name="h6" parent="." index="66" unique_id=820911280]
+[node name="h6" parent="." index="66" unique_id=954183084]
 monitoring = false
 monitorable = false
 
-[node name="h7" parent="." index="67" unique_id=1541033902]
+[node name="h7" parent="." index="67" unique_id=1413809852]
 monitoring = false
 monitorable = false
 
-[node name="h8" parent="." index="68" unique_id=236929835]
+[node name="h8" parent="." index="68" unique_id=1238020586]
 monitoring = false
 monitorable = false
 
 [node name="audio_stream_player_tik" type="AudioStreamPlayer3D" parent="." index="69" unique_id=1748360785]
 stream = ExtResource("8_ylcur")
 volume_db = -5.326
+bus = &"SFX"
 
 [node name="audio_stream_player_tok" type="AudioStreamPlayer3D" parent="." index="70" unique_id=431884053]
 stream = ExtResource("9_ty8q4")
+bus = &"SFX"
 
 [node name="audio_stream_player_click_down" type="AudioStreamPlayer3D" parent="." index="71" unique_id=310718872]
 stream = ExtResource("10_qoyao")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="audio_stream_player_click_up" type="AudioStreamPlayer3D" parent="." index="72" unique_id=155345819]
 stream = ExtResource("11_vas05")
 volume_db = -5.0
+bus = &"SFX"

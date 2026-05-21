@@ -99,7 +99,7 @@ environment = SubResource("Environment_3avyb")
 
 [node name="camera" type="Camera3D" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=211396172]
 transform = Transform3D(-4.21108e-08, 0.7114499, -0.7027369, 1.17203e-08, 0.7027369, 0.7114499, 1, 2.1723437e-08, -3.793122e-08, -0.522, 1.386, 0.027)
-fov = 90.4
+fov = 70.0
 
 [node name="chessboard" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=1999765771 instance=ExtResource("2_67cuj")]
 transform = Transform3D(5.5732045e-08, 0, 0.425, 0, 0.425, 0, -0.425, 0, 5.5732045e-08, 0.004413129, 0.88436353, 0.0284882)

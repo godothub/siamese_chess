@@ -33,3 +33,4 @@ surface_material_override/0 = SubResource("ShaderMaterial_217ym")
 
 [node name="audio_stream_player_shatter" type="AudioStreamPlayer3D" parent="." index="1" unique_id=962097706]
 stream = ExtResource("5_fpsmn")
+bus = &"SFX"

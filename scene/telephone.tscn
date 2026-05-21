@@ -33,6 +33,7 @@ shape = SubResource("BoxShape3D_xqtbd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0870356, 0.061742, -0.0299011)
 stream = ExtResource("3_qx5oj")
 max_db = -6.239
+bus = &"SFX"
 playback_type = 1
 
 [node name="area_1" type="Area3D" parent="." index="3" unique_id=1536387702]
@@ -127,12 +128,16 @@ shape = SubResource("SphereShape3D_xqtbd")
 
 [node name="audio_stream_player_hang_off" type="AudioStreamPlayer3D" parent="." index="13" unique_id=89439070]
 stream = ExtResource("3_geet0")
+bus = &"SFX"
 
 [node name="audio_stream_player_hung_up" type="AudioStreamPlayer3D" parent="." index="14" unique_id=2117814654]
 stream = ExtResource("4_0rpnm")
+bus = &"SFX"
 
 [node name="audio_stream_player_dial_up" type="AudioStreamPlayer3D" parent="." index="15" unique_id=1284871840]
 stream = ExtResource("4_ap1kh")
+bus = &"SFX"
 
 [node name="audio_stream_player_dial_down" type="AudioStreamPlayer3D" parent="." index="16" unique_id=1927641039]
 stream = ExtResource("5_geet0")
+bus = &"SFX"

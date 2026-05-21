@@ -851,14 +851,18 @@ shape = SubResource("ConcavePolygonShape3D_gwfju")
 [node name="audio_stream_player_tik" type="AudioStreamPlayer3D" parent="." unique_id=620523036]
 stream = ExtResource("3_nhqw5")
 volume_db = -5.326
+bus = &"SFX"
 
 [node name="audio_stream_player_tok" type="AudioStreamPlayer3D" parent="." unique_id=2116520109]
 stream = ExtResource("4_6wqt8")
+bus = &"SFX"
 
 [node name="audio_stream_player_click_down" type="AudioStreamPlayer3D" parent="." unique_id=1257062615]
 stream = ExtResource("5_by824")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="audio_stream_player_click_up" type="AudioStreamPlayer3D" parent="." unique_id=1396890668]
 stream = ExtResource("6_vrx4h")
 volume_db = -5.0
+bus = &"SFX"

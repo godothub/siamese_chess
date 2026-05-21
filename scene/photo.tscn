@@ -199,12 +199,16 @@ text = ""
 
 [node name="audio_stream_player_shutter" type="AudioStreamPlayer" parent="." unique_id=2008739907]
 stream = ExtResource("4_uj1is")
+bus = &"SFX"
 
 [node name="audio_stream_player_zooming" type="AudioStreamPlayer" parent="." unique_id=1833584459]
 stream = ExtResource("5_fsjox")
+bus = &"SFX"
 
 [node name="audio_stream_player_open" type="AudioStreamPlayer" parent="." unique_id=1469384410]
 stream = ExtResource("6_fa48h")
+bus = &"SFX"
 
 [node name="audio_stream_player_close" type="AudioStreamPlayer" parent="." unique_id=1340148013]
 stream = ExtResource("7_yvr8q")
+bus = &"SFX"

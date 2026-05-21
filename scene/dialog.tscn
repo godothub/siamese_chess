@@ -202,7 +202,9 @@ stretch_mode = 1
 [node name="audio_stream_player_select" type="AudioStreamPlayer" parent="." unique_id=127484963]
 stream = ExtResource("3_ptuym")
 volume_db = -11.751
+bus = &"SFX"
 
 [node name="audio_stream_player_confirm" type="AudioStreamPlayer" parent="." unique_id=1112342776]
 stream = ExtResource("4_1a0ib")
 volume_db = -11.751
+bus = &"SFX"

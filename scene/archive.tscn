@@ -88,13 +88,17 @@ text = ""
 [node name="audio_stream_player_select" type="AudioStreamPlayer" parent="." unique_id=995395746]
 stream = ExtResource("4_buvmo")
 volume_db = -11.751
+bus = &"SFX"
 
 [node name="audio_stream_player_confirm" type="AudioStreamPlayer" parent="." unique_id=258371425]
 stream = ExtResource("5_uibjj")
 volume_db = -11.751
+bus = &"SFX"
 
 [node name="audio_stream_player_open" type="AudioStreamPlayer" parent="." unique_id=1443596137]
 stream = ExtResource("6_hxd3i")
+bus = &"SFX"
 
 [node name="audio_stream_player_close" type="AudioStreamPlayer" parent="." unique_id=9812066]
 stream = ExtResource("7_0ypnf")
+bus = &"SFX"

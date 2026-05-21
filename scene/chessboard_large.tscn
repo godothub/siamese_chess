@@ -275,12 +275,16 @@ monitorable = false
 [node name="audio_stream_player_tik" type="AudioStreamPlayer3D" parent="." index="132" unique_id=1064203906]
 stream = ExtResource("4_xrcp5")
 volume_db = -5.326
+bus = &"SFX"
 
 [node name="audio_stream_player_tok" type="AudioStreamPlayer3D" parent="." index="133" unique_id=1722883189]
 stream = ExtResource("5_0bsbp")
+bus = &"SFX"
 
 [node name="audio_stream_player_click_down" type="AudioStreamPlayer3D" parent="." index="134" unique_id=301841115]
 stream = ExtResource("6_qldoh")
+bus = &"SFX"
 
 [node name="audio_stream_player_click_up" type="AudioStreamPlayer3D" parent="." index="135" unique_id=1322119651]
 stream = ExtResource("7_aef78")
+bus = &"SFX"
