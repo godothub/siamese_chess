@@ -228,6 +228,8 @@ func state_ready_travel(_arg:Dictionary) -> void:
 	)
 
 func travel_to(_by:int) -> void:
+	if Setting.get_value("text_to_speech"):
+		DisplayServer.tts_speak(tr("TRAVEL_TO").format({"by": Chess.x88_to_name(_by)}), Setting.get_value("voice"), 50, 1, 1, 0, false)
 	var from:int = Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
 	var path:PackedInt32Array = Chess.generate_path(chessboard.state, from)
 	var path_to:PackedInt32Array = []
@@ -271,7 +273,9 @@ func state_ready_move(_arg:Dictionary) -> void:
 	history_document.push_move(_arg["move"])
 	history_state.push_back(chessboard.state.get_zobrist())
 	if Setting.get_value("text_to_speech"):
-		DisplayServer.tts_speak(Chess.get_move_name(chessboard.state, _arg["move"]), Setting.get_value("voice"), 50, 1, 1, 0, true)
+		var content:String = "WHITE_PLAY" if chessboard.state.get_turn() == 0 else "BLACK_PLAY"
+		content = tr(content).format({"move": Chess.get_move_name(chessboard.state, _arg["move"])})
+		DisplayServer.tts_speak(content, Setting.get_value("voice"), 50, 1, 1, 0, false)
 	if premove_state_machine.current_state == "stop":
 		premove_state_machine.change_state.call_deferred("start")
 	state_machine.state_signal_connect(chessboard.animation_finished, func () -> void:
