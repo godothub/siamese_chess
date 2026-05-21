@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d1qn0lbk66o3i" path="res://src/chessboard.gd" id="1_x56hs"]
 [ext_resource type="PackedScene" uid="uid://bmt1hscjfvqcg" path="res://scene/canvas.tscn" id="2_p767r"]
+[ext_resource type="AudioStream" uid="uid://cvi3skcnqo7rt" path="res://assets/audio/556991__ycbcr__tabletop-clock-ticking-speed-ramp-down-followup_tik.wav" id="3_nhqw5"]
+[ext_resource type="AudioStream" uid="uid://d4ncguq4v2foe" path="res://assets/audio/556991__ycbcr__tabletop-clock-ticking-speed-ramp-down-followup_tok.wav" id="4_6wqt8"]
+[ext_resource type="AudioStream" uid="uid://12dcn051rrqb" path="res://assets/audio/412050__eyenorth__button-click_down.wav" id="5_by824"]
+[ext_resource type="AudioStream" uid="uid://beqmi6iy8c0up" path="res://assets/audio/412050__eyenorth__button-click_up.wav" id="6_vrx4h"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vvu1j"]
 data = PackedVector3Array(1, 0.17659591, -1, -1, 0.17659591, 1, -1, 0.17659591, -1, 1, 0.17659591, -1, 1, 0.17659591, 1, -1, 0.17659591, 1)
@@ -843,3 +847,18 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="h8" unique_id=2057003799]
 shape = SubResource("ConcavePolygonShape3D_gwfju")
+
+[node name="audio_stream_player_tik" type="AudioStreamPlayer3D" parent="." unique_id=620523036]
+stream = ExtResource("3_nhqw5")
+volume_db = -5.326
+
+[node name="audio_stream_player_tok" type="AudioStreamPlayer3D" parent="." unique_id=2116520109]
+stream = ExtResource("4_6wqt8")
+
+[node name="audio_stream_player_click_down" type="AudioStreamPlayer3D" parent="." unique_id=1257062615]
+stream = ExtResource("5_by824")
+volume_db = -5.0
+
+[node name="audio_stream_player_click_up" type="AudioStreamPlayer3D" parent="." unique_id=1396890668]
+stream = ExtResource("6_vrx4h")
+volume_db = -5.0

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://pofjvdbbj3iy" path="res://src/actor/piece.gd" id="2_p51lj"]
 [ext_resource type="Shader" uid="uid://dd7xsr1eeq6mo" path="res://src/unmoving_plaid.gdshader" id="3_dn2y4"]
 [ext_resource type="Texture2D" uid="uid://dc1bupw2qibgu" path="res://assets/texture/Texturelabs_Paper_374S.jpg" id="4_nunr4"]
+[ext_resource type="AudioStream" uid="uid://don5ssxyl7kff" path="res://assets/audio/662449__fullstacksound__boulder_castle.wav" id="5_ccgrp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn2y4"]
 cull_mode = 1
@@ -29,3 +30,6 @@ script = ExtResource("2_p51lj")
 
 [node name="piece" parent="." index="0" unique_id=658224853]
 surface_material_override/0 = SubResource("ShaderMaterial_s3eqc")
+
+[node name="audio_stream_player_shatter" type="AudioStreamPlayer3D" parent="." index="1" unique_id=1508381785]
+stream = ExtResource("5_ccgrp")

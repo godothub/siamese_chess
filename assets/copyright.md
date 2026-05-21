@@ -226,6 +226,30 @@
 
 许可：CC-BY 4.0
 
+### Camera Beep and Click.wav
+
+文件：assets/audio/624936__theplax__camera-beep-and-click.wav
+
+版权：theplax
+
+许可：CC-BY 4.0
+
+### leather-bag-cloth-movement-5.wav
+
+文件：assets/audio/624936__theplax__camera-beep-and-click.wav
+
+版权：jarhead123
+
+许可：CC-BY 3.0
+
+### boulder_castle.wav
+
+文件：assets/audio/662449__fullstacksound__boulder_castle.wav
+
+版权：FullStackSound
+
+许可：CC-BY 4.0
+
 ### Wind Whirl (Small Air Blow)
 
 文件：assets/audio/719560__dartekz_gamez__wind-whirl-small-air-blow.mp3

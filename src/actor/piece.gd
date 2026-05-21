@@ -40,6 +40,8 @@ func captured(_capturing:Actor = null) -> void:	# 被攻击
 	if larger_scale:
 		Progress.accumulate("obtains", 5)
 	visible = false
+	if larger_scale:
+		$audio_stream_player_shatter.play()
 	return
 
 func promote(_pos:Vector3, _piece:int) -> void:
