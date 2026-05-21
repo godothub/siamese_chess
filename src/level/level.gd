@@ -191,7 +191,6 @@ func state_ready_start(_arg:Dictionary) -> void:
 	chessboard.state.set_round(1)
 	history_document.new_page()
 	history_document.set_state(chessboard.state)
-	refresh()
 	for iter:MarkerEvent in events:
 		iter.on_start()
 	if Chess.get_end_type(chessboard.state) == "checkmate_black":
@@ -211,6 +210,7 @@ func state_ready_free(_arg:Dictionary) -> void:
 		show_selection.call_deferred()
 	)
 	show_selection()
+	sync_to_global()
 
 func state_exit_free() -> void:
 	Dialog.clear()
@@ -241,7 +241,6 @@ func travel_to(_by:int) -> void:
 		return
 	travel_path = path_to
 	state_machine.change_state("travel")
-	refresh()
 
 func state_ready_enemy(_arg:Dictionary) -> void:
 	if !chessboard.state.get_bit(enemy_all):
@@ -286,9 +285,8 @@ func state_ready_move(_arg:Dictionary) -> void:
 	|| Chess.from(_arg["move"]) == Chess.to(_arg["move"]) && !chessboard.state.has_piece(Chess.from(_arg["move"])))
 
 	chessboard.execute_move(_arg["move"])
-	refresh()
 
-func refresh() -> void:
+func sync_to_global() -> void:
 	ThirdEye3D.set_state(chessboard.state)
 	var king_by:int = Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
 	var king_position:Vector3 = chessboard.chessboard_piece[king_by].global_position
@@ -327,6 +325,7 @@ func state_ready_player(_arg:Dictionary) -> void:
 	if chessboard.state.get_bit(enemy_all):
 		Clock.resume()
 	show_selection()
+	sync_to_global()
 	chessboard.set_square_selection(start_from)
 
 func state_exit_player() -> void:
