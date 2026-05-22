@@ -21,6 +21,9 @@ var piece_path:Dictionary = {
 var state:State = null
 @onready var item_list:ItemList = $sprite_chessboard/margin_container/item_list
 
+func _ready() -> void:
+	draw()
+
 func draw() -> void:
 	item_list.clear()
 	var empty_image:Image = Image.create_empty(124, 124, true, Image.FORMAT_RGBA8)
