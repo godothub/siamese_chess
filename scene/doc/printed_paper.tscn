@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgh28yukno0u7"]
 
-[ext_resource type="Script" uid="uid://cvkn4b0pkklap" path="res://src/doc/printed_paper.gd" id="1_wvpc7"]
+[ext_resource type="Script" uid="uid://dfirggx6q1gfe" path="res://src/doc/printed_view.gd" id="1_5frh7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5frh7"]
 
@@ -8,5 +8,5 @@
 physics_interpolation_mode = 0
 custom_minimum_size = Vector2(504, 673)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5frh7")
-script = ExtResource("1_wvpc7")
+script = ExtResource("1_5frh7")
 metadata/_custom_type_script = "uid://yldiqj24uchh"

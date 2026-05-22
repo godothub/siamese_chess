@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cof8ino84hnkw"]
 
-[ext_resource type="Script" uid="uid://clo5nevnw2rlk" path="res://src/doc/photo_paper.gd" id="1_7fpme"]
+[ext_resource type="Script" uid="uid://cokggqh80rygj" path="res://src/doc/photo_view.gd" id="1_iof40"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iof40"]
 
@@ -8,7 +8,7 @@
 physics_interpolation_mode = 0
 custom_minimum_size = Vector2(1152, 648)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_iof40")
-script = ExtResource("1_7fpme")
+script = ExtResource("1_iof40")
 metadata/_custom_type_script = "uid://yldiqj24uchh"
 
 [node name="sprite_2d" type="TextureRect" parent="." unique_id=1569406675]

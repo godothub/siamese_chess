@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://c01ydai71jvpl"]
 
-[ext_resource type="Script" uid="uid://yldiqj24uchh" path="res://src/doc/document.gd" id="1_ol3uf"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_bw0j0"]
 
 [sub_resource type="Gradient" id="Gradient_w5kv4"]
@@ -18,11 +17,11 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_toenx"]
 gradient = SubResource("Gradient_bw0j0")
 
-[node name="welcome" type="Panel" unique_id=144903324]
+[node name="welcome" type="Panel" unique_id=613906545]
 physics_interpolation_mode = 0
 custom_minimum_size = Vector2(504, 673)
-script = ExtResource("1_ol3uf")
-metadata/_custom_type_script = "uid://yldiqj24uchh"
+offset_right = 504.0
+offset_bottom = 673.0
 
 [node name="texture_rect" type="TextureRect" parent="." unique_id=1636202968]
 layout_mode = 1

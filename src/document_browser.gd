@@ -1,7 +1,7 @@
 extends Control
 class_name DocumentBrowser
 
-var document:Document = null
+var document_view:DocumentView = null
 var zoom:float = 1
 var offset:Vector2 = Vector2()
 var current_tool:int = 0
@@ -26,15 +26,15 @@ func _ready() -> void:
 
 func _physics_process(_delta:float) -> void:
 	if Input.is_action_just_pressed("ui_up"):
-		document.press_direction(1)
+		document_view.press_direction(1)
 	if Input.is_action_just_pressed("ui_down"):
-		document.press_direction(3)
+		document_view.press_direction(3)
 	if Input.is_action_just_pressed("ui_left"):
-		document.press_direction(0)
+		document_view.press_direction(0)
 	if Input.is_action_just_pressed("ui_right"):
-		document.press_direction(2)
+		document_view.press_direction(2)
 	if Input.is_action_just_pressed("ui_accept"):
-		document.press_confirm()
+		document_view.press_confirm()
 	if Input.is_action_just_pressed("tab_right"):
 		change_page(1)
 	if Input.is_action_just_pressed("tab_left"):
@@ -43,7 +43,7 @@ func _physics_process(_delta:float) -> void:
 		close()
 
 func _input(event:InputEvent) -> void:
-	if !document || !visible:
+	if !document_view || !visible:
 		return
 	if event is InputEventMultiScreenDrag && get_global_rect().has_point(event.position):
 		change_offset(event.relative)
@@ -51,47 +51,50 @@ func _input(event:InputEvent) -> void:
 		change_zoom(event.relative / 1000)
 	var actual_position:Vector2
 	if event is InputEventMouseButton || event is InputEventMouseMotion || event is InputEventSingleScreenTouch || event is InputEventSingleScreenDrag || event is InputEventMultiScreenDrag || event is InputEventScreenPinch:
-		actual_position = event.position - $sub_viewport_container.global_position - document.get_global_position()
+		actual_position = event.position - $sub_viewport_container.global_position - document_view.get_global_position()
 		actual_position /= zoom_mapped
 	if event is InputEventMouseButton:
 		if current_tool != 2:
 			if event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
-				document.start_dragging(actual_position)
+				document_view.start_dragging(actual_position)
 			else:
-				document.end_dragging()
+				document_view.end_dragging()
 	elif event is InputEventMouseMotion:
 		if event.button_mask & MOUSE_BUTTON_MASK_LEFT:
 			if current_tool == 2 || event.pen_inverted:
-				document.cancel_dragging()
-				document.erase(actual_position)
+				document_view.cancel_dragging()
+				document_view.erase(actual_position)
 			elif current_tool == 0:
 				change_offset(event.relative)
 			else:
-				document.dragging(actual_position)
+				document_view.dragging(actual_position)
 		elif event.button_mask & MOUSE_BUTTON_MASK_RIGHT:
-			document.cancel_dragging()
-			document.erase(actual_position)
+			document_view.cancel_dragging()
+			document_view.erase(actual_position)
 		else:
 			$sub_viewport_container/sub_viewport.push_input(event)
 
 func open() -> void:
 	visible = true
+	document_view.open()
 	$sub_viewport_container.grab_focus()
 	set_process_input(true)
 	set_physics_process(true)
 
 func close() -> void:
 	visible = false
+	if document_view:
+		document_view.close()
 	$sub_viewport_container.release_focus()
 	set_process_input(false)
 	set_physics_process(false)
 
-func set_document(_document:Document) -> void:
-	if is_instance_valid(document):
-		$sub_viewport_container/sub_viewport.remove_child(document)
-	document = _document
-	$sub_viewport_container/sub_viewport.add_child(document)
-	var rect:Rect2 = document.get_rect()
+func set_document_view(_document_view:DocumentView) -> void:
+	if is_instance_valid(document_view):
+		$sub_viewport_container/sub_viewport.remove_child(document_view)
+	document_view = _document_view
+	$sub_viewport_container/sub_viewport.add_child(document_view)
+	var rect:Rect2 = document_view.get_rect()
 	zoom_mapped = min($sub_viewport_container/sub_viewport.size.x / rect.size.x, $sub_viewport_container/sub_viewport.size.y / rect.size.y)
 	zoom = sqrt((zoom_mapped - 0.1) / 0.95) * 2
 	zoom_local = 1
@@ -99,18 +102,18 @@ func set_document(_document:Document) -> void:
 	offset = $sub_viewport_container/sub_viewport.size / 2
 	offset -= rect.size / 2
 	$margin_container_zoom/h_box_container/label.text = "%d%%" % (zoom_local * 100)
-	$margin_container_page/h_box_container/label.text = "%d/%d" % [page + 1, document.page_count()]
+	$margin_container_page/h_box_container/label.text = "%d/%d" % [page + 1, document_view.document.page_count()]
 	update_transform()
 
 func update_transform() -> void:
-	if !is_instance_valid(document):
+	if !is_instance_valid(document_view):
 		return
 	var pivot:Vector2 = get_global_transform().basis_xform_inv($sub_viewport_container/sub_viewport.size * 0.5)
 	var offset_result:Vector2 = offset - pivot
-	offset_result *= zoom_mapped / document.scale.x
+	offset_result *= zoom_mapped / document_view.scale.x
 	offset = offset_result + pivot
-	document.scale = Vector2(zoom_mapped, zoom_mapped)
-	document.position = offset
+	document_view.scale = Vector2(zoom_mapped, zoom_mapped)
+	document_view.position = offset
 
 func change_zoom(relative:float) -> void:
 	var last_zoom_local:float = zoom_local
@@ -130,6 +133,6 @@ func set_current_tool(_current_tool:int) -> void:
 
 func change_page(dir:int) -> void:
 	page += dir
-	page = clamp(page, 0, document.page_count() - 1)
-	document.turn_page(page)
-	$margin_container_page/h_box_container/label.text = "%d/%d" % [page + 1, document.page_count()]
+	page = clamp(page, 0, document_view.document.page_count() - 1)
+	document_view.turn_page(page)
+	$margin_container_page/h_box_container/label.text = "%d/%d" % [page + 1, document_view.document.page_count()]

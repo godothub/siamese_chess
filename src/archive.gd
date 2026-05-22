@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var template_list:Dictionary = {
+var document_view_list:Dictionary = {
 	"printed": "res://scene/doc/printed_paper.tscn",
 	"photo": "res://scene/doc/photo_paper.tscn",
 	"history": "res://scene/doc/history.tscn",
@@ -9,7 +9,17 @@ var template_list:Dictionary = {
 	"inspectable": "res://scene/doc/model.tscn"
 }
 
+var document_data_list:Dictionary = {
+	"printed": "res://src/doc/printed_paper.gd",
+	"photo": "res://src/doc/photo_paper.gd",
+	"history": "res://src/doc/history.gd",
+	"draft": "res://src/doc/notable.gd",
+	"piece": "res://src/doc/model.gd",
+	"inspectable": "res://src/doc/model.gd"
+}
+
 var document:Document = null
+var document_view:DocumentView = null
 var document_list:PackedStringArray = []
 var button_list:Array[Button] = []
 var mouse_move_start:Vector2 = Vector2()
@@ -111,10 +121,12 @@ func open_document(filename:String) -> void:
 		document.save_file()
 	filename = filename.get_file()
 	var filename_splited:PackedStringArray = filename.split(".")	# 模板.名称.json
-	document = load(template_list[filename_splited[0]]).instantiate()
+	document = load(document_data_list[filename_splited[0]]).new()
+	document_view = load(document_view_list[filename_splited[0]]).instantiate()
 	document.set_filename(filename)
 	document.load_file()
-	$texture_rect/document_browser.set_document(document)
+	document_view.set_document(document)
+	$texture_rect/document_browser.set_document_view(document_view)
 	$texture_rect/document_browser.open()
 
 func close() -> void:

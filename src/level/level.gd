@@ -17,15 +17,13 @@ var engine:ChessEngine = null	# 有可能会出现多线作战，共用同一个
 var in_battle:bool = false
 var teleport:Dictionary = {}
 var history_state:PackedInt64Array = []
-@onready var history_document:Document = load("res://scene/doc/history.tscn").instantiate()
+@onready var history_document:Document = load("res://src/doc/history.gd").new()
 var events:Array = []
 var title:Dictionary[int, String] = {}
 var state_machine:StateMachine = null
 var premove_state_machine:StateMachine = null
 
 func _ready() -> void:
-	add_child(history_document)
-	history_document.hide()
 	player_all = ord("A") if player_group == 0 else ord("a")
 	player_king = ord("K") if player_group == 0 else ord("k")
 	enemy_all = ord("a") if player_group == 0 else ord("A")
@@ -190,7 +188,7 @@ func state_ready_start(_arg:Dictionary) -> void:
 	chessboard.state.set_step_to_draw(0)
 	chessboard.state.set_round(1)
 	history_document.new_page()
-	history_document.set_state(chessboard.state)
+	history_document.set_state(-1, chessboard.state)
 	for iter:MarkerEvent in events:
 		iter.on_start()
 	if Chess.get_end_type(chessboard.state) == "checkmate_black":
@@ -270,7 +268,7 @@ func state_ready_waiting() -> void:
 
 func state_ready_move(_arg:Dictionary) -> void:
 	Clock.pause()
-	history_document.push_move(_arg["move"])
+	history_document.push_move(-1, _arg["move"])
 	history_state.push_back(chessboard.state.get_zobrist())
 	if Setting.get_value("text_to_speech"):
 		var content:String = "WHITE_PLAY" if chessboard.state.get_turn() == 0 else "BLACK_PLAY"

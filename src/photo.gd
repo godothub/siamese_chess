@@ -10,7 +10,7 @@ extends CanvasLayer
 @onready var sub_viewport_container:SubViewportContainer = $texture_rect/h_box_container/margin_container/sub_viewport_container
 @onready var sub_viewport:SubViewport = $texture_rect/h_box_container/margin_container/sub_viewport_container/sub_viewport
 
-@onready var photo_document:Document = load("res://scene/doc/photo_paper.tscn").instantiate()
+@onready var photo_document:Document = load("res://src/doc/photo_paper.gd").new()
 
 var zoom:float = 0
 
@@ -87,5 +87,5 @@ func save_photo() -> void:
 	var texture:ViewportTexture = sub_viewport.get_texture()
 	var image:Image = texture.get_image()
 	photo_document.new_page()
-	photo_document.set_image(image)
+	photo_document.set_image(-1, image)
 	photo_document.save_file()

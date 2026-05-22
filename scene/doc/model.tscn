@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dcu8cfedvwgsy"]
 
-[ext_resource type="Script" uid="uid://b7bd7gor6auwu" path="res://src/doc/model.gd" id="1_36njv"]
+[ext_resource type="Script" uid="uid://bohjcx0j43x62" path="res://src/doc/model_view.gd" id="1_p4vxt"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_36njv"]
 
@@ -23,7 +23,7 @@ fog_density = 1.0
 
 [node name="model" type="Panel" unique_id=1077691121]
 custom_minimum_size = Vector2(1024, 1024)
-script = ExtResource("1_36njv")
+script = ExtResource("1_p4vxt")
 metadata/_custom_type_script = "uid://yldiqj24uchh"
 
 [node name="sprite_2d" type="TextureRect" parent="." unique_id=349237995]

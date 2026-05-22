@@ -1,7 +1,8 @@
-extends Panel
+extends RefCounted
 class_name Document
 # 文档分为模板和实例
 # 实例包含了文件名称和变量
+signal content_changed()
 
 var filename:String = ""	# 文档名称，唯一
 var template:String = ""	# 模板路径
@@ -37,38 +38,5 @@ func set_filename(_filename:String) -> void:
 func get_filename() -> String:
 	return filename
 
-func click(_click_position:Vector2) -> void:
-	pass
-
-func start_dragging(_start_position:Vector2) -> void:
-	pass
-
-func dragging(_drawing_position:Vector2) -> void:
-	pass
-
-func end_dragging() -> void:
-	pass
-
-func cancel_dragging() -> void:
-	pass
-
-func erase(_drawing_position:Vector2) -> void:
-	pass
-
-func press_direction(_dir:int) -> void:
-	pass
-
-func press_confirm() -> void:
-	pass
-
-func new_page() -> void:
-	pass
-
-func turn_page(_page:int) -> void:
-	pass
-
 func page_count() -> int:
-	return 0
-
-func page_index() -> int:
 	return 0

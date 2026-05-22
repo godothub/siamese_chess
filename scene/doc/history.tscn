@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b0ots07uggqyg"]
 
-[ext_resource type="Script" uid="uid://dovrsks1cn8gl" path="res://src/doc/history.gd" id="1_1i63t"]
+[ext_resource type="Script" uid="uid://dompv58itjjjo" path="res://src/doc/history_view.gd" id="1_3qbnw"]
 [ext_resource type="Theme" uid="uid://d32bwe36vwxip" path="res://assets/theme.tres" id="2_ysvxy"]
 [ext_resource type="Texture2D" uid="uid://b4743axykk2uc" path="res://assets/texture/history.svg" id="3_o7yno"]
 [ext_resource type="PackedScene" uid="uid://bnxosopniliec" path="res://scene/chessboard_flat.tscn" id="4_cer4d"]
@@ -10,7 +10,7 @@
 [node name="history" type="Panel" unique_id=385514824]
 custom_minimum_size = Vector2(794, 1123)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3qbnw")
-script = ExtResource("1_1i63t")
+script = ExtResource("1_3qbnw")
 metadata/_custom_type_script = "uid://yldiqj24uchh"
 
 [node name="history" type="TextureRect" parent="." unique_id=1453175898]
