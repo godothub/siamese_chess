@@ -3,7 +3,7 @@ extends Level
 var standard_history_zobrist:PackedInt64Array = []
 var standard_history_state:Array[State] = []
 var standard_history_event:Array[Dictionary] = []
-@onready var standard_history_document:Document = load("res://scene/doc/history.tscn").instantiate()
+@onready var standard_history_document:Document = load("res://src/doc/history.gd").new()
 @onready var standard_chessboard:Chessboard = $table_0/chessboard_standard
 var standard_engine:ChessEngine = PastorEngine.new()
 var standard_state_machine:StateMachine = StateMachine.new()
@@ -15,8 +15,6 @@ func _ready() -> void:
 	super._ready()
 	standard_history_document.set_filename("history.match_with_yulan.json")
 	standard_history_document.load_file()
-	add_child(standard_history_document)
-	standard_history_document.hide()
 	Ambient.change_environment_sound(load("res://assets/audio/52645__kstein1__white-noise.wav"))
 	var cheshire_by:int = get_meta("by")
 	var cheshire_instance:Actor = load("res://scene/actor/cheshire.tscn").instantiate()
@@ -211,7 +209,7 @@ func state_ready_in_game_start(_arg:Dictionary) -> void:
 	standard_history_zobrist.clear()
 	standard_history_event.clear()
 	standard_history_document.new_page()
-	standard_history_document.set_state(standard_chessboard.state)
+	standard_history_document.set_state(-1, standard_chessboard.state)
 	standard_premove_state_machine.change_state("stop")
 	if standard_chessboard.state.get_turn() != standard_player_group:
 		standard_state_machine.change_state("opponent")
@@ -244,7 +242,7 @@ func state_ready_in_game_waiting() -> void:
 	standard_engine.stop_search()
 
 func state_ready_in_game_move(_arg:Dictionary) -> void:
-	standard_history_document.push_move(_arg["move"])
+	standard_history_document.push_move(-1, _arg["move"])
 	standard_history_state.push_back(standard_chessboard.state.duplicate())
 	standard_history_zobrist.push_back(standard_chessboard.state.get_zobrist())
 	if Setting.get_value("text_to_speech"):
@@ -285,7 +283,7 @@ func state_ready_in_game_player(_arg:Dictionary) -> void:
 			standard_history_zobrist.resize(standard_history_zobrist.size() - 2)
 			standard_history_state.resize(standard_history_state.size() - 2)
 			standard_history_event.resize(standard_history_event.size() - 2)
-			standard_history_document.rollback(standard_chessboard.state, 2)
+			standard_history_document.rollback(-1, standard_chessboard.state, 2)
 			await standard_chessboard.animation_finished
 			if standard_history_event.size() <= 1:
 				Dialog.push_selection(["SELECTION_LEAVE_GAME"], "HINT_TAKE_BACKED", false, false)
