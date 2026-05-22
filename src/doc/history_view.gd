@@ -24,7 +24,7 @@ func open() -> void:
 	current_focus.grab_focus()
 
 func close() -> void:
-	pass
+	super.close()
 
 func update_table() -> void:
 	$history/chessboard_flat.set_state(document.page_list[page_index].state)

@@ -9,10 +9,10 @@ func set_document(_document:Document) -> void:
 	update_instance()
 
 func open() -> void:
-	pass
+	super.open()
 
 func close() -> void:
-	pass
+	super.close()
 
 func update_instance() -> void:
 	if instance:

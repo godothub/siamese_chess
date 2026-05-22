@@ -117,8 +117,7 @@ func read_title(text:String) -> void:
 
 func open_document(filename:String) -> void:
 	$audio_stream_player_confirm.play()
-	if is_instance_valid(document):
-		document.save_file()
+	$texture_rect/document_browser.close()
 	filename = filename.get_file()
 	var filename_splited:PackedStringArray = filename.split(".")	# 模板.名称.json
 	document = load(document_data_list[filename_splited[0]]).new()

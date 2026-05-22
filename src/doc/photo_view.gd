@@ -7,10 +7,10 @@ func set_document(_document:Document) -> void:
 	update_image()
 
 func open() -> void:
-	pass
+	super.open()
 
 func close() -> void:
-	pass
+	super.close()
 
 func update_image() -> void:
 	$sprite_2d.texture = ImageTexture.create_from_image(document.page_list[page_index].image)
