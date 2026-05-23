@@ -89,15 +89,15 @@ func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_a
 		DisplayServer.tts_speak(tr(_text), Setting.get_value("voice"), 50, 1, 1, 0, true)
 
 func push_selection(_selection:PackedStringArray, _title:String, _force_selection:bool = true, blackscreen:bool = false) -> void:
+	if text_label.text != "" || title_label.text != "":
+		clear()
+	if tween && tween.is_running():
+		tween.kill()
 	click_anywhere = false
 	force_selection = _force_selection
 	selection = _selection
 	text = selection_to_bbcode(_selection)
 	title = _title
-	if tween && tween.is_running():
-		tween.kill()
-	if text_label.text != "" || title_label.text != "":
-		clear()
 	if force_selection:
 		on_focus.emit()
 	tween = create_tween()
