@@ -2,6 +2,7 @@ extends NotableView
 class_name HistoryView
 
 var current_focus:Control = null
+var state_list:Array[State] = []
 
 func _ready() -> void:
 	var labels:Array = [
@@ -10,6 +11,10 @@ func _ready() -> void:
 	for iter:Label in labels:
 		iter.connect("mouse_entered", read_label.bind(iter))
 		iter.connect("focus_entered", read_label.bind(iter))
+	
+	for i:int in range(60):
+		get_node("history/white/label_%d" % (i + 1)).connect("gui_input", press_move.bind(i * 2))
+		get_node("history/black/label_%d" % (i + 1)).connect("gui_input", press_move.bind(i * 2 + 1))
 	current_focus = labels[0]
 
 func set_document(_document:Document) -> void:
@@ -27,11 +32,15 @@ func close() -> void:
 	super.close()
 
 func update_table() -> void:
-	$history/chessboard_flat.set_state(document.page_list[page_index].state)
+	$history/chessboard_flat.set_state(document.page_list[page_index].initial_state)
+	state_list.clear()
 	for i:int in range(60):
 		get_node("history/white/label_%d" % (i + 1)).text = ""
 		get_node("history/black/label_%d" % (i + 1)).text = ""
+	var test_state:State = document.page_list[page_index].initial_state.duplicate()
 	for i:int in range(document.page_list[page_index].history.size()):
+		Chess.apply_move(test_state, document.page_list[page_index].history_raw[i])
+		state_list.push_back(test_state.duplicate())
 		if i % 2 == 0:
 			get_node("history/white/label_%d" % (i / 2 + 1)).text = document.page_list[page_index].history[i]
 		else:
@@ -44,6 +53,11 @@ func turn_page(_page:int) -> void:
 func read_label(label:Label) -> void:
 	if Setting.get_value("text_to_speech"):
 		DisplayServer.tts_speak(label.text, Setting.get_value("voice"), 50, 1, 1, 0, true)
+
+func press_move(event:InputEvent, index:int) -> void:
+	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
+		if state_list.size() > index:
+			$history/chessboard_flat.set_state(state_list[index])
 
 func press_direction(_dir:int) -> void:
 	var next_focus:Control = current_focus.find_valid_focus_neighbor(_dir)

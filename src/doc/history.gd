@@ -15,18 +15,23 @@ func parse(data:Dictionary) -> void:
 	for iter:Dictionary in data_arr:
 		var page:HistoryPage = HistoryPage.new()
 		var fen:String = iter["state"]
-		page.state = Chess.parse(fen)
-		page.history = iter["history"]
+		page.initial_state = Chess.parse(fen)
+		page.history_raw = iter["history"]
 		page_list.push_back(page)
+		var test_state:State = page.initial_state.duplicate()
+		for move:int in page.history_raw:
+			page.history.push_back(Chess.get_move_name(test_state, move))
+			Chess.apply_move(test_state, move)
+		page.state = test_state
 
 func dict() -> Dictionary:
 	var data:Dictionary = super.dict()
 	var data_arr:Array = []
 	for page:HistoryPage in page_list:
 		var iter:Dictionary = {}
-		var fen:String = Chess.stringify(page.state)
+		var fen:String = Chess.stringify(page.initial_state)
 		iter["state"] = fen
-		iter["history"] = page.history
+		iter["history"] = page.history_raw
 		data_arr.push_back(iter)
 	data["history"] = data_arr
 	return data
