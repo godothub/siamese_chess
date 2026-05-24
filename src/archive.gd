@@ -113,7 +113,7 @@ func scroll_container_input(event:InputEvent) -> void:
 func read_title(text:String) -> void:
 	$audio_stream_player_select.play()
 	if Setting.get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr(text), Setting.get_value("voice"), 50, 1, 1.2, 0, true)
+		Narrative.speak(tr(text), true)
 
 func open_document(filename:String) -> void:
 	$audio_stream_player_confirm.play()

@@ -222,69 +222,69 @@ func get_value(key:String) -> Variant:
 func read_close() -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("ICON_CLOSE"), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr("ICON_CLOSE"), true)
 
 func focus_tab() -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr($texture_rect/tab_container.get_tab_bar().get_tab_title($texture_rect/tab_container.current_tab)), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr($texture_rect/tab_container.get_tab_bar().get_tab_title($texture_rect/tab_container.current_tab)), true)
 
 func hover_tab(tab:int) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab)), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab)), true)
 
 func selected_tab(tab:int) -> void:
 	$audio_stream_player_confirm.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("SETTINGS_TAB_SELECTED").format({"selection": tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab))}), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr("SETTINGS_TAB_SELECTED").format({"selection": tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab))}), true)
 
 func hover_label(label:Control) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr(label.text), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr(label.text), true)
 
 func hover_check_box(check_box:CheckBox) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("ICON_TURN_ON") if check_box.button_pressed else tr("ICON_TURN_OFF"), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr("ICON_TURN_ON") if check_box.button_pressed else tr("ICON_TURN_OFF"), true)
 
 func change_check_box(toggled:bool) -> void:
 	$audio_stream_player_confirm.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("SETTINGS_CHECKBOX_ON") if toggled else tr("SETTINGS_CHECKBOX_OFF"), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr("SETTINGS_CHECKBOX_ON") if toggled else tr("SETTINGS_CHECKBOX_OFF"), true)
 
 func hover_option_button(option_button:OptionButton) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("SETTINGS_OPTION_BUTTON_HOVERED").format({"selection": tr(option_button.get_item_text(option_button.selected))}), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_HOVERED").format({"selection": tr(option_button.get_item_text(option_button.selected))}), true)
 
 func hover_option_button_selection(index:int, option_button:OptionButton) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr(option_button.get_item_text(index)), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr(option_button.get_item_text(index)), true)
 
 func show_option_button(toggled:bool) -> void:
 	$audio_stream_player_confirm.play()
 	if !toggled:
 		return
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("SETTINGS_OPTION_BUTTON_SHOW"), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_SHOW"), true)
 
 func selected_option_button(index:int, option_button:OptionButton) -> void:
 	$audio_stream_player_confirm.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("SETTINGS_OPTION_BUTTON_SELECTED").format({"selection": tr(option_button.get_item_text(index))}), get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_SELECTED").format({"selection": tr(option_button.get_item_text(index))}), true)
 
 func hover_slider(slider:Slider) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("SETTINGS_SLIDER_HOVERED") % slider.value, get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr("SETTINGS_SLIDER_HOVERED") % slider.value, true)
 
 func change_slider(value:float) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("SETTINGS_SLIDER_CHANGED") % value, get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr("SETTINGS_SLIDER_CHANGED") % value, true)
 
 func set_resolution(index:int) -> void:
 	table.set("resolution", index)

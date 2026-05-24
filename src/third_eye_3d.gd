@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-@onready var pastor:Actor = $texture_rect/sub_viewport_container/sub_viewport/pastor
 @onready var chessboard:Chessboard = $texture_rect/sub_viewport_container/sub_viewport/chessboard
 @onready var camera:Camera3D = $texture_rect/sub_viewport_container/sub_viewport/camera
 @onready var button_close:Button = $texture_rect_top/margin_container_close/button_close
@@ -13,7 +12,6 @@ func _ready() -> void:
 	button_close.connect("pressed", close)
 	button_close.connect("mouse_entered", read_close)
 	button_close.connect("focus_entered", read_close)
-	$texture_rect/sub_viewport_container/sub_viewport/pastor.play_animation("thinking")
 	visible = false
 
 func _physics_process(_delta:float) -> void:
@@ -26,7 +24,7 @@ func set_state(_state:State) -> void:
 func read_close() -> void:
 	$audio_stream_player_select.play()
 	if Setting.get_value("text_to_speech"):
-		DisplayServer.tts_speak(tr("ICON_CLOSE"), Setting.get_value("voice"), 50, 1, 1, 0, true)
+		Narrative.speak(tr("ICON_CLOSE"), true)
 
 func open() -> void:
 	last_audio_stream = Ambient.get_current_audio_stream()
@@ -41,7 +39,7 @@ func open() -> void:
 	$texture_rect.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	tween.tween_property($texture_rect, "modulate", Color(1, 1, 1, 1), 0.1)
 	#if Setting.get_value("text_to_speech"):
-	#	DisplayServer.tts_speak("", Setting.get_value("voice"), 50, 1, 1, 0, true)
+	#	Narrative.speak("", true)
 
 func close() -> void:
 	Ambient.change_environment_sound(last_audio_stream)

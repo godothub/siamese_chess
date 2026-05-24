@@ -44,4 +44,4 @@ func on_start() -> void:
 			return
 		placeholder_result[key] = result
 	text_translated = text_translated.format(placeholder_result)
-	DisplayServer.tts_speak(text_translated, Setting.get_value("voice"))
+	Narrative.speak(text_translated)
