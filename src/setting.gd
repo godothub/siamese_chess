@@ -55,6 +55,7 @@ var table:Dictionary = {}
 @onready var reset_progress_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/button
 
 func _ready() -> void:
+	set_physics_process(false)
 	if !resolutions.has(get_viewport().size):
 		resolutions.push_front(get_viewport().size)
 	
