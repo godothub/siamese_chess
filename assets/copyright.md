@@ -210,6 +210,14 @@
 
 许可：CC0
 
+### Analog CRT TV Electronic Static Noise
+
+文件：assets/audio/546047__grcekh__analog-crt-tv-electronic-static-noise.wav
+
+版权：grcekh
+
+许可：CC0
+
 ### Tabletop clock ticking, speed ramp down (followup)
 
 文件：assets/audio/556991__ycbcr__tabletop-clock-ticking-speed-ramp-down-followup_*.wav

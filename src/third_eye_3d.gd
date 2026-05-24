@@ -6,11 +6,14 @@ extends CanvasLayer
 @onready var button_close:Button = $texture_rect_top/margin_container_close/button_close
 var tween:Tween
 var target_camera:Camera3D = null
+var last_audio_stream:AudioStream = null
+var audio_stream:AudioStream = load("res://assets/audio/546047__grcekh__analog-crt-tv-electronic-static-noise.wav")
 
 func _ready() -> void:
 	button_close.connect("pressed", close)
 	button_close.connect("mouse_entered", read_close)
 	button_close.connect("focus_entered", read_close)
+	$texture_rect/sub_viewport_container/sub_viewport/pastor.play_animation("thinking")
 	visible = false
 
 func _physics_process(_delta:float) -> void:
@@ -26,6 +29,8 @@ func read_close() -> void:
 		DisplayServer.tts_speak(tr("ICON_CLOSE"), Setting.get_value("voice"), 50, 1, 1, 0, true)
 
 func open() -> void:
+	last_audio_stream = Ambient.get_current_audio_stream()
+	Ambient.change_environment_sound(audio_stream)
 	set_physics_process(true)
 	chessboard.remove_piece_set()
 	chessboard.add_default_piece_set()
@@ -39,6 +44,7 @@ func open() -> void:
 	#	DisplayServer.tts_speak("", Setting.get_value("voice"), 50, 1, 1, 0, true)
 
 func close() -> void:
+	Ambient.change_environment_sound(last_audio_stream)
 	$audio_stream_player_confirm.play()
 	set_physics_process(false)
 	visible = false
