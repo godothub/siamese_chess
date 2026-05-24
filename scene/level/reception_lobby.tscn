@@ -254,7 +254,7 @@ metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
 [node name="marker_narrative_overall" type="Node3D" parent="." unique_id=218744405]
 script = ExtResource("24_p85mr")
-text = "RECEPTION_LOBBY_NARRATIVE"
+text = "WELCOME_TO_RECEPTION_LOBBY"
 metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
 
 [node name="csg_combiner_3d" type="CSGCombiner3D" parent="." unique_id=398327325]

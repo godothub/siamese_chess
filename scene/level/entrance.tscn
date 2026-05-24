@@ -489,7 +489,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4.26559)
 
 [node name="marker_narrative" type="Node3D" parent="." unique_id=313801101]
 script = ExtResource("20_a370u")
-text = "ENTRANCE_NARRATIVE"
+text = "WELCOME_TO_ENTRANCE"
 metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
 
 [editable path="chessboard"]

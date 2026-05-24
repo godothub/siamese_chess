@@ -195,8 +195,6 @@ func name_to_vector3(_position_name:String) -> Vector3:
 	return get_node(_position_name).position
 
 func tap_position(position_name:String, down:bool = true) -> void:
-	if Setting.get_value("text_to_speech"):
-		DisplayServer.tts_speak(position_name, Setting.get_value("voice"), 50, 1, 2, 0, true)
 	var selected:int = Chess.name_to_x88(position_name)
 	if square_selection != -1 && (Chess.mask(Chess.x88_to_c64(selected)) & square_selection):
 		if down:
@@ -235,26 +233,30 @@ func finger_on_position(position_name:String) -> void:
 			
 		Input.vibrate_handheld(50, 0.2)
 		if Setting.get_value("text_to_speech"):
-			if state.get_piece(Chess.name_to_x88(position_name)):
-				const map:Dictionary = {
-					ord("K"): "PIECE_WHITE_KING",
-					ord("Q"): "PIECE_WHITE_QUEEN",
-					ord("R"): "PIECE_WHITE_ROOK",
-					ord("B"): "PIECE_WHITE_BISHOP",
-					ord("N"): "PIECE_WHITE_KNIGHT",
-					ord("P"): "PIECE_WHITE_PAWN",
-					ord("k"): "PIECE_BLACK_KING",
-					ord("q"): "PIECE_BLACK_QUEEN",
-					ord("r"): "PIECE_BLACK_ROOK",
-					ord("b"): "PIECE_BLACK_BISHOP",
-					ord("n"): "PIECE_BLACK_KNIGHT",
-					ord("p"): "PIECE_BLACK_PAWN",
-					ord("#"): "PIECE_BARRIER",
-					ord("*"): "PIECE_BREAKABLE_BARRIER",
-				}
-				var piece:int = state.get_piece(Chess.name_to_x88(position_name))
-				var piece_name:String = map[piece]
-				DisplayServer.tts_speak(tr("THERE_IS_A_PIECE").format({"piece": tr(piece_name)}), Setting.get_value("voice"), 50, 1, 2, 0, true)
+			DisplayServer.tts_stop()
+			const map:Dictionary = {
+				ord("K"): "PIECE_WHITE_KING",
+				ord("Q"): "PIECE_WHITE_QUEEN",
+				ord("R"): "PIECE_WHITE_ROOK",
+				ord("B"): "PIECE_WHITE_BISHOP",
+				ord("N"): "PIECE_WHITE_KNIGHT",
+				ord("P"): "PIECE_WHITE_PAWN",
+				ord("k"): "PIECE_BLACK_KING",
+				ord("q"): "PIECE_BLACK_QUEEN",
+				ord("r"): "PIECE_BLACK_ROOK",
+				ord("b"): "PIECE_BLACK_BISHOP",
+				ord("n"): "PIECE_BLACK_KNIGHT",
+				ord("p"): "PIECE_BLACK_PAWN",
+				ord("#"): "PIECE_BARRIER",
+				ord("*"): "PIECE_BREAKABLE_BARRIER",
+				ord("|"): "WALL_FILE",
+				ord("-"): "WALL_RANK",
+				ord("+"): "WALL_DIAG",
+			}
+			for piece:int in map:
+				if state.get_bit(piece) & Chess.mask(Chess.x88_to_c64((Chess.name_to_x88(position_name)))):
+					var piece_name:String = map[piece]
+					DisplayServer.tts_speak(tr("THERE_IS_A_PIECE").format({"piece": tr(piece_name), "by": position_name}), Setting.get_value("voice"), 50, 1, 1, 0, false)
 	pointer_position_name = position_name
 	$canvas.draw_pointer("pointer", COLOR_POINTER, Chess.name_to_x88(position_name))
 
