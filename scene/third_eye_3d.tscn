@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://h85ppsibn8xk" path="res://assets/texture/Texturelabs_Wood_256S.jpg" id="5_vxajr"]
 [ext_resource type="PackedScene" uid="uid://df443q5sl4vaj" path="res://assets/model/sofa.glb" id="6_pp1i2"]
 [ext_resource type="AudioStream" uid="uid://bn0efi7nl4ro8" path="res://assets/audio/147018__xxqmanxx__socket-wrench.wav" id="9_05abh"]
-[ext_resource type="PackedScene" uid="uid://crucchfeabm" path="res://scene/actor/pastor.tscn" id="9_810sp"]
 [ext_resource type="AudioStream" uid="uid://bbixsq7mcj4xx" path="res://assets/audio/561658__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-one-keypress-spacebar_96khz_mono_zoomh4n_nt5.wav" id="10_vxajr"]
 
 [sub_resource type="Gradient" id="Gradient_j3y3i"]
@@ -116,18 +115,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045349, 0, -0.90022)
 [node name="sofa_1" parent="texture_rect/sub_viewport_container/sub_viewport/table_0" unique_id=1354336657 instance=ExtResource("6_pp1i2")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.048802, 0, 1.09839)
 
-[node name="pastor" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=452469260 instance=ExtResource("9_810sp")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 0)
-
 [node name="spot_light_3d" type="SpotLight3D" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=60457367]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3.1275709, 0)
 light_color = Color(0.9, 0.70934993, 0.621, 1)
-spot_angle = 28.898962
-
-[node name="omni_light_3d" type="OmniLight3D" parent="texture_rect/sub_viewport_container/sub_viewport/spot_light_3d" unique_id=804321511]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.6590524e-08, -1.7521868)
-light_color = Color(0.53993255, 0.43473682, 0.29780623, 1)
-light_energy = 0.2
+spot_angle = 12.99
 
 [node name="reflection_probe" type="ReflectionProbe" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=281795036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
