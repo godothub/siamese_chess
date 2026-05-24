@@ -27,31 +27,13 @@ offset_right = 37.0
 offset_bottom = -361.50003
 scale = Vector2(0.25663373, 0.25663373)
 
-[node name="label_title" type="Label" parent="history" unique_id=1741921688]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.050377835
-anchor_top = -0.12466607
-anchor_right = -0.012594459
-anchor_bottom = -0.113980405
-offset_left = 243.0
-offset_top = 194.5
-offset_right = 312.0
-offset_bottom = 217.5
-focus_mode = 2
-mouse_filter = 0
-theme = ExtResource("2_ysvxy")
-theme_override_font_sizes/font_size = 30
-text = "Notation"
-metadata/_edit_use_anchors_ = true
-
 [node name="label_date" type="Label" parent="history" unique_id=991759260]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.109571785
-anchor_top = -0.11487088
+anchor_top = -0.116651826
 anchor_right = -0.10075567
-anchor_bottom = -0.11130899
+anchor_bottom = -0.113089934
 offset_left = 180.0
 offset_top = 239.5
 offset_right = 221.0
@@ -83,9 +65,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.115869015
-anchor_top = -0.093499556
+anchor_top = -0.090828136
 anchor_right = -0.10327456
-anchor_bottom = -0.089937665
+anchor_bottom = -0.08726625
 offset_left = 173.0
 offset_top = 314.5
 offset_right = 223.0
@@ -117,9 +99,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.11712846
-anchor_top = -0.061442565
+anchor_top = -0.05877115
 anchor_right = -0.10075567
-anchor_bottom = -0.057880677
+anchor_bottom = -0.05520926
 offset_left = 148.0
 offset_top = 382.5
 offset_right = 223.0
@@ -128,6 +110,91 @@ focus_mode = 2
 mouse_filter = 0
 theme = ExtResource("2_ysvxy")
 text = "Recorder:"
+metadata/_edit_use_anchors_ = true
+
+[node name="label_date_value" type="Label" parent="history" unique_id=11739443]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.020151133
+anchor_top = -0.11620659
+anchor_right = 0.050299734
+anchor_bottom = -0.1126447
+offset_left = 180.0
+offset_top = 239.5
+offset_right = 354.062
+offset_bottom = 262.5
+focus_mode = 2
+mouse_filter = 0
+theme = ExtResource("2_ysvxy")
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label_event_value" type="Label" parent="history" unique_id=47840903]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.012594459
+anchor_top = -0.101959035
+anchor_right = 0.061634745
+anchor_bottom = -0.09839715
+offset_left = 174.0
+offset_top = 275.5
+offset_right = 345.062
+offset_bottom = 298.5
+focus_mode = 2
+mouse_filter = 0
+theme = ExtResource("2_ysvxy")
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label_white_value" type="Label" parent="history" unique_id=984351840]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0113350125
+anchor_top = -0.090382904
+anchor_right = 0.06541308
+anchor_bottom = -0.08682101
+offset_left = 173.0
+offset_top = 314.5
+offset_right = 342.062
+offset_bottom = 337.5
+focus_mode = 2
+mouse_filter = 0
+theme = ExtResource("2_ysvxy")
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label_black_value" type="Label" parent="history" unique_id=131811840]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.013853904
+anchor_top = -0.07435441
+anchor_right = 0.059115853
+anchor_bottom = -0.07079252
+offset_left = 175.0
+offset_top = 348.5
+offset_right = 347.062
+offset_bottom = 371.5
+focus_mode = 2
+mouse_filter = 0
+theme = ExtResource("2_ysvxy")
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="label_recorder_value" type="Label" parent="history" unique_id=387303096]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.020151133
+anchor_top = -0.058325913
+anchor_right = 0.09815867
+anchor_bottom = -0.054764025
+offset_left = 148.0
+offset_top = 382.5
+offset_right = 316.062
+offset_bottom = 405.5
+focus_mode = 2
+mouse_filter = 0
+theme = ExtResource("2_ysvxy")
+horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="header" type="Control" parent="history" unique_id=1385032680]

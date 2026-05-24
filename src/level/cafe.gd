@@ -210,6 +210,7 @@ func state_ready_in_game_start(_arg:Dictionary) -> void:
 	standard_history_event.clear()
 	standard_history_document.new_page()
 	standard_history_document.set_state(-1, standard_chessboard.state)
+	standard_history_document.set_sign(-1, Time.get_datetime_string_from_system(), name, tr("CHAR_YULAN"), tr("CHAR_LOTUS"), tr("CHAR_YULAN"))
 	standard_premove_state_machine.change_state("stop")
 	if standard_chessboard.state.get_turn() != standard_player_group:
 		standard_state_machine.change_state("opponent")

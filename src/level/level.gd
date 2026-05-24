@@ -189,6 +189,7 @@ func state_ready_start(_arg:Dictionary) -> void:
 	chessboard.state.set_round(1)
 	history_document.new_page()
 	history_document.set_state(-1, chessboard.state)
+	history_document.set_sign(-1, Time.get_datetime_string_from_system(), name, tr("CHAR_YULAN"), tr("CHAR_LOTUS"), tr("CHAR_YULAN"))
 	for iter:MarkerEvent in events:
 		iter.on_start()
 	if Chess.get_end_type(chessboard.state) == "checkmate_black":

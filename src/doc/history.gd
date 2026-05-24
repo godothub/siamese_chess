@@ -2,6 +2,11 @@ extends Notable
 class_name History
 
 class HistoryPage extends RefCounted:
+	var date:String = ""
+	var event:String = ""
+	var white:String = ""
+	var black:String = ""
+	var recorder:String = ""
 	var state:State = null
 	var history:PackedStringArray = []
 	var initial_state:State = null
@@ -17,6 +22,11 @@ func parse(data:Dictionary) -> void:
 		var fen:String = iter["state"]
 		page.initial_state = Chess.parse(fen)
 		page.history_raw = iter["history"]
+		page.date = iter.get("date", "CHAR_UNKNOWN")
+		page.event = iter.get("event", "CHAR_UNKNOWN")
+		page.white = iter.get("white", "CHAR_UNKNOWN")
+		page.black = iter.get("black", "CHAR_UNKNOWN")
+		page.recorder = iter.get("recorder", "CHAR_UNKNOWN")
 		page_list.push_back(page)
 		var test_state:State = page.initial_state.duplicate()
 		for move:int in page.history_raw:
@@ -32,6 +42,11 @@ func dict() -> Dictionary:
 		var fen:String = Chess.stringify(page.initial_state)
 		iter["state"] = fen
 		iter["history"] = page.history_raw
+		iter["date"] = page.date
+		iter["event"] = page.event
+		iter["white"] = page.white
+		iter["black"] = page.black
+		iter["recorder"] = page.recorder
 		data_arr.push_back(iter)
 	data["history"] = data_arr
 	return data
@@ -63,6 +78,13 @@ func add_blank_line(index:int) -> void:
 	page_list[index].history.push_back("")
 	page_list[index].history.push_back("")
 	content_changed.emit()
+
+func set_sign(index:int, date:String, event:String, white:String, black:String, recorder:String) -> void:
+	page_list[index].date = date
+	page_list[index].event = event
+	page_list[index].white = white
+	page_list[index].black = black
+	page_list[index].recorder = recorder
 
 func new_page() -> void:
 	super.new_page()
