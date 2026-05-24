@@ -233,7 +233,7 @@ func finger_on_position(position_name:String) -> void:
 			
 		Input.vibrate_handheld(50, 0.2)
 		if Setting.get_value("text_to_speech"):
-			DisplayServer.tts_stop()
+			Narrative.stop()
 			const map:Dictionary = {
 				ord("K"): "PIECE_WHITE_KING",
 				ord("Q"): "PIECE_WHITE_QUEEN",

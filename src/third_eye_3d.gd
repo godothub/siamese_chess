@@ -23,8 +23,7 @@ func set_state(_state:State) -> void:
 
 func read_close() -> void:
 	$audio_stream_player_select.play()
-	if Setting.get_value("text_to_speech"):
-		Narrative.speak(tr("ICON_CLOSE"), true)
+	Narrative.speak(tr("ICON_CLOSE"), true)
 
 func open() -> void:
 	last_audio_stream = Ambient.get_current_audio_stream()
@@ -38,7 +37,6 @@ func open() -> void:
 	tween = create_tween()
 	$texture_rect.modulate = Color(1.0, 1.0, 1.0, 0.0)
 	tween.tween_property($texture_rect, "modulate", Color(1, 1, 1, 1), 0.1)
-	#if Setting.get_value("text_to_speech"):
 	#	Narrative.speak("", true)
 
 func close() -> void:

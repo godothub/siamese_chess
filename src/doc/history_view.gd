@@ -51,8 +51,7 @@ func turn_page(_page:int) -> void:
 	update_table()
 
 func read_label(label:Label) -> void:
-	if Setting.get_value("text_to_speech"):
-		Narrative.speak(label.text, true)
+	Narrative.speak(label.text, true)
 
 func press_move(event:InputEvent, index:int) -> void:
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
@@ -66,5 +65,4 @@ func press_direction(_dir:int) -> void:
 		current_focus.grab_focus()
 
 func press_confirm() -> void:
-	if Setting.get_value("text_to_speech"):
-		Narrative.speak(current_focus.text, true)
+	Narrative.speak(current_focus.text, true)

@@ -237,8 +237,7 @@ func travel_to(_by:int) -> void:
 		iter = path[Chess.x88_to_c64(iter)]
 	if !path_to.size():
 		return
-	if Setting.get_value("text_to_speech"):
-		Narrative.speak(tr("TRAVEL_TO").format({"by": Chess.x88_to_name(_by)}), false)
+	Narrative.speak(tr("TRAVEL_TO").format({"by": Chess.x88_to_name(_by)}), false)
 	travel_path = path_to
 	state_machine.change_state("travel")
 

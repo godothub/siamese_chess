@@ -85,8 +85,7 @@ func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_a
 	tween.tween_property(title_label, "text", tr(title), 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
 
-	if Setting.get_value("text_to_speech"):
-		Narrative.speak(tr(_text), true)
+	Narrative.speak(tr(_text), true)
 
 func push_selection(_selection:PackedStringArray, _title:String, _force_selection:bool = true, blackscreen:bool = false) -> void:
 	if text_label.text != "" || title_label.text != "":
@@ -170,16 +169,12 @@ func direction(axis:int) -> void:
 	if global_selection_showing:
 		title_label.text = selection_to_bbcode(global_selection, select_focus)
 		$audio_stream_player_select.play()
-		if Setting.get_value("text_to_speech"):
-			DisplayServer.tts_stop()
-			Narrative.speak(tr(global_selection[select_focus]))
+		Narrative.speak(tr(global_selection[select_focus]), true)
 	else:
 		selected = selection[select_focus]
 		text_label.text = selection_to_bbcode(selection, select_focus)
 		$audio_stream_player_select.play()
-		if Setting.get_value("text_to_speech"):
-			DisplayServer.tts_stop()
-			Narrative.speak(tr(selection[select_focus]))
+		Narrative.speak(tr(selection[select_focus]), true)
 
 func confirm() -> void:
 	if global_selection_showing:
@@ -223,13 +218,11 @@ func clicked_global_selection(_selected:String) -> void:
 
 func hover_label(label:RichTextLabel) -> void:
 	$audio_stream_player_select.play()
-	if Setting.get_value("text_to_speech"):
-		Narrative.speak(tr(label.text), true)
+	Narrative.speak(tr(label.text), true)
 
 func hover_selection(_selected:String) -> void:
 	$audio_stream_player_select.play()
-	if Setting.get_value("text_to_speech"):
-		Narrative.speak(tr(_selected), true)
+	Narrative.speak(tr(_selected), true)
 
 func selection_to_bbcode(_selection:PackedStringArray, _select_focus:int = -1) -> String:
 	var bbcode:String = ""
