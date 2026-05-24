@@ -10,7 +10,7 @@ extends CanvasLayer
 @onready var sub_viewport_container:SubViewportContainer = $texture_rect/h_box_container/margin_container/sub_viewport_container
 @onready var sub_viewport:SubViewport = $texture_rect/h_box_container/margin_container/sub_viewport_container/sub_viewport
 
-@onready var photo_document:Document = load("res://src/doc/photo_paper.gd").new()
+@onready var photo_document:Document = load("res://src/doc/photo.gd").new()
 
 var zoom:float = 0
 

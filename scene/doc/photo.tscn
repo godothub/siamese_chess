@@ -4,7 +4,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iof40"]
 
-[node name="photo_paper" type="Panel" unique_id=1389246608]
+[node name="photo" type="Panel" unique_id=1389246608]
 physics_interpolation_mode = 0
 custom_minimum_size = Vector2(1152, 648)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_iof40")

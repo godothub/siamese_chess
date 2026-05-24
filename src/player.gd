@@ -19,7 +19,7 @@ func _ready() -> void:
 	Gesture.connect("move_mouse", move_mouse)
 
 func on_visibility_changed() -> void:
-	if (Setting.visible || Photo.visible || ThirdEye3D.visible || Archive.visible) && state_machine.current_state != "interface":
+	if (Setting.visible || FilmCamera.visible || ThirdEye3D.visible || Archive.visible) && state_machine.current_state != "interface":
 		state_machine.change_state("interface")
 	elif state_machine.current_state == "interface":
 		state_machine.change_state.call_deferred("inspect")
@@ -30,7 +30,7 @@ func state_ready_inspect(_arg:Dictionary) -> void:
 	)
 
 	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
-	state_machine.state_signal_connect(Photo.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(FilmCamera.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(Archive.visibility_changed, on_visibility_changed)
 
@@ -78,7 +78,7 @@ func state_input_inspect(event:InputEvent) -> void:
 
 func state_ready_dialog(_args:Dictionary) -> void:
 	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
-	state_machine.state_signal_connect(Photo.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(FilmCamera.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(Archive.visibility_changed, on_visibility_changed)
 
@@ -109,7 +109,7 @@ func state_process_dialog(_delta:float) -> void:
 
 func state_ready_interface(_args:Dictionary) -> void:
 	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
-	state_machine.state_signal_connect(Photo.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(FilmCamera.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(Archive.visibility_changed, on_visibility_changed)
 

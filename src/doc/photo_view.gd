@@ -2,7 +2,7 @@ extends NotableView
 class_name PhotoView
 
 func set_document(_document:Document) -> void:
-	assert(_document is PhotoPaper)
+	assert(_document is Photo)
 	super.set_document(_document)
 	update_image()
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://msaedai05yen"]
 
 [ext_resource type="FontFile" uid="uid://bq5ty1txvcybm" path="res://assets/fonts/Font Awesome 7 Free-Regular-400.otf" id="1_aquyh"]
-[ext_resource type="Script" uid="uid://cj6qxacwoc51v" path="res://src/photo.gd" id="1_uxrgg"]
+[ext_resource type="Script" uid="uid://cj6qxacwoc51v" path="res://src/film_camera.gd" id="1_uxrgg"]
 [ext_resource type="Texture2D" uid="uid://dikg6r3lq8w5x" path="res://assets/texture/camera_guideline.svg" id="3_uj1is"]
 [ext_resource type="AudioStream" uid="uid://bkdiut6gmaw3m" path="res://assets/audio/445482__caseymoura__film-camera-shutter-release.wav" id="4_uj1is"]
 [ext_resource type="AudioStream" uid="uid://bn0efi7nl4ro8" path="res://assets/audio/147018__xxqmanxx__socket-wrench.wav" id="5_fsjox"]
@@ -30,7 +30,7 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_fa48h"]
 events = [SubResource("InputEventAction_fsjox")]
 
-[node name="photo" type="CanvasLayer" unique_id=408231657]
+[node name="film_camera" type="CanvasLayer" unique_id=408231657]
 layer = 5
 script = ExtResource("1_uxrgg")
 

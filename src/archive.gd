@@ -1,8 +1,8 @@
 extends CanvasLayer
 
 var document_view_list:Dictionary = {
-	"printed": "res://scene/doc/printed_paper.tscn",
-	"photo": "res://scene/doc/photo_paper.tscn",
+	"printed": "res://scene/doc/printed.tscn",
+	"photo": "res://scene/doc/photo.tscn",
 	"history": "res://scene/doc/history.tscn",
 	"draft": "res://scene/doc/draft.tscn",
 	"piece": "res://scene/doc/model.tscn",
@@ -10,8 +10,8 @@ var document_view_list:Dictionary = {
 }
 
 var document_data_list:Dictionary = {
-	"printed": "res://src/doc/printed_paper.gd",
-	"photo": "res://src/doc/photo_paper.gd",
+	"printed": "res://src/doc/printed.gd",
+	"photo": "res://src/doc/photo.gd",
 	"history": "res://src/doc/history.gd",
 	"draft": "res://src/doc/notable.gd",
 	"piece": "res://src/doc/model.gd",

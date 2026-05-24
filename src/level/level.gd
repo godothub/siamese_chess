@@ -293,7 +293,7 @@ func sync_to_global() -> void:
 	var king_position:Vector3 = chessboard.chessboard_piece[king_by].global_position
 	king_position += Vector3(0, 1.6, 0)
 	var king_rotation:Vector3 = chessboard.chessboard_piece[king_by].global_rotation
-	Photo.move_camera(king_position, king_rotation)
+	FilmCamera.move_camera(king_position, king_rotation)
 
 var available_events:Dictionary = {}
 

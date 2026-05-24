@@ -1,5 +1,5 @@
 extends Notable
-class_name PhotoPaper
+class_name Photo
 
 class PhotoPage extends RefCounted:
 	var image:Image = Image.new()

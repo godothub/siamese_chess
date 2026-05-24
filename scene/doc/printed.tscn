@@ -4,7 +4,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5frh7"]
 
-[node name="printed_paper" type="Panel" unique_id=1541001119]
+[node name="printed" type="Panel" unique_id=1541001119]
 physics_interpolation_mode = 0
 custom_minimum_size = Vector2(504, 673)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5frh7")
