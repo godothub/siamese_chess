@@ -51,6 +51,40 @@ var king_instance:Array[Actor] = [null, null]
 var square_selection:int = 0
 var double_click_timer:float = 0
 
+static func get_default_piece_instance(piece:int) -> Actor:
+	match piece:
+		ord('K'):
+			return load("res://scene/actor/piece_king_white.tscn").instantiate()
+		ord('Q'):
+			return load("res://scene/actor/piece_queen_white.tscn").instantiate()
+		ord('R'):
+			return load("res://scene/actor/piece_rook_white.tscn").instantiate()
+		ord('B'):
+			return load("res://scene/actor/piece_bishop_white.tscn").instantiate()
+		ord('N'):
+			return load("res://scene/actor/piece_knight_white.tscn").instantiate()
+		ord('P'):
+			return load("res://scene/actor/piece_pawn_white.tscn").instantiate()
+		ord('k'):
+			return load("res://scene/actor/piece_king_black.tscn").instantiate()
+		ord('q'):
+			return load("res://scene/actor/piece_queen_black.tscn").instantiate()
+		ord('r'):
+			return load("res://scene/actor/piece_rook_black.tscn").instantiate()
+		ord('b'):
+			return load("res://scene/actor/piece_bishop_black.tscn").instantiate()
+		ord('n'):
+			return load("res://scene/actor/piece_knight_black.tscn").instantiate()
+		ord('p'):
+			return load("res://scene/actor/piece_pawn_black.tscn").instantiate()
+		ord('*'):
+			return load("res://scene/actor/piece_checker_1_black.tscn").instantiate()
+		ord('#'):
+			return load("res://scene/actor/piece_checker_2_black.tscn").instantiate()
+		ord('z'):
+			return load("res://scene/actor/piece_checker_3_black.tscn").instantiate()
+	return null
+
 func _ready() -> void:
 	super._ready()
 
@@ -60,39 +94,7 @@ func add_default_piece_set() -> void:	# 最好交由外部来负责棋子的准�
 	for i:int in 128:
 		if !state.has_piece(i):
 			continue
-		match String.chr(state.get_piece(i)):
-			"K":
-				add_piece_instance(load("res://scene/actor/piece_king_white.tscn").instantiate(), i)
-			"Q":
-				add_piece_instance(load("res://scene/actor/piece_queen_white.tscn").instantiate(), i)
-			"R":
-				add_piece_instance(load("res://scene/actor/piece_rook_white.tscn").instantiate(), i)
-			"B":
-				add_piece_instance(load("res://scene/actor/piece_bishop_white.tscn").instantiate(), i)
-			"N":
-				add_piece_instance(load("res://scene/actor/piece_knight_white.tscn").instantiate(), i)
-			"P":
-				add_piece_instance(load("res://scene/actor/piece_pawn_white.tscn").instantiate(), i)
-			"k":
-				add_piece_instance(load("res://scene/actor/piece_king_black.tscn").instantiate(), i)
-			"q":
-				add_piece_instance(load("res://scene/actor/piece_queen_black.tscn").instantiate(), i)
-			"r":
-				add_piece_instance(load("res://scene/actor/piece_rook_black.tscn").instantiate(), i)
-			"b":
-				add_piece_instance(load("res://scene/actor/piece_bishop_black.tscn").instantiate(), i)
-			"n":
-				add_piece_instance(load("res://scene/actor/piece_knight_black.tscn").instantiate(), i)
-			"p":
-				add_piece_instance(load("res://scene/actor/piece_pawn_black.tscn").instantiate(), i)
-			"w":
-				add_piece_instance(load("res://scene/actor/piece_checker_1_black.tscn").instantiate(), i)
-			'*':
-				add_piece_instance(load("res://scene/actor/piece_checker_2_black.tscn").instantiate(), i)
-			'#':
-				add_piece_instance(load("res://scene/actor/piece_checker_3_black.tscn").instantiate(), i)
-			"z":
-				add_piece_instance(load("res://scene/actor/piece_checker_4_black.tscn").instantiate(), i)
+		add_piece_instance(get_default_piece_instance(state.get_piece(i)), i)
 
 func remove_piece_set() -> void:
 	for by:int in chessboard_piece:

@@ -114,223 +114,223 @@ sky_mode = 1
 
 [node name="chessboard" parent="." unique_id=1937646692 instance=ExtResource("1_o611t")]
 
-[node name="h8_001" parent="chessboard" index="2" unique_id=937870204]
+[node name="h8_001" parent="chessboard" index="2" unique_id=451177572]
 visible = false
 
-[node name="h7_001" parent="chessboard" index="3" unique_id=762842541]
+[node name="h7_001" parent="chessboard" index="3" unique_id=564593852]
 visible = false
 
-[node name="h6_001" parent="chessboard" index="4" unique_id=234884704]
+[node name="h6_001" parent="chessboard" index="4" unique_id=1613468393]
 visible = false
 
-[node name="h5_001" parent="chessboard" index="5" unique_id=2049562196]
+[node name="h5_001" parent="chessboard" index="5" unique_id=990063666]
 visible = false
 
-[node name="h4_001" parent="chessboard" index="6" unique_id=1899892250]
+[node name="h4_001" parent="chessboard" index="6" unique_id=1925943798]
 visible = false
 
-[node name="h3_001" parent="chessboard" index="7" unique_id=714302573]
+[node name="h3_001" parent="chessboard" index="7" unique_id=533977850]
 visible = false
 
-[node name="h2_001" parent="chessboard" index="8" unique_id=1908406846]
+[node name="h2_001" parent="chessboard" index="8" unique_id=820762570]
 visible = false
 
-[node name="h1_001" parent="chessboard" index="9" unique_id=3763219]
+[node name="h1_001" parent="chessboard" index="9" unique_id=1586039095]
 visible = false
 
-[node name="g8_001" parent="chessboard" index="10" unique_id=1154684570]
+[node name="g8_001" parent="chessboard" index="10" unique_id=788906531]
 visible = false
 
-[node name="g7_001" parent="chessboard" index="11" unique_id=1462713327]
+[node name="g7_001" parent="chessboard" index="11" unique_id=1620651569]
 visible = false
 
-[node name="g6_001" parent="chessboard" index="12" unique_id=1209871247]
+[node name="g6_001" parent="chessboard" index="12" unique_id=1000785211]
 visible = false
 
-[node name="g1_001" parent="chessboard" index="17" unique_id=367161731]
+[node name="g1_001" parent="chessboard" index="17" unique_id=1545881117]
 visible = false
 
-[node name="f8_001" parent="chessboard" index="18" unique_id=1274690509]
+[node name="f8_001" parent="chessboard" index="18" unique_id=1683250097]
 visible = false
 
-[node name="f7_001" parent="chessboard" index="19" unique_id=972882554]
+[node name="f7_001" parent="chessboard" index="19" unique_id=797027082]
 visible = false
 
-[node name="f6_001" parent="chessboard" index="20" unique_id=961648144]
+[node name="f6_001" parent="chessboard" index="20" unique_id=2090863007]
 visible = false
 
-[node name="f1_001" parent="chessboard" index="25" unique_id=488839066]
+[node name="f1_001" parent="chessboard" index="25" unique_id=160172777]
 visible = false
 
-[node name="e8_001" parent="chessboard" index="26" unique_id=1380447302]
+[node name="e8_001" parent="chessboard" index="26" unique_id=669175927]
 visible = false
 
-[node name="e7_001" parent="chessboard" index="27" unique_id=661552987]
+[node name="e7_001" parent="chessboard" index="27" unique_id=1288647033]
 visible = false
 
-[node name="e6_001" parent="chessboard" index="28" unique_id=133164941]
+[node name="e6_001" parent="chessboard" index="28" unique_id=1269567827]
 visible = false
 
-[node name="e1_001" parent="chessboard" index="33" unique_id=1669269246]
+[node name="e1_001" parent="chessboard" index="33" unique_id=367570788]
 visible = false
 
-[node name="d8_001" parent="chessboard" index="34" unique_id=1809011596]
+[node name="d8_001" parent="chessboard" index="34" unique_id=897071294]
 visible = false
 
-[node name="d7_001" parent="chessboard" index="35" unique_id=1072259133]
+[node name="d7_001" parent="chessboard" index="35" unique_id=1629053409]
 visible = false
 
-[node name="d6_001" parent="chessboard" index="36" unique_id=1391177953]
+[node name="d6_001" parent="chessboard" index="36" unique_id=1522028177]
 visible = false
 
-[node name="d1_001" parent="chessboard" index="41" unique_id=1972191292]
+[node name="d1_001" parent="chessboard" index="41" unique_id=1344460407]
 visible = false
 
-[node name="c8_001" parent="chessboard" index="42" unique_id=133963874]
+[node name="c8_001" parent="chessboard" index="42" unique_id=2057763568]
 visible = false
 
-[node name="c7_001" parent="chessboard" index="43" unique_id=817080547]
+[node name="c7_001" parent="chessboard" index="43" unique_id=919067975]
 visible = false
 
-[node name="c6_001" parent="chessboard" index="44" unique_id=180953239]
+[node name="c6_001" parent="chessboard" index="44" unique_id=1927671608]
 visible = false
 
-[node name="c1_001" parent="chessboard" index="49" unique_id=233218591]
+[node name="c1_001" parent="chessboard" index="49" unique_id=956177074]
 visible = false
 
-[node name="b8_001" parent="chessboard" index="50" unique_id=1938974415]
+[node name="b8_001" parent="chessboard" index="50" unique_id=834843824]
 visible = false
 
-[node name="b7_001" parent="chessboard" index="51" unique_id=939988115]
+[node name="b7_001" parent="chessboard" index="51" unique_id=756278577]
 visible = false
 
-[node name="b6_001" parent="chessboard" index="52" unique_id=1682422898]
+[node name="b6_001" parent="chessboard" index="52" unique_id=744003147]
 visible = false
 
-[node name="b1_001" parent="chessboard" index="57" unique_id=2063381111]
+[node name="b1_001" parent="chessboard" index="57" unique_id=1740129529]
 visible = false
 
-[node name="a8_001" parent="chessboard" index="58" unique_id=1031358461]
+[node name="a8_001" parent="chessboard" index="58" unique_id=2040735349]
 visible = false
 
-[node name="a7_001" parent="chessboard" index="59" unique_id=2108941209]
+[node name="a7_001" parent="chessboard" index="59" unique_id=896838586]
 visible = false
 
-[node name="a6_001" parent="chessboard" index="60" unique_id=789164732]
+[node name="a6_001" parent="chessboard" index="60" unique_id=1491999226]
 visible = false
 
-[node name="a1_001" parent="chessboard" index="65" unique_id=92149519]
+[node name="a1_001" parent="chessboard" index="65" unique_id=1043609476]
 visible = false
 
 [node name="canvas" parent="chessboard" index="66" unique_id=1598752436]
 transform = Transform3D(-16, 0, -2.41593e-06, 0, 16, 0, 2.41593e-06, 0, -16, -0.005507469, 0.093189724, -0.0053195953)
 
-[node name="CollisionShape3D" parent="chessboard/a1" parent_id_path=PackedInt32Array(1937646692, 1709747310) index="0" unique_id=1367078590]
+[node name="CollisionShape3D" parent="chessboard/a1" parent_id_path=PackedInt32Array(1937646692, 795430411) index="0" unique_id=1927270419]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/a6" parent_id_path=PackedInt32Array(1937646692, 1397181247) index="0" unique_id=982823691]
+[node name="CollisionShape3D" parent="chessboard/a6" parent_id_path=PackedInt32Array(1937646692, 1880930166) index="0" unique_id=28345921]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/a7" parent_id_path=PackedInt32Array(1937646692, 1527941020) index="0" unique_id=1610279465]
+[node name="CollisionShape3D" parent="chessboard/a7" parent_id_path=PackedInt32Array(1937646692, 1649698727) index="0" unique_id=2128181087]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/a8" parent_id_path=PackedInt32Array(1937646692, 761932189) index="0" unique_id=570096644]
+[node name="CollisionShape3D" parent="chessboard/a8" parent_id_path=PackedInt32Array(1937646692, 988571529) index="0" unique_id=430889522]
 visible = false
 
-[node name="b1" parent="chessboard" index="76" unique_id=967048322]
+[node name="b1" parent="chessboard" index="76" unique_id=1213617328]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/b6" parent_id_path=PackedInt32Array(1937646692, 846941307) index="0" unique_id=682954430]
+[node name="CollisionShape3D" parent="chessboard/b6" parent_id_path=PackedInt32Array(1937646692, 1176192145) index="0" unique_id=22098560]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/b7" parent_id_path=PackedInt32Array(1937646692, 884233102) index="0" unique_id=1258274553]
+[node name="CollisionShape3D" parent="chessboard/b7" parent_id_path=PackedInt32Array(1937646692, 286527511) index="0" unique_id=489530576]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/b8" parent_id_path=PackedInt32Array(1937646692, 2102517077) index="0" unique_id=1834388242]
+[node name="CollisionShape3D" parent="chessboard/b8" parent_id_path=PackedInt32Array(1937646692, 1422755766) index="0" unique_id=239393591]
 visible = false
 
-[node name="c1" parent="chessboard" index="84" unique_id=222641516]
+[node name="c1" parent="chessboard" index="84" unique_id=701057674]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/c6" parent_id_path=PackedInt32Array(1937646692, 1383375762) index="0" unique_id=2145531140]
+[node name="CollisionShape3D" parent="chessboard/c6" parent_id_path=PackedInt32Array(1937646692, 330645994) index="0" unique_id=1392497974]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/c7" parent_id_path=PackedInt32Array(1937646692, 77722965) index="0" unique_id=199432359]
+[node name="CollisionShape3D" parent="chessboard/c7" parent_id_path=PackedInt32Array(1937646692, 898632595) index="0" unique_id=2062020920]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/c8" parent_id_path=PackedInt32Array(1937646692, 875598953) index="0" unique_id=1733196370]
+[node name="CollisionShape3D" parent="chessboard/c8" parent_id_path=PackedInt32Array(1937646692, 357764111) index="0" unique_id=1323735604]
 visible = false
 
-[node name="d1" parent="chessboard" index="92" unique_id=1613898711]
+[node name="d1" parent="chessboard" index="92" unique_id=52453642]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/d6" parent_id_path=PackedInt32Array(1937646692, 811400205) index="0" unique_id=753035982]
+[node name="CollisionShape3D" parent="chessboard/d6" parent_id_path=PackedInt32Array(1937646692, 1908793699) index="0" unique_id=249440124]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/d7" parent_id_path=PackedInt32Array(1937646692, 62147468) index="0" unique_id=1997391418]
+[node name="CollisionShape3D" parent="chessboard/d7" parent_id_path=PackedInt32Array(1937646692, 2106439102) index="0" unique_id=1299090238]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/d8" parent_id_path=PackedInt32Array(1937646692, 510434196) index="0" unique_id=770503349]
+[node name="CollisionShape3D" parent="chessboard/d8" parent_id_path=PackedInt32Array(1937646692, 1111388536) index="0" unique_id=617918239]
 visible = false
 
-[node name="e1" parent="chessboard" index="100" unique_id=571977032]
+[node name="e1" parent="chessboard" index="100" unique_id=1281217949]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/e6" parent_id_path=PackedInt32Array(1937646692, 991960277) index="0" unique_id=1334590247]
+[node name="CollisionShape3D" parent="chessboard/e6" parent_id_path=PackedInt32Array(1937646692, 2014686324) index="0" unique_id=795673655]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/e7" parent_id_path=PackedInt32Array(1937646692, 1013856157) index="0" unique_id=189060333]
+[node name="CollisionShape3D" parent="chessboard/e7" parent_id_path=PackedInt32Array(1937646692, 308332358) index="0" unique_id=1130141813]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/e8" parent_id_path=PackedInt32Array(1937646692, 769239245) index="0" unique_id=1744391021]
+[node name="CollisionShape3D" parent="chessboard/e8" parent_id_path=PackedInt32Array(1937646692, 1463958460) index="0" unique_id=1911059888]
 visible = false
 
-[node name="f1" parent="chessboard" index="108" unique_id=1577672127]
+[node name="f1" parent="chessboard" index="108" unique_id=1631989053]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/f6" parent_id_path=PackedInt32Array(1937646692, 1493482549) index="0" unique_id=451972784]
+[node name="CollisionShape3D" parent="chessboard/f6" parent_id_path=PackedInt32Array(1937646692, 988108064) index="0" unique_id=1953586337]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/f7" parent_id_path=PackedInt32Array(1937646692, 2022456682) index="0" unique_id=1219637390]
+[node name="CollisionShape3D" parent="chessboard/f7" parent_id_path=PackedInt32Array(1937646692, 857149480) index="0" unique_id=1868317213]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/f8" parent_id_path=PackedInt32Array(1937646692, 628552209) index="0" unique_id=1659505920]
+[node name="CollisionShape3D" parent="chessboard/f8" parent_id_path=PackedInt32Array(1937646692, 440669157) index="0" unique_id=1783597695]
 visible = false
 
-[node name="g1" parent="chessboard" index="116" unique_id=518479141]
+[node name="g1" parent="chessboard" index="116" unique_id=164821719]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/g6" parent_id_path=PackedInt32Array(1937646692, 1572941830) index="0" unique_id=2044691991]
+[node name="CollisionShape3D" parent="chessboard/g6" parent_id_path=PackedInt32Array(1937646692, 804450311) index="0" unique_id=1264501410]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/g7" parent_id_path=PackedInt32Array(1937646692, 895850967) index="0" unique_id=255113705]
+[node name="CollisionShape3D" parent="chessboard/g7" parent_id_path=PackedInt32Array(1937646692, 1742142314) index="0" unique_id=1467901769]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/g8" parent_id_path=PackedInt32Array(1937646692, 575631136) index="0" unique_id=301532801]
+[node name="CollisionShape3D" parent="chessboard/g8" parent_id_path=PackedInt32Array(1937646692, 1065412937) index="0" unique_id=538100916]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h1" parent_id_path=PackedInt32Array(1937646692, 158585782) index="0" unique_id=1036271178]
+[node name="CollisionShape3D" parent="chessboard/h1" parent_id_path=PackedInt32Array(1937646692, 1397476774) index="0" unique_id=1679133162]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h2" parent_id_path=PackedInt32Array(1937646692, 975480125) index="0" unique_id=995275302]
+[node name="CollisionShape3D" parent="chessboard/h2" parent_id_path=PackedInt32Array(1937646692, 224353052) index="0" unique_id=1554736634]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h3" parent_id_path=PackedInt32Array(1937646692, 750279474) index="0" unique_id=1125333273]
+[node name="CollisionShape3D" parent="chessboard/h3" parent_id_path=PackedInt32Array(1937646692, 364699096) index="0" unique_id=104627253]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h4" parent_id_path=PackedInt32Array(1937646692, 1203108181) index="0" unique_id=175864535]
+[node name="CollisionShape3D" parent="chessboard/h4" parent_id_path=PackedInt32Array(1937646692, 1984719045) index="0" unique_id=862574467]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h5" parent_id_path=PackedInt32Array(1937646692, 1418370502) index="0" unique_id=1018993941]
+[node name="CollisionShape3D" parent="chessboard/h5" parent_id_path=PackedInt32Array(1937646692, 688172787) index="0" unique_id=968016567]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h6" parent_id_path=PackedInt32Array(1937646692, 1689697197) index="0" unique_id=1265756510]
+[node name="CollisionShape3D" parent="chessboard/h6" parent_id_path=PackedInt32Array(1937646692, 480289225) index="0" unique_id=465023079]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h7" parent_id_path=PackedInt32Array(1937646692, 1428627835) index="0" unique_id=1680621027]
+[node name="CollisionShape3D" parent="chessboard/h7" parent_id_path=PackedInt32Array(1937646692, 1384420568) index="0" unique_id=811156724]
 visible = false
 
-[node name="CollisionShape3D" parent="chessboard/h8" parent_id_path=PackedInt32Array(1937646692, 1809333659) index="0" unique_id=299422455]
+[node name="CollisionShape3D" parent="chessboard/h8" parent_id_path=PackedInt32Array(1937646692, 1879832565) index="0" unique_id=450148734]
 visible = false
 
 [node name="camera" type="Camera3D" parent="." unique_id=546823115]
@@ -344,7 +344,7 @@ fov = 51.3432
 [node name="table_0" parent="." unique_id=1844379499 instance=ExtResource("6_ecjec")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0.0249235, 5)
 
-[node name="table_000" parent="table_0" index="0" unique_id=1521326825]
+[node name="table_000" parent="table_0" index="0" unique_id=539151525]
 surface_material_override/0 = SubResource("ShaderMaterial_n3pbh")
 
 [node name="sofa_0" parent="table_0" unique_id=1785566497 instance=ExtResource("9_fsnob")]
@@ -365,85 +365,85 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.7307
 [node name="table_high_0" parent="." unique_id=694035732 instance=ExtResource("2_jb28s")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 1)
 
-[node name="table_001" parent="table_high_0" index="0" unique_id=1385732648]
+[node name="table_001" parent="table_high_0" index="0" unique_id=1963962554]
 surface_material_override/0 = SubResource("ShaderMaterial_km6g5")
 
 [node name="chair_high_0" parent="table_high_0" unique_id=501325166 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.716291, 0, -0.518619)
 
-[node name="chair" parent="table_high_0/chair_high_0" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_0/chair_high_0" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_1" parent="table_high_0" unique_id=1279948023 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0418291, 0, -0.518619)
 
-[node name="chair" parent="table_high_0/chair_high_1" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_0/chair_high_1" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_2" parent="table_high_0" unique_id=236151785 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.689076, 0, -0.518619)
 
-[node name="chair" parent="table_high_0/chair_high_2" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_0/chair_high_2" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_3" parent="table_high_0" unique_id=727289932 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.716291, 0, 0.481381)
 
-[node name="chair" parent="table_high_0/chair_high_3" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_0/chair_high_3" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_4" parent="table_high_0" unique_id=1017206916 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0174162, 0, 0.481381)
 
-[node name="chair" parent="table_high_0/chair_high_4" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_0/chair_high_4" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_5" parent="table_high_0" unique_id=354237638 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.661157, 0, 0.481381)
 
-[node name="chair" parent="table_high_0/chair_high_5" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_0/chair_high_5" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="table_high_1" parent="." unique_id=2043634216 instance=ExtResource("2_jb28s")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 1)
 
-[node name="table_001" parent="table_high_1" index="0" unique_id=1385732648]
+[node name="table_001" parent="table_high_1" index="0" unique_id=1963962554]
 surface_material_override/0 = SubResource("ShaderMaterial_km6g5")
 
 [node name="chair_high_0" parent="table_high_1" unique_id=1753714346 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.716291, 0, -0.518619)
 
-[node name="chair" parent="table_high_1/chair_high_0" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_1/chair_high_0" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_1" parent="table_high_1" unique_id=1081768682 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0418291, 0, -0.518619)
 
-[node name="chair" parent="table_high_1/chair_high_1" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_1/chair_high_1" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_2" parent="table_high_1" unique_id=1346223452 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.689076, 0, -0.518619)
 
-[node name="chair" parent="table_high_1/chair_high_2" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_1/chair_high_2" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_3" parent="table_high_1" unique_id=233938414 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.716291, 0, 0.481381)
 
-[node name="chair" parent="table_high_1/chair_high_3" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_1/chair_high_3" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_4" parent="table_high_1" unique_id=1421669123 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0174162, 0, 0.481381)
 
-[node name="chair" parent="table_high_1/chair_high_4" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_1/chair_high_4" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_5" parent="table_high_1" unique_id=1570319173 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.661157, 0, 0.481381)
 
-[node name="chair" parent="table_high_1/chair_high_5" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_1/chair_high_5" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="radermachera_sinica_3" parent="." unique_id=1129448066 instance=ExtResource("13_fsnob")]
@@ -458,43 +458,43 @@ metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 [node name="table_high_2" parent="." unique_id=605329186 instance=ExtResource("2_jb28s")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, 1)
 
-[node name="table_001" parent="table_high_2" index="0" unique_id=1385732648]
+[node name="table_001" parent="table_high_2" index="0" unique_id=1963962554]
 surface_material_override/0 = SubResource("ShaderMaterial_km6g5")
 
 [node name="chair_high_0" parent="table_high_2" unique_id=218469738 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.716291, 0, -0.518619)
 
-[node name="chair" parent="table_high_2/chair_high_0" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_2/chair_high_0" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_1" parent="table_high_2" unique_id=1516378784 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0418291, 0, -0.518619)
 
-[node name="chair" parent="table_high_2/chair_high_1" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_2/chair_high_1" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_2" parent="table_high_2" unique_id=194342685 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.689076, 0, -0.518619)
 
-[node name="chair" parent="table_high_2/chair_high_2" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_2/chair_high_2" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_3" parent="table_high_2" unique_id=1297753971 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.716291, 0, 0.481381)
 
-[node name="chair" parent="table_high_2/chair_high_3" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_2/chair_high_3" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_4" parent="table_high_2" unique_id=1999060853 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0174162, 0, 0.481381)
 
-[node name="chair" parent="table_high_2/chair_high_4" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_2/chair_high_4" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="chair_high_5" parent="table_high_2" unique_id=169857198 instance=ExtResource("15_n3pbh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.661157, 0, 0.481381)
 
-[node name="chair" parent="table_high_2/chair_high_5" index="0" unique_id=1756461201]
+[node name="chair" parent="table_high_2/chair_high_5" index="0" unique_id=434109371]
 surface_material_override/0 = SubResource("ShaderMaterial_annak")
 
 [node name="window" parent="." unique_id=533711477 instance=ExtResource("17_q5uxw")]
@@ -557,7 +557,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 
 [node name="table_1" parent="." unique_id=598112354 instance=ExtResource("6_ecjec")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.0249235, 5)
 
-[node name="table_000" parent="table_1" index="0" unique_id=1521326825]
+[node name="table_000" parent="table_1" index="0" unique_id=539151525]
 surface_material_override/0 = SubResource("ShaderMaterial_n3pbh")
 
 [node name="sofa_0" parent="table_1" unique_id=1740223748 instance=ExtResource("9_fsnob")]
@@ -808,17 +808,7 @@ size = Vector3(13.618164, 1, 9.0703125)
 script = ExtResource("33_m67mf")
 node = NodePath("..")
 method_name = &"interact_pastor"
-arg = [false]
 selection = "YULAN_INTERACT_PLAY_CHESS"
-bit = 52776558133248
-metadata/_custom_type_script = "uid://cpyviir7sli6u"
-
-[node name="marker_callback_pastor_custom_position" type="Node3D" parent="." unique_id=307362683 node_paths=PackedStringArray("node")]
-script = ExtResource("33_m67mf")
-node = NodePath("..")
-method_name = &"interact_pastor"
-arg = [true]
-selection = "YULAN_INTERACT_CUSTOM_POSITION"
 bit = 52776558133248
 metadata/_custom_type_script = "uid://cpyviir7sli6u"
 

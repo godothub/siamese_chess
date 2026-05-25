@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name TextInput
 
-signal confirmed()	# -1表示取消
+signal confirmed(text:String)	# -1表示取消
 
 var hint:String = "请输入："
 var default:String = ""
@@ -33,7 +33,7 @@ func _unhandled_input(_event:InputEvent) -> void:
 
 func submit(_text:String) -> void:
 	text = _text
-	confirmed.emit()
+	confirmed.emit(text)
 	var tween:Tween = create_tween()
 	tween.tween_property($texture_rect/label, "visible", false, 0)
 	tween.tween_property($texture_rect/line_edit, "visible", false, 0)
