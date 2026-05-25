@@ -2,15 +2,20 @@ extends Node3D
 
 var state:State = null
 var initial_state:State = null
+var history_document:Document = load("res://src/doc/history.gd").new()
 @onready var chessboard = $chessboard
 var old_pastor:ChessEngine = OldPastorEngine.new()
 var new_pastor:ChessEngine = PastorEngine.new()
 var white_engine:ChessEngine = null
 var black_engine:ChessEngine = null
+var white_name:String = ""
+var black_name:String = ""
 var old_score:float = 0
 var new_score:float = 0
 
 func _ready() -> void:
+	history_document.set_filename("history.engine_play.json")
+	history_document.load_file()
 	$player.force_set_camera($camera_3d)
 	chessboard.set_enabled(true)
 	while !is_instance_valid(state):
@@ -31,6 +36,8 @@ func play_match() -> void:
 	while true:
 		white_engine = old_pastor
 		black_engine = new_pastor
+		white_name = "CHAR_YULAN"
+		black_name = "CHAR_LOTUS"
 		var result:int = await play_game()
 		if result == 1:
 			print("old pastor win")
@@ -42,10 +49,12 @@ func play_match() -> void:
 			print("draw")
 			old_score += 0.5
 			new_score += 0.5
-		print(old_score, ":", new_score)
+		print("score: ", old_score, ":", new_score)
 		reset()
 		white_engine = new_pastor
 		black_engine = old_pastor
+		white_name = "CHAR_LOTUS"
+		black_name = "CHAR_YULAN"
 		result = await play_game()
 		if result == 1:
 			print("new pastor win")
@@ -56,10 +65,14 @@ func play_match() -> void:
 		else:
 			old_score += 0.5
 			new_score += 0.5
-		print(old_score, ":", new_score)
+		print("score: ", old_score, ":", new_score)
 		reset()
 
 func play_game() -> int:
+	history_document.new_page()
+	history_document.set_state(-1, initial_state)
+	history_document.set_sign(-1, Time.get_datetime_string_from_system(), "engine play", white_name, black_name, "CHAR_SYSTEM")
+
 	while Chess.get_end_type(state) == "":
 		white_engine.start_search(state, state.get_turn(), [], Callable())
 		await white_engine.search_finished
@@ -80,6 +93,7 @@ func play_game() -> int:
 			move_score_name[key_move] = move_score[key]
 		print("searched_move: ", move_score_name)
 		apply_move(move)
+		history_document.push_move(-1, move)
 		await get_tree().create_timer(0.1).timeout
 		if Chess.get_end_type(state) != "":
 			break
@@ -102,7 +116,9 @@ func play_game() -> int:
 			move_score_name[key_move] = move_score[key]
 		print("searched_move: ", move_score_name)
 		apply_move(move)
+		history_document.push_move(-1, move)
 		await get_tree().create_timer(0.1).timeout
+	history_document.save_file()
 	var result:String = Chess.get_end_type(state)
 	print("result:" + result)
 	if result == "checkmate_white":
