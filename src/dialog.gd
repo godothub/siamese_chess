@@ -74,7 +74,7 @@ func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_a
 	if click_anywhere:
 		on_focus.emit()
 	tween = create_tween()
-	force_selection = false	
+	force_selection = false
 	waiting = _waiting
 	click_anywhere = _click_anywhere
 	text_label.text = ""
@@ -183,7 +183,9 @@ func confirm() -> void:
 		select_focus = -1
 		return
 	if select_focus != -1:
+		next()
 		on_select.emit(selected)
+		return
 	next()
 
 func cancel_focus() -> void:
@@ -194,8 +196,8 @@ func clicked_selection(_selected:String) -> void:
 	if Time.get_unix_time_from_system() - click_cooldown < 0.3:
 		return
 	selected = _selected
-	on_select.emit(_selected)
 	next()
+	on_select.emit(_selected)
 
 func clicked_global_selection(_selected:String) -> void:
 	if Time.get_unix_time_from_system() - click_cooldown < 0.3:
