@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bw021nt6bdr6t" path="res://assets/model/elevator.glb" id="4_md6wq"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="5_unvbp"]
 [ext_resource type="Script" uid="uid://chtqhpiu556i1" path="res://src/event/marker_bit.gd" id="6_snhjh"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="9_d844s"]
 [ext_resource type="PackedScene" uid="uid://bw127d1iawnv3" path="res://assets/model/radermachera_sinica.glb" id="9_yedm7"]
 [ext_resource type="PackedScene" uid="uid://h3wcv7lnqe8x" path="res://assets/model/painting_frame_square.glb" id="10_md6wq"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="11_pjyyy"]
@@ -106,12 +107,15 @@ transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -2.3
 [node name="painting_frame_rect_6" parent="." unique_id=1438179241 instance=ExtResource("11_unvbp")]
 transform = Transform3D(-2.6226832e-07, -8.742279e-08, -2, -2, -8.742278e-08, 2.6226832e-07, -8.742279e-08, 2, -8.742278e-08, -2.3409681, 2.042315, 4.675614)
 
+[node name="marker_entrance" type="Node3D" parent="." unique_id=1263235975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+script = ExtResource("9_d844s")
+metadata/_custom_type_script = "uid://bsbhmxre68ncc"
+
 [node name="marker_teleport_hotel_room" parent="." unique_id=1756003389 instance=ExtResource("12_pjyyy")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 0, -1)
 to = "res://scene/level/hotel_room.tscn"
-args = {
-"by": 49
-}
+by = 49
 bit = 67108864
 
 [node name="marker_elevator" type="Node3D" parent="." unique_id=91345860]

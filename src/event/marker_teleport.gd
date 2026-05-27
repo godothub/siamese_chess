@@ -2,7 +2,7 @@ extends MarkerEvent
 class_name MarkerTeleport
 
 @export var to:String = ""
-@export var args:Dictionary = {}
+@export var by:int = 0
 @export_custom(PropertyHint.PROPERTY_HINT_FLAGS, "bitboard") var bit:int = 0
 
 func show_selection() -> String:
@@ -11,5 +11,6 @@ func show_selection() -> String:
 	return ""
 
 func on_selection() -> void:
+	Progress.set_value("player_by", by)
 	if level.chessboard.state.get_bit(level.player_king) & bit:
-		await Loading.change_scene(to, args)
+		await Loading.change_scene(to)

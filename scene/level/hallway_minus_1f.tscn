@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="12_e0sjt"]
 [ext_resource type="PackedScene" uid="uid://cwjgphuayqvy3" path="res://assets/model/hotel_door_large.glb" id="13_b3cnt"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="14_wrs32"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="15_simkd"]
 
 [sub_resource type="Environment" id="Environment_reac2"]
 background_mode = 1
@@ -220,13 +221,13 @@ enable_shadows = true
 [node name="hotel_door_large" parent="." unique_id=1030011179 instance=ExtResource("13_b3cnt")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, -8.2535925)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=2121374871]
+[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=576972813]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=289935555]
+[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=674245926]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
-[node name="door_large_structure" parent="hotel_door_large" index="2" unique_id=1924360802]
+[node name="door_large_structure" parent="hotel_door_large" index="2" unique_id=1958169327]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=306188255]
@@ -287,9 +288,12 @@ light_specular = 0.0
 [node name="teleport_pointer_basement" parent="." unique_id=82850098 instance=ExtResource("10_ttrbh")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, -7)
 to = "res://scene/level/basement.tscn"
-args = {
-"by": 48
-}
+by = 48
 bit = 2
+
+[node name="marker_entrance" type="Node3D" parent="." unique_id=263777557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+script = ExtResource("15_simkd")
+metadata/_custom_type_script = "uid://bsbhmxre68ncc"
 
 [editable path="hotel_door_large"]

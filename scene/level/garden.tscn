@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="11_u1qnn"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="12_kjls8"]
 [ext_resource type="PackedScene" uid="uid://dspg4rjx5jpq1" path="res://assets/model/street_light.glb" id="14_y0tp7"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="15_niqde"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -107,6 +108,11 @@ shadow_enabled = true
 [node name="csg_box_floor" type="CSGBox3D" parent="." unique_id=1540382135]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0119629, 0)
 size = Vector3(40, 1.9760742, 40)
+
+[node name="marker_entrance" type="Node3D" parent="." unique_id=419511985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+script = ExtResource("15_niqde")
+metadata/_custom_type_script = "uid://bsbhmxre68ncc"
 
 [node name="marker_actor_carnation" type="Marker3D" parent="." unique_id=1233530973]
 transform = Transform3D(-0.9999994, 0, -0.0011343658, 0, 0.9999999, 0, 0.0011343658, 0, -0.9999994, 3, 0, 6.425821)
@@ -289,9 +295,7 @@ metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 [node name="teleport_pointer_garden" parent="." unique_id=82850098 instance=ExtResource("10_bedx7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 1)
 to = "res://scene/level/entrance.tscn"
-args = {
-"by": 71
-}
+by = 71
 bit = 4294967296
 
 [node name="marker_callback" type="Node3D" parent="." unique_id=1823859777 node_paths=PackedStringArray("node")]

@@ -55,65 +55,49 @@ fov = 89.176636
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 1, 0, 7)
 visible = false
 to = "res://scene/level/random_battle.tscn"
-args = {
-"by": 4
-}
+by = 4
 
 [node name="teleport_pointer_2" parent="." unique_id=635972156 instance=ExtResource("13_gnq6v")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -1, 0, 7)
 visible = false
 to = "res://scene/level/random_battle.tscn"
-args = {
-"by": 3
-}
+by = 3
 
 [node name="teleport_pointer_3" parent="." unique_id=1384586284 instance=ExtResource("13_gnq6v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1, 0, -7)
 visible = false
 to = "res://scene/level/random_battle.tscn"
-args = {
-"by": 116
-}
+by = 116
 
 [node name="teleport_pointer_4" parent="." unique_id=35822579 instance=ExtResource("13_gnq6v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, -7)
 visible = false
 to = "res://scene/level/random_battle.tscn"
-args = {
-"by": 115
-}
+by = 115
 
 [node name="teleport_pointer_5" parent="." unique_id=1512379640 instance=ExtResource("13_gnq6v")]
 transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, -7, 0, 0.9999997)
 visible = false
 to = "res://scene/level/random_battle.tscn"
-args = {
-"by": 71
-}
+by = 71
 
 [node name="teleport_pointer_6" parent="." unique_id=1698550157 instance=ExtResource("13_gnq6v")]
 transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, -7, 0, -1.0000004)
 visible = false
 to = "res://scene/level/random_battle.tscn"
-args = {
-"by": 55
-}
+by = 55
 
 [node name="teleport_pointer_7" parent="." unique_id=54356334 instance=ExtResource("13_gnq6v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 7, 0, 1.0000004)
 visible = false
 to = "res://scene/level/random_battle.tscn"
-args = {
-"by": 64
-}
+by = 64
 
 [node name="teleport_pointer_8" parent="." unique_id=662317563 instance=ExtResource("13_gnq6v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 7, 0, -0.9999997)
 visible = false
 to = "res://scene/level/random_battle.tscn"
-args = {
-"by": 48
-}
+by = 48
 
 [node name="csg_box_3d" type="CSGBox3D" parent="." unique_id=395119725]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -8.502441, -11.020386)

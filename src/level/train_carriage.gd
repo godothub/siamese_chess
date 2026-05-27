@@ -11,12 +11,6 @@ func _ready() -> void:
 	super._ready()
 	chessboard_sandbox.set_enabled(false)
 	$player.add_inspectable_item(chessboard_sandbox)
-	var cheshire_by:int = get_meta("by")
-	var cheshire_instance:Actor = load("res://scene/actor/cheshire.tscn").instantiate()
-	cheshire_instance.position = $chessboard.x88_to_vector3(cheshire_by)
-	$chessboard.state.add_piece(cheshire_by, player_king)
-	$chessboard.add_piece_instance(cheshire_instance, cheshire_by)
-	chessboard.button_input_pointer = cheshire_by
 	sandbox_state_machine.add_state("start", state_ready_in_game_start)
 	sandbox_state_machine.add_state("move", state_ready_in_game_move)
 	sandbox_state_machine.add_state("player", state_ready_in_game_player, state_exit_in_game_player)

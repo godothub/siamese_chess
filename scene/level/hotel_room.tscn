@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://h3wcv7lnqe8x" path="res://assets/model/painting_frame_square.glb" id="26_88lxp"]
 [ext_resource type="PackedScene" uid="uid://culu2eni4tooo" path="res://assets/model/curtain.glb" id="27_rjel0"]
 [ext_resource type="PackedScene" uid="uid://cpgbfn65ff3ca" path="res://assets/model/curtain_support.glb" id="28_q2hjl"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="29_dob66"]
 [ext_resource type="Script" uid="uid://chtqhpiu556i1" path="res://src/event/marker_bit.gd" id="29_q2hjl"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="30_njksd"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="31_njksd"]
@@ -75,9 +76,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
 script = ExtResource("6_nictv")
 to = "res://scene/level/hallway_3f.tscn"
-args = {
-"by": 50
-}
+by = 50
 bit = 33554432
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
@@ -149,7 +148,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8343501, 0, 3.399881)
 [node name="door_2" parent="." unique_id=1775898386 instance=ExtResource("5_10bqq")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -5, 0, 2)
 
-[node name="face" parent="door_2" index="1" unique_id=76276605]
+[node name="face" parent="door_2" index="1" unique_id=335988474]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.5224618, 1.0110773, 0.14069557)
 
 [node name="phonograph" parent="." unique_id=624737484 instance=ExtResource("24_ncv1s")]
@@ -227,6 +226,11 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.79
 
 [node name="curtain2_2" parent="." unique_id=634559452 instance=ExtResource("27_rjel0")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.7917943, 2.9938352, -2.4297738)
+
+[node name="marker_entrance" type="Node3D" parent="." unique_id=196954441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+script = ExtResource("29_dob66")
+metadata/_custom_type_script = "uid://bsbhmxre68ncc"
 
 [node name="marker_bit_wall_file_3" type="Node3D" parent="." unique_id=1883914663]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)

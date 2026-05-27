@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c3peh1jag1bb1" path="res://assets/model/reception_chair.glb" id="11_qtr2s"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="11_tkywf"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="12_tkywf"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="13_n52t5"]
 [ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/event/marker_actor.gd" id="13_nlty5"]
 [ext_resource type="PackedScene" uid="uid://d1orpuo40iup6" path="res://scene/actor/carnation.tscn" id="14_5uhcj"]
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="15_5uhcj"]
@@ -77,9 +78,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 script = ExtResource("18_lay20")
 to = "res://scene/level/hallway_2f.tscn"
-args = {
-"by": 103
-}
+by = 103
 bit = 131072
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
@@ -212,6 +211,11 @@ light_energy = 0.3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.3761294, -0.98214126)
 light_color = Color(0.55994356, 0.41980478, 0.27536556, 1)
 light_energy = 0.3
+
+[node name="marker_entrance" type="Node3D" parent="." unique_id=1833610569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+script = ExtResource("13_n52t5")
+metadata/_custom_type_script = "uid://bsbhmxre68ncc"
 
 [node name="marker_actor_carnation" type="Marker3D" parent="." unique_id=1629679967]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 0, 1)

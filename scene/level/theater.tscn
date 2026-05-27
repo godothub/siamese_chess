@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_ev634"]
 [ext_resource type="PackedScene" uid="uid://famkj12ufimp" path="res://scene/chessboard_blank.tscn" id="4_b4xfv"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="5_b4xfv"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="5_vm1e8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -122,3 +123,8 @@ height = 17.446045
 sides = 20
 cone = true
 material = SubResource("StandardMaterial3D_vm1e8")
+
+[node name="marker_entrance" type="Node3D" parent="." unique_id=2058715089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+script = ExtResource("5_vm1e8")
+metadata/_custom_type_script = "uid://bsbhmxre68ncc"

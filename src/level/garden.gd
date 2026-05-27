@@ -5,12 +5,6 @@ var cheshire_instance:Actor = null
 func _ready() -> void:
 	super._ready()
 	Ambient.change_environment_sound(load("res://assets/audio/405135__mjeno__autumn-forest-leaves-falling-close-to-pond-iii-loopable.wav"))
-	var cheshire_by:int = get_meta("by")
-	cheshire_instance = load("res://scene/actor/cheshire.tscn").instantiate()
-	cheshire_instance.position = $chessboard.x88_to_vector3(cheshire_by)
-	$chessboard.state.add_piece(cheshire_by, player_king)
-	$chessboard.add_piece_instance(cheshire_instance, cheshire_by)
-	chessboard.button_input_pointer = cheshire_by
 	$player.force_set_camera($camera)
 
 func interact_carnation() -> void:

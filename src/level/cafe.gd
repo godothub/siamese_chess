@@ -15,12 +15,6 @@ func _ready() -> void:
 	standard_history_document.set_filename("history.match_with_yulan.json")
 	standard_history_document.load_file()
 	Ambient.change_environment_sound(load("res://assets/audio/52645__kstein1__white-noise.wav"))
-	var cheshire_by:int = get_meta("by")
-	var cheshire_instance:Actor = load("res://scene/actor/cheshire.tscn").instantiate()
-	cheshire_instance.position = $chessboard.x88_to_vector3(cheshire_by)
-	$chessboard.state.add_piece(cheshire_by, player_king)
-	$chessboard.add_piece_instance(cheshire_instance, cheshire_by)
-	chessboard.button_input_pointer = cheshire_by
 	
 	standard_engine.set_think_time(INF)
 	standard_chessboard.set_enabled(false)

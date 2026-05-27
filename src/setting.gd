@@ -396,5 +396,5 @@ func set_clean_archive() -> void:
 
 func set_reset_progress() -> void:
 	Progress.clear()
-	Loading.change_scene("res://scene/startup.tscn", {})
+	Loading.change_scene("res://scene/startup.tscn")
 	close()
