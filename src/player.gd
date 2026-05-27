@@ -13,7 +13,7 @@ func _ready() -> void:
 	Setting.connect("dialog_border_changed", refresh_camera)
 	state_machine.name = "player"
 	state_machine.add_state("inspect", state_ready_inspect, Callable(), state_process_inspect, state_input_inspect)
-	state_machine.add_state("dialog", state_ready_dialog, Callable(), state_process_dialog)
+	state_machine.add_state("dialog", state_ready_dialog, Callable(), state_process_dialog, state_input_dialog)
 	state_machine.add_state("interface", state_ready_interface)
 	state_machine.change_state("inspect")
 	Gesture.connect("move_mouse", move_mouse)
@@ -37,38 +37,38 @@ func state_ready_inspect(_arg:Dictionary) -> void:
 func state_process_inspect(_delta:float) -> void:
 	if Dialog.block_input():
 		state_machine.change_state.call_deferred("dialog")
+
+func state_input_inspect(event:InputEvent) -> void:
 	for item:InspectableItem in inspectable_item_list:
 		if !item.enabled:
 			continue
-		if Input.is_action_just_pressed("ui_right"):
+		if event.is_action_pressed("ui_right"):
 			item.button_input("right", true)
-		if Input.is_action_just_released("ui_right"):
+		if event.is_action_released("ui_right"):
 			item.button_input("right", false)
-		if Input.is_action_just_pressed("ui_left"):
+		if event.is_action_pressed("ui_left"):
 			item.button_input("left", true)
-		if Input.is_action_just_released("ui_left"):
+		if event.is_action_released("ui_left"):
 			item.button_input("left", false)
-		if Input.is_action_just_pressed("ui_up"):
+		if event.is_action_pressed("ui_up"):
 			item.button_input("up", true)
-		if Input.is_action_just_released("ui_up"):
+		if event.is_action_released("ui_up"):
 			item.button_input("up", false)
-		if Input.is_action_just_pressed("ui_down"):
+		if event.is_action_pressed("ui_down"):
 			item.button_input("down", true)
-		if Input.is_action_just_released("ui_down"):
+		if event.is_action_released("ui_down"):
 			item.button_input("down", false)
-		if Input.is_action_just_pressed("ui_accept"):
+		if event.is_action_pressed("ui_accept"):
 			item.button_input("accept", true)
-		if Input.is_action_just_released("ui_accept"):
+		if event.is_action_released("ui_accept"):
 			item.button_input("accept", false)
-		if Input.is_action_just_pressed("ui_cancel") && Dialog.cancel_showing:
+		if event.is_action_pressed("ui_cancel") && Dialog.cancel_showing:
 			Dialog.on_cancel.emit()
-		elif Input.is_action_just_pressed("select") && Dialog.selection.size():
+		elif event.is_action_pressed("select") && Dialog.selection.size():
 			Dialog.direction(1)
-		elif Input.is_action_just_pressed("menu"):
+		elif event.is_action_pressed("menu"):
 			Dialog.show_global_selection()
 			Dialog.direction(1)
-
-func state_input_inspect(event:InputEvent) -> void:
 	if event is InputEventMouseButton || event is InputEventMouseMotion:
 		current_area = click_area(event.position)
 		if is_instance_valid(current_area):
@@ -85,27 +85,29 @@ func state_ready_dialog(_args:Dictionary) -> void:
 func state_process_dialog(_delta:float) -> void:
 	if !Dialog.block_input():
 		state_machine.change_state.call_deferred("inspect")
-	if Input.is_action_just_pressed("ui_left") || Input.is_action_just_pressed("tab_left"):
+	return
+
+func state_input_dialog(event:InputEvent) -> void:
+	if Input.is_action_pressed("ui_left") || Input.is_action_pressed("tab_left"):
 		Dialog.direction(-1)
-	if Input.is_action_just_pressed("ui_right") || Input.is_action_just_pressed("tab_right"):
+	if Input.is_action_pressed("ui_right") || Input.is_action_pressed("tab_right"):
 		Dialog.direction(1)		
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_pressed("ui_accept"):
 		Dialog.confirm()
 	if Dialog.force_selection:
-		if Input.is_action_just_pressed("ui_cancel"):
+		if Input.is_action_pressed("ui_cancel"):
 			Dialog.on_cancel.emit()
 		return
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_pressed("ui_cancel"):
 		Dialog.on_cancel.emit()
 		Dialog.cancel_focus()
 		Dialog.hide_global_selection()
-	if Input.is_action_just_pressed("menu"):
+	if Input.is_action_pressed("menu"):
 		Dialog.cancel_focus()
 		Dialog.hide_global_selection()
-	if Input.is_action_just_pressed("select"):
+	if Input.is_action_pressed("select"):
 		Dialog.cancel_focus()
 		Dialog.hide_global_selection()
-	return
 
 func state_ready_interface(_args:Dictionary) -> void:
 	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)

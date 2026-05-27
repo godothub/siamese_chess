@@ -65,6 +65,10 @@ func interact_pastor() -> void:
 	$chessboard/pieces/cheshire.set_rotation(Vector3(0, PI / 2, 0))
 	$chessboard/pieces/cheshire.play_animation("thinking")
 	$player.force_set_camera($camera_chessboard)
+
+	standard_chessboard.state = Chess.create_initial_state()
+	standard_chessboard.remove_piece_set()
+	standard_chessboard.add_default_piece_set()
 	standard_state_machine.change_state("edit_state")
 
 var game_premove_branch:PremoveBranch = PremoveBranch.new()
@@ -177,9 +181,6 @@ func state_game_premove_stop_ready(_arg:Dictionary) -> void:
 
 var edit_piece:int = 0
 func state_ready_in_game_edit_state(_arg:Dictionary) -> void:
-	standard_chessboard.state = Chess.create_initial_state()
-	standard_chessboard.remove_piece_set()
-	standard_chessboard.add_default_piece_set()
 	standard_state_machine.state_signal_connect(Dialog.on_select, func (_selected:String) -> void:
 		match _selected:
 			"PIECE_WHITE":
