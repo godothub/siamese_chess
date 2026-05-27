@@ -88,24 +88,24 @@ func state_process_dialog(_delta:float) -> void:
 	return
 
 func state_input_dialog(event:InputEvent) -> void:
-	if Input.is_action_pressed("ui_left") || Input.is_action_pressed("tab_left"):
+	if event.is_action_pressed("ui_left") || event.is_action_pressed("tab_left"):
 		Dialog.direction(-1)
-	if Input.is_action_pressed("ui_right") || Input.is_action_pressed("tab_right"):
-		Dialog.direction(1)		
-	if Input.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_right") || event.is_action_pressed("tab_right"):
+		Dialog.direction(1)
+	if event.is_action_pressed("ui_accept"):
 		Dialog.confirm()
 	if Dialog.force_selection:
-		if Input.is_action_pressed("ui_cancel"):
+		if event.is_action_pressed("ui_cancel"):
 			Dialog.on_cancel.emit()
 		return
-	if Input.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel"):
 		Dialog.on_cancel.emit()
 		Dialog.cancel_focus()
 		Dialog.hide_global_selection()
-	if Input.is_action_pressed("menu"):
+	if event.is_action_pressed("menu"):
 		Dialog.cancel_focus()
 		Dialog.hide_global_selection()
-	if Input.is_action_pressed("select"):
+	if event.is_action_pressed("select"):
 		Dialog.cancel_focus()
 		Dialog.hide_global_selection()
 
