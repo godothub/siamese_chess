@@ -413,8 +413,16 @@ func move_piece_instance_from_steady(by:int, piece:int) -> void:
 	await instance.animation_finished
 	animation_finished.emit.call_deferred()
 
-func remove_piece_instance(instance:Actor) -> void:
+func get_piece_instance_x88(instance:Actor) -> int:
 	var by:Variant = chessboard_piece.find_key(instance)
+	if by == null:
+		return -1
+	return by
+
+func remove_piece_instance(instance:Actor) -> void:
+	var by:int = get_piece_instance_x88(instance)
+	if by == -1:
+		return
 	$pieces.remove_child(instance)
 	chessboard_piece.erase(by)
 	backup_piece.erase(instance)

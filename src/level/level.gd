@@ -42,7 +42,6 @@ func _ready() -> void:
 		if node is MarkerEvent:
 			events.push_back(node)
 			node.on_init()
-	
 	Progress.create_if_not_exist("obtains", 0)
 	Progress.create_if_not_exist("wins", 0)
 	state_machine.add_state("start", state_ready_start)
@@ -202,6 +201,7 @@ func state_ready_start(_arg:Dictionary) -> void:
 var travel_path:PackedInt32Array = []
 
 func state_ready_free(_arg:Dictionary) -> void:
+	Clock.pause()
 	premove_state_machine.change_state.call_deferred("stop")
 	state_machine.state_signal_connect(chessboard.click_empty, travel_to)
 	state_machine.state_signal_connect(Dialog.on_select, func(_selected:String) -> void:
@@ -486,3 +486,8 @@ func back_to_game() -> void:
 			state_machine.change_state.call_deferred("player")
 	else:
 		state_machine.change_state.call_deferred("free")
+
+func on_exit() -> void:
+	for node:Node in get_children():
+		if node is MarkerEvent:
+			node.on_exit()

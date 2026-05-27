@@ -28,6 +28,8 @@ func change_scene(_path:String, _meta:Dictionary, wait_time:float = 0.3) -> void
 	for key:String in _meta:
 		instance.set_meta(key, _meta[key])
 	if is_instance_valid(current):
+		if current.has_method("on_exit"):
+			current.on_exit()
 		current.queue_free()
 	get_tree().root.add_child.call_deferred(instance)
 	current = instance

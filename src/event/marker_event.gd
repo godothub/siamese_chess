@@ -21,3 +21,6 @@ func show_selection() -> String:
 
 func on_selection() -> void:
 	pass
+
+func on_exit() -> void:
+	pass
