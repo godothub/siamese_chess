@@ -9,7 +9,7 @@ var editor_instance:Actor = null
 var instance:Actor = null
 
 func on_init() -> void:
-	var by:int = Progress.get_value(level.chessboard.name + ":" + level.chessboard.vector3_to_name(position), level.chessboard.vector3_to_x88(position))
+	var by:int = Progress.get_value(level.name + ":" + level.chessboard.vector3_to_name(position), level.chessboard.vector3_to_x88(position))
 	if by == -1:
 		return
 	level.chessboard.state.add_piece(by, piece)
@@ -59,4 +59,4 @@ func get_actor() -> PackedScene:
 
 func on_exit() -> void:
 	var by:int = level.chessboard.get_piece_instance_x88(instance)
-	Progress.set_value(level.chessboard.name + ":" + level.chessboard.vector3_to_name(position), by)
+	Progress.set_value(level.name + ":" + level.chessboard.vector3_to_name(position), by)
