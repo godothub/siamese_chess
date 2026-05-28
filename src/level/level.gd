@@ -44,9 +44,10 @@ func _ready() -> void:
 			node.on_init()
 	Progress.create_if_not_exist("obtains", 0)
 	Progress.create_if_not_exist("wins", 0)
-	state_machine.add_state("start", state_ready_start)
+	state_machine.add_state("init", state_ready_init)
 	state_machine.add_state("free", state_ready_free, state_exit_free)
 	state_machine.add_state("travel", state_ready_travel)
+	state_machine.add_state("start", state_ready_start)
 	state_machine.add_state("enemy", state_ready_enemy)
 	state_machine.add_state("waiting", state_ready_waiting)
 	state_machine.add_state("move", state_ready_move)
@@ -67,7 +68,7 @@ func _ready() -> void:
 	premove_state_machine.add_state("confirm", state_premove_confirm_ready)
 	premove_state_machine.add_state("stop", state_premove_stop_ready)
 	premove_state_machine.name = "premove"
-	state_machine.change_state.call_deferred("start")
+	state_machine.change_state.call_deferred("init")
 
 class PremoveBranch extends RefCounted:
 	var move_order:PackedInt32Array = []
@@ -180,23 +181,10 @@ func state_premove_confirm_ready(_arg:Dictionary) -> void:
 func state_premove_stop_ready(_arg:Dictionary) -> void:
 	pass
 
-func state_ready_start(_arg:Dictionary) -> void:
-	Clock.set_time(Progress.get_value("time_left", 60 * 15), 5)
-	chessboard.state.set_turn(0)
-	chessboard.state.set_castle(0xF)
-	chessboard.state.set_step_to_draw(0)
-	chessboard.state.set_round(1)
-	history_document.new_page()
-	history_document.set_state(-1, chessboard.state)
-	history_document.set_sign(-1, Time.get_datetime_string_from_system(), name, tr("CHAR_YULAN"), tr("CHAR_LOTUS"), tr("CHAR_YULAN"))
+func state_ready_init(_arg:Dictionary) -> void:
 	for iter:MarkerEvent in events:
 		iter.on_start()
-	if Chess.get_end_type(chessboard.state) == "checkmate_black":
-		state_machine.change_state.call_deferred("player_win")
-	elif Chess.get_end_type(chessboard.state) == "checkmate_white":
-		state_machine.change_state.call_deferred("enemy_win")
-	else:
-		back_to_game()
+	state_machine.change_state("free")
 
 var travel_path:PackedInt32Array = []
 
@@ -242,6 +230,29 @@ func travel_to(_by:int) -> void:
 	travel_path = path_to
 	state_machine.change_state("travel")
 
+func state_ready_start(_arg:Dictionary) -> void:
+	in_battle = true
+	Clock.set_time(Progress.get_value("time_left", 60 * 15), 5)
+	chessboard.state.set_turn(0)
+	chessboard.state.set_castle(0xF)
+	chessboard.state.set_step_to_draw(0)
+	chessboard.state.set_round(1)
+	history_document.new_page()
+	history_document.set_state(-1, chessboard.state)
+	history_document.set_sign(-1, Time.get_datetime_string_from_system(), name, tr("CHAR_YULAN"), tr("CHAR_LOTUS"), tr("CHAR_YULAN"))
+	var end_type:String = Chess.get_end_type(chessboard.state)
+	if end_type == ("checkmate_white" if player_group == 1 else "checkmate_black"):
+		state_machine.change_state.call_deferred("enemy_win")
+	elif end_type == ("checkmate_white" if player_group == 0 else "checkmate_black"):
+		state_machine.change_state.call_deferred("player_win")
+	elif end_type == ("cleared_black" if player_group == 1 else "cleared_white"):
+		in_battle = false
+		state_machine.change_state.call_deferred("free")
+	elif end_type != "":
+		state_machine.change_state.call_deferred("draw")
+	else:
+		back_to_game()
+
 func state_ready_enemy(_arg:Dictionary) -> void:
 	if !chessboard.state.get_bit(enemy_all):
 		state_machine.change_state.call_deferred("move", {"move": -1})
@@ -277,8 +288,16 @@ func state_ready_move(_arg:Dictionary) -> void:
 	if premove_state_machine.current_state == "stop":
 		premove_state_machine.change_state.call_deferred("start")
 	state_machine.state_signal_connect(chessboard.animation_finished, func () -> void:
-		if Chess.get_end_type(chessboard.state) == ("checkmate_white" if player_group == 1 else "checkmate_black"):
+		var end_type:String = Chess.get_end_type(chessboard.state)
+		if end_type == ("checkmate_white" if player_group == 1 else "checkmate_black"):
 			state_machine.change_state.call_deferred("enemy_win")
+		elif end_type == ("checkmate_white" if player_group == 0 else "checkmate_black"):
+			state_machine.change_state.call_deferred("player_win")
+		elif end_type == ("cleared_black" if player_group == 1 else "cleared_white"):
+			in_battle = false
+			state_machine.change_state.call_deferred("free")
+		elif end_type != "":
+			state_machine.change_state.call_deferred("draw")
 		else:
 			back_to_game()
 	)
@@ -458,7 +477,7 @@ func state_ready_draw(_arg:Dictionary) -> void:
 		chessboard.chessboard_piece[Chess.c64_to_x88(Chess.first_bit(bit))].leave()
 		bit = Chess.next_bit(bit)
 	state_machine.state_signal_connect(Dialog.on_next, back_to_game)
-	Dialog.push_dialog("平局", "", true, true)
+	Dialog.push_dialog("HINT_DRAW", "", true, true)
 
 func state_ready_stop(_arg:Dictionary) -> void:
 	pass
@@ -471,7 +490,7 @@ func back_to_game() -> void:
 		return
 	for iter:MarkerEvent in events:
 		iter.on_turn()
-	if chessboard.state.get_bit(enemy_all):
+	if in_battle:
 		if chessboard.state.get_turn() != player_group:
 			state_machine.change_state.call_deferred("enemy")
 		elif premove_branch && premove_branch.move_order.size():

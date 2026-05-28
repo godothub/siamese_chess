@@ -901,6 +901,18 @@ godot::String Chess::get_end_type(const godot::Ref<State> &_state)
 {
 	DEV_ASSERT(_state.is_valid());
 	int group = _state->get_turn();
+	if (_state->get_bit('A') == 0 && _state->get_bit('a') == 0)
+	{
+		return "no_piece";
+	}
+	if (_state->get_bit('A') == 0)
+	{
+		return "cleared_black";
+	}
+	if (_state->get_bit('a') == 0)
+	{
+		return "cleared_white";
+	}
 	if (generate_valid_move(_state, group).size() == 0)
 	{
 		if (is_check(_state, 1 - group))

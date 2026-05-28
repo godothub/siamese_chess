@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="15_toco3"]
 [ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/event/marker_actor.gd" id="15_ysi5d"]
 [ext_resource type="PackedScene" uid="uid://dadbbopm5hcen" path="res://scene/actor/piece_pawn_white.tscn" id="16_2kov4"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_start_game.gd" id="16_ha4gw"]
 [ext_resource type="PackedScene" uid="uid://jeaolg2mf178" path="res://assets/model/tree_1.glb" id="16_ysi5d"]
 [ext_resource type="PackedScene" uid="uid://doaioqavihplw" path="res://assets/model/hotel_inner_gate.glb" id="17_0nr4v"]
 [ext_resource type="PackedScene" uid="uid://dmwl65mg7565u" path="res://scene/actor/piece_pawn_black.tscn" id="17_2kov4"]
@@ -61,52 +62,52 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
 metadata/_edit_lock_ = true
 
-[node name="f6_001" parent="chessboard" index="20" unique_id=768375893]
+[node name="f6_001" parent="chessboard" index="20" unique_id=828454403]
 visible = false
 
-[node name="f5_001" parent="chessboard" index="21" unique_id=1100737674]
+[node name="f5_001" parent="chessboard" index="21" unique_id=1511017675]
 visible = false
 
-[node name="f4_001" parent="chessboard" index="22" unique_id=540388612]
+[node name="f4_001" parent="chessboard" index="22" unique_id=1771634838]
 visible = false
 
-[node name="f3_001" parent="chessboard" index="23" unique_id=684248310]
+[node name="f3_001" parent="chessboard" index="23" unique_id=400249088]
 visible = false
 
-[node name="e6_001" parent="chessboard" index="28" unique_id=45463497]
+[node name="e6_001" parent="chessboard" index="28" unique_id=196685575]
 visible = false
 
-[node name="e5_001" parent="chessboard" index="29" unique_id=1760973006]
+[node name="e5_001" parent="chessboard" index="29" unique_id=787900121]
 visible = false
 
-[node name="e4_001" parent="chessboard" index="30" unique_id=884872434]
+[node name="e4_001" parent="chessboard" index="30" unique_id=974152929]
 visible = false
 
-[node name="e3_001" parent="chessboard" index="31" unique_id=1515440245]
+[node name="e3_001" parent="chessboard" index="31" unique_id=1683331212]
 visible = false
 
-[node name="d6_001" parent="chessboard" index="36" unique_id=439831702]
+[node name="d6_001" parent="chessboard" index="36" unique_id=1078020281]
 visible = false
 
-[node name="d5_001" parent="chessboard" index="37" unique_id=1731769136]
+[node name="d5_001" parent="chessboard" index="37" unique_id=1851668367]
 visible = false
 
-[node name="d4_001" parent="chessboard" index="38" unique_id=177225427]
+[node name="d4_001" parent="chessboard" index="38" unique_id=1869983733]
 visible = false
 
-[node name="d3_001" parent="chessboard" index="39" unique_id=414171486]
+[node name="d3_001" parent="chessboard" index="39" unique_id=1818043370]
 visible = false
 
-[node name="c6_001" parent="chessboard" index="44" unique_id=413993271]
+[node name="c6_001" parent="chessboard" index="44" unique_id=1842282333]
 visible = false
 
-[node name="c5_001" parent="chessboard" index="45" unique_id=1202219198]
+[node name="c5_001" parent="chessboard" index="45" unique_id=368405567]
 visible = false
 
-[node name="c4_001" parent="chessboard" index="46" unique_id=1045033137]
+[node name="c4_001" parent="chessboard" index="46" unique_id=802662855]
 visible = false
 
-[node name="c3_001" parent="chessboard" index="47" unique_id=1071969624]
+[node name="c3_001" parent="chessboard" index="47" unique_id=1527428978]
 visible = false
 
 [node name="pool" parent="." unique_id=2037384043 instance=ExtResource("4_vie8g")]
@@ -376,6 +377,11 @@ metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("21_2ugp2")
 metadata/_custom_type_script = "uid://bsbhmxre68ncc"
+
+[node name="marker_start_game" type="Node3D" parent="." unique_id=1784838671]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
+script = ExtResource("16_ha4gw")
+metadata/_custom_type_script = "uid://dxapdof0oowg1"
 
 [node name="marker_actor" type="Marker3D" parent="." unique_id=792799186]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
