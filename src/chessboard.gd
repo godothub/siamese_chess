@@ -43,6 +43,8 @@ var mouse_moved:bool = false
 var button_input_hold:bool = false
 var button_input_moved:bool = false
 var button_input_pointer:int = 0
+var button_input_dir_axis:int = 0
+var direction_mapping:Dictionary = {}
 
 var state:State = null
 var chessboard_piece:Dictionary[int, Actor] = {}
@@ -52,6 +54,12 @@ var square_selection:int = 0
 var double_click_threshold:float = 0.3
 var hold_threshold:float = 0.3
 var double_click_timer:float = 0
+
+var das_timer:Timer = Timer.new()
+var arr_timer:Timer = Timer.new()
+var das_interval:float = 0.3
+var arr_interval:float = 0.1
+var keep_das_interval:float = 0.1
 
 static func get_default_piece_instance(piece:int) -> Actor:
 	match piece:
@@ -89,6 +97,15 @@ static func get_default_piece_instance(piece:int) -> Actor:
 
 func _ready() -> void:
 	super._ready()
+	das_timer.one_shot = true
+	arr_timer.one_shot = false
+	das_timer.connect("timeout", func() -> void:
+		repeat_moving_pointer()
+		arr_timer.start(arr_interval)
+	)
+	arr_timer.connect("timeout", repeat_moving_pointer)
+	add_child(das_timer)
+	add_child(arr_timer)
 
 func add_default_piece_set() -> void:	# 最好交由外部来负责棋子的准备
 	backup_piece.clear()
@@ -110,7 +127,6 @@ func button_input(_button:String, _pressed:bool) -> void:
 	var camera:Camera3D = get_viewport().get_camera_3d()
 	var direction:float = camera.global_rotation.y
 	direction -= global_rotation.y
-	var direction_mapping:Dictionary = {}
 	if direction > -PI / 4 * 3 && direction <= -PI / 4:
 		direction_mapping = {"up": 1, "down": -1, "left": -16, "right": 16}
 	elif direction > -PI / 4 && direction <=  PI / 4:
@@ -119,14 +135,23 @@ func button_input(_button:String, _pressed:bool) -> void:
 		direction_mapping = {"up": -1, "down": 1, "left": 16, "right": -16}
 	else:
 		direction_mapping = {"up": 16, "down": -16, "left": 1, "right": -1}
-
 	if _button in ["up", "down", "left", "right"]:
-		if !_pressed:
+		if _pressed:
+			button_input_dir_axis += direction_mapping[_button]
+			if arr_timer.is_stopped() && das_timer.is_stopped():
+				das_timer.start(das_interval)
+				button_input_moved = true
+				repeat_moving_pointer()
+			if !arr_timer.is_stopped():
+				arr_timer.stop()
+				repeat_moving_pointer()
+				arr_timer.start(arr_interval)
+		elif !_pressed:
+			button_input_dir_axis -= direction_mapping[_button]
+			if button_input_dir_axis == 0:
+				das_timer.stop()
+				arr_timer.stop()
 			return
-		button_input_moved = true
-		if !((button_input_pointer + direction_mapping[_button]) & 0x88):
-			button_input_pointer += direction_mapping[_button]
-			finger_on_position(Chess.x88_to_name(button_input_pointer))
 	elif _button =="accept":
 		if _pressed:
 			$audio_stream_player_click_down.play()
@@ -141,6 +166,11 @@ func button_input(_button:String, _pressed:bool) -> void:
 		else:
 			$audio_stream_player_click_up.play()
 			button_input_hold = false
+
+func repeat_moving_pointer() -> void:
+	if !((button_input_pointer + button_input_dir_axis) & 0x88):
+		button_input_pointer += button_input_dir_axis
+		finger_on_position(Chess.x88_to_name(button_input_pointer))
 
 func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
 	if _instant:
