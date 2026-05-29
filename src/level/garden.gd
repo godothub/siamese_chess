@@ -1,6 +1,5 @@
 extends Level
 
-var cheshire_instance:Actor = null
 
 func _ready() -> void:
 	super._ready()
@@ -14,6 +13,8 @@ func interact_carnation() -> void:
 	var target_position_2d:Vector2 = Vector2(carnation_pos.x, carnation_pos.z)
 	var target_angle:float = -current_position_2d.angle_to_point(target_position_2d) + PI / 2
 	target_angle = global_rotation.y + angle_difference(global_rotation.y, target_angle)
+	var cheshire_by:int = Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
+	var cheshire_instance:Actor = chessboard.chessboard_piece[cheshire_by]
 	cheshire_instance.rotation.y = target_angle
 	Dialog.set_border_position(false)
 	Dialog.push_dialog("CARNATION_TALK_0_0", "", true, true)
