@@ -241,7 +241,8 @@ func tap_position(position_name:String, down:bool = true) -> void:
 			selection_up.emit.call_deferred(selected)
 		click_selection.emit.call_deferred(selected)
 		return
-	click_empty.emit.call_deferred(selected)
+	if down:
+		click_empty.emit.call_deferred(selected)
 	if down:
 		if (Time.get_unix_time_from_system() - double_click_timer <= double_click_threshold):
 			empty_double_click.emit.call_deferred(selected)
