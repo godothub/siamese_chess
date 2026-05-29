@@ -3,6 +3,7 @@ class_name TextInput
 
 signal confirmed(text:String)	# -1表示取消
 
+var blackscreen_interval:float = 0.3
 var hint:String = "请输入："
 var default:String = ""
 var text:String = ""
@@ -23,7 +24,7 @@ func _ready() -> void:
 	$texture_rect/line_edit.visible = false
 	$texture_rect/line_edit.text = default
 	var tween:Tween = create_tween()
-	tween.tween_interval(0.3)
+	tween.tween_interval(blackscreen_interval)
 	tween.tween_property($texture_rect/label, "visible", true, 0)
 	tween.tween_property($texture_rect/line_edit, "visible", true, 0)
 	tween.tween_callback($texture_rect/line_edit.grab_focus)
@@ -37,5 +38,5 @@ func submit(_text:String) -> void:
 	var tween:Tween = create_tween()
 	tween.tween_property($texture_rect/label, "visible", false, 0)
 	tween.tween_property($texture_rect/line_edit, "visible", false, 0)
-	tween.tween_interval(0.3)
+	tween.tween_interval(blackscreen_interval)
 	tween.tween_callback(queue_free)

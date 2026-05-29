@@ -49,6 +49,8 @@ var chessboard_piece:Dictionary[int, Actor] = {}
 var king_instance:Array[Actor] = [null, null]
 
 var square_selection:int = 0
+var double_click_threshold:float = 0.3
+var hold_threshold:float = 0.3
 var double_click_timer:float = 0
 
 static func get_default_piece_instance(piece:int) -> Actor:
@@ -201,7 +203,7 @@ func tap_position(position_name:String, down:bool = true) -> void:
 	if square_selection != -1 && (Chess.mask(Chess.x88_to_c64(selected)) & square_selection):
 		if down:
 			selection_down.emit.call_deferred(selected)
-			get_tree().create_timer(0.3).timeout.connect(func () -> void:
+			get_tree().create_timer(hold_threshold).timeout.connect(func () -> void:
 				if mouse_hold && !mouse_moved || button_input_hold && !button_input_moved:
 					selection_hold.emit.call_deferred(selected)
 			)
@@ -211,7 +213,7 @@ func tap_position(position_name:String, down:bool = true) -> void:
 		return
 	click_empty.emit.call_deferred(selected)
 	if down:
-		if (Time.get_unix_time_from_system() - double_click_timer <= 0.3):
+		if (Time.get_unix_time_from_system() - double_click_timer <= double_click_threshold):
 			empty_double_click.emit.call_deferred(selected)
 			double_click_timer = 0
 		else:

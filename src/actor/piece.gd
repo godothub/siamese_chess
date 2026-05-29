@@ -4,6 +4,7 @@ var original_position:Vector3 = Vector3(0, 0, 0)
 var sfx:AudioStreamPlayer3D = null
 var larger_scale:bool = false
 var promote_instance:Actor = null
+var moving_duration:float = 0.3
 
 func _ready() -> void:
 	super._ready()
@@ -25,14 +26,14 @@ func move(_pos:Vector3) -> void:
 	original_position = _pos
 	var tween:Tween = create_tween()
 	tween.tween_callback(sfx.play)
-	tween.tween_property(self, "global_position", _pos, 0.3).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "global_position", _pos, moving_duration).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(animation_finished.emit)
 
 func capturing(_pos:Vector3, _captured:Actor) -> void:	# 攻击
 	original_position = _pos
 	var tween:Tween = create_tween()
 	tween.tween_callback(sfx.play)
-	tween.tween_property(self, "global_position", _pos, 0.3).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "global_position", _pos, moving_duration).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(animation_finished.emit)
 	_captured.captured(self)
 
@@ -48,7 +49,7 @@ func promote(_pos:Vector3, _piece:int) -> void:
 	original_position = _pos
 	var tween:Tween = create_tween()
 	tween.tween_callback(sfx.play)
-	tween.tween_property(self, "global_position", _pos, 0.3).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "global_position", _pos, moving_duration).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(change_model.bind(_piece))
 	tween.tween_callback(animation_finished.emit)
 

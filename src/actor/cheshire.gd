@@ -3,6 +3,8 @@ extends Actor
 var target_position:Vector3 = Vector3()
 var target_actor:Actor = null
 var tween:Tween = null
+var turning_duration:float = 0.1
+var capturing_duration:float = 0.3
 
 func _ready() -> void:
 	$animation_tree.get("parameters/playback").start("battle_idle")
@@ -33,14 +35,14 @@ func capturing(_pos:Vector3, _captured:Actor) -> void:	# 攻击
 	tween = create_tween()
 	if has_node("animation_tree"):
 		tween.tween_callback($animation_tree.get("parameters/playback").travel.bind("battle_attack"))
-	tween.tween_property(self, "global_rotation:y", target_angle, 0.1).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "global_rotation:y", target_angle, turning_duration).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(animation_finished.emit)
 
 func fast_move() -> void:
 	if tween && tween.is_running():
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(self, "global_position", target_position, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "global_position", target_position, capturing_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 func knockdown_target() -> void:
 	target_actor.captured(self)
@@ -55,7 +57,7 @@ func captured(_capturing:Actor = null) -> void:	# 被攻击
 		if tween && tween.is_running():
 			tween.kill()
 		tween = create_tween()
-		tween.tween_property(self, "global_rotation:y", target_angle, 0.1).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(self, "global_rotation:y", target_angle, turning_duration).set_trans(Tween.TRANS_SINE)
 		tween.tween_callback(animation_finished.emit)
 	$animation_tree.get("parameters/playback").travel("battle_died")
 
@@ -72,13 +74,13 @@ func move(_pos:Vector3) -> void:	# 单纯的移动
 		tween.kill()
 
 	var subtween = create_tween()
-	subtween.tween_interval(global_position.distance_to(_pos) / 5 - 0.1)
+	subtween.tween_interval(global_position.distance_to(_pos) / 5 - turning_duration)
 	subtween.tween_callback(animation_finished.emit)
 
 	tween = create_tween()
 	if has_node("animation_tree"):
 		tween.tween_callback($animation_tree.get("parameters/playback").travel.bind("battle_move"))
-	tween.tween_property(self, "global_rotation:y", target_angle, 0.1).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "global_rotation:y", target_angle, turning_duration).set_trans(Tween.TRANS_SINE)
 	tween.set_parallel(true)
 	tween.tween_subtween(subtween)
 	tween.tween_property(self, "global_position", _pos, global_position.distance_to(_pos) / 5)

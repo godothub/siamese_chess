@@ -3,6 +3,7 @@ class_name Decision
 
 signal decided()	# -1表示取消
 
+var blackscreen_interval:float = 0.3
 var decision_list:PackedStringArray = []
 var selected_index:int = 0
 var has_cancel:bool = true
@@ -50,7 +51,7 @@ func _ready() -> void:
 	$texture_rect/v_box_container.hide()
 	$texture_rect/v_box_container.visible = false
 	var tween:Tween = create_tween()
-	tween.tween_interval(0.3)
+	tween.tween_interval(blackscreen_interval)
 	tween.tween_property($texture_rect/v_box_container, "visible", true, 0)
 
 func _unhandled_input(_event:InputEvent) -> void:
@@ -61,5 +62,5 @@ func button_pressed(index:int) -> void:
 	decided.emit()
 	var tween:Tween = create_tween()
 	tween.tween_property($texture_rect/v_box_container, "visible", false, 0)
-	tween.tween_interval(0.3)
+	tween.tween_interval(blackscreen_interval)
 	tween.tween_callback(queue_free)

@@ -29,6 +29,9 @@ var force_selection:bool = false
 var click_cooldown:float = 0
 var tween:Tween = null
 
+var cooldown_interval:float = 0.3
+var blackscreen_interval:float = 0.3
+
 func _ready() -> void:
 	set_border_position(false)
 	$texture_rect_bottom/label.connect("meta_clicked", clicked_selection)
@@ -54,7 +57,7 @@ func _ready() -> void:
 
 func _unhandled_input(event:InputEvent) -> void:
 	if click_anywhere && !waiting:
-		if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.pressed && Time.get_unix_time_from_system() - click_cooldown >= 0.3:
+		if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.pressed && Time.get_unix_time_from_system() - click_cooldown >= cooldown_interval:
 			next()
 			click_cooldown = Time.get_unix_time_from_system()
 	if block_input():
@@ -80,7 +83,7 @@ func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_a
 	text_label.text = ""
 	if blackscreen:
 		tween.tween_property($texture_rect_full, "visible", true, 0)
-	tween.tween_interval(0.3)
+	tween.tween_interval(blackscreen_interval)
 	tween.tween_property(text_label, "text", tr(text), 0)
 	tween.tween_property(title_label, "text", tr(title), 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
@@ -102,7 +105,7 @@ func push_selection(_selection:PackedStringArray, _title:String, _force_selectio
 	tween = create_tween()
 	if blackscreen:
 		tween.tween_property($texture_rect_full, "visible", true, 0)
-	tween.tween_interval(0.3)
+	tween.tween_interval(blackscreen_interval)
 	tween.tween_property(text_label, "text", text, 0)
 	tween.tween_property(title_label, "text", tr(title), 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
@@ -193,14 +196,14 @@ func cancel_focus() -> void:
 	text_label.text = selection_to_bbcode(selection)
 
 func clicked_selection(_selected:String) -> void:
-	if Time.get_unix_time_from_system() - click_cooldown < 0.3:
+	if Time.get_unix_time_from_system() - click_cooldown < cooldown_interval:
 		return
 	selected = _selected
 	next()
 	on_select.emit(_selected)
 
 func clicked_global_selection(_selected:String) -> void:
-	if Time.get_unix_time_from_system() - click_cooldown < 0.3:
+	if Time.get_unix_time_from_system() - click_cooldown < cooldown_interval:
 		return
 	$audio_stream_player_confirm.play()
 	match _selected:
@@ -242,7 +245,7 @@ func selection_to_bbcode(_selection:PackedStringArray, _select_focus:int = -1) -
 	return bbcode
 
 func block_input() -> bool:
-	return click_anywhere || force_selection || select_focus != -1 || Time.get_unix_time_from_system() - click_cooldown < 0.3
+	return click_anywhere || force_selection || select_focus != -1 || Time.get_unix_time_from_system() - click_cooldown < cooldown_interval
 
 func update_dialog() -> void:
 	set_border_position(Setting.get_value("dialog_border"))
