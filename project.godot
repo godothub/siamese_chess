@@ -38,6 +38,7 @@ ThirdEye3D="*uid://ev40jhv8rt4p"
 Gesture="*uid://dsqxbuqwoaoqe"
 TouchscreenInputManager="*uid://wa2q0lswte4p"
 Narrative="*uid://dn73slootiwl3"
+Localization="*uid://bqoo1g422lhoo"
 
 [debug]
 

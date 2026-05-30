@@ -226,7 +226,7 @@ func travel_to(_by:int) -> void:
 		iter = path[Chess.x88_to_c64(iter)]
 	if !path_to.size():
 		return
-	Narrative.speak(tr("TRAVEL_TO").format({"by": Chess.x88_to_name(_by)}), false)
+	Narrative.speak(tr("TRAVEL_TO").format({"by": Localization.position_name_to_pronounce(Chess.x88_to_name(_by))}), false)
 	travel_path = path_to
 	state_machine.change_state("travel")
 
@@ -283,7 +283,7 @@ func state_ready_move(_arg:Dictionary) -> void:
 	history_state.push_back(chessboard.state.get_zobrist())
 	if Setting.get_value("text_to_speech"):
 		var content:String = "WHITE_PLAY" if chessboard.state.get_turn() == 0 else "BLACK_PLAY"
-		content = tr(content).format({"move": Chess.get_move_name(chessboard.state, _arg["move"])})
+		content = tr(content).format({"move": Localization.move_name_to_pronounce(Chess.get_move_name(chessboard.state, _arg["move"]))})
 		Narrative.speak(content, false)
 	if premove_state_machine.current_state == "stop":
 		premove_state_machine.change_state.call_deferred("start")

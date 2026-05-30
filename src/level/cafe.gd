@@ -317,7 +317,7 @@ func state_ready_in_game_move(_arg:Dictionary) -> void:
 	standard_history_zobrist.push_back(standard_chessboard.state.get_zobrist())
 	if Setting.get_value("text_to_speech"):
 		var content:String = "WHITE_PLAY" if standard_chessboard.state.get_turn() == 0 else "BLACK_PLAY"
-		content = tr(content).format({"move": Chess.get_move_name(standard_chessboard.state, _arg["move"])})
+		content = tr(content).format({"move": Localization.move_name_to_pronounce(Chess.get_move_name(standard_chessboard.state, _arg["move"]))})
 		Narrative.speak(content, false)
 	var rollback_event:Dictionary = standard_chessboard.execute_move(_arg["move"])
 	standard_history_event.push_back(rollback_event)
