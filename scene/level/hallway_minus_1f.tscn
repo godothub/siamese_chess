@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cwjgphuayqvy3" path="res://assets/model/hotel_door_large.glb" id="13_b3cnt"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="14_wrs32"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="15_simkd"]
+[ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="16_t4hms"]
 
 [sub_resource type="Environment" id="Environment_reac2"]
 background_mode = 1
@@ -292,8 +293,20 @@ by = 48
 bit = 2
 
 [node name="marker_entrance" type="Node3D" parent="." unique_id=263777557]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("15_simkd")
 metadata/_custom_type_script = "uid://bsbhmxre68ncc"
+
+[node name="marker_title_to_basement" type="Node3D" parent="." unique_id=621251520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
+script = ExtResource("16_t4hms")
+text = "TO_BASEMENT"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_title_elevator" type="Node3D" parent="." unique_id=1220182496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
+script = ExtResource("16_t4hms")
+text = "HOTEL_ELEVATOR"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [editable path="hotel_door_large"]

@@ -33,6 +33,7 @@
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="30_njksd"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="31_njksd"]
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="32_3t1c3"]
+[ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="34_vaepl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e1edc"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -148,7 +149,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8343501, 0, 3.399881)
 [node name="door_2" parent="." unique_id=1775898386 instance=ExtResource("5_10bqq")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -5, 0, 2)
 
-[node name="face" parent="door_2" index="1" unique_id=763026801]
+[node name="face" parent="door_2" index="1" unique_id=335988474]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.5224618, 1.0110773, 0.14069557)
 
 [node name="phonograph" parent="." unique_id=624737484 instance=ExtResource("24_ncv1s")]
@@ -402,5 +403,11 @@ transform = Transform3D(1.5624998, 0, -3.4769573e-07, 0, 1.5625, 0, 3.4769573e-0
 
 [node name="camera_chessboard" type="Camera3D" parent="." unique_id=1415267442]
 transform = Transform3D(-1, -7.6581955e-08, 4.2165713e-08, -1.9463599e-08, 0.6652434, 0.7466266, -8.5228585e-08, 0.7466266, -0.6652434, 1, 1.203, 1.27)
+
+[node name="marker_title_to_hallway" type="Node3D" parent="." unique_id=450043553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+script = ExtResource("34_vaepl")
+text = "TO_HALLWAY"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [editable path="door_2"]

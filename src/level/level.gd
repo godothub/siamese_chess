@@ -199,7 +199,6 @@ func state_ready_free(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(chessboard.hovered, func (_selected:int) -> void:
 		if title.has(_selected):
 			Dialog.push_title(title[_selected])
-			Narrative.speak(title[_selected])
 		else:
 			Dialog.push_title("")
 	)

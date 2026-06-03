@@ -29,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://b7uycfov8t6ed" path="res://scene/actor/piece_rook_black.tscn" id="26_hm8qo"]
 [ext_resource type="PackedScene" uid="uid://by0kbsnaciq8h" path="res://assets/model/hotel_window.glb" id="27_ef2ef"]
 [ext_resource type="PackedScene" uid="uid://bbfelit1kiw6s" path="res://scene/actor/piece_rook_white.tscn" id="27_hm8qo"]
+[ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="30_m0w87"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_start_game.gd" id="31_e0ue8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5l1ss"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -638,5 +640,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -4.8993855, 7.6935453)
 
 [node name="hotel_window_8" parent="." unique_id=919067053 instance=ExtResource("27_ef2ef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -4.8993855, 7.6935453)
+
+[node name="marker_title_to_music_room" type="Node3D" parent="." unique_id=1172393840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 5)
+script = ExtResource("30_m0w87")
+text = "TO_MUSIC_ROOM"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_title_elevator" type="Node3D" parent="." unique_id=200323638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
+script = ExtResource("30_m0w87")
+text = "HOTEL_ELEVATOR"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_title_play_chess" type="Node3D" parent="." unique_id=1447869253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+script = ExtResource("30_m0w87")
+text = "LEVEL_PLAY_CHESS"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_start_game" type="Node3D" parent="." unique_id=566765094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+script = ExtResource("31_e0ue8")
+metadata/_custom_type_script = "uid://dxapdof0oowg1"
 
 [editable path="chessboard"]

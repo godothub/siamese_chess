@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="16_idfw3"]
 [ext_resource type="PackedScene" uid="uid://wlf2bpitdmjk" path="res://scene/actor/piece_queen_black.tscn" id="17_ati7g"]
 [ext_resource type="LightmapGIData" uid="uid://ckp82lkp2mvma" path="res://assets/basement.lmbake" id="18_x66wa"]
+[ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="20_0yjdh"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_start_game.gd" id="21_3d6ds"]
 
 [sub_resource type="Environment" id="Environment_ywqhp"]
 background_mode = 1
@@ -426,5 +428,28 @@ meta = {
 "larger_scale": true
 }
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
+[node name="marker_title_to_hallway" type="Node3D" parent="." unique_id=1549203619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
+script = ExtResource("20_0yjdh")
+text = "TO_HALLWAY"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_title_to_hallway_2" type="Node3D" parent="." unique_id=1006080812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
+script = ExtResource("20_0yjdh")
+text = "TO_HALLWAY"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_title_play_chess" type="Node3D" parent="." unique_id=1803620502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+script = ExtResource("20_0yjdh")
+text = "LEVEL_PLAY_CHESS"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_start_game" type="Node3D" parent="." unique_id=1692939650]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+script = ExtResource("21_3d6ds")
+metadata/_custom_type_script = "uid://dxapdof0oowg1"
 
 [editable path="hotel_door_large"]
