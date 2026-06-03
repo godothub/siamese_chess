@@ -6207,6 +6207,17 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 }
+},
+"meshes": {
+"stranger_bodymesh_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 2,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://assets/model/stranger_necktie.tres",
+"save_to_file/path": "uid://chyibqwcfdikj"
+}
 }
 }
 gltf/naming_version=1

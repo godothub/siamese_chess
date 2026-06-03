@@ -2,9 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://cyjn8gwybcvvb" path="res://assets/model/stranger.glb" id="1_atibo"]
 [ext_resource type="Script" uid="uid://bfok7caluxy5t" path="res://src/actor/stranger.gd" id="2_mx01q"]
+[ext_resource type="ArrayMesh" uid="uid://chyibqwcfdikj" path="res://assets/model/stranger_necktie.tres" id="3_vy2n6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vy2n6"]
+radius = 0.11279297
+height = 0.32463074
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vy2n6"]
+radius = 0.09227219
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx01q"]
-radius = 0.3251953
+radius = 0.1015625
 height = 1.690918
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mx01q"]
@@ -43,21 +51,68 @@ states/evade/position = Vector2(680, 134)
 states/idle/node = SubResource("AnimationNodeAnimation_vy2n6")
 states/idle/position = Vector2(531, 43)
 states/walk/node = SubResource("AnimationNodeAnimation_ilm8f")
-states/walk/position = Vector2(402, 134.48979)
+states/walk/position = Vector2(402, 134)
 transitions = ["evade", "idle", SubResource("AnimationNodeStateMachineTransition_iqosf"), "idle", "evade", SubResource("AnimationNodeStateMachineTransition_0hfyq"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_6t2tw"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_84t0p"), "walk", "evade", SubResource("AnimationNodeStateMachineTransition_mx01q"), "evade", "walk", SubResource("AnimationNodeStateMachineTransition_vy2n6")]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mx01q"]
 radius = 1.1904546
 
-[node name="stranger" unique_id=824909588 instance=ExtResource("1_atibo")]
+[node name="stranger" unique_id=801261809 instance=ExtResource("1_atibo")]
 collision_layer = 4
 collision_mask = 4
-motion_mode = 1
 script = ExtResource("2_mx01q")
+
+[node name="necktie" parent="Armature" parent_id_path=PackedInt32Array(351601572) index="0" unique_id=1535102371]
+visible = false
+
+[node name="bone_attachment_neck" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(2022936804) index="4" unique_id=952453128]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 1.527369e-07, 0, -1.527369e-07, 0.99999994, 0, 1.493099, -0.011619182)
+bone_name = "mixamorig_Neck"
+bone_idx = 4
+
+[node name="rigid_body_3d" type="RigidBody3D" parent="Armature/Skeleton3D/bone_attachment_neck" index="0" unique_id=1828674221]
+transform = Transform3D(1, 0, 0, 0, 0.9988246, 0.04846957, 0, -0.04846957, 0.9988246, 0, -0.27778316, 0.013479861)
+collision_layer = 8
+collision_mask = 0
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="Armature/Skeleton3D/bone_attachment_neck/rigid_body_3d" index="0" unique_id=333917486]
+transform = Transform3D(0.9999929, -0.0011933207, -0.0035416372, 0.0012058263, 0.999993, 0.0035322271, 0.003537387, -0.0035364628, 0.99998736, 0.0060196114, 0.09166551, -0.0040755607)
+shape = SubResource("CapsuleShape3D_vy2n6")
+
+[node name="bone_attachment_spine" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(2022936804) index="5" unique_id=1061890154]
+transform = Transform3D(1, 0, 0, 0, 0.9988246, 0.048469722, 0, -0.048469722, 0.9988246, 0, 1.2153158, 0.001860722)
+bone_name = "mixamorig_Spine1"
+bone_idx = 2
+
+[node name="rigid_body_3d" type="RigidBody3D" parent="Armature/Skeleton3D/bone_attachment_spine" index="0" unique_id=293173532]
+transform = Transform3D(1, 0, 0, 0, 0.9988246, 0.04846957, 0, -0.04846957, 0.9988246, 0, 0, 0)
+collision_layer = 8
+collision_mask = 0
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="Armature/Skeleton3D/bone_attachment_spine/rigid_body_3d" index="0" unique_id=1792674712]
+transform = Transform3D(0.9999929, -0.0011933207, -0.0035416372, 0.0012058233, 0.99999386, 0.003532201, 0.0035373897, -0.0035364553, 0.99998784, 0.0059464946, -0.03733194, 0.017814316)
+shape = SubResource("SphereShape3D_vy2n6")
+
+[node name="soft_body_3d" type="SoftBody3D" parent="Armature" parent_id_path=PackedInt32Array(351601572) index="2" unique_id=198054737]
+mesh = ExtResource("3_vy2n6")
+collision_layer = 0
+collision_mask = 8
+parent_collision_ignore = NodePath("../..")
+simulation_precision = 20
+total_mass = 0.17
+linear_stiffness = 0.16
+ray_pickable = false
+pinned_points = [142]
+attachments/0/point_index = 142
+attachments/0/spatial_attachment_path = NodePath("../Skeleton3D/bone_attachment_neck")
+attachments/0/offset = Vector3(0.0026681724, -0.09833968, 0.110559165)
 
 [node name="collision_shape_3d" type="CollisionShape3D" parent="." index="1" unique_id=200913038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003988564, 0.70807195, 0.0020794868)
 shape = SubResource("CapsuleShape3D_mx01q")
+
+[node name="AnimationPlayer" parent="." index="2" unique_id=1386545610]
+speed_scale = 2.0
 
 [node name="animation_tree" type="AnimationTree" parent="." index="3" unique_id=251224311]
 tree_root = SubResource("AnimationNodeStateMachine_0hfyq")
