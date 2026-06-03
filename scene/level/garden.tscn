@@ -327,4 +327,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4.03441)
 [node name="street_light2_6" parent="." unique_id=742463716 instance=ExtResource("14_y0tp7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4.03441)
 
+[node name="marker_title_to_entrance" type="Node3D" parent="." unique_id=2084024088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
+script = ExtResource("12_kjls8")
+text = "TO_ENTRANCE"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
 [editable path="background/grass"]

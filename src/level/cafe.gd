@@ -20,8 +20,6 @@ func _ready() -> void:
 	standard_chessboard.set_enabled(false)
 	$player.add_inspectable_item(standard_chessboard)
 	$pastor.play_animation("thinking")
-	title[0x54] = "CHAR_YULAN"
-	title[0x55] = "CHAR_YULAN"
 	standard_state_machine.name = "yulan"
 	standard_state_machine.add_state("edit_state", state_ready_in_game_edit_state)
 	standard_state_machine.add_state("edit_fen", state_ready_in_game_edit_fen)

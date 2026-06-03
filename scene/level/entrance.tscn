@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dspg4rjx5jpq1" path="res://assets/model/street_light.glb" id="19_r5kom"]
 [ext_resource type="Script" uid="uid://ci1qj2blsa7gp" path="res://src/event/marker_narrative.gd" id="20_a370u"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="21_2ugp2"]
+[ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="23_bb3lo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -202,9 +203,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.882687, 8.6519165, 15.6800
 size = Vector3(7.5619507, 18.303833, 3.4078522)
 
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=1549429842]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0076904297, 8.521873, -1.5745239)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0076904297, 8.521873, 3)
 blend_distance = 0.1
-size = Vector3(24.589111, 19.418709, 26.850952)
+size = Vector3(24.589111, 19.418709, 24)
 box_projection = true
 
 [node name="fences" type="Node3D" parent="." unique_id=79229224]
@@ -499,5 +500,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4.26559)
 
 [node name="street_light2_4" parent="." unique_id=1373009124 instance=ExtResource("19_r5kom")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4.26559)
+
+[node name="marker_title_to_reception_lobby" type="Node3D" parent="." unique_id=1843647125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+script = ExtResource("23_bb3lo")
+text = "TO_RECEPTION_LOBBY"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_title_to_reception_lobby_2" type="Node3D" parent="." unique_id=972421088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
+script = ExtResource("23_bb3lo")
+text = "TO_RECEPTION_LOBBY"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_title_to_garden" type="Node3D" parent="." unique_id=861511949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
+script = ExtResource("23_bb3lo")
+text = "TO_GARDEN"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [editable path="chessboard"]

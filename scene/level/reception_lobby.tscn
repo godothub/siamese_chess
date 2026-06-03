@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://doaioqavihplw" path="res://assets/model/hotel_inner_gate.glb" id="27_fb5cd"]
 [ext_resource type="PackedScene" uid="uid://by0kbsnaciq8h" path="res://assets/model/hotel_window.glb" id="28_p85mr"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="30_1kcmt"]
+[ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="31_m47dq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j5fnc"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -486,3 +487,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 5.0368423, 7.6935453)
 
 [node name="hotel_window_8" parent="." unique_id=1220681813 instance=ExtResource("28_p85mr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5.0368423, 7.6935453)
+
+[node name="marker_title_to_entrance" type="Node3D" parent="." unique_id=298942581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
+script = ExtResource("31_m47dq")
+text = "TO_ENTRANCE"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_title_to_entrance_2" type="Node3D" parent="." unique_id=1462587346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+script = ExtResource("31_m47dq")
+text = "TO_ENTRANCE"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_title_to_cafe" type="Node3D" parent="." unique_id=394227531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
+script = ExtResource("31_m47dq")
+text = "TO_CAFE"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_title_elevator" type="Node3D" parent="." unique_id=244652126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
+script = ExtResource("31_m47dq")
+text = "HOTEL_ELEVATOR"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"

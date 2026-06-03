@@ -2,6 +2,7 @@ extends InspectableItem
 class_name Chessboard
 
 signal clicked()
+signal hovered(selected:int)
 signal click_selection(selected:int)
 signal click_empty(selected:int)
 signal selection_down(selected:int)
@@ -265,7 +266,6 @@ func finger_on_position(position_name:String) -> void:
 		else:
 			$audio_stream_player_tok.global_position = get_node(position_name).global_position
 			$audio_stream_player_tok.play()
-			
 		Input.vibrate_handheld(50, 0.2)
 		if Setting.get_value("text_to_speech"):
 			Narrative.stop()
@@ -292,6 +292,7 @@ func finger_on_position(position_name:String) -> void:
 				if state.get_bit(piece) & Chess.mask(Chess.x88_to_c64((Chess.name_to_x88(position_name)))):
 					var piece_name:String = map[piece]
 					Narrative.speak(tr("THERE_IS_A_PIECE").format({"piece": tr(piece_name), "by": position_name}), false)
+		hovered.emit(by)
 	pointer_position_name = position_name
 	$canvas.draw_pointer("pointer", COLOR_POINTER, Chess.name_to_x88(position_name))
 

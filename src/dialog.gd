@@ -109,6 +109,12 @@ func push_selection(_selection:PackedStringArray, _title:String, _force_selectio
 	tween.tween_property(text_label, "text", text, 0)
 	tween.tween_property(title_label, "text", tr(title), 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
+	Narrative.speak(title)
+
+func push_title(_title:String) -> void:
+	title = _title
+	title_label.text = title
+	Narrative.speak(title)
 
 func show_global_selection() -> void:
 	click_cooldown = Time.get_unix_time_from_system()

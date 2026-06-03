@@ -196,6 +196,13 @@ func state_ready_free(_arg:Dictionary) -> void:
 		available_events[_selected].on_selection.call_deferred()
 		show_selection.call_deferred()
 	)
+	state_machine.state_signal_connect(chessboard.hovered, func (_selected:int) -> void:
+		if title.has(_selected):
+			Dialog.push_title(title[_selected])
+			Narrative.speak(title[_selected])
+		else:
+			Dialog.push_title("")
+	)
 	show_selection()
 	sync_to_global()
 
