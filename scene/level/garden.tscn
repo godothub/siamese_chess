@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="12_kjls8"]
 [ext_resource type="PackedScene" uid="uid://dspg4rjx5jpq1" path="res://assets/model/street_light.glb" id="14_y0tp7"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="15_niqde"]
+[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="16_dy1ll"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -332,5 +333,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
 script = ExtResource("12_kjls8")
 text = "TO_ENTRANCE"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_explore" type="Node3D" parent="." unique_id=746533081 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("16_dy1ll")
+chessboard = NodePath("../chessboard")
+metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 
 [editable path="background/grass"]

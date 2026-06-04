@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://by0kbsnaciq8h" path="res://assets/model/hotel_window.glb" id="28_p85mr"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="30_1kcmt"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="31_m47dq"]
+[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="32_wxkc3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j5fnc"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -54,7 +55,6 @@ fog_light_color = Color(1, 1, 1, 1)
 
 [node name="reception_lobby" type="Node3D" unique_id=2123137394]
 script = ExtResource("1_s7rcd")
-engine_standard_think_depth = 4
 metadata/_custom_type_script = "uid://rhdq34na2j5m"
 metadata/by = 80
 
@@ -511,3 +511,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("31_m47dq")
 text = "HOTEL_ELEVATOR"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_explore" type="Node3D" parent="." unique_id=650433135 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("32_wxkc3")
+chessboard = NodePath("../chessboard")
+metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"

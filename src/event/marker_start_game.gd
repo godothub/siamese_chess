@@ -2,6 +2,7 @@ extends MarkerEvent
 class_name MarkerStartGame
 
 @export var group:int = 1
+@export var game_event:MarkerEvent = null
 
 func show_selection() -> String:
 	if level.chessboard.state.get_bit(level.player_king) & Chess.mask(Chess.x88_to_c64(level.chessboard.vector3_to_x88(global_position))):
@@ -12,4 +13,4 @@ func show_selection() -> String:
 	return ""
 
 func on_selection() -> void:
-	level.state_machine.change_state("start")
+	game_event.start()

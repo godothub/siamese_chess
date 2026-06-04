@@ -20,7 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://wlf2bpitdmjk" path="res://scene/actor/piece_queen_black.tscn" id="17_ati7g"]
 [ext_resource type="LightmapGIData" uid="uid://ckp82lkp2mvma" path="res://assets/basement.lmbake" id="18_x66wa"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="20_0yjdh"]
-[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_start_game.gd" id="21_3d6ds"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="21_3d6ds"]
+[ext_resource type="Script" uid="uid://csapts1u0p18r" path="res://src/event/marker_start_game.gd" id="22_wql0o"]
+[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="23_wetn8"]
 
 [sub_resource type="Environment" id="Environment_ywqhp"]
 background_mode = 1
@@ -38,7 +40,6 @@ metallic = 0.81
 
 [node name="basement" type="Node3D" unique_id=587138851]
 script = ExtResource("1_mtw5c")
-engine_standard_think_depth = 4
 metadata/_custom_type_script = "uid://rhdq34na2j5m"
 metadata/by = 48
 
@@ -307,10 +308,10 @@ omni_range = 10.077
 [node name="hotel_door_large" parent="." unique_id=2031737367 instance=ExtResource("9_7pf3j")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=576972813]
+[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=697941169]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=674245926]
+[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=704909446]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=1404077087]
@@ -447,9 +448,21 @@ script = ExtResource("20_0yjdh")
 text = "LEVEL_PLAY_CHESS"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
-[node name="marker_start_game" type="Node3D" parent="." unique_id=1692939650]
+[node name="marker_game" type="Node3D" parent="." unique_id=1692939650 node_paths=PackedStringArray("chessboard")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
 script = ExtResource("21_3d6ds")
+chessboard = NodePath("../chessboard")
 metadata/_custom_type_script = "uid://dxapdof0oowg1"
+
+[node name="marker_start_game" type="Node3D" parent="." unique_id=974525466 node_paths=PackedStringArray("game_event")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+script = ExtResource("22_wql0o")
+game_event = NodePath("../marker_game")
+metadata/_custom_type_script = "uid://csapts1u0p18r"
+
+[node name="marker_explore" type="Node3D" parent="." unique_id=1497437302 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("23_wetn8")
+chessboard = NodePath("../chessboard")
+metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 
 [editable path="hotel_door_large"]

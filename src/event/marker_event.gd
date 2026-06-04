@@ -13,7 +13,7 @@ func on_init() -> void:
 func on_start() -> void:
 	pass
 
-func on_turn() -> void:
+func on_change_state(state:String) -> void:
 	pass
 
 func show_selection() -> String:

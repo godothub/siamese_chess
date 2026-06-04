@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="14_wrs32"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="15_simkd"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="16_t4hms"]
+[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="17_2oxye"]
 
 [sub_resource type="Environment" id="Environment_reac2"]
 background_mode = 1
@@ -222,13 +223,13 @@ enable_shadows = true
 [node name="hotel_door_large" parent="." unique_id=1030011179 instance=ExtResource("13_b3cnt")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, -8.2535925)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=576972813]
+[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=697941169]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=674245926]
+[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=704909446]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
-[node name="door_large_structure" parent="hotel_door_large" index="2" unique_id=1958169327]
+[node name="door_large_structure" parent="hotel_door_large" index="2" unique_id=262283725]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=306188255]
@@ -308,5 +309,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("16_t4hms")
 text = "HOTEL_ELEVATOR"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="marker_explore" type="Node3D" parent="." unique_id=33062658 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("17_2oxye")
+chessboard = NodePath("../chessboard")
+metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 
 [editable path="hotel_door_large"]

@@ -30,7 +30,9 @@
 [ext_resource type="PackedScene" uid="uid://by0kbsnaciq8h" path="res://assets/model/hotel_window.glb" id="27_ef2ef"]
 [ext_resource type="PackedScene" uid="uid://bbfelit1kiw6s" path="res://scene/actor/piece_rook_white.tscn" id="27_hm8qo"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="30_m0w87"]
-[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_start_game.gd" id="31_e0ue8"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="31_e0ue8"]
+[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="32_17f21"]
+[ext_resource type="Script" uid="uid://csapts1u0p18r" path="res://src/event/marker_start_game.gd" id="33_orv37"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5l1ss"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -60,7 +62,6 @@ fog_light_color = Color(1, 1, 1, 1)
 
 [node name="hallway_2f" type="Node3D" unique_id=1150747816]
 script = ExtResource("1_gs125")
-engine_standard_think_depth = 4
 metadata/_custom_type_script = "uid://rhdq34na2j5m"
 metadata/by = 16
 
@@ -82,124 +83,124 @@ shadow_enabled = true
 
 [node name="chessboard" parent="." unique_id=1145732609 instance=ExtResource("3_7733s")]
 
-[node name="f8_001" parent="chessboard" index="18" unique_id=255450252]
+[node name="f8_001" parent="chessboard" index="18" unique_id=497859420]
 visible = false
 
-[node name="f7_001" parent="chessboard" index="19" unique_id=2033370086]
+[node name="f7_001" parent="chessboard" index="19" unique_id=821289508]
 visible = false
 
-[node name="f6_001" parent="chessboard" index="20" unique_id=768375893]
+[node name="f6_001" parent="chessboard" index="20" unique_id=828454403]
 visible = false
 
-[node name="f4_001" parent="chessboard" index="22" unique_id=540388612]
+[node name="f4_001" parent="chessboard" index="22" unique_id=1771634838]
 visible = false
 
-[node name="f3_001" parent="chessboard" index="23" unique_id=684248310]
+[node name="f3_001" parent="chessboard" index="23" unique_id=400249088]
 visible = false
 
-[node name="f2_001" parent="chessboard" index="24" unique_id=1777202900]
+[node name="f2_001" parent="chessboard" index="24" unique_id=247561699]
 visible = false
 
-[node name="f1_001" parent="chessboard" index="25" unique_id=61733492]
+[node name="f1_001" parent="chessboard" index="25" unique_id=2145365386]
 visible = false
 
-[node name="e8_001" parent="chessboard" index="26" unique_id=1649356761]
+[node name="e8_001" parent="chessboard" index="26" unique_id=1632704319]
 visible = false
 
-[node name="e7_001" parent="chessboard" index="27" unique_id=685554930]
+[node name="e7_001" parent="chessboard" index="27" unique_id=782144439]
 visible = false
 
-[node name="e6_001" parent="chessboard" index="28" unique_id=45463497]
+[node name="e6_001" parent="chessboard" index="28" unique_id=196685575]
 visible = false
 
-[node name="e4_001" parent="chessboard" index="30" unique_id=884872434]
+[node name="e4_001" parent="chessboard" index="30" unique_id=974152929]
 visible = false
 
-[node name="e3_001" parent="chessboard" index="31" unique_id=1515440245]
+[node name="e3_001" parent="chessboard" index="31" unique_id=1683331212]
 visible = false
 
-[node name="e2_001" parent="chessboard" index="32" unique_id=179724054]
+[node name="e2_001" parent="chessboard" index="32" unique_id=776136970]
 visible = false
 
-[node name="e1_001" parent="chessboard" index="33" unique_id=1330532871]
+[node name="e1_001" parent="chessboard" index="33" unique_id=959179460]
 visible = false
 
-[node name="d8_001" parent="chessboard" index="34" unique_id=1342552172]
+[node name="d8_001" parent="chessboard" index="34" unique_id=1010664957]
 visible = false
 
-[node name="d7_001" parent="chessboard" index="35" unique_id=880430230]
+[node name="d7_001" parent="chessboard" index="35" unique_id=1064454215]
 visible = false
 
-[node name="d6_001" parent="chessboard" index="36" unique_id=439831702]
+[node name="d6_001" parent="chessboard" index="36" unique_id=1078020281]
 visible = false
 
-[node name="d4_001" parent="chessboard" index="38" unique_id=177225427]
+[node name="d4_001" parent="chessboard" index="38" unique_id=1869983733]
 visible = false
 
-[node name="d3_001" parent="chessboard" index="39" unique_id=414171486]
+[node name="d3_001" parent="chessboard" index="39" unique_id=1818043370]
 visible = false
 
-[node name="d2_001" parent="chessboard" index="40" unique_id=1392026269]
+[node name="d2_001" parent="chessboard" index="40" unique_id=1157792685]
 visible = false
 
-[node name="d1_001" parent="chessboard" index="41" unique_id=1594383985]
+[node name="d1_001" parent="chessboard" index="41" unique_id=1429449142]
 visible = false
 
-[node name="c8_001" parent="chessboard" index="42" unique_id=1848841858]
+[node name="c8_001" parent="chessboard" index="42" unique_id=475646861]
 visible = false
 
-[node name="c7_001" parent="chessboard" index="43" unique_id=100534858]
+[node name="c7_001" parent="chessboard" index="43" unique_id=1863644073]
 visible = false
 
-[node name="c6_001" parent="chessboard" index="44" unique_id=413993271]
+[node name="c6_001" parent="chessboard" index="44" unique_id=1842282333]
 visible = false
 
-[node name="c4_001" parent="chessboard" index="46" unique_id=1045033137]
+[node name="c4_001" parent="chessboard" index="46" unique_id=802662855]
 visible = false
 
-[node name="c3_001" parent="chessboard" index="47" unique_id=1071969624]
+[node name="c3_001" parent="chessboard" index="47" unique_id=1527428978]
 visible = false
 
-[node name="c2_001" parent="chessboard" index="48" unique_id=1217776396]
+[node name="c2_001" parent="chessboard" index="48" unique_id=1347026906]
 visible = false
 
-[node name="c1_001" parent="chessboard" index="49" unique_id=1235310835]
+[node name="c1_001" parent="chessboard" index="49" unique_id=1985409181]
 visible = false
 
-[node name="d1" parent="chessboard" index="92" unique_id=1503238899]
+[node name="d1" parent="chessboard" index="92" unique_id=1908484106]
 visible = false
 
-[node name="d2" parent="chessboard" index="93" unique_id=722029183]
+[node name="d2" parent="chessboard" index="93" unique_id=720014352]
 visible = false
 
-[node name="d3" parent="chessboard" index="94" unique_id=2083162276]
+[node name="d3" parent="chessboard" index="94" unique_id=1188073973]
 visible = false
 
-[node name="d4" parent="chessboard" index="95" unique_id=1531697349]
+[node name="d4" parent="chessboard" index="95" unique_id=325560207]
 visible = false
 
-[node name="d7" parent="chessboard" index="98" unique_id=32790444]
+[node name="d7" parent="chessboard" index="98" unique_id=777705380]
 visible = false
 
-[node name="d8" parent="chessboard" index="99" unique_id=429563927]
+[node name="d8" parent="chessboard" index="99" unique_id=222844213]
 visible = false
 
-[node name="e1" parent="chessboard" index="100" unique_id=1436751327]
+[node name="e1" parent="chessboard" index="100" unique_id=620184160]
 visible = false
 
-[node name="e2" parent="chessboard" index="101" unique_id=1267963843]
+[node name="e2" parent="chessboard" index="101" unique_id=1784654441]
 visible = false
 
-[node name="e3" parent="chessboard" index="102" unique_id=843155450]
+[node name="e3" parent="chessboard" index="102" unique_id=271291044]
 visible = false
 
-[node name="e4" parent="chessboard" index="103" unique_id=1765544042]
+[node name="e4" parent="chessboard" index="103" unique_id=2051990617]
 visible = false
 
-[node name="e7" parent="chessboard" index="106" unique_id=1858833434]
+[node name="e7" parent="chessboard" index="106" unique_id=1744772171]
 visible = false
 
-[node name="e8" parent="chessboard" index="107" unique_id=812601282]
+[node name="e8" parent="chessboard" index="107" unique_id=1034376653]
 visible = false
 
 [node name="elevator" parent="." unique_id=956614934 instance=ExtResource("4_ucain")]
@@ -659,9 +660,21 @@ script = ExtResource("30_m0w87")
 text = "LEVEL_PLAY_CHESS"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
-[node name="marker_start_game" type="Node3D" parent="." unique_id=566765094]
+[node name="marker_game" type="Node3D" parent="." unique_id=566765094 node_paths=PackedStringArray("chessboard")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
 script = ExtResource("31_e0ue8")
+chessboard = NodePath("../chessboard")
 metadata/_custom_type_script = "uid://dxapdof0oowg1"
+
+[node name="marker_explore" type="Node3D" parent="." unique_id=1411352147 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("32_17f21")
+chessboard = NodePath("../chessboard")
+metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
+
+[node name="marker_start_game" type="Node3D" parent="." unique_id=304744149 node_paths=PackedStringArray("game_event")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+script = ExtResource("33_orv37")
+game_event = NodePath("../marker_game")
+metadata/_custom_type_script = "uid://csapts1u0p18r"
 
 [editable path="chessboard"]
