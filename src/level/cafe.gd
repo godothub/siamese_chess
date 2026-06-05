@@ -58,6 +58,8 @@ func select_turn(result:String) -> void:
 		else:
 			standard_chessboard.rotation.y = PI
 		game_event.player_group = standard_player_group
+		standard_chessboard.remove_piece_set()
+		standard_chessboard.add_default_piece_set()
 		game_event.start()
 	, CONNECT_ONE_SHOT)
 	Dialog.push_selection(["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM", "SELECTION_CANCEL"], "", true, false)
