@@ -8,7 +8,6 @@ var moving_duration:float = 0.3
 
 func _ready() -> void:
 	super._ready()
-	top_level = true
 	var audio_stream_randomizer:AudioStreamRandomizer = AudioStreamRandomizer.new()
 	audio_stream_randomizer.random_pitch = 1.3
 	audio_stream_randomizer.random_volume_offset_db = 2.0

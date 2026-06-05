@@ -1,9 +1,8 @@
-extends MarkerEvent
+extends MarkerProcedure
 class_name MarkerGame
 
-@export var group:int = 1
+@export var player_group:int = 1
 
-var player_group:int = 1
 var player_all:int = 0
 var player_king:int = 0
 var enemy_all:int = 0
@@ -22,10 +21,6 @@ var premove_state_machine:StateMachine = StateMachine.new()
 
 func _ready() -> void:
 	engine = PastorEngine.new()
-	player_all = ord("A") if player_group == 0 else ord("a")
-	player_king = ord("K") if player_group == 0 else ord("k")
-	enemy_all = ord("a") if player_group == 0 else ord("A")
-	enemy_king = ord("k") if player_group == 0 else ord("K")
 	state_machine.name = "game"
 	state_machine.add_state("start", state_ready_start)
 	state_machine.add_state("enemy", state_ready_enemy)
@@ -36,6 +31,7 @@ func _ready() -> void:
 	state_machine.add_state("check_move", state_ready_check_move)
 	state_machine.add_state("extra_move", state_ready_extra_move, state_exit_extra_move)
 	state_machine.add_state("result", state_ready_result)
+	state_machine.add_state("end", state_ready_end)
 	premove_state_machine.name = "premove"
 	premove_state_machine.add_state("start", state_premove_start_ready)
 	premove_state_machine.add_state("from", state_premove_from_ready, state_premove_from_exit)
@@ -45,6 +41,10 @@ func _ready() -> void:
 	premove_state_machine.add_state("stop", state_premove_stop_ready)
 
 func start() -> void:
+	player_all = ord("A") if player_group == 0 else ord("a")
+	player_king = ord("K") if player_group == 0 else ord("k")
+	enemy_all = ord("a") if player_group == 0 else ord("A")
+	enemy_king = ord("k") if player_group == 0 else ord("K")
 	history_document.set_filename("history." + level.name + ".json")
 	history_document.load_file()
 	state_machine.change_state("start")
@@ -163,7 +163,6 @@ func state_premove_stop_ready(_arg:Dictionary) -> void:
 	pass
 
 func state_ready_start(_arg:Dictionary) -> void:
-	level.change_state("game")
 	Clock.set_time(Progress.get_value("time_left", 60 * 15), 5)
 	chessboard.state.set_turn(0)
 	chessboard.state.set_castle(0xF)
@@ -349,7 +348,9 @@ func state_exit_extra_move() -> void:
 
 func state_ready_result(_arg:Dictionary) -> void:
 	premove_state_machine.change_state("stop")
-	match Chess.get_end_type(chessboard.state):
+	var result:String = Chess.get_end_type(chessboard.state)
+	state_machine.state_signal_connect(Dialog.on_next, state_machine.change_state.bind("end"))
+	match result:
 		"checkmate_black":
 			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "", true, true)
 		"checkmate_white":
@@ -360,8 +361,14 @@ func state_ready_result(_arg:Dictionary) -> void:
 			Dialog.push_dialog("HINT_DRAW", "", true, true)
 		"50_moves":
 			Dialog.push_dialog("HINT_DRAW", "", true, true)
+		"cleared_black":
+			Dialog.push_dialog("HINT_BLACK_CLEARED", "", true, true)
+		"cleared_white":
+			Dialog.push_dialog("HINT_WHITE_CLEARED", "", true, true)
 	history_document.save_file()
-	level.change_state("")
+
+func state_ready_end(_arg:Dictionary) -> void:
+	procedure_end.emit(_arg.get("result", ""))
 
 func back_to_game() -> void:
 	if is_queued_for_deletion():

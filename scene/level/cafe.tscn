@@ -43,6 +43,7 @@
 [ext_resource type="LightmapGIData" uid="uid://vro62kpndaqg" path="res://assets/cafe.lmbake" id="40_om676"]
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="42_hvnkp"]
 [ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="43_5e0xk"]
+[ext_resource type="Script" uid="uid://ck5bvbw2bcwox" path="res://src/event/marker_edit.gd" id="44_5e0xk"]
 
 [sub_resource type="Environment" id="Environment_ve7rb"]
 background_mode = 2
@@ -928,14 +929,21 @@ transform = Transform3D(1, 0, -1.7484557e-07, 0, 1, 0, 1.7484557e-07, 0, 1, 2.56
 [node name="archive_shelf2" parent="kitchen" unique_id=840142401 instance=ExtResource("34_w3ksa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7029552, 0, 5)
 
-[node name="marker_explore" type="Node3D" parent="." unique_id=1042279700]
+[node name="marker_explore" type="Node3D" parent="." unique_id=1042279700 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("42_hvnkp")
+chessboard = NodePath("../chessboard")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 
 [node name="marker_game" type="Node3D" parent="." unique_id=741053042 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("43_5e0xk")
 chessboard = NodePath("../table_0/chessboard_standard")
 metadata/_custom_type_script = "uid://dxapdof0oowg1"
+
+[node name="marker_edit" type="Node3D" parent="." unique_id=75030230 node_paths=PackedStringArray("chessboard")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
+script = ExtResource("44_5e0xk")
+chessboard = NodePath("../table_0/chessboard_standard")
+metadata/_custom_type_script = "uid://ck5bvbw2bcwox"
 
 [editable path="chessboard"]
 [editable path="table_0"]
