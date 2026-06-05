@@ -1,12 +1,8 @@
 extends MarkerProcedure
 class_name MarkerGame
 
+# 如果为2，就相当于同时控制黑白双方
 @export var player_group:int = 1
-
-var player_all:int = 0
-var player_king:int = 0
-var enemy_all:int = 0
-var enemy_king:int = 0
 
 var engine:ChessEngine = null	# 有可能会出现多线作战，共用同一个引擎显然不好
 @export var engine_standard_think_time = 2
@@ -23,7 +19,7 @@ func _ready() -> void:
 	engine = PastorEngine.new()
 	state_machine.name = "game"
 	state_machine.add_state("start", state_ready_start)
-	state_machine.add_state("enemy", state_ready_enemy)
+	state_machine.add_state("engine", state_ready_engine)
 	state_machine.add_state("waiting", state_ready_waiting)
 	state_machine.add_state("move", state_ready_move)
 	state_machine.add_state("player", state_ready_player, state_exit_player)
@@ -41,10 +37,6 @@ func _ready() -> void:
 	premove_state_machine.add_state("stop", state_premove_stop_ready)
 
 func start() -> void:
-	player_all = ord("A") if player_group == 0 else ord("a")
-	player_king = ord("K") if player_group == 0 else ord("k")
-	enemy_all = ord("a") if player_group == 0 else ord("A")
-	enemy_king = ord("k") if player_group == 0 else ord("K")
 	history_document.set_filename("history." + level.name + ".json")
 	history_document.load_file()
 	state_machine.change_state("start")
@@ -177,10 +169,7 @@ func state_ready_start(_arg:Dictionary) -> void:
 	else:
 		back_to_game()
 
-func state_ready_enemy(_arg:Dictionary) -> void:
-	if !chessboard.state.get_bit(enemy_all):
-		state_machine.change_state.call_deferred("move", {"move": -1})
-		return
+func state_ready_engine(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(engine.search_finished, func () -> void:
 		assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(engine.get_search_result()))))
 		state_machine.change_state.call_deferred("move", {"move": engine.get_search_result()})
@@ -193,12 +182,12 @@ func state_ready_enemy(_arg:Dictionary) -> void:
 		engine.set_max_depth(engine_relax_think_depth)
 		engine.set_think_time(engine_relax_think_time)
 		engine.set_quies_enabled(true)
-	engine.start_search(chessboard.state, 1 - player_group, history_state, Callable())
-	if premove_state_machine.current_state == "stop":
+	engine.start_search(chessboard.state, chessboard.state.get_turn(), history_state, Callable())
+	if premove_state_machine.current_state == "stop" && player_group != 2:
 		premove_state_machine.change_state.call_deferred("start")
 
 func state_ready_waiting() -> void:
-	state_machine.state_signal_connect(engine.search_finished, state_machine.change_state.call_deferred.bind("enemy"))
+	state_machine.state_signal_connect(engine.search_finished, state_machine.change_state.call_deferred.bind("engine"))
 	engine.stop_search()
 
 func state_ready_move(_arg:Dictionary) -> void:
@@ -209,7 +198,7 @@ func state_ready_move(_arg:Dictionary) -> void:
 		var content:String = "WHITE_PLAY" if chessboard.state.get_turn() == 0 else "BLACK_PLAY"
 		content = tr(content).format({"move": Localization.move_name_to_pronounce(Chess.get_move_name(chessboard.state, _arg["move"]))})
 		Narrative.speak(content, false)
-	if premove_state_machine.current_state == "stop":
+	if premove_state_machine.current_state == "stop" && player_group != 2:
 		premove_state_machine.change_state.call_deferred("start")
 	state_machine.state_signal_connect(chessboard.animation_finished, func () -> void:
 		var end_type:String = Chess.get_end_type(chessboard.state)
@@ -229,7 +218,7 @@ var available_events:Dictionary = {}
 func state_ready_player(_arg:Dictionary) -> void:
 	premove_state_machine.change_state("stop")
 	var start_from:int = 0
-	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, player_group)
+	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, chessboard.state.get_turn())
 	for iter:int in move_list:
 		start_from |= Chess.mask(Chess.x88_to_c64(Chess.from(iter)))
 
@@ -239,9 +228,7 @@ func state_ready_player(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(Dialog.on_select, func (_selected:String) -> void:
 		available_events[_selected].on_selection.call_deferred()
 	)
-	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("enemy_win"))
-	if chessboard.state.get_bit(enemy_all):
-		Clock.resume()
+	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("engine_win"))
 	show_selection()
 	level.sync_to_global()
 	chessboard.set_square_selection(start_from)
@@ -252,7 +239,7 @@ func state_exit_player() -> void:
 
 func state_ready_ready_to_move(_arg:Dictionary) -> void:
 	premove_state_machine.change_state.call_deferred("stop")
-	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, player_group)
+	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, chessboard.state.get_turn())
 	var square_selection:int = 0
 	var from:int = _arg["from"]
 	if !chessboard.state.has_piece(from):
@@ -276,7 +263,7 @@ func state_ready_ready_to_move(_arg:Dictionary) -> void:
 		actor.idle()
 		back_to_game()
 	)
-	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("enemy_win"))
+	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("engine_win"))
 	state_machine.state_signal_connect(Dialog.on_select, func(_selected:String) -> void:
 		available_events[_selected].on_selection.call_deferred()
 	)
@@ -293,7 +280,7 @@ func state_exit_ready_to_move() -> void:
 func state_ready_check_move(_arg:Dictionary) -> void:
 	var from:int = _arg["from"]
 	var to:int = _arg["to"]
-	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, player_group)
+	var move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, chessboard.state.get_turn())
 	if _arg.has("from"):
 		move_list = Array(move_list).filter(func (move:int) -> bool: return _arg["from"] == Chess.from(move))
 	if _arg.has("to"):
@@ -339,7 +326,7 @@ func state_ready_extra_move(_arg:Dictionary) -> void:
 		state_machine.change_state.call_deferred("move", {"move": decision_to_move[_selected]})
 	)
 	Dialog.show_cancel()
-	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("enemy_win"))
+	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("engine_win"))
 	Dialog.push_selection(decision_list, "HINT_EXTRA_MOVE", true, false)
 
 func state_exit_extra_move() -> void:
@@ -373,8 +360,8 @@ func state_ready_end(_arg:Dictionary) -> void:
 func back_to_game() -> void:
 	if is_queued_for_deletion():
 		return
-	if chessboard.state.get_turn() != player_group:
-		state_machine.change_state.call_deferred("enemy")
+	if chessboard.state.get_turn() != player_group && player_group != 2:
+		state_machine.change_state.call_deferred("engine")
 	elif premove_branch && premove_branch.move_order.size():
 		var next_premove:int = premove_branch.move_order[0]
 		premove_branch.move_order.remove_at(0)
