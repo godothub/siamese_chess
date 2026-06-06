@@ -9,8 +9,12 @@ var engine:ChessEngine = null	# 有可能会出现多线作战，共用同一个
 @export var engine_standard_think_depth = 20
 @export var engine_relax_think_time = INF
 @export var engine_relax_think_depth = 2
+@export var can_take_back:bool = true
+@export var can_leave:bool = true
 @export var chessboard:Chessboard = null
-var history_state:PackedInt64Array = []
+var history_zobrist:PackedInt64Array = []
+var history_state:Array[State] = []
+var history_event:Array = []
 @onready var history_document:Document = load("res://src/doc/history.gd").new()
 var state_machine:StateMachine = StateMachine.new()
 var premove_state_machine:StateMachine = StateMachine.new()
@@ -182,7 +186,7 @@ func state_ready_engine(_arg:Dictionary) -> void:
 		engine.set_max_depth(engine_relax_think_depth)
 		engine.set_think_time(engine_relax_think_time)
 		engine.set_quies_enabled(true)
-	engine.start_search(chessboard.state, chessboard.state.get_turn(), history_state, Callable())
+	engine.start_search(chessboard.state, chessboard.state.get_turn(), history_zobrist, Callable())
 	if premove_state_machine.current_state == "stop" && player_group != 2:
 		premove_state_machine.change_state.call_deferred("start")
 
@@ -193,7 +197,8 @@ func state_ready_waiting() -> void:
 func state_ready_move(_arg:Dictionary) -> void:
 	Clock.pause()
 	history_document.push_move(-1, _arg["move"])
-	history_state.push_back(chessboard.state.get_zobrist())
+	history_zobrist.push_back(chessboard.state.get_zobrist())
+	history_state.push_back(chessboard.state.duplicate())
 	if Setting.get_value("text_to_speech"):
 		var content:String = "WHITE_PLAY" if chessboard.state.get_turn() == 0 else "BLACK_PLAY"
 		content = tr(content).format({"move": Localization.move_name_to_pronounce(Chess.get_move_name(chessboard.state, _arg["move"]))})
@@ -211,7 +216,7 @@ func state_ready_move(_arg:Dictionary) -> void:
 	assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(_arg["move"]))) 
 	|| Chess.from(_arg["move"]) == Chess.to(_arg["move"]) && !chessboard.state.has_piece(Chess.from(_arg["move"])))
 
-	chessboard.execute_move(_arg["move"])
+	history_event.push_back(chessboard.execute_move(_arg["move"]))
 
 var available_events:Dictionary = {}
 
@@ -226,12 +231,35 @@ func state_ready_player(_arg:Dictionary) -> void:
 		state_machine.change_state.call_deferred("ready_to_move", {"from": _selected})
 	)
 	state_machine.state_signal_connect(Dialog.on_select, func (_selected:String) -> void:
-		available_events[_selected].on_selection.call_deferred()
+		if _selected == "SELECTION_TAKE_BACK":
+			if history_event.size() <= 1:
+				show_dialog_selection("HINT_TAKE_BACKED")
+				return
+			chessboard.state = history_state[-2]
+			chessboard.set_square_selection(chessboard.state.get_bit(ord('A') if chessboard.state.get_turn() == 0 else ord('a')))
+			chessboard.receive_rollback_event(history_event[-1])
+			chessboard.receive_rollback_event(history_event[-2])
+			history_zobrist.resize(history_zobrist.size() - 2)
+			history_state.resize(history_state.size() - 2)
+			history_event.resize(history_event.size() - 2)
+			history_document.rollback(-1, chessboard.state, 2)
+			await chessboard.animation_finished
+			show_dialog_selection("HINT_TAKE_BACKED")
+		elif _selected == "SELECTION_LEAVE_GAME":
+			state_machine.change_state("end")
 	)
 	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("engine_win"))
-	show_selection()
 	level.sync_to_global()
+	show_dialog_selection("HINT_YOUR_TURN")
 	chessboard.set_square_selection(start_from)
+
+func show_dialog_selection(hint:String) -> void:
+	var dialog_selection:PackedStringArray = []
+	if history_event.size() > 1 && can_take_back:
+		dialog_selection.push_back("SELECTION_TAKE_BACK")
+	if can_leave:
+		dialog_selection.push_back("SELECTION_LEAVE_GAME")
+	Dialog.push_selection(dialog_selection, "HINT_YOUR_TURN", false, false)
 
 func state_exit_player() -> void:
 	chessboard.set_square_selection(0)
@@ -267,7 +295,6 @@ func state_ready_ready_to_move(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(Dialog.on_select, func(_selected:String) -> void:
 		available_events[_selected].on_selection.call_deferred()
 	)
-	show_selection()
 	Dialog.show_cancel()
 	actor.ready_to_move()
 	chessboard.set_square_selection(square_selection)
