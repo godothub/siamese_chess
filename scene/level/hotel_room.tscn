@@ -35,6 +35,8 @@
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="32_3t1c3"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="34_vaepl"]
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="35_ekt7h"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="35_hnywy"]
+[ext_resource type="Script" uid="uid://ck5bvbw2bcwox" path="res://src/event/marker_edit.gd" id="37_fefse"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e1edc"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -415,5 +417,16 @@ metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 script = ExtResource("35_ekt7h")
 chessboard = NodePath("../chessboard")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
+
+[node name="marker_game" type="Node3D" parent="." unique_id=596095510 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("35_hnywy")
+player_group = 2
+chessboard = NodePath("../chessboard_sandbox")
+metadata/_custom_type_script = "uid://dxapdof0oowg1"
+
+[node name="marker_edit" type="Node3D" parent="." unique_id=337363338 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("37_fefse")
+chessboard = NodePath("../chessboard_sandbox")
+metadata/_custom_type_script = "uid://ck5bvbw2bcwox"
 
 [editable path="door_2"]
