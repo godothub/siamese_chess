@@ -5,13 +5,12 @@ app.config["REDIS_URL"] = "redis://localhost"
 app.register_blueprint(sse, url_prefix="/stream")
 clients = {}
 
+# 需要Flask框架、安装flask-sse库、Redis数据库、以及waitress
+# Windows端运行命令：waitress-serve --host 127.0.0.1 --port 5000 multiplayer_test_server:app
+
 @app.route("/")
 def hello():
     return "Hello World"
-
-@app.route("/stream", methods=["GET"])
-def stream():
-    return sse.stream()
 
 # 刚进入时使用，直接获取房间内所有人的信息
 @app.route("/room")
