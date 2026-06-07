@@ -1,6 +1,8 @@
 extends MarkerEvent
 class_name MarkerExplore
 
+signal move_executed(move:int)
+
 var player_group:int = 1
 var player_all:int = 0
 var player_king:int = 0
@@ -77,6 +79,7 @@ func travel_to(_by:int) -> void:
 		return
 	Narrative.speak(tr("TRAVEL_TO").format({"by": Localization.position_name_to_pronounce(Chess.x88_to_name(_by))}), false)
 	travel_path = path_to
+	move_executed.emit(Chess.create(from, _by, 0))
 	state_machine.change_state("travel")
 
 func state_ready_stop(_arg:Dictionary) -> void:
