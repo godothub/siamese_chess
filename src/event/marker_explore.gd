@@ -65,7 +65,7 @@ func state_ready_travel(_arg:Dictionary) -> void:
 			state_machine.change_state.call_deferred("free")
 	)
 
-func travel_to(_by:int) -> void:
+func travel_to(_by:int, no_signal:bool = false) -> void:
 	var from:int = Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
 	var path:PackedInt32Array = Chess.generate_path(chessboard.state, from)
 	var path_to:PackedInt32Array = []
@@ -79,7 +79,8 @@ func travel_to(_by:int) -> void:
 		return
 	Narrative.speak(tr("TRAVEL_TO").format({"by": Localization.position_name_to_pronounce(Chess.x88_to_name(_by))}), false)
 	travel_path = path_to
-	move_executed.emit(Chess.create(from, _by, 0))
+	if !no_signal:
+		move_executed.emit(Chess.create(from, _by, 0))
 	state_machine.change_state("travel")
 
 func state_ready_stop(_arg:Dictionary) -> void:

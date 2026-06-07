@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_sse import sse
 app = Flask(__name__)
+app.config["REDIS_URL"] = "redis://localhost"
 app.register_blueprint(sse, url_prefix="/stream")
 clients = {}
 
@@ -8,7 +9,7 @@ clients = {}
 def hello():
     return "Hello World"
 
-@app.route("/stream")
+@app.route("/stream", methods=["GET"])
 def stream():
     return sse.stream()
 
@@ -21,6 +22,7 @@ def room():
 @app.route("/room/move", methods=["POST"])
 def room_move():
     print("someone takes move " + request.json.get("move", "-1"))
+    sse.publish({"message": request.json.get("move", "-1")}, type="move")
     return ""
 
 # 开始一局游戏
