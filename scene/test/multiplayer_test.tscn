@@ -629,3 +629,5 @@ bit = -1
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="http_request_move" type="HTTPRequest" parent="." unique_id=434616340]
+
+[node name="http_request_enter" type="HTTPRequest" parent="." unique_id=152633447]
