@@ -124,7 +124,7 @@ func remove_piece_set() -> void:
 	chessboard_piece.clear()
 	backup_piece.clear()
 
-func button_input(_button:String, _pressed:bool) -> void:
+func button_input(_button:String, _pressed:bool) -> bool:
 	var camera:Camera3D = get_viewport().get_camera_3d()
 	var direction:float = camera.global_rotation.y
 	direction -= global_rotation.y
@@ -142,17 +142,17 @@ func button_input(_button:String, _pressed:bool) -> void:
 			if arr_timer.is_stopped() && das_timer.is_stopped():
 				das_timer.start(das_interval)
 				button_input_moved = true
-				repeat_moving_pointer()
+				return repeat_moving_pointer()
 			if !arr_timer.is_stopped():
 				arr_timer.stop()
-				repeat_moving_pointer()
 				arr_timer.start(arr_interval)
+				return repeat_moving_pointer()
 		elif !_pressed:
 			button_input_dir_axis -= direction_mapping[_button]
 			if button_input_dir_axis == 0:
 				das_timer.stop()
 				arr_timer.stop()
-			return
+			return true
 	elif _button =="accept":
 		if _pressed:
 			$audio_stream_player_click_down.play()
@@ -167,11 +167,14 @@ func button_input(_button:String, _pressed:bool) -> void:
 		else:
 			$audio_stream_player_click_up.play()
 			button_input_hold = false
+	return true
 
-func repeat_moving_pointer() -> void:
+func repeat_moving_pointer() -> bool:
 	if !((button_input_pointer + button_input_dir_axis) & 0x88):
 		button_input_pointer += button_input_dir_axis
 		finger_on_position(Chess.x88_to_name(button_input_pointer))
+		return true
+	return false
 
 func area_input(_from:Object, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
 	if _instant:

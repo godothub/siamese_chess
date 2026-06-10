@@ -41,6 +41,12 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 stretch = true
 
 [node name="sub_viewport" type="SubViewport" parent="texture_rect/margin_container/sub_viewport_container" unique_id=1128564734]

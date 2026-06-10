@@ -30,6 +30,7 @@ func on_visibility_changed() -> void:
 		state_machine.change_state.call_deferred("inspect")
 
 func state_ready_inspect(_arg:Dictionary) -> void:
+	sub_viewport_container.grab_focus()
 	state_machine.state_signal_connect(Setting.touch_gesture_changed, func () -> void:
 		state_machine.change_state.call_deferred("inspect")
 	)
@@ -56,11 +57,16 @@ func state_input_inspect(event:InputEvent) -> void:
 		if event.is_action_released("ui_left"):
 			item.button_input("left", false)
 		if event.is_action_pressed("ui_up"):
-			item.button_input("up", true)
+			if !item.button_input("up", true):
+				item.button_input("up", false)
+				Dialog.show_global_selection()
+				Dialog.direction(1)
 		if event.is_action_released("ui_up"):
 			item.button_input("up", false)
 		if event.is_action_pressed("ui_down"):
-			item.button_input("down", true)
+			if !item.button_input("down", true):
+				item.button_input("down", false)
+				Dialog.direction(1)
 		if event.is_action_released("ui_down"):
 			item.button_input("down", false)
 		if event.is_action_pressed("ui_accept"):

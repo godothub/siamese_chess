@@ -17,10 +17,10 @@ func set_enabled(_enabled:bool) -> void:
 		if _enabled:
 			iter.collision_layer |= 2
 		else:  
-			iter.collision_layer &= ~2		
+			iter.collision_layer &= ~2
 
-func button_input(_button:String, _pressed:bool) -> void:	# 无非就是上、下、左、右、确认
-	pass
+func button_input(_button:String, _pressed:bool) -> bool:	# 无非就是上、下、左、右、确认，返回值输出操作是否成功
+	return false
 
 func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
 	pass
