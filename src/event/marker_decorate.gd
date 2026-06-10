@@ -46,13 +46,12 @@ func state_ready_decorate(_arg:Dictionary) -> void:
 
 func state_input_decorate(event:InputEvent) -> void:
 	if event.is_action_pressed("tab_left"):
-		current_model_index = ((current_model_index - 1) + available_model.size()) % available_model.size()
-		change_model(current_model_index)
-		#current_model_instance.rotation.y += 2 / PI
+		current_model_instance.rotation.y += 2 / PI
 	if event.is_action_pressed("tab_right"):
+		current_model_instance.rotation.y -= 2 / PI
+	if event.is_action_pressed("select"):
 		current_model_index = ((current_model_index + 1) + available_model.size()) % available_model.size()
 		change_model(current_model_index)
-		#current_model_instance.rotation.y -= 2 / PI
 
 func state_ready_stop(_arg:Dictionary) -> void:
 	procedure_end.emit(_arg.get("result", ""))
