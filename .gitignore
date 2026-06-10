@@ -17,3 +17,4 @@ bin/
 **/*.os
 .sconsign.dblite
 vc140.pdb
+node_modules/
