@@ -124,10 +124,19 @@ func remove_piece_set() -> void:
 	chessboard_piece.clear()
 	backup_piece.clear()
 
+var button_pressed:Dictionary = {}
 func button_input(_button:String, _pressed:bool) -> bool:
 	var camera:Camera3D = get_viewport().get_camera_3d()
 	var direction:float = camera.global_rotation.y
 	direction -= global_rotation.y
+	if _pressed && button_pressed.has(_button):
+		return true
+	elif _pressed:
+		button_pressed[_button] = true
+	if !_pressed && !button_pressed.has(_button):
+		return true
+	elif !_pressed:
+		button_pressed.erase(_button)
 	if direction > -PI / 4 * 3 && direction <= -PI / 4:
 		direction_mapping = {"up": 1, "down": -1, "left": -16, "right": 16}
 	elif direction > -PI / 4 && direction <=  PI / 4:
