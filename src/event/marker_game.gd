@@ -259,7 +259,7 @@ func show_dialog_selection(hint:String) -> void:
 		dialog_selection.push_back("SELECTION_TAKE_BACK")
 	if can_leave:
 		dialog_selection.push_back("SELECTION_LEAVE_GAME")
-	Dialog.push_selection(dialog_selection, "HINT_YOUR_TURN", false, false)
+	Dialog.push_selection(dialog_selection, hint, false, false)
 
 func state_exit_player() -> void:
 	chessboard.set_square_selection(0)
