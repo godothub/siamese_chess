@@ -173,7 +173,7 @@ func repeat_moving_pointer() -> void:
 		button_input_pointer += button_input_dir_axis
 		finger_on_position(Chess.x88_to_name(button_input_pointer))
 
-func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
+func area_input(_from:Object, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
 	if _instant:
 		if _pressed:
 			$audio_stream_player_click_down.global_position = _to.global_position

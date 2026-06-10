@@ -1,7 +1,10 @@
-extends Node3D
+extends CanvasLayer
 class_name Player
-@onready var ray_cast:RayCast3D = $ray_cast
-
+@onready var ray_cast:RayCast3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/ray_cast
+@onready var sub_viewport_container:SubViewportContainer = $texture_rect/margin_container/sub_viewport_container
+@onready var margin_container:MarginContainer = $texture_rect/margin_container
+@onready var camera:Camera3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/head/camera
+@onready var head:Node3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/head
 var state_machine:StateMachine = StateMachine.new()
 var mouse_moved:bool = false
 var can_move:bool = true
@@ -16,7 +19,9 @@ func _ready() -> void:
 	state_machine.add_state("dialog", state_ready_dialog, Callable(), state_process_dialog, state_input_dialog)
 	state_machine.add_state("interface", state_ready_interface)
 	state_machine.change_state("inspect")
+	sub_viewport_container.connect("gui_input", sub_viewport_gui_input)
 	Gesture.connect("move_mouse", move_mouse)
+	Setting.connect("dialog_border_changed", update_margin)
 
 func on_visibility_changed() -> void:
 	if (Setting.visible || FilmCamera.visible || ThirdEye3D.visible || Archive.visible) && state_machine.current_state != "interface":
@@ -62,19 +67,19 @@ func state_input_inspect(event:InputEvent) -> void:
 			item.button_input("accept", true)
 		if event.is_action_released("ui_accept"):
 			item.button_input("accept", false)
-		if event.is_action_pressed("ui_cancel") && Dialog.cancel_showing:
-			Dialog.on_cancel.emit()
-		elif event.is_action_pressed("select") && Dialog.selection.size():
-			Dialog.direction(1)
-		elif event.is_action_pressed("menu"):
-			Dialog.show_global_selection()
-			Dialog.direction(1)
+	if event.is_action_pressed("ui_cancel") && Dialog.cancel_showing:
+		Dialog.on_cancel.emit()
+	elif event.is_action_pressed("select") && Dialog.selection.size():
+		Dialog.direction(1)
+	elif event.is_action_pressed("menu"):
+		Dialog.show_global_selection()
+		Dialog.direction(1)
 	if event is InputEventMouseButton || event is InputEventMouseMotion:
 		current_area = click_area(event.position)
 		if is_instance_valid(current_area):
 			var instant:bool = event is InputEventMouseButton
 			var pressed:bool = event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT || event is InputEventMouseMotion && (event.button_mask & MOUSE_BUTTON_MASK_LEFT)
-			current_area.emit_signal("input", self, current_area, instant, pressed, $ray_cast.get_collision_point(), $ray_cast.get_collision_normal())
+			current_area.emit_signal("input", self, current_area, instant, pressed, ray_cast.get_collision_point(), ray_cast.get_collision_normal())
 
 func state_ready_dialog(_args:Dictionary) -> void:
 	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
@@ -116,15 +121,15 @@ func state_ready_interface(_args:Dictionary) -> void:
 	state_machine.state_signal_connect(Archive.visibility_changed, on_visibility_changed)
 
 func _physics_process(_delta:float) -> void:
-	$head/camera.set_rotation(Vector3(deg_to_rad(sin(Time.get_unix_time_from_system())), 0, 0))
+	camera.set_rotation(Vector3(deg_to_rad(sin(Time.get_unix_time_from_system())), 0, 0))
 	state_machine.process(_delta)
 
-func _unhandled_input(event:InputEvent) -> void:
+func sub_viewport_gui_input(event:InputEvent) -> void:
 	state_machine.input(event)
 
 func click_area(screen_position:Vector2) -> Area3D:
-	var from:Vector3 = $head/camera.project_ray_origin(screen_position)
-	var to:Vector3 = $head/camera.project_ray_normal(screen_position) * 200
+	var from:Vector3 = camera.project_ray_origin(screen_position)
+	var to:Vector3 = camera.project_ray_normal(screen_position) * 200
 	ray_cast.global_position = from
 	ray_cast.target_position = to
 	ray_cast.collision_mask = 3
@@ -136,21 +141,21 @@ func click_area(screen_position:Vector2) -> Area3D:
 func move_mouse(pos:Vector2) -> void:
 	current_area = click_area(pos)
 	if is_instance_valid(current_area):
-		current_area.emit_signal("input", self, current_area, false, false, $ray_cast.get_collision_point(), $ray_cast.get_collision_normal())
+		current_area.emit_signal("input", self, current_area, false, false, ray_cast.get_collision_point(), ray_cast.get_collision_normal())
 
 func find_area(direction:Vector2) -> Area3D:
 	var best_area:Area3D = null
 	var best_weight:float
 	var current_area_position_2d:Vector2 = Vector2(0, 0)
 	if current_area:
-		current_area_position_2d = $head/camera.unproject_position(current_area.global_transform.origin)
+		current_area_position_2d = camera.unproject_position(current_area.global_transform.origin)
 	for item:InspectableItem in inspectable_item_list:
 		if !item.enabled:
 			continue
 		for area:Area3D in item.button_list:
 			if current_area == area:
 				continue
-			var area_position_2d:Vector2 = $head/camera.unproject_position(area.global_transform.origin)
+			var area_position_2d:Vector2 = camera.unproject_position(area.global_transform.origin)
 			var angle_diff:float = angle_difference(direction.angle(), current_area_position_2d.angle_to(area_position_2d))
 			if angle_diff > PI / 6:
 				continue
@@ -166,24 +171,36 @@ func move_camera(other:Camera3D) -> void:
 	target_camera = other
 	var tween:Tween = create_tween()
 	#tween.tween_callback($audio_stream_player.play)
-	tween.tween_property($head, "global_transform", other.global_transform, 1).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(head, "global_transform", other.global_transform, 1).set_trans(Tween.TRANS_SINE)
 	tween.set_parallel(true)
-	tween.tween_property($head/camera, "fov", other.fov * 0.85 if Setting.get_value("dialog_border") else other.fov, 1).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(camera, "fov", other.fov * 0.85 if Setting.get_value("dialog_border") else other.fov, 1).set_trans(Tween.TRANS_SINE)
 	tween.set_parallel(false)
 
 func force_set_camera(other:Camera3D) -> void:
 	target_camera = other
-	$head.global_transform = other.global_transform
-	$head/camera.fov = other.fov * 0.85 if Setting.get_value("dialog_border") else other.fov
+	head.global_transform = other.global_transform
+	camera.fov = other.fov * 0.85 if Setting.get_value("dialog_border") else other.fov
 
 func refresh_camera() -> void:
 	if !is_instance_valid(target_camera):
 		return
-	$head.global_transform = target_camera.global_transform
-	$head/camera.fov = target_camera.fov * 0.85 if Setting.get_value("dialog_border") else target_camera.fov
+	head.global_transform = target_camera.global_transform
+	camera.fov = target_camera.fov * 0.85 if Setting.get_value("dialog_border") else target_camera.fov
 
 func get_camera() -> Camera3D:
-	return $head/camera
+	return camera
 
 func add_inspectable_item(_inspectable_item:InspectableItem) -> void:
 	inspectable_item_list.push_back(_inspectable_item)
+
+func update_margin() -> void:
+	if Setting.get_value("dialog_border"):
+		margin_container.add_theme_constant_override("margin_bottom", 0)
+		margin_container.add_theme_constant_override("margin_top", 0)
+		margin_container.add_theme_constant_override("margin_left", Dialog.get_size())
+		margin_container.add_theme_constant_override("margin_right", Dialog.get_size())
+	else:
+		margin_container.add_theme_constant_override("margin_bottom", Dialog.get_size())
+		margin_container.add_theme_constant_override("margin_top", Dialog.get_size())
+		margin_container.add_theme_constant_override("margin_left", 0)
+		margin_container.add_theme_constant_override("margin_right", 0)

@@ -282,3 +282,6 @@ func set_border_position(_border_position:bool) -> void:
 		title_label = $texture_rect_left/label
 		time_label = $texture_rect_left/label_hint_down
 		cancel_label = $texture_rect_left/label_hint_up
+
+func get_size() -> float:
+	return $texture_rect_left.size.x if Setting.get_value("dialog_border") else $texture_rect_top.size.y

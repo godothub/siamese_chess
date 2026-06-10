@@ -10,6 +10,7 @@ colors = PackedColorArray(0, 0, 0, 1)
 gradient = SubResource("Gradient_qb5h4")
 
 [node name="loading" type="CanvasLayer" unique_id=116341041]
+layer = 2
 script = ExtResource("1_qb5h4")
 
 [node name="texture_rect" type="TextureRect" parent="." unique_id=303454134]

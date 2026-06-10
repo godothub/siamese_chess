@@ -8,12 +8,12 @@
 [ext_resource type="AudioStream" uid="uid://dowredng1whev" path="res://assets/audio/624936__theplax__camera-beep-and-click.wav" id="6_fa48h"]
 [ext_resource type="AudioStream" uid="uid://bixqmowubxvxk" path="res://assets/audio/557396__jarhead123__leather-bag-cloth-movement-4.wav" id="7_yvr8q"]
 
-[sub_resource type="Gradient" id="Gradient_uj1is"]
+[sub_resource type="Gradient" id="Gradient_8rlb6"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_lqkdx"]
-gradient = SubResource("Gradient_uj1is")
+gradient = SubResource("Gradient_8rlb6")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxrgg"]
 
