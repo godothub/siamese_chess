@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bful5go5ra1gx"]
 
 [ext_resource type="Script" uid="uid://cisehucvfp1xw" path="res://src/test/decorate_test.gd" id="1_e813t"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_nkvcl"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_lugk8"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="4_8ik78"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="5_hbp3u"]
@@ -44,8 +43,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1648779976]
 environment = SubResource("Environment_tvp6u")
-
-[node name="player" parent="." unique_id=192889472 instance=ExtResource("2_nkvcl")]
 
 [node name="chessboard" parent="." unique_id=1583688777 instance=ExtResource("3_lugk8")]
 metadata/_edit_lock_ = true
@@ -624,8 +621,7 @@ camera = NodePath("../camera")
 bit = -1
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
-[node name="marker_decorate" type="Node3D" parent="." unique_id=1395911076 node_paths=PackedStringArray("chessboard", "player")]
+[node name="marker_decorate" type="Node3D" parent="." unique_id=1395911076 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("6_io7ym")
 chessboard = NodePath("../chessboard")
-player = NodePath("../player")
 metadata/_custom_type_script = "uid://y6xks0tymhp5"

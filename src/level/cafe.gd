@@ -13,14 +13,14 @@ func _ready() -> void:
 	Ambient.change_environment_sound(load("res://assets/audio/52645__kstein1__white-noise.wav"))
 	
 	standard_chessboard.set_enabled(false)
-	$player.add_inspectable_item(standard_chessboard)
+	Player.add_inspectable_item(standard_chessboard)
 	$pastor.play_animation("thinking")
 	edit_event.connect("procedure_end", select_turn)
 	game_event.connect("procedure_end", game_end)
 
 func interact_pastor() -> void:
 	change_state("yulan_game")
-	$player.force_set_camera($camera_pastor)
+	Player.force_set_camera($camera_pastor)
 
 	var from:int = Chess.c64_to_x88(Chess.first_bit($chessboard.state.get_bit(player_king)))
 	if from != 0x54:
@@ -31,7 +31,7 @@ func interact_pastor() -> void:
 	$chessboard/pieces/cheshire.set_position($chessboard.name_to_vector3("e2"))
 	$chessboard/pieces/cheshire.set_rotation(Vector3(0, PI / 2, 0))
 	$chessboard/pieces/cheshire.play_animation("thinking")
-	$player.force_set_camera($camera_chessboard)
+	Player.force_set_camera($camera_chessboard)
 
 	standard_chessboard.state = Chess.create_initial_state()
 	standard_chessboard.remove_piece_set()
@@ -65,7 +65,7 @@ func select_turn(result:String) -> void:
 	Dialog.push_selection(["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM", "SELECTION_CANCEL"], "", true, false)
 
 func game_end(_result:String = "") -> void:
-	$player.force_set_camera($camera)
+	Player.force_set_camera($camera)
 	$chessboard/pieces/cheshire.play_animation("battle_idle")
 	$chessboard/pieces/cheshire.set_position($chessboard.name_to_vector3("e3"))
 	$chessboard.set_enabled(true)

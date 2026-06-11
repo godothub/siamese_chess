@@ -10,7 +10,7 @@ var sandbox_move_list:PackedInt32Array = []
 func _ready() -> void:
 	super._ready()
 	chessboard_sandbox.set_enabled(false)
-	$player.add_inspectable_item(chessboard_sandbox)
+	Player.add_inspectable_item(chessboard_sandbox)
 	sandbox_state_machine.add_state("start", state_ready_in_game_start)
 	sandbox_state_machine.add_state("move", state_ready_in_game_move)
 	sandbox_state_machine.add_state("player", state_ready_in_game_player, state_exit_in_game_player)
@@ -24,7 +24,7 @@ func use_chessboard() -> void:
 	chessboard_sandbox.set_enabled(true)
 	var state:State = Chess.create_initial_state()
 	sandbox_state_machine.change_state("start", {"state": state})
-	$player.force_set_camera($camera_chessboard)
+	Player.force_set_camera($camera_chessboard)
 	while true:
 		await sandbox_state_machine.state_changed
 		if sandbox_state_machine.current_state == "game_end":
@@ -127,4 +127,4 @@ func state_ready_in_game_extra_move(_arg:Dictionary) -> void:
 func state_ready_game_end(_arg:Dictionary) -> void:
 	$chessboard.set_enabled(true)
 	chessboard_sandbox.set_enabled(false)
-	$player.force_set_camera($camera_room)
+	Player.force_set_camera($camera_room)

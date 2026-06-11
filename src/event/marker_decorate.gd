@@ -2,7 +2,6 @@ extends MarkerProcedure
 class_name MarkerDecorate
 
 @export var chessboard:Chessboard = null
-@export var player:Player = null
 var available_model:Array = []
 var current_model_index:int = -1
 var current_model_instance:Node3D = null
@@ -18,7 +17,7 @@ func _ready() -> void:
 		file_name = dir.get_next()
 	state_machine.add_state("decorate", state_ready_decorate, Callable(), Callable(), state_input_decorate)
 	state_machine.add_state("stop", state_ready_stop)
-	player.state_machine.change_state("pointer")
+	Player.state_machine.change_state("pointer")
 
 func start() -> void:
 	state_machine.change_state("decorate")
@@ -33,15 +32,21 @@ func change_model(index:int) -> void:
 	chessboard.add_child(current_model_instance)
 	current_model_instance.global_position = last_position
 
+func create_model_collision(instance:Node3D) -> void:
+	for iter:Node in instance.get_children():
+		if iter is MeshInstance3D:
+			iter.create_convex_collision()
+
 func state_ready_decorate(_arg:Dictionary) -> void:
-	state_machine.state_signal_connect(player.pointer_move, func (world_position:Vector3, _normal:Vector3) -> void:
+	state_machine.state_signal_connect(Player.pointer_move, func (world_position:Vector3, _normal:Vector3) -> void:
 		if !current_model_instance:
 			return
 		current_model_instance.global_position = world_position
 	)
-	state_machine.state_signal_connect(player.pointer_click, func (world_position:Vector3, _normal:Vector3) -> void:
+	state_machine.state_signal_connect(Player.pointer_click, func (world_position:Vector3, _normal:Vector3) -> void:
 		if !current_model_instance:
 			return
+		create_model_collision(current_model_instance)
 		current_model_instance.global_position = world_position
 		if !(current_model_index in range(0, available_model.size())):
 			return

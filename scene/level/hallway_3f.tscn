@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c7f6odob1fiwo"]
 
 [ext_resource type="Script" uid="uid://5i8x1kt3sppg" path="res://src/level/hallway_3f.gd" id="1_1xocg"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_snhjh"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_yedm7"]
 [ext_resource type="PackedScene" uid="uid://bw021nt6bdr6t" path="res://assets/model/elevator.glb" id="4_md6wq"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="5_unvbp"]
@@ -53,9 +52,6 @@ metadata/by = 16
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=140758654]
 environment = SubResource("Environment_pjyyy")
-
-[node name="player" parent="." unique_id=1112884615 instance=ExtResource("2_snhjh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=125944513]
 transform = Transform3D(0.84076184, 0.23945908, -0.4855708, 0.24234495, 0.63554907, 0.7330392, 0.48413688, -0.733987, 0.47631368, 2.6149602, 2.82427, 0)

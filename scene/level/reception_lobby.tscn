@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bhjsdubmphpk4"]
 
 [ext_resource type="Script" uid="uid://cr2epvubmbpcu" path="res://src/level/reception_lobby.gd" id="1_s7rcd"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_gimty"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="2_s8vca"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="3_aion5"]
 [ext_resource type="PackedScene" uid="uid://ylr82inm0vxe" path="res://assets/model/counter.glb" id="4_s8vca"]
@@ -57,8 +56,6 @@ fog_light_color = Color(1, 1, 1, 1)
 script = ExtResource("1_s7rcd")
 metadata/_custom_type_script = "uid://rhdq34na2j5m"
 metadata/by = 80
-
-[node name="player" parent="." unique_id=2004397747 instance=ExtResource("2_gimty")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1316976406]
 environment = SubResource("Environment_sb1hd")

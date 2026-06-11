@@ -22,6 +22,7 @@ func change_scene(_path:String, wait_time:float = 0.3) -> void:
 	tween.tween_property($texture_rect, "modulate", Color(1, 1, 1, 1), wait_time)
 	await tween.finished
 	var instance:Node = load(_path).instantiate()
+	Player.clear_inspectable_item()
 	if is_instance_valid(current):
 		if current.has_method("on_exit"):
 			current.on_exit()

@@ -12,7 +12,7 @@ var opening_book:OpeningBook = OpeningBook.new()
 func _ready() -> void:
 	if FileAccess.file_exists("user://standard_opening_document.fa"):
 		opening_book.load_file("user://standard_opening_document.fa")
-	$player.set_initial_interact($interact)
+	Player.set_initial_interact($interact)
 	chessboard.connect("move_played", receive_move)
 	$canvas_layer/panel/v_box_container/margin_container/h_box_container/button_save.connect("button_down", set_text)
 	$canvas_layer/panel/v_box_container/margin_container/h_box_container/button_prev.connect("button_down", prev)

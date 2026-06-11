@@ -7,13 +7,13 @@ class_name MarkerCamera
 
 func on_start() -> void:
 	if camera && level.chessboard.state.get_bit(level.player_king) & bit:
-		level.get_node("player").force_set_camera(camera)
+		Player.force_set_camera(camera)
 
 func show_selection() -> String:
-	if level.player.target_camera != camera:
+	if Player.target_camera != camera:
 		return selection
 	return ""
 
 func on_selection() -> void:
-	level.get_node("player").force_set_camera(camera)
+	Player.force_set_camera(camera)
 	level.show_selection.call_deferred()

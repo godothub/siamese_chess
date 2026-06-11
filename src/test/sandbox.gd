@@ -5,7 +5,7 @@ var initial_state:State = null
 @onready var chessboard = $chessboard
 
 func _ready() -> void:
-	$player.force_set_camera($camera_3d)
+	Player.force_set_camera($camera_3d)
 	chessboard.set_enabled(true)
 	while !is_instance_valid(state):
 		var text_input_instance:TextInput = TextInput.create_text_input_instance("输入FEN格式的布局：", "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")

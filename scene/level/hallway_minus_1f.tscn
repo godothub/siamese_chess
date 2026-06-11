@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://6usjjyxjs4qc"]
 
 [ext_resource type="Script" uid="uid://dd40guhju4yhi" path="res://src/level/hallway_minus_1.gd" id="1_hfwic"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_b3cnt"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_hfwic"]
 [ext_resource type="PackedScene" uid="uid://bw021nt6bdr6t" path="res://assets/model/elevator.glb" id="4_jo25j"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="5_htcqt"]
@@ -41,9 +40,6 @@ metadata/by = 16
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=140758654]
 environment = SubResource("Environment_reac2")
-
-[node name="player" parent="." unique_id=1112884615 instance=ExtResource("2_b3cnt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="camera" type="Camera3D" parent="." unique_id=2111512209]
 transform = Transform3D(1, 7.063306e-09, 3.7414935e-08, -2.949474e-08, 0.7651348, 0.6438702, -2.4079611e-08, -0.6438702, 0.7651348, -5, 3.1834378, 6.7310476)

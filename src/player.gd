@@ -1,5 +1,4 @@
 extends CanvasLayer
-class_name Player
 
 signal pointer_move(world_position:Vector3, normal:Vector3)
 signal pointer_click(world_position:Vector3, normal:Vector3)
@@ -142,7 +141,7 @@ func state_ready_pointer(_args:Dictionary) -> void:
 	state_machine.state_signal_connect(Setting.touch_gesture_changed, func () -> void:
 		state_machine.change_state.call_deferred("inspect")
 	)
-
+	ray_cast.collide_with_bodies = true
 	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(FilmCamera.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
@@ -174,7 +173,7 @@ func state_input_pointer(event:InputEvent) -> void:
 		Dialog.show_global_selection()
 		Dialog.direction(1)
 	if event is InputEventMouseButton || event is InputEventMouseMotion:
-		current_area = click_area(event.position)
+		click_area(event.position)
 		pointer_position = event.position
 		if ray_cast.is_colliding():
 			pointer_move.emit(ray_cast.get_collision_point(), ray_cast.get_collision_normal())
@@ -188,7 +187,7 @@ func _physics_process(_delta:float) -> void:
 func sub_viewport_gui_input(event:InputEvent) -> void:
 	state_machine.input(event)
 
-func click_area(screen_position:Vector2) -> Area3D:
+func click_area(screen_position:Vector2) -> Node3D:
 	var from:Vector3 = camera.project_ray_origin(screen_position)
 	var to:Vector3 = camera.project_ray_normal(screen_position) * 200
 	ray_cast.global_position = from
@@ -253,6 +252,9 @@ func get_camera() -> Camera3D:
 
 func add_inspectable_item(_inspectable_item:InspectableItem) -> void:
 	inspectable_item_list.push_back(_inspectable_item)
+
+func clear_inspectable_item() -> void:
+	inspectable_item_list.clear()
 
 func update_margin() -> void:
 	if Setting.get_value("dialog_border"):

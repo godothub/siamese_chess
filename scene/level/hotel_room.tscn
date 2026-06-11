@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cb0x1dotn46nw"]
 
 [ext_resource type="Script" uid="uid://oipip48kbo6w" path="res://src/level/hotel_room.gd" id="1_njksd"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_qvsbv"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_w2bcl"]
 [ext_resource type="PackedScene" uid="uid://cingkxj4uodjo" path="res://assets/model/window.glb" id="4_4jgku"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="5_10bqq"]
@@ -65,8 +64,6 @@ metadata/by = 49
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1630622662]
 environment = SubResource("Environment_ve7rb")
-
-[node name="player" parent="." unique_id=1319778870 instance=ExtResource("2_qvsbv")]
 
 [node name="chessboard" parent="." unique_id=1440653359 instance=ExtResource("3_w2bcl")]
 

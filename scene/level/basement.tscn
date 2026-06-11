@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://chkp5305aorwt" path="res://scene/actor/basement_safe.tscn" id="7_h64pl"]
 [ext_resource type="PackedScene" uid="uid://c6uqbb5c7lq8l" path="res://assets/model/hang_light_0.glb" id="8_7262k"]
 [ext_resource type="PackedScene" uid="uid://cwjgphuayqvy3" path="res://assets/model/hotel_door_large.glb" id="9_7pf3j"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="10_mtw5c"]
 [ext_resource type="PackedScene" uid="uid://bt5m0eox0615k" path="res://assets/model/hotel_room_desk.glb" id="11_74xdv"]
 [ext_resource type="PackedScene" uid="uid://u1ropnj7v0ap" path="res://assets/model/hotel_room_desk_chair.glb" id="12_vykmq"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="13_0mecn"]
@@ -308,10 +307,10 @@ omni_range = 10.077
 [node name="hotel_door_large" parent="." unique_id=2031737367 instance=ExtResource("9_7pf3j")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=1432364741]
+[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=697941169]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=848095406]
+[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=704909446]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=1404077087]
@@ -320,8 +319,6 @@ light_color = Color(0.7490196, 0.7137255, 0.68235296, 1)
 light_energy = 0.305
 light_specular = 0.0
 omni_range = 4.529
-
-[node name="player" parent="." unique_id=1111666 instance=ExtResource("10_mtw5c")]
 
 [node name="marker_entrance" type="Node3D" parent="." unique_id=614205746]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)

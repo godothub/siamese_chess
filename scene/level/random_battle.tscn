@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bxfyayjkalx4w"]
 
 [ext_resource type="Script" uid="uid://u18ug6ccun7f" path="res://src/level/random_battle.gd" id="1_dj6d0"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_ebfva"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_dufkl"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="5_tvp6u"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="13_gnq6v"]
@@ -41,8 +40,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1648779976]
 environment = SubResource("Environment_tvp6u")
-
-[node name="player" parent="." unique_id=192889472 instance=ExtResource("2_ebfva")]
 
 [node name="chessboard" parent="." unique_id=1583688777 instance=ExtResource("3_dufkl")]
 metadata/_edit_lock_ = true

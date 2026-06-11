@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bx6jrii5qygn0"]
 
 [ext_resource type="Script" uid="uid://bdbwfocvgq0f7" path="res://src/level/kitchen.gd" id="1_54xsr"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_3kqsp"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_6t8s2"]
 [ext_resource type="PackedScene" uid="uid://dd5y2wcjnmlqy" path="res://assets/model/archive_shelf.glb" id="4_y7840"]
 [ext_resource type="PackedScene" uid="uid://cgdd7yagenbel" path="res://assets/model/kitchen_chopping_block.glb" id="5_2gvqm"]
@@ -83,8 +82,6 @@ metadata/by = 102
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=85210075]
 environment = SubResource("Environment_x83ls")
-
-[node name="player" parent="." unique_id=34630711 instance=ExtResource("2_3kqsp")]
 
 [node name="chessboard" parent="." unique_id=2031875546 instance=ExtResource("3_6t8s2")]
 
@@ -620,9 +617,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5066252, 1.0709386, 2.0846
 [node name="kitchen_pot_2" parent="." unique_id=1815452724 instance=ExtResource("28_e37jg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5066252, 1.0709386, 0.49664664)
 
-[node name="marker_explore" type="Node3D" parent="." unique_id=715757998 node_paths=PackedStringArray("chessboard")]
+[node name="marker_explore" type="Node3D" parent="." unique_id=715757998]
 script = ExtResource("30_imp7c")
-chessboard = NodePath("")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 
 [editable path="chessboard"]

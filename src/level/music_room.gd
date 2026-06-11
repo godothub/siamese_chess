@@ -16,10 +16,10 @@ func interact_carnation() -> void:
 	cheshire_instance.rotation.y = target_angle
 	Dialog.set_border_position(false)
 	Dialog.push_dialog("CARNATION_TALK_1_0", "", true, true)
-	$player.force_set_camera($camera_carnation_dialog)
+	Player.force_set_camera($camera_carnation_dialog)
 	await Dialog.on_next
 	Dialog.push_dialog("CARNATION_TALK_1_1", "", false, true)
 	await Dialog.on_next
-	$player.force_set_camera($camera)
+	Player.force_set_camera($camera)
 	Dialog.set_border_position(Setting.get_value("dialog_border"))
 	change_state("")

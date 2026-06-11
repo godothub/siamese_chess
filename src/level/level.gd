@@ -7,7 +7,6 @@ var player_king:int = 0
 var enemy_all:int = 0
 var enemy_king:int = 0
 
-@onready var player:Player = $player
 @onready var chessboard:Chessboard = $chessboard
 var teleport:Dictionary = {}
 var events:Array = []
@@ -21,7 +20,7 @@ func _ready() -> void:
 
 	var state:State = State.new()
 	chessboard.set_state(state)
-	player.add_inspectable_item(chessboard)
+	Player.add_inspectable_item(chessboard)
 	for node:Node in get_children():
 		if node is MarkerEvent:
 			events.push_back(node)

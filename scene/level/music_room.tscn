@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bilgu8ya10l7g"]
 
 [ext_resource type="Script" uid="uid://dv6xi5e2p0qcl" path="res://src/level/music_room.gd" id="1_a43ts"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_exu1i"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_fjtbx"]
 [ext_resource type="PackedScene" uid="uid://rxu1cqxjo2dn" path="res://scene/upright_piano.tscn" id="7_qe74a"]
 [ext_resource type="PackedScene" uid="uid://cjtow7squ3ylg" path="res://assets/model/chapel_chair.glb" id="8_jad32"]
@@ -54,8 +53,6 @@ light_cull_mask = 4294966275
 shadow_enabled = true
 shadow_caster_mask = 4294966274
 sky_mode = 1
-
-[node name="player" parent="." unique_id=1727028123 instance=ExtResource("2_exu1i")]
 
 [node name="chessboard" parent="." unique_id=1923671082 instance=ExtResource("3_fjtbx")]
 

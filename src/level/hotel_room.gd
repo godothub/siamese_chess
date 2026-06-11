@@ -5,7 +5,7 @@ extends Level
 func _ready() -> void:
 	super._ready()
 	chessboard_sandbox.set_enabled(false)
-	$player.add_inspectable_item(chessboard_sandbox)
+	Player.add_inspectable_item(chessboard_sandbox)
 	$marker_game.connect("procedure_end", game_end)
 
 func use_chessboard() -> void:
@@ -16,11 +16,11 @@ func use_chessboard() -> void:
 	chessboard_sandbox.state = state
 	chessboard_sandbox.remove_piece_set()
 	chessboard_sandbox.add_default_piece_set()
-	$player.force_set_camera($camera_chessboard)
+	Player.force_set_camera($camera_chessboard)
 	$marker_game.start()
 
 func game_end(_result:String) -> void:
 	$chessboard.set_enabled(true)
 	chessboard_sandbox.set_enabled(false)
-	$player.force_set_camera($marker_camera_2/camera)
+	Player.force_set_camera($marker_camera_2/camera)
 	change_state("")

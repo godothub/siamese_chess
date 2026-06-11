@@ -3,7 +3,7 @@ extends Level
 func _ready() -> void:
 	super._ready()
 	Ambient.change_environment_sound(load("res://assets/audio/405135__mjeno__autumn-forest-leaves-falling-close-to-pond-iii-loopable.wav"))
-	$player.force_set_camera($camera)
+	Player.force_set_camera($camera)
 
 func interact_carnation() -> void:
 	change_state("dialog")
@@ -17,10 +17,10 @@ func interact_carnation() -> void:
 	cheshire_instance.rotation.y = target_angle
 	Dialog.set_border_position(false)
 	Dialog.push_dialog("CARNATION_TALK_0_0", "", true, true)
-	$player.force_set_camera($camera_carnation_dialog)
+	Player.force_set_camera($camera_carnation_dialog)
 	await Dialog.on_next
 	Dialog.push_dialog("CARNATION_TALK_0_1", "", false, true)
 	await Dialog.on_next
-	$player.force_set_camera($camera)
+	Player.force_set_camera($camera)
 	Dialog.set_border_position(Setting.get_value("dialog_border"))
 	change_state("")

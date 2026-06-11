@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cln6ksgl3ll6o" path="res://src/level/cafe.gd" id="1_e1edc"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="1_o611t"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="1_ps8i8"]
 [ext_resource type="PackedScene" uid="uid://b63o3y2sbsav0" path="res://assets/model/table_high.glb" id="2_jb28s"]
 [ext_resource type="PackedScene" uid="uid://c2r0g1i6eu65r" path="res://assets/model/table.glb" id="6_ecjec"]
 [ext_resource type="Shader" uid="uid://dd7xsr1eeq6mo" path="res://src/unmoving_plaid.gdshader" id="7_ogoy6"]
@@ -114,8 +113,6 @@ light_energy = 2.48
 shadow_enabled = true
 shadow_caster_mask = 4293918721
 sky_mode = 1
-
-[node name="player" parent="." unique_id=34630711 instance=ExtResource("1_ps8i8")]
 
 [node name="chessboard" parent="." unique_id=1937646692 instance=ExtResource("1_o611t")]
 
