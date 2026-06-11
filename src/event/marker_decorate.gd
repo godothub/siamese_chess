@@ -2,6 +2,7 @@ extends MarkerProcedure
 class_name MarkerDecorate
 
 @export var chessboard:Chessboard = null
+@export var player:Player = null
 var available_model:Array = []
 var current_model_index:int = -1
 var current_model_instance:Node3D = null
@@ -17,38 +18,44 @@ func _ready() -> void:
 		file_name = dir.get_next()
 	state_machine.add_state("decorate", state_ready_decorate, Callable(), Callable(), state_input_decorate)
 	state_machine.add_state("stop", state_ready_stop)
+	player.state_machine.change_state("pointer")
 
 func start() -> void:
 	state_machine.change_state("decorate")
 
 func change_model(index:int) -> void:
+	var last_position:Vector3 = Vector3()
 	if current_model_instance:
+		last_position = current_model_instance.global_position
 		current_model_instance.queue_free()
 	current_model_index = index
 	current_model_instance = available_model[current_model_index].instantiate()
 	chessboard.add_child(current_model_instance)
+	current_model_instance.global_position = last_position
 
 func state_ready_decorate(_arg:Dictionary) -> void:
-	state_machine.state_signal_connect(chessboard.hovered, func (by:int) -> void:
+	state_machine.state_signal_connect(player.pointer_move, func (world_position:Vector3, _normal:Vector3) -> void:
 		if !current_model_instance:
 			return
-		current_model_instance.global_position = chessboard.x88_to_vector3(by)
+		current_model_instance.global_position = world_position
 	)
-	state_machine.state_signal_connect(chessboard.click_empty, func (by:int) -> void:
+	state_machine.state_signal_connect(player.pointer_click, func (world_position:Vector3, _normal:Vector3) -> void:
 		if !current_model_instance:
 			return
-		current_model_instance.global_position = chessboard.x88_to_vector3(by)
+		current_model_instance.global_position = world_position
 		if !(current_model_index in range(0, available_model.size())):
 			return
 		current_model_instance = available_model[current_model_index].instantiate()
 		chessboard.add_child(current_model_instance)
+		current_model_instance.global_position = world_position
 	)
 
 func state_input_decorate(event:InputEvent) -> void:
-	if event.is_action_pressed("tab_left"):
-		current_model_instance.rotation.y += 2 / PI
-	if event.is_action_pressed("tab_right"):
-		current_model_instance.rotation.y -= 2 / PI
+	if current_model_instance:
+		if event.is_action_pressed("tab_left"):
+			current_model_instance.rotation.y += 2 / PI
+		if event.is_action_pressed("tab_right"):
+			current_model_instance.rotation.y -= 2 / PI
 	if event.is_action_pressed("select"):
 		current_model_index = ((current_model_index + 1) + available_model.size()) % available_model.size()
 		change_model(current_model_index)

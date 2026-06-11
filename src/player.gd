@@ -1,7 +1,11 @@
 extends CanvasLayer
 class_name Player
+
+signal pointer_move(world_position:Vector3, normal:Vector3)
+signal pointer_click(world_position:Vector3, normal:Vector3)
 @onready var ray_cast:RayCast3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/ray_cast
 @onready var sub_viewport_container:SubViewportContainer = $texture_rect/margin_container/sub_viewport_container
+@onready var viewport:SubViewport = $texture_rect/margin_container/sub_viewport_container/sub_viewport
 @onready var margin_container:MarginContainer = $texture_rect/margin_container
 @onready var camera:Camera3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/head/camera
 @onready var head:Node3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/head
@@ -18,6 +22,7 @@ func _ready() -> void:
 	state_machine.add_state("inspect", state_ready_inspect, Callable(), state_process_inspect, state_input_inspect)
 	state_machine.add_state("dialog", state_ready_dialog, Callable(), state_process_dialog, state_input_dialog)
 	state_machine.add_state("interface", state_ready_interface)
+	state_machine.add_state("pointer", state_ready_pointer, Callable(), state_process_pointer, state_input_pointer)
 	state_machine.change_state("inspect")
 	sub_viewport_container.connect("gui_input", sub_viewport_gui_input)
 	Gesture.connect("move_mouse", move_mouse)
@@ -129,6 +134,52 @@ func state_ready_interface(_args:Dictionary) -> void:
 	state_machine.state_signal_connect(FilmCamera.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(Archive.visibility_changed, on_visibility_changed)
+
+var pointer_position:Vector2 = Vector2(0, 0)
+
+func state_ready_pointer(_args:Dictionary) -> void:
+	sub_viewport_container.grab_focus()
+	state_machine.state_signal_connect(Setting.touch_gesture_changed, func () -> void:
+		state_machine.change_state.call_deferred("inspect")
+	)
+
+	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(FilmCamera.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
+	state_machine.state_signal_connect(Archive.visibility_changed, on_visibility_changed)
+	pointer_position = viewport.size / 2
+
+func state_process_pointer(_delta:float) -> void:
+	if Dialog.block_input():
+		state_machine.change_state.call_deferred("dialog")
+	var axis:Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	pointer_position += axis * 10
+	pointer_position.x = clampf(pointer_position.x, 0, viewport.size.x)
+	pointer_position.y = clampf(pointer_position.y, 0, viewport.size.y)
+	if !axis.is_equal_approx(Vector2.ZERO):
+		click_area(pointer_position)
+		if ray_cast.is_colliding():
+			pointer_move.emit(ray_cast.get_collision_point(), ray_cast.get_collision_normal())
+
+func state_input_pointer(event:InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		click_area(pointer_position)
+		if ray_cast.is_colliding():
+			pointer_click.emit(ray_cast.get_collision_point(), ray_cast.get_collision_normal())
+	if event.is_action_pressed("ui_cancel") && Dialog.cancel_showing:
+		Dialog.on_cancel.emit()
+	elif event.is_action_pressed("select") && Dialog.selection.size():
+		Dialog.direction(1)
+	elif event.is_action_pressed("menu"):
+		Dialog.show_global_selection()
+		Dialog.direction(1)
+	if event is InputEventMouseButton || event is InputEventMouseMotion:
+		current_area = click_area(event.position)
+		pointer_position = event.position
+		if ray_cast.is_colliding():
+			pointer_move.emit(ray_cast.get_collision_point(), ray_cast.get_collision_normal())
+			if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
+				pointer_click.emit(ray_cast.get_collision_point(), ray_cast.get_collision_normal())
 
 func _physics_process(_delta:float) -> void:
 	camera.set_rotation(Vector3(deg_to_rad(sin(Time.get_unix_time_from_system())), 0, 0))

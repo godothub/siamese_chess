@@ -624,7 +624,8 @@ camera = NodePath("../camera")
 bit = -1
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
-[node name="marker_decorate" type="Node3D" parent="." unique_id=1395911076 node_paths=PackedStringArray("chessboard")]
+[node name="marker_decorate" type="Node3D" parent="." unique_id=1395911076 node_paths=PackedStringArray("chessboard", "player")]
 script = ExtResource("6_io7ym")
 chessboard = NodePath("../chessboard")
+player = NodePath("../player")
 metadata/_custom_type_script = "uid://y6xks0tymhp5"
