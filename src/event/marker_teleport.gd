@@ -6,11 +6,11 @@ class_name MarkerTeleport
 @export_custom(PropertyHint.PROPERTY_HINT_FLAGS, "bitboard") var bit:int = 0
 
 func show_selection() -> String:
-	if level.chessboard.state.get_bit(level.player_king) & bit:
+	if Chess.mask(Chess.x88_to_c64(Progress.get_value("player_by"))) & bit:
 		return "SELECTION_GOTO"
 	return ""
 
 func on_selection() -> void:
-	Progress.set_value("player_by", by)
-	if level.chessboard.state.get_bit(level.player_king) & bit:
+	if Chess.mask(Chess.x88_to_c64(Progress.get_value("player_by"))) & bit:
+		Progress.set_value("player_by", by)
 		await Loading.change_scene(to)

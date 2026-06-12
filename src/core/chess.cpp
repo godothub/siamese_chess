@@ -1188,7 +1188,7 @@ bool Chess::is_check(const godot::Ref<State> &_state, int _group)
 	return get_attack(_state, _group) & enemy_king_mask;
 }
 
-bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to)
+bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to, bool no_capture)
 {
 	DEV_ASSERT(_state.is_valid());
 	DEV_ASSERT(!(_from & 0x88));
@@ -1200,15 +1200,11 @@ bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to)
 	int from_group = Chess::group(from_piece);
 	int from_c64 = Chess::x88_to_c64(_from);
 	uint64_t to_mask = Chess::mask(Chess::x88_to_c64(_to));
-	if (_state->get_piece(_to) == '*')
+	if (_state->get_piece(_to) == '*' && !no_capture)
 	{
 		return false;
 	}
-	if (!from_piece && (_state->get_bit(ALL_PIECE) & to_mask))
-	{
-		return true;
-	}
-	if (_state->has_piece(_to) && Chess::is_same_group(from_piece, _state->get_piece(_to)))
+	if (_state->has_piece(_to) && (_state->has_piece(_from) && Chess::is_same_group(from_piece, _state->get_piece(_to)) || no_capture))
 	{
 		return true;
 	}
@@ -1586,8 +1582,6 @@ godot::PackedInt32Array Chess::generate_path(const godot::Ref<State> &_state, in
 	DEV_ASSERT(_state.is_valid());
 	DEV_ASSERT(!(_from & 0x88));
 	int from_64 = Chess::x88_to_c64(_from);
-	int from_piece = _state->get_piece(_from);
-	bool is_slider = (from_piece & 95) == 'Q' || (from_piece & 95) == 'R' || (from_piece & 95) == 'B';
 	std::vector<std::pair<int, int>> dp(64, std::make_pair(0x7FFFFFFF, -1));
 	std::vector<bool> shortest(64, false);
 	dp[from_64].first = 0;
@@ -1608,36 +1602,29 @@ godot::PackedInt32Array Chess::generate_path(const godot::Ref<State> &_state, in
 			break;
 		}
 		shortest[min_node] = true;
-		for (int j = 0; j < direction_count(from_piece); j++)
+		for (int j = 0; j < direction_count('K'); j++)
 		{
-			bool is_diagonal = abs(direction(from_piece, j)) != 1 && abs(direction(from_piece, j)) != 16;
+			bool is_diagonal = abs(direction('K', j)) != 1 && abs(direction('K', j)) != 16;
 			int step = is_diagonal ? 14 : 10;
 			int to = Chess::c64_to_x88(min_node);
 			int to_64;
-			while (true)
+			to += direction('K', j);
+			if (to & 0x88)
 			{
-				to += direction(from_piece, j);
-				if (to & 0x88)
+				continue;
+			}
+			to_64 = Chess::x88_to_c64(to);
+			if (is_blocked(_state, Chess::c64_to_x88(min_node), to, true))
+			{
+				continue;
+			}
+			//算一步
+			if (!shortest[to_64])
+			{
+				if (min_step + step < dp[to_64].first)
 				{
-					break;
-				}
-				to_64 = Chess::x88_to_c64(to);
-				if (is_blocked(_state, Chess::c64_to_x88(min_node), to))
-				{
-					break;
-				}
-				//算一步
-				if (!shortest[to_64])
-				{
-					if (min_step + step < dp[to_64].first)
-					{
-						dp[to_64].first = min_step + step;
-						dp[to_64].second = Chess::c64_to_x88(min_node);
-					}
-				}
-				if ((from_piece & 95) == 'K' || (from_piece & 95) == 'N' || (from_piece & 95) == 'P')
-				{
-					break;
+					dp[to_64].first = min_step + step;
+					dp[to_64].second = Chess::c64_to_x88(min_node);
 				}
 			}
 		}

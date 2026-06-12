@@ -8,7 +8,7 @@ class_name MarkerDocument
 @export var selection:String = ""
 
 func show_selection() -> String:
-	if level.chessboard.state.get_bit(level.player_king) & bit:
+	if Chess.mask(Chess.x88_to_c64(Progress.get_value("player_by"))) & bit:
 		return selection
 	return ""
 
@@ -24,4 +24,3 @@ func on_selection() -> void:
 		file.close()
 	Archive.open()
 	Archive.open_document(file_path)
-	level.show_selection()

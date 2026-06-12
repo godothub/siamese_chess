@@ -249,7 +249,6 @@ func state_ready_player(_arg:Dictionary) -> void:
 			state_machine.change_state("end")
 	)
 	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("engine_win"))
-	level.sync_to_global()
 	show_dialog_selection("HINT_YOUR_TURN")
 	chessboard.set_square_selection(start_from)
 

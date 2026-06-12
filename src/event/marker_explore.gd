@@ -3,22 +3,19 @@ class_name MarkerExplore
 
 signal move_executed(move:int)
 
-var player_group:int = 1
-var player_all:int = 0
-var player_king:int = 0
-var enemy_all:int = 0
-var enemy_king:int = 0
-
 @export var chessboard:Chessboard = null
 var state_machine:StateMachine = StateMachine.new()
+var cheshire_instance:Actor = null
+var cheshire_by:int = -1
 
 var travel_path:PackedInt32Array = []
 
 func _ready() -> void:
-	player_all = ord("A") if player_group == 0 else ord("a")
-	player_king = ord("K") if player_group == 0 else ord("k")
-	enemy_all = ord("a") if player_group == 0 else ord("A")
-	enemy_king = ord("k") if player_group == 0 else ord("K")
+	cheshire_by = Progress.get_value("player_by", chessboard.vector3_to_x88(position))
+	cheshire_instance = load("res://scene/actor/cheshire.tscn").instantiate()
+	chessboard.add_child(cheshire_instance)
+	cheshire_instance.global_position = chessboard.x88_to_vector3(cheshire_by)
+	chessboard.button_input_pointer = cheshire_by
 	state_machine.name = "explore"
 	state_machine.add_state("free", state_ready_free, state_exit_free)
 	state_machine.add_state("travel", state_ready_travel)
@@ -39,7 +36,7 @@ func state_ready_free(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(chessboard.click_empty, travel_to)
 	state_machine.state_signal_connect(Dialog.on_select, func(_selected:String) -> void:
 		level.available_events[_selected].on_selection.call_deferred()
-		level.show_selection()
+		level.show_selection(cheshire_by)
 	)
 	state_machine.state_signal_connect(chessboard.hovered, func (_selected:int) -> void:
 		if level.title.has(_selected):
@@ -47,18 +44,19 @@ func state_ready_free(_arg:Dictionary) -> void:
 		else:
 			Dialog.push_title("")
 	)
-	level.show_selection()
-	level.sync_to_global()
+	level.show_selection(cheshire_by)
+	sync_to_global()
 
 func state_exit_free() -> void:
 	Dialog.clear()
 
 func state_ready_travel(_arg:Dictionary) -> void:
 	if travel_path.size():
-		chessboard.execute_move(travel_path[-1])
+		cheshire_instance.move(chessboard.x88_to_vector3(travel_path[-1]))
+		cheshire_by = travel_path[-1]
 		travel_path.resize(travel_path.size() - 1)
 	state_machine.state_signal_connect(chessboard.click_empty, travel_to)
-	state_machine.state_signal_connect(chessboard.animation_finished, func () -> void:
+	state_machine.state_signal_connect(cheshire_instance.animation_finished, func () -> void:
 		if travel_path.size():
 			state_machine.change_state.call_deferred("travel")
 		else:
@@ -66,22 +64,29 @@ func state_ready_travel(_arg:Dictionary) -> void:
 	)
 
 func travel_to(_by:int, no_signal:bool = false) -> void:
-	var from:int = Chess.c64_to_x88(Chess.first_bit(chessboard.state.get_bit(player_king)))
-	var path:PackedInt32Array = Chess.generate_path(chessboard.state, from)
+	var path:PackedInt32Array = Chess.generate_path(chessboard.state, cheshire_by)
 	var path_to:PackedInt32Array = []
 	var iter:int = _by
-	while iter != from:
+	while iter != cheshire_by:
 		if path[Chess.x88_to_c64(iter)] == -1:
 			return
-		path_to.push_back(Chess.create(path[Chess.x88_to_c64(iter)], iter, 0))
+		path_to.push_back(iter)
 		iter = path[Chess.x88_to_c64(iter)]
 	if !path_to.size():
 		return
 	Narrative.speak(tr("TRAVEL_TO").format({"by": Localization.position_name_to_pronounce(Chess.x88_to_name(_by))}), false)
 	travel_path = path_to
+	Progress.set_value("player_by", _by)
 	if !no_signal:
-		move_executed.emit(Chess.create(from, _by, 0))
+		move_executed.emit(Chess.create(cheshire_by, _by, 0))
 	state_machine.change_state("travel")
 
 func state_ready_stop(_arg:Dictionary) -> void:
 	pass
+
+func sync_to_global() -> void:
+	ThirdEye3D.set_state(chessboard.state)
+	var cheshire_position:Vector3 = cheshire_instance.global_position
+	cheshire_position += Vector3(0, 1.6, 0)
+	var cheshire_rotation:Vector3 = cheshire_instance.global_rotation
+	FilmCamera.move_camera(cheshire_position, cheshire_rotation)
