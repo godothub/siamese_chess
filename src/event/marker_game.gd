@@ -188,7 +188,7 @@ func state_ready_engine(_arg:Dictionary) -> void:
 		engine.set_think_time(engine_relax_think_time)
 		engine.set_quies_enabled(true)
 	engine.start_search(chessboard.state, chessboard.state.get_turn(), history_zobrist, Callable())
-	if premove_state_machine.current_state == "stop" && player_group != 2:
+	if premove_state_machine.current_state == "stop" && player_group != 2 && player_group != 3:
 		premove_state_machine.change_state.call_deferred("start")
 
 func state_ready_waiting() -> void:
@@ -204,7 +204,7 @@ func state_ready_move(_arg:Dictionary) -> void:
 		var content:String = "WHITE_PLAY" if chessboard.state.get_turn() == 0 else "BLACK_PLAY"
 		content = tr(content).format({"move": Localization.move_name_to_pronounce(Chess.get_move_name(chessboard.state, _arg["move"]))})
 		Narrative.speak(content, false)
-	if premove_state_machine.current_state == "stop" && player_group != 2:
+	if premove_state_machine.current_state == "stop" && player_group != 2 && player_group != 3:
 		premove_state_machine.change_state.call_deferred("start")
 	state_machine.state_signal_connect(chessboard.animation_finished, func () -> void:
 		var end_type:String = Chess.get_end_type(chessboard.state)
@@ -388,7 +388,7 @@ func state_ready_end(_arg:Dictionary) -> void:
 func back_to_game() -> void:
 	if is_queued_for_deletion():
 		return
-	if chessboard.state.get_turn() != player_group && player_group != 2:
+	if chessboard.state.get_turn() != player_group && player_group != 2 || player_group == 3:
 		state_machine.change_state.call_deferred("engine")
 	elif premove_branch && premove_branch.move_order.size():
 		var next_premove:int = premove_branch.move_order[0]
