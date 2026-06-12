@@ -1,9 +1,8 @@
-extends Node3D
+extends Level
 
 var state:State = null
 var initial_state:State = null
 var history_document:Document = load("res://src/doc/history.gd").new()
-@onready var chessboard = $chessboard
 var old_pastor:ChessEngine = OldPastorEngine.new()
 var new_pastor:ChessEngine = PastorEngine.new()
 var white_engine:ChessEngine = null
@@ -14,6 +13,7 @@ var old_score:float = 0
 var new_score:float = 0
 
 func _ready() -> void:
+	super._ready()
 	history_document.set_filename("history.engine_play.json")
 	history_document.load_file()
 	Player.force_set_camera($camera_3d)
@@ -30,7 +30,7 @@ func _ready() -> void:
 	old_pastor.set_think_time(2)
 	new_pastor.set_max_depth(20)
 	new_pastor.set_think_time(2)
-	play_match()
+	$marker_game.start()
 
 func play_match() -> void:
 	while true:
