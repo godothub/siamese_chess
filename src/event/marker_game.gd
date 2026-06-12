@@ -2,6 +2,7 @@ extends MarkerProcedure
 class_name MarkerGame
 
 # 如果为2，就相当于同时控制黑白双方
+signal move_played(move:int)
 @export var player_group:int = 1
 
 var engine:ChessEngine = null	# 有可能会出现多线作战，共用同一个引擎显然不好
@@ -216,6 +217,7 @@ func state_ready_move(_arg:Dictionary) -> void:
 	assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(_arg["move"]))) 
 	|| Chess.from(_arg["move"]) == Chess.to(_arg["move"]) && !chessboard.state.has_piece(Chess.from(_arg["move"])))
 
+	move_played.emit(_arg["move"])
 	history_event.push_back(chessboard.execute_move(_arg["move"]))
 
 var available_events:Dictionary = {}

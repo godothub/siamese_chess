@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://co15mhip5ijel" path="res://src/test/opening_editor.gd" id="1_1g675"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="2_0yhrm"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="3_85lqa"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="2_6guo3"]
 [ext_resource type="Script" uid="uid://dg85frcnjlauy" path="res://src/interact.gd" id="4_2v8s7"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="5_0yhrm"]
 
@@ -18,7 +18,7 @@ background_mode = 2
 sky = SubResource("Sky_31ryr")
 tonemap_mode = 2
 
-[node name="sandbox" type="Node3D" unique_id=1238031932]
+[node name="opening_editor" type="Node3D" unique_id=1238031932]
 script = ExtResource("1_1g675")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1967183876]
@@ -29,13 +29,17 @@ environment = SubResource("Environment_htjak")
 [node name="camera_3d" type="Camera3D" parent="." unique_id=413765247]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.425, 0.946, 0)
 
-[node name="player" parent="." unique_id=1437426929 instance=ExtResource("3_85lqa")]
-
 [node name="interact" type="Area3D" parent="." unique_id=2116217727 node_paths=PackedStringArray("camera", "inspectable_item")]
 script = ExtResource("4_2v8s7")
 camera = NodePath("../camera_3d")
 inspectable_item = [NodePath("../chessboard")]
 metadata/_custom_type_script = "uid://dg85frcnjlauy"
+
+[node name="marker_game" type="Node3D" parent="." unique_id=2128355020 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("2_6guo3")
+player_group = 2
+chessboard = NodePath("../chessboard")
+metadata/_custom_type_script = "uid://dxapdof0oowg1"
 
 [node name="canvas_layer" type="CanvasLayer" parent="." unique_id=458974992]
 

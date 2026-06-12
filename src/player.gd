@@ -149,8 +149,6 @@ func state_ready_pointer(_args:Dictionary) -> void:
 	pointer_position = viewport.size / 2
 
 func state_process_pointer(_delta:float) -> void:
-	if Dialog.block_input():
-		state_machine.change_state.call_deferred("dialog")
 	var axis:Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	pointer_position += axis * 10
 	pointer_position.x = clampf(pointer_position.x, 0, viewport.size.x)

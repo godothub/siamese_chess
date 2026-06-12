@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://dke8eemuwfhea"]
 
 [ext_resource type="Script" uid="uid://baosxe1urv0fi" path="res://src/test/multiplayer_test.gd" id="1_uvkj0"]
-[ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_5mggk"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_wlho1"]
-[ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="4_sw4ef"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="5_uvkj0"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="6_wlho1"]
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="7_sw4ef"]
@@ -44,62 +42,12 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=82401702]
 environment = SubResource("Environment_46dhi")
 
-[node name="player" parent="." unique_id=1111666 instance=ExtResource("2_5mggk")]
-
 [node name="chessboard" parent="." unique_id=1937646692 instance=ExtResource("3_wlho1")]
 metadata/_edit_lock_ = true
 
 [node name="camera" type="Camera3D" parent="." unique_id=1612927449]
 transform = Transform3D(-1, 7.5710346e-08, -4.3711385e-08, 0, 0.49999997, 0.86602545, 8.742278e-08, 0.86602545, -0.49999997, 0, 8.28637, -7.5226173)
 fov = 89.176636
-
-[node name="teleport_pointer_1" parent="." unique_id=82850098 instance=ExtResource("4_sw4ef")]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 1, 0, 7)
-visible = false
-to = "res://scene/level/random_battle.tscn"
-by = 4
-
-[node name="teleport_pointer_2" parent="." unique_id=1283882327 instance=ExtResource("4_sw4ef")]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -1, 0, 7)
-visible = false
-to = "res://scene/level/random_battle.tscn"
-by = 3
-
-[node name="teleport_pointer_3" parent="." unique_id=841991874 instance=ExtResource("4_sw4ef")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1, 0, -7)
-visible = false
-to = "res://scene/level/random_battle.tscn"
-by = 116
-
-[node name="teleport_pointer_4" parent="." unique_id=1489036750 instance=ExtResource("4_sw4ef")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1, 0, -7)
-visible = false
-to = "res://scene/level/random_battle.tscn"
-by = 115
-
-[node name="teleport_pointer_5" parent="." unique_id=465900847 instance=ExtResource("4_sw4ef")]
-transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, -7, 0, 0.9999997)
-visible = false
-to = "res://scene/level/random_battle.tscn"
-by = 71
-
-[node name="teleport_pointer_6" parent="." unique_id=323073370 instance=ExtResource("4_sw4ef")]
-transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, -7, 0, -1.0000004)
-visible = false
-to = "res://scene/level/random_battle.tscn"
-by = 55
-
-[node name="teleport_pointer_7" parent="." unique_id=280647583 instance=ExtResource("4_sw4ef")]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 7, 0, 1.0000004)
-visible = false
-to = "res://scene/level/random_battle.tscn"
-by = 64
-
-[node name="teleport_pointer_8" parent="." unique_id=1279570426 instance=ExtResource("4_sw4ef")]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 7, 0, -0.9999997)
-visible = false
-to = "res://scene/level/random_battle.tscn"
-by = 48
 
 [node name="csg_box_3d" type="CSGBox3D" parent="." unique_id=129613447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -8.502441, -11.020386)

@@ -8,7 +8,7 @@ class_name MarkerCallback
 @export_custom(PropertyHint.PROPERTY_HINT_FLAGS, "bitboard") var bit:int = 0
 
 func show_selection() -> String:
-	if Chess.mask(Chess.x88_to_c64(Progress.get_value("player_by"))) & bit:
+	if Chess.mask(Chess.x88_to_c64(Progress.get_value("player_by", 0))) & bit:
 		return selection
 	return ""
 

@@ -656,7 +656,7 @@ text = "LEVEL_PLAY_CHESS"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="marker_game" type="Node3D" parent="." unique_id=566765094 node_paths=PackedStringArray("chessboard")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1144896, 0, -1)
 script = ExtResource("31_e0ue8")
 can_take_back = false
 can_leave = false
