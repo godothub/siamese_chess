@@ -2,11 +2,13 @@ extends MarkerEvent
 class_name MarkerExplore
 
 signal move_executed(move:int)
+signal animation_finished()
 
 @export var chessboard:Chessboard = null
 var state_machine:StateMachine = StateMachine.new()
 var cheshire_instance:Actor = null
 var cheshire_by:int = -1
+var dont_move:bool = false
 
 var travel_path:PackedInt32Array = []
 
@@ -33,9 +35,10 @@ func on_change_state(state:String) -> void:
 
 func state_ready_free(_arg:Dictionary) -> void:
 	Clock.pause()
+	dont_move = false
 	state_machine.state_signal_connect(chessboard.click_empty, travel_to)
 	state_machine.state_signal_connect(Dialog.on_select, func(_selected:String) -> void:
-		level.available_events[_selected].on_selection.call_deferred()
+		level.available_events[_selected].on_selection()
 		level.show_selection(cheshire_by)
 	)
 	state_machine.state_signal_connect(chessboard.hovered, func (_selected:int) -> void:
@@ -60,7 +63,11 @@ func state_ready_travel(_arg:Dictionary) -> void:
 		if travel_path.size():
 			state_machine.change_state.call_deferred("travel")
 		else:
-			state_machine.change_state.call_deferred("free")
+			animation_finished.emit()
+			if dont_move:
+				state_machine.change_state.call_deferred("stop")
+			else:
+				state_machine.change_state.call_deferred("free")
 	)
 
 func travel_to(_by:int, no_signal:bool = false) -> void:
@@ -82,7 +89,7 @@ func travel_to(_by:int, no_signal:bool = false) -> void:
 	state_machine.change_state("travel")
 
 func state_ready_stop(_arg:Dictionary) -> void:
-	pass
+	dont_move = true
 
 func sync_to_global() -> void:
 	ThirdEye3D.set_state(chessboard.state)

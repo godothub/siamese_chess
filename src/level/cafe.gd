@@ -24,8 +24,8 @@ func interact_pastor() -> void:
 
 	var from:int = Progress.get_value("player_by", 0)
 	if from != 0x54:
-		$chessboard.execute_move(Chess.create(from, 0x54, 0))
-		await $chessboard.animation_finished
+		$marker_explore.travel_to(0x54)
+		await $marker_explore.animation_finished
 	$chessboard.set_enabled(false)
 	standard_chessboard.set_enabled(true)
 	$marker_explore.cheshire_instance.set_position($chessboard.name_to_vector3("e2"))
@@ -42,11 +42,12 @@ func select_turn(result:String) -> void:
 	if result == "canceled":
 		game_end()
 		return
-	Dialog.on_select.connect(func (_selected:String) -> void:
+	var selected_func:Callable
+	var cancel_func:Callable
+	selected_func = func (_selected:String) -> void:
+		Dialog.on_cancel.disconnect(cancel_func)
+		Dialog.hide_cancel()
 		match _selected:
-			"SELECTION_CANCEL":
-				game_end()
-				return
 			"SELECTION_PLAY_AS_WHITE":
 				standard_player_group = 0
 			"SELECTION_PLAY_AS_BLACK":
@@ -61,8 +62,14 @@ func select_turn(result:String) -> void:
 		standard_chessboard.remove_piece_set()
 		standard_chessboard.add_default_piece_set()
 		game_event.start()
-	, CONNECT_ONE_SHOT)
-	Dialog.push_selection(["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM", "SELECTION_CANCEL"], "", true, false)
+	cancel_func = func () -> void:
+		game_end()
+		Dialog.hide_cancel()
+		Dialog.on_select.disconnect(selected_func)
+	Dialog.on_cancel.connect(cancel_func, CONNECT_ONE_SHOT)
+	Dialog.on_select.connect(selected_func, CONNECT_ONE_SHOT)
+	Dialog.show_cancel()
+	Dialog.push_selection(["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM"], "", true, false)
 
 func game_end(_result:String = "") -> void:
 	Player.force_set_camera($camera)
