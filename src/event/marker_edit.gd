@@ -6,7 +6,7 @@ var state_machine:StateMachine = StateMachine.new()
 @export var chessboard:Chessboard = null
 
 func _ready() -> void:
-	state_machine.add_state("edit_state", state_ready_edit_state)
+	state_machine.add_state("edit_state", state_ready_edit_state, state_exit_edit_state)
 	state_machine.add_state("edit_fen", state_ready_edit_fen)
 	state_machine.add_state("stop", state_ready_stop)
 
@@ -61,10 +61,10 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 			"SELECTION_FINISH":
 				state_machine.change_state("stop", {"result": "finished"})
 				return
-			"SELECTION_CANCEL":
-				state_machine.change_state("stop", {"result": "canceled"})
-				return
-		Dialog.push_selection(["SELECTION_CANCEL", "PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_NEUTRAL", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], "HINT_EDIT", false, false)
+		Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_NEUTRAL", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], "HINT_EDIT", false, false)
+	)
+	state_machine.state_signal_connect(Dialog.on_cancel, func () -> void:
+		state_machine.change_state("stop", {"result": "canceled"})
 	)
 	state_machine.state_signal_connect(chessboard.click_empty, func (_selected:int) -> void:
 		if chessboard.state.has_piece(_selected):
@@ -74,7 +74,11 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 			chessboard.state.add_piece(_selected, edit_piece)
 			chessboard.add_piece_instance(Chessboard.get_default_piece_instance(edit_piece), _selected)
 	)
-	Dialog.push_selection(["SELECTION_CANCEL", "PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_NEUTRAL", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], "HINT_EDIT", false, false)
+	Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_NEUTRAL", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], "HINT_EDIT", false, false)
+	Dialog.show_cancel()
+
+func state_exit_edit_state() -> void:
+	Dialog.hide_cancel()
 
 func state_ready_edit_fen(_arg:Dictionary) -> void:
 	var text_input_instance:TextInput = TextInput.create_text_input_instance("输入FEN格式的布局：", "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")

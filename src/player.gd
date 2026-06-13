@@ -108,7 +108,6 @@ func state_input_dialog(event:InputEvent) -> void:
 	if event.is_action_pressed("ui_right") || event.is_action_pressed("tab_right"):
 		Dialog.direction(1)
 	if event.is_action_pressed("ui_up") || event.is_action_pressed("ui_down"):
-		Dialog.cancel()
 		Dialog.cancel_focus()
 		Dialog.hide_global_selection()
 	if event.is_action_pressed("ui_accept"):
