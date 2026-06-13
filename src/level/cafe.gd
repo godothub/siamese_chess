@@ -22,15 +22,15 @@ func interact_pastor() -> void:
 	change_state("yulan_game")
 	Player.force_set_camera($camera_pastor)
 
-	var from:int = Chess.c64_to_x88(Chess.first_bit($chessboard.state.get_bit(player_king)))
+	var from:int = Progress.get_value("player_by", 0)
 	if from != 0x54:
 		$chessboard.execute_move(Chess.create(from, 0x54, 0))
 		await $chessboard.animation_finished
 	$chessboard.set_enabled(false)
 	standard_chessboard.set_enabled(true)
-	$chessboard/pieces/cheshire.set_position($chessboard.name_to_vector3("e2"))
-	$chessboard/pieces/cheshire.set_rotation(Vector3(0, PI / 2, 0))
-	$chessboard/pieces/cheshire.play_animation("thinking")
+	$marker_explore.cheshire_instance.set_position($chessboard.name_to_vector3("e2"))
+	$marker_explore.cheshire_instance.set_rotation(Vector3(0, PI / 2, 0))
+	$marker_explore.cheshire_instance.play_animation("thinking")
 	Player.force_set_camera($camera_chessboard)
 
 	standard_chessboard.state = Chess.create_initial_state()
@@ -66,8 +66,8 @@ func select_turn(result:String) -> void:
 
 func game_end(_result:String = "") -> void:
 	Player.force_set_camera($camera)
-	$chessboard/pieces/cheshire.play_animation("battle_idle")
-	$chessboard/pieces/cheshire.set_position($chessboard.name_to_vector3("e3"))
+	$marker_explore.cheshire_instance.play_animation("battle_idle")
+	$marker_explore.cheshire_instance.set_position($chessboard.name_to_vector3("e3"))
 	$chessboard.set_enabled(true)
 	standard_chessboard.set_enabled(false)
 	change_state("")
