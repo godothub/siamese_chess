@@ -65,7 +65,7 @@ func _unhandled_input(event:InputEvent) -> void:
 
 func cancel_gui_input(_event:InputEvent) -> void:
 	if _event is InputEventMouseButton && _event.button_index == MOUSE_BUTTON_LEFT && _event.pressed:
-		on_cancel.emit()
+		cancel()
 
 func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_anywhere:bool = false, _waiting:bool = false) -> void:
 	text = _text
@@ -138,6 +138,10 @@ func show_cancel() -> void:
 func hide_cancel() -> void:
 	cancel_showing = false
 	cancel_label.text = ""
+
+func cancel() -> void:
+	if cancel_showing:
+		on_cancel.emit()
 
 func clear() -> void:
 	if tween && tween.is_running():

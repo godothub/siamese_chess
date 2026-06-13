@@ -38,7 +38,7 @@ func state_ready_inspect(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(Setting.touch_gesture_changed, func () -> void:
 		state_machine.change_state.call_deferred("inspect")
 	)
-
+	state_machine.state_signal_connect(Dialog.on_focus, state_machine.change_state.bind("dialog"))
 	state_machine.state_signal_connect(Setting.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(FilmCamera.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
@@ -78,7 +78,7 @@ func state_input_inspect(event:InputEvent) -> void:
 		if event.is_action_released("ui_accept"):
 			item.button_input("accept", false)
 	if event.is_action_pressed("ui_cancel") && Dialog.cancel_showing:
-		Dialog.on_cancel.emit()
+		Dialog.cancel()
 	elif event.is_action_pressed("select") && Dialog.selection.size():
 		Dialog.direction(1)
 	elif event.is_action_pressed("menu"):
@@ -108,17 +108,17 @@ func state_input_dialog(event:InputEvent) -> void:
 	if event.is_action_pressed("ui_right") || event.is_action_pressed("tab_right"):
 		Dialog.direction(1)
 	if event.is_action_pressed("ui_up") || event.is_action_pressed("ui_down"):
-		Dialog.on_cancel.emit()
+		Dialog.cancel()
 		Dialog.cancel_focus()
 		Dialog.hide_global_selection()
 	if event.is_action_pressed("ui_accept"):
 		Dialog.confirm()
 	if Dialog.force_selection:
 		if event.is_action_pressed("ui_cancel"):
-			Dialog.on_cancel.emit()
+			Dialog.cancel()
 		return
 	if event.is_action_pressed("ui_cancel"):
-		Dialog.on_cancel.emit()
+		Dialog.cancel()
 		Dialog.cancel_focus()
 		Dialog.hide_global_selection()
 	if event.is_action_pressed("menu"):
@@ -164,7 +164,7 @@ func state_input_pointer(event:InputEvent) -> void:
 		if ray_cast.is_colliding():
 			pointer_click.emit(ray_cast.get_collision_point(), ray_cast.get_collision_normal())
 	if event.is_action_pressed("ui_cancel") && Dialog.cancel_showing:
-		Dialog.on_cancel.emit()
+		Dialog.cancel()
 	elif event.is_action_pressed("select") && Dialog.selection.size():
 		Dialog.direction(1)
 	elif event.is_action_pressed("menu"):
