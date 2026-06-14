@@ -25,9 +25,12 @@ func _ready() -> void:
 func _physics_process(_delta:float) -> void:
 	var vision_look_at:Vector2 = Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
 	head.global_rotation.y -= vision_look_at.x / 1000 * Setting.get_value("camera_rotate_sensitive") * Setting.axis[Setting.get_value("camera_rotate_axis")].x
+	head.global_rotation.y += Input.get_gyroscope().y * _delta
 	var yaw:float = head.global_rotation.x - vision_look_at.y / 2000 * Setting.get_value("camera_rotate_sensitive") * Setting.axis[Setting.get_value("camera_rotate_axis")].y
-	yaw = clamp(yaw, -PI / 2, PI * 2 / 6)
+	#yaw = clamp(yaw, -PI / 2, PI * 2 / 6)
+	yaw -= Input.get_gyroscope().x * _delta
 	head.global_rotation.x = yaw
+	head.global_rotation.z -= Input.get_gyroscope().z * _delta
 	if zoom_plus.button_pressed || Input.is_action_pressed("tab_right"):
 		zoom_camera(slider.value + _delta * Setting.get_value("camera_move_speed"))
 	if zoom_minus.button_pressed || Input.is_action_pressed("tab_left"):
