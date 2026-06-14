@@ -9,8 +9,6 @@ signal pointer_click(world_position:Vector3, normal:Vector3)
 @onready var camera:Camera3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/head/camera
 @onready var head:Node3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/head
 var state_machine:StateMachine = StateMachine.new()
-var mouse_moved:bool = false
-var can_move:bool = true
 var inspectable_item_list:Array[InspectableItem] = []
 var current_area:Area3D = null
 var target_camera:Camera3D = null

@@ -416,6 +416,7 @@ game_event = NodePath("../marker_game")
 metadata/_custom_type_script = "uid://csapts1u0p18r"
 
 [node name="marker_explore" type="Node3D" parent="." unique_id=1293557151 node_paths=PackedStringArray("chessboard")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("25_v6t1w")
 chessboard = NodePath("../chessboard")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
