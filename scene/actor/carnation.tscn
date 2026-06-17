@@ -9,13 +9,18 @@ animation = &"idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_187n8"]
 animation = &"sit_and_play"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ug8p"]
+animation = &"sit_and_think"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_74he7"]
 states/idle/node = SubResource("AnimationNodeAnimation_74he7")
 states/idle/position = Vector2(565, 106)
 states/sit_and_play/node = SubResource("AnimationNodeAnimation_187n8")
 states/sit_and_play/position = Vector2(565, 173)
+states/sit_and_think/node = SubResource("AnimationNodeAnimation_4ug8p")
+states/sit_and_think/position = Vector2(565, 228)
 
-[node name="carnation" unique_id=226847651 instance=ExtResource("1_74he7")]
+[node name="carnation" unique_id=1846543884 instance=ExtResource("1_74he7")]
 script = ExtResource("2_eoyf3")
 
 [node name="animation_tree" type="AnimationTree" parent="." index="2" unique_id=296152206]

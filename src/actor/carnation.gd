@@ -6,3 +6,6 @@ func _ready() -> void:
 func set_direction(_rotation:float) -> Actor:
 	global_rotation.y = _rotation
 	return self
+
+func play_animation(anim:String) -> void:
+	$animation_tree.get("parameters/playback").start(anim)
