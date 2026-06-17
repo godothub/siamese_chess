@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dtghnm0mnjeda" path="res://assets/model/garden_chair.glb" id="8_85gfo"]
 [ext_resource type="PackedScene" uid="uid://bfycu28umn8ud" path="res://assets/model/shrub_1.glb" id="9_bedx7"]
 [ext_resource type="PackedScene" uid="uid://jeaolg2mf178" path="res://assets/model/tree_1.glb" id="9_fvl7i"]
-[ext_resource type="PackedScene" uid="uid://dmwl65mg7565u" path="res://scene/actor/piece_pawn_black.tscn" id="9_u1qnn"]
 [ext_resource type="PackedScene" uid="uid://bfbmbxa66uwhd" path="res://assets/model/grass.glb" id="9_y0tp7"]
 [ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="10_bedx7"]
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="11_u1qnn"]
@@ -280,16 +279,6 @@ size = Vector3(15.7, 0.4, 1.4583831)
 [node name="shrub_39" parent="background" unique_id=883021264 instance=ExtResource("9_bedx7")]
 transform = Transform3D(-0.19931655, 0, -0.97993493, 0, 1, 0, 0.97993493, 0, -0.19931655, -0.628293, 0, 8.836304)
 
-[node name="marker_actor_carnatiion" type="Marker3D" parent="." unique_id=58941707]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
-script = ExtResource("5_6tgvo")
-piece = 112
-actor = ExtResource("9_u1qnn")
-meta = {
-"larger_scale": true
-}
-metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
-
 [node name="teleport_pointer_garden" parent="." unique_id=82850098 instance=ExtResource("10_bedx7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 1)
 to = "res://scene/level/entrance.tscn"
@@ -335,5 +324,8 @@ metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 script = ExtResource("16_dy1ll")
 chessboard = NodePath("../chessboard")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
+
+[node name="garden_chair2_2" parent="." unique_id=1929710267 instance=ExtResource("8_85gfo")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -5, 0, -7)
 
 [editable path="background/grass"]

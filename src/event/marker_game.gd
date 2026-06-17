@@ -364,7 +364,9 @@ func state_exit_extra_move() -> void:
 func state_ready_result(_arg:Dictionary) -> void:
 	premove_state_machine.change_state("stop")
 	var result:String = Chess.get_end_type(chessboard.state)
-	state_machine.state_signal_connect(Dialog.on_next, state_machine.change_state.bind("end"))
+	state_machine.state_signal_connect(Dialog.on_next, func () -> void:
+		state_machine.change_state("end", {"result": result})
+	)
 	match result:
 		"checkmate_black":
 			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "", true, true)
