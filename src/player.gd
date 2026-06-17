@@ -176,7 +176,7 @@ func state_input_pointer(event:InputEvent) -> void:
 				pointer_click.emit(ray_cast.get_collision_point(), ray_cast.get_collision_normal())
 
 func _physics_process(_delta:float) -> void:
-	camera.set_rotation(Vector3(deg_to_rad(sin(Time.get_unix_time_from_system())), 0, 0))
+	camera.rotation += Input.get_gyroscope() * _delta
 	state_machine.process(_delta)
 
 func sub_viewport_gui_input(event:InputEvent) -> void:
