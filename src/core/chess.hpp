@@ -79,6 +79,7 @@ class Chess : public godot::Object
 		static godot::String stringify(const godot::Ref<State> &_state);
 		static bool is_check(const godot::Ref<State> &_state, int _group);
 		static bool is_blocked(const godot::Ref<State> &_state, int _from, int _to, bool no_capture = false);
+		static bool is_wall_collide(const godot::Ref<State> &_state, int _from, int _to);
 		static bool is_enemy(const godot::Ref<State> &_state, int _from, int _to);
 		static int64_t get_attack(const godot::Ref<State> &_state, int _group);
 		static bool is_en_passant(const godot::Ref<State> &_state, int _from, int _to);

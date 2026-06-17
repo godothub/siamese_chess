@@ -1192,7 +1192,7 @@ bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to, bool
 {
 	DEV_ASSERT(_state.is_valid());
 	DEV_ASSERT(!(_from & 0x88));
-	if (_to & 0x88)
+	if (is_wall_collide(_state, _from, _to))
 	{
 		return true;
 	}
@@ -1208,6 +1208,19 @@ bool Chess::is_blocked(const godot::Ref<State> &_state, int _from, int _to, bool
 	{
 		return true;
 	}
+	return false;
+}
+
+bool Chess::is_wall_collide(const godot::Ref<State> &_state, int _from, int _to)
+{
+	DEV_ASSERT(_state.is_valid());
+	DEV_ASSERT(!(_from & 0x88));
+	if (_to & 0x88)
+	{
+		return true;
+	}
+	int from_c64 = Chess::x88_to_c64(_from);
+	uint64_t to_mask = Chess::mask(Chess::x88_to_c64(_to));
 	if (_state->get_bit('#') & to_mask)
 	{
 		return true;
@@ -1614,7 +1627,7 @@ godot::PackedInt32Array Chess::generate_path(const godot::Ref<State> &_state, in
 				continue;
 			}
 			to_64 = Chess::x88_to_c64(to);
-			if (is_blocked(_state, Chess::c64_to_x88(min_node), to, true))
+			if (is_wall_collide(_state, Chess::c64_to_x88(min_node), to))
 			{
 				continue;
 			}
@@ -2065,6 +2078,7 @@ void Chess::_bind_methods()
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("stringify"), &Chess::stringify);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_check"), &Chess::is_check);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_blocked"), &Chess::is_blocked);
+	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_wall_collide"), &Chess::is_wall_collide);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_enemy"), &Chess::is_enemy);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("get_attack"), &Chess::get_attack);
 	godot::ClassDB::bind_static_method(get_class_static(), godot::D_METHOD("is_en_passant"), &Chess::is_en_passant);
