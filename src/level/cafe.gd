@@ -3,6 +3,7 @@ extends Level
 @onready var standard_history_document:Document = load("res://src/doc/history.gd").new()
 @onready var standard_chessboard:Chessboard = $table_0/chessboard_standard
 @onready var edit_event:MarkerProcedure = $marker_edit
+@onready var decision_event:MarkerProcedure = $marker_decision
 @onready var game_event:MarkerProcedure = $marker_game
 var standard_player_group:int = 0
 
@@ -15,8 +16,9 @@ func _ready() -> void:
 	standard_chessboard.set_enabled(false)
 	Player.add_inspectable_item(standard_chessboard)
 	$pastor.play_animation("thinking")
-	edit_event.connect("procedure_end", select_turn)
+	edit_event.connect("procedure_end", edit_end)
 	game_event.connect("procedure_end", game_end)
+	decision_event.connect("procedure_end", decision_end)
 
 func interact_pastor() -> void:
 	change_state("yulan_game")
@@ -38,38 +40,31 @@ func interact_pastor() -> void:
 	standard_chessboard.add_default_piece_set()
 	edit_event.start()
 
-func select_turn(result:String) -> void:
-	if result == "canceled":
+func edit_end(_result:String) -> void:
+	if _result == "canceled":
 		game_end()
 		return
-	var selected_func:Callable
-	var cancel_func:Callable
-	selected_func = func (_selected:String) -> void:
-		Dialog.on_cancel.disconnect(cancel_func)
-		Dialog.hide_cancel()
-		match _selected:
-			"SELECTION_PLAY_AS_WHITE":
-				standard_player_group = 0
-			"SELECTION_PLAY_AS_BLACK":
-				standard_player_group = 1
-			"SELECTION_PLAY_AS_RANDOM":
-				standard_player_group = randi() % 2
-		if standard_player_group == 0:
-			standard_chessboard.rotation.y = 0
-		else:
-			standard_chessboard.rotation.y = PI
-		game_event.player_group = standard_player_group
-		standard_chessboard.remove_piece_set()
-		standard_chessboard.add_default_piece_set()
-		game_event.start()
-	cancel_func = func () -> void:
+	decision_event.start()
+
+func decision_end(_result:String) -> void:
+	if _result == "":
 		game_end()
-		Dialog.hide_cancel()
-		Dialog.on_select.disconnect(selected_func)
-	Dialog.on_cancel.connect(cancel_func, CONNECT_ONE_SHOT)
-	Dialog.on_select.connect(selected_func, CONNECT_ONE_SHOT)
-	Dialog.show_cancel()
-	Dialog.push_selection(["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM"], "", true, false)
+		return
+	match _result:
+		"SELECTION_PLAY_AS_WHITE":
+			standard_player_group = 0
+		"SELECTION_PLAY_AS_BLACK":
+			standard_player_group = 1
+		"SELECTION_PLAY_AS_RANDOM":
+			standard_player_group = randi() % 2
+	if standard_player_group == 0:
+		standard_chessboard.rotation.y = 0
+	else:
+		standard_chessboard.rotation.y = PI
+	game_event.player_group = standard_player_group
+	standard_chessboard.remove_piece_set()
+	standard_chessboard.add_default_piece_set()
+	game_event.start()
 
 func game_end(_result:String = "") -> void:
 	Player.force_set_camera($camera)
