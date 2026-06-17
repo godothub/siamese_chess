@@ -35,6 +35,7 @@
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="34_vaepl"]
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="35_ekt7h"]
 [ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="35_hnywy"]
+[ext_resource type="Script" uid="uid://ce4h2ni6na8rh" path="res://src/event/marker_enter_room.gd" id="37_c1ip0"]
 [ext_resource type="Script" uid="uid://ck5bvbw2bcwox" path="res://src/event/marker_edit.gd" id="37_fefse"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e1edc"]
@@ -149,7 +150,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8343501, 0, 3.399881)
 [node name="door_2" parent="." unique_id=1775898386 instance=ExtResource("5_10bqq")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -5, 0, 2)
 
-[node name="face" parent="door_2" index="1" unique_id=763026801]
+[node name="face" parent="door_2" index="1" unique_id=335988474]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.5224618, 1.0110773, 0.14069557)
 
 [node name="phonograph" parent="." unique_id=624737484 instance=ExtResource("24_ncv1s")]
@@ -197,12 +198,12 @@ operation = 2
 size = Vector3(1.137619, 2.7592292, 0.51317596)
 
 [node name="csg_box_3d" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1340471956]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4737527, 3.9182553, -1.0002946)
-size = Vector3(9.131055, 0.40820313, 6.2000003)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4737527, 5.2830625, -1.0002946)
+size = Vector3(9.131055, 3.1378174, 6.2000003)
 
 [node name="csg_box_3d_2" type="CSGBox3D" parent="csg_combiner_3d" unique_id=691703971]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4724855, 3.9182553, 3.4836135)
-size = Vector3(5.144971, 0.40820313, 2.8017914)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4724855, 5.281018, 3.4836135)
+size = Vector3(5.144971, 3.133728, 2.8017914)
 
 [node name="painting_frame_rect_6" parent="." unique_id=469426294 instance=ExtResource("25_skhdv")]
 transform = Transform3D(-1.3113416e-07, 3, -4.1201135e-15, -3, -1.3113416e-07, 3.9340247e-07, 3.9340247e-07, 2.1316282e-14, 3, -0.9954612, 1.9579754, -4.053211)
@@ -335,38 +336,21 @@ light_energy = 0.723
 [node name="marker_camera" type="Node3D" parent="." unique_id=1299424814 node_paths=PackedStringArray("camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
 script = ExtResource("31_njksd")
-camera = NodePath("camera")
-selection = "HOTEL_ROOM_BATHROOM"
-bit = 6597069766656
-metadata/_custom_type_script = "uid://b5f46bgwa3pux"
-
-[node name="camera" type="Camera3D" parent="marker_camera" unique_id=2001745757]
-transform = Transform3D(-0.8011513, 0.36232108, -0.47631937, -0.025687931, 0.7743532, 0.6322322, 0.5979104, 0.5187492, -0.6110667, -4.3761883, 3.0222034, -0.6560347)
-fov = 106.10179
-
-[node name="marker_camera_2" type="Node3D" parent="." unique_id=66818583 node_paths=PackedStringArray("camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
-script = ExtResource("31_njksd")
-camera = NodePath("camera")
-selection = "HOTEL_ROOM_BEDROOM"
+camera = NodePath("../camera_bedroom")
 bit = 129354301440
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
-[node name="camera" type="Camera3D" parent="marker_camera_2" unique_id=2144305316]
-transform = Transform3D(-0.65081406, -0.3796186, 0.65751874, 5.580079e-08, 0.8660254, 0.50000006, -0.7592372, 0.32540706, -0.56362146, 3.4173315, 2.841991, -4.5870304)
-fov = 82.45983
+[node name="camera_bathroom" type="Camera3D" parent="." unique_id=2001745757]
+transform = Transform3D(-0.8011513, 0.36232108, -0.4763194, -0.025687931, 0.7743532, 0.632232, 0.5979104, 0.5187492, -0.6110667, -5.3761883, 3.0222034, 2.3439653)
+fov = 106.10179
 
-[node name="marker_camera_3" type="Node3D" parent="." unique_id=1807043683 node_paths=PackedStringArray("camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
-script = ExtResource("31_njksd")
-camera = NodePath("camera")
-selection = "HOTEL_ROOM_MIRROR"
-bit = 6597069766656
-metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+[node name="camera_bedroom" type="Camera3D" parent="." unique_id=2085312011]
+transform = Transform3D(-0.51951903, -0.5695246, 0.63697857, 0, 0.745476, 0.66653246, -0.85445887, 0.34627628, -0.387289, 2.2641253, 3.3907497, -2.9442234)
+fov = 101.0
 
-[node name="camera" type="Camera3D" parent="marker_camera_3" unique_id=1274399088]
-transform = Transform3D(-1, 4.371139e-08, -7.571033e-08, 3.5785114e-08, 0.99481523, 0.10169871, 7.976319e-08, 0.10169871, -0.99481523, -3.9858909, 1.6927991, 2.7436905)
-fov = 82.5
+[node name="camera_mirror" type="Camera3D" parent="." unique_id=473893101]
+transform = Transform3D(-0.9994502, -0.033155125, -6.803385e-08, -0.032380342, 0.97609425, 0.2149229, -0.007125728, 0.21480468, -0.97663105, -5.0942388, 1.6659253, 4.002696)
+fov = 106.10179
 
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=1204809324]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4735824, 1.9633994, -0.9803901)
@@ -425,5 +409,21 @@ metadata/_custom_type_script = "uid://dxapdof0oowg1"
 script = ExtResource("37_fefse")
 chessboard = NodePath("../chessboard_sandbox")
 metadata/_custom_type_script = "uid://ck5bvbw2bcwox"
+
+[node name="marker_enter_room_bathroom" type="Node3D" parent="." unique_id=2140637076 node_paths=PackedStringArray("camera")]
+script = ExtResource("37_c1ip0")
+hint = "HOTEL_ROOM_BATHROOM"
+bit_from = 8589934592
+bit_to = 2199023255552
+camera = NodePath("../camera_bathroom")
+metadata/_custom_type_script = "uid://ce4h2ni6na8rh"
+
+[node name="marker_enter_room_bedroom" type="Node3D" parent="." unique_id=50714712 node_paths=PackedStringArray("camera")]
+script = ExtResource("37_c1ip0")
+hint = "HOTEL_ROOM_BEDROOM"
+bit_from = 2199023255552
+bit_to = 8589934592
+camera = NodePath("../camera_bedroom")
+metadata/_custom_type_script = "uid://ce4h2ni6na8rh"
 
 [editable path="door_2"]

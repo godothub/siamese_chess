@@ -4,6 +4,8 @@ extends Node
 # 由于Archive名称已占用，故命名Progress，也就是游玩进展
 # 这里的存档区分于Archive，Archive是允许跨越多个存档的文件机制
 
+signal value_changed(key:String, value:Variant)
+
 var table:Dictionary = {}
 
 func load_file() -> void:
@@ -30,17 +32,23 @@ func get_value(key:String, default:Variant = null) -> Variant:
 		return table[key]
 	return default
 
-func set_value(key:String, data:Variant) -> void:
+func set_value(key:String, data:Variant, no_signal:bool = false) -> void:
 	table[key] = data
+	if !no_signal:
+		value_changed.emit(key, data)
 
-func accumulate(key:String, data:Variant) -> void:
+func accumulate(key:String, data:Variant, no_signal:bool = false) -> void:
 	if !table.has(key):
 		table[key] = data
 	table[key] += data
+	if !no_signal:
+		value_changed.emit(key, data)
 
-func create_if_not_exist(key:String, data:Variant) -> void:
+func create_if_not_exist(key:String, data:Variant, no_signal:bool = false) -> void:
 	if !has_key(key):
 		table[key] = data
+	if !no_signal:
+		value_changed.emit(key, data)
 
 func clear() -> void:
 	if FileAccess.file_exists("user://progress/prototype_2.json"):

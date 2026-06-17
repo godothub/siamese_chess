@@ -12,5 +12,5 @@ func show_selection() -> String:
 
 func on_selection() -> void:
 	if Chess.mask(Chess.x88_to_c64(Progress.get_value("player_by", 0))) & bit:
-		Progress.set_value("player_by", by)
+		Progress.set_value("player_by", by, true)
 		await Loading.change_scene(to)

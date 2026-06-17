@@ -14,6 +14,7 @@ var travel_path:PackedInt32Array = []
 
 func _ready() -> void:
 	cheshire_by = Progress.get_value("player_by", chessboard.vector3_to_x88(position))
+	Progress.connect("value_changed", receive_value_change)
 	cheshire_instance = load("res://scene/actor/cheshire.tscn").instantiate()
 	chessboard.add_child(cheshire_instance)
 	cheshire_instance.global_position = chessboard.x88_to_vector3(cheshire_by)
@@ -83,7 +84,7 @@ func travel_to(_by:int, no_signal:bool = false) -> void:
 		return
 	Narrative.speak(tr("TRAVEL_TO").format({"by": Localization.position_name_to_pronounce(Chess.x88_to_name(_by))}), false)
 	travel_path = path_to
-	Progress.set_value("player_by", _by)
+	Progress.set_value("player_by", _by, true)
 	if !no_signal:
 		move_executed.emit(Chess.create(cheshire_by, _by, 0))
 	state_machine.change_state("travel")
@@ -97,3 +98,7 @@ func sync_to_global() -> void:
 	cheshire_position += Vector3(0, 1.6, 0)
 	var cheshire_rotation:Vector3 = cheshire_instance.global_rotation
 	FilmCamera.move_camera(cheshire_position, cheshire_rotation)
+
+func receive_value_change(key:String, value:Variant) -> void:
+	if key == "player_by":
+		travel_to(value, false)
