@@ -163,8 +163,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.999695, 1.7884891, 0.42129
 size = Vector3(0.08630371, 3.8576279, 9)
 
 [node name="csg_box_3d_4" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1203308932]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.473526, 1.8784103, -4.0745516)
-size = Vector3(9.130859, 3.7647552, 0.011730469)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5086823, 1.8784103, -4.0745516)
+size = Vector3(9.060547, 3.7647552, 0.011730469)
 
 [node name="csg_box_3d_5" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1749598631]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.477035, 1.8567963, 1.9877014)
@@ -184,8 +184,8 @@ operation = 2
 size = Vector3(0.45669556, 2.7197075, 1.1949387)
 
 [node name="csg_box_3d_12" type="CSGBox3D" parent="csg_combiner_3d" unique_id=417759582]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0003042, 1.8556175, 0.373147)
-size = Vector3(0.08630371, 3.726982, 8.9279785)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0003042, 1.8556175, -0.9908421)
+size = Vector3(0.08630371, 3.726982, 6.2000003)
 
 [node name="csg_box_3d_9" type="CSGBox3D" parent="csg_combiner_3d" unique_id=190268845]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9702296, 1.7292862, -1.0311961)
@@ -198,12 +198,12 @@ operation = 2
 size = Vector3(1.137619, 2.7592292, 0.51317596)
 
 [node name="csg_box_3d" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1340471956]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4737527, 5.2830625, -1.0002946)
-size = Vector3(9.131055, 3.1378174, 6.2000003)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4737527, 6.714154, -1.0002946)
+size = Vector3(9.131055, 6, 6.2000003)
 
 [node name="csg_box_3d_2" type="CSGBox3D" parent="csg_combiner_3d" unique_id=691703971]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4724855, 5.281018, 3.4836135)
-size = Vector3(5.144971, 3.133728, 2.8017914)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4724855, 6.714154, 3.4836135)
+size = Vector3(5.144971, 6, 2.8017914)
 
 [node name="painting_frame_rect_6" parent="." unique_id=469426294 instance=ExtResource("25_skhdv")]
 transform = Transform3D(-1.3113416e-07, 3, -4.1201135e-15, -3, -1.3113416e-07, 3.9340247e-07, 3.9340247e-07, 2.1316282e-14, 3, -0.9954612, 1.9579754, -4.053211)

@@ -21,7 +21,10 @@
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="20_0yjdh"]
 [ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="21_3d6ds"]
 [ext_resource type="Script" uid="uid://csapts1u0p18r" path="res://src/event/marker_start_game.gd" id="22_wql0o"]
+[ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="23_bhm70"]
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="23_wetn8"]
+[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="24_bhm70"]
+[ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/marker_teleport.gd" id="25_tljiy"]
 
 [sub_resource type="Environment" id="Environment_ywqhp"]
 background_mode = 1
@@ -51,6 +54,11 @@ environment = SubResource("Environment_ywqhp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -0.5024414, -11.020386)
 size = Vector3(16, 17, 6)
 material = SubResource("StandardMaterial3D_7pf3j")
+
+[node name="csg_box_3d_7" type="CSGBox3D" parent="csg_box_3d" unique_id=11714646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1016521, 1.4959259, -0.13325691)
+operation = 2
+size = Vector3(1.5910187, 2.4409485, 6.9045105)
 
 [node name="csg_box_3d_2" type="CSGBox3D" parent="." unique_id=1802066478]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.887945, -0.5024414, 0)
@@ -113,7 +121,7 @@ actor = ExtResource("4_d5w51")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="marker_actor_box_4" type="Marker3D" parent="." unique_id=408133148]
-transform = Transform3D(-5.9604645e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -5.9604645e-08, -1, 0, -1)
+transform = Transform3D(-0.95996666, 0, 0.28011376, 0, 1, 0, -0.28011376, 0, -0.95996666, -1, 0, -3)
 script = ExtResource("3_ywqhp")
 piece = 35
 actor = ExtResource("4_d5w51")
@@ -155,7 +163,7 @@ actor = ExtResource("5_80gqw")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="marker_actor_shelf_4" type="Marker3D" parent="." unique_id=791161120]
-transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 3, 0, 7)
+transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 5, 0, 7)
 script = ExtResource("3_ywqhp")
 piece = 35
 actor = ExtResource("5_80gqw")
@@ -196,7 +204,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 3)
 [node name="spot_light_3d" type="SpotLight3D" parent="hang_light_02" unique_id=108120826 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.9557686, 0)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 2.975
+light_energy = 6.221
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true
@@ -204,7 +212,7 @@ distance_fade_enabled = true
 [node name="omni_light_3d" type="OmniLight3D" parent="hang_light_02" unique_id=1412143284 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.1779907, 1.3232021)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 0.3
+light_energy = 0.764
 light_specular = 0.0
 light_bake_mode = 0
 omni_range = 10.077
@@ -215,7 +223,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3)
 [node name="spot_light_3d" type="SpotLight3D" parent="hang_light_03" unique_id=617524424 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.9557686, 0)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 2.975
+light_energy = 6.221
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true
@@ -223,7 +231,7 @@ distance_fade_enabled = true
 [node name="omni_light_3d" type="OmniLight3D" parent="hang_light_03" unique_id=147973156 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.0343914, 2.7385068)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 0.3
+light_energy = 0.764
 light_specular = 0.0
 light_bake_mode = 0
 omni_range = 10.077
@@ -234,7 +242,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 3)
 [node name="spot_light_3d" type="SpotLight3D" parent="hang_light_04" unique_id=29011897 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.9557686, 0)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 2.975
+light_energy = 6.221
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true
@@ -242,7 +250,7 @@ distance_fade_enabled = true
 [node name="omni_light_3d" type="OmniLight3D" parent="hang_light_04" unique_id=1379833310 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.0343914, 2.7385068)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 0.3
+light_energy = 0.764
 light_specular = 0.0
 light_bake_mode = 0
 omni_range = 10.077
@@ -253,7 +261,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)
 [node name="spot_light_3d" type="SpotLight3D" parent="hang_light_05" unique_id=667438546 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.9557686, 0)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 2.975
+light_energy = 6.221
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true
@@ -261,7 +269,7 @@ distance_fade_enabled = true
 [node name="omni_light_3d" type="OmniLight3D" parent="hang_light_05" unique_id=1002913288 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 0.3
+light_energy = 0.764
 light_specular = 0.0
 light_bake_mode = 0
 omni_range = 10.077
@@ -272,7 +280,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -3)
 [node name="spot_light_3d" type="SpotLight3D" parent="hang_light_06" unique_id=1246536406 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.9557686, 0)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 2.975
+light_energy = 6.221
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true
@@ -280,7 +288,7 @@ distance_fade_enabled = true
 [node name="omni_light_3d" type="OmniLight3D" parent="hang_light_06" unique_id=899113398 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 0.3
+light_energy = 0.764
 light_specular = 0.0
 light_bake_mode = 0
 omni_range = 10.077
@@ -291,7 +299,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
 [node name="spot_light_3d" type="SpotLight3D" parent="hang_light_07" unique_id=470623077 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.9557686, 0)
 light_color = Color(0.75, 0.714, 0.6825, 1)
-light_energy = 2.975
+light_energy = 6.221
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true
@@ -299,7 +307,7 @@ distance_fade_enabled = true
 [node name="omni_light_3d" type="OmniLight3D" parent="hang_light_07" unique_id=1824692823 groups=["lights"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004699707, -2.3069637, -0.12667656)
 light_color = Color(0.7490196, 0.7137255, 0.68235296, 1)
-light_energy = 0.3
+light_energy = 0.764
 light_specular = 0.0
 light_bake_mode = 0
 omni_range = 10.077
@@ -307,10 +315,10 @@ omni_range = 10.077
 [node name="hotel_door_large" parent="." unique_id=2031737367 instance=ExtResource("9_7pf3j")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=697941169]
+[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=576972813]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=704909446]
+[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=674245926]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=1404077087]
@@ -381,11 +389,25 @@ piece = 35
 actor = ExtResource("7_h64pl")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
+[node name="marker_actor_safe_10" type="Marker3D" parent="." unique_id=1652240372]
+transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 1, 0, 7)
+script = ExtResource("3_ywqhp")
+piece = 35
+actor = ExtResource("7_h64pl")
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
+[node name="marker_actor_safe_11" type="Marker3D" parent="." unique_id=1559913823]
+transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 3, 0, 7)
+script = ExtResource("3_ywqhp")
+piece = 35
+actor = ExtResource("7_h64pl")
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
 [node name="hotel_room_desk" parent="." unique_id=1164162919 instance=ExtResource("11_74xdv")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 0, 7)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 0, 6.6)
 
 [node name="hotel_room_desk_chair" parent="." unique_id=512521497 instance=ExtResource("12_vykmq")]
-transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, -0.39965963, 0, 6.567529)
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, -0.9198921, 0, 6.7662916)
 
 [node name="lightmap_gi" type="LightmapGI" parent="." unique_id=1823503648]
 light_data = ExtResource("18_x66wa")
@@ -439,12 +461,6 @@ script = ExtResource("20_0yjdh")
 text = "TO_HALLWAY"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
-[node name="marker_title_play_chess" type="Node3D" parent="." unique_id=1803620502]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
-script = ExtResource("20_0yjdh")
-text = "LEVEL_PLAY_CHESS"
-metadata/_custom_type_script = "uid://wbnfk8tm8skk"
-
 [node name="marker_game" type="Node3D" parent="." unique_id=1692939650 node_paths=PackedStringArray("chessboard")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
 script = ExtResource("21_3d6ds")
@@ -463,5 +479,65 @@ metadata/_custom_type_script = "uid://csapts1u0p18r"
 script = ExtResource("23_wetn8")
 chessboard = NodePath("../chessboard")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
+
+[node name="bookshelf" parent="." unique_id=503443877 instance=ExtResource("23_bhm70")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7.7269096)
+
+[node name="marker_actor_box_7" type="Marker3D" parent="." unique_id=782128840]
+transform = Transform3D(-5.9604645e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -5.9604645e-08, -1, 0, -1)
+script = ExtResource("3_ywqhp")
+piece = 35
+actor = ExtResource("4_d5w51")
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
+[node name="marker_actor_box_8" type="Marker3D" parent="." unique_id=127374983]
+transform = Transform3D(-0.36698827, 0, -0.9302255, 0, 1, 0, 0.9302255, 0, -0.36698827, -7, 0, 7)
+script = ExtResource("3_ywqhp")
+piece = 35
+actor = ExtResource("4_d5w51")
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
+[node name="marker_actor_box_9" type="Marker3D" parent="." unique_id=123987504]
+transform = Transform3D(-0.36698827, 0, -0.9302255, 0, 1, 0, 0.9302255, 0, -0.36698827, -3, 0, 7)
+script = ExtResource("3_ywqhp")
+piece = 35
+actor = ExtResource("4_d5w51")
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
+[node name="marker_multi_actor" type="Node3D" parent="." unique_id=1084310125]
+script = ExtResource("24_bhm70")
+piece = 35
+bit = 576460752303423488
+metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
+
+[node name="marker_actor_handcart_3" type="Marker3D" parent="." unique_id=1323019619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
+script = ExtResource("3_ywqhp")
+piece = 35
+actor = ExtResource("6_vjidp")
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
+[node name="marker_actor_safe_13" type="Marker3D" parent="." unique_id=1188584550]
+transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 3, 0, 3)
+script = ExtResource("3_ywqhp")
+piece = 35
+actor = ExtResource("7_h64pl")
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
+[node name="marker_teleport_computer_room" type="Node3D" parent="." unique_id=1586002766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+script = ExtResource("25_tljiy")
+disabled = true
+to = "res://scene/level/computer_room.tscn"
+by = 116
+bit = 16
+metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
+
+[node name="marker_actor_box_10" type="Marker3D" parent="." unique_id=1984046222]
+transform = Transform3D(-0.9659258, 0, -0.25881898, 0, 1, 0, 0.25881898, 0, -0.9659258, 3, 0, 1)
+script = ExtResource("3_ywqhp")
+piece = 35
+actor = ExtResource("4_d5w51")
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [editable path="hotel_door_large"]
