@@ -18,6 +18,8 @@
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="16_dy1ll"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="17_ayujk"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="18_sj6w0"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="19_110wd"]
+[ext_resource type="Script" uid="uid://dg2slo01f4hvf" path="res://src/event/marker_decision.gd" id="20_6m8c7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -293,7 +295,7 @@ script = ExtResource("11_u1qnn")
 node = NodePath("..")
 method_name = &"interact_carnation"
 selection = "CARNATION_TALK"
-bit = 9007199254740992
+bit = 103080787968
 metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
 [node name="camera_carnation_dialog" type="Camera3D" parent="." unique_id=597081388]
@@ -340,6 +342,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="chessboard" parent="garden_steel_table" unique_id=1999765771 instance=ExtResource("17_ayujk")]
 transform = Transform3D(-1.7484556e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.7484556e-08, 0.01681438, 0.77374136, 0.0065295696)
+COLOR_MOVE = Color(0.66, 0.20570001, 0.19800001, 0)
 
 [node name="garden_steel_chair_2" parent="." unique_id=1604010293 instance=ExtResource("15_dy1ll")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -1, 0, -1)
@@ -351,5 +354,21 @@ bit = 402653184
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
 [node name="animation_player" type="AnimationPlayer" parent="." unique_id=1628684536]
+
+[node name="marker_game" type="Node3D" parent="." unique_id=83197070 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("19_110wd")
+chessboard = NodePath("../garden_steel_table/chessboard")
+metadata/_custom_type_script = "uid://dxapdof0oowg1"
+
+[node name="marker_decision" type="Node3D" parent="." unique_id=1102374707]
+script = ExtResource("20_6m8c7")
+cancelable = true
+hint = "HINT_CHOOSE_SIDE"
+selection = ["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM"]
+metadata/_custom_type_script = "uid://dg2slo01f4hvf"
+
+[node name="camera_chessboard" type="Camera3D" parent="." unique_id=1659593142]
+transform = Transform3D(-2.7062054e-08, 0.78530616, -0.61910766, 3.432682e-08, 0.61910766, 0.78530616, 1, 0, -4.371139e-08, -0.44147825, 1.3092046, -1)
+fov = 44.5
 
 [editable path="background/grass"]

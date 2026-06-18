@@ -5,7 +5,6 @@ extends Level
 @onready var edit_event:MarkerProcedure = $marker_edit
 @onready var decision_event:MarkerProcedure = $marker_decision
 @onready var game_event:MarkerProcedure = $marker_game
-var standard_player_group:int = 0
 
 func _ready() -> void:
 	super._ready()
@@ -47,21 +46,20 @@ func edit_end(_result:String) -> void:
 	decision_event.start()
 
 func decision_end(_result:String) -> void:
-	if _result == "":
-		game_end()
-		return
 	match _result:
+		"":
+			game_end()
+			return
 		"SELECTION_PLAY_AS_WHITE":
-			standard_player_group = 0
+			game_event.player_group = 0
 		"SELECTION_PLAY_AS_BLACK":
-			standard_player_group = 1
+			game_event.player_group = 1
 		"SELECTION_PLAY_AS_RANDOM":
-			standard_player_group = randi() % 2
-	if standard_player_group == 0:
+			game_event.player_group = randi() % 2
+	if game_event.player_group == 0:
 		standard_chessboard.rotation.y = 0
 	else:
 		standard_chessboard.rotation.y = PI
-	game_event.player_group = standard_player_group
 	standard_chessboard.remove_piece_set()
 	standard_chessboard.add_default_piece_set()
 	game_event.start()

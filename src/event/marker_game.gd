@@ -274,7 +274,7 @@ func state_ready_ready_to_move(_arg:Dictionary) -> void:
 	if !chessboard.state.has_piece(from):
 		state_machine.change_state("player")
 		return
-	var actor:Actor = chessboard.chessboard_piece[from]
+	var actor:Actor = chessboard.chessboard_piece.get(from, null)
 	for iter:int in move_list:
 		if Chess.from(iter) == from:
 			square_selection |= Chess.mask(Chess.x88_to_c64(Chess.to(iter)))
@@ -285,11 +285,13 @@ func state_ready_ready_to_move(_arg:Dictionary) -> void:
 		state_machine.change_state.call_deferred("check_move", {"from": from, "to": _selected})
 	)
 	state_machine.state_signal_connect(chessboard.click_empty, func (_selected:int) -> void:
-		actor.idle()
+		if actor:
+			actor.idle()
 		back_to_game()
 	)
 	state_machine.state_signal_connect(Dialog.on_cancel, func () -> void:
-		actor.idle()
+		if actor:
+			actor.idle()
 		back_to_game()
 	)
 	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("engine_win"))
@@ -297,7 +299,8 @@ func state_ready_ready_to_move(_arg:Dictionary) -> void:
 		available_events[_selected].on_selection.call_deferred()
 	)
 	Dialog.show_cancel()
-	actor.ready_to_move()
+	if actor:
+		actor.ready_to_move()
 	chessboard.set_square_selection(square_selection)
 
 func state_exit_ready_to_move() -> void:
@@ -341,13 +344,14 @@ func state_ready_extra_move(_arg:Dictionary) -> void:
 	var decision_list:PackedStringArray = []
 	var decision_to_move:Dictionary = {}
 	var from:int = _arg["from"]
-	var actor:Actor = chessboard.chessboard_piece[from]
+	var actor:Actor = chessboard.chessboard_piece.get(from, null)
 	for iter:int in _arg["move_list"]:
 		decision_list.push_back(map[Chess.extra(iter)])
 		decision_to_move[decision_list[-1]] = iter
 	
 	state_machine.state_signal_connect(Dialog.on_cancel, func () -> void:
-		actor.idle()
+		if actor:
+			actor.idle()
 		back_to_game()
 	)
 	state_machine.state_signal_connect(Dialog.on_select, func (_selected:String) -> void:
