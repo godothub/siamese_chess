@@ -34,7 +34,8 @@ func capturing(_pos:Vector3, _captured:Actor) -> void:	# 攻击
 	tween.tween_callback(sfx.play)
 	tween.tween_property(self, "global_position", _pos, moving_duration).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(animation_finished.emit)
-	_captured.captured(self)
+	if _captured:
+		_captured.captured(self)
 
 func captured(_capturing:Actor = null) -> void:	# 被攻击
 	if larger_scale:

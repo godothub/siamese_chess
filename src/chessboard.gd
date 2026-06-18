@@ -339,7 +339,7 @@ func receive_event(event:Dictionary) -> Dictionary:
 			move_piece_instance(event["from"], event["to"])
 			return event.duplicate()
 		"capture":
-			var captured_instance:Actor = chessboard_piece[event["to"]]
+			var captured_instance:Actor = chessboard_piece.get(event["to"], null)
 			capture_piece_instance(event["from"], event["to"])
 			return {
 				"type": "capture",
@@ -348,7 +348,7 @@ func receive_event(event:Dictionary) -> Dictionary:
 				"captured_instance": captured_instance
 			}
 		"promotion&capture":
-			var captured_instance:Actor = chessboard_piece[event["to"]]
+			var captured_instance:Actor = chessboard_piece.get(event["to"], null)
 			promote_and_capture_piece_instance(event["from"], event["to"], event["piece"])
 			return {
 				"type": "promotion&capture",
@@ -363,7 +363,7 @@ func receive_event(event:Dictionary) -> Dictionary:
 			castle_piece_instance(event["from_king"], event["to_king"], event["from_rook"], event["to_rook"])
 			return event.duplicate()
 		"en_passant":
-			var captured_instance:Actor = chessboard_piece[event["captured"]]
+			var captured_instance:Actor = chessboard_piece.get(event["captured"], null)
 			en_passant_piece_instance(event["from"], event["to"], event["captured"])
 			return {
 				"type": "en_passant",
@@ -378,13 +378,6 @@ func receive_event(event:Dictionary) -> Dictionary:
 		"leave":
 			move_piece_instance_to_steady(event["by"], event["piece"])
 			return event.duplicate()
-		"king_explore":
-			king_explore_instance(event["from"], event["path"])
-			return {
-				"type": "king_explore",
-				"from": event["from"],
-				"to": event["path"][-1]
-			}
 		"pass":
 			do_nothing()
 			return event.duplicate()
@@ -419,6 +412,8 @@ func receive_rollback_event(event:Dictionary) -> void:
 			do_nothing()
 
 func add_piece_instance(instance:Actor, by:int) -> void:	# 注意根据state摆放棋盘
+	if !instance:
+		return
 	$pieces.add_child(instance)
 	instance.scale *= actor_scale_factor	# 有时只是放大格子，而有时需要连带actor一起缩放
 	if by == -1:
@@ -434,16 +429,19 @@ func add_piece_instance(instance:Actor, by:int) -> void:	# 注意根据state摆�
 		instance.introduce(get_node(Chess.x88_to_name(by)).global_position)
 
 func add_piece_instance_to_steady(instance:Actor, piece:int) -> void:
+	if !instance:
+		return
 	steady_piece.get_or_add(piece, []).push_back(instance)
 	$pieces.add_child(instance)
 	instance.visible = false
 
 func move_piece_instance_to_steady(by:int, piece:int) -> void:
-	var instance:Actor = chessboard_piece[by]
-	chessboard_piece.erase(by)
-	steady_piece.get_or_add(piece, []).push_back(instance)
-	instance.leave()
-	await instance.animation_finished
+	var instance:Actor = chessboard_piece.get(by, null)
+	if instance:
+		chessboard_piece.erase(by)
+		steady_piece.get_or_add(piece, []).push_back(instance)
+		instance.leave()
+		await instance.animation_finished
 	animation_finished.emit.call_deferred()
 
 func move_piece_instance_from_steady(by:int, piece:int) -> void:
@@ -466,6 +464,8 @@ func get_piece_instance_x88(instance:Actor) -> int:
 	return by
 
 func remove_piece_instance(instance:Actor) -> void:
+	if !instance:
+		return
 	var by:int = get_piece_instance_x88(instance)
 	if by == -1:
 		return
@@ -488,85 +488,89 @@ func move_piece_instance_from_backup(by:int, instance:Actor) -> void:
 	animation_finished.emit.call_deferred()
 
 func move_piece_instance(from:int, to:int) -> void:
-	var instance:Actor = chessboard_piece[from]
-	instance.move(get_node(Chess.x88_to_name(to)).global_position)
-	chessboard_piece.erase(from)
-	chessboard_piece[to] = instance
-	await instance.animation_finished
+	var instance:Actor = chessboard_piece.get(from, null)
+	if instance:
+		instance.move(get_node(Chess.x88_to_name(to)).global_position)
+		chessboard_piece.erase(from)
+		chessboard_piece[to] = instance
+		await instance.animation_finished
 	animation_finished.emit.call_deferred()
 
 func castle_piece_instance(from_1:int, to_1:int, from_2:int, to_2:int) -> void:
-	var instance_1:Actor = chessboard_piece[from_1]
-	instance_1.move(get_node(Chess.x88_to_name(to_1)).global_position)
-	chessboard_piece.erase(from_1)
-	chessboard_piece[to_1] = instance_1
-	var instance_2:Actor = chessboard_piece[from_2]
-	instance_2.move(get_node(Chess.x88_to_name(to_2)).global_position)
-	chessboard_piece.erase(from_2)
-	chessboard_piece[to_2] = instance_2
-	await instance_1.animation_finished
+	var instance_1:Actor = chessboard_piece.get(from_1, null)
+	if instance_1:
+		instance_1.move(get_node(Chess.x88_to_name(to_1)).global_position)
+		chessboard_piece.erase(from_1)
+		chessboard_piece[to_1] = instance_1
+	var instance_2:Actor = chessboard_piece.get(from_2, null)
+	if instance_2:
+		instance_2.move(get_node(Chess.x88_to_name(to_2)).global_position)
+		chessboard_piece.erase(from_2)
+		chessboard_piece[to_2] = instance_2
+		return
+	if instance_1:
+		await instance_1.animation_finished
+	elif instance_2:
+		await instance_2.animation_finished
 	animation_finished.emit.call_deferred()
 
 func capture_piece_instance(from:int, to:int) -> void:
-	var instance_from:Actor = chessboard_piece[from]
-	var instance_to:Actor = chessboard_piece[to]
-	instance_from.capturing(get_node(Chess.x88_to_name(to)).global_position, instance_to)
-	move_piece_instance_to_backup(to)
-	chessboard_piece.erase(from)
-	chessboard_piece[to] = instance_from
-	await instance_from.animation_finished
+	var instance_from:Actor = chessboard_piece.get(from, null)
+	var instance_to:Actor = chessboard_piece.get(to, null)
+	if instance_from:
+		instance_from.capturing(get_node(Chess.x88_to_name(to)).global_position, instance_to)
+		if instance_to:
+			move_piece_instance_to_backup(to)
+		chessboard_piece.erase(from)
+		chessboard_piece[to] = instance_from
+		await instance_from.animation_finished
 	animation_finished.emit.call_deferred()
 
 func promote_piece_instance(from:int, to:int, piece:int) -> void:
-	var instance:Actor = chessboard_piece[from]
-	instance.promote(get_node(Chess.x88_to_name(to)).global_position, piece)
-	chessboard_piece.erase(from)
-	chessboard_piece[to] = instance
+	var instance:Actor = chessboard_piece.get(from, null)
+	if instance:
+		instance.promote(get_node(Chess.x88_to_name(to)).global_position, piece)
+		chessboard_piece.erase(from)
+		chessboard_piece[to] = instance
 	animation_finished.emit.call_deferred()
 
 func promote_and_capture_piece_instance(from:int, to:int, piece:int) -> void:
-	var instance_from:Actor = chessboard_piece[from]
-	var instance_to:Actor = chessboard_piece[to]
-	instance_from.capturing(get_node(Chess.x88_to_name(to)).global_position, instance_to)
-	move_piece_instance_to_backup(to)
-	chessboard_piece.erase(from)
-	chessboard_piece[to] = instance_from
-	await instance_from.animation_finished
-	instance_from.promote(get_node(Chess.x88_to_name(to)).global_position, piece)
-	await instance_from.animation_finished
+	var instance_from:Actor = chessboard_piece.get(from, null)
+	var instance_to:Actor = chessboard_piece.get(to, null)
+	if instance_from:
+		instance_from.capturing(get_node(Chess.x88_to_name(to)).global_position, instance_to)
+		if instance_to:
+			move_piece_instance_to_backup(to)
+		chessboard_piece.erase(from)
+		chessboard_piece[to] = instance_from
+		await instance_from.animation_finished
+		instance_from.promote(get_node(Chess.x88_to_name(to)).global_position, piece)
+		await instance_from.animation_finished
 	animation_finished.emit.call_deferred()
 
 func en_passant_piece_instance(from:int, to:int, captured:int) -> void:
-	var instance_from:Actor = chessboard_piece[from]
-	chessboard_piece[from].capturing(get_node(Chess.x88_to_name(to)).global_position, chessboard_piece[captured])
-	move_piece_instance_to_backup(captured)
-	chessboard_piece.erase(from)
-	chessboard_piece[to] = instance_from
-	await instance_from.animation_finished
+	var instance_from:Actor = chessboard_piece.get(from, null)
+	var instance_to:Actor = chessboard_piece.get(captured, null)
+	if instance_from:
+		instance_from.capturing(get_node(Chess.x88_to_name(to)).global_position, chessboard_piece[captured])
+		if instance_to:
+			move_piece_instance_to_backup(captured)
+		chessboard_piece.erase(from)
+		chessboard_piece[to] = instance_from
+		await instance_from.animation_finished
 	animation_finished.emit.call_deferred()
 
 func move_piece_instance_to_backup(by:int) -> void:
-	var instance:Actor = chessboard_piece[by]
-	chessboard_piece.erase(by)
-	backup_piece.push_back(instance)
-	#instance.visible = !pieces[instance]["hide_piece"]
-	#instance.move(to_global(pieces[instance]["initial_position"]))
+	var instance:Actor = chessboard_piece.get(by, null)
+	if instance:
+		chessboard_piece.erase(by)
+		backup_piece.push_back(instance)
 
 func leave_piece_instance(by:int, pos:Vector3) -> void:
-	var instance:Actor = chessboard_piece[by]
-	chessboard_piece.erase(by)
-	instance.move(pos)
-	await instance.animation_finished
-	animation_finished.emit.call_deferred()
-
-func king_explore_instance(from:int, path:PackedInt32Array) -> void:
-	if path.is_empty():
-		return
-	var instance:Actor = chessboard_piece[from]
-	chessboard_piece.erase(from)
-	chessboard_piece[path[-1]] = instance
-	for to:int in path:
-		instance.move(get_node(Chess.x88_to_name(to)).global_position)
+	var instance:Actor = chessboard_piece.get(by, null)
+	if instance:
+		chessboard_piece.erase(by)
+		instance.move(pos)
 		await instance.animation_finished
 	animation_finished.emit.call_deferred()
 

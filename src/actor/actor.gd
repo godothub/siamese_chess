@@ -21,7 +21,8 @@ func capturing(_pos:Vector3, _captured:Actor) -> void:	# 攻击
 	var tween:Tween = create_tween()
 	tween.tween_property(self, "global_position", _pos, 0.3).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(animation_finished.emit)
-	_captured.captured(self)
+	if _captured:
+		_captured.captured(self)
 
 func captured(_capturing:Actor = null) -> void:	# 被攻击
 	visible = false

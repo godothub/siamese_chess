@@ -45,7 +45,8 @@ func fast_move() -> void:
 	tween.tween_property(self, "global_position", target_position, capturing_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 func knockdown_target() -> void:
-	target_actor.captured(self)
+	if target_actor:
+		target_actor.captured(self)
 
 func captured(_capturing:Actor = null) -> void:	# 被攻击
 	#if Chess.group(piece_type) == 0:
