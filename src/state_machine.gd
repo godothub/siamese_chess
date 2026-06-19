@@ -6,7 +6,7 @@ var name:String = ""
 var current_state:String = ""
 var last_state:String = ""
 var state_list:Dictionary = {}
-var	connection_list:Array = []
+var signal_container:SignalContainer = SignalContainer.new()
 var mutex:Mutex = Mutex.new()
 
 func add_state(new_state:String, ready_callback:Callable = Callable(), exit_callback:Callable = Callable(), process_callback:Callable = Callable(), input_callback:Callable = Callable(),) -> void:
@@ -29,9 +29,7 @@ func input(_event:InputEvent) -> void:
 func change_state(next_state:String, arg:Dictionary = {}) -> void:
 	mutex.lock()
 	# 涉及到信号的自动断连
-	for connection:Dictionary in connection_list:
-		connection["signal"].disconnect(connection["method"])
-	connection_list.clear()
+	signal_container.disconnect_all()
 	last_state = current_state
 	current_state = next_state
 	# 执行状态退出方法
@@ -44,6 +42,4 @@ func change_state(next_state:String, arg:Dictionary = {}) -> void:
 	state_changed.emit.call_deferred(current_state)
 
 func state_signal_connect(_signal:Signal, _method:Callable) -> void:
-	_signal.connect(_method)
-	assert(_signal.is_connected(_method))
-	connection_list.push_back({"signal": _signal, "method": _method})
+	signal_container.add_connection(_signal, _method)
