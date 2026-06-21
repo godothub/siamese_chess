@@ -1,13 +1,10 @@
-extends CanvasLayer
+extends Node3D
 
 signal pointer_move(world_position:Vector3, normal:Vector3)
 signal pointer_click(world_position:Vector3, normal:Vector3)
-@onready var ray_cast:RayCast3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/ray_cast
-@onready var sub_viewport_container:SubViewportContainer = $texture_rect/margin_container/sub_viewport_container
-@onready var viewport:SubViewport = $texture_rect/margin_container/sub_viewport_container/sub_viewport
-@onready var margin_container:MarginContainer = $texture_rect/margin_container
-@onready var camera:Camera3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/head/camera
-@onready var head:Node3D = $texture_rect/margin_container/sub_viewport_container/sub_viewport/head
+@onready var ray_cast:RayCast3D = $ray_cast
+@onready var camera:Camera3D = $head/camera
+@onready var head:Node3D = $head
 var state_machine:StateMachine = StateMachine.new()
 var inspectable_item_list:Array[InspectableItem] = []
 var current_area:Area3D = null
@@ -21,9 +18,7 @@ func _ready() -> void:
 	state_machine.add_state("interface", state_ready_interface)
 	state_machine.add_state("pointer", state_ready_pointer, Callable(), state_process_pointer, state_input_pointer)
 	state_machine.change_state("inspect")
-	sub_viewport_container.connect("gui_input", sub_viewport_gui_input)
 	Gesture.connect("move_mouse", move_mouse)
-	Setting.connect("dialog_border_changed", update_margin)
 
 func on_visibility_changed() -> void:
 	if (Setting.visible || FilmCamera.visible || ThirdEye3D.visible || Archive.visible) && state_machine.current_state != "interface":
@@ -32,7 +27,6 @@ func on_visibility_changed() -> void:
 		state_machine.change_state.call_deferred("inspect")
 
 func state_ready_inspect(_arg:Dictionary) -> void:
-	sub_viewport_container.grab_focus()
 	state_machine.state_signal_connect(Setting.touch_gesture_changed, func () -> void:
 		state_machine.change_state.call_deferred("inspect")
 	)
@@ -134,7 +128,6 @@ func state_ready_interface(_args:Dictionary) -> void:
 var pointer_position:Vector2 = Vector2(0, 0)
 
 func state_ready_pointer(_args:Dictionary) -> void:
-	sub_viewport_container.grab_focus()
 	state_machine.state_signal_connect(Setting.touch_gesture_changed, func () -> void:
 		state_machine.change_state.call_deferred("inspect")
 	)
@@ -143,13 +136,10 @@ func state_ready_pointer(_args:Dictionary) -> void:
 	state_machine.state_signal_connect(FilmCamera.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(ThirdEye3D.visibility_changed, on_visibility_changed)
 	state_machine.state_signal_connect(Archive.visibility_changed, on_visibility_changed)
-	pointer_position = viewport.size / 2
 
 func state_process_pointer(_delta:float) -> void:
 	var axis:Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	pointer_position += axis * 10
-	pointer_position.x = clampf(pointer_position.x, 0, viewport.size.x)
-	pointer_position.y = clampf(pointer_position.y, 0, viewport.size.y)
 	if !axis.is_equal_approx(Vector2.ZERO):
 		click_area(pointer_position)
 		if ray_cast.is_colliding():
@@ -179,7 +169,7 @@ func _physics_process(_delta:float) -> void:
 	camera.rotation += Input.get_gyroscope() * _delta
 	state_machine.process(_delta)
 
-func sub_viewport_gui_input(event:InputEvent) -> void:
+func _unhandled_input(event:InputEvent) -> void:
 	state_machine.input(event)
 
 func click_area(screen_position:Vector2) -> Node3D:
@@ -250,15 +240,3 @@ func add_inspectable_item(_inspectable_item:InspectableItem) -> void:
 
 func clear_inspectable_item() -> void:
 	inspectable_item_list.clear()
-
-func update_margin() -> void:
-	if Setting.get_value("dialog_border"):
-		margin_container.add_theme_constant_override("margin_bottom", 0)
-		margin_container.add_theme_constant_override("margin_top", 0)
-		margin_container.add_theme_constant_override("margin_left", Dialog.get_size())
-		margin_container.add_theme_constant_override("margin_right", Dialog.get_size())
-	else:
-		margin_container.add_theme_constant_override("margin_bottom", Dialog.get_size())
-		margin_container.add_theme_constant_override("margin_top", Dialog.get_size())
-		margin_container.add_theme_constant_override("margin_left", 0)
-		margin_container.add_theme_constant_override("margin_right", 0)

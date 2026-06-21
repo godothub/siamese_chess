@@ -2,6 +2,20 @@
 
 [ext_resource type="Script" uid="uid://cadrp53slaymf" path="res://src/startup.gd" id="1_maqjh"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_maqjh"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_ce6ij"]
+sky_material = SubResource("ProceduralSkyMaterial_maqjh")
+
+[sub_resource type="Environment" id="Environment_xwkvf"]
+background_mode = 2
+sky = SubResource("Sky_ce6ij")
+tonemap_mode = 2
+
 [sub_resource type="Gradient" id="Gradient_qb5h4"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 1)
@@ -17,6 +31,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_maqjh")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=562226809]
+environment = SubResource("Environment_xwkvf")
 
 [node name="texture_rect" type="TextureRect" parent="." unique_id=1795105490]
 layout_mode = 1
