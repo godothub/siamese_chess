@@ -2,7 +2,7 @@ extends Level
 
 @onready var standard_chessboard:Chessboard = $garden_steel_table/chessboard
 var standard_player_group:int = 0
-
+var signal_container:SignalContainer = SignalContainer.new()
 
 func _ready() -> void:
 	super._ready()
@@ -21,9 +21,16 @@ func interact_carnation() -> void:
 	target_angle = global_rotation.y + angle_difference(global_rotation.y, target_angle)
 	var cheshire_instance:Actor = $marker_explore.cheshire_instance
 	cheshire_instance.rotation.y = target_angle
+	signal_container.add_connection($marker_dialog.procedure_end, func(_result:String) -> void:
+		signal_container.disconnect_all()
+		interact_carnation_end()
+	)
+	$marker_dialog.start()
+
+func blindfold_chess() -> void:
 	standard_chessboard.state = Chess.create_initial_state()
 	$marker_decision.start()
-	
+
 func decision_end(_result:String) -> void:
 	match _result:
 		"":

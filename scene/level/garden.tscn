@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="18_sj6w0"]
 [ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="19_110wd"]
 [ext_resource type="Script" uid="uid://dg2slo01f4hvf" path="res://src/event/marker_decision.gd" id="20_6m8c7"]
+[ext_resource type="Script" uid="uid://d2ckdq43wstns" path="res://src/event/marker_dialog.gd" id="21_6m8c7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -88,6 +89,14 @@ albedo_color = Color(0.43134022, 0.43134025, 0.43134025, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_6utwh"]
 material = SubResource("StandardMaterial3D_niqde")
 size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_110wd"]
+resource_name = "carnation_talk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6m8c7"]
+_data = {
+&"carnation_talk": SubResource("Animation_110wd")
+}
 
 [node name="garden" type="Node3D" unique_id=833531337]
 script = ExtResource("1_bedx7")
@@ -354,6 +363,7 @@ bit = 402653184
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
 [node name="animation_player" type="AnimationPlayer" parent="." unique_id=1628684536]
+libraries/ = SubResource("AnimationLibrary_6m8c7")
 
 [node name="marker_game" type="Node3D" parent="." unique_id=83197070 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("19_110wd")
@@ -370,5 +380,13 @@ metadata/_custom_type_script = "uid://dg2slo01f4hvf"
 [node name="camera_chessboard" type="Camera3D" parent="." unique_id=1659593142]
 transform = Transform3D(-2.7062054e-08, 0.78530616, -0.61910766, 3.432682e-08, 0.61910766, 0.78530616, 1, 0, -4.371139e-08, -0.44147825, 1.3092046, -1)
 fov = 44.5
+
+[node name="marker_dialog" type="Node3D" parent="." unique_id=386663468]
+script = ExtResource("21_6m8c7")
+sequence_str = "CARNATION_TALK_FIRST_MEET_0,-
+CARNATION_TALK_FIRST_MEET_1,-
+CARNATION_TALK_FIRST_MEET_2,-
+CARNATION_TALK_FIRST_MEET_3,-"
+metadata/_custom_type_script = "uid://d2ckdq43wstns"
 
 [editable path="background/grass"]
