@@ -215,12 +215,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("13_n52t5")
 metadata/_custom_type_script = "uid://bsbhmxre68ncc"
 
-[node name="marker_actor_carnation" type="Marker3D" parent="." unique_id=1629679967]
+[node name="marker_actor_carnation" type="Marker3D" parent="." unique_id=1629679967 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 0, 1)
 script = ExtResource("13_nlty5")
 piece = 35
-actor = ExtResource("14_5uhcj")
+instance = NodePath("carnation")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
+[node name="carnation" parent="marker_actor_carnation" unique_id=1846543884 instance=ExtResource("14_5uhcj")]
 
 [node name="marker_callback" type="Node3D" parent="." unique_id=942073465 node_paths=PackedStringArray("node")]
 script = ExtResource("15_5uhcj")

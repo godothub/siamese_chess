@@ -51,3 +51,6 @@ func ready_to_move() -> void:
 
 func idle() -> void:
 	pass
+
+func change_meta(key:String, value:Variant) -> void:
+	set_meta(key, value)

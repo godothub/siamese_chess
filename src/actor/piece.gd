@@ -96,3 +96,8 @@ func set_larger_scale() -> Actor:
 func introduce(_pos:Vector3) -> void:
 	super.introduce(_pos)
 	original_position = _pos
+
+func change_meta(key:String, value:Variant) -> void:
+	super.change_meta(key, value)
+	if has_meta("larger_scale") && get_meta("larger_scale"):
+		set_larger_scale()

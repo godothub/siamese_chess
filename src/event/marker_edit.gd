@@ -68,11 +68,15 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 	)
 	state_machine.state_signal_connect(chessboard.click_empty, func (_selected:int) -> void:
 		if chessboard.state.has_piece(_selected):
+			var instance:Actor = chessboard.chessboard_piece[_selected]
 			chessboard.state.capture_piece(_selected)
-			chessboard.remove_piece_instance(chessboard.chessboard_piece[_selected])
+			chessboard.remove_piece_instance(instance)
+			instance.queue_free()
 		if edit_piece:
+			var instance:Actor = Chessboard.get_default_piece_instance(edit_piece)
+			add_child(instance)
 			chessboard.state.add_piece(_selected, edit_piece)
-			chessboard.add_piece_instance(Chessboard.get_default_piece_instance(edit_piece), _selected)
+			chessboard.add_piece_instance(instance, _selected)
 	)
 	Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_NEUTRAL", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], "HINT_EDIT", false, false)
 	Dialog.show_cancel()

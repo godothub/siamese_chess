@@ -414,7 +414,6 @@ func receive_rollback_event(event:Dictionary) -> void:
 func add_piece_instance(instance:Actor, by:int) -> void:	# 注意根据state摆放棋盘
 	if !instance:
 		return
-	$pieces.add_child(instance)
 	instance.scale *= actor_scale_factor	# 有时只是放大格子，而有时需要连带actor一起缩放
 	if by == -1:
 		instance.visible = false
@@ -432,7 +431,6 @@ func add_piece_instance_to_steady(instance:Actor, piece:int) -> void:
 	if !instance:
 		return
 	steady_piece.get_or_add(piece, []).push_back(instance)
-	$pieces.add_child(instance)
 	instance.visible = false
 
 func move_piece_instance_to_steady(by:int, piece:int) -> void:
@@ -469,7 +467,6 @@ func remove_piece_instance(instance:Actor) -> void:
 	var by:int = get_piece_instance_x88(instance)
 	if by == -1:
 		return
-	$pieces.remove_child(instance)
 	chessboard_piece.erase(by)
 	backup_piece.erase(instance)
 
