@@ -114,7 +114,9 @@ func add_default_piece_set() -> void:	# 最好交由外部来负责棋子的准�
 	for i:int in 128:
 		if !state.has_piece(i):
 			continue
-		add_piece_instance(get_default_piece_instance(state.get_piece(i)), i)
+		var new_instance:Actor = get_default_piece_instance(state.get_piece(i))
+		add_child(new_instance)
+		add_piece_instance(new_instance, i)
 
 func remove_piece_set() -> void:
 	for by:int in chessboard_piece:

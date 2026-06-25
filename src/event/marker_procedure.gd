@@ -7,4 +7,4 @@ func start() -> void:
 	pass
 
 func end() -> void:
-	pass
+	procedure_end.emit("")

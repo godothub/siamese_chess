@@ -74,7 +74,7 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 			instance.queue_free()
 		if edit_piece:
 			var instance:Actor = Chessboard.get_default_piece_instance(edit_piece)
-			add_child(instance)
+			chessboard.add_child(instance)
 			chessboard.state.add_piece(_selected, edit_piece)
 			chessboard.add_piece_instance(instance, _selected)
 	)
