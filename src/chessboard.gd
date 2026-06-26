@@ -506,7 +506,6 @@ func castle_piece_instance(from_1:int, to_1:int, from_2:int, to_2:int) -> void:
 		instance_2.move(get_node(Chess.x88_to_name(to_2)).global_position)
 		chessboard_piece.erase(from_2)
 		chessboard_piece[to_2] = instance_2
-		return
 	if instance_1:
 		await instance_1.animation_finished
 	elif instance_2:
