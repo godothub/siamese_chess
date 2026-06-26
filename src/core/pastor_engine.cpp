@@ -638,11 +638,6 @@ int PastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _be
 	int next_killer_2 = -1;
 	pv_move = move_list[0];
 	int move_size = move_list.size();
-	if (_depth >= 3 && !is_principal_variation && !Chess::is_check(_state, 1 - _group) && !Chess::is_check(_state, _group))
-	{
-		move_size -= -0.7851 + 1.041 * log(_depth + 1) + 2.126 * log(move_size + 1) - 0.6481 * log(_depth + 1) * log(move_size + 1);
-		move_size = move_size <= 0 ? move_list.size() : move_size;
-	}
 	for (int i = 0; i < move_size; i++)
 	{
 		if (_debug_output.is_valid())
@@ -704,7 +699,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	int total_phase = 24;
 	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 - Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 1;
 	phase = (phase * 256 + (total_phase / 2)) / total_phase;
-	int alternative_threshold = std::max(32 - phase, 0);
+	int alternative_threshold = std::max(10 - phase, 0);
 	deepest_ply = 0;
 	evaluated_position = 0;
 	beta_cutoff = 0;
