@@ -2,7 +2,7 @@ keys,zh_CN,en
 DOCUMENT_TITLE_MENU,"咖啡厅菜单","Cafe menu"
 DOCUMENT_TITLE_CHESS_MOVEMENT,"棋子的移动","Piece movement"
 DOCUMENT_TITLE_SIAMESE_CHESS,"关于SiameseChess","About SiameseChess"
-history.match_with_yulan.json,"与玉兰的对局","The match against Yulan"
+history.cafe.json,"与玉兰的对局","The match against Yulan"
 history.entrance.json,"大门前的谜题","Puzzle on entrance"
 history.hallway_2f.json,"2楼走廊谜题","Puzzle on second floor hallway"
 history.basement.json,"地下室的谜题","Puzzle in basement"

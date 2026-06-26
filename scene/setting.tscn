@@ -51,29 +51,28 @@ anchor_top = 0.074
 anchor_right = 1.0
 anchor_bottom = 0.17400001
 offset_top = 0.048007965
-offset_right = -479.02472
-offset_bottom = -26.751999
+offset_bottom = 0.24799347
 grow_horizontal = 2
-scale = Vector2(1.7118014, 1.7118014)
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
-theme_override_font_sizes/font_size = 91
+theme_override_font_sizes/font_size = 126
 text = "TITLE_SETTINGS"
 label_settings = SubResource("LabelSettings_xthoy")
 horizontal_alignment = 1
 
 [node name="tab_container" type="TabContainer" parent="texture_rect" unique_id=873785341]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 0.21800001
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 141.0
+offset_top = -0.26400757
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 3
 theme_override_fonts/font = ExtResource("1_xthoy")
 theme_override_font_sizes/font_size = 24
-current_tab = 2
+current_tab = 0
 tab_0/title = "SETTINGS_TAB_GAME"
 tab_1/title = "SETTINGS_TAB_VIDEO_AUDIO"
 tab_2/title = "SETTINGS_TAB_CONTROL"
@@ -81,15 +80,17 @@ tab_3/title = "SETTINGS_TAB_ACCESSIBILITY"
 tab_4/title = "SETTINGS_TAB_FILES"
 
 [node name="game" type="Control" parent="texture_rect/tab_container" unique_id=1922696552]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "SETTINGS_TAB_GAME"
 
 [node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/game" unique_id=2051198955]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 471.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="margin_container_relax" type="MarginContainer" parent="texture_rect/tab_container/game/v_box_container" unique_id=2056793701]
@@ -142,6 +143,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -68.5
+offset_right = 68.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -421,6 +424,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 
 [node name="control" type="Control" parent="texture_rect/tab_container" unique_id=8294422]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 metadata/_tab_name = "SETTINGS_TAB_CONTROL"
