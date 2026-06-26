@@ -30,7 +30,7 @@ func _ready() -> void:
 	old_pastor.set_think_time(2)
 	new_pastor.set_max_depth(20)
 	new_pastor.set_think_time(2)
-	$marker_game.start()
+	play_match()
 
 func play_match() -> void:
 	while true:

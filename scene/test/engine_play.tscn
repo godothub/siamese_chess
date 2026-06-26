@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c2ig03qfrprfb" path="res://src/test/engine_play.gd" id="1_xcnj0"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="2_iyf27"]
-[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="3_xcnj0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_23ueg"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -31,9 +30,3 @@ environment = SubResource("Environment_htjak")
 [node name="camera_3d" type="Camera3D" parent="." unique_id=1041015604]
 transform = Transform3D(1, 0, 0, 0, 0.643977, 0.765045, 0, -0.765045, 0.643977, 0, 0.683727, 0.778705)
 current = true
-
-[node name="marker_game" type="Node3D" parent="." unique_id=1744044124 node_paths=PackedStringArray("chessboard")]
-script = ExtResource("3_xcnj0")
-player_group = 3
-chessboard = NodePath("../chessboard")
-metadata/_custom_type_script = "uid://dxapdof0oowg1"
