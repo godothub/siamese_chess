@@ -288,7 +288,8 @@ func change_slider(value:float) -> void:
 
 func set_resolution(index:int) -> void:
 	table.set("resolution", index)
-	get_viewport().size = resolutions[index]
+	get_window().size = resolutions[index]
+	get_window().content_scale_size = resolutions[index]
 
 func set_fullscreen(toggled_on:bool) -> void:
 	table.set("fullscreen", toggled_on)
