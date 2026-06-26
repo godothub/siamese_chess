@@ -10,8 +10,11 @@ class DialogSentence extends RefCounted:
 
 # 一般情况下，文本使用的是key，以至于直接识别逗号是没问题的
 @export_multiline("monospace", "no_wrap") var sequence_str:String = ""
+@export var animation_player:AnimationPlayer = null
+@export var cutscene_camera:Camera3D = null
 var sequence:Array[DialogSentence] = []
 var signal_container:SignalContainer = SignalContainer.new()
+var last_camera:Camera3D = null
 
 func _ready() -> void:
 	var rows:PackedStringArray = sequence_str.split('\n')
@@ -24,6 +27,9 @@ func _ready() -> void:
 
 func start() -> void:
 	Dialog.set_border_position(false)
+	if cutscene_camera:
+		last_camera = Player.target_camera
+		Player.force_set_camera(cutscene_camera)
 	show_dialog(0)
 	
 func show_dialog(index:int) -> void:
@@ -31,10 +37,13 @@ func show_dialog(index:int) -> void:
 	if index == sequence.size():
 		end()
 		return
+	if sequence[index].animation != "-":
+		animation_player.play(sequence[index].animation)
 	Dialog.push_dialog(tr(sequence[index].content), "", false, true, false)
 	signal_container.add_connection(Dialog.on_next, show_dialog.bind(index + 1))
 
 func end() -> void:
 	signal_container.disconnect_all()
 	Dialog.set_border_position(Setting.get_value("dialog_border"))
+	Player.force_set_camera(last_camera)
 	procedure_end.emit("")
