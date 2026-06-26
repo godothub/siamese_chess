@@ -22,5 +22,5 @@ func use_chessboard() -> void:
 func game_end(_result:String) -> void:
 	$chessboard.set_enabled(true)
 	chessboard_sandbox.set_enabled(false)
-	Player.force_set_camera($marker_camera_2/camera)
+	Player.force_set_camera($camera_bedroom)
 	change_state("")
