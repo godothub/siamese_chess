@@ -97,7 +97,7 @@ func push_selection(_selection:PackedStringArray, _title:String, _force_selectio
 		tween.kill()
 	click_anywhere = false
 	force_selection = _force_selection
-	selection = _selection
+	selection = _selection.duplicate()
 	text = selection_to_bbcode(_selection)
 	title = _title
 	if force_selection:
