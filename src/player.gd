@@ -166,7 +166,8 @@ func state_input_pointer(event:InputEvent) -> void:
 				pointer_click.emit(ray_cast.get_collision_point(), ray_cast.get_collision_normal())
 
 func _physics_process(_delta:float) -> void:
-	camera.rotation += Input.get_gyroscope() * _delta
+	if target_camera:
+		camera.global_transform = target_camera.global_transform
 	state_machine.process(_delta)
 
 func _unhandled_input(event:InputEvent) -> void:
