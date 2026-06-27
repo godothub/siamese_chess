@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="15_niqde"]
 [ext_resource type="PackedScene" uid="uid://cdb5lj1enonk6" path="res://assets/model/garden_steel_table.glb" id="16_ayujk"]
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="16_dy1ll"]
+[ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="16_itc81"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="17_ayujk"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="18_sj6w0"]
 [ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="19_110wd"]
@@ -127,7 +128,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("15_niqde")
 metadata/_custom_type_script = "uid://bsbhmxre68ncc"
 
-[node name="marker_actor_carnation" type="Marker3D" parent="." unique_id=1233530973 node_paths=PackedStringArray("instance")]
+[node name="marker_actor_carnation" type="Node3D" parent="." unique_id=1962534198 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 1.0591657, 0, -0.9517313)
 script = ExtResource("5_6tgvo")
 instance = NodePath("carnation_2")
@@ -350,7 +351,7 @@ metadata/_custom_type_script = "uid://cpyviir7sli6u"
 [node name="camera_carnation_dialog" type="Camera3D" parent="." unique_id=597081388]
 transform = Transform3D(0.9938668, 0.03782203, -0.10391512, -1.7677158e-08, 0.9396926, 0.34202015, 0.11058417, -0.3399225, 0.93392926, -0.32774067, 1.7364182, 2.9567816)
 
-[node name="marker_title" type="Marker3D" parent="." unique_id=1194249445]
+[node name="marker_title" type="Node3D" parent="." unique_id=1671690287]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
 script = ExtResource("12_kjls8")
 text = "CHAR_CARNATION"
@@ -374,11 +375,14 @@ script = ExtResource("12_kjls8")
 text = "TO_ENTRANCE"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
-[node name="marker_explore" type="Node3D" parent="." unique_id=746533081 node_paths=PackedStringArray("chessboard")]
+[node name="marker_explore" type="Node3D" parent="." unique_id=746533081 node_paths=PackedStringArray("chessboard", "instance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 script = ExtResource("16_dy1ll")
 chessboard = NodePath("../chessboard")
+instance = NodePath("cheshire")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
+
+[node name="cheshire" parent="marker_explore" unique_id=1598402161 instance=ExtResource("16_itc81")]
 
 [node name="garden_chair_2" parent="." unique_id=1929710267 instance=ExtResource("8_85gfo")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -5, 0, -7)

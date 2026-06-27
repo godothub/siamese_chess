@@ -54,7 +54,7 @@ func on_server_sent_event(sse:ServerSentEvent) -> void:
 func create_user(uuid:String, by:int = 0) -> void:
 	if uuid == my_uuid:
 		return
-	var cheshire_instance:Actor = load("res://scene/actor/cheshire.tscn").instantiate()
-	users[uuid] = cheshire_instance
-	$chessboard.add_child(cheshire_instance)
-	cheshire_instance.position = $chessboard.x88_to_vector3(by)
+	var instance:Actor = load("res://scene/actor/cheshire.tscn").instantiate()
+	users[uuid] = instance
+	$chessboard.add_child(instance)
+	instance.position = $chessboard.x88_to_vector3(by)

@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://jeaolg2mf178" path="res://assets/model/tree_1.glb" id="16_ysi5d"]
 [ext_resource type="PackedScene" uid="uid://dmwl65mg7565u" path="res://scene/actor/piece_pawn_black.tscn" id="17_2kov4"]
 [ext_resource type="PackedScene" uid="uid://dspg4rjx5jpq1" path="res://assets/model/street_light.glb" id="19_r5kom"]
+[ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="19_v6t1w"]
 [ext_resource type="Script" uid="uid://ci1qj2blsa7gp" path="res://src/event/marker_narrative.gd" id="20_a370u"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="21_2ugp2"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="23_bb3lo"]
@@ -404,11 +405,14 @@ script = ExtResource("24_x4r6x")
 game_event = NodePath("../marker_game")
 metadata/_custom_type_script = "uid://csapts1u0p18r"
 
-[node name="marker_explore" type="Node3D" parent="." unique_id=1293557151 node_paths=PackedStringArray("chessboard")]
+[node name="marker_explore" type="Node3D" parent="." unique_id=1293557151 node_paths=PackedStringArray("chessboard", "instance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("25_v6t1w")
 chessboard = NodePath("../chessboard")
+instance = NodePath("cheshire")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
+
+[node name="cheshire" parent="marker_explore" unique_id=1598402161 instance=ExtResource("19_v6t1w")]
 
 [node name="marker_actor" type="Marker3D" parent="." unique_id=792799186 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 5)

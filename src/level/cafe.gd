@@ -28,9 +28,9 @@ func interact_pastor() -> void:
 		await $marker_explore.animation_finished
 	$chessboard.set_enabled(false)
 	standard_chessboard.set_enabled(true)
-	$marker_explore.cheshire_instance.set_position($chessboard.name_to_vector3("e2"))
-	$marker_explore.cheshire_instance.set_rotation(Vector3(0, PI / 2, 0))
-	$marker_explore.cheshire_instance.play_animation("thinking")
+	$marker_explore.instance.set_position($chessboard.name_to_vector3("e2"))
+	$marker_explore.instance.set_rotation(Vector3(0, PI / 2, 0))
+	$marker_explore.instance.play_animation("thinking")
 	Player.force_set_camera($camera_chessboard)
 
 	standard_chessboard.state = Chess.create_initial_state()
@@ -73,8 +73,8 @@ func decision_end(_result:String) -> void:
 func game_end(_result:String = "") -> void:
 	signal_container.disconnect_all()
 	Player.force_set_camera($camera)
-	$marker_explore.cheshire_instance.play_animation("battle_idle")
-	$marker_explore.cheshire_instance.set_position($chessboard.name_to_vector3("e3"))
+	$marker_explore.instance.play_animation("battle_idle")
+	$marker_explore.instance.set_position($chessboard.name_to_vector3("e3"))
 	$chessboard.set_enabled(true)
 	standard_chessboard.set_enabled(false)
 	change_state("")

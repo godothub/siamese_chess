@@ -25,9 +25,9 @@
 [ext_resource type="Script" uid="uid://ci1qj2blsa7gp" path="res://src/event/marker_narrative.gd" id="24_p85mr"]
 [ext_resource type="PackedScene" uid="uid://bq8nyp56cwxfl" path="res://assets/model/fence_metal.glb" id="25_mv43g"]
 [ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/event/marker_actor.gd" id="26_lu7he"]
-[ext_resource type="PackedScene" uid="uid://cgoyrycf6ngyw" path="res://scene/actor/piece_knight_black.tscn" id="27_de6hv"]
 [ext_resource type="PackedScene" uid="uid://doaioqavihplw" path="res://assets/model/hotel_inner_gate.glb" id="27_fb5cd"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="30_1kcmt"]
+[ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="30_m47dq"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="31_m47dq"]
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="32_wxkc3"]
 
@@ -411,7 +411,6 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.2040
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
 script = ExtResource("26_lu7he")
 piece = 110
-actor = ExtResource("27_de6hv")
 meta = {
 "larger_scale": true
 }
@@ -421,7 +420,6 @@ metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
 script = ExtResource("26_lu7he")
 piece = 110
-actor = ExtResource("27_de6hv")
 meta = {
 "larger_scale": true
 }
@@ -458,7 +456,10 @@ script = ExtResource("31_m47dq")
 text = "HOTEL_ELEVATOR"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
-[node name="marker_explore" type="Node3D" parent="." unique_id=650433135 node_paths=PackedStringArray("chessboard")]
+[node name="marker_explore" type="Node3D" parent="." unique_id=650433135 node_paths=PackedStringArray("chessboard", "instance")]
 script = ExtResource("32_wxkc3")
 chessboard = NodePath("../chessboard")
+instance = NodePath("cheshire")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
+
+[node name="cheshire" parent="marker_explore" unique_id=1598402161 instance=ExtResource("30_m47dq")]

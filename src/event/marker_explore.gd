@@ -5,8 +5,8 @@ signal move_executed(move:int)
 signal animation_finished()
 
 @export var chessboard:Chessboard = null
+@export var instance:Actor = null
 var state_machine:StateMachine = StateMachine.new()
-var cheshire_instance:Actor = null
 var cheshire_by:int = -1
 var dont_move:bool = false
 
@@ -15,9 +15,7 @@ var travel_path:PackedInt32Array = []
 func _ready() -> void:
 	cheshire_by = Progress.get_value("player_by", chessboard.vector3_to_x88(position))
 	Progress.connect("value_changed", receive_value_change)
-	cheshire_instance = load("res://scene/actor/cheshire.tscn").instantiate()
-	chessboard.add_child(cheshire_instance)
-	cheshire_instance.global_position = chessboard.x88_to_vector3(cheshire_by)
+	instance.global_position = chessboard.x88_to_vector3(cheshire_by)
 	chessboard.button_input_pointer = cheshire_by
 	state_machine.name = "explore"
 	state_machine.add_state("free", state_ready_free, state_exit_free)
@@ -56,11 +54,11 @@ func state_exit_free() -> void:
 
 func state_ready_travel(_arg:Dictionary) -> void:
 	if travel_path.size():
-		cheshire_instance.move(chessboard.x88_to_vector3(travel_path[-1]))
+		instance.move(chessboard.x88_to_vector3(travel_path[-1]))
 		cheshire_by = travel_path[-1]
 		travel_path.resize(travel_path.size() - 1)
 	state_machine.state_signal_connect(chessboard.click_empty, travel_to)
-	state_machine.state_signal_connect(cheshire_instance.animation_finished, func () -> void:
+	state_machine.state_signal_connect(instance.animation_finished, func () -> void:
 		if travel_path.size():
 			state_machine.change_state.call_deferred("travel")
 		else:
@@ -94,9 +92,9 @@ func state_ready_stop(_arg:Dictionary) -> void:
 
 func sync_to_global() -> void:
 	ThirdEye3D.set_state(chessboard.state)
-	var cheshire_position:Vector3 = cheshire_instance.global_position
+	var cheshire_position:Vector3 = instance.global_position
 	cheshire_position += Vector3(0, 1.6, 0)
-	var cheshire_rotation:Vector3 = cheshire_instance.global_rotation
+	var cheshire_rotation:Vector3 = instance.global_rotation
 	FilmCamera.move_camera(cheshire_position, cheshire_rotation)
 
 func receive_value_change(key:String, value:Variant) -> void:
