@@ -20,7 +20,7 @@ func interact_carnation() -> void:
 	var target_angle:float = -current_position_2d.angle_to_point(target_position_2d) + PI / 2
 	target_angle = global_rotation.y + angle_difference(global_rotation.y, target_angle)
 	var instance:Actor = $marker_explore.instance
-	instance.rotation.y = target_angle
+	instance.get_node("animation_tree").active = false
 	signal_container.add_connection($marker_dialog.procedure_end, func(_result:String) -> void:
 		signal_container.disconnect_all()
 		interact_carnation_end()
@@ -55,6 +55,7 @@ func game_end(_result:String) -> void:
 
 func interact_carnation_end() -> void:
 	Player.force_set_camera($camera)
+	$marker_explore.instance.get_node("animation_tree").active = true
 	$marker_explore.instance.play_animation("battle_idle")
 	$marker_explore.instance.set_position($chessboard.name_to_vector3("d6"))
 	$chessboard.set_enabled(true)
