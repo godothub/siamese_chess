@@ -21,11 +21,11 @@ func interact_carnation() -> void:
 	target_angle = global_rotation.y + angle_difference(global_rotation.y, target_angle)
 	var instance:Actor = $marker_explore.instance
 	instance.get_node("animation_tree").active = false
-	signal_container.add_connection($marker_dialog.procedure_end, func(_result:String) -> void:
+	signal_container.add_connection($marker_dialog_first_meet.procedure_end, func(_result:String) -> void:
 		signal_container.disconnect_all()
 		interact_carnation_end()
 	)
-	$marker_dialog.start()
+	$marker_dialog_first_meet.start()
 
 func blindfold_chess() -> void:
 	standard_chessboard.state = Chess.create_initial_state()

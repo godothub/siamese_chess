@@ -5,26 +5,26 @@
 
 [node name="upright_piano" unique_id=1454712514 instance=ExtResource("1_mm7xa")]
 
-[node name="piano" parent="." index="0" unique_id=503203433]
+[node name="piano" parent="." index="0" unique_id=309147825]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, -0.000336002, -0.000632915, -0.624198)
 
-[node name="pedal_middle" parent="." index="1" unique_id=1594838639]
+[node name="pedal_middle" parent="." index="1" unique_id=236535214]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, -0.000336002, -0.000632915, -0.624198)
 
-[node name="pedal_left" parent="." index="2" unique_id=37759217]
+[node name="pedal_left" parent="." index="2" unique_id=162684569]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, -0.0839947, -0.000632915, -0.624198)
 
-[node name="pedal_right" parent="." index="3" unique_id=1583734738]
+[node name="pedal_right" parent="." index="3" unique_id=583946644]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, 0.0870067, -0.000632915, -0.624198)
 
-[node name="white_keys" parent="." index="4" unique_id=1701797409]
+[node name="white_keys" parent="." index="4" unique_id=724707447]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, -0.000336002, -0.000632915, -0.624198)
 
-[node name="black_keys" parent="." index="5" unique_id=840594260]
+[node name="black_keys" parent="." index="5" unique_id=979222224]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, 0.0138089, 0.0329507, -0.624198)
 
-[node name="piano_001" parent="." index="6" unique_id=2137641785]
+[node name="piano_001" parent="." index="6" unique_id=89301455]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, -0.000336002, -0.000632915, -0.624198)
 
 [node name="upright_piano_chair" parent="." index="7" unique_id=173764630 instance=ExtResource("2_qtvcp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.98137426)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7128538)

@@ -3,6 +3,7 @@ extends Level
 func _ready() -> void:
 	super._ready()
 	Ambient.change_environment_sound(load("res://assets/audio/52645__kstein1__white-noise.wav"))
+	$marker_actor_carnation/carnation.play_animation("sit_and_play")
 
 func interact_carnation() -> void:
 	change_state("dialog")
