@@ -328,6 +328,57 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2888029, 0.035506964, 0.05
 [node name="marker_target_pole" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_right_leg" index="1" unique_id=1514347741]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6672716, 0.5595692, 0.30314347)
 
+[node name="convert_transform_modifier_3d" type="CopyTransformModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1414234568) index="16" unique_id=1860371259]
+active = false
+setting_count = 5
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "waist"
+settings/0/apply_bone = 0
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("marker_3d")
+settings/1/amount = 1.0
+settings/1/apply_bone_name = "left_hip"
+settings/1/apply_bone = 55
+settings/1/reference_type = 1
+settings/1/reference_node = NodePath("marker_3d")
+settings/2/amount = 1.0
+settings/2/apply_bone_name = "right_hip"
+settings/2/apply_bone = 68
+settings/2/reference_type = 1
+settings/2/reference_node = NodePath("marker_3d")
+settings/3/amount = 1.0
+settings/3/apply_bone_name = "tail_0"
+settings/3/apply_bone = 60
+settings/3/reference_type = 1
+settings/3/reference_node = NodePath("marker_3d")
+settings/4/amount = 1.0
+settings/4/apply_bone_name = "tail_1"
+settings/4/apply_bone = 61
+settings/4/reference_type = 1
+settings/4/reference_node = NodePath("marker_3d")
+settings/0/copy = 1
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = true
+settings/1/copy = 1
+settings/1/axes = 7
+settings/1/invert = 0
+settings/1/additive = true
+settings/2/copy = 1
+settings/2/axes = 7
+settings/2/invert = 0
+settings/2/additive = true
+settings/3/copy = 1
+settings/3/axes = 7
+settings/3/invert = 0
+settings/3/additive = true
+settings/4/copy = 1
+settings/4/axes = 7
+settings/4/invert = 0
+settings/4/additive = true
+
+[node name="marker_3d" type="Marker3D" parent="skeleton/Skeleton3D/convert_transform_modifier_3d" index="0" unique_id=2004121038]
+
 [node name="animation_tree" type="AnimationTree" parent="." index="2" unique_id=1835909228]
 tree_root = SubResource("AnimationNodeStateMachine_pjgvl")
 anim_player = NodePath("../AnimationPlayer")
