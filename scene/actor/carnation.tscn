@@ -23,6 +23,237 @@ states/sit_and_think/position = Vector2(565, 228)
 [node name="carnation" unique_id=1846543884 instance=ExtResource("1_74he7")]
 script = ExtResource("2_eoyf3")
 
+[node name="convert_transform_modifier_3d" type="CopyTransformModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(2136890031) index="7" unique_id=403372263]
+active = false
+setting_count = 5
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "waist"
+settings/0/apply_bone = 0
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("marker_3d")
+settings/1/amount = 1.0
+settings/1/apply_bone_name = "left_hip"
+settings/1/apply_bone = 55
+settings/1/reference_type = 1
+settings/1/reference_node = NodePath("marker_3d")
+settings/2/amount = 1.0
+settings/2/apply_bone_name = "right_hip"
+settings/2/apply_bone = 68
+settings/2/reference_type = 1
+settings/2/reference_node = NodePath("marker_3d")
+settings/3/amount = 1.0
+settings/3/apply_bone_name = "tail_0"
+settings/3/apply_bone = 60
+settings/3/reference_type = 1
+settings/3/reference_node = NodePath("marker_3d")
+settings/4/amount = 1.0
+settings/4/apply_bone_name = "tail_1"
+settings/4/apply_bone = 61
+settings/4/reference_type = 1
+settings/4/reference_node = NodePath("marker_3d")
+settings/0/copy = 1
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = true
+settings/1/copy = 1
+settings/1/axes = 7
+settings/1/invert = 0
+settings/1/additive = true
+settings/2/copy = 1
+settings/2/axes = 7
+settings/2/invert = 0
+settings/2/additive = true
+settings/3/copy = 1
+settings/3/axes = 7
+settings/3/invert = 0
+settings/3/additive = true
+settings/4/copy = 1
+settings/4/axes = 7
+settings/4/invert = 0
+settings/4/additive = true
+
+[node name="marker_3d" type="Marker3D" parent="skeleton/Skeleton3D/convert_transform_modifier_3d" index="0" unique_id=511683883]
+
+[node name="look_at_modifier_3d" type="LookAtModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(2136890031) index="8" unique_id=227805514]
+active = false
+target_node = NodePath("marker_3d")
+bone_name = "head"
+bone = 3
+origin_offset = Vector3(0, 0.135, -0.19)
+
+[node name="marker_3d" type="Marker3D" parent="skeleton/Skeleton3D/look_at_modifier_3d" index="0" unique_id=200603272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012573183, 1.5521019, 0.43484896)
+
+[node name="copy_transform_modifier_3d" type="CopyTransformModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(2136890031) index="9" unique_id=1486929517]
+active = false
+setting_count = 1
+settings/0/amount = 0.917
+settings/0/apply_bone_name = "neck"
+settings/0/apply_bone = 2
+settings/0/reference_type = 0
+settings/0/reference_bone_name = "head"
+settings/0/reference_bone = 3
+settings/0/copy = 2
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/relative = true
+settings/0/additive = false
+
+[node name="copy_transform_modifier_3d_2" type="CopyTransformModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(2136890031) index="10" unique_id=1784596766]
+active = false
+influence = 0.366
+setting_count = 1
+settings/0/amount = 0.82
+settings/0/apply_bone_name = "back"
+settings/0/apply_bone = 1
+settings/0/reference_type = 0
+settings/0/reference_bone_name = "neck"
+settings/0/reference_bone = 2
+settings/0/copy = 2
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/relative = true
+settings/0/additive = false
+
+[node name="two_bone_ik_3d_body" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(2136890031) index="11" unique_id=1350935246]
+active = false
+setting_count = 1
+settings/0/target_node = NodePath("marker_3d")
+settings/0/pole_node = NodePath("marker_3d_pole")
+settings/0/root_bone_name = "waist"
+settings/0/root_bone = 0
+settings/0/middle_bone_name = "back"
+settings/0/middle_bone = 1
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "neck"
+settings/0/end_bone = 2
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="marker_3d" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_body" index="0" unique_id=2079693305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6736041, -0.046361744)
+
+[node name="marker_3d_pole" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_body" index="1" unique_id=12325255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6733066, -0.3130444)
+
+[node name="two_bone_ik_3d_left_hand" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(2136890031) index="12" unique_id=733469293]
+active = false
+setting_count = 1
+settings/0/target_node = NodePath("marker_target")
+settings/0/pole_node = NodePath("marker_target_pole")
+settings/0/root_bone_name = "left_upper_limbs"
+settings/0/root_bone = 12
+settings/0/middle_bone_name = "left_lower_limbs"
+settings/0/middle_bone = 13
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "left_middlefinger_0"
+settings/0/end_bone = 18
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="marker_target" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_left_hand" index="0" unique_id=589183507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21948892, 0.9606252, 0.03942907)
+
+[node name="marker_target_pole" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_left_hand" index="1" unique_id=2000521220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6351044, 1.2371899, 0)
+
+[node name="two_bone_ik_3d_right_hand" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(2136890031) index="13" unique_id=1938232085]
+active = false
+setting_count = 1
+settings/0/target_node = NodePath("marker_target")
+settings/0/pole_node = NodePath("marker_target_pole")
+settings/0/root_bone_name = "right_upper_limbs"
+settings/0/root_bone = 34
+settings/0/middle_bone_name = "right_lower_limbs"
+settings/0/middle_bone = 35
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "right_middlefinger_0"
+settings/0/end_bone = 40
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="marker_target" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_right_hand" index="0" unique_id=1657632076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16645646, 0.7773663, -0.13024408)
+
+[node name="marker_target_pole" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_right_hand" index="1" unique_id=388837561]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27790242, 1.2371899, 0)
+
+[node name="jacobian_ik_3d" type="JacobianIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(2136890031) index="14" unique_id=451888866]
+active = false
+max_iterations = 7
+deterministic = true
+setting_count = 1
+settings/0/target_node = NodePath("marker_3d")
+settings/0/root_bone_name = "tail_1"
+settings/0/root_bone = 61
+settings/0/end_bone_name = "tail_7"
+settings/0/end_bone = 67
+settings/0/extend_end_bone = true
+settings/0/end_bone/direction = 6
+settings/0/end_bone/length = 0.0
+settings/0/joint_count = 7
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/limitation = null
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/limitation = null
+settings/0/joints/2/rotation_axis = 3
+settings/0/joints/2/limitation = null
+settings/0/joints/3/rotation_axis = 3
+settings/0/joints/3/limitation = null
+settings/0/joints/4/rotation_axis = 3
+settings/0/joints/4/limitation = null
+settings/0/joints/5/rotation_axis = 3
+settings/0/joints/5/limitation = null
+settings/0/joints/6/rotation_axis = 3
+settings/0/joints/6/limitation = null
+
+[node name="marker_3d" type="Marker3D" parent="skeleton/Skeleton3D/jacobian_ik_3d" index="0" unique_id=1739202787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3260333, 0.62439656, -0.4448747)
+
+[node name="two_bone_ik_3d_left_leg" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(2136890031) index="15" unique_id=1634359269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19423568, 0, 0)
+active = false
+setting_count = 1
+settings/0/target_node = NodePath("marker_target")
+settings/0/pole_node = NodePath("marker_target_pole")
+settings/0/root_bone_name = "left_thigh"
+settings/0/root_bone = 56
+settings/0/middle_bone_name = "left_leg"
+settings/0/middle_bone = 57
+settings/0/pole_direction = 1
+settings/0/end_bone_name = "left_foot_0"
+settings/0/end_bone = 58
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="marker_target" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_left_leg" index="0" unique_id=653369918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14930618, -0.03583193, 0.03849253)
+
+[node name="marker_target_pole" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_left_leg" index="1" unique_id=1298213547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15874177, 0.5595692, 0.4239503)
+
+[node name="two_bone_ik_3d_right_leg" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(2136890031) index="16" unique_id=1935788467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19423568, 0, 0)
+active = false
+setting_count = 1
+settings/0/target_node = NodePath("marker_target")
+settings/0/pole_node = NodePath("marker_target_pole")
+settings/0/root_bone_name = "right_thigh"
+settings/0/root_bone = 69
+settings/0/middle_bone_name = "right_leg"
+settings/0/middle_bone = 70
+settings/0/pole_direction = 1
+settings/0/end_bone_name = "right_foot_0"
+settings/0/end_bone = 71
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="marker_target" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_right_leg" index="0" unique_id=1066501355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2888029, 0.035506964, 0.050136864)
+
+[node name="marker_target_pole" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_right_leg" index="1" unique_id=1897492939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6672716, 0.5595692, 0.30314347)
+
 [node name="animation_tree" type="AnimationTree" parent="." index="2" unique_id=296152206]
 tree_root = SubResource("AnimationNodeStateMachine_74he7")
 anim_player = NodePath("../AnimationPlayer")
