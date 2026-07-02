@@ -6122,25 +6122,14 @@ script = ExtResource("19_110wd")
 chessboard = NodePath("../garden_steel_table/chessboard")
 metadata/_custom_type_script = "uid://dxapdof0oowg1"
 
-[node name="marker_decision" type="Node3D" parent="." unique_id=1102374707]
-script = ExtResource("20_6m8c7")
-cancelable = true
-hint = "HINT_CHOOSE_SIDE"
-metadata/_custom_type_script = "uid://dg2slo01f4hvf"
-
 [node name="camera_chessboard" type="Camera3D" parent="." unique_id=1659593142]
 transform = Transform3D(-2.7062054e-08, 0.78530616, -0.61910766, 3.432682e-08, 0.61910766, 0.78530616, 1, 0, -4.371139e-08, -0.44147825, 1.3092046, -1)
 fov = 44.5
 
-[node name="procedure_dialog_first_meet" type="Node3D" parent="." unique_id=386663468 node_paths=PackedStringArray("animation_player", "cutscene_camera")]
+[node name="procedure_dialog_demo" type="Node3D" parent="." unique_id=386663468 node_paths=PackedStringArray("animation_player", "cutscene_camera")]
 script = ExtResource("21_6m8c7")
-sequence_str = "CARNATION_TALK_FIRST_MEET_0,carnation_talk_0
-CARNATION_TALK_FIRST_MEET_1,carnation_talk_1
-CARNATION_TALK_FIRST_MEET_2,-
-CARNATION_TALK_FIRST_MEET_3,-
-CARNATION_TALK_FIRST_MEET_4,-
-CARNATION_TALK_FIRST_MEET_5,-
-CARNATION_TALK_FIRST_MEET_6,carnation_talk_3"
+sequence_str = "CARNATION_TALK_DEMO_0,carnation_talk_0
+CARNATION_TALK_DEMO_1,carnation_talk_3"
 animation_player = NodePath("../animation_player")
 cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
@@ -6152,6 +6141,19 @@ to = "res://scene/level/entrance.tscn"
 by = 71
 bit = 4294967296
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
+
+[node name="procedure_decision_demo" type="Node3D" parent="." unique_id=1405552484]
+script = ExtResource("20_6m8c7")
+cancelable = true
+selection = ["CARNATION_TALK_DEMO_MATCH", "CARNATION_TALK_DEMO_POSITIONING", "CARNATION_TALK_DEMO_MEMORIZING", "CARNATION_TALK_DEMO_CANCEL"]
+metadata/_custom_type_script = "uid://dg2slo01f4hvf"
+
+[node name="procedure_decision_side" type="Node3D" parent="." unique_id=703273584]
+script = ExtResource("20_6m8c7")
+cancelable = true
+hint = "HINT_CHOOSE_SIDE"
+selection = ["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM"]
+metadata/_custom_type_script = "uid://dg2slo01f4hvf"
 
 [editable path="event_actor_carnation/carnation_2"]
 [editable path="background/grass"]

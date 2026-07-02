@@ -14,7 +14,6 @@ class DialogSentence extends RefCounted:
 @export var cutscene_camera:Camera3D = null
 var sequence:Array[DialogSentence] = []
 var signal_container:SignalContainer = SignalContainer.new()
-var last_camera:Camera3D = null
 
 func _ready() -> void:
 	var rows:PackedStringArray = sequence_str.split('\n')
@@ -28,7 +27,6 @@ func _ready() -> void:
 func start() -> void:
 	Dialog.set_border_position(false)
 	if cutscene_camera:
-		last_camera = Player.target_camera
 		Player.force_set_camera(cutscene_camera)
 	show_dialog(0)
 	
@@ -45,5 +43,4 @@ func show_dialog(index:int) -> void:
 func end() -> void:
 	signal_container.disconnect_all()
 	Dialog.set_border_position(Setting.get_value("dialog_border"))
-	Player.force_set_camera(last_camera)
 	procedure_end.emit("")

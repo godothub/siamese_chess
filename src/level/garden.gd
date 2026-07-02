@@ -9,8 +9,6 @@ func _ready() -> void:
 	Ambient.change_environment_sound(load("res://assets/audio/405135__mjeno__autumn-forest-leaves-falling-close-to-pond-iii-loopable.wav"))
 	Player.force_set_camera($camera)
 	$event_actor_carnation.instance.play_animation("sit_and_think")
-	$marker_decision.connect("procedure_end", decision_end)
-	$procedure_game.connect("procedure_end", game_end)
 
 func interact_carnation() -> void:
 	change_state("game")
@@ -21,15 +19,30 @@ func interact_carnation() -> void:
 	target_angle = global_rotation.y + angle_difference(global_rotation.y, target_angle)
 	var instance:Actor = $event_explore.instance
 	instance.get_node("animation_tree").active = false
-	signal_container.add_connection($procedure_dialog_first_meet.procedure_end, func(_result:String) -> void:
-		signal_container.disconnect_all()
-		interact_carnation_end()
-	)
-	$procedure_dialog_first_meet.start()
+	signal_container.disconnect_all()
+	signal_container.add_connection($procedure_dialog_demo.procedure_end, dialog_demo_end)
+	$procedure_dialog_demo.start()
+
+func dialog_demo_end(_result:String) -> void:
+	signal_container.disconnect_all()
+	signal_container.add_connection($procedure_decision_demo.procedure_end, decision_demo_end)
+	$procedure_decision_demo.start()
+
+func decision_demo_end(_result:String) -> void:
+	signal_container.disconnect_all()
+	match _result:
+		"CARNATION_TALK_DEMO_MATCH":
+			blindfold_chess()
+		"CARNATION_TALK_DEMO_CANCEL":
+			interact_carnation_end()
+		"":
+			interact_carnation_end()
 
 func blindfold_chess() -> void:
+	signal_container.disconnect_all()
 	standard_chessboard.state = Chess.create_initial_state()
-	$marker_decision.start()
+	signal_container.add_connection($procedure_decision_side.procedure_end, decision_end)
+	$procedure_decision_side.start()
 
 func decision_end(_result:String) -> void:
 	match _result:
@@ -48,6 +61,7 @@ func decision_end(_result:String) -> void:
 		standard_chessboard.rotation.y = PI / 2
 	standard_chessboard.remove_piece_set()
 	Player.force_set_camera($camera_chessboard)
+	signal_container.add_connection($procedure_game.procedure_end, game_end)
 	$procedure_game.start()
 
 func game_end(_result:String) -> void:
