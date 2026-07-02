@@ -37,7 +37,8 @@ func state_ready_free(_arg:Dictionary) -> void:
 	dont_move = false
 	state_machine.state_signal_connect(chessboard.click_empty, travel_to)
 	state_machine.state_signal_connect(Dialog.on_select, func(_selected:String) -> void:
-		level.available_events[_selected].on_selection()
+		if level.available_events.has(_selected):
+			level.available_events[_selected].on_selection()
 		level.show_selection(cheshire_by)
 	)
 	state_machine.state_signal_connect(chessboard.hovered, func (_selected:int) -> void:
