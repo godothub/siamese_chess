@@ -1,5 +1,5 @@
-extends MarkerProcedure
-class_name MarkerEdit
+extends Procedure
+class_name ProcedureEdit
 
 var edit_piece:int = 0
 var state_machine:StateMachine = StateMachine.new()

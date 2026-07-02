@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://df1jvoew7cb6y" path="res://src/test/sandbox.gd" id="1_23ueg"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="1_h0kme"]
-[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="3_su63u"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/procedure/procedure_game.gd" id="3_su63u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_23ueg"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)

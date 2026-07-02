@@ -1,5 +1,5 @@
-extends MarkerProcedure
-class_name MarkerDecision
+extends Procedure
+class_name ProcedureDecision
 
 @export var cancelable:bool = false
 @export var hint:String = ""

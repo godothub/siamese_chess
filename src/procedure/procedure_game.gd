@@ -1,5 +1,5 @@
-extends MarkerProcedure
-class_name MarkerGame
+extends Procedure
+class_name ProcedureGame
 
 # 如果为2，就相当于同时控制黑白双方
 signal move_played(move:int)

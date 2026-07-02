@@ -1,5 +1,5 @@
-extends MarkerProcedure
-class_name MarkerDialog
+extends Procedure
+class_name ProcedureDialog
 
 # 目前的对话，除了显示对话内容以外，还有角色动画播放，以及镜头的转移
 # 这个过程是非常线性的

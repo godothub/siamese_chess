@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://co15mhip5ijel" path="res://src/test/opening_editor.gd" id="1_1g675"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="2_0yhrm"]
-[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="2_6guo3"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/procedure/procedure_game.gd" id="2_6guo3"]
 [ext_resource type="Script" uid="uid://dg85frcnjlauy" path="res://src/interact.gd" id="4_2v8s7"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="5_0yhrm"]
 

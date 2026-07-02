@@ -1,7 +1,10 @@
-extends MarkerEvent
-class_name MarkerProcedure
+@abstract
+extends Node3D
+class_name Procedure
 
 signal procedure_end(result:String)
+
+@onready var level:Level = get_parent()
 
 func start() -> void:
 	pass

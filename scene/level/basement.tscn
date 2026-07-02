@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://wlf2bpitdmjk" path="res://scene/actor/piece_queen_black.tscn" id="17_tljiy"]
 [ext_resource type="LightmapGIData" uid="uid://ckp82lkp2mvma" path="res://assets/basement.lmbake" id="18_x66wa"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="20_0yjdh"]
-[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="21_3d6ds"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/procedure/procedure_game.gd" id="21_3d6ds"]
 [ext_resource type="Script" uid="uid://csapts1u0p18r" path="res://src/event/marker_start_game.gd" id="22_wql0o"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="23_bhm70"]
 [ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="23_vpnv2"]
@@ -349,10 +349,10 @@ omni_range = 10.077
 [node name="hotel_door_large" parent="." unique_id=2031737367 instance=ExtResource("9_7pf3j")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=697941169]
+[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=576972813]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=704909446]
+[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=674245926]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=1404077087]

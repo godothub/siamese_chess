@@ -2,7 +2,7 @@ extends MarkerEvent
 class_name MarkerStartGame
 
 @export var group:int = 1
-@export var game_event:MarkerEvent = null
+@export var game_event:Procedure = null
 
 func _ready() -> void:
 	game_event.connect("procedure_end", game_end)

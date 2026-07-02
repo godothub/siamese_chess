@@ -1,5 +1,5 @@
-extends MarkerProcedure
-class_name MarkerDecorate
+extends Procedure
+class_name ProcedureDecorate
 
 @export var chessboard:Chessboard = null
 var available_model:Array = []

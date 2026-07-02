@@ -20,9 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="16_itc81"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="17_ayujk"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="18_sj6w0"]
-[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/event/marker_game.gd" id="19_110wd"]
-[ext_resource type="Script" uid="uid://dg2slo01f4hvf" path="res://src/event/marker_decision.gd" id="20_6m8c7"]
-[ext_resource type="Script" uid="uid://d2ckdq43wstns" path="res://src/event/marker_dialog.gd" id="21_6m8c7"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/procedure/procedure_game.gd" id="19_110wd"]
+[ext_resource type="Script" uid="uid://dg2slo01f4hvf" path="res://src/procedure/procedure_decision.gd" id="20_6m8c7"]
+[ext_resource type="Script" uid="uid://d2ckdq43wstns" path="res://src/procedure/procedure_dialog.gd" id="21_6m8c7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -6132,7 +6132,6 @@ metadata/_custom_type_script = "uid://dxapdof0oowg1"
 script = ExtResource("20_6m8c7")
 cancelable = true
 hint = "HINT_CHOOSE_SIDE"
-selection = ["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM"]
 metadata/_custom_type_script = "uid://dg2slo01f4hvf"
 
 [node name="camera_chessboard" type="Camera3D" parent="." unique_id=1659593142]

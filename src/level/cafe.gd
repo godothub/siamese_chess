@@ -2,9 +2,9 @@ extends Level
 
 @onready var standard_history_document:Document = load("res://src/doc/history.gd").new()
 @onready var standard_chessboard:Chessboard = $table_0/chessboard_standard
-@onready var edit_event:MarkerProcedure = $marker_edit
-@onready var decision_event:MarkerProcedure = $marker_decision
-@onready var game_event:MarkerProcedure = $marker_game
+@onready var edit_event:Procedure = $marker_edit
+@onready var decision_event:Procedure = $marker_decision
+@onready var game_event:Procedure = $marker_game
 
 var signal_container:SignalContainer = SignalContainer.new()
 
