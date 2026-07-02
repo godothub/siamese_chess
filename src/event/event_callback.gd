@@ -1,5 +1,5 @@
-extends MarkerEvent
-class_name MarkerCallback
+extends LevelEvent
+class_name EventCallback
 
 @export var node:Node = null
 @export var method_name:StringName = ""

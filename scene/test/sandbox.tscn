@@ -31,7 +31,7 @@ environment = SubResource("Environment_htjak")
 [node name="camera_3d" type="Camera3D" parent="." unique_id=1041015604]
 transform = Transform3D(1, 0, 0, 0, 0.643977, 0.765045, 0, -0.765045, 0.643977, 0, 0.683727, 0.778705)
 
-[node name="marker_game" type="Node3D" parent="." unique_id=890844928 node_paths=PackedStringArray("chessboard")]
+[node name="procedure_game" type="Node3D" parent="." unique_id=890844928 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("3_su63u")
 player_group = 2
 can_leave = false

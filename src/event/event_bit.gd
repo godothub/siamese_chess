@@ -1,6 +1,6 @@
 @tool
-extends MarkerEvent
-class_name MarkerBit
+extends LevelEvent
+class_name EventBit
 
 @export var piece:int = 0
 @export_custom(PropertyHint.PROPERTY_HINT_FLAGS, "bitboard") var bit:int = 0

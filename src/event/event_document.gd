@@ -1,5 +1,5 @@
-extends MarkerEvent
-class_name MarkerDocument
+extends LevelEvent
+class_name EventDocument
 
 @export var file_path:String = "usr://archive/"
 @export var file_content:Dictionary = {"lines": []}

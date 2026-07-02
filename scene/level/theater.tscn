@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://devrkfts50x1v" path="res://src/level/theater.gd" id="1_vm1e8"]
 [ext_resource type="PackedScene" uid="uid://b3ml34bssywkr" path="res://scene/player.tscn" id="2_ev634"]
 [ext_resource type="PackedScene" uid="uid://famkj12ufimp" path="res://scene/chessboard_blank.tscn" id="4_b4xfv"]
-[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="5_b4xfv"]
-[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="5_vm1e8"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="5_b4xfv"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/event_entrance.gd" id="5_vm1e8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -100,7 +100,7 @@ light_color = Color(1, 0.95016664, 0.87, 1)
 light_energy = 0.262
 omni_range = 18.93521
 
-[node name="marker_camera" type="Node3D" parent="." unique_id=1411355540 node_paths=PackedStringArray("camera")]
+[node name="event_camera" type="Node3D" parent="." unique_id=1411355540 node_paths=PackedStringArray("camera")]
 script = ExtResource("5_b4xfv")
 camera = NodePath("../camera")
 bit = -1
@@ -124,7 +124,7 @@ sides = 20
 cone = true
 material = SubResource("StandardMaterial3D_vm1e8")
 
-[node name="marker_entrance" type="Node3D" parent="." unique_id=2058715089]
+[node name="event_entrance" type="Node3D" parent="." unique_id=2058715089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("5_vm1e8")
 metadata/_custom_type_script = "uid://bsbhmxre68ncc"

@@ -1,5 +1,5 @@
-extends MarkerEvent
-class_name MarkerTitle
+extends LevelEvent
+class_name EventTitle
 
 @export var text:String = ""
 

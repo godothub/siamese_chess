@@ -1,8 +1,8 @@
-extends MarkerEvent
-class_name MarkerStartGame
+extends LevelEvent
+class_name EventStartGame
 
 @export var group:int = 1
-@export var game_event:Procedure = null
+@export var game_event:LevelProcedure = null
 
 func _ready() -> void:
 	game_event.connect("procedure_end", game_end)

@@ -1,6 +1,6 @@
 @tool
-extends MarkerEvent
-class_name MarkerActor
+extends LevelEvent
+class_name EventActor
 
 @export var piece:int = 0
 @export var meta:Dictionary = {}

@@ -1,4 +1,4 @@
-extends Procedure
+extends LevelProcedure
 class_name ProcedureDecision
 
 @export var cancelable:bool = false

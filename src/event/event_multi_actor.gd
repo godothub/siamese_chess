@@ -1,5 +1,5 @@
-extends MarkerEvent
-class_name MarkerMultiActor
+extends LevelEvent
+class_name EventMultiActor
 
 @export var piece:int = 0
 @export_custom(PropertyHint.PROPERTY_HINT_FLAGS, "bitboard") var bit:int = 0

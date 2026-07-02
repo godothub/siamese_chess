@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c5bxmxcbilfv4" path="res://assets/model/kitchen_stove.glb" id="11_54xsr"]
 [ext_resource type="PackedScene" uid="uid://c3jp51b0aamue" path="res://assets/model/kitchen_range_hood.glb" id="12_y888p"]
 [ext_resource type="PackedScene" uid="uid://cuu3yjt7ru2ah" path="res://assets/model/hang_shelf.glb" id="13_nkxss"]
-[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="14_hqxra"]
+[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/event_multi_actor.gd" id="14_hqxra"]
 [ext_resource type="PackedScene" uid="uid://brwklx5c0sjbo" path="res://assets/model/cafe_washbasin.glb" id="15_fis72"]
 [ext_resource type="PackedScene" uid="uid://cefxs7grh28rs" path="res://assets/model/door.glb" id="16_uhj53"]
 [ext_resource type="PackedScene" uid="uid://b63o3y2sbsav0" path="res://assets/model/table_high.glb" id="16_x83ls"]
@@ -27,8 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://c7in6lrql532h" path="res://assets/model/kitchen_frying_pan.glb" id="27_cwpkv"]
 [ext_resource type="PackedScene" uid="uid://dmkd8xgnie7uq" path="res://assets/model/kitchen_pot.glb" id="28_e37jg"]
 [ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="29_1vbqe"]
-[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="30_imp7c"]
-[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="32_twdgb"]
+[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/event_explore.gd" id="30_imp7c"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="32_twdgb"]
 
 [sub_resource type="Environment" id="Environment_x83ls"]
 background_mode = 2
@@ -338,7 +338,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.643457, 4.2699323, 2.53540
 layers = 2
 size = Vector3(14.481445, 1.0754395, 8.130371)
 
-[node name="marker_camera" type="Node3D" parent="." unique_id=1459029983 node_paths=PackedStringArray("camera")]
+[node name="event_camera" type="Node3D" parent="." unique_id=1459029983 node_paths=PackedStringArray("camera")]
 script = ExtResource("32_twdgb")
 camera = NodePath("../camera")
 bit = 33909456009953280
@@ -612,14 +612,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5066252, 1.0709386, 2.0846
 [node name="kitchen_pot_2" parent="." unique_id=1815452724 instance=ExtResource("28_e37jg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5066252, 1.0709386, 0.49664664)
 
-[node name="marker_explore" type="Node3D" parent="." unique_id=715757998 node_paths=PackedStringArray("chessboard", "instance")]
+[node name="event_explore" type="Node3D" parent="." unique_id=715757998 node_paths=PackedStringArray("chessboard", "instance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
 script = ExtResource("30_imp7c")
 chessboard = NodePath("../chessboard")
 instance = NodePath("cheshire")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 
-[node name="cheshire" parent="marker_explore" unique_id=1598402161 instance=ExtResource("29_1vbqe")]
+[node name="cheshire" parent="event_explore" unique_id=1598402161 instance=ExtResource("29_1vbqe")]
 
 [editable path="chessboard"]
 [editable path="cafe/table_1"]

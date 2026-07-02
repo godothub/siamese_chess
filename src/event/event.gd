@@ -1,6 +1,6 @@
 @abstract
 extends Node3D
-class_name MarkerEvent
+class_name LevelEvent
 
 @onready var level:Level = get_parent()
 

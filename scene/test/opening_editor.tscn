@@ -35,7 +35,7 @@ camera = NodePath("../camera_3d")
 inspectable_item = [NodePath("../chessboard")]
 metadata/_custom_type_script = "uid://dg85frcnjlauy"
 
-[node name="marker_game" type="Node3D" parent="." unique_id=2128355020 node_paths=PackedStringArray("chessboard")]
+[node name="procedure_game" type="Node3D" parent="." unique_id=2128355020 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("2_6guo3")
 player_group = 2
 chessboard = NodePath("../chessboard")

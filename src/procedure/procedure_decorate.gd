@@ -1,4 +1,4 @@
-extends Procedure
+extends LevelProcedure
 class_name ProcedureDecorate
 
 @export var chessboard:Chessboard = null

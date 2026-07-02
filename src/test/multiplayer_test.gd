@@ -10,7 +10,7 @@ var users:Dictionary = {}
 
 func _ready() -> void:
 	super._ready()
-	$marker_explore.connect("move_executed", send_move)
+	$event_explore.connect("move_executed", send_move)
 	http_event_source.connect_to_url("http://127.0.0.1:5000/stream")
 	http_event_source.connect("event", on_server_sent_event)
 	http_request_enter.connect("request_completed", on_request_completed_enter)

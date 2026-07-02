@@ -6,7 +6,7 @@ func _ready() -> void:
 	super._ready()
 	chessboard_sandbox.set_enabled(false)
 	Player.add_inspectable_item(chessboard_sandbox)
-	$marker_game.connect("procedure_end", game_end)
+	$procedure_game.connect("procedure_end", game_end)
 
 func use_chessboard() -> void:
 	change_state("analysis")
@@ -17,7 +17,7 @@ func use_chessboard() -> void:
 	chessboard_sandbox.remove_piece_set()
 	chessboard_sandbox.add_default_piece_set()
 	Player.force_set_camera($camera_chessboard)
-	$marker_game.start()
+	$procedure_game.start()
 
 func game_end(_result:String) -> void:
 	$chessboard.set_enabled(true)

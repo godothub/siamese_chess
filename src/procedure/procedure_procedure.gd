@@ -1,6 +1,6 @@
 @abstract
 extends Node3D
-class_name Procedure
+class_name LevelProcedure
 
 signal procedure_end(result:String)
 

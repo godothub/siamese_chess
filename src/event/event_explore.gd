@@ -1,5 +1,5 @@
-extends MarkerEvent
-class_name MarkerExplore
+extends LevelEvent
+class_name EventExplore
 
 signal move_executed(move:int)
 signal animation_finished()

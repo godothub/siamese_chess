@@ -1,5 +1,5 @@
-extends MarkerEvent
-class_name MarkerEntrance
+extends LevelEvent
+class_name EventEntrance
 
 func on_init() -> void:
 	pass

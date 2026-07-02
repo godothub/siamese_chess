@@ -1,5 +1,5 @@
-extends MarkerEvent
-class_name MarkerNarrative
+extends LevelEvent
+class_name EventNarrative
 
 # 表达式，返回bool，支持使用Level、Petting、Progress、Chess这几个对象
 @export_multiline() var condition:String = ""

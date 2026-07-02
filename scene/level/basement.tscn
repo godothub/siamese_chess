@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://esfde7td2hli" path="res://src/level/basement.gd" id="1_mtw5c"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="2_3cgcv"]
-[ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/event/marker_actor.gd" id="3_ywqhp"]
+[ext_resource type="Script" uid="uid://c7cwb1ro3e2r" path="res://src/event/event_actor.gd" id="3_ywqhp"]
 [ext_resource type="PackedScene" uid="uid://btdxda3dhe5ji" path="res://scene/actor/box_stack.tscn" id="4_d5w51"]
 [ext_resource type="PackedScene" uid="uid://d4fh7xfnsf31v" path="res://scene/actor/basement_shelf.tscn" id="5_wql0o"]
 [ext_resource type="PackedScene" uid="uid://cc47gv2sinn3k" path="res://scene/actor/library_handcart.tscn" id="6_tljiy"]
@@ -11,21 +11,20 @@
 [ext_resource type="PackedScene" uid="uid://cwjgphuayqvy3" path="res://assets/model/hotel_door_large.glb" id="9_7pf3j"]
 [ext_resource type="PackedScene" uid="uid://bt5m0eox0615k" path="res://assets/model/hotel_room_desk.glb" id="11_74xdv"]
 [ext_resource type="PackedScene" uid="uid://u1ropnj7v0ap" path="res://assets/model/hotel_room_desk_chair.glb" id="12_vykmq"]
-[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="13_0mecn"]
-[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="13_vykmq"]
-[ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="14_nwskg"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/event_entrance.gd" id="13_0mecn"]
+[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/event_callback.gd" id="13_vykmq"]
 [ext_resource type="PackedScene" uid="uid://dvfilx1shno5w" path="res://scene/actor/piece_king_white.tscn" id="16_bhm70"]
-[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="16_idfw3"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="16_idfw3"]
 [ext_resource type="PackedScene" uid="uid://wlf2bpitdmjk" path="res://scene/actor/piece_queen_black.tscn" id="17_tljiy"]
 [ext_resource type="LightmapGIData" uid="uid://ckp82lkp2mvma" path="res://assets/basement.lmbake" id="18_x66wa"]
-[ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/marker_title.gd" id="20_0yjdh"]
+[ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/event_title.gd" id="20_0yjdh"]
 [ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/procedure/procedure_game.gd" id="21_3d6ds"]
-[ext_resource type="Script" uid="uid://csapts1u0p18r" path="res://src/event/marker_start_game.gd" id="22_wql0o"]
+[ext_resource type="Script" uid="uid://csapts1u0p18r" path="res://src/event/event_start_game.gd" id="22_wql0o"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="23_bhm70"]
 [ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="23_vpnv2"]
-[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="23_wetn8"]
-[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="24_bhm70"]
-[ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/marker_teleport.gd" id="25_tljiy"]
+[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/event_explore.gd" id="23_wetn8"]
+[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/event_multi_actor.gd" id="24_bhm70"]
+[ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="25_tljiy"]
 
 [sub_resource type="Environment" id="Environment_ywqhp"]
 background_mode = 1
@@ -86,144 +85,138 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, 5.9901123, 0.01
 size = Vector3(16.021355, 4.0148926, 27.990234)
 material = SubResource("StandardMaterial3D_7pf3j")
 
-[node name="marker_actor_box" type="Marker3D" parent="." unique_id=873452953 node_paths=PackedStringArray("instance")]
+[node name="event_actor_box" type="Node3D" parent="." unique_id=873452953 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 0, 3)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="box_stack" parent="marker_actor_box" unique_id=724446345 instance=ExtResource("4_d5w51")]
+[node name="box_stack" parent="event_actor_box" unique_id=724446345 instance=ExtResource("4_d5w51")]
 
-[node name="marker_actor_box_2" type="Marker3D" parent="." unique_id=1411084736 node_paths=PackedStringArray("instance")]
+[node name="event_actor_box_2" type="Node3D" parent="." unique_id=1411084736 node_paths=PackedStringArray("instance")]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 3, 0, -7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="box_stack" parent="marker_actor_box_2" unique_id=1102217689 instance=ExtResource("4_d5w51")]
+[node name="box_stack" parent="event_actor_box_2" unique_id=1102217689 instance=ExtResource("4_d5w51")]
 
-[node name="marker_actor_shelf_2" type="Marker3D" parent="." unique_id=5559064 node_paths=PackedStringArray("instance")]
+[node name="event_actor_shelf_2" type="Node3D" parent="." unique_id=5559064 node_paths=PackedStringArray("instance")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1, 0, -1)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_shelf")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_shelf" parent="marker_actor_shelf_2" unique_id=481885860 instance=ExtResource("5_wql0o")]
+[node name="basement_shelf" parent="event_actor_shelf_2" unique_id=481885860 instance=ExtResource("5_wql0o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 
-[node name="marker_actor_shelf" type="Marker3D" parent="." unique_id=294195218 node_paths=PackedStringArray("instance")]
+[node name="event_actor_shelf" type="Node3D" parent="." unique_id=294195218 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, -5, 0, 7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_shelf")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_shelf" parent="marker_actor_shelf" unique_id=1023361172 instance=ExtResource("5_wql0o")]
+[node name="basement_shelf" parent="event_actor_shelf" unique_id=1023361172 instance=ExtResource("5_wql0o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 
-[node name="marker_actor_box_3" type="Marker3D" parent="." unique_id=1805708270 node_paths=PackedStringArray("instance")]
+[node name="event_actor_box_3" type="Node3D" parent="." unique_id=1805708270 node_paths=PackedStringArray("instance")]
 transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, -3, 0, -1)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="box_stack" parent="marker_actor_box_3" unique_id=1486947357 instance=ExtResource("4_d5w51")]
+[node name="box_stack" parent="event_actor_box_3" unique_id=1486947357 instance=ExtResource("4_d5w51")]
 
-[node name="marker_actor_box_4" type="Marker3D" parent="." unique_id=408133148 node_paths=PackedStringArray("instance")]
+[node name="event_actor_box_4" type="Node3D" parent="." unique_id=408133148 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.95996666, 0, 0.28011376, 0, 1, 0, -0.28011376, 0, -0.95996666, -1, 0, -3)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="box_stack" parent="marker_actor_box_4" unique_id=867886012 instance=ExtResource("4_d5w51")]
+[node name="box_stack" parent="event_actor_box_4" unique_id=867886012 instance=ExtResource("4_d5w51")]
 
-[node name="marker_actor_handcart" type="Marker3D" parent="." unique_id=1018678253 node_paths=PackedStringArray("instance")]
+[node name="event_actor_handcart" type="Node3D" parent="." unique_id=1018678253 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("library_handcart")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="library_handcart" parent="marker_actor_handcart" unique_id=225623082 instance=ExtResource("6_tljiy")]
+[node name="library_handcart" parent="event_actor_handcart" unique_id=225623082 instance=ExtResource("6_tljiy")]
 
-[node name="marker_actor_safe" type="Marker3D" parent="." unique_id=689316368 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe" type="Node3D" parent="." unique_id=689316368 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, -3, 0, 3)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe" unique_id=1759131978 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe" unique_id=1759131978 instance=ExtResource("6_wetn8")]
 
-[node name="marker_actor_handcart_2" type="Marker3D" parent="." unique_id=1878005695 node_paths=PackedStringArray("instance")]
+[node name="event_actor_handcart_2" type="Node3D" parent="." unique_id=1878005695 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -7, 0, -5)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("library_handcart")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="library_handcart" parent="marker_actor_handcart_2" unique_id=773998722 instance=ExtResource("6_tljiy")]
+[node name="library_handcart" parent="event_actor_handcart_2" unique_id=773998722 instance=ExtResource("6_tljiy")]
 
-[node name="marker_actor_box_5" type="Marker3D" parent="." unique_id=14995965 node_paths=PackedStringArray("instance")]
+[node name="event_actor_box_5" type="Node3D" parent="." unique_id=14995965 node_paths=PackedStringArray("instance")]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -7, 0, 5)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="box_stack" parent="marker_actor_box_5" unique_id=1212299723 instance=ExtResource("4_d5w51")]
+[node name="box_stack" parent="event_actor_box_5" unique_id=1212299723 instance=ExtResource("4_d5w51")]
 
-[node name="marker_actor_shelf_3" type="Marker3D" parent="." unique_id=1600310085 node_paths=PackedStringArray("instance")]
+[node name="event_actor_shelf_3" type="Node3D" parent="." unique_id=1600310085 node_paths=PackedStringArray("instance")]
 transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 0.9999999, -3, 0, -7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_shelf")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_shelf" parent="marker_actor_shelf_3" unique_id=1921179815 instance=ExtResource("5_wql0o")]
+[node name="basement_shelf" parent="event_actor_shelf_3" unique_id=1921179815 instance=ExtResource("5_wql0o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 
-[node name="marker_actor_shelf_4" type="Marker3D" parent="." unique_id=791161120 node_paths=PackedStringArray("instance")]
+[node name="event_actor_shelf_4" type="Node3D" parent="." unique_id=791161120 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 5, 0, 7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_shelf")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_shelf" parent="marker_actor_shelf_4" unique_id=836883105 instance=ExtResource("5_wql0o")]
+[node name="basement_shelf" parent="event_actor_shelf_4" unique_id=836883105 instance=ExtResource("5_wql0o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 
-[node name="marker_actor_box_6" type="Marker3D" parent="." unique_id=950805274 node_paths=PackedStringArray("instance")]
+[node name="event_actor_box_6" type="Node3D" parent="." unique_id=950805274 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.9659258, 0, -0.25881898, 0, 1, 0, 0.25881898, 0, -0.9659258, 5, 0, -7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="box_stack" parent="marker_actor_box_6" unique_id=1628059410 instance=ExtResource("4_d5w51")]
+[node name="box_stack" parent="event_actor_box_6" unique_id=1628059410 instance=ExtResource("4_d5w51")]
 
-[node name="marker_actor_shelf_5" type="Marker3D" parent="." unique_id=131524880 node_paths=PackedStringArray("instance")]
+[node name="event_actor_shelf_5" type="Node3D" parent="." unique_id=131524880 node_paths=PackedStringArray("instance")]
 transform = Transform3D(0.9999999, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 0.9999999, -1, 0, -7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_shelf")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_shelf" parent="marker_actor_shelf_5" unique_id=397748212 instance=ExtResource("5_wql0o")]
+[node name="basement_shelf" parent="event_actor_shelf_5" unique_id=397748212 instance=ExtResource("5_wql0o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 
-[node name="teleport_pointer_basement" parent="." unique_id=82850098 instance=ExtResource("14_nwskg")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -7, 0, 0)
-to = "res://scene/level/hallway_minus_1f.tscn"
-by = 1
-bit = 4311744512
-
-[node name="marker_callback_light" type="Node3D" parent="." unique_id=627516111 node_paths=PackedStringArray("node")]
+[node name="event_callback_light" type="Node3D" parent="." unique_id=627516111 node_paths=PackedStringArray("node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("13_vykmq")
 node = NodePath("..")
@@ -362,100 +355,100 @@ light_energy = 0.305
 light_specular = 0.0
 omni_range = 4.529
 
-[node name="marker_entrance" type="Node3D" parent="." unique_id=614205746]
+[node name="event_entrance" type="Node3D" parent="." unique_id=614205746]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("13_0mecn")
 metadata/_custom_type_script = "uid://bsbhmxre68ncc"
 
-[node name="marker_actor_safe_2" type="Marker3D" parent="." unique_id=70197644 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_2" type="Node3D" parent="." unique_id=70197644 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1.3113414e-07, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, 1.3113414e-07, 7, 0, 5)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_2" unique_id=918490792 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_2" unique_id=918490792 instance=ExtResource("6_wetn8")]
 
-[node name="marker_actor_safe_3" type="Marker3D" parent="." unique_id=1625701990 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_3" type="Node3D" parent="." unique_id=1625701990 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1.3113414e-07, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, 1.3113414e-07, 7, 0, 7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_3" unique_id=1713369952 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_3" unique_id=1713369952 instance=ExtResource("6_wetn8")]
 
-[node name="marker_actor_safe_4" type="Marker3D" parent="." unique_id=1056773641 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_4" type="Node3D" parent="." unique_id=1056773641 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1.3113414e-07, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, 1.3113414e-07, 7, 0, 1)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_4" unique_id=224381351 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_4" unique_id=224381351 instance=ExtResource("6_wetn8")]
 
-[node name="marker_actor_safe_5" type="Marker3D" parent="." unique_id=1277466787 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_5" type="Node3D" parent="." unique_id=1277466787 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1.3113414e-07, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, 1.3113414e-07, 7, 0, 3)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_5" unique_id=654633190 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_5" unique_id=654633190 instance=ExtResource("6_wetn8")]
 
-[node name="marker_actor_safe_6" type="Marker3D" parent="." unique_id=1882309968 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_6" type="Node3D" parent="." unique_id=1882309968 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1.3113414e-07, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, 1.3113414e-07, 7, 0, -3)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_6" unique_id=372970752 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_6" unique_id=372970752 instance=ExtResource("6_wetn8")]
 
-[node name="marker_actor_safe_7" type="Marker3D" parent="." unique_id=206710443 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_7" type="Node3D" parent="." unique_id=206710443 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1.3113414e-07, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, 1.3113414e-07, 7, 0, -1)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_7" unique_id=2079908167 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_7" unique_id=2079908167 instance=ExtResource("6_wetn8")]
 
-[node name="marker_actor_safe_8" type="Marker3D" parent="." unique_id=1287528076 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_8" type="Node3D" parent="." unique_id=1287528076 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, -1, 0, 3)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_8" unique_id=1059517932 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_8" unique_id=1059517932 instance=ExtResource("6_wetn8")]
 
-[node name="marker_actor_safe_9" type="Marker3D" parent="." unique_id=1697868457 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_9" type="Node3D" parent="." unique_id=1697868457 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 1, 0, 3)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_9" unique_id=235500806 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_9" unique_id=235500806 instance=ExtResource("6_wetn8")]
 
-[node name="marker_actor_safe_10" type="Marker3D" parent="." unique_id=1652240372 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_10" type="Node3D" parent="." unique_id=1652240372 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 1, 0, 7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_10" unique_id=326150639 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_10" unique_id=326150639 instance=ExtResource("6_wetn8")]
 
-[node name="marker_actor_safe_11" type="Marker3D" parent="." unique_id=1559913823 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_11" type="Node3D" parent="." unique_id=1559913823 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 3, 0, 7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_11" unique_id=1645820393 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_11" unique_id=1645820393 instance=ExtResource("6_wetn8")]
 
 [node name="hotel_room_desk" parent="." unique_id=1164162919 instance=ExtResource("11_74xdv")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 0, 6.6)
@@ -477,13 +470,13 @@ enable_shadows = true
 transform = Transform3D(-1.922967e-08, 0.8980352, -0.43992355, 3.9254363e-08, 0.43992355, 0.8980352, 1, 1.7763568e-15, -4.3711385e-08, -6.5161004, 7.440488, 0)
 fov = 93.72957
 
-[node name="marker_camera_2" type="Node3D" parent="." unique_id=849737879 node_paths=PackedStringArray("camera")]
+[node name="event_camera_2" type="Node3D" parent="." unique_id=849737879 node_paths=PackedStringArray("camera")]
 script = ExtResource("16_idfw3")
 camera = NodePath("../camera_3d")
 bit = -1
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
-[node name="marker_actor" type="Marker3D" parent="." unique_id=2124931697 node_paths=PackedStringArray("instance")]
+[node name="event_actor" type="Node3D" parent="." unique_id=2124931697 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
 script = ExtResource("3_ywqhp")
 piece = 75
@@ -493,9 +486,9 @@ meta = {
 instance = NodePath("chess_king")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="chess_king" parent="marker_actor" unique_id=492428821 instance=ExtResource("16_bhm70")]
+[node name="chess_king" parent="event_actor" unique_id=492428821 instance=ExtResource("16_bhm70")]
 
-[node name="marker_actor_2" type="Marker3D" parent="." unique_id=1067424781 node_paths=PackedStringArray("instance")]
+[node name="event_actor_2" type="Node3D" parent="." unique_id=1067424781 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
 script = ExtResource("3_ywqhp")
 piece = 113
@@ -505,21 +498,21 @@ meta = {
 instance = NodePath("piece_queen")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="piece_queen" parent="marker_actor_2" unique_id=564171690 instance=ExtResource("17_tljiy")]
+[node name="piece_queen" parent="event_actor_2" unique_id=564171690 instance=ExtResource("17_tljiy")]
 
-[node name="marker_title_to_hallway" type="Node3D" parent="." unique_id=1549203619]
+[node name="event_title_to_hallway" type="Node3D" parent="." unique_id=1549203619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
 script = ExtResource("20_0yjdh")
 text = "TO_HALLWAY"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
-[node name="marker_title_to_hallway_2" type="Node3D" parent="." unique_id=1006080812]
+[node name="event_title_to_hallway_2" type="Node3D" parent="." unique_id=1006080812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
 script = ExtResource("20_0yjdh")
 text = "TO_HALLWAY"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
-[node name="marker_game" type="Node3D" parent="." unique_id=1692939650 node_paths=PackedStringArray("chessboard")]
+[node name="procedure_game" type="Node3D" parent="." unique_id=1692939650 node_paths=PackedStringArray("chessboard")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
 script = ExtResource("21_3d6ds")
 can_take_back = false
@@ -527,75 +520,83 @@ can_leave = false
 chessboard = NodePath("../chessboard")
 metadata/_custom_type_script = "uid://dxapdof0oowg1"
 
-[node name="marker_start_game" type="Node3D" parent="." unique_id=974525466 node_paths=PackedStringArray("game_event")]
+[node name="event_start_game" type="Node3D" parent="." unique_id=974525466 node_paths=PackedStringArray("game_event")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
 script = ExtResource("22_wql0o")
-game_event = NodePath("../marker_game")
+game_event = NodePath("../procedure_game")
 metadata/_custom_type_script = "uid://csapts1u0p18r"
 
-[node name="marker_explore" type="Node3D" parent="." unique_id=1497437302 node_paths=PackedStringArray("chessboard", "instance")]
+[node name="event_explore" type="Node3D" parent="." unique_id=1497437302 node_paths=PackedStringArray("chessboard", "instance")]
 script = ExtResource("23_wetn8")
 chessboard = NodePath("../chessboard")
 instance = NodePath("cheshire")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 
-[node name="cheshire" parent="marker_explore" unique_id=1598402161 instance=ExtResource("23_vpnv2")]
+[node name="cheshire" parent="event_explore" unique_id=1598402161 instance=ExtResource("23_vpnv2")]
 
 [node name="bookshelf" parent="." unique_id=503443877 instance=ExtResource("23_bhm70")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7.7269096)
 
-[node name="marker_actor_box_7" type="Marker3D" parent="." unique_id=782128840 node_paths=PackedStringArray("instance")]
+[node name="event_actor_box_7" type="Node3D" parent="." unique_id=782128840 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-5.9604645e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -5.9604645e-08, -1, 0, -1)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="box_stack" parent="marker_actor_box_7" unique_id=1123472016 instance=ExtResource("4_d5w51")]
+[node name="box_stack" parent="event_actor_box_7" unique_id=1123472016 instance=ExtResource("4_d5w51")]
 
-[node name="marker_actor_box_8" type="Marker3D" parent="." unique_id=127374983 node_paths=PackedStringArray("instance")]
+[node name="event_actor_box_8" type="Node3D" parent="." unique_id=127374983 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.36698827, 0, -0.9302255, 0, 1, 0, 0.9302255, 0, -0.36698827, -7, 0, 7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="box_stack" parent="marker_actor_box_8" unique_id=443013095 instance=ExtResource("4_d5w51")]
+[node name="box_stack" parent="event_actor_box_8" unique_id=443013095 instance=ExtResource("4_d5w51")]
 
-[node name="marker_actor_box_9" type="Marker3D" parent="." unique_id=123987504 node_paths=PackedStringArray("instance")]
+[node name="event_actor_box_9" type="Node3D" parent="." unique_id=123987504 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.36698827, 0, -0.9302255, 0, 1, 0, 0.9302255, 0, -0.36698827, -3, 0, 7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="box_stack" parent="marker_actor_box_9" unique_id=1988216237 instance=ExtResource("4_d5w51")]
+[node name="box_stack" parent="event_actor_box_9" unique_id=1988216237 instance=ExtResource("4_d5w51")]
 
-[node name="marker_multi_actor" type="Node3D" parent="." unique_id=1084310125]
+[node name="event_multi_actor" type="Node3D" parent="." unique_id=1084310125]
 script = ExtResource("24_bhm70")
 piece = 35
 bit = 576460752303423488
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
-[node name="marker_actor_handcart_3" type="Marker3D" parent="." unique_id=1323019619 node_paths=PackedStringArray("instance")]
+[node name="event_actor_handcart_3" type="Node3D" parent="." unique_id=1323019619 node_paths=PackedStringArray("instance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("library_handcart")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="library_handcart" parent="marker_actor_handcart_3" unique_id=1758665576 instance=ExtResource("6_tljiy")]
+[node name="library_handcart" parent="event_actor_handcart_3" unique_id=1758665576 instance=ExtResource("6_tljiy")]
 
-[node name="marker_actor_safe_13" type="Marker3D" parent="." unique_id=1188584550 node_paths=PackedStringArray("instance")]
+[node name="event_actor_safe_13" type="Node3D" parent="." unique_id=1188584550 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.9999999, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -0.9999999, 3, 0, 3)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("basement_safe")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="basement_safe" parent="marker_actor_safe_13" unique_id=1237109206 instance=ExtResource("6_wetn8")]
+[node name="basement_safe" parent="event_actor_safe_13" unique_id=1237109206 instance=ExtResource("6_wetn8")]
 
-[node name="marker_teleport_computer_room" type="Node3D" parent="." unique_id=1586002766]
+[node name="event_teleport_basement" type="Node3D" parent="." unique_id=1089026046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+script = ExtResource("25_tljiy")
+to = "res://scene/level/hallway_minus_1f.tscn"
+by = 1
+bit = 4311744512
+metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
+
+[node name="event_teleport_computer_room" type="Node3D" parent="." unique_id=1586002766]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("25_tljiy")
 disabled = true
@@ -604,13 +605,13 @@ by = 116
 bit = 16
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
-[node name="marker_actor_box_10" type="Marker3D" parent="." unique_id=1984046222 node_paths=PackedStringArray("instance")]
+[node name="event_actor_box_10" type="Node3D" parent="." unique_id=1984046222 node_paths=PackedStringArray("instance")]
 transform = Transform3D(-0.9659258, 0, -0.25881898, 0, 1, 0, 0.25881898, 0, -0.9659258, 3, 0, 1)
 script = ExtResource("3_ywqhp")
 piece = 35
 instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
-[node name="box_stack" parent="marker_actor_box_10" unique_id=675675904 instance=ExtResource("4_d5w51")]
+[node name="box_stack" parent="event_actor_box_10" unique_id=675675904 instance=ExtResource("4_d5w51")]
 
 [editable path="hotel_door_large"]

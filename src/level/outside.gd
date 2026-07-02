@@ -5,7 +5,7 @@ func _ready() -> void:
 	Ambient.change_environment_sound(load("res://assets/audio/405135__mjeno__autumn-forest-leaves-falling-close-to-pond-iii-loopable.wav"))
 	Player.force_set_camera($camera)
 	$teleport_pointer_garden.disabled = true
-	$marker_game.connect("procedure_end", game_end)
+	$procedure_game.connect("procedure_end", game_end)
 	$elevate_fence.position.y = 0
 
 func game_end(result:String) -> void:

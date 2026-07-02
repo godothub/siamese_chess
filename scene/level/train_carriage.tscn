@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://dq6lcfkrdndxy" path="res://src/level/train_carriage.gd" id="2_ixuif"]
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="5_xj5v5"]
 [ext_resource type="PackedScene" uid="uid://famkj12ufimp" path="res://scene/chessboard_blank.tscn" id="7_a77ny"]
-[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="8_5cfv0"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="8_5cfv0"]
 [ext_resource type="LightmapGIData" uid="uid://bdxsaqpli7ebs" path="res://assets/train_carriage.lmbake" id="8_667th"]
-[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/marker_multi_actor.gd" id="9_667th"]
+[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/event_multi_actor.gd" id="9_667th"]
 [ext_resource type="PackedScene" uid="uid://blfa7tg8uh5xo" path="res://assets/model/book_stack_0.glb" id="9_ii2qt"]
-[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/marker_callback.gd" id="10_ii2qt"]
-[ext_resource type="Script" uid="uid://dc4n8wl381mqw" path="res://src/event/marker_document.gd" id="11_5tiqh"]
-[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="12_wjqlv"]
+[ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/event_callback.gd" id="10_ii2qt"]
+[ext_resource type="Script" uid="uid://dc4n8wl381mqw" path="res://src/event/event_document.gd" id="11_5tiqh"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/event_entrance.gd" id="12_wjqlv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -169,13 +169,13 @@ fov = 54.457367
 [node name="camera_room" type="Camera3D" parent="." index="28" unique_id=1144580176]
 transform = Transform3D(0.99337375, -0.1000595, -0.056539778, 0.09903438, 0.49561864, 0.86287564, -0.058316737, -0.8627574, 0.5022439, 0.88129383, 2.2856023, 4.2092085)
 
-[node name="marker_camera_hallway" type="Node3D" parent="." index="29" unique_id=1236427570 node_paths=PackedStringArray("camera")]
+[node name="event_camera_hallway" type="Node3D" parent="." index="29" unique_id=1236427570 node_paths=PackedStringArray("camera")]
 script = ExtResource("8_5cfv0")
 camera = NodePath("../camera_hallway")
 bit = 2260630401189896
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
-[node name="marker_camera_room" type="Node3D" parent="." index="30" unique_id=1843103096 node_paths=PackedStringArray("camera")]
+[node name="event_camera_room" type="Node3D" parent="." index="30" unique_id=1843103096 node_paths=PackedStringArray("camera")]
 script = ExtResource("8_5cfv0")
 camera = NodePath("../camera_room")
 bit = 1729382256910270464
@@ -189,7 +189,7 @@ size = Vector3(5.8065186, 4.7654114, 14.313232)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9515369, 1.0791093, 3.5639553)
 light_data = ExtResource("8_667th")
 
-[node name="marker_multi_actor" type="Node3D" parent="." index="33" unique_id=764538665]
+[node name="event_multi_actor" type="Node3D" parent="." index="33" unique_id=764538665]
 script = ExtResource("9_667th")
 piece = 35
 bit = -1731642956030941193
@@ -198,7 +198,7 @@ metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 [node name="book_stack_0" parent="." index="34" unique_id=1356828564 instance=ExtResource("9_ii2qt")]
 transform = Transform3D(0.5471112, 0, 0.2697579, 0, 0.6099999, 0, -0.2697579, 0, 0.5471112, 0.38582855, 0.62251633, 2.5741773)
 
-[node name="marker_callback" type="Node3D" parent="." index="35" unique_id=761138615 node_paths=PackedStringArray("node")]
+[node name="event_callback" type="Node3D" parent="." index="35" unique_id=761138615 node_paths=PackedStringArray("node")]
 script = ExtResource("10_ii2qt")
 node = NodePath("..")
 method_name = &"use_chessboard"
@@ -209,7 +209,7 @@ metadata/_custom_type_script = "uid://cpyviir7sli6u"
 [node name="camera_chessboard" type="Camera3D" parent="." index="36" unique_id=1639503970]
 transform = Transform3D(1, 0, 0, 0, 0.48231944, 0.8759954, 0, -0.8759954, 0.48231944, 1.2977567, 1.2738005, 3.758492)
 
-[node name="marker_document_chess_movements" type="Node3D" parent="." index="37" unique_id=1220767615]
+[node name="event_document_chess_movements" type="Node3D" parent="." index="37" unique_id=1220767615]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
 script = ExtResource("11_5tiqh")
 file_path = "user://archive/printed.chess_movements.json"
@@ -221,7 +221,7 @@ bit = 1152921504606846976
 selection = "DOCUMENT_TITLE_CHESS_MOVEMENT"
 metadata/_custom_type_script = "uid://dc4n8wl381mqw"
 
-[node name="marker_entrance" type="Node3D" parent="." index="38" unique_id=465027283]
+[node name="event_entrance" type="Node3D" parent="." index="38" unique_id=465027283]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("12_wjqlv")
 metadata/_custom_type_script = "uid://bsbhmxre68ncc"

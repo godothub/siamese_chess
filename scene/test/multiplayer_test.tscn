@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://baosxe1urv0fi" path="res://src/test/multiplayer_test.gd" id="1_uvkj0"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_wlho1"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="5_uvkj0"]
-[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/marker_entrance.gd" id="6_wlho1"]
-[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/marker_explore.gd" id="7_sw4ef"]
-[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/marker_camera.gd" id="8_uvkj0"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/event_entrance.gd" id="6_wlho1"]
+[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/event_explore.gd" id="7_sw4ef"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="8_uvkj0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8u0jj"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -560,17 +560,17 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -8.4
 [node name="multi_mesh_instance_3d" type="MultiMeshInstance3D" parent="bookshelves" unique_id=1982781397]
 multimesh = SubResource("MultiMesh_t2l86")
 
-[node name="marker_entrance" type="Node3D" parent="." unique_id=903551894]
+[node name="event_entrance" type="Node3D" parent="." unique_id=903551894]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
 script = ExtResource("6_wlho1")
 metadata/_custom_type_script = "uid://bsbhmxre68ncc"
 
-[node name="marker_explore" type="Node3D" parent="." unique_id=564774248 node_paths=PackedStringArray("chessboard")]
+[node name="event_explore" type="Node3D" parent="." unique_id=564774248 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("7_sw4ef")
 chessboard = NodePath("../chessboard")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 
-[node name="marker_camera" type="Node3D" parent="." unique_id=1528268728 node_paths=PackedStringArray("camera")]
+[node name="event_camera" type="Node3D" parent="." unique_id=1528268728 node_paths=PackedStringArray("camera")]
 script = ExtResource("8_uvkj0")
 camera = NodePath("../camera")
 bit = -1

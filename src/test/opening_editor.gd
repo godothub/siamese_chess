@@ -13,7 +13,7 @@ func _ready() -> void:
 	Player.force_set_camera($camera_3d)
 	if FileAccess.file_exists("user://standard_opening_document.fa"):
 		opening_book.load_file("user://standard_opening_document.fa")
-	$marker_game.connect("move_played", receive_move)
+	$procedure_game.connect("move_played", receive_move)
 	$canvas_layer/panel/v_box_container/margin_container/h_box_container/button_save.connect("button_down", set_text)
 	$canvas_layer/panel/v_box_container/margin_container/h_box_container/button_prev.connect("button_down", prev)
 	$canvas_layer/panel/v_box_container/margin_container/h_box_container/button_next.connect("button_down", next)
@@ -24,7 +24,7 @@ func _ready() -> void:
 	chessboard.add_default_piece_set()
 	history_prev.push_back(state.duplicate());
 	get_text()
-	$marker_game.start()
+	$procedure_game.start()
 
 func receive_move(move:int) -> void:
 	Chess.apply_move(state, move)

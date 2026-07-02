@@ -1,5 +1,5 @@
-extends MarkerEvent
-class_name MarkerCamera
+extends LevelEvent
+class_name EventCamera
 
 @export var camera:Camera3D = null
 @export var selection:String = ""

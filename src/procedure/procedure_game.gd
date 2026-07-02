@@ -1,4 +1,4 @@
-extends Procedure
+extends LevelProcedure
 class_name ProcedureGame
 
 # 如果为2，就相当于同时控制黑白双方

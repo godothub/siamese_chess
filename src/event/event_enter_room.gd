@@ -1,5 +1,5 @@
-extends MarkerEvent
-class_name MarkerEnterRoom
+extends LevelEvent
+class_name EventEnterRoom
 
 @export var hint:String = ""
 @export_custom(PropertyHint.PROPERTY_HINT_FLAGS, "bitboard") var bit_from:int = 0

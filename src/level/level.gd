@@ -22,7 +22,7 @@ func _ready() -> void:
 	chessboard.set_state(state)
 	Player.add_inspectable_item(chessboard)
 	for node:Node in get_children():
-		if node is MarkerEvent:
+		if node is LevelEvent:
 			events.push_back(node)
 			node.on_init()
 	Progress.create_if_not_exist("obtains", 0)
@@ -30,11 +30,11 @@ func _ready() -> void:
 	event_start.call_deferred()
 
 func change_state(state:String) -> void:
-	for event:MarkerEvent in events:
+	for event:LevelEvent in events:
 		event.on_change_state(state)
 
 func event_start() -> void:
-	for iter:MarkerEvent in events:
+	for iter:LevelEvent in events:
 		iter.on_start()
 
 var available_events:Dictionary = {}
@@ -42,7 +42,7 @@ var available_events:Dictionary = {}
 func show_selection(by:int) -> void:
 	var selections:PackedStringArray = []
 	available_events.clear()
-	for iter:MarkerEvent in events:
+	for iter:LevelEvent in events:
 		var selection:String = iter.show_selection()
 		if selection != "":
 			available_events[selection] = iter

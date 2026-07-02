@@ -1,5 +1,5 @@
-extends MarkerEvent
-class_name MarkerTeleport
+extends LevelEvent
+class_name EventTeleport
 
 @export var disabled:bool = false
 @export var to:String = ""

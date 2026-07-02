@@ -1,4 +1,4 @@
-extends Procedure
+extends LevelProcedure
 class_name ProcedureDialog
 
 # 目前的对话，除了显示对话内容以外，还有角色动画播放，以及镜头的转移

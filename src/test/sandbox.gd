@@ -15,7 +15,7 @@ func _ready() -> void:
 	initial_state = state.duplicate()
 	chessboard.set_state(state.duplicate())
 	chessboard.add_default_piece_set()
-	$marker_game.start()
+	$procedure_game.start()
 
 func _unhandled_input(event:InputEvent) -> void:
 	if event is InputEventKey && event.is_pressed() && event.keycode == KEY_R:
