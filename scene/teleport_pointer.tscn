@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://dgvq7kuhcahlb"]
-
-[ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="1_q3eg8"]
-
-[node name="teleport_pointer" type="Node3D" unique_id=82850098]
-script = ExtResource("1_q3eg8")

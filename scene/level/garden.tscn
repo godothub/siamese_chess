@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bfycu28umn8ud" path="res://assets/model/shrub_1.glb" id="9_bedx7"]
 [ext_resource type="PackedScene" uid="uid://jeaolg2mf178" path="res://assets/model/tree_1.glb" id="9_fvl7i"]
 [ext_resource type="PackedScene" uid="uid://bfbmbxa66uwhd" path="res://assets/model/grass.glb" id="9_y0tp7"]
-[ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="10_bedx7"]
 [ext_resource type="PackedScene" uid="uid://dk7hjcqt477v5" path="res://assets/model/elevate_fence.glb" id="10_y6bbx"]
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/event_callback.gd" id="11_u1qnn"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/event_title.gd" id="12_kjls8"]
@@ -23,6 +22,7 @@
 [ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/procedure/procedure_game.gd" id="19_110wd"]
 [ext_resource type="Script" uid="uid://dg2slo01f4hvf" path="res://src/procedure/procedure_decision.gd" id="20_6m8c7"]
 [ext_resource type="Script" uid="uid://d2ckdq43wstns" path="res://src/procedure/procedure_dialog.gd" id="21_6m8c7"]
+[ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="23_itc81"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -5979,12 +5979,6 @@ transform = Transform3D(1.3113403e-07, 0, -0.99999917, 0, 1, 0, 0.99999917, 0, 1
 [node name="elevate_fence2_12" parent="background" unique_id=1304388224 instance=ExtResource("10_y6bbx")]
 transform = Transform3D(1.3113402e-07, 0, -0.9999991, 0, 1, 0, 0.9999991, 0, 1.3113402e-07, -3.9999993, 0, -3.0000024)
 
-[node name="teleport_pointer_garden" parent="." unique_id=82850098 instance=ExtResource("10_bedx7")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 1)
-to = "res://scene/level/entrance.tscn"
-by = 71
-bit = 4294967296
-
 [node name="event_callback" type="Node3D" parent="." unique_id=1823859777 node_paths=PackedStringArray("node")]
 script = ExtResource("11_u1qnn")
 node = NodePath("..")
@@ -6150,6 +6144,14 @@ CARNATION_TALK_FIRST_MEET_6,carnation_talk_3"
 animation_player = NodePath("../animation_player")
 cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
+
+[node name="event_teleport" type="Node3D" parent="." unique_id=745745728]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 1)
+script = ExtResource("23_itc81")
+to = "res://scene/level/entrance.tscn"
+by = 71
+bit = 4294967296
+metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
 [editable path="event_actor_carnation/carnation_2"]
 [editable path="background/grass"]

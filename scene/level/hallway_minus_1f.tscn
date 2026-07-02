@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bw127d1iawnv3" path="res://assets/model/radermachera_sinica.glb" id="7_6lk4f"]
 [ext_resource type="PackedScene" uid="uid://324uto1yslin" path="res://assets/model/painting_frame_rect.glb" id="8_ieici"]
 [ext_resource type="PackedScene" uid="uid://h3wcv7lnqe8x" path="res://assets/model/painting_frame_square.glb" id="9_trx77"]
-[ext_resource type="PackedScene" uid="uid://dgvq7kuhcahlb" path="res://scene/teleport_pointer.tscn" id="10_ttrbh"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/event_multi_actor.gd" id="11_ukx28"]
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/event_callback.gd" id="12_e0sjt"]
+[ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="13_2oxye"]
 [ext_resource type="PackedScene" uid="uid://cwjgphuayqvy3" path="res://assets/model/hotel_door_large.glb" id="13_b3cnt"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="14_wrs32"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/event_entrance.gd" id="15_simkd"]
@@ -220,13 +220,13 @@ enable_shadows = true
 [node name="hotel_door_large" parent="." unique_id=1030011179 instance=ExtResource("13_b3cnt")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, -8.2535925)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=697941169]
+[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=576972813]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=704909446]
+[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=674245926]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
-[node name="door_large_structure" parent="hotel_door_large" index="2" unique_id=262283725]
+[node name="door_large_structure" parent="hotel_door_large" index="2" unique_id=1958169327]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=306188255]
@@ -284,11 +284,13 @@ light_color = Color(0.81777585, 0.7529233, 0.6619107, 1)
 light_energy = 0.446
 light_specular = 0.0
 
-[node name="teleport_pointer_basement" parent="." unique_id=82850098 instance=ExtResource("10_ttrbh")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, -7)
+[node name="event_teleport_basement" type="Node3D" parent="." unique_id=1577864055]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -5, 0, -7)
+script = ExtResource("13_2oxye")
 to = "res://scene/level/basement.tscn"
 by = 48
 bit = 2
+metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
 [node name="event_entrance" type="Node3D" parent="." unique_id=263777557]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
