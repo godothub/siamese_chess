@@ -68,24 +68,23 @@ func cancel_gui_input(_event:InputEvent) -> void:
 		cancel()
 
 func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_anywhere:bool = false, _waiting:bool = false) -> void:
-	text = _text
-	title = _title
 	if tween && tween.is_running():
 		tween.kill()
 	if text_label.text != "" || title_label.text != "":
 		clear()
-	if click_anywhere:
+	if _click_anywhere:
 		on_focus.emit()
+	text = _text
+	title = _title
 	tween = create_tween()
 	force_selection = false
 	waiting = _waiting
 	click_anywhere = _click_anywhere
-	text_label.text = ""
 	if blackscreen:
 		tween.tween_property($texture_rect_full, "visible", true, 0)
 	tween.tween_interval(blackscreen_interval)
-	tween.tween_property(text_label, "text", tr(text), 0)
-	tween.tween_property(title_label, "text", tr(title), 0)
+	tween.tween_property(text_label, "text", text, 0)
+	tween.tween_property(title_label, "text", title, 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
 
 	Narrative.speak(tr(_text), true)
