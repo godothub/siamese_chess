@@ -81,7 +81,6 @@ func position_practice() -> void:
 
 func position_practice_decision_end(_result:String) -> void:
 	signal_container.disconnect_all()
-	var player_group:int = 0
 	match _result:
 		"":
 			interact_carnation_end()
@@ -90,12 +89,12 @@ func position_practice_decision_end(_result:String) -> void:
 			interact_carnation_end()
 			return
 		"SELECTION_PLAY_AS_WHITE":
-			player_group = 0
+			standard_player_group = 0
 		"SELECTION_PLAY_AS_BLACK":
-			player_group = 1
+			standard_player_group = 1
 		"SELECTION_PLAY_AS_RANDOM":
-			player_group = randi() % 2
-	if player_group == 0:
+			standard_player_group = randi() % 2
+	if standard_player_group == 0:
 		standard_chessboard.rotation.y = -PI / 2
 	else:
 		standard_chessboard.rotation.y = PI / 2
@@ -111,17 +110,21 @@ func position_practice_start() -> void:
 		if _selected == question:
 			question = Chess.c64_to_x88(randi() % 64)
 			score += 1
-			Dialog.push_title(Chess.x88_to_name(question))
+			Dialog.push_title(tr("CARNATION_TALK_DEMO_POSITIONING_FORMAT").format({"pos": Chess.x88_to_name(question), "score": score}))
 	)
-	signal_container.add_connection(get_tree().create_timer(60).timeout, position_practice_end)
+	Clock.set_time(60, 0)
+	signal_container.add_connection(Clock.timeout, position_practice_end)
+	Clock.resume()
 	question = Chess.c64_to_x88(randi() % 64)
-	Dialog.push_title(Chess.x88_to_name(question))
+	Dialog.push_title(tr("CARNATION_TALK_DEMO_POSITIONING_FORMAT").format({"pos": Chess.x88_to_name(question), "score": score}))
 
 func position_practice_end() -> void:
 	signal_container.disconnect_all()
-	interact_carnation_end()
+	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
+	Dialog.push_dialog(tr("CARNATION_TALK_DEMO_POSITIONING_RESULT").format({"score": score}), "", true, true, false)
 
 func interact_carnation_end() -> void:
+	signal_container.disconnect_all()
 	Player.force_set_camera($camera)
 	$event_explore.instance.get_node("animation_tree").active = true
 	$event_explore.instance.play_animation("battle_idle")
