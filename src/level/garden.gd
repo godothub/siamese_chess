@@ -9,6 +9,8 @@ func _ready() -> void:
 	Ambient.change_environment_sound(load("res://assets/audio/405135__mjeno__autumn-forest-leaves-falling-close-to-pond-iii-loopable.wav"))
 	Player.force_set_camera($camera)
 	$event_actor_carnation.instance.play_animation("sit_and_think")
+	standard_chessboard.set_enabled(false)
+	$chessboard.set_enabled(true)
 
 func interact_carnation() -> void:
 	change_state("game")
@@ -33,6 +35,8 @@ func decision_demo_end(_result:String) -> void:
 	match _result:
 		"CARNATION_TALK_DEMO_MATCH":
 			blindfold_chess()
+		"CARNATION_TALK_DEMO_POSITIONING":
+			position_practice()
 		"CARNATION_TALK_DEMO_CANCEL":
 			interact_carnation_end()
 		"":
@@ -41,10 +45,10 @@ func decision_demo_end(_result:String) -> void:
 func blindfold_chess() -> void:
 	signal_container.disconnect_all()
 	standard_chessboard.state = Chess.create_initial_state()
-	signal_container.add_connection($procedure_decision_side.procedure_end, decision_end)
+	signal_container.add_connection($procedure_decision_side.procedure_end, blindfold_decision_end)
 	$procedure_decision_side.start()
 
-func decision_end(_result:String) -> void:
+func blindfold_decision_end(_result:String) -> void:
 	match _result:
 		"":
 			interact_carnation_end()
@@ -60,11 +64,61 @@ func decision_end(_result:String) -> void:
 	else:
 		standard_chessboard.rotation.y = PI / 2
 	standard_chessboard.remove_piece_set()
+	standard_chessboard.set_enabled(true)
+	$chessboard.set_enabled(false)
 	Player.force_set_camera($camera_chessboard)
-	signal_container.add_connection($procedure_game.procedure_end, game_end)
+	signal_container.add_connection($procedure_game.procedure_end, blindfold_game_end)
 	$procedure_game.start()
 
-func game_end(_result:String) -> void:
+func blindfold_game_end(_result:String) -> void:
+	signal_container.disconnect_all()
+	interact_carnation_end()
+
+func position_practice() -> void:
+	signal_container.disconnect_all()
+	signal_container.add_connection($procedure_decision_side.procedure_end, position_practice_decision_end)
+	$procedure_decision_side.start()
+
+func position_practice_decision_end(_result:String) -> void:
+	signal_container.disconnect_all()
+	var player_group:int = 0
+	match _result:
+		"":
+			interact_carnation_end()
+			return
+		"CARNATION_TALK_DEMO_HOW_TO_PLAY":
+			interact_carnation_end()
+			return
+		"SELECTION_PLAY_AS_WHITE":
+			player_group = 0
+		"SELECTION_PLAY_AS_BLACK":
+			player_group = 1
+		"SELECTION_PLAY_AS_RANDOM":
+			player_group = randi() % 2
+	if player_group == 0:
+		standard_chessboard.rotation.y = -PI / 2
+	else:
+		standard_chessboard.rotation.y = PI / 2
+	position_practice_start()
+
+var question:int = -1
+var score:int = 0
+func position_practice_start() -> void:
+	standard_chessboard.set_enabled(true)
+	$chessboard.set_enabled(false)
+	Player.force_set_camera($camera_chessboard)
+	signal_container.add_connection(standard_chessboard.click_empty, func (_selected:int) -> void:
+		if _selected == question:
+			question = Chess.c64_to_x88(randi() % 64)
+			score += 1
+			Dialog.push_title(Chess.x88_to_name(question))
+	)
+	signal_container.add_connection(get_tree().create_timer(60).timeout, position_practice_end)
+	question = Chess.c64_to_x88(randi() % 64)
+	Dialog.push_title(Chess.x88_to_name(question))
+
+func position_practice_end() -> void:
+	signal_container.disconnect_all()
 	interact_carnation_end()
 
 func interact_carnation_end() -> void:
