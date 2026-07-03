@@ -85,7 +85,7 @@ func state_exit_edit_state() -> void:
 	Dialog.hide_cancel()
 
 func state_ready_edit_fen(_arg:Dictionary) -> void:
-	var text_input_instance:TextInput = TextInput.create_text_input_instance("输入FEN格式的布局：", "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+	var text_input_instance:TextInput = TextInput.create_text_input_instance(tr("HINT_INPUT_FEN"), "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 	add_child(text_input_instance)
 	state_machine.state_signal_connect(text_input_instance.confirmed, func(text:String) -> void:
 		var test_state:State = Chess.parse(text)
@@ -99,4 +99,4 @@ func state_ready_edit_fen(_arg:Dictionary) -> void:
 	)
 
 func state_ready_stop(_arg:Dictionary) -> void:
-	procedure_end.emit(_arg.get("result", ""))
+	procedure_end.emit(_arg.get("result", Chess.stringify(chessboard.state)))
