@@ -37,6 +37,8 @@ func decision_demo_end(_result:String) -> void:
 			blindfold_chess()
 		"CARNATION_TALK_DEMO_POSITIONING":
 			position_practice()
+		"CARNATION_TALK_DEMO_MEMORIZING":
+			memory_practice()
 		"CARNATION_TALK_DEMO_CANCEL":
 			interact_carnation_end()
 		"":
@@ -122,6 +124,52 @@ func position_practice_end() -> void:
 	signal_container.disconnect_all()
 	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
 	Dialog.push_dialog(tr("CARNATION_TALK_DEMO_POSITIONING_RESULT").format({"score": score}), "", true, true, false)
+
+func memory_practice() -> void:
+	signal_container.disconnect_all()
+	signal_container.add_connection($procedure_decision_difficulty.procedure_end, memory_practice_decision_end)
+	$procedure_decision_difficulty.start()
+
+var memory_state:State = null
+var memory_answer:String = ""
+
+func memory_practice_decision_end(_result:String) -> void:
+	signal_container.disconnect_all()
+	Player.force_set_camera($camera_chessboard)
+	standard_chessboard.set_enabled(true)
+	$chessboard.set_enabled(false)
+	match _result:
+		"CARNATION_TALK_DEMO_MEMORIZING_EASY":
+			memory_state = Chess.create_random_state(3)
+		"CARNATION_TALK_DEMO_MEMORIZING_MEDIUM":
+			memory_state = Chess.create_random_state(6)
+		"CARNATION_TALK_DEMO_MEMORIZING_HARD":
+			memory_state = Chess.create_random_state(10)
+	standard_chessboard.remove_piece_set()
+	standard_chessboard.set_state(memory_state)
+	standard_chessboard.add_default_piece_set()
+	memory_answer = Chess.stringify(memory_state)
+	memory_answer = memory_answer.split(" ")[0]
+	signal_container.add_connection(Dialog.on_select, memory_practice_recite)
+	Dialog.push_selection(["CARNATION_TALK_DEMO_MEMORIZING_READY"], "CARNATION_TALK_DEMO_MEMORIZING_START", false, false)
+
+func memory_practice_recite(_selection:String) -> void:
+	signal_container.disconnect_all()
+	standard_chessboard.remove_piece_set()
+	standard_chessboard.set_state(State.new())
+	signal_container.add_connection($procedure_edit_memory.procedure_end, memory_practice_result)
+	$procedure_edit_memory.start()
+
+func memory_practice_result(_result:String) -> void:
+	signal_container.disconnect_all()
+	standard_chessboard.remove_piece_set()
+	standard_chessboard.set_state(memory_state)
+	standard_chessboard.add_default_piece_set()
+	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
+	if _result.split(" ")[0] == memory_answer:
+		Dialog.push_dialog(tr("CARNATION_TALK_DEMO_MEMORIZING_CORRECT"), "", true, true, false)
+	else:
+		Dialog.push_dialog(tr("CARNATION_TALK_DEMO_MEMORIZING_INCORRECT"), "", true, true, false)
 
 func interact_carnation_end() -> void:
 	signal_container.disconnect_all()

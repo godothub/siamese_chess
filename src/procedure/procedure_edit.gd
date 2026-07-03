@@ -59,7 +59,7 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 				state_machine.change_state("edit_fen")
 				return
 			"SELECTION_FINISH":
-				state_machine.change_state("stop", {"result": "finished"})
+				state_machine.change_state("stop", {"result": Chess.stringify(chessboard.state)})
 				return
 		Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_NEUTRAL", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], "HINT_EDIT", false, false)
 	)
@@ -99,4 +99,4 @@ func state_ready_edit_fen(_arg:Dictionary) -> void:
 	)
 
 func state_ready_stop(_arg:Dictionary) -> void:
-	procedure_end.emit(_arg.get("result", Chess.stringify(chessboard.state)))
+	procedure_end.emit(_arg.get("result", ""))

@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://dg2slo01f4hvf" path="res://src/procedure/procedure_decision.gd" id="20_6m8c7"]
 [ext_resource type="Script" uid="uid://d2ckdq43wstns" path="res://src/procedure/procedure_dialog.gd" id="21_6m8c7"]
 [ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="23_itc81"]
+[ext_resource type="Script" uid="uid://ck5bvbw2bcwox" path="res://src/procedure/procedure_edit.gd" id="24_u5p2l"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -6154,6 +6155,16 @@ cancelable = true
 hint = "HINT_CHOOSE_SIDE"
 selection = ["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM"]
 metadata/_custom_type_script = "uid://dg2slo01f4hvf"
+
+[node name="procedure_decision_difficulty" type="Node3D" parent="." unique_id=1633124299]
+script = ExtResource("20_6m8c7")
+selection = ["CARNATION_TALK_DEMO_MEMORIZING_EASY", "CARNATION_TALK_DEMO_MEMORIZING_MEDIUM", "CARNATION_TALK_DEMO_MEMORIZING_HARD"]
+metadata/_custom_type_script = "uid://dg2slo01f4hvf"
+
+[node name="procedure_edit_memory" type="Node3D" parent="." unique_id=1336853724 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("24_u5p2l")
+chessboard = NodePath("../garden_steel_table/chessboard")
+metadata/_custom_type_script = "uid://ck5bvbw2bcwox"
 
 [editable path="event_actor_carnation/carnation_2"]
 [editable path="background/grass"]

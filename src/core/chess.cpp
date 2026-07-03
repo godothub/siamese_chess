@@ -1018,7 +1018,7 @@ godot::Ref<State> Chess::create_initial_state()
 godot::Ref<State> Chess::create_random_state(int piece_count)
 {
 	std::mt19937_64 rng(time(nullptr));
-	godot::PackedInt32Array type = {'P', 'N', 'B', 'R', 'Q', '*', '#'};
+	godot::PackedInt32Array type = {'P', 'N', 'B', 'R', 'Q', 'p', 'n', 'b', 'r', 'q', '*', '#'};
 	godot::PackedInt32Array pieces;
 	pieces.push_back('K');
 	pieces.push_back('k');
@@ -1026,13 +1026,13 @@ godot::Ref<State> Chess::create_random_state(int piece_count)
 	{
 		int piece = type[rng() % type.size()];
 		pieces.push_back(piece);
-		pieces.push_back(piece + 32);	// 黑方
 	}
 	pieces.resize(64);
 	while (true)
 	{
 		godot::Ref<State> new_state = parse("8/8/8/8/8/8/8/8 w - - 0 1");
 		bool valid_pawn = true;
+		//洗牌算法
 		for (int i = 0; i < pieces.size(); i++)
 		{
 			int k = rng() % (i + 1);
@@ -1051,10 +1051,6 @@ godot::Ref<State> Chess::create_random_state(int piece_count)
 			}
 		}
 		if (!valid_pawn)
-		{
-			continue;
-		}
-		if (is_check(new_state, 0) || is_check(new_state, 1))
 		{
 			continue;
 		}
