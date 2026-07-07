@@ -218,8 +218,8 @@ func state_ready_move(_arg:Dictionary) -> void:
 	assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(_arg["move"]))) 
 	|| Chess.from(_arg["move"]) == Chess.to(_arg["move"]) && !chessboard.state.has_piece(Chess.from(_arg["move"])))
 
-	move_played.emit(_arg["move"])
 	history_event.push_back(chessboard.execute_move(_arg["move"]))
+	move_played.emit(_arg["move"])
 
 var available_events:Dictionary = {}
 
