@@ -28,24 +28,39 @@ func interact_pastor() -> void:
 	$event_explore.instance.set_position($chessboard.name_to_vector3("e2"))
 	$event_explore.instance.set_rotation(Vector3(0, PI / 2, 0))
 	$event_explore.instance.play_animation("thinking")
-	Player.force_set_camera($camera_chessboard)
+	signal_container.add_connection($procedure_dialog.procedure_end, dialog_end)
+	$procedure_dialog.start()
 
+func dialog_end(_result:String) -> void:
+	signal_container.disconnect_all()
+	signal_container.add_connection($procedure_decision.procedure_end, decision_end)
+	$procedure_decision.start()
+
+func decision_end(_result:String) -> void:
+	match _result:
+		"":
+			interact_pastor_end()
+		"YULAN_TALK_DEMO_LEAVE":
+			interact_pastor_end()
+		"YULAN_TALK_DEMO_MATCH":
+			game()
+		"YULAN_TALK_DEMO_ANALYSE":
+			analyse()
+
+func game() -> void:
+	Player.force_set_camera($camera_chessboard)
 	standard_chessboard.state = Chess.create_initial_state()
 	standard_chessboard.remove_piece_set()
 	standard_chessboard.add_default_piece_set()
-	signal_container.disconnect_all()
-	signal_container.add_connection($procedure_edit.procedure_end, edit_end)
-	$procedure_edit.start()
+	side_decision()
 
-func edit_end(_result:String) -> void:
-	if _result == "canceled":
-		interact_pastor_end()
-		return
+func side_decision(_result:String = "") -> void:
 	signal_container.disconnect_all()
-	signal_container.add_connection($procedure_decision_game.procedure_end, decision_end)
-	$procedure_decision_game.start()
+	signal_container.add_connection($procedure_decision_side.procedure_end, side_decision_end)
+	$procedure_decision_side.start()
 
-func decision_end(_result:String) -> void:
+func side_decision_end(_result:String) -> void:
+	signal_container.disconnect_all()
 	match _result:
 		"":
 			interact_pastor_end()
@@ -56,6 +71,9 @@ func decision_end(_result:String) -> void:
 			$procedure_game.player_group = 1
 		"SELECTION_PLAY_AS_RANDOM":
 			$procedure_game.player_group = randi() % 2
+		"YULAN_TALK_DEMO_EDIT":
+			edit()
+			return
 	if $procedure_game.player_group == 0:
 		standard_chessboard.rotation.y = 0
 	else:
@@ -64,8 +82,20 @@ func decision_end(_result:String) -> void:
 	standard_chessboard.add_default_piece_set()
 	
 	signal_container.disconnect_all()
-	signal_container.add_connection($procedure_game.procedure_end, interact_pastor_end)
+	signal_container.add_connection($procedure_game.procedure_end, game_end)
 	$procedure_game.start()
+
+func edit() -> void:
+	signal_container.disconnect_all()
+	signal_container.add_connection($procedure_edit.procedure_end, edit_end)
+	$procedure_edit.start()
+
+func edit_end(_result:String) -> void:
+	if _result == "canceled":
+		side_decision()
+		return
+	signal_container.disconnect_all()
+	side_decision()
 
 func game_end(_result:String) -> void:
 	signal_container.disconnect_all()
@@ -85,6 +115,8 @@ func game_end(_result:String) -> void:
 			Dialog.push_dialog("HINT_BLACK_CLEARED", "", true, true)
 		"cleared_white":
 			Dialog.push_dialog("HINT_WHITE_CLEARED", "", true, true)
+		"":
+			interact_pastor_end()
 
 func interact_pastor_end(_result:String = "") -> void:
 	signal_container.disconnect_all()
@@ -94,3 +126,38 @@ func interact_pastor_end(_result:String = "") -> void:
 	$chessboard.set_enabled(true)
 	standard_chessboard.set_enabled(false)
 	change_state("")
+
+func analyse() -> void:
+	Player.force_set_camera($camera_chessboard)
+	standard_chessboard.state = Chess.create_initial_state()
+	standard_chessboard.remove_piece_set()
+	standard_chessboard.add_default_piece_set()
+	analyse_decision()
+
+func analyse_decision(_result:String = "") -> void:
+	signal_container.disconnect_all()
+	signal_container.add_connection($procedure_decision_analyse.procedure_end, analyse_decision_end)
+	$procedure_decision_analyse.start()
+	
+func analyse_decision_end(_selection:String) -> void:
+	signal_container.disconnect_all()
+	match _selection:
+		"YULAN_TALK_DEMO_PLAY":
+			analyse_game()
+		"YULAN_TALK_DEMO_EDIT":
+			analyse_edit()
+		"YULAN_TALK_DEMO_LEAVE":
+			interact_pastor_end()
+		"":
+			interact_pastor_end()
+	
+func analyse_edit() -> void:
+	signal_container.disconnect_all()
+	signal_container.add_connection($procedure_edit.procedure_end, analyse_decision)
+	$procedure_edit.start()
+
+func analyse_game() -> void:
+	signal_container.disconnect_all()
+	signal_container.add_connection($procedure_game_analyse.procedure_end, analyse_decision)
+	$procedure_game_analyse.clean_history()
+	$procedure_game_analyse.start()

@@ -956,6 +956,14 @@ metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 [node name="procedure_game" type="Node3D" parent="." unique_id=741053042 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("43_5e0xk")
 chessboard = NodePath("../table_0/chessboard_standard")
+history_name = "cafe"
+metadata/_custom_type_script = "uid://dxapdof0oowg1"
+
+[node name="procedure_game_analyse" type="Node3D" parent="." unique_id=264424426 node_paths=PackedStringArray("chessboard")]
+script = ExtResource("43_5e0xk")
+player_group = 2
+leave_on_end = false
+chessboard = NodePath("../table_0/chessboard_standard")
 metadata/_custom_type_script = "uid://dxapdof0oowg1"
 
 [node name="procedure_edit" type="Node3D" parent="." unique_id=75030230 node_paths=PackedStringArray("chessboard")]
@@ -964,11 +972,23 @@ script = ExtResource("44_5e0xk")
 chessboard = NodePath("../table_0/chessboard_standard")
 metadata/_custom_type_script = "uid://ck5bvbw2bcwox"
 
-[node name="procedure_decision_game" type="Node3D" parent="." unique_id=795071422]
+[node name="procedure_decision_side" type="Node3D" parent="." unique_id=795071422]
 script = ExtResource("44_evnrs")
 cancelable = true
 hint = "HINT_CHOOSE_SIDE"
-selection = ["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM"]
+selection = ["SELECTION_PLAY_AS_BLACK", "SELECTION_PLAY_AS_WHITE", "SELECTION_PLAY_AS_RANDOM", "YULAN_TALK_DEMO_EDIT"]
+metadata/_custom_type_script = "uid://dg2slo01f4hvf"
+
+[node name="procedure_decision" type="Node3D" parent="." unique_id=1453619103]
+script = ExtResource("44_evnrs")
+cancelable = true
+selection = ["YULAN_TALK_DEMO_MATCH", "YULAN_TALK_DEMO_ANALYSE", "YULAN_TALK_DEMO_LEAVE"]
+metadata/_custom_type_script = "uid://dg2slo01f4hvf"
+
+[node name="procedure_decision_analyse" type="Node3D" parent="." unique_id=957180462]
+script = ExtResource("44_evnrs")
+cancelable = true
+selection = ["YULAN_TALK_DEMO_PLAY", "YULAN_TALK_DEMO_EDIT", "YULAN_TALK_DEMO_LEAVE"]
 metadata/_custom_type_script = "uid://dg2slo01f4hvf"
 
 [node name="event_teleport_hall" type="Node3D" parent="." unique_id=300318945]

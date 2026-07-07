@@ -14,6 +14,7 @@ var engine:ChessEngine = null	# 有可能会出现多线作战，共用同一个
 @export var can_leave:bool = true
 @export var leave_on_end:bool = true
 @export var chessboard:Chessboard = null
+@export var history_name:String = ""
 var history_zobrist:PackedInt64Array = []
 var history_state:Array[State] = []
 var history_event:Array = []
@@ -43,8 +44,9 @@ func _ready() -> void:
 	premove_state_machine.add_state("stop", state_premove_stop_ready)
 
 func start() -> void:
-	history_document.set_filename("history." + level.name + ".json")
-	history_document.load_file()
+	if history_name:
+		history_document.set_filename("history." + history_name + ".json")
+		history_document.load_file()
 	state_machine.change_state("start")
 
 class PremoveBranch extends RefCounted:
@@ -162,13 +164,10 @@ func state_premove_stop_ready(_arg:Dictionary) -> void:
 
 func state_ready_start(_arg:Dictionary) -> void:
 	Clock.set_time(Progress.get_value("time_left", 60 * 15), 5)
-	chessboard.state.set_turn(0)
-	chessboard.state.set_castle(0xF)
-	chessboard.state.set_step_to_draw(0)
-	chessboard.state.set_round(1)
-	history_document.new_page()
-	history_document.set_state(-1, chessboard.state)
-	history_document.set_sign(-1, Time.get_datetime_string_from_system(), name, tr("CHAR_YULAN"), tr("CHAR_LOTUS"), tr("CHAR_YULAN"))
+	if history_name:
+		history_document.new_page()
+		history_document.set_state(-1, chessboard.state)
+		history_document.set_sign(-1, Time.get_datetime_string_from_system(), name, tr("CHAR_YULAN"), tr("CHAR_LOTUS"), tr("CHAR_YULAN"))
 	var end_type:String = Chess.get_end_type(chessboard.state)
 	if end_type != "":
 		state_machine.change_state.call_deferred("result")
@@ -198,7 +197,8 @@ func state_ready_waiting() -> void:
 
 func state_ready_move(_arg:Dictionary) -> void:
 	Clock.pause()
-	history_document.push_move(-1, _arg["move"])
+	if history_name:
+		history_document.push_move(-1, _arg["move"])
 	history_zobrist.push_back(chessboard.state.get_zobrist())
 	history_state.push_back(chessboard.state.duplicate())
 	if Setting.get_value("text_to_speech"):
@@ -361,11 +361,17 @@ func state_exit_extra_move() -> void:
 func state_ready_result(_arg:Dictionary) -> void:
 	premove_state_machine.change_state("stop")
 	var result:String = Chess.get_end_type(chessboard.state)
-	history_document.save_file()
+	if history_name:
+		history_document.save_file()
 	state_machine.change_state("end", {"result": result})
 
 func state_ready_end(_arg:Dictionary) -> void:
 	procedure_end.emit(_arg.get("result", ""))
+
+func clean_history() -> void:
+	history_event.clear()
+	history_zobrist.clear()
+	history_state.clear()
 
 func take_back() -> void:
 	if history_event.size() <= 1:
@@ -378,7 +384,8 @@ func take_back() -> void:
 	history_zobrist.resize(history_zobrist.size() - 2)
 	history_state.resize(history_state.size() - 2)
 	history_event.resize(history_event.size() - 2)
-	history_document.rollback(-1, chessboard.state, 2)
+	if history_name:
+		history_document.rollback(-1, chessboard.state, 2)
 	await chessboard.animation_finished
 	show_dialog_selection("HINT_TAKE_BACKED")
 
