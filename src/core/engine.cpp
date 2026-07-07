@@ -31,7 +31,6 @@ void ChessEngine::search_thread(const godot::Ref<State> &_state, int _group, con
 {
 	search(_state, _group, history_state, _debug_output);
 	searching = false;
-	DEV_ASSERT(has_connections("search_finished"));
 	call_deferred("emit_signal", "search_finished");
 }
 

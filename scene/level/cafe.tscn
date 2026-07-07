@@ -1012,6 +1012,8 @@ script = ExtResource("46_m560v")
 sequence_str = "YULAN_TALK_DEMO_0,-"
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
 
+[node name="timer_analyse_refresh" type="Timer" parent="." unique_id=1657268632]
+
 [editable path="chessboard"]
 [editable path="table_0"]
 [editable path="table_high_0"]

@@ -127,8 +127,12 @@ func interact_pastor_end(_result:String = "") -> void:
 	standard_chessboard.set_enabled(false)
 	change_state("")
 
+var engine_analyse:ChessEngine = PastorEngine.new()
+
 func analyse() -> void:
 	Player.force_set_camera($camera_chessboard)
+	engine_analyse.set_max_depth(20)
+	engine_analyse.set_think_time(INF)
 	standard_chessboard.state = Chess.create_initial_state()
 	standard_chessboard.remove_piece_set()
 	standard_chessboard.add_default_piece_set()
@@ -137,7 +141,10 @@ func analyse() -> void:
 func analyse_decision(_result:String = "") -> void:
 	signal_container.disconnect_all()
 	signal_container.add_connection($procedure_decision_analyse.procedure_end, analyse_decision_end)
+	signal_container.add_connection($timer_analyse_refresh.timeout, show_analyse_result)
 	$procedure_decision_analyse.start()
+	$timer_analyse_refresh.start()
+	refresh_analyse_engine()
 	
 func analyse_decision_end(_selection:String) -> void:
 	signal_container.disconnect_all()
@@ -147,9 +154,9 @@ func analyse_decision_end(_selection:String) -> void:
 		"YULAN_TALK_DEMO_EDIT":
 			analyse_edit()
 		"YULAN_TALK_DEMO_LEAVE":
-			interact_pastor_end()
+			analyse_end()
 		"":
-			interact_pastor_end()
+			analyse_end()
 	
 func analyse_edit() -> void:
 	signal_container.disconnect_all()
@@ -159,5 +166,28 @@ func analyse_edit() -> void:
 func analyse_game() -> void:
 	signal_container.disconnect_all()
 	signal_container.add_connection($procedure_game_analyse.procedure_end, analyse_decision)
+	signal_container.add_connection($timer_analyse_refresh.timeout, show_analyse_result)
+	signal_container.add_connection($procedure_game_analyse.move_played, func (_move:int) -> void:
+		refresh_analyse_engine()
+	)
+
 	$procedure_game_analyse.clean_history()
 	$procedure_game_analyse.start()
+
+func refresh_analyse_engine() -> void:
+	if engine_analyse.is_searching():
+		engine_analyse.connect("search_finished", func() -> void:
+			engine_analyse.start_search.call_deferred(standard_chessboard.state, standard_chessboard.state.get_turn(), [], Callable())
+		, CONNECT_ONE_SHOT)
+		engine_analyse.stop_search()
+	else:
+		engine_analyse.start_search.call_deferred(standard_chessboard.state, standard_chessboard.state.get_turn(), [], Callable())
+
+func show_analyse_result() -> void:
+	if standard_chessboard && standard_chessboard.state && engine_analyse:
+		Dialog.push_title(tr("YULAN_TALK_DEMO_ANALYSE_RESULT").format({"score": engine_analyse.get_score(), "move": Chess.get_move_name(standard_chessboard.state, engine_analyse.get_principal_move())}))
+
+func analyse_end() -> void:
+	engine_analyse.stop_search()
+	$timer_analyse_refresh.stop()
+	interact_pastor_end()
