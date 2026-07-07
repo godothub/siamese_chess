@@ -1,7 +1,6 @@
 @abstract
 extends Node3D
 class_name LevelProcedure
-
 signal procedure_end(result:String)
 
 @onready var level:Level = get_parent()
