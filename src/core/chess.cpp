@@ -1018,11 +1018,9 @@ godot::Ref<State> Chess::create_initial_state()
 godot::Ref<State> Chess::create_random_state(int piece_count)
 {
 	std::mt19937_64 rng(time(nullptr));
-	godot::PackedInt32Array type = {'P', 'N', 'B', 'R', 'Q', 'p', 'n', 'b', 'r', 'q', '*', '#'};
+	godot::PackedInt32Array type = {'P', 'N', 'B', 'R', 'Q', 'K', 'p', 'n', 'b', 'r', 'q', 'k'};
 	godot::PackedInt32Array pieces;
-	pieces.push_back('K');
-	pieces.push_back('k');
-	for (int i = 2; i < piece_count; i++)
+	for (int i = 0; i < piece_count; i++)
 	{
 		int piece = type[rng() % type.size()];
 		pieces.push_back(piece);
