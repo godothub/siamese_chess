@@ -6118,6 +6118,7 @@ libraries/ = SubResource("AnimationLibrary_6m8c7")
 [node name="procedure_game" type="Node3D" parent="." unique_id=83197070 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("19_110wd")
 chessboard = NodePath("../garden_steel_table/chessboard")
+history_name = "garden"
 metadata/_custom_type_script = "uid://dxapdof0oowg1"
 
 [node name="camera_chessboard" type="Camera3D" parent="." unique_id=1659593142]
@@ -6155,11 +6156,13 @@ metadata/_custom_type_script = "uid://dg2slo01f4hvf"
 
 [node name="procedure_decision_difficulty" type="Node3D" parent="." unique_id=1633124299]
 script = ExtResource("20_6m8c7")
+cancelable = true
 selection = ["CARNATION_TALK_DEMO_MEMORIZING_EASY", "CARNATION_TALK_DEMO_MEMORIZING_MEDIUM", "CARNATION_TALK_DEMO_MEMORIZING_HARD", "CARNATION_TALK_DEMO_HOW_TO_PLAY"]
 metadata/_custom_type_script = "uid://dg2slo01f4hvf"
 
 [node name="procedure_decision_memory" type="Node3D" parent="." unique_id=1874985243]
 script = ExtResource("20_6m8c7")
+cancelable = true
 selection = ["CARNATION_TALK_DEMO_MEMORIZING_READY"]
 metadata/_custom_type_script = "uid://dg2slo01f4hvf"
 
@@ -6174,8 +6177,7 @@ sequence_str = "CARNATION_TALK_DEMO_MATCH_HELP_0,-
 CARNATION_TALK_DEMO_MATCH_HELP_1,-
 CARNATION_TALK_DEMO_MATCH_HELP_2,-
 CARNATION_TALK_DEMO_MATCH_HELP_3,-
-CARNATION_TALK_DEMO_MATCH_HELP_4,-
-CARNATION_TALK_DEMO_MATCH_HELP_5,-"
+CARNATION_TALK_DEMO_MATCH_HELP_4,-"
 animation_player = NodePath("../animation_player")
 cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"

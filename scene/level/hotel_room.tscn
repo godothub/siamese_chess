@@ -410,7 +410,7 @@ leave_on_end = false
 chessboard = NodePath("../chessboard_sandbox")
 metadata/_custom_type_script = "uid://dxapdof0oowg1"
 
-[node name="marker_edit" type="Node3D" parent="." unique_id=337363338 node_paths=PackedStringArray("chessboard")]
+[node name="procedure_edit" type="Node3D" parent="." unique_id=337363338 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("37_fefse")
 chessboard = NodePath("../chessboard_sandbox")
 metadata/_custom_type_script = "uid://ck5bvbw2bcwox"
