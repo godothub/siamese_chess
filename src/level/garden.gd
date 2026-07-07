@@ -78,9 +78,25 @@ func blindfold_decision_end(_result:String) -> void:
 	signal_container.add_connection($procedure_game.procedure_end, blindfold_game_end)
 	$procedure_game.start()
 
+
 func blindfold_game_end(_result:String) -> void:
 	signal_container.disconnect_all()
-	interact_carnation_end()
+	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
+	match _result:
+		"checkmate_black":
+			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "", true, true)
+		"checkmate_white":
+			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "", true, true)
+		"stalemate_black":
+			Dialog.push_dialog("HINT_DRAW", "", true, true)
+		"stalemate_white":
+			Dialog.push_dialog("HINT_DRAW", "", true, true)
+		"50_moves":
+			Dialog.push_dialog("HINT_DRAW", "", true, true)
+		"cleared_black":
+			Dialog.push_dialog("HINT_BLACK_CLEARED", "", true, true)
+		"cleared_white":
+			Dialog.push_dialog("HINT_WHITE_CLEARED", "", true, true)
 
 func position_practice(_result:String = "") -> void:
 	signal_container.disconnect_all()
@@ -145,10 +161,6 @@ var memory_answer:String = ""
 func memory_practice_decision_end(_result:String) -> void:
 	signal_container.disconnect_all()
 	Player.force_set_camera($camera_chessboard)
-	standard_chessboard.set_enabled(true)
-	$chessboard.set_enabled(false)
-	$event_actor_carnation.instance.get_node("animation_tree").active = true
-	$event_actor_carnation.instance.play_animation("sit_and_think")
 	match _result:
 		"CARNATION_TALK_DEMO_MEMORIZING_EASY":
 			memory_state = Chess.create_random_state(3)
@@ -160,6 +172,11 @@ func memory_practice_decision_end(_result:String) -> void:
 			signal_container.add_connection($procedure_dialog_memorize_help.procedure_end, memory_practice)
 			$procedure_dialog_memorize_help.start()
 			return
+	
+	standard_chessboard.set_enabled(true)
+	$chessboard.set_enabled(false)
+	$event_actor_carnation.instance.get_node("animation_tree").active = true
+	$event_actor_carnation.instance.play_animation("sit_and_think")
 	standard_chessboard.remove_piece_set()
 	standard_chessboard.set_state(memory_state)
 	standard_chessboard.add_default_piece_set()

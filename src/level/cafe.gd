@@ -2,9 +2,6 @@ extends Level
 
 @onready var standard_history_document:Document = load("res://src/doc/history.gd").new()
 @onready var standard_chessboard:Chessboard = $table_0/chessboard_standard
-@onready var edit_event:LevelProcedure = $marker_edit
-@onready var decision_event:LevelProcedure = $marker_decision
-@onready var game_event:LevelProcedure = $procedure_game
 
 var signal_container:SignalContainer = SignalContainer.new()
 
@@ -37,29 +34,29 @@ func interact_pastor() -> void:
 	standard_chessboard.remove_piece_set()
 	standard_chessboard.add_default_piece_set()
 	signal_container.disconnect_all()
-	signal_container.add_connection(edit_event.procedure_end, edit_end)
-	edit_event.start()
+	signal_container.add_connection($procedure_edit.procedure_end, edit_end)
+	$procedure_edit.start()
 
 func edit_end(_result:String) -> void:
 	if _result == "canceled":
-		game_end()
+		interact_pastor_end()
 		return
 	signal_container.disconnect_all()
-	signal_container.add_connection(decision_event.procedure_end, decision_end)
-	decision_event.start()
+	signal_container.add_connection($procedure_decision_game.procedure_end, decision_end)
+	$procedure_decision_game.start()
 
 func decision_end(_result:String) -> void:
 	match _result:
 		"":
-			game_end()
+			interact_pastor_end()
 			return
 		"SELECTION_PLAY_AS_WHITE":
-			game_event.player_group = 0
+			$procedure_game.player_group = 0
 		"SELECTION_PLAY_AS_BLACK":
-			game_event.player_group = 1
+			$procedure_game.player_group = 1
 		"SELECTION_PLAY_AS_RANDOM":
-			game_event.player_group = randi() % 2
-	if game_event.player_group == 0:
+			$procedure_game.player_group = randi() % 2
+	if $procedure_game.player_group == 0:
 		standard_chessboard.rotation.y = 0
 	else:
 		standard_chessboard.rotation.y = PI
@@ -67,10 +64,29 @@ func decision_end(_result:String) -> void:
 	standard_chessboard.add_default_piece_set()
 	
 	signal_container.disconnect_all()
-	signal_container.add_connection(game_event.procedure_end, game_end)
-	game_event.start()
+	signal_container.add_connection($procedure_game.procedure_end, interact_pastor_end)
+	$procedure_game.start()
 
-func game_end(_result:String = "") -> void:
+func game_end(_result:String) -> void:
+	signal_container.disconnect_all()
+	signal_container.add_connection(Dialog.on_next, interact_pastor_end)
+	match _result:
+		"checkmate_black":
+			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "", true, true)
+		"checkmate_white":
+			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "", true, true)
+		"stalemate_black":
+			Dialog.push_dialog("HINT_DRAW", "", true, true)
+		"stalemate_white":
+			Dialog.push_dialog("HINT_DRAW", "", true, true)
+		"50_moves":
+			Dialog.push_dialog("HINT_DRAW", "", true, true)
+		"cleared_black":
+			Dialog.push_dialog("HINT_BLACK_CLEARED", "", true, true)
+		"cleared_white":
+			Dialog.push_dialog("HINT_WHITE_CLEARED", "", true, true)
+
+func interact_pastor_end(_result:String = "") -> void:
 	signal_container.disconnect_all()
 	Player.force_set_camera($camera)
 	$event_explore.instance.play_animation("battle_idle")

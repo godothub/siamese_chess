@@ -12,6 +12,7 @@ var engine:ChessEngine = null	# 有可能会出现多线作战，共用同一个
 @export var engine_relax_think_depth = 2
 @export var can_take_back:bool = true
 @export var can_leave:bool = true
+@export var leave_on_end:bool = true
 @export var chessboard:Chessboard = null
 var history_zobrist:PackedInt64Array = []
 var history_state:Array[State] = []
@@ -208,7 +209,7 @@ func state_ready_move(_arg:Dictionary) -> void:
 		premove_state_machine.change_state.call_deferred("start")
 	state_machine.state_signal_connect(chessboard.animation_finished, func () -> void:
 		var end_type:String = Chess.get_end_type(chessboard.state)
-		if end_type != "":
+		if end_type != "" && leave_on_end:
 			state_machine.change_state.call_deferred("result")
 		else:
 			back_to_game()
@@ -234,25 +235,17 @@ func state_ready_player(_arg:Dictionary) -> void:
 	)
 	state_machine.state_signal_connect(Dialog.on_select, func (_selected:String) -> void:
 		if _selected == "SELECTION_TAKE_BACK":
-			if history_event.size() <= 1:
-				show_dialog_selection("HINT_TAKE_BACKED")
-				return
-			chessboard.state = history_state[-2]
-			chessboard.set_square_selection(chessboard.state.get_bit(ord('A') if chessboard.state.get_turn() == 0 else ord('a')))
-			chessboard.receive_rollback_event(history_event[-1])
-			chessboard.receive_rollback_event(history_event[-2])
-			history_zobrist.resize(history_zobrist.size() - 2)
-			history_state.resize(history_state.size() - 2)
-			history_event.resize(history_event.size() - 2)
-			history_document.rollback(-1, chessboard.state, 2)
-			await chessboard.animation_finished
-			show_dialog_selection("HINT_TAKE_BACKED")
+			await take_back()
 		elif _selected == "SELECTION_LEAVE_GAME":
 			state_machine.change_state("end")
 	)
 	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("engine_win"))
+
+	if Chess.get_end_type(chessboard.state) == "":
+		chessboard.set_square_selection(start_from)
+	else:
+		chessboard.set_square_selection(0)
 	show_dialog_selection("HINT_YOUR_TURN")
-	chessboard.set_square_selection(start_from)
 
 func show_dialog_selection(hint:String) -> void:
 	var dialog_selection:PackedStringArray = []
@@ -368,28 +361,26 @@ func state_exit_extra_move() -> void:
 func state_ready_result(_arg:Dictionary) -> void:
 	premove_state_machine.change_state("stop")
 	var result:String = Chess.get_end_type(chessboard.state)
-	state_machine.state_signal_connect(Dialog.on_next, func () -> void:
-		state_machine.change_state("end", {"result": result})
-	)
-	match result:
-		"checkmate_black":
-			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "", true, true)
-		"checkmate_white":
-			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "", true, true)
-		"stalemate_black":
-			Dialog.push_dialog("HINT_DRAW", "", true, true)
-		"stalemate_white":
-			Dialog.push_dialog("HINT_DRAW", "", true, true)
-		"50_moves":
-			Dialog.push_dialog("HINT_DRAW", "", true, true)
-		"cleared_black":
-			Dialog.push_dialog("HINT_BLACK_CLEARED", "", true, true)
-		"cleared_white":
-			Dialog.push_dialog("HINT_WHITE_CLEARED", "", true, true)
 	history_document.save_file()
+	state_machine.change_state("end", {"result": result})
 
 func state_ready_end(_arg:Dictionary) -> void:
 	procedure_end.emit(_arg.get("result", ""))
+
+func take_back() -> void:
+	if history_event.size() <= 1:
+		show_dialog_selection("HINT_TAKE_BACKED")
+		return
+	chessboard.state = history_state[-2]
+	chessboard.set_square_selection(chessboard.state.get_bit(ord('A') if chessboard.state.get_turn() == 0 else ord('a')))
+	chessboard.receive_rollback_event(history_event[-1])
+	chessboard.receive_rollback_event(history_event[-2])
+	history_zobrist.resize(history_zobrist.size() - 2)
+	history_state.resize(history_state.size() - 2)
+	history_event.resize(history_event.size() - 2)
+	history_document.rollback(-1, chessboard.state, 2)
+	await chessboard.animation_finished
+	show_dialog_selection("HINT_TAKE_BACKED")
 
 func back_to_game() -> void:
 	if is_queued_for_deletion():
