@@ -699,7 +699,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	int total_phase = 24;
 	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 - Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 1;
 	phase = (phase * 256 + (total_phase / 2)) / total_phase;
-	int alternative_threshold = std::max(10 - phase, 0);
+	alternative_threshold = std::max(10 - phase, 0);
 	deepest_ply = 0;
 	evaluated_position = 0;
 	beta_cutoff = 0;
@@ -730,6 +730,25 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 			break;
 		}
 	}
+	refresh_search_result();
+}
+
+int PastorEngine::get_search_result()
+{
+	if (is_searching())
+	{
+		refresh_search_result();
+	}
+	if (acceptable_move.size() == 0)
+	{
+		return -1;
+	}
+	std::mt19937_64 rng(time(nullptr));
+	return acceptable_move[rng() % acceptable_move.size()];
+}
+
+void PastorEngine::refresh_search_result()
+{
 	for (std::pair<int, int> iter : searched_move)
 	{
 		if (principal_move == -1 || iter.second > searched_move[principal_move])
@@ -748,19 +767,34 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	}
 }
 
-int PastorEngine::get_search_result()
+int PastorEngine::get_principal_move()
 {
-	std::mt19937_64 rng(time(nullptr));
-	return acceptable_move[rng() % acceptable_move.size()];
+	if (is_searching())
+	{
+		refresh_search_result();
+	}
+	return principal_move;
 }
 
 godot::PackedInt32Array PastorEngine::get_principal_variation()
 {
+	if (is_searching())
+	{
+		refresh_search_result();
+	}
 	return principal_variation;
 }
 
 int PastorEngine::get_score()
 {
+	if (is_searching())
+	{
+		refresh_search_result();
+	}
+	if (searched_move.size() == 0)
+	{
+		return 0;
+	}
 	return searched_move[principal_move];
 }
 
@@ -848,6 +882,7 @@ void PastorEngine::_bind_methods()
 {
 	godot::ClassDB::bind_method(godot::D_METHOD("search"), &PastorEngine::search);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_search_result"), &PastorEngine::get_search_result);
+	godot::ClassDB::bind_method(godot::D_METHOD("refresh_search_result"), &PastorEngine::refresh_search_result);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_score"), &PastorEngine::get_score);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_deepest_ply"), &PastorEngine::get_deepest_ply);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_deepest_depth"), &PastorEngine::get_deepest_depth);
@@ -855,6 +890,7 @@ void PastorEngine::_bind_methods()
 	godot::ClassDB::bind_method(godot::D_METHOD("get_beta_cutoff"), &PastorEngine::get_beta_cutoff);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_transposition_table_cutoff"), &PastorEngine::get_transposition_table_cutoff);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_searched_move"), &PastorEngine::get_searched_move);
+	godot::ClassDB::bind_method(godot::D_METHOD("get_principal_move"), &PastorEngine::get_principal_move);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_principal_variation"), &PastorEngine::get_principal_variation);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_max_depth"), &PastorEngine::set_max_depth);
 	godot::ClassDB::bind_method(godot::D_METHOD("set_null_move_enabled"), &PastorEngine::set_null_move_enabled);
