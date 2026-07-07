@@ -35,7 +35,7 @@ func show_dialog(index:int) -> void:
 	if index == sequence.size():
 		end()
 		return
-	if sequence[index].animation != "-":
+	if animation_player && sequence[index].animation != "-":
 		animation_player.play(sequence[index].animation)
 	Dialog.push_dialog(tr(sequence[index].content), "", false, true, false)
 	signal_container.add_connection(Dialog.on_next, show_dialog.bind(index + 1))
