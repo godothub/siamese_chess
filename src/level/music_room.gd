@@ -1,5 +1,7 @@
 extends Level
 
+var signal_container:SignalContainer = SignalContainer.new()
+
 func _ready() -> void:
 	super._ready()
 	Ambient.change_environment_sound(load("res://assets/audio/52645__kstein1__white-noise.wav"))
@@ -14,12 +16,9 @@ func interact_carnation() -> void:
 	target_angle = global_rotation.y + angle_difference(global_rotation.y, target_angle)
 	var instance:Actor = $event_explore.instance
 	instance.rotation.y = target_angle
-	Dialog.set_border_position(false)
-	Dialog.push_dialog("CARNATION_TALK_1_0", "", true, true)
-	Player.force_set_camera($camera_carnation_dialog)
-	await Dialog.on_next
-	Dialog.push_dialog("CARNATION_TALK_1_1", "", false, true)
-	await Dialog.on_next
-	Player.force_set_camera($camera)
-	Dialog.set_border_position(Setting.get_value("dialog_border"))
-	change_state("")
+	signal_container.add_connection($procedure_dialog.procedure_end, func (_result:String) -> void:
+		signal_container.disconnect_all()
+		Player.force_set_camera($camera)
+		change_state("")
+	)
+	$procedure_dialog.start()

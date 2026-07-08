@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/event_explore.gd" id="18_d65jn"]
 [ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="18_dy0qe"]
 [ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="18_lay20"]
+[ext_resource type="Script" uid="uid://d2ckdq43wstns" path="res://src/procedure/procedure_dialog.gd" id="19_dy0qe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e1edc"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -345,3 +346,16 @@ light_color = Color(0.53, 0.4346, 0.2915, 1)
 light_energy = 0.3
 light_specular = 0.0
 light_bake_mode = 0
+
+[node name="procedure_dialog" type="Node3D" parent="." unique_id=1066099874 node_paths=PackedStringArray("cutscene_camera")]
+script = ExtResource("19_dy0qe")
+sequence_str = "CARNATION_TALK_MUSIC_ROOM_MOVIE_0,-
+CARNATION_TALK_MUSIC_ROOM_MOVIE_1,-
+CARNATION_TALK_MUSIC_ROOM_MOVIE_2,-
+CARNATION_TALK_MUSIC_ROOM_MOVIE_3,-
+CARNATION_TALK_MUSIC_ROOM_MOVIE_4,-
+CARNATION_TALK_MUSIC_ROOM_MOVIE_5,-
+CARNATION_TALK_MUSIC_ROOM_MOVIE_6,-
+CARNATION_TALK_MUSIC_ROOM_MOVIE_7,-"
+cutscene_camera = NodePath("../camera_carnation_dialog")
+metadata/_custom_type_script = "uid://d2ckdq43wstns"
