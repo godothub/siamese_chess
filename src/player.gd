@@ -9,6 +9,7 @@ var state_machine:StateMachine = StateMachine.new()
 var inspectable_item_list:Array[InspectableItem] = []
 var current_area:Area3D = null
 var target_camera:Camera3D = null
+var camera_tween:Tween = null
 
 func _ready() -> void:
 	Setting.connect("dialog_border_changed", refresh_camera)
@@ -166,7 +167,7 @@ func state_input_pointer(event:InputEvent) -> void:
 				pointer_click.emit(ray_cast.get_collision_point(), ray_cast.get_collision_normal())
 
 func _physics_process(_delta:float) -> void:
-	if target_camera:
+	if target_camera && !(camera_tween && camera_tween.is_running()):
 		camera.global_transform = target_camera.global_transform
 	state_machine.process(_delta)
 
@@ -215,12 +216,13 @@ func move_camera(other:Camera3D) -> void:
 	if !is_instance_valid(other):
 		return
 	target_camera = other
-	var tween:Tween = create_tween()
-	#tween.tween_callback($audio_stream_player.play)
-	tween.tween_property(head, "global_transform", other.global_transform, 1).set_trans(Tween.TRANS_SINE)
-	tween.set_parallel(true)
-	tween.tween_property(camera, "fov", other.fov * 0.85 if Setting.get_value("dialog_border") else other.fov, 1).set_trans(Tween.TRANS_SINE)
-	tween.set_parallel(false)
+	if camera_tween && camera_tween.is_running():
+		camera_tween.kill()
+	camera_tween = create_tween()
+	camera_tween.tween_property(head, "global_transform", other.global_transform, 1).set_trans(Tween.TRANS_SINE)
+	camera_tween.set_parallel(true)
+	camera_tween.tween_property(camera, "fov", other.fov * 0.85 if Setting.get_value("dialog_border") else other.fov, 1).set_trans(Tween.TRANS_SINE)
+	camera_tween.set_parallel(false)
 
 func force_set_camera(other:Camera3D) -> void:
 	target_camera = other
