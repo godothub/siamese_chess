@@ -49,3 +49,7 @@ func show_selection(by:int) -> void:
 			selections.push_back(selection)
 	selections.erase("")
 	Dialog.push_selection(selections, title.get(by, ""), false, false)
+
+func on_exit() -> void:
+	for iter:LevelEvent in events:
+		iter.on_exit()

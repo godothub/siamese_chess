@@ -42,6 +42,8 @@ func _ready() -> void:
 	premove_state_machine.add_state("extra", state_premove_extra_ready, state_premove_extra_exit)
 	premove_state_machine.add_state("confirm", state_premove_confirm_ready)
 	premove_state_machine.add_state("stop", state_premove_stop_ready)
+	
+	connect("tree_exiting", on_tree_exiting)
 
 func start() -> void:
 	if history_name:
@@ -404,3 +406,10 @@ func back_to_game() -> void:
 		state_machine.change_state.call_deferred("ready_to_move", {"from": premove_from})
 	else:
 		state_machine.change_state.call_deferred("player")
+
+func on_tree_exiting() -> void:
+	if engine.is_searching():
+		engine.search_finished.connect(func() -> void:
+			engine.free()
+		)
+		engine.stop_search()
