@@ -15,6 +15,10 @@ var engine:ChessEngine = null	# 有可能会出现多线作战，共用同一个
 @export var leave_on_end:bool = true
 @export var chessboard:Chessboard = null
 @export var history_name:String = ""
+@export var black_name:String = ""
+@export var white_name:String = ""
+@export var recorder_name:String = ""
+
 var history_zobrist:PackedInt64Array = []
 var history_state:Array[State] = []
 var history_event:Array = []
@@ -169,7 +173,7 @@ func state_ready_start(_arg:Dictionary) -> void:
 	if history_name:
 		history_document.new_page()
 		history_document.set_state(-1, chessboard.state)
-		history_document.set_sign(-1, Time.get_datetime_string_from_system(), name, tr("CHAR_YULAN"), tr("CHAR_LOTUS"), tr("CHAR_YULAN"))
+		history_document.set_sign(-1, Time.get_datetime_string_from_system(), name, tr(white_name), tr(black_name), tr(recorder_name))
 	var end_type:String = Chess.get_end_type(chessboard.state)
 	if end_type != "":
 		state_machine.change_state.call_deferred("result")
