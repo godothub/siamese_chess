@@ -72,7 +72,7 @@ grow_vertical = 2
 focus_mode = 3
 theme_override_fonts/font = ExtResource("1_xthoy")
 theme_override_font_sizes/font_size = 24
-current_tab = 0
+current_tab = 1
 tab_0/title = "SETTINGS_TAB_GAME"
 tab_1/title = "SETTINGS_TAB_VIDEO_AUDIO"
 tab_2/title = "SETTINGS_TAB_CONTROL"
@@ -80,6 +80,7 @@ tab_3/title = "SETTINGS_TAB_ACCESSIBILITY"
 tab_4/title = "SETTINGS_TAB_FILES"
 
 [node name="game" type="Control" parent="texture_rect/tab_container" unique_id=1922696552]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 metadata/_tab_name = "SETTINGS_TAB_GAME"
@@ -133,7 +134,6 @@ label_settings = SubResource("LabelSettings_g2to7")
 autowrap_mode = 3
 
 [node name="video_audio" type="Control" parent="texture_rect/tab_container" unique_id=1249882484]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 metadata/_tab_name = "SETTINGS_TAB_VIDEO_AUDIO"
@@ -166,7 +166,7 @@ layout_mode = 2
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath("../option_button")
-focus_neighbor_bottom = NodePath("../../../margin_container_fullscreen/h_box_container/label_name")
+focus_neighbor_bottom = NodePath("../../../margin_container_content_scale/v_box_container/h_box_container/label_name")
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RESOLUTION"
@@ -177,7 +177,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
 focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_name")
-focus_neighbor_bottom = NodePath("../../../margin_container_fullscreen/h_box_container/check_box")
+focus_neighbor_bottom = NodePath("../../../margin_container_content_scale/v_box_container/h_box_container/label_name")
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -186,6 +186,50 @@ theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_xthoy")
 theme_override_font_sizes/font_size = 25
 flat = true
+
+[node name="margin_container_content_scale" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left" unique_id=898044250]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale" unique_id=613277580]
+layout_mode = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container" unique_id=342539789]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container" unique_id=786657937]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../../../margin_container_resolution/h_box_container/label_name")
+focus_neighbor_right = NodePath("../../../../../v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_name")
+focus_neighbor_bottom = NodePath("../../h_slider")
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "SETTINGS_CONTENT_SCALE"
+label_settings = SubResource("LabelSettings_ahr6q")
+
+[node name="label_value" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container" unique_id=1607882073]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "0%"
+label_settings = SubResource("LabelSettings_ahr6q")
+horizontal_alignment = 2
+
+[node name="h_slider" type="HSlider" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container" unique_id=2072728653]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../h_box_container/label_name")
+focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container/label_name")
+focus_neighbor_bottom = NodePath("../../../margin_container_fullscreen/h_box_container/label_name")
+min_value = 20.0
+max_value = 300.0
+value = 100.0
+scrollable = false
 
 [node name="margin_container_fullscreen" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left" unique_id=756264488]
 layout_mode = 2
@@ -200,7 +244,7 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container" unique_id=1601565506]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../../../margin_container_resolution/h_box_container/label_name")
+focus_neighbor_top = NodePath("../../../margin_container_content_scale/v_box_container/h_slider")
 focus_neighbor_right = NodePath("../check_box")
 focus_neighbor_bottom = NodePath("../../../margin_container_fps/h_box_container/label_name")
 mouse_filter = 1
@@ -213,7 +257,7 @@ self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
-focus_neighbor_top = NodePath("../../../margin_container_resolution/h_box_container/option_button")
+focus_neighbor_top = NodePath("../../../margin_container_content_scale/v_box_container/h_slider")
 focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container/label_name")
 focus_neighbor_bottom = NodePath("../../../margin_container_fps/h_box_container/option_button")
 

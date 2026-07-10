@@ -32,6 +32,8 @@ var axis:Array[Vector2i] = [
 var table:Dictionary = {}
 
 @onready var resolution_input:OptionButton = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/option_button
+@onready var content_scale_input:HSlider = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_slider
+@onready var content_scale_value:Label = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container/label_value
 @onready var fullscreen_input:CheckBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/check_box
 @onready var fps_input:OptionButton = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/option_button
 @onready var vsync_input:CheckBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container/check_box
@@ -66,6 +68,7 @@ func _ready() -> void:
 	load_file()
 
 	resolution_input.connect("item_selected", set_resolution)
+	content_scale_input.connect("value_changed", set_content_scale)
 	fullscreen_input.connect("toggled", set_fullscreen)
 	fps_input.connect("item_selected", set_fps)
 	vsync_input.connect("toggled", set_vsync)
@@ -86,6 +89,7 @@ func _ready() -> void:
 
 	resolution_input.select(table.get_or_add("resolution", 0))
 	set_resolution(table.get_or_add("resolution"))
+	content_scale_input.set_value(table.get_or_add("content_scale", 100))
 	fullscreen_input.set_pressed(table.get_or_add("fullscreen", false))
 	fps_input.select(table.get_or_add("fps", 6))
 	set_fps(table.get_or_add("fps"))
@@ -123,6 +127,7 @@ func _ready() -> void:
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/label_name,
@@ -164,6 +169,7 @@ func _ready() -> void:
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_slider,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_slider,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_slider,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_slider,
 		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_slider,
 		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_slider
 	]
@@ -300,6 +306,11 @@ func set_fullscreen(toggled_on:bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func set_content_scale(value:float) -> void:
+	table.set("content_scale", value)
+	get_tree().root.content_scale_factor = value / 100.0
+	content_scale_value.text = "%d%%" % value
 
 func set_fps(index:int) -> void:
 	table.set("fps", index)
