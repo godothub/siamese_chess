@@ -5623,7 +5623,7 @@ metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 [node name="carnation_2" parent="event_actor_carnation" unique_id=1846543884 instance=ExtResource("6_vvkta")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Skeleton3D" parent="event_actor_carnation/carnation_2/skeleton" parent_id_path=PackedInt32Array(1846543884, 740718400) index="0" unique_id=427397937]
+[node name="Skeleton3D" parent="event_actor_carnation/carnation_2/skeleton" parent_id_path=PackedInt32Array(1846543884, 1205922585) index="0" unique_id=2136890031]
 bones/0/position = Vector3(-0.0035885281, 0.67076004, 0.065477744)
 bones/0/rotation = Quaternion(0.2959612, -0.01004928, -0.0061420454, 0.95512736)
 bones/1/rotation = Quaternion(-5.1091774e-08, 0.03018871, 5.355105e-09, 0.99954426)
@@ -6021,7 +6021,7 @@ metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 [node name="cheshire" parent="event_explore" unique_id=1598402161 instance=ExtResource("16_itc81")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.2758185, 0, -1)
 
-[node name="Skeleton3D" parent="event_explore/cheshire/skeleton" parent_id_path=PackedInt32Array(1598402161, 164961669) index="0" unique_id=267247458]
+[node name="Skeleton3D" parent="event_explore/cheshire/skeleton" parent_id_path=PackedInt32Array(1598402161, 221643252) index="0" unique_id=1414234568]
 bones/0/rotation = Quaternion(0.2369665, -0.010706051, -0.002611521, 0.9714554)
 bones/1/rotation = Quaternion(2.1706084e-08, 0.016193826, 9.3132246e-10, 0.99986887)
 bones/2/rotation = Quaternion(0.06845993, -0.019969331, -0.0030379696, 0.99744946)
@@ -6087,7 +6087,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29366678, 1.2720025, 0.303
 [node name="marker_3d" parent="event_explore/cheshire/skeleton/Skeleton3D/convert_transform_modifier_3d" parent_id_path=PackedInt32Array(1598402161, 1860371259) index="0" unique_id=2004121038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35563505, 0.23362947)
 
-[node name="AnimationPlayer" parent="event_explore/cheshire" index="1" unique_id=2091684575]
+[node name="AnimationPlayer" parent="event_explore/cheshire" index="1" unique_id=197062299]
 active = false
 
 [node name="garden_chair_2" parent="." unique_id=1929710267 instance=ExtResource("8_85gfo")]
@@ -6202,6 +6202,30 @@ CARNATION_TALK_DEMO_MEMORIZING_HELP_3,-"
 animation_player = NodePath("../animation_player")
 cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
+
+[node name="event_title_carnation" type="Node3D" parent="." unique_id=845221173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+script = ExtResource("12_kjls8")
+text = "CHAR_CARNATION"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="event_title_carnation_2" type="Node3D" parent="." unique_id=1396134200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+script = ExtResource("12_kjls8")
+text = "CHAR_CARNATION"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="event_title_carnation_3" type="Node3D" parent="." unique_id=29515853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+script = ExtResource("12_kjls8")
+text = "CHAR_CARNATION"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="event_title_carnation_4" type="Node3D" parent="." unique_id=1849673228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+script = ExtResource("12_kjls8")
+text = "CHAR_CARNATION"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [editable path="event_actor_carnation/carnation_2"]
 [editable path="background/grass"]
