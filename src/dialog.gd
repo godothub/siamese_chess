@@ -87,6 +87,8 @@ func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_a
 	tween.tween_property(title_label, "text", title, 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
 
+	if _text == "":
+		return
 	Narrative.speak(tr(_text), true)
 
 func push_selection(_selection:PackedStringArray, _title:String, _force_selection:bool = true, blackscreen:bool = false) -> void:
@@ -108,11 +110,15 @@ func push_selection(_selection:PackedStringArray, _title:String, _force_selectio
 	tween.tween_property(text_label, "text", text, 0)
 	tween.tween_property(title_label, "text", tr(title), 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
+	if title == "":
+		return
 	Narrative.speak(tr(title))
 
 func push_title(_title:String) -> void:
 	title = _title
 	title_label.text = title
+	if title == "":
+		return
 	Narrative.speak(tr(title))
 
 func show_global_selection() -> void:
