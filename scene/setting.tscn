@@ -176,8 +176,8 @@ label_settings = SubResource("LabelSettings_ahr6q")
 layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
-focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_name")
-focus_neighbor_bottom = NodePath("../../../margin_container_content_scale/v_box_container/h_box_container/label_name")
+focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_master_volume/h_box_container/label_name")
+focus_neighbor_bottom = NodePath("../../../margin_container_content_scale/v_box_container/h_box_container/spin_box")
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -204,32 +204,28 @@ layout_mode = 2
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../../../margin_container_resolution/h_box_container/label_name")
-focus_neighbor_right = NodePath("../../../../../v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_name")
-focus_neighbor_bottom = NodePath("../../h_slider")
+focus_neighbor_right = NodePath("../spin_box")
+focus_neighbor_bottom = NodePath("../../../../margin_container_fullscreen/h_box_container/label_name")
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_CONTENT_SCALE"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="label_value" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container" unique_id=1607882073]
+[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container" unique_id=557679106]
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-theme_override_fonts/font = ExtResource("1_xthoy")
-text = "0%"
-label_settings = SubResource("LabelSettings_ahr6q")
-horizontal_alignment = 2
-
-[node name="h_slider" type="HSlider" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container" unique_id=2072728653]
-layout_mode = 2
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../h_box_container/label_name")
-focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container/label_name")
-focus_neighbor_bottom = NodePath("../../../margin_container_fullscreen/h_box_container/label_name")
-min_value = 20.0
-max_value = 300.0
+size_flags_horizontal = 10
+focus_neighbor_left = NodePath("../label_name")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../../../../../v_box_container_right/margin_container_sfx_volume/h_box_container/label_name")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
+min_value = 50.0
+max_value = 200.0
+step = 5.0
 value = 100.0
-scrollable = false
+suffix = "%"
+custom_arrow_step = 5.0
+select_all_on_focus = true
 
 [node name="margin_container_fullscreen" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left" unique_id=756264488]
 layout_mode = 2
@@ -244,7 +240,7 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container" unique_id=1601565506]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../../../margin_container_content_scale/v_box_container/h_slider")
+focus_neighbor_top = NodePath("../../../margin_container_content_scale/v_box_container/h_box_container/label_name")
 focus_neighbor_right = NodePath("../check_box")
 focus_neighbor_bottom = NodePath("../../../margin_container_fps/h_box_container/label_name")
 mouse_filter = 1
@@ -257,8 +253,8 @@ self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
-focus_neighbor_top = NodePath("../../../margin_container_content_scale/v_box_container/h_slider")
-focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container/label_name")
+focus_neighbor_top = NodePath("../../../margin_container_content_scale/v_box_container/h_box_container/spin_box")
+focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_env_volume/h_box_container/label_name")
 focus_neighbor_bottom = NodePath("../../../margin_container_fps/h_box_container/option_button")
 
 [node name="margin_container_fps" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left" unique_id=1144323822]
@@ -287,7 +283,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
 focus_neighbor_top = NodePath("../../../margin_container_fullscreen/h_box_container/check_box")
-focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_env_volume/v_box_container/h_box_container/label_name")
+focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_env_volume/h_box_container/label_name")
 focus_neighbor_bottom = NodePath("../../../margin_container_vsync/h_box_container/check_box")
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -340,7 +336,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
 focus_neighbor_top = NodePath("../../../margin_container_fps/h_box_container/option_button")
-focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_env_volume/v_box_container/h_box_container/label_name")
+focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_env_volume/h_box_container/label_name")
 focus_neighbor_bottom = NodePath(".")
 
 [node name="v_box_container_right" type="VBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container" unique_id=1696291894]
@@ -354,37 +350,23 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume" unique_id=289110103]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume" unique_id=834212442]
 layout_mode = 2
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container" unique_id=834212442]
+[node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container" unique_id=874908023]
 layout_mode = 2
-
-[node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container" unique_id=874908023]
-layout_mode = 2
-focus_neighbor_left = NodePath("../../../../../v_box_container_left/margin_container_resolution/h_box_container/option_button")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../h_slider")
+focus_neighbor_left = NodePath("../../../../v_box_container_left/margin_container_resolution/h_box_container/option_button")
+focus_neighbor_right = NodePath("../spin_box")
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_MASTER_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="label_value" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container" unique_id=1928802745]
+[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container" unique_id=471060468]
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-theme_override_fonts/font = ExtResource("1_xthoy")
-text = "0%"
-label_settings = SubResource("LabelSettings_ahr6q")
-horizontal_alignment = 2
-
-[node name="h_slider" type="HSlider" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container" unique_id=927328205]
-layout_mode = 2
-focus_neighbor_left = NodePath("../../../../v_box_container_left/margin_container_resolution/h_box_container/option_button")
-focus_neighbor_top = NodePath("../h_box_container/label_name")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../../margin_container_sfx_volume/v_box_container/h_box_container/label_name")
+size_flags_horizontal = 10
+focus_mode = 2
+suffix = "%"
 
 [node name="margin_container_sfx_volume" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right" unique_id=2075423611]
 layout_mode = 2
@@ -393,39 +375,23 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume" unique_id=1425828877]
-layout_mode = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container" unique_id=1218462125]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume" unique_id=1218462125]
 layout_mode = 2
 
-[node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container" unique_id=1712982765]
+[node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container" unique_id=1712982765]
 layout_mode = 2
-focus_neighbor_left = NodePath("../../../../../v_box_container_left/margin_container_fullscreen/h_box_container/check_box")
-focus_neighbor_top = NodePath("../../../../margin_container_master_volume/v_box_container/h_slider")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../h_slider")
+focus_neighbor_left = NodePath("../../../../v_box_container_left/margin_container_fullscreen/h_box_container/check_box")
+focus_neighbor_right = NodePath("../spin_box")
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_SFX_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="label_value" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container" unique_id=251484677]
+[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container" unique_id=253259427]
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-theme_override_fonts/font = ExtResource("1_xthoy")
-text = "0%"
-label_settings = SubResource("LabelSettings_ahr6q")
-horizontal_alignment = 2
-
-[node name="h_slider" type="HSlider" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container" unique_id=1205003451]
-layout_mode = 2
-focus_neighbor_left = NodePath("../../../../v_box_container_left/margin_container_fullscreen/h_box_container/check_box")
-focus_neighbor_top = NodePath("../h_box_container/label_name")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../../margin_container_env_volume/v_box_container/h_box_container/label_name")
+size_flags_horizontal = 10
+focus_mode = 2
+suffix = "%"
 
 [node name="margin_container_env_volume" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right" unique_id=677013504]
 layout_mode = 2
@@ -434,38 +400,23 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume" unique_id=2008869402]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume" unique_id=1583522396]
 layout_mode = 2
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container" unique_id=1583522396]
+[node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container" unique_id=73645585]
 layout_mode = 2
-
-[node name="label_name" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container" unique_id=73645585]
-layout_mode = 2
-focus_neighbor_left = NodePath("../../../../../v_box_container_left/margin_container_fps/h_box_container/option_button")
-focus_neighbor_top = NodePath("../../../../margin_container_sfx_volume/v_box_container/h_slider")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../h_slider")
+focus_neighbor_left = NodePath("../../../../v_box_container_left/margin_container_fps/h_box_container/option_button")
+focus_neighbor_right = NodePath("../spin_box")
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_ENV_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="label_value" type="Label" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container" unique_id=1476094605]
+[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container" unique_id=2071694757]
 layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-theme_override_fonts/font = ExtResource("1_xthoy")
-text = "0%"
-label_settings = SubResource("LabelSettings_ahr6q")
-horizontal_alignment = 2
-
-[node name="h_slider" type="HSlider" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container" unique_id=470739025]
-layout_mode = 2
-focus_neighbor_left = NodePath("../../../../v_box_container_left/margin_container_fps/h_box_container/option_button")
-focus_neighbor_top = NodePath("../h_box_container/label_name")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
+size_flags_horizontal = 10
+focus_mode = 2
+suffix = "%"
 
 [node name="control" type="Control" parent="texture_rect/tab_container" unique_id=8294422]
 visible = false
@@ -488,36 +439,23 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed" unique_id=33171018]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed" unique_id=18742728]
 layout_mode = 2
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container" unique_id=18742728]
-layout_mode = 2
-
-[node name="label_name" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container" unique_id=746796860]
+[node name="label_name" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container" unique_id=746796860]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../h_slider")
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_CAMERA_MOVE_SPEED"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="label_value" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container" unique_id=2110073987]
+[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container" unique_id=730591184]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_xthoy")
-text = "0%"
-label_settings = SubResource("LabelSettings_ahr6q")
-horizontal_alignment = 2
-
-[node name="h_slider" type="HSlider" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container" unique_id=988718259]
-layout_mode = 2
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../h_box_container/label_name")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../../margin_container_camera_rotate_sensitive/v_box_container/h_box_container/label_name")
+size_flags_horizontal = 10
+focus_mode = 2
+suffix = "%"
 
 [node name="margin_container_camera_rotate_sensitive" type="MarginContainer" parent="texture_rect/tab_container/control/v_box_container" unique_id=1036904096]
 layout_mode = 2
@@ -526,37 +464,23 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 20
 
-[node name="v_box_container" type="VBoxContainer" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive" unique_id=600505173]
+[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive" unique_id=615895235]
 layout_mode = 2
 
-[node name="h_box_container" type="HBoxContainer" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container" unique_id=615895235]
-layout_mode = 2
-
-[node name="label_name" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container" unique_id=339773240]
+[node name="label_name" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container" unique_id=339773240]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../../../../margin_container_camera_move_speed/v_box_container/h_slider")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../h_slider")
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_CAMERA_ROTATE_SENSITIVE"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="label_value" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container" unique_id=1507362058]
+[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container" unique_id=2069383014]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("1_xthoy")
-text = "0%"
-label_settings = SubResource("LabelSettings_ahr6q")
-horizontal_alignment = 2
-
-[node name="h_slider" type="HSlider" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container" unique_id=148927077]
-layout_mode = 2
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../h_box_container/label_name")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../../margin_container_camera_rotate_axis/h_box_container/label_name")
+size_flags_horizontal = 10
+focus_mode = 2
+suffix = "%"
 
 [node name="margin_container_camera_rotate_axis" type="MarginContainer" parent="texture_rect/tab_container/control/v_box_container" unique_id=1680703829]
 layout_mode = 2
@@ -571,7 +495,6 @@ layout_mode = 2
 [node name="label_name" type="Label" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container" unique_id=2074814429]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../../../margin_container_camera_rotate_sensitive/v_box_container/h_slider")
 focus_neighbor_right = NodePath("../option_button")
 focus_neighbor_bottom = NodePath(".")
 mouse_filter = 1
@@ -583,7 +506,6 @@ label_settings = SubResource("LabelSettings_ahr6q")
 layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
-focus_neighbor_top = NodePath("../../../margin_container_camera_rotate_sensitive/v_box_container/h_slider")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)

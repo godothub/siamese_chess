@@ -32,21 +32,15 @@ var axis:Array[Vector2i] = [
 var table:Dictionary = {}
 
 @onready var resolution_input:OptionButton = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/option_button
-@onready var content_scale_input:HSlider = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_slider
-@onready var content_scale_value:Label = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container/label_value
+@onready var content_scale_input:SpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container/spin_box
 @onready var fullscreen_input:CheckBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/check_box
 @onready var fps_input:OptionButton = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/option_button
 @onready var vsync_input:CheckBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container/check_box
-@onready var master_volume_input:HSlider = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_slider
-@onready var master_volume_value:Label = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_value
-@onready var sfx_volume_input:HSlider = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_slider
-@onready var sfx_volume_value:Label = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container/label_value
-@onready var env_volume_input:HSlider = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_slider
-@onready var env_volume_value:Label = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container/label_value
-@onready var camera_move_speed_input:HSlider = $texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_slider
-@onready var camera_move_speed_value:Label = $texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container/label_value
-@onready var camera_rotate_sensitive_input:HSlider = $texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_slider
-@onready var camera_rotate_sensitive_value:Label = $texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container/label_value
+@onready var master_volume_input:SpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container/spin_box
+@onready var sfx_volume_input:SpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container/spin_box
+@onready var env_volume_input:SpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container/spin_box
+@onready var camera_move_speed_input:SpinBox = $texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container/spin_box
+@onready var camera_rotate_sensitive_input:SpinBox = $texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container/spin_box
 @onready var camera_rotate_axis_input:OptionButton = $texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container/option_button
 @onready var language_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/option_button
 @onready var dialog_border_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/check_box
@@ -95,13 +89,10 @@ func _ready() -> void:
 	set_fps(table.get_or_add("fps"))
 	vsync_input.set_pressed(table.get_or_add("vsync", true))
 	master_volume_input.set_value(table.get_or_add("master_volume", 80))
-	master_volume_value.text = "%d%%" % table.get_or_add("master_volume", 80)
 	set_master_volume(table.get_or_add("master_volume", 80))
 	sfx_volume_input.set_value(table.get_or_add("sfx_volume", 80))
-	sfx_volume_value.text = "%d%%" % table.get_or_add("sfx_volume", 80)
 	set_sfx_volume(table.get_or_add("sfx_volume", 80))
 	env_volume_input.set_value(table.get_or_add("env_volume", 80))
-	env_volume_value.text = "%d%%" % (table.get_or_add("env_volume", 80))
 	set_env_volume(table.get_or_add("env_volume", 80))
 	language_input.select(table.get_or_add("language", languages.keys().find(TranslationServer.get_locale())))
 	dialog_border_input.set_pressed(table.get_or_add("dialog_border", false))
@@ -110,9 +101,7 @@ func _ready() -> void:
 	touch_gesture_input.set_pressed(table.get_or_add("touch_gesture", false))
 	relax_input.set_pressed(table.get_or_add("relax", false))
 	camera_move_speed_input.set_value(table.get_or_add("camera_move_speed", 50))
-	camera_move_speed_value.text = "%d%%" % (table.get_or_add("camera_move_speed", 50))
 	camera_rotate_sensitive_input.set_value(table.get_or_add("camera_rotate_sensitive", 50))
-	camera_rotate_sensitive_value.text = "%d%%" % (table.get_or_add("camera_rotate_sensitive", 50))
 	camera_rotate_axis_input.select(table.get_or_add("camera_rotate_axis", 0))
 	visible = false
 	set_language(table.get_or_add("language"))
@@ -123,27 +112,27 @@ func _ready() -> void:
 	$texture_rect/button_close.connect("mouse_entered", read_close)
 	$texture_rect/button_close.connect("focus_entered", read_close)
 	var labels:Array = [
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container/label_name,
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/label_name,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container/label_name,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container/label_name,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container/label_name,
 		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container/label_name,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_box_container/label_name,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container/label_name,
+		$texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/label_name,
 		$texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/label_explain,
 		$texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/label_name,
 		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/label_explain,
 		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/label_name,
 		$texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/label_explain,
 		$texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/label_name,
+		$texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/label_name,
 		$texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/label_explain,
 		$texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/label_name,
 		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/label_explain,
 		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container/label_name
 	]
@@ -165,13 +154,13 @@ func _ready() -> void:
 		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/option_button,
 		$texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/option_button
 	]
-	var sliders:Array = [
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/v_box_container/h_slider,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/v_box_container/h_slider,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/v_box_container/h_slider,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_slider,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/v_box_container/h_slider,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/v_box_container/h_slider
+	var spinbox:Array = [
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container/spin_box,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container/spin_box,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container/spin_box,
+		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container/spin_box,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container/spin_box,
+		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container/spin_box
 	]
 	
 	for iter:Label in labels:
@@ -191,10 +180,10 @@ func _ready() -> void:
 		iter.connect("toggled", show_option_button)
 		iter.connect("item_focused", hover_option_button_selection.bind(iter))
 		iter.connect("item_selected", selected_option_button.bind(iter))
-	for iter:Slider in sliders:
-		iter.connect("mouse_entered", hover_slider.bind(iter))
-		iter.connect("focus_entered", hover_slider.bind(iter))
-		iter.connect("value_changed", change_slider)
+	for iter:SpinBox in spinbox:
+		iter.connect("mouse_entered", hover_spinbox.bind(iter))
+		iter.connect("focus_entered", hover_spinbox.bind(iter))
+		iter.connect("value_changed", change_spinbox)
 
 func _physics_process(_delta:float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -285,12 +274,12 @@ func selected_option_button(index:int, option_button:OptionButton) -> void:
 	if get_value("text_to_speech"):
 		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_SELECTED").format({"selection": tr(option_button.get_item_text(index))}), true)
 
-func hover_slider(slider:Slider) -> void:
+func hover_spinbox(spinbox:SpinBox) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		Narrative.speak(tr("SETTINGS_SLIDER_HOVERED") % slider.value, true)
+		Narrative.speak(tr("SETTINGS_SLIDER_HOVERED") % spinbox.value, true)
 
-func change_slider(value:float) -> void:
+func change_spinbox(value:float) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
 		Narrative.speak(tr("SETTINGS_SLIDER_CHANGED") % value, true)
@@ -310,7 +299,6 @@ func set_fullscreen(toggled_on:bool) -> void:
 func set_content_scale(value:float) -> void:
 	table.set("content_scale", value)
 	get_tree().root.content_scale_factor = value / 100.0
-	content_scale_value.text = "%d%%" % value
 
 func set_fps(index:int) -> void:
 	table.set("fps", index)
@@ -340,25 +328,20 @@ func set_vsync(toggled_on:bool) -> void:
 func set_master_volume(value:float) -> void:
 	table.set("master_volume", value)
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"Master"), value / 100.0)
-	master_volume_value.text = "%d%%" % value
 
 func set_sfx_volume(value:float) -> void:
 	table.set("sfx_volume", value)
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"SFX"), value / 100.0)
-	sfx_volume_value.text = "%d%%" % value
 
 func set_env_volume(value:float) -> void:
 	table.set("env_volume", value)
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"Ambient"), value / 100.0)
-	env_volume_value.text = "%d%%" % value
 
 func set_camera_move_speed(value:float) -> void:
 	table.set("camera_move_speed", value)
-	camera_move_speed_value.text = "%d%%" % value
 
 func set_camera_rotate_sensitive(value:float) -> void:
 	table.set("camera_rotate_sensitive", value)
-	camera_rotate_sensitive_value.text = "%d%%" % value
 
 func set_camera_rotate_axis(index:int) -> void:
 	table.set("camera_rotate_axis", index)
