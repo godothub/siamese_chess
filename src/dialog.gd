@@ -7,7 +7,7 @@ signal on_focus()
 
 const packed_scene:PackedScene = preload("res://scene/dialog.tscn")
 
-const global_selection:Array = ["SELECTION_CAMERA", "SELECTION_THIRD_EYE", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"]
+const global_selection:Array = ["SELECTION_CAMERA", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"]
 
 var border_position:bool = true
 var text_label:RichTextLabel = null
@@ -219,14 +219,7 @@ func clicked_global_selection(_selected:String) -> void:
 		"SELECTION_DOCUMENTS":
 			Archive.open()
 		"SELECTION_CAMERA":
-			#var from_position:Vector3 = chessboard.chessboard_piece[from].global_position
-			#from_position += Vector3(0, 1.6, 0)
-			#var from_rotation:Vector3 = chessboard.chessboard_piece[from].global_rotation
-			#FilmCamera.move_camera(from_position, from_rotation)
 			FilmCamera.open()
-		"SELECTION_THIRD_EYE":
-			#ThirdEye3D.set_state(chessboard.state)
-			ThirdEye3D.open()
 		"SELECTION_SETTINGS":
 			Setting.open()
 
