@@ -76,8 +76,13 @@ func side_decision_end(_result:String) -> void:
 			return
 	if $procedure_game.player_group == 0:
 		standard_chessboard.rotation.y = 0
+		$procedure_game.white_name = "CHAR_LOTUS"
+		$procedure_game.black_name = "CHAR_YULAN"
 	else:
 		standard_chessboard.rotation.y = PI
+		$procedure_game.white_name = "CHAR_YULAN"
+		$procedure_game.black_name = "CHAR_LOTUS"
+	$procedure_game.recorder_name = "CHAR_YULAN"
 	standard_chessboard.remove_piece_set()
 	standard_chessboard.add_default_piece_set()
 	

@@ -66,9 +66,15 @@ func blindfold_decision_end(_result:String) -> void:
 		"SELECTION_PLAY_AS_RANDOM":
 			$procedure_game.player_group = randi() % 2
 	if $procedure_game.player_group == 0:
+		$procedure_game.white_name = "CHAR_LOTUS"
+		$procedure_game.black_name = "CHAR_CARNATION"
 		standard_chessboard.rotation.y = -PI / 2
 	else:
+		$procedure_game.white_name = "CHAR_CARNATION"
+		$procedure_game.black_name = "CHAR_LOTUS"
 		standard_chessboard.rotation.y = PI / 2
+	
+	$procedure_game.recorder_name = "CHAR_LOTUS"
 	standard_chessboard.remove_piece_set()
 	standard_chessboard.set_enabled(true)
 	$chessboard.set_enabled(false)
