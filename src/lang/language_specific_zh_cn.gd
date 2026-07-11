@@ -1,6 +1,26 @@
 extends LanguageSpecific
 class_name LanguageSpecificZhCN
 
+static var map:Dictionary = {
+		ord("K"): TranslationServer.translate("PIECE_WHITE_KING"),
+		ord("Q"): TranslationServer.translate("PIECE_WHITE_QUEEN"),
+		ord("R"): "白居",
+		ord("B"): TranslationServer.translate("PIECE_WHITE_BISHOP"),
+		ord("N"): TranslationServer.translate("PIECE_WHITE_KNIGHT"),
+		ord("P"): TranslationServer.translate("PIECE_WHITE_PAWN"),
+		ord("k"): TranslationServer.translate("PIECE_BLACK_KING"),
+		ord("q"): TranslationServer.translate("PIECE_BLACK_QUEEN"),
+		ord("r"): "黑居",
+		ord("b"): TranslationServer.translate("PIECE_BLACK_BISHOP"),
+		ord("n"): TranslationServer.translate("PIECE_BLACK_KNIGHT"),
+		ord("p"): TranslationServer.translate("PIECE_BLACK_PAWN"),
+		ord("#"): TranslationServer.translate("PIECE_BARRIER"),
+		ord("*"): TranslationServer.translate("PIECE_BREAKABLE_BARRIER"),
+		ord("|"): TranslationServer.translate("WALL_FILE"),
+		ord("-"): TranslationServer.translate("WALL_RANK"),
+		ord("+"): TranslationServer.translate("WALL_DIAG")
+}
+
 const char_to_pronounce:Dictionary = {
 	"K": "王",
 	"Q": "后",
@@ -32,6 +52,9 @@ const char_to_pronounce:Dictionary = {
 	"O-O-O": "长易位",
 	"-": "空"
 }
+
+static func piece_to_pronounce(piece:int) -> String:
+	return map.get(piece)
 
 static func move_name_to_pronounce(move_name:String) -> String:
 	if move_name == "O-O" || move_name == "O-O-O":

@@ -207,10 +207,9 @@ func state_ready_move(_arg:Dictionary) -> void:
 		history_document.push_move(-1, _arg["move"])
 	history_zobrist.push_back(chessboard.state.get_zobrist())
 	history_state.push_back(chessboard.state.duplicate())
-	if Setting.get_value("text_to_speech"):
-		var content:String = "WHITE_PLAY" if chessboard.state.get_turn() == 0 else "BLACK_PLAY"
-		content = tr(content).format({"move": Localization.move_name_to_pronounce(Chess.get_move_name(chessboard.state, _arg["move"]))})
-		Narrative.speak(content, false)
+	var tts_content:String = "WHITE_PLAY" if chessboard.state.get_turn() == 0 else "BLACK_PLAY"
+	tts_content = tr(tts_content).format({"move": Localization.move_name_to_pronounce(Chess.get_move_name(chessboard.state, _arg["move"]))})
+	Narrative.speak(tts_content, false)
 	if premove_state_machine.current_state == "stop" && player_group != 2 && player_group != 3:
 		premove_state_machine.change_state.call_deferred("start")
 	state_machine.state_signal_connect(chessboard.animation_finished, func () -> void:
