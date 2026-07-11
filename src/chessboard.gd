@@ -281,31 +281,10 @@ func finger_on_position(position_name:String) -> void:
 			$audio_stream_player_tok.global_position = get_node(position_name).global_position
 			$audio_stream_player_tok.play()
 		Input.vibrate_handheld(50, 0.2)
-		if Setting.get_value("text_to_speech"):
-			Narrative.stop()
-			const map:Dictionary = {
-				ord("K"): "PIECE_WHITE_KING",
-				ord("Q"): "PIECE_WHITE_QUEEN",
-				ord("R"): "PIECE_WHITE_ROOK",
-				ord("B"): "PIECE_WHITE_BISHOP",
-				ord("N"): "PIECE_WHITE_KNIGHT",
-				ord("P"): "PIECE_WHITE_PAWN",
-				ord("k"): "PIECE_BLACK_KING",
-				ord("q"): "PIECE_BLACK_QUEEN",
-				ord("r"): "PIECE_BLACK_ROOK",
-				ord("b"): "PIECE_BLACK_BISHOP",
-				ord("n"): "PIECE_BLACK_KNIGHT",
-				ord("p"): "PIECE_BLACK_PAWN",
-				ord("#"): "PIECE_BARRIER",
-				ord("*"): "PIECE_BREAKABLE_BARRIER",
-				ord("|"): "WALL_FILE",
-				ord("-"): "WALL_RANK",
-				ord("+"): "WALL_DIAG",
-			}
-			for piece:int in map:
-				if state.get_bit(piece) & Chess.mask(Chess.x88_to_c64((Chess.name_to_x88(position_name)))):
-					var piece_name:String = map[piece]
-					Narrative.speak(tr("THERE_IS_A_PIECE").format({"piece": tr(piece_name), "by": position_name}), false)
+		Narrative.stop()
+		if state.has_piece(Chess.name_to_x88(position_name)):
+			var piece:int = state.get_piece(Chess.name_to_x88(position_name))
+			Narrative.speak(tr("THERE_IS_A_PIECE").format({"piece": Localization.piece_to_pronounce(piece), "by": Localization.position_name_to_pronounce(position_name)}), false)
 		hovered.emit(by)
 	pointer_position_name = position_name
 	$canvas.draw_pointer("pointer", COLOR_POINTER, Chess.name_to_x88(position_name))

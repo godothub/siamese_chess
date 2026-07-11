@@ -5,6 +5,9 @@ var language_specific_map:Dictionary = {
 	"en": load("res://src/lang/language_specific_en.gd")
 }
 
+func piece_to_pronounce(piece:int) -> String:
+	return language_specific_map[TranslationServer.get_locale()].piece_to_pronounce(piece)
+
 func move_name_to_pronounce(move_name:String) -> String:
 	return language_specific_map[TranslationServer.get_locale()].move_name_to_pronounce(move_name)
 
