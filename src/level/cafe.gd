@@ -172,9 +172,7 @@ func analyse_game() -> void:
 	signal_container.disconnect_all()
 	signal_container.add_connection($procedure_game_analyse.procedure_end, analyse_decision)
 	signal_container.add_connection($timer_analyse_refresh.timeout, show_analyse_result)
-	signal_container.add_connection($procedure_game_analyse.move_played, func (_move:int) -> void:
-		refresh_analyse_engine()
-	)
+	signal_container.add_connection($procedure_game_analyse.state_update, refresh_analyse_engine)
 
 	$procedure_game_analyse.clean_history()
 	$procedure_game_analyse.start()
