@@ -191,7 +191,7 @@ transform = Transform3D(-1, 7.789426e-08, -3.9689112e-08, -9.399129e-09, 0.35556
 fov = 95.0
 
 [node name="camera_black_side" type="Camera3D" parent="." unique_id=617284860]
-transform = Transform3D(-1, 5.9510512e-08, -6.404095e-08, -2.6442759e-08, 0.49233234, 0.87040734, 8.332781e-08, 0.87040734, -0.49233234, -0.2826128, 5.3925323, -7.0351663)
+transform = Transform3D(1, -1.3560394e-07, 1.0708201e-07, -2.644276e-08, 0.49233234, 0.87040734, -1.7075058e-07, -0.87040734, 0.49233234, -0.2826128, 5.3925323, 6.7386966)
 fov = 111.0
 
 [node name="event_camera_black_side" type="Node3D" parent="." unique_id=778137627 node_paths=PackedStringArray("camera")]
