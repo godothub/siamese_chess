@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bfbmbxa66uwhd"
-path="res://.godot/imported/grass.glb-07d2d0968fa18c88751b8050e8f477d6.scn"
+uid="uid://bu5ynryuyxxn8"
+path="res://.godot/imported/grass_barrier.glb-b7a1ed210fbac7263a7be406b4dcb40b.scn"
 
 [deps]
 
-source_file="res://assets/model/grass.glb"
-dest_files=["res://.godot/imported/grass.glb-07d2d0968fa18c88751b8050e8f477d6.scn"]
+source_file="res://assets/model/grass_barrier.glb"
+dest_files=["res://.godot/imported/grass_barrier.glb-b7a1ed210fbac7263a7be406b4dcb40b.scn"]
 
 [params]
 
@@ -22,7 +22,7 @@ nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
-meshes/generate_lods=true
+meshes/generate_lods=false
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
