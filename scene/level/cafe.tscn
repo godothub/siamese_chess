@@ -838,7 +838,7 @@ size = Vector3(13.618164, 1, 9.0703125)
 script = ExtResource("33_m67mf")
 node = NodePath("..")
 method_name = &"interact_pastor"
-selection = "YULAN_INTERACT_PLAY_CHESS"
+selection = "YULAN_TALK"
 bit = 52776558133248
 metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
