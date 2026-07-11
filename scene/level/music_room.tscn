@@ -59,27 +59,27 @@ sky_mode = 1
 [node name="chessboard" parent="." unique_id=1923671082 instance=ExtResource("3_fjtbx")]
 
 [node name="camera" type="Camera3D" parent="." unique_id=895779528]
-transform = Transform3D(-4.334241e-08, 0.76884204, -0.63943875, 5.6677125e-09, 0.63943875, 0.76884204, 1, 2.9699315e-08, -3.20724e-08, -5.806548, 3.60401, 0.66703)
+transform = Transform3D(-4.334241e-08, 0.76884204, -0.63943875, 5.6677125e-09, 0.63943875, 0.76884204, 1, 2.9699311e-08, -3.2072393e-08, -3.337595, 3.60401, 0.66703)
 fov = 100.0
 
 [node name="camera_carnation_dialog" type="Camera3D" parent="." unique_id=2122014208]
 transform = Transform3D(0.25881907, 0.18430734, -0.94817907, 0, 0.98162717, 0.19080901, 0.9659258, -0.049385007, 0.25406387, 2, 1.746788, 1.7230856)
 
 [node name="window" parent="." unique_id=781463162 instance=ExtResource("15_okh5y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 5.019954)
 
 [node name="window_2" parent="." unique_id=2143090950 instance=ExtResource("15_okh5y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 5.019954)
 
 [node name="door" parent="." unique_id=297185897 instance=ExtResource("16_7f6gv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0055404, 0, -3.1340919)
 
 [node name="event_teleport" type="Node3D" parent="." unique_id=2037454575]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 script = ExtResource("18_lay20")
 to = "res://scene/level/hallway_2f.tscn"
 by = 103
-bit = 131072
+bit = 67108864
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
 [node name="upright_piano" parent="." unique_id=1934805423 instance=ExtResource("7_qe74a")]
@@ -100,7 +100,7 @@ transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 script = ExtResource("11_tkywf")
 piece = 35
-bit = -35538957114408961
+bit = -75300507484161
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
 [node name="event_camera" type="Node3D" parent="." unique_id=918451059 node_paths=PackedStringArray("camera")]
@@ -119,7 +119,7 @@ box_projection = true
 layers = 2
 
 [node name="csg_wall" type="CSGBox3D" parent="csg_combiner_3d" unique_id=653778239]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0514126, 1.86379, 1.5020702)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0514126, 1.86379, 1.5020702)
 layers = 2
 size = Vector3(0.4, 3.7, 11)
 material = SubResource("StandardMaterial3D_qtr2s")
@@ -131,33 +131,33 @@ size = Vector3(0.408875, 3.7, 11)
 material = SubResource("StandardMaterial3D_qtr2s")
 
 [node name="csg_wall_3" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1735151231]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09865856, 1.86379, 6.5020704)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09865856, 1.86379, 5.5020704)
 layers = 2
 size = Vector3(12.6, 3.7, 1)
 material = SubResource("StandardMaterial3D_qtr2s")
 
 [node name="csg_wall_4" type="CSGBox3D" parent="csg_combiner_3d" unique_id=732818474]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09865856, 1.86379, -4.4979296)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09865856, 1.86379, -3.4979296)
 layers = 2
 size = Vector3(12.6, 3.7, 1)
 material = SubResource("StandardMaterial3D_qtr2s")
 
 [node name="csg_door" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1627005295]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.968087, 1.3917197, -4.414325)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.9736276, 1.3917197, -3.548417)
 layers = 2
 operation = 2
 size = Vector3(1.8803304, 2.7558594, 1.1787102)
 material = SubResource("StandardMaterial3D_tkywf")
 
 [node name="csg_window" type="CSGBox3D" parent="csg_combiner_3d" unique_id=1567889502]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.94468, 1.7305259, 6.485834)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.94468, 1.7305259, 5.5057883)
 layers = 2
 operation = 2
 size = Vector3(1.0507, 1.7393799, 2.8915405)
 material = SubResource("StandardMaterial3D_tkywf")
 
 [node name="csg_window_2" type="CSGBox3D" parent="csg_combiner_3d" unique_id=2011299152]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.0524359, 1.7305259, 6.485834)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.0524359, 1.7305259, 5.5057883)
 layers = 2
 operation = 2
 size = Vector3(1.0507, 1.7393799, 2.8857727)
@@ -267,34 +267,6 @@ light_energy = 0.3
 light_specular = 0.0
 light_bake_mode = 0
 
-[node name="spot_light_3d_5" type="SpotLight3D" parent="." unique_id=1850548625]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.7643404, 4.034877, 2.7107954)
-light_color = Color(1.6362334, 1.4843559, 1.0991334, 1)
-light_energy = 0.497
-light_bake_mode = 1
-shadow_enabled = true
-
-[node name="omni_light_3d" type="OmniLight3D" parent="spot_light_3d_5" unique_id=426744234]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8652315)
-light_color = Color(0.53, 0.4346, 0.2915, 1)
-light_energy = 0.2
-light_specular = 0.0
-light_bake_mode = 0
-
-[node name="spot_light_3d_6" type="SpotLight3D" parent="." unique_id=1337911664]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4.712865, 4.034877, -0.79469824)
-light_color = Color(1.6362334, 1.4843559, 1.0991334, 1)
-light_energy = 1.068
-light_bake_mode = 1
-shadow_enabled = true
-
-[node name="omni_light_3d" type="OmniLight3D" parent="spot_light_3d_6" unique_id=1708013214]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8652315)
-light_color = Color(0.53, 0.4346, 0.2915, 1)
-light_energy = 0.3
-light_specular = 0.0
-light_bake_mode = 0
-
 [node name="spot_light_3d_7" type="SpotLight3D" parent="." unique_id=925250572]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.6512628, 4.034877, -0.90032935)
 light_color = Color(1.6362334, 1.4843559, 1.0991334, 1)
@@ -337,61 +309,49 @@ cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
 
 [node name="music_room_chair" parent="." unique_id=1376511493 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-0.030974682, 0, 0.9995202, 0, 1, 0, -0.9995202, 0, -0.030974682, 2.881129, 0, -1.8908641)
+transform = Transform3D(-0.030974682, 0, 0.9995202, 0, 1, 0, -0.9995202, 0, -0.030974682, 2.881129, 0, -1.3515291)
 
 [node name="music_room_chair_2" parent="." unique_id=659339326 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.94445, 0, -0.25589466)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.94445, 0, -0.052906513)
 
 [node name="music_room_chair_3" parent="." unique_id=702720908 instance=ExtResource("19_1bcad")]
 transform = Transform3D(0.03948649, 0, 0.9992201, 0, 1, 0, -0.9992201, 0, 0.03948649, 2.8624468, 0, 2.285095)
 
 [node name="music_room_chair_4" parent="." unique_id=1201284800 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.94445, 0, 3.7956762)
+transform = Transform3D(0.005360887, -0.0033721006, 0.99998, 0.0060378583, 0.99997616, 0.0033397384, -0.9999674, 0.0060198437, 0.005381108, 2.94445, 0, 3.5902987)
 
 [node name="music_room_chair_5" parent="." unique_id=1260162180 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.3244567, 0, -1.8667499)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.6628635, 0, -1.3274148)
 
 [node name="music_room_chair_6" parent="." unique_id=122069343 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.3244567, 0, -0.25589466)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.6628635, 0, -0.052906513)
 
 [node name="music_room_chair_7" parent="." unique_id=2066627226 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-0.030974682, 0, 0.9995202, 0, 1, 0, -0.9995202, 0, -0.030974682, 1.3877776, 0, 2.220832)
+transform = Transform3D(-0.030974682, 0, 0.9995202, 0, 1, 0, -0.9995202, 0, -0.030974682, 1.7261844, 0, 2.220832)
 
 [node name="music_room_chair_8" parent="." unique_id=1390588341 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-0.016006267, 3.843981e-05, 0.99987197, -0.00041060033, 0.9999999, -4.499943e-05, -0.9998719, -0.0004112663, -0.016006252, 1.3323146, 0.0011317973, 3.7692394)
+transform = Transform3D(-0.016006267, 3.843981e-05, 0.99987197, -0.00041060033, 0.9999999, -4.499943e-05, -0.9998719, -0.0004112663, -0.016006252, 1.6707214, 0.0011317973, 3.5638618)
 
 [node name="music_room_chair_9" parent="." unique_id=1752420539 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.1660316, 0, -1.8667499)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.3627805, 0, -1.3274148)
 
 [node name="music_room_chair_10" parent="." unique_id=412544533 instance=ExtResource("19_1bcad")]
-transform = Transform3D(0.09601943, 0, 0.99537945, 0, 1, 0, -0.99537945, 0, 0.09601943, 0.025142372, 0, -0.17710781)
+transform = Transform3D(0.09601943, 0, 0.99537945, 0, 1, 0, -0.99537945, 0, 0.09601943, 0.5539545, 0, 0.025880337)
 
 [node name="music_room_chair_11" parent="." unique_id=180831002 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.1660316, 0, 2.1967177)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.3627805, 0, 2.1967177)
 
 [node name="music_room_chair_12" parent="." unique_id=1466158838 instance=ExtResource("19_1bcad")]
-transform = Transform3D(0.06371365, 0, 0.9979682, 0, 1, 0, -0.9979682, 0, 0.06371365, -0.29455596, 0, 3.840468)
+transform = Transform3D(0.06371365, 0, 0.9979682, 0, 1, 0, -0.9979682, 0, 0.06371365, 0.23425615, 0, 3.6350904)
 
 [node name="music_room_chair_13" parent="." unique_id=1590128296 instance=ExtResource("19_1bcad")]
-transform = Transform3D(0.06710752, 3.843981e-05, 0.9977457, -0.00041291924, 0.9999999, -1.07356955e-05, -0.99774563, -0.0004112663, 0.06710753, -1.5861946, -0.0011317973, -1.9947186)
+transform = Transform3D(0.06710752, 3.843981e-05, 0.9977457, -0.00041291924, 0.9999999, -1.07356955e-05, -0.99774563, -0.0004112663, 0.06710753, -0.81545454, -0.0011317973, -1.4553835)
 
 [node name="music_room_chair_14" parent="." unique_id=2092570463 instance=ExtResource("19_1bcad")]
-transform = Transform3D(0.020087346, 0, 0.9997983, 0, 1, 0, -0.9997983, 0, 0.020087346, -1.5706341, 0, -0.23465788)
+transform = Transform3D(0.020087346, 0, 0.9997983, 0, 1, 0, -0.9997983, 0, 0.020087346, -0.79989403, 0, -0.031669736)
 
 [node name="music_room_chair_15" parent="." unique_id=137985665 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-0.06676155, 0, 0.99776894, 0, 1, 0, -0.99776894, 0, -0.06676155, -1.5321293, 0, 2.1403255)
+transform = Transform3D(-0.06676155, 0, 0.99776894, 0, 1, 0, -0.99776894, 0, -0.06676155, -0.7613892, 0, 2.1403255)
 
 [node name="music_room_chair_16" parent="." unique_id=439470134 instance=ExtResource("19_1bcad")]
-transform = Transform3D(0.09601943, 0, 0.99537945, 0, 1, 0, -0.99537945, 0, 0.09601943, -1.803298, 0, 3.7168894)
-
-[node name="music_room_chair_17" parent="." unique_id=1321421949 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-0.043026578, 0, 0.9990739, 0, 1, 0, -0.9990739, 0, -0.043026578, -3.4190633, 0, -1.8641279)
-
-[node name="music_room_chair_18" parent="." unique_id=1531073269 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-0.003455788, 0, 0.999994, 0, 1, 0, -0.999994, 0, -0.003455788, -3.2995994, 0, -0.19704205)
-
-[node name="music_room_chair_19" parent="." unique_id=209829551 instance=ExtResource("19_1bcad")]
-transform = Transform3D(0.06331303, 0, 0.9979937, 0, 1, 0, -0.9979937, 0, 0.06331303, -3.3748872, 0, 2.1942573)
-
-[node name="music_room_chair_20" parent="." unique_id=2042076955 instance=ExtResource("19_1bcad")]
-transform = Transform3D(-0.043026578, 0, 0.9990739, 0, 1, 0, -0.9990739, 0, -0.043026578, -3.1754286, 0, 3.7930543)
+transform = Transform3D(0.09601943, 0, 0.99537945, 0, 1, 0, -0.99537945, 0, 0.09601943, -1.032558, 0, 3.5115118)
