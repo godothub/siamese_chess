@@ -90,19 +90,19 @@ func blindfold_game_end(_result:String) -> void:
 	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
 	match _result:
 		"checkmate_black":
-			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "", true, true)
+			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "CHAR_CARNATION", true, true)
 		"checkmate_white":
-			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "", true, true)
+			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "CHAR_CARNATION", true, true)
 		"stalemate_black":
-			Dialog.push_dialog("HINT_DRAW", "", true, true)
+			Dialog.push_dialog("HINT_DRAW", "CHAR_CARNATION", true, true)
 		"stalemate_white":
-			Dialog.push_dialog("HINT_DRAW", "", true, true)
+			Dialog.push_dialog("HINT_DRAW", "CHAR_CARNATION", true, true)
 		"50_moves":
-			Dialog.push_dialog("HINT_DRAW", "", true, true)
+			Dialog.push_dialog("HINT_DRAW", "CHAR_CARNATION", true, true)
 		"cleared_black":
-			Dialog.push_dialog("HINT_BLACK_CLEARED", "", true, true)
+			Dialog.push_dialog("HINT_BLACK_CLEARED", "CHAR_CARNATION", true, true)
 		"cleared_white":
-			Dialog.push_dialog("HINT_WHITE_CLEARED", "", true, true)
+			Dialog.push_dialog("HINT_WHITE_CLEARED", "CHAR_CARNATION", true, true)
 
 func position_practice(_result:String = "") -> void:
 	signal_container.disconnect_all()
@@ -154,7 +154,7 @@ func position_practice_start() -> void:
 func position_practice_end() -> void:
 	signal_container.disconnect_all()
 	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
-	Dialog.push_dialog(tr("CARNATION_TALK_DEMO_POSITIONING_RESULT").format({"score": score}), "", true, true, false)
+	Dialog.push_dialog(tr("CARNATION_TALK_DEMO_POSITIONING_RESULT").format({"score": score}), "CHAR_CARNATION", true, true, false)
 
 func memory_practice(_result:String = "") -> void:
 	signal_container.disconnect_all()
@@ -205,9 +205,9 @@ func memory_practice_result(_result:String) -> void:
 	standard_chessboard.add_default_piece_set()
 	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
 	if _result.split(" ")[0] == memory_answer:
-		Dialog.push_dialog(tr("CARNATION_TALK_DEMO_MEMORIZING_CORRECT"), "", true, true, false)
+		Dialog.push_dialog(tr("CARNATION_TALK_DEMO_MEMORIZING_CORRECT"), "CHAR_CARNATION", true, true, false)
 	else:
-		Dialog.push_dialog(tr("CARNATION_TALK_DEMO_MEMORIZING_INCORRECT"), "", true, true, false)
+		Dialog.push_dialog(tr("CARNATION_TALK_DEMO_MEMORIZING_INCORRECT"), "CHAR_CARNATION", true, true, false)
 
 func interact_carnation_end() -> void:
 	signal_container.disconnect_all()

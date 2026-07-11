@@ -5586,7 +5586,7 @@ _data = {
 &"carnation_talk_3": SubResource("Animation_22dld")
 }
 
-[node name="garden" type="Node3D" unique_id=833531337]
+[node name="procedure_dialog_blindfold_help" type="Node3D" unique_id=833531337]
 script = ExtResource("1_bedx7")
 metadata/_custom_type_script = "uid://rhdq34na2j5m"
 metadata/by = 3
@@ -6127,8 +6127,8 @@ fov = 44.5
 
 [node name="procedure_dialog_demo" type="Node3D" parent="." unique_id=386663468 node_paths=PackedStringArray("animation_player", "cutscene_camera")]
 script = ExtResource("21_6m8c7")
-sequence_str = "CARNATION_TALK_DEMO_0,carnation_talk_0
-CARNATION_TALK_DEMO_1,carnation_talk_3"
+sequence_str = "CHAR_CARNATION,CARNATION_TALK_DEMO_0,carnation_talk_0
+CHAR_CARNATION,CARNATION_TALK_DEMO_1,carnation_talk_3"
 animation_player = NodePath("../animation_player")
 cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
@@ -6173,32 +6173,32 @@ metadata/_custom_type_script = "uid://ck5bvbw2bcwox"
 
 [node name="procedure_dialog_blindfold_help" type="Node3D" parent="." unique_id=981845878 node_paths=PackedStringArray("animation_player", "cutscene_camera")]
 script = ExtResource("21_6m8c7")
-sequence_str = "CARNATION_TALK_DEMO_MATCH_HELP_0,-
-CARNATION_TALK_DEMO_MATCH_HELP_1,-
-CARNATION_TALK_DEMO_MATCH_HELP_2,-
-CARNATION_TALK_DEMO_MATCH_HELP_3,-
-CARNATION_TALK_DEMO_MATCH_HELP_4,-"
+sequence_str = "CHAR_CARNATION,CARNATION_TALK_DEMO_MATCH_HELP_0,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_MATCH_HELP_1,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_MATCH_HELP_2,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_MATCH_HELP_3,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_MATCH_HELP_4,-"
 animation_player = NodePath("../animation_player")
 cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
 
 [node name="procedure_dialog_positioning_help" type="Node3D" parent="." unique_id=1668425274 node_paths=PackedStringArray("animation_player", "cutscene_camera")]
 script = ExtResource("21_6m8c7")
-sequence_str = "CARNATION_TALK_DEMO_POSITIONING_HELP_0,-
-CARNATION_TALK_DEMO_POSITIONING_HELP_1,-
-CARNATION_TALK_DEMO_POSITIONING_HELP_2,-
-CARNATION_TALK_DEMO_POSITIONING_HELP_3,-
-CARNATION_TALK_DEMO_POSITIONING_HELP_4,-"
+sequence_str = "CHAR_CARNATION,CARNATION_TALK_DEMO_POSITIONING_HELP_0,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_POSITIONING_HELP_1,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_POSITIONING_HELP_2,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_POSITIONING_HELP_3,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_POSITIONING_HELP_4,-"
 animation_player = NodePath("../animation_player")
 cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
 
 [node name="procedure_dialog_memorize_help" type="Node3D" parent="." unique_id=354960700 node_paths=PackedStringArray("animation_player", "cutscene_camera")]
 script = ExtResource("21_6m8c7")
-sequence_str = "CARNATION_TALK_DEMO_MEMORIZING_HELP_0,-
-CARNATION_TALK_DEMO_MEMORIZING_HELP_1,-
-CARNATION_TALK_DEMO_MEMORIZING_HELP_2,-
-CARNATION_TALK_DEMO_MEMORIZING_HELP_3,-"
+sequence_str = "CHAR_CARNATION,CARNATION_TALK_DEMO_MEMORIZING_HELP_0,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_MEMORIZING_HELP_1,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_MEMORIZING_HELP_2,-
+CHAR_CARNATION,CARNATION_TALK_DEMO_MEMORIZING_HELP_3,-"
 animation_player = NodePath("../animation_player")
 cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
