@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dvfilx1shno5w" path="res://scene/actor/piece_king_white.tscn" id="16_bhm70"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="16_idfw3"]
 [ext_resource type="PackedScene" uid="uid://wlf2bpitdmjk" path="res://scene/actor/piece_queen_black.tscn" id="17_tljiy"]
+[ext_resource type="PackedScene" uid="uid://cgoyrycf6ngyw" path="res://scene/actor/piece_knight_black.tscn" id="18_vpnv2"]
 [ext_resource type="LightmapGIData" uid="uid://ckp82lkp2mvma" path="res://assets/basement.lmbake" id="18_x66wa"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/event_title.gd" id="20_0yjdh"]
 [ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/procedure/procedure_game.gd" id="21_3d6ds"]
@@ -342,10 +343,10 @@ omni_range = 10.077
 [node name="hotel_door_large" parent="." unique_id=2031737367 instance=ExtResource("9_7pf3j")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=697941169]
+[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=576972813]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=704909446]
+[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=674245926]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=1404077087]
@@ -499,6 +500,18 @@ instance = NodePath("piece_queen")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="piece_queen" parent="event_actor_2" unique_id=564171690 instance=ExtResource("17_tljiy")]
+
+[node name="event_actor_3" type="Node3D" parent="." unique_id=249946864 node_paths=PackedStringArray("instance")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+script = ExtResource("3_ywqhp")
+piece = 110
+meta = {
+"larger_scale": true
+}
+instance = NodePath("piece_knight")
+metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
+
+[node name="piece_knight" parent="event_actor_3" unique_id=1431110616 instance=ExtResource("18_vpnv2")]
 
 [node name="event_title_to_hallway" type="Node3D" parent="." unique_id=1549203619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
