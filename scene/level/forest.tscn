@@ -1,0 +1,806 @@
+[gd_scene format=3 uid="uid://dakdixve467e3"]
+
+[ext_resource type="Script" uid="uid://rhdq34na2j5m" path="res://src/level/level.gd" id="1_dob0x"]
+[ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="2_qndfp"]
+[ext_resource type="PackedScene" uid="uid://bu5ynryuyxxn8" path="res://assets/model/grass_barrier.glb" id="3_2skwc"]
+[ext_resource type="PackedScene" uid="uid://dh24vi3r3shv2" path="res://assets/model/grass_white.glb" id="3_f26ri"]
+[ext_resource type="PackedScene" uid="uid://dls3gfbgu0hvg" path="res://assets/model/grass_black.glb" id="4_dob0x"]
+[ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/event_multi_actor.gd" id="7_5fi8k"]
+[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="8_upe0p"]
+[ext_resource type="PackedScene" uid="uid://jeaolg2mf178" path="res://assets/model/tree_1.glb" id="12_dgtdl"]
+[ext_resource type="Script" uid="uid://ci1qj2blsa7gp" path="res://src/event/event_narrative.gd" id="13_eusox"]
+[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/event_entrance.gd" id="14_2huo0"]
+[ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="15_dob0x"]
+[ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/procedure/procedure_game.gd" id="15_ef77t"]
+[ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="16_857pb"]
+[ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/event_title.gd" id="16_neulv"]
+[ext_resource type="Script" uid="uid://csapts1u0p18r" path="res://src/event/event_start_game.gd" id="17_sdd1t"]
+[ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/event_explore.gd" id="18_2dxtn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w25ob"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+sky_curve = 0.5795615
+ground_bottom_color = Color(0.22258106, 0.28460556, 0.31847093, 1)
+
+[sub_resource type="Sky" id="Sky_cdevh"]
+sky_material = SubResource("ProceduralSkyMaterial_w25ob")
+
+[sub_resource type="Environment" id="Environment_toco3"]
+background_mode = 2
+sky = SubResource("Sky_cdevh")
+reflected_light_source = 1
+sdfgi_read_sky_light = false
+volumetric_fog_density = 0.1487
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2skwc"]
+albedo_color = Color(0.29411766, 0.29411766, 0.29411766, 1)
+
+[node name="entrance" type="Node3D" unique_id=437690800]
+script = ExtResource("1_dob0x")
+metadata/_custom_type_script = "uid://rhdq34na2j5m"
+metadata/by = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2012792099]
+environment = SubResource("Environment_toco3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=291102309]
+transform = Transform3D(-0.28776127, 0.7686497, -0.5712892, 0.24234493, 0.63554907, 0.73303914, 0.9265324, 0.07249108, -0.36916497, 4.61496, 2.82427, 0)
+shadow_enabled = true
+
+[node name="chessboard" parent="." unique_id=2121760274 instance=ExtResource("2_qndfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+metadata/_edit_lock_ = true
+
+[node name="column" parent="chessboard" index="0" unique_id=772861482]
+visible = false
+
+[node name="row" parent="chessboard" index="1" unique_id=640050639]
+visible = false
+
+[node name="h8_001" parent="chessboard" index="2" unique_id=980173799]
+visible = false
+
+[node name="h7_001" parent="chessboard" index="3" unique_id=1783398594]
+visible = false
+
+[node name="h6_001" parent="chessboard" index="4" unique_id=686562883]
+visible = false
+
+[node name="h5_001" parent="chessboard" index="5" unique_id=953246957]
+visible = false
+
+[node name="h4_001" parent="chessboard" index="6" unique_id=566403502]
+visible = false
+
+[node name="h3_001" parent="chessboard" index="7" unique_id=1363836490]
+visible = false
+
+[node name="h2_001" parent="chessboard" index="8" unique_id=1075270024]
+visible = false
+
+[node name="h1_001" parent="chessboard" index="9" unique_id=151507105]
+visible = false
+
+[node name="g8_001" parent="chessboard" index="10" unique_id=1334348895]
+visible = false
+
+[node name="g7_001" parent="chessboard" index="11" unique_id=1719178483]
+visible = false
+
+[node name="g6_001" parent="chessboard" index="12" unique_id=909304815]
+visible = false
+
+[node name="g5_001" parent="chessboard" index="13" unique_id=724451443]
+visible = false
+
+[node name="g4_001" parent="chessboard" index="14" unique_id=2004279207]
+visible = false
+
+[node name="g3_001" parent="chessboard" index="15" unique_id=1099675125]
+visible = false
+
+[node name="g2_001" parent="chessboard" index="16" unique_id=514185854]
+visible = false
+
+[node name="g1_001" parent="chessboard" index="17" unique_id=1229006624]
+visible = false
+
+[node name="f8_001" parent="chessboard" index="18" unique_id=255450252]
+visible = false
+
+[node name="f7_001" parent="chessboard" index="19" unique_id=2033370086]
+visible = false
+
+[node name="f6_001" parent="chessboard" index="20" unique_id=768375893]
+visible = false
+
+[node name="f5_001" parent="chessboard" index="21" unique_id=1100737674]
+visible = false
+
+[node name="f4_001" parent="chessboard" index="22" unique_id=540388612]
+visible = false
+
+[node name="f3_001" parent="chessboard" index="23" unique_id=684248310]
+visible = false
+
+[node name="f2_001" parent="chessboard" index="24" unique_id=1777202900]
+visible = false
+
+[node name="f1_001" parent="chessboard" index="25" unique_id=61733492]
+visible = false
+
+[node name="e8_001" parent="chessboard" index="26" unique_id=1649356761]
+visible = false
+
+[node name="e7_001" parent="chessboard" index="27" unique_id=685554930]
+visible = false
+
+[node name="e6_001" parent="chessboard" index="28" unique_id=45463497]
+visible = false
+
+[node name="e5_001" parent="chessboard" index="29" unique_id=1760973006]
+visible = false
+
+[node name="e4_001" parent="chessboard" index="30" unique_id=884872434]
+visible = false
+
+[node name="e3_001" parent="chessboard" index="31" unique_id=1515440245]
+visible = false
+
+[node name="e2_001" parent="chessboard" index="32" unique_id=179724054]
+visible = false
+
+[node name="e1_001" parent="chessboard" index="33" unique_id=1330532871]
+visible = false
+
+[node name="d8_001" parent="chessboard" index="34" unique_id=1342552172]
+visible = false
+
+[node name="d7_001" parent="chessboard" index="35" unique_id=880430230]
+visible = false
+
+[node name="d6_001" parent="chessboard" index="36" unique_id=439831702]
+visible = false
+
+[node name="d5_001" parent="chessboard" index="37" unique_id=1731769136]
+visible = false
+
+[node name="d4_001" parent="chessboard" index="38" unique_id=177225427]
+visible = false
+
+[node name="d3_001" parent="chessboard" index="39" unique_id=414171486]
+visible = false
+
+[node name="d2_001" parent="chessboard" index="40" unique_id=1392026269]
+visible = false
+
+[node name="d1_001" parent="chessboard" index="41" unique_id=1594383985]
+visible = false
+
+[node name="c8_001" parent="chessboard" index="42" unique_id=1848841858]
+visible = false
+
+[node name="c7_001" parent="chessboard" index="43" unique_id=100534858]
+visible = false
+
+[node name="c6_001" parent="chessboard" index="44" unique_id=413993271]
+visible = false
+
+[node name="c5_001" parent="chessboard" index="45" unique_id=1202219198]
+visible = false
+
+[node name="c4_001" parent="chessboard" index="46" unique_id=1045033137]
+visible = false
+
+[node name="c3_001" parent="chessboard" index="47" unique_id=1071969624]
+visible = false
+
+[node name="c2_001" parent="chessboard" index="48" unique_id=1217776396]
+visible = false
+
+[node name="c1_001" parent="chessboard" index="49" unique_id=1235310835]
+visible = false
+
+[node name="b8_001" parent="chessboard" index="50" unique_id=1455521786]
+visible = false
+
+[node name="b7_001" parent="chessboard" index="51" unique_id=1382276192]
+visible = false
+
+[node name="b6_001" parent="chessboard" index="52" unique_id=1442991591]
+visible = false
+
+[node name="b5_001" parent="chessboard" index="53" unique_id=305017857]
+visible = false
+
+[node name="b4_001" parent="chessboard" index="54" unique_id=1604583719]
+visible = false
+
+[node name="b3_001" parent="chessboard" index="55" unique_id=1194999437]
+visible = false
+
+[node name="b2_001" parent="chessboard" index="56" unique_id=222081187]
+visible = false
+
+[node name="b1_001" parent="chessboard" index="57" unique_id=758400920]
+visible = false
+
+[node name="a8_001" parent="chessboard" index="58" unique_id=780112317]
+visible = false
+
+[node name="a7_001" parent="chessboard" index="59" unique_id=109118725]
+visible = false
+
+[node name="a6_001" parent="chessboard" index="60" unique_id=67150302]
+visible = false
+
+[node name="a5_001" parent="chessboard" index="61" unique_id=2140693701]
+visible = false
+
+[node name="a4_001" parent="chessboard" index="62" unique_id=1622053574]
+visible = false
+
+[node name="a3_001" parent="chessboard" index="63" unique_id=1778865265]
+visible = false
+
+[node name="a2_001" parent="chessboard" index="64" unique_id=1260092935]
+visible = false
+
+[node name="a1_001" parent="chessboard" index="65" unique_id=371443631]
+visible = false
+
+[node name="a1" parent="chessboard" index="68" unique_id=1869648317]
+visible = false
+
+[node name="a2" parent="chessboard" index="69" unique_id=1276687783]
+visible = false
+
+[node name="a3" parent="chessboard" index="70" unique_id=1241973829]
+visible = false
+
+[node name="a4" parent="chessboard" index="71" unique_id=1447665398]
+visible = false
+
+[node name="a5" parent="chessboard" index="72" unique_id=464619898]
+visible = false
+
+[node name="a6" parent="chessboard" index="73" unique_id=2094551838]
+visible = false
+
+[node name="a7" parent="chessboard" index="74" unique_id=1307543554]
+visible = false
+
+[node name="a8" parent="chessboard" index="75" unique_id=425075786]
+visible = false
+
+[node name="b1" parent="chessboard" index="76" unique_id=1680281934]
+visible = false
+
+[node name="b2" parent="chessboard" index="77" unique_id=504258319]
+visible = false
+
+[node name="b3" parent="chessboard" index="78" unique_id=58470654]
+visible = false
+
+[node name="b4" parent="chessboard" index="79" unique_id=406348413]
+visible = false
+
+[node name="b5" parent="chessboard" index="80" unique_id=767411500]
+visible = false
+
+[node name="b6" parent="chessboard" index="81" unique_id=945046459]
+visible = false
+
+[node name="b7" parent="chessboard" index="82" unique_id=341159510]
+visible = false
+
+[node name="b8" parent="chessboard" index="83" unique_id=600764513]
+visible = false
+
+[node name="c1" parent="chessboard" index="84" unique_id=933095515]
+visible = false
+
+[node name="c2" parent="chessboard" index="85" unique_id=710270937]
+visible = false
+
+[node name="c3" parent="chessboard" index="86" unique_id=1639191883]
+visible = false
+
+[node name="c4" parent="chessboard" index="87" unique_id=522393868]
+visible = false
+
+[node name="c5" parent="chessboard" index="88" unique_id=574534332]
+visible = false
+
+[node name="c6" parent="chessboard" index="89" unique_id=187023465]
+visible = false
+
+[node name="c7" parent="chessboard" index="90" unique_id=1653623202]
+visible = false
+
+[node name="c8" parent="chessboard" index="91" unique_id=2107419250]
+visible = false
+
+[node name="d1" parent="chessboard" index="92" unique_id=1503238899]
+visible = false
+
+[node name="d2" parent="chessboard" index="93" unique_id=722029183]
+visible = false
+
+[node name="d3" parent="chessboard" index="94" unique_id=2083162276]
+visible = false
+
+[node name="d4" parent="chessboard" index="95" unique_id=1531697349]
+visible = false
+
+[node name="d5" parent="chessboard" index="96" unique_id=1765643538]
+visible = false
+
+[node name="d6" parent="chessboard" index="97" unique_id=342639504]
+visible = false
+
+[node name="d7" parent="chessboard" index="98" unique_id=32790444]
+visible = false
+
+[node name="d8" parent="chessboard" index="99" unique_id=429563927]
+visible = false
+
+[node name="e1" parent="chessboard" index="100" unique_id=1436751327]
+visible = false
+
+[node name="e2" parent="chessboard" index="101" unique_id=1267963843]
+visible = false
+
+[node name="e3" parent="chessboard" index="102" unique_id=843155450]
+visible = false
+
+[node name="e4" parent="chessboard" index="103" unique_id=1765544042]
+visible = false
+
+[node name="e5" parent="chessboard" index="104" unique_id=32264924]
+visible = false
+
+[node name="e6" parent="chessboard" index="105" unique_id=2093681711]
+visible = false
+
+[node name="e7" parent="chessboard" index="106" unique_id=1858833434]
+visible = false
+
+[node name="e8" parent="chessboard" index="107" unique_id=812601282]
+visible = false
+
+[node name="f1" parent="chessboard" index="108" unique_id=1236350208]
+visible = false
+
+[node name="f2" parent="chessboard" index="109" unique_id=2125041363]
+visible = false
+
+[node name="f3" parent="chessboard" index="110" unique_id=881028650]
+visible = false
+
+[node name="f4" parent="chessboard" index="111" unique_id=1289106189]
+visible = false
+
+[node name="f5" parent="chessboard" index="112" unique_id=520101680]
+visible = false
+
+[node name="f6" parent="chessboard" index="113" unique_id=207093683]
+visible = false
+
+[node name="f7" parent="chessboard" index="114" unique_id=364753118]
+visible = false
+
+[node name="f8" parent="chessboard" index="115" unique_id=154129334]
+visible = false
+
+[node name="g1" parent="chessboard" index="116" unique_id=1251748707]
+visible = false
+
+[node name="g2" parent="chessboard" index="117" unique_id=1414369835]
+visible = false
+
+[node name="g3" parent="chessboard" index="118" unique_id=188674693]
+visible = false
+
+[node name="g4" parent="chessboard" index="119" unique_id=523000189]
+visible = false
+
+[node name="g5" parent="chessboard" index="120" unique_id=761420812]
+visible = false
+
+[node name="g6" parent="chessboard" index="121" unique_id=1892749590]
+visible = false
+
+[node name="g7" parent="chessboard" index="122" unique_id=697027852]
+visible = false
+
+[node name="g8" parent="chessboard" index="123" unique_id=1443893935]
+visible = false
+
+[node name="h1" parent="chessboard" index="124" unique_id=636655523]
+visible = false
+
+[node name="h2" parent="chessboard" index="125" unique_id=1836604896]
+visible = false
+
+[node name="h3" parent="chessboard" index="126" unique_id=1938640801]
+visible = false
+
+[node name="h4" parent="chessboard" index="127" unique_id=1273977467]
+visible = false
+
+[node name="h5" parent="chessboard" index="128" unique_id=469654161]
+visible = false
+
+[node name="h6" parent="chessboard" index="129" unique_id=2012714011]
+visible = false
+
+[node name="h7" parent="chessboard" index="130" unique_id=441317147]
+visible = false
+
+[node name="h8" parent="chessboard" index="131" unique_id=752035915]
+visible = false
+
+[node name="grass_0" parent="chessboard" unique_id=1336934559 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
+
+[node name="grass_1" parent="chessboard" unique_id=1954568521 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
+
+[node name="grass_2" parent="chessboard" unique_id=879111917 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -7)
+
+[node name="grass_3" parent="chessboard" unique_id=987984603 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -7)
+
+[node name="grass_4" parent="chessboard" unique_id=1484300619 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+
+[node name="grass_5" parent="chessboard" unique_id=261812282 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -7)
+
+[node name="grass_6" parent="chessboard" unique_id=1864013128 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
+
+[node name="grass_7" parent="chessboard" unique_id=651761953 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -7)
+
+[node name="grass_8" parent="chessboard" unique_id=1144035203 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
+
+[node name="grass_9" parent="chessboard" unique_id=876231972 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
+
+[node name="grass_10" parent="chessboard" unique_id=1399706959 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
+
+[node name="grass_11" parent="chessboard" unique_id=4678561 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
+
+[node name="grass_12" parent="chessboard" unique_id=1660056681 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
+
+[node name="grass_13" parent="chessboard" unique_id=242644524 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
+
+[node name="grass_14" parent="chessboard" unique_id=1214185003 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
+
+[node name="grass_15" parent="chessboard" unique_id=32924718 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -5)
+
+[node name="grass_16" parent="chessboard" unique_id=1723482850 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
+
+[node name="grass_17" parent="chessboard" unique_id=839970856 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+
+[node name="grass_18" parent="chessboard" unique_id=710455811 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="grass_19" parent="chessboard" unique_id=866912286 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="grass_20" parent="chessboard" unique_id=395241206 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+
+[node name="grass_21" parent="chessboard" unique_id=398516344 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="grass_22" parent="chessboard" unique_id=1514914897 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
+
+[node name="grass_23" parent="chessboard" unique_id=1249659222 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -3)
+
+[node name="grass_24" parent="chessboard" unique_id=135952886 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
+
+[node name="grass_25" parent="chessboard" unique_id=1657682292 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+
+[node name="grass_26" parent="chessboard" unique_id=1079211474 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
+
+[node name="grass_27" parent="chessboard" unique_id=1252745812 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="grass_28" parent="chessboard" unique_id=1872005008 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="grass_29" parent="chessboard" unique_id=227851356 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
+
+[node name="grass_30" parent="chessboard" unique_id=648092726 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
+[node name="grass_31" parent="chessboard" unique_id=72462228 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
+
+[node name="grass_32" parent="chessboard" unique_id=1600059394 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
+
+[node name="grass_33" parent="chessboard" unique_id=942793993 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
+
+[node name="grass_34" parent="chessboard" unique_id=105204631 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
+
+[node name="grass_35" parent="chessboard" unique_id=1277927485 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="grass_36" parent="chessboard" unique_id=302462577 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="grass_37" parent="chessboard" unique_id=2095178074 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+
+[node name="grass_38" parent="chessboard" unique_id=1736897855 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
+
+[node name="grass_39" parent="chessboard" unique_id=85473055 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
+
+[node name="grass_40" parent="chessboard" unique_id=424785896 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
+
+[node name="grass_41" parent="chessboard" unique_id=1792284085 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
+
+[node name="grass_42" parent="chessboard" unique_id=1011421637 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+
+[node name="grass_43" parent="chessboard" unique_id=1399470107 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
+
+[node name="grass_44" parent="chessboard" unique_id=1434669802 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="grass_45" parent="chessboard" unique_id=1696508758 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+
+[node name="grass_46" parent="chessboard" unique_id=248063796 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
+
+[node name="grass_47" parent="chessboard" unique_id=1608174596 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 3)
+
+[node name="grass_48" parent="chessboard" unique_id=1847220458 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
+
+[node name="grass_49" parent="chessboard" unique_id=989806014 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
+
+[node name="grass_50" parent="chessboard" unique_id=998004133 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
+
+[node name="grass_51" parent="chessboard" unique_id=411904723 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
+
+[node name="grass_52" parent="chessboard" unique_id=1601465345 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
+
+[node name="grass_53" parent="chessboard" unique_id=1309169560 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
+
+[node name="grass_54" parent="chessboard" unique_id=2096802510 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
+
+[node name="grass_55" parent="chessboard" unique_id=1162895165 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 5)
+
+[node name="grass_56" parent="chessboard" unique_id=1435885212 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
+
+[node name="grass_57" parent="chessboard" unique_id=1001480965 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7)
+
+[node name="grass_58" parent="chessboard" unique_id=1031980878 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
+
+[node name="grass_59" parent="chessboard" unique_id=660241176 instance=ExtResource("3_f26ri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
+
+[node name="grass_60" parent="chessboard" unique_id=408354611 instance=ExtResource("4_dob0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+
+[node name="grass_61" parent="chessboard" unique_id=498894471 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.1641532e-10, 7)
+
+[node name="grass_62" parent="chessboard" unique_id=1338412321 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.1641532e-10, 7)
+
+[node name="grass_63" parent="chessboard" unique_id=823055299 instance=ExtResource("3_2skwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.1641532e-10, 7)
+
+[node name="multi_actor_barrier" type="Node3D" parent="." unique_id=1331071315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+script = ExtResource("7_5fi8k")
+piece = 35
+bit = -1736165114582145049
+metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
+
+[node name="event_camera" type="Node3D" parent="." unique_id=449649171 node_paths=PackedStringArray("camera")]
+script = ExtResource("8_upe0p")
+camera = NodePath("../camera")
+bit = -1
+metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+
+[node name="csg_box_3d" type="CSGBox3D" parent="." unique_id=580704055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10000038, -0.2512207, -10.520386)
+size = Vector3(16, 0.4975586, 5)
+material = SubResource("StandardMaterial3D_2skwc")
+
+[node name="csg_box_3d_2" type="CSGBox3D" parent="." unique_id=1822287596]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.304991, -0.2512207, -0.7252321)
+size = Vector3(6.834091, 0.4975586, 24.6)
+material = SubResource("StandardMaterial3D_2skwc")
+
+[node name="csg_box_3d_3" type="CSGBox3D" parent="." unique_id=555249835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.206078, -0.2512207, -0.7252321)
+size = Vector3(6.494858, 0.4975586, 24.6)
+material = SubResource("StandardMaterial3D_2skwc")
+
+[node name="csg_box_3d_4" type="CSGBox3D" parent="." unique_id=1837926434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.054027557, -0.2512207, 9.793869)
+size = Vector3(16.021355, 0.4975586, 3.561798)
+material = SubResource("StandardMaterial3D_2skwc")
+
+[node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=1549429842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0076904297, 8.521873, 3)
+blend_distance = 0.1
+size = Vector3(24.589111, 19.418709, 24)
+box_projection = true
+
+[node name="trees" type="Node3D" parent="." unique_id=1004270595]
+
+[node name="tree_2" parent="trees" unique_id=375270291 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(0.2588191, 0, 0.9659258, 0, 1.1503415, 0, -0.9659258, 0, 0.2588191, 11.285105, 0, 4.301244)
+
+[node name="tree_3" parent="trees" unique_id=1601256220 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, 3.7681417, 0, 7.0426393)
+
+[node name="tree_4" parent="trees" unique_id=1909115478 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(1, 0, -1.4901161e-08, 0, 1.0667725, 0, 1.4901161e-08, 0, 1, 11.219965, 0, 9.330243)
+
+[node name="tree_6" parent="trees" unique_id=1842375770 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(-0.5217381, 0, 1.0362408, 0, 1.0436014, 0, -0.9036768, 0, -0.5982739, 6.1783934, 0, -7.498869)
+
+[node name="tree_7" parent="trees" unique_id=245276338 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(0.47684234, 0, -0.767913, 0, 1.1348952, 0, 0.8259153, 0, 0.44335473, 3.4778442, 0, -7.0388174)
+
+[node name="tree_8" parent="trees" unique_id=2044343110 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(-7.4505806e-08, 0, -1, 0, 1, 0, 1, 0, -7.4505806e-08, 11.285104, 0, -2.0358708)
+
+[node name="tree_12" parent="trees" unique_id=2034269664 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.173757, 0, 3.5833445)
+
+[node name="tree_13" parent="trees" unique_id=1822455630 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(0.2588191, 0, 0.9659258, 0, 1.1042289, 0, -0.9659258, 0, 0.2588191, 6.8954506, 0, 5.519207)
+
+[node name="tree_14" parent="trees" unique_id=52136554 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(0.8899077, 0, 2.9802322e-08, 0, 0.8653053, 0, 0, 0, 1, 14.868064, 0, 9.697454)
+
+[node name="tree_17" parent="trees" unique_id=448440483 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(-0.5, 0, 0.8660255, 0, 0.8827427, 0, -0.8660255, 0, -0.5, 9.659299, 0, -8.572104)
+
+[node name="tree_18" parent="trees" unique_id=2014284097 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(0.49999994, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, 0.49999994, 4.457027, 0, -1.8368979)
+
+[node name="tree_5" parent="trees" unique_id=948362597 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, -14.578123, 0, 0)
+
+[node name="tree_9" parent="trees" unique_id=425947420 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(0.2588191, 0, 0.9659258, 0, 1.1503415, 0, -0.9659258, 0, 0.2588191, -14.578123, 0, 2.9999995)
+
+[node name="tree_10" parent="trees" unique_id=1473313506 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, -14.578123, 0, 6.0000005)
+
+[node name="tree_11" parent="trees" unique_id=1001545000 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(1, 0, -1.4901161e-08, 0, 1.0667725, 0, 1.4901161e-08, 0, 1, -14.643263, 0, 9.330243)
+
+[node name="tree_15" parent="trees" unique_id=139682425 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(-0.5217381, 0, 1.0362408, 0, 1.0436014, 0, -0.9036768, 0, -0.5982739, -10.88502, 0, -9.000006)
+
+[node name="tree_16" parent="trees" unique_id=290480567 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(0.47684234, 0, -0.767913, 0, 1.1348952, 0, 0.8259153, 0, 0.44335473, -14.57812, 0, -6.000001)
+
+[node name="tree_20" parent="trees" unique_id=279369573 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(-7.4505806e-08, 0, -1, 0, 1, 0, 1, 0, -7.4505806e-08, -7.045945, 0, -7.468089)
+
+[node name="tree_21" parent="trees" unique_id=885884190 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3554316, 0, 3.697454)
+
+[node name="tree_22" parent="trees" unique_id=1051088506 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(0.2588191, 0, 0.9659258, 0, 1.1042289, 0, -0.9659258, 0, 0.2588191, -5.3554277, 0, 6.6974554)
+
+[node name="tree_23" parent="trees" unique_id=1980125599 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(0.8899077, 0, 2.9802322e-08, 0, 0.8653053, 0, 0, 0, 1, -7.354101, 0, 6.6442957)
+
+[node name="tree_24" parent="trees" unique_id=70813713 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(-0.5, 0, 0.8660255, 0, 0.8827427, 0, -0.8660255, 0, -0.5, -4.4293885, 0, -5.8785725)
+
+[node name="tree_25" parent="trees" unique_id=2072794722 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(0.49999994, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, 0.49999994, -5.3554296, 0, -2.3025475)
+
+[node name="tree_26" parent="trees" unique_id=1832093181 instance=ExtResource("12_dgtdl")]
+transform = Transform3D(-2.9802322e-08, 0, -1, 0, 1.1003658, 0, 1, 0, -2.9802322e-08, -5.3554296, 0, 0.69745445)
+
+[node name="event_narrative" type="Node3D" parent="." unique_id=313801101]
+script = ExtResource("13_eusox")
+text = "WELCOME_TO_ENTRANCE"
+metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
+
+[node name="event_entrance" type="Node3D" parent="." unique_id=1964488842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
+script = ExtResource("14_2huo0")
+metadata/_custom_type_script = "uid://bsbhmxre68ncc"
+
+[node name="procedure_game" type="Node3D" parent="." unique_id=1784838671 node_paths=PackedStringArray("chessboard")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
+script = ExtResource("15_ef77t")
+can_take_back = false
+can_leave = false
+chessboard = NodePath("../chessboard")
+metadata/_custom_type_script = "uid://dxapdof0oowg1"
+
+[node name="event_title_to_pool" type="Node3D" parent="." unique_id=1843647125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+script = ExtResource("16_neulv")
+text = "TO_ENTRANCE"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="event_title_to_pool_2" type="Node3D" parent="." unique_id=972421088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
+script = ExtResource("16_neulv")
+text = "TO_ENTRANCE"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="event_start_game" type="Node3D" parent="." unique_id=460752855 node_paths=PackedStringArray("game_event")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
+script = ExtResource("17_sdd1t")
+game_event = NodePath("../procedure_game")
+metadata/_custom_type_script = "uid://csapts1u0p18r"
+
+[node name="event_explore" type="Node3D" parent="." unique_id=1293557151 node_paths=PackedStringArray("chessboard", "instance")]
+script = ExtResource("18_2dxtn")
+chessboard = NodePath("../chessboard")
+instance = NodePath("cheshire")
+metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
+
+[node name="cheshire" parent="event_explore" unique_id=1598402161 instance=ExtResource("15_dob0x")]
+
+[node name="camera" type="Camera3D" parent="." unique_id=934173830]
+transform = Transform3D(-1, 6.64768e-08, -5.677655e-08, 0, 0.64944804, 0.76040596, 8.742278e-08, 0.76040596, -0.64944804, 0, 11.18, -11.341)
+fov = 62.521423
+
+[node name="event_teleport_entrance" type="Node3D" parent="." unique_id=663609946]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, 0, 7)
+script = ExtResource("16_857pb")
+to = "res://scene/level/entrance.tscn"
+by = 3
+bit = 1729382256910270464
+metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
+
+[editable path="chessboard"]
