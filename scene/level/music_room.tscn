@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dv6xi5e2p0qcl" path="res://src/level/music_room.gd" id="1_a43ts"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_fjtbx"]
 [ext_resource type="PackedScene" uid="uid://rxu1cqxjo2dn" path="res://scene/upright_piano.tscn" id="7_qe74a"]
-[ext_resource type="PackedScene" uid="uid://cjtow7squ3ylg" path="res://assets/model/chapel_chair.glb" id="8_jad32"]
 [ext_resource type="PackedScene" uid="uid://bw127d1iawnv3" path="res://assets/model/radermachera_sinica.glb" id="11_mytjl"]
 [ext_resource type="PackedScene" uid="uid://c3peh1jag1bb1" path="res://assets/model/reception_chair.glb" id="11_qtr2s"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/event_multi_actor.gd" id="11_tkywf"]
@@ -18,6 +17,7 @@
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/event_explore.gd" id="18_d65jn"]
 [ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="18_dy0qe"]
 [ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="18_lay20"]
+[ext_resource type="PackedScene" uid="uid://fljvg3cd0hyb" path="res://assets/model/music_room_chair.glb" id="19_1bcad"]
 [ext_resource type="Script" uid="uid://d2ckdq43wstns" path="res://src/procedure/procedure_dialog.gd" id="19_dy0qe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e1edc"]
@@ -87,30 +87,6 @@ transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 5, 0, 
 
 [node name="chairs" type="Node3D" parent="." unique_id=1288346873]
 
-[node name="chapel_chair_1" parent="chairs" unique_id=1588703119 instance=ExtResource("8_jad32")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, -2)
-
-[node name="chapel_chair_2" parent="chairs" unique_id=1577508507 instance=ExtResource("8_jad32")]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 1, 0, 4)
-
-[node name="chapel_chair_3" parent="chairs" unique_id=1644144299 instance=ExtResource("8_jad32")]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 1, 0, -2)
-
-[node name="chapel_chair_4" parent="chairs" unique_id=1746944110 instance=ExtResource("8_jad32")]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 3, 0, 4)
-
-[node name="chapel_chair_5" parent="chairs" unique_id=1275445549 instance=ExtResource("8_jad32")]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -1, 0, 4)
-
-[node name="chapel_chair_6" parent="chairs" unique_id=879424801 instance=ExtResource("8_jad32")]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -1, 0, -2)
-
-[node name="chapel_chair_7" parent="chairs" unique_id=1096720958 instance=ExtResource("8_jad32")]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -3, 0, 4)
-
-[node name="chapel_chair_8" parent="chairs" unique_id=1183966817 instance=ExtResource("8_jad32")]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -3, 0, -2)
-
 [node name="radermachera_sinica_1" parent="." unique_id=1857982996 instance=ExtResource("11_mytjl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7257, 0, -0.346018)
 
@@ -124,7 +100,7 @@ transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 script = ExtResource("11_tkywf")
 piece = 35
-bit = -18650458507837441
+bit = -35538957114408961
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
 [node name="event_camera" type="Node3D" parent="." unique_id=918451059 node_paths=PackedStringArray("camera")]
@@ -359,3 +335,63 @@ CHAR_CARNATION,CARNATION_TALK_MUSIC_ROOM_MOVIE_6,-
 CHAR_CARNATION,CARNATION_TALK_MUSIC_ROOM_MOVIE_7,-"
 cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
+
+[node name="music_room_chair" parent="." unique_id=1376511493 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-0.030974682, 0, 0.9995202, 0, 1, 0, -0.9995202, 0, -0.030974682, 2.881129, 0, -1.8908641)
+
+[node name="music_room_chair_2" parent="." unique_id=659339326 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.94445, 0, -0.25589466)
+
+[node name="music_room_chair_3" parent="." unique_id=702720908 instance=ExtResource("19_1bcad")]
+transform = Transform3D(0.03948649, 0, 0.9992201, 0, 1, 0, -0.9992201, 0, 0.03948649, 2.8624468, 0, 2.285095)
+
+[node name="music_room_chair_4" parent="." unique_id=1201284800 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.94445, 0, 3.7956762)
+
+[node name="music_room_chair_5" parent="." unique_id=1260162180 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.3244567, 0, -1.8667499)
+
+[node name="music_room_chair_6" parent="." unique_id=122069343 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.3244567, 0, -0.25589466)
+
+[node name="music_room_chair_7" parent="." unique_id=2066627226 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-0.030974682, 0, 0.9995202, 0, 1, 0, -0.9995202, 0, -0.030974682, 1.3877776, 0, 2.220832)
+
+[node name="music_room_chair_8" parent="." unique_id=1390588341 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-0.016006267, 3.843981e-05, 0.99987197, -0.00041060033, 0.9999999, -4.499943e-05, -0.9998719, -0.0004112663, -0.016006252, 1.3323146, 0.0011317973, 3.7692394)
+
+[node name="music_room_chair_9" parent="." unique_id=1752420539 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.1660316, 0, -1.8667499)
+
+[node name="music_room_chair_10" parent="." unique_id=412544533 instance=ExtResource("19_1bcad")]
+transform = Transform3D(0.09601943, 0, 0.99537945, 0, 1, 0, -0.99537945, 0, 0.09601943, 0.025142372, 0, -0.17710781)
+
+[node name="music_room_chair_11" parent="." unique_id=180831002 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.1660316, 0, 2.1967177)
+
+[node name="music_room_chair_12" parent="." unique_id=1466158838 instance=ExtResource("19_1bcad")]
+transform = Transform3D(0.06371365, 0, 0.9979682, 0, 1, 0, -0.9979682, 0, 0.06371365, -0.29455596, 0, 3.840468)
+
+[node name="music_room_chair_13" parent="." unique_id=1590128296 instance=ExtResource("19_1bcad")]
+transform = Transform3D(0.06710752, 3.843981e-05, 0.9977457, -0.00041291924, 0.9999999, -1.07356955e-05, -0.99774563, -0.0004112663, 0.06710753, -1.5861946, -0.0011317973, -1.9947186)
+
+[node name="music_room_chair_14" parent="." unique_id=2092570463 instance=ExtResource("19_1bcad")]
+transform = Transform3D(0.020087346, 0, 0.9997983, 0, 1, 0, -0.9997983, 0, 0.020087346, -1.5706341, 0, -0.23465788)
+
+[node name="music_room_chair_15" parent="." unique_id=137985665 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-0.06676155, 0, 0.99776894, 0, 1, 0, -0.99776894, 0, -0.06676155, -1.5321293, 0, 2.1403255)
+
+[node name="music_room_chair_16" parent="." unique_id=439470134 instance=ExtResource("19_1bcad")]
+transform = Transform3D(0.09601943, 0, 0.99537945, 0, 1, 0, -0.99537945, 0, 0.09601943, -1.803298, 0, 3.7168894)
+
+[node name="music_room_chair_17" parent="." unique_id=1321421949 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-0.043026578, 0, 0.9990739, 0, 1, 0, -0.9990739, 0, -0.043026578, -3.4190633, 0, -1.8641279)
+
+[node name="music_room_chair_18" parent="." unique_id=1531073269 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-0.003455788, 0, 0.999994, 0, 1, 0, -0.999994, 0, -0.003455788, -3.2995994, 0, -0.19704205)
+
+[node name="music_room_chair_19" parent="." unique_id=209829551 instance=ExtResource("19_1bcad")]
+transform = Transform3D(0.06331303, 0, 0.9979937, 0, 1, 0, -0.9979937, 0, 0.06331303, -3.3748872, 0, 2.1942573)
+
+[node name="music_room_chair_20" parent="." unique_id=2042076955 instance=ExtResource("19_1bcad")]
+transform = Transform3D(-0.043026578, 0, 0.9990739, 0, 1, 0, -0.9990739, 0, -0.043026578, -3.1754286, 0, 3.7930543)
