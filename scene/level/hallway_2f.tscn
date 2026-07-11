@@ -215,7 +215,7 @@ transform = Transform3D(2.6226832e-07, 0, -2, 0, 2, 0, 2, 0, 2.6226832e-07, 8.03
 transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 7, 0, 5)
 script = ExtResource("7_orv37")
 to = "res://scene/level/music_room.tscn"
-by = 33
+by = 50
 bit = 36028797018963968
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
