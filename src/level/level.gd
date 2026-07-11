@@ -39,7 +39,7 @@ func event_start() -> void:
 
 var available_events:Dictionary = {}
 
-func show_selection(by:int) -> void:
+func show_selection() -> void:
 	var selections:PackedStringArray = []
 	available_events.clear()
 	for iter:LevelEvent in events:
@@ -48,7 +48,7 @@ func show_selection(by:int) -> void:
 			available_events[selection] = iter
 			selections.push_back(selection)
 	selections.erase("")
-	Dialog.push_selection(selections, title.get(by, ""), false, false)
+	Dialog.push_selection(selections, "", false, false)
 
 func on_exit() -> void:
 	for iter:LevelEvent in events:
