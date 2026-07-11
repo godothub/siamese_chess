@@ -107,19 +107,19 @@ func game_end(_result:String) -> void:
 	signal_container.add_connection(Dialog.on_next, interact_pastor_end)
 	match _result:
 		"checkmate_black":
-			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "", true, true)
+			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "CHAR_YULAN", true, true)
 		"checkmate_white":
-			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "", true, true)
+			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "CHAR_YULAN", true, true)
 		"stalemate_black":
-			Dialog.push_dialog("HINT_DRAW", "", true, true)
+			Dialog.push_dialog("HINT_DRAW", "CHAR_YULAN", true, true)
 		"stalemate_white":
-			Dialog.push_dialog("HINT_DRAW", "", true, true)
+			Dialog.push_dialog("HINT_DRAW", "CHAR_YULAN", true, true)
 		"50_moves":
-			Dialog.push_dialog("HINT_DRAW", "", true, true)
+			Dialog.push_dialog("HINT_DRAW", "CHAR_YULAN", true, true)
 		"cleared_black":
-			Dialog.push_dialog("HINT_BLACK_CLEARED", "", true, true)
+			Dialog.push_dialog("HINT_BLACK_CLEARED", "CHAR_YULAN", true, true)
 		"cleared_white":
-			Dialog.push_dialog("HINT_WHITE_CLEARED", "", true, true)
+			Dialog.push_dialog("HINT_WHITE_CLEARED", "CHAR_YULAN", true, true)
 		"":
 			interact_pastor_end()
 

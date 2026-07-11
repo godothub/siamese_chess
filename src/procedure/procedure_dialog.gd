@@ -5,6 +5,7 @@ class_name ProcedureDialog
 # 这个过程是非常线性的
 
 class DialogSentence extends RefCounted:
+	@export var speaker:String
 	@export var content:String
 	@export var animation:String
 
@@ -20,8 +21,9 @@ func _ready() -> void:
 	for line:String in rows:
 		var sentence:DialogSentence = DialogSentence.new()
 		var cols:PackedStringArray = line.split(',')
-		sentence.content = cols[0]
-		sentence.animation = cols[1]
+		sentence.speaker = cols[0]
+		sentence.content = cols[1]
+		sentence.animation = cols[2]
 		sequence.push_back(sentence)
 
 func start() -> void:
@@ -37,7 +39,7 @@ func show_dialog(index:int) -> void:
 		return
 	if animation_player && sequence[index].animation != "-":
 		animation_player.play(sequence[index].animation)
-	Dialog.push_dialog(tr(sequence[index].content), "", false, true, false)
+	Dialog.push_dialog(tr(sequence[index].content), tr(sequence[index].speaker), false, true, false)
 	signal_container.add_connection(Dialog.on_next, show_dialog.bind(index + 1))
 
 func end() -> void:

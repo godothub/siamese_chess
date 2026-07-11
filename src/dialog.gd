@@ -67,7 +67,7 @@ func cancel_gui_input(_event:InputEvent) -> void:
 	if _event is InputEventMouseButton && _event.button_index == MOUSE_BUTTON_LEFT && _event.pressed:
 		cancel()
 
-func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_anywhere:bool = false, _waiting:bool = false) -> void:
+func push_dialog(_text:String, _speaker:String, blackscreen:bool = false, _click_anywhere:bool = false, _waiting:bool = false) -> void:
 	if tween && tween.is_running():
 		tween.kill()
 	if text_label.text != "" || title_label.text != "":
@@ -75,7 +75,7 @@ func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_a
 	if _click_anywhere:
 		on_focus.emit()
 	text = _text
-	title = _title
+	title = ""
 	tween = create_tween()
 	force_selection = false
 	waiting = _waiting
@@ -89,7 +89,7 @@ func push_dialog(_text:String, _title:String, blackscreen:bool = false, _click_a
 
 	if _text == "":
 		return
-	Narrative.speak(tr(_text), true)
+	Narrative.speak(tr(_speaker) + tr("SAYS") + tr(_text), true)
 
 func push_selection(_selection:PackedStringArray, _title:String, _force_selection:bool = true, blackscreen:bool = false) -> void:
 	if text_label.text != "" || title_label.text != "":
