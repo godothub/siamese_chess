@@ -18,6 +18,7 @@ func _ready() -> void:
 	var tween:Tween = create_tween()
 	tween.tween_interval(blackscreen_interval)
 	tween.tween_property($texture_rect/label, "visible", true, 0)
+	Narrative.speak(tr(text))
 
 func _input(_event:InputEvent) -> void:
 	if _event is InputEventMouseButton || _event is InputEventKey:
