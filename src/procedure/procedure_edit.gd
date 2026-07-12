@@ -2,6 +2,7 @@ extends LevelProcedure
 class_name ProcedureEdit
 
 var edit_piece:int = 0
+var edit_piece_name:String = "PIECE_REMOVE"
 var state_machine:StateMachine = StateMachine.new()
 @export var chessboard:Chessboard = null
 
@@ -22,7 +23,7 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 			"PIECE_BLACK":
 				Dialog.push_selection(["PIECE_BLACK_KING", "PIECE_BLACK_QUEEN", "PIECE_BLACK_ROOK", "PIECE_BLACK_BISHOP", "PIECE_BLACK_KNIGHT", "PIECE_BLACK_PAWN"], "HINT_EDIT", false, false)
 				return
-			"PIECE_NEUTRAL":
+			"PIECE_TERRAIN":
 				Dialog.push_selection(["PIECE_BARRIER", "PIECE_BREAKABLE_BARRIER"], "HINT_EDIT", false, false)
 				return
 			"PIECE_WHITE_KING":
@@ -61,7 +62,8 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 			"SELECTION_FINISH":
 				state_machine.change_state("stop", {"result": Chess.stringify(chessboard.state)})
 				return
-		Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_NEUTRAL", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], "HINT_EDIT", false, false)
+		edit_piece_name = _selected
+		Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_TERRAIN", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], tr("HINT_EDIT") + " " + tr("HINT_EDIT_USING").format({"piece": tr(edit_piece_name)}), false, false)
 	)
 	state_machine.state_signal_connect(Dialog.on_cancel, func () -> void:
 		state_machine.change_state("stop", {"result": "canceled"})
@@ -78,7 +80,7 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 			chessboard.state.add_piece(_selected, edit_piece)
 			chessboard.add_piece_instance(instance, _selected)
 	)
-	Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_NEUTRAL", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], "HINT_EDIT", false, false)
+	Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_TERRAIN", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], tr("HINT_EDIT") + " " + tr("HINT_EDIT_USING").format({"piece": tr(edit_piece_name)}), false, false)
 	Dialog.show_cancel()
 
 func state_exit_edit_state() -> void:
