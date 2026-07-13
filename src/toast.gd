@@ -6,6 +6,7 @@ signal confirmed()
 const packed_scene:PackedScene = preload("res://scene/toast.tscn")
 var text:String = ""
 var blackscreen_interval:float = 0.3
+var tween:Tween = null
 
 static func create_instance(_text:String) -> Toast:
 	var instance:Toast = packed_scene.instantiate()
@@ -15,15 +16,18 @@ static func create_instance(_text:String) -> Toast:
 func _ready() -> void:
 	$texture_rect/label.text = text
 	$texture_rect/label.visible = false
-	var tween:Tween = create_tween()
+	tween = create_tween()
 	tween.tween_interval(blackscreen_interval)
 	tween.tween_property($texture_rect/label, "visible", true, 0)
 	Narrative.speak(tr(text))
 
-func _input(_event:InputEvent) -> void:
+func _unhandled_input(_event:InputEvent) -> void:
+	if tween && tween.is_running():
+		return
 	if _event is InputEventMouseButton || _event is InputEventKey:
 		confirmed.emit()
-		var tween:Tween = create_tween()
+		tween.kill()
+		tween = create_tween()
 		tween.tween_property($texture_rect/label, "visible", false, 0)
 		tween.tween_interval(blackscreen_interval)
 		tween.tween_callback(queue_free)
