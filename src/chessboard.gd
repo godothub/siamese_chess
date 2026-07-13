@@ -91,7 +91,7 @@ static func get_default_piece_instance(piece:int) -> Actor:
 		ord('*'):
 			return load("res://scene/actor/piece_checker_1_black.tscn").instantiate()
 		ord('#'):
-			return load("res://scene/actor/piece_checker_2_black.tscn").instantiate()
+			return load("res://scene/actor/piece_barrier.tscn").instantiate()
 		ord('z'):
 			return load("res://scene/actor/piece_checker_3_black.tscn").instantiate()
 	return null
