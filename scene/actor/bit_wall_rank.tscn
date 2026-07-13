@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cuu3u6dffbtx1"]
+
+[ext_resource type="Script" uid="uid://bt4vtnpxu5i4x" path="res://src/actor/actor.gd" id="1_lrgym"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0gcx"]
+cull_mode = 2
+albedo_color = Color(0.36767125, 0.36767122, 0.36767122, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n6j8x"]
+material = SubResource("StandardMaterial3D_x0gcx")
+size = Vector2(0.125, 0.125)
+orientation = 0
+
+[node name="bit_wall" type="CharacterBody3D" unique_id=977887210]
+script = ExtResource("1_lrgym")
+metadata/_custom_type_script = "uid://bt4vtnpxu5i4x"
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="." unique_id=407037385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.063, 0.063, 0)
+mesh = SubResource("PlaneMesh_n6j8x")

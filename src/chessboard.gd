@@ -17,6 +17,7 @@ signal animation_finished()
 @export var COLOR_MOVE:Color = Color(0.655, 0.208, 0.199, 1.0)
 @export var COLOR_POINTER:Color = Color(0.78, 0.619, 0.32, 1.0)
 @export var actor_scale_factor:float = 1
+@export var show_bit:PackedInt32Array = [ord("-"), ord("|")]
 
 var backup_piece:Array = []	# 被吃的子统一放这里管理
 var steady_piece:Dictionary = {}	# 待加入棋盘中的后备棋子放这里管理，跟被吃棋子区别在于这些棋子可以派上场
@@ -49,6 +50,7 @@ var direction_mapping:Dictionary = {}
 
 var state:State = null
 var chessboard_piece:Dictionary[int, Actor] = {}
+var bit_instance:Dictionary[int, Dictionary]
 var king_instance:Array[Actor] = [null, null]
 
 var square_selection:int = 0
@@ -92,8 +94,10 @@ static func get_default_piece_instance(piece:int) -> Actor:
 			return load("res://scene/actor/piece_checker_1_black.tscn").instantiate()
 		ord('#'):
 			return load("res://scene/actor/piece_barrier.tscn").instantiate()
-		ord('z'):
-			return load("res://scene/actor/piece_checker_3_black.tscn").instantiate()
+		ord('|'):
+			return load("res://scene/actor/bit_wall_rank.tscn").instantiate()
+		ord('-'):
+			return load("res://scene/actor/bit_wall_file.tscn").instantiate()
 	return null
 
 func _ready() -> void:
@@ -117,13 +121,25 @@ func add_default_piece_set() -> void:	# 最好交由外部来负责棋子的准�
 		var new_instance:Actor = get_default_piece_instance(state.get_piece(i))
 		add_child(new_instance)
 		add_piece_instance(new_instance, i)
+	for piece:int in show_bit:
+		var bit:int = state.get_bit(piece)
+		while bit != 0:
+			var by:int = Chess.c64_to_x88(Chess.first_bit(bit))
+			var new_instance:Actor = get_default_piece_instance(piece)
+			add_child(new_instance)
+			add_bit_instance(new_instance, piece, by)
+			bit = Chess.next_bit(bit)
 
 func remove_piece_set() -> void:
 	for by:int in chessboard_piece:
 		chessboard_piece[by].queue_free()
+	for piece:int in bit_instance:
+		for iter:Actor in bit_instance[piece]:
+			iter.queue_free()
 	for iter:Actor in backup_piece:
 		iter.queue_free()
 	chessboard_piece.clear()
+	bit_instance.clear()
 	backup_piece.clear()
 
 var button_pressed:Dictionary = {}
@@ -392,6 +408,18 @@ func receive_rollback_event(event:Dictionary) -> void:
 		"pass":
 			do_nothing()
 
+func add_bit_instance(instance:Actor, piece:int, by:int) -> void:
+	if !instance:
+		return
+	instance.scale *= actor_scale_factor
+	if by == -1:
+		instance.visible = false
+		backup_piece.push_back(instance)
+	else:
+		bit_instance.get_or_add(piece, {})[by] = instance
+		instance.visible = true
+		instance.introduce(get_node(Chess.x88_to_name(by)).global_position)
+
 func add_piece_instance(instance:Actor, by:int) -> void:	# 注意根据state摆放棋盘
 	if !instance:
 		return
@@ -413,6 +441,12 @@ func add_piece_instance_to_steady(instance:Actor, piece:int) -> void:
 		return
 	steady_piece.get_or_add(piece, []).push_back(instance)
 	instance.visible = false
+
+func get_bit_instance(piece:int, by:int) -> Actor:
+	return bit_instance.get(piece, {}).get(by, null)
+
+func get_piece_instance(by:int) -> Actor:
+	return chessboard_piece.get(by, null)
 
 func move_piece_instance_to_steady(by:int, piece:int) -> void:
 	var instance:Actor = chessboard_piece.get(by, null)
@@ -450,6 +484,12 @@ func remove_piece_instance(instance:Actor) -> void:
 		return
 	chessboard_piece.erase(by)
 	backup_piece.erase(instance)
+
+func remove_bit_instance(instance:Actor) -> void:
+	if !instance:
+		return
+	for piece:int in bit_instance:
+		bit_instance[piece].erase(instance)
 
 func move_piece_instance_to_other(from:int, to:int, other:Chessboard) -> Actor:
 	var instance:Actor = chessboard_piece[from]
