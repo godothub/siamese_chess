@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:noble
 
 WORKDIR /root
 
@@ -14,12 +14,15 @@ ARG SIAMESECHESS_ANDROID_DNAME=""
 
 # 通用准备工作，以及Linux版
 RUN apt update \
- && apt install -y curl wget zip git git-lfs build-essential scons pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu1-mesa-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev libwayland-dev mingw-w64 openjdk-17-jdk
+ && apt install -y curl wget zip vim git git-lfs build-essential scons pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu1-mesa-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev libwayland-dev mingw-w64 openjdk-17-jdk
 # Web环境
 RUN git clone https://github.com/emscripten-core/emsdk.git \
  && emsdk/emsdk install latest \
- && emsdk/emsdk activate latest
+ && emsdk/emsdk activate latest \
 
+ENV PATH="/root/emsdk:${PATH}"
+ENV PATH="/root/emsdk/node/22.16.0_64bit/bin:${PATH}"
+ENV PATH="/root/emsdk/upstream/emscripten:${PATH}"
 # 部分程序参考项目：https://github.com/abarichello/godot-ci
 
 # Download and set up Android SDK to export to Android.
@@ -47,7 +50,10 @@ RUN wget https://github.com/godotengine/godot-builds/releases/download/${GODOT_V
     && unzip Godot_v${GODOT_VERSION}-${RELEASE_NAME}_${GODOT_PLATFORM}.zip \
     && mv Godot_v${GODOT_VERSION}-${RELEASE_NAME}_${GODOT_PLATFORM} /usr/local/bin/godot \
     && unzip Godot_v${GODOT_VERSION}-${RELEASE_NAME}_export_templates.tpz \
-    && mv templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME} \
+    && mv templates/windows_release_x86_64.exe ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME} \
+    && mv templates/linux_release.x86_64 ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME} \
+    && mv templates/android_release.apk ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME} \
+    && mv templates/web_dlink_release.zip ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME} \
     && rm -f Godot_v${GODOT_VERSION}-${RELEASE_NAME}_export_templates.tpz Godot_v${GODOT_VERSION}-${RELEASE_NAME}_${GODOT_PLATFORM}.zip \
     && rm -rf templates
 
@@ -64,15 +70,4 @@ RUN echo 'export/android/force_system_user = false' >> ~/.config/godot/editor_se
 RUN echo 'export/android/timestamping_authority_url = ""' >> ~/.config/godot/editor_settings-${GODOT_VERSION_MINOR}.tres
 RUN echo 'export/android/shutdown_adb_on_exit = true' >> ~/.config/godot/editor_settings-${GODOT_VERSION_MINOR}.tres
 
-WORKDIR /siamesechess
-CMD /root/emsdk/emsdk activate latest \
- && cd /siamesechess \
- && scons platform=windows target=template_release use_mingw=yes debug_symbols=no optimize=speed_trace \
- && scons platform=android target=template_release debug_symbols=no optimize=speed_trace \
- && scons platform=web target=template_release debug_symbols=no optimize=speed_trace \
- && scons platform=linux target=template_release use_mingw=yes debug_symbols=no optimize=speed_trace \
- && godot --headless --export-release "Windows Desktop" bin/windows/SiameseChess-SecondPrototype-Windows.zip \
- && godot --headless --export-release Android bin/android/SiameseChess-SecondPrototype-Android.apk \
- && godot --headless --export-release Web bin/web/index.html \
- && godot --headless --export-release Linux bin/linux/SiameseChess-SecondPrototype-Linux.zip \
- && zip bin/web/SiameseChess-SecondPrototype-Web.zip bin/web/*
+CMD /bin/bash
