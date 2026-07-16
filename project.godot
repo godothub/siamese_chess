@@ -12,13 +12,13 @@ config_version=5
 
 config/name="SiameseChess"
 config/tags=PackedStringArray("a_lone_flower", "puzzle", "siamese")
-run/main_scene="uid://cy6ug52q4hcy"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+run/main_scene="res://scene/startup.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 boot_splash/stretch_mode=0
 boot_splash/use_filter=false
-config/icon="uid://gdemlmk1r3x4"
+config/icon="res://icon.png"
 
 [audio]
 
@@ -28,18 +28,18 @@ general/text_to_speech=true
 
 Archive="*res://scene/archive.tscn"
 Dialog="*res://scene/dialog.tscn"
+Player="*res://scene/player.tscn"
 Loading="*res://scene/loading.tscn"
 Progress="*res://src/progress.gd"
 Ambient="*res://scene/ambient.tscn"
 Clock="*res://src/clock.gd"
 Setting="*res://scene/setting.tscn"
-FilmCamera="*uid://msaedai05yen"
-ThirdEye3D="*uid://ev40jhv8rt4p"
-Gesture="*uid://dsqxbuqwoaoqe"
-TouchscreenInputManager="*uid://wa2q0lswte4p"
-Narrative="*uid://dn73slootiwl3"
-Localization="*uid://bqoo1g422lhoo"
-Player="*uid://b3ml34bssywkr"
+FilmCamera="*res://scene/film_camera.tscn"
+ThirdEye3D="*res://scene/third_eye_3d.tscn"
+Gesture="*res://src/gesture.gd"
+TouchscreenInputManager="*res://addons/gdtim/InputManager.gd"
+Narrative="*res://src/narrative.gd"
+Localization="*res://src/lang/localization.gd"
 
 [debug]
 
