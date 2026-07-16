@@ -28,7 +28,7 @@ shader_parameter/contrast_mult = 0.792
 [node name="piece_rook" unique_id=446502495 instance=ExtResource("1_uakjl")]
 script = ExtResource("2_jewd1")
 
-[node name="piece" parent="." index="0" unique_id=169348020]
+[node name="piece" parent="." index="0" unique_id=781353070]
 surface_material_override/0 = SubResource("ShaderMaterial_ee11h")
 
 [node name="audio_stream_player_shatter" type="AudioStreamPlayer3D" parent="." index="1" unique_id=1702868694]

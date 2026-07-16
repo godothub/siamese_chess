@@ -28,7 +28,7 @@ shader_parameter/contrast_mult = 0.792
 [node name="piece_knight" unique_id=546416935 instance=ExtResource("1_fmedb")]
 script = ExtResource("2_qe16t")
 
-[node name="piece" parent="." index="0" unique_id=1706018440]
+[node name="piece" parent="." index="0" unique_id=215456149]
 surface_material_override/0 = SubResource("ShaderMaterial_qqt0l")
 
 [node name="audio_stream_player_shatter" type="AudioStreamPlayer3D" parent="." index="1" unique_id=35815212]

@@ -530,6 +530,7 @@ popup/item_3/text = "SETTINGS_CAMERA_AXIS_3"
 popup/item_3/id = 3
 
 [node name="accessibility" type="Control" parent="texture_rect/tab_container" unique_id=822844970]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = "SETTINGS_TAB_ACCESSIBILITY"

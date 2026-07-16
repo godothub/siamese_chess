@@ -48,14 +48,14 @@ size = Vector3(0.412598, 0.610291, 0.0458069)
 [node name="safe_lock" unique_id=1192291511 instance=ExtResource("1_10wmd")]
 script = ExtResource("2_nf5fv")
 
-[node name="body" parent="." index="0" unique_id=675703628]
+[node name="body" parent="." index="0" unique_id=1226671436]
 surface_material_override/0 = SubResource("ShaderMaterial_uvudv")
 
-[node name="door" parent="." index="1" unique_id=2064609642]
+[node name="door" parent="." index="1" unique_id=10283069]
 surface_material_override/0 = SubResource("ShaderMaterial_sywe0")
 surface_material_override/2 = SubResource("StandardMaterial3D_sywe0")
 
-[node name="area_handle" type="Area3D" parent="door/handle" parent_id_path=PackedInt32Array(1629113051) index="0" unique_id=939817006]
+[node name="area_handle" type="Area3D" parent="door/handle" parent_id_path=PackedInt32Array(177000863) index="0" unique_id=939817006]
 collision_layer = 2
 collision_mask = 0
 

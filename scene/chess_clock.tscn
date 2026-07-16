@@ -28,7 +28,7 @@ bg_color = Color(0.0503998, 0.111772, 0.0784249, 1)
 
 [node name="clock" unique_id=66658481 instance=ExtResource("1_jy1k2")]
 
-[node name="body" parent="." index="0" unique_id=1620949827]
+[node name="body" parent="." index="0" unique_id=2119508898]
 surface_material_override/0 = SubResource("ShaderMaterial_sn2cr")
 surface_material_override/1 = SubResource("StandardMaterial3D_htbmt")
 

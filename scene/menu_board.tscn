@@ -13,6 +13,6 @@ albedo_texture = ExtResource("2_8hxod")
 
 [node name="menu" unique_id=1649725236 instance=ExtResource("1_e5g8k")]
 
-[node name="menu" parent="." index="0" unique_id=593779434]
+[node name="menu" parent="." index="0" unique_id=205451187]
 surface_material_override/0 = SubResource("StandardMaterial3D_3j6ls")
 surface_material_override/1 = SubResource("StandardMaterial3D_ti5dm")

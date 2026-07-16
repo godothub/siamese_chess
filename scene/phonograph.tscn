@@ -83,13 +83,13 @@ buffer_length = 0.1
 [node name="phonograph" unique_id=547127165 instance=ExtResource("1_ux6jj")]
 script = ExtResource("2_qow6u")
 
-[node name="body" parent="." index="0" unique_id=1759458540]
+[node name="body" parent="." index="0" unique_id=1776814813]
 surface_material_override/0 = SubResource("ShaderMaterial_jkwwu")
 
-[node name="vinyl_base" parent="." index="1" unique_id=783184152]
+[node name="vinyl_base" parent="." index="1" unique_id=19310105]
 surface_material_override/0 = SubResource("ShaderMaterial_8wbsc")
 
-[node name="stylus" parent="." index="2" unique_id=153789561]
+[node name="stylus" parent="." index="2" unique_id=1596959596]
 surface_material_override/0 = SubResource("ShaderMaterial_raspe")
 
 [node name="area_stylus" type="Area3D" parent="stylus" index="0" unique_id=1723206268]
@@ -103,23 +103,23 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.160622, 0.244064, -0.0286865)
 shape = SubResource("BoxShape3D_ux6jj")
 
-[node name="stylus_base" parent="." index="3" unique_id=1679716546]
+[node name="stylus_base" parent="." index="3" unique_id=1156847040]
 surface_material_override/0 = SubResource("ShaderMaterial_raspe")
 
-[node name="knob_1" parent="." index="4" unique_id=740242964]
+[node name="knob_1" parent="." index="4" unique_id=830635416]
 surface_material_override/0 = SubResource("ShaderMaterial_raspe")
 
-[node name="vinyl" parent="." index="5" unique_id=984350193]
+[node name="vinyl" parent="." index="5" unique_id=935165244]
 surface_material_override/0 = SubResource("ShaderMaterial_raspe")
 surface_material_override/1 = SubResource("ShaderMaterial_cvdbm")
 
-[node name="axis" parent="." index="6" unique_id=203156218]
+[node name="axis" parent="." index="6" unique_id=721491370]
 surface_material_override/0 = SubResource("ShaderMaterial_577lu")
 
-[node name="cover" parent="." index="7" unique_id=1057396424]
+[node name="cover" parent="." index="7" unique_id=1744317169]
 transform = Transform3D(0.22856298, 0, 0, 0, 0.2285628, 0, 0, 0, 0.2285628, 0.000909835, 0.204559, -0.183626)
 
-[node name="knob_2" parent="." index="8" unique_id=1967069409]
+[node name="knob_2" parent="." index="8" unique_id=1024129724]
 surface_material_override/0 = SubResource("ShaderMaterial_raspe")
 
 [node name="area_vinyl" type="Area3D" parent="." index="9" unique_id=1030032462]

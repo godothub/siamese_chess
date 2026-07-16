@@ -106,7 +106,7 @@ transform = Transform3D(5.5732045e-08, 0, 0.425, 0, 0.425, 0, -0.425, 0, 5.57320
 [node name="table_0" parent="texture_rect/sub_viewport_container/sub_viewport" unique_id=1325274477 instance=ExtResource("3_3avyb")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.0249235, 0)
 
-[node name="table_000" parent="texture_rect/sub_viewport_container/sub_viewport/table_0" index="0" unique_id=1941210796]
+[node name="table_000" parent="texture_rect/sub_viewport_container/sub_viewport/table_0" index="0" unique_id=309278851]
 surface_material_override/0 = SubResource("ShaderMaterial_upbbp")
 
 [node name="sofa_0" parent="texture_rect/sub_viewport_container/sub_viewport/table_0" unique_id=497057507 instance=ExtResource("6_pp1i2")]

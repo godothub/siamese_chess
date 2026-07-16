@@ -62,10 +62,10 @@ collision_layer = 4
 collision_mask = 4
 script = ExtResource("2_mx01q")
 
-[node name="necktie" parent="Armature" parent_id_path=PackedInt32Array(351601572) index="0" unique_id=1535102371]
+[node name="necktie" parent="Armature" parent_id_path=PackedInt32Array(1012236742) index="0" unique_id=1710227529]
 visible = false
 
-[node name="bone_attachment_neck" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(2022936804) index="4" unique_id=952453128]
+[node name="bone_attachment_neck" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1045466410) index="4" unique_id=952453128]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 1.527369e-07, 0, -1.527369e-07, 0.99999994, 0, 1.493099, -0.011619182)
 bone_name = "mixamorig_Neck"
 bone_idx = 4
@@ -79,7 +79,7 @@ collision_mask = 0
 transform = Transform3D(0.9999929, -0.0011933207, -0.0035416372, 0.0012058263, 0.999993, 0.0035322271, 0.003537387, -0.0035364628, 0.99998736, 0.0060196114, 0.09166551, -0.0040755607)
 shape = SubResource("CapsuleShape3D_vy2n6")
 
-[node name="bone_attachment_spine" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(2022936804) index="5" unique_id=1061890154]
+[node name="bone_attachment_spine" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1045466410) index="5" unique_id=1061890154]
 transform = Transform3D(1, 0, 0, 0, 0.9988246, 0.048469722, 0, -0.048469722, 0.9988246, 0, 1.2153158, 0.001860722)
 bone_name = "mixamorig_Spine1"
 bone_idx = 2
@@ -93,7 +93,7 @@ collision_mask = 0
 transform = Transform3D(0.9999929, -0.0011933207, -0.0035416372, 0.0012058233, 0.99999386, 0.003532201, 0.0035373897, -0.0035364553, 0.99998784, 0.0059464946, -0.03733194, 0.017814316)
 shape = SubResource("SphereShape3D_vy2n6")
 
-[node name="soft_body_3d" type="SoftBody3D" parent="Armature" parent_id_path=PackedInt32Array(351601572) index="2" unique_id=198054737]
+[node name="soft_body_3d" type="SoftBody3D" parent="Armature" parent_id_path=PackedInt32Array(1012236742) index="2" unique_id=198054737]
 mesh = ExtResource("3_vy2n6")
 collision_layer = 0
 collision_mask = 8
@@ -111,7 +111,7 @@ attachments/0/offset = Vector3(0.0026681724, -0.09833968, 0.110559165)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003988564, 0.70807195, 0.0020794868)
 shape = SubResource("CapsuleShape3D_mx01q")
 
-[node name="AnimationPlayer" parent="." index="2" unique_id=1386545610]
+[node name="AnimationPlayer" parent="." index="2" unique_id=1263370355]
 speed_scale = 2.0
 
 [node name="animation_tree" type="AnimationTree" parent="." index="3" unique_id=251224311]

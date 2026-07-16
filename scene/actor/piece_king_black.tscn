@@ -28,7 +28,7 @@ shader_parameter/contrast_mult = 1.0
 [node name="chess_king" unique_id=194634613 instance=ExtResource("1_o5l3u")]
 script = ExtResource("2_j4cai")
 
-[node name="piece" parent="." index="0" unique_id=1743513027]
+[node name="piece" parent="." index="0" unique_id=468656940]
 surface_material_override/0 = SubResource("ShaderMaterial_pq4fm")
 
 [node name="audio_stream_player_shatter" type="AudioStreamPlayer3D" parent="." index="1" unique_id=2112761120]

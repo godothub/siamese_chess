@@ -28,7 +28,7 @@ shader_parameter/contrast_mult = 1.0
 [node name="piece_pawn" unique_id=440476368 instance=ExtResource("1_wvvgf")]
 script = ExtResource("2_p51lj")
 
-[node name="piece" parent="." index="0" unique_id=658224853]
+[node name="piece" parent="." index="0" unique_id=1132527430]
 surface_material_override/0 = SubResource("ShaderMaterial_s3eqc")
 
 [node name="audio_stream_player_shatter" type="AudioStreamPlayer3D" parent="." index="1" unique_id=1508381785]

@@ -18,7 +18,7 @@ states/thinking/position = Vector2(353.714, 148.286)
 [node name="pastor" unique_id=452469260 instance=ExtResource("1_np4ha")]
 script = ExtResource("2_0fow0")
 
-[node name="convert_transform_modifier_3d" type="CopyTransformModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1960695146) index="13" unique_id=1061057639]
+[node name="convert_transform_modifier_3d" type="CopyTransformModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(233520368) index="13" unique_id=1061057639]
 active = false
 setting_count = 5
 settings/0/amount = 1.0
@@ -69,7 +69,7 @@ settings/4/additive = true
 
 [node name="marker_3d" type="Marker3D" parent="skeleton/Skeleton3D/convert_transform_modifier_3d" index="0" unique_id=1720734068]
 
-[node name="look_at_modifier_3d" type="LookAtModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1960695146) index="14" unique_id=840089268]
+[node name="look_at_modifier_3d" type="LookAtModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(233520368) index="14" unique_id=840089268]
 active = false
 target_node = NodePath("marker_3d")
 bone_name = "head"
@@ -79,7 +79,7 @@ origin_offset = Vector3(0, 0.135, -0.19)
 [node name="marker_3d" type="Marker3D" parent="skeleton/Skeleton3D/look_at_modifier_3d" index="0" unique_id=1260698946]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012573183, 1.5521019, 0.43484896)
 
-[node name="copy_transform_modifier_3d" type="CopyTransformModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1960695146) index="15" unique_id=188747885]
+[node name="copy_transform_modifier_3d" type="CopyTransformModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(233520368) index="15" unique_id=188747885]
 active = false
 setting_count = 1
 settings/0/amount = 0.917
@@ -94,7 +94,7 @@ settings/0/invert = 0
 settings/0/relative = true
 settings/0/additive = false
 
-[node name="copy_transform_modifier_3d_2" type="CopyTransformModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1960695146) index="16" unique_id=1725309717]
+[node name="copy_transform_modifier_3d_2" type="CopyTransformModifier3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(233520368) index="16" unique_id=1725309717]
 active = false
 influence = 0.366
 setting_count = 1
@@ -110,7 +110,7 @@ settings/0/invert = 0
 settings/0/relative = true
 settings/0/additive = false
 
-[node name="two_bone_ik_3d_body" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1960695146) index="17" unique_id=1584162586]
+[node name="two_bone_ik_3d_body" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(233520368) index="17" unique_id=1584162586]
 active = false
 setting_count = 1
 settings/0/target_node = NodePath("marker_3d")
@@ -131,7 +131,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6736041, -0.046361744)
 [node name="marker_3d_pole" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_body" index="1" unique_id=1854549870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6733066, -0.3130444)
 
-[node name="two_bone_ik_3d_left_hand" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1960695146) index="18" unique_id=851121529]
+[node name="two_bone_ik_3d_left_hand" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(233520368) index="18" unique_id=851121529]
 active = false
 setting_count = 1
 settings/0/target_node = NodePath("marker_target")
@@ -152,7 +152,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21948892, 0.9606252, 0.0394
 [node name="marker_target_pole" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_left_hand" index="1" unique_id=1612545141]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6351044, 1.2371899, 0)
 
-[node name="two_bone_ik_3d_right_hand" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1960695146) index="19" unique_id=1388370492]
+[node name="two_bone_ik_3d_right_hand" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(233520368) index="19" unique_id=1388370492]
 active = false
 setting_count = 1
 settings/0/target_node = NodePath("marker_target")
@@ -173,7 +173,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16645646, 0.7773663, -0.13
 [node name="marker_target_pole" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_right_hand" index="1" unique_id=1700733584]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27790242, 1.2371899, 0)
 
-[node name="jacobian_ik_3d" type="JacobianIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1960695146) index="20" unique_id=481763292]
+[node name="jacobian_ik_3d" type="JacobianIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(233520368) index="20" unique_id=481763292]
 active = false
 max_iterations = 7
 deterministic = true
@@ -205,7 +205,7 @@ settings/0/joints/6/limitation = null
 [node name="marker_3d" type="Marker3D" parent="skeleton/Skeleton3D/jacobian_ik_3d" index="0" unique_id=109489267]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3260333, 0.62439656, -0.4448747)
 
-[node name="two_bone_ik_3d_left_leg" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1960695146) index="21" unique_id=498553796]
+[node name="two_bone_ik_3d_left_leg" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(233520368) index="21" unique_id=498553796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19423568, 0, 0)
 active = false
 setting_count = 1
@@ -227,7 +227,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14930618, -0.03583193, 0.0
 [node name="marker_target_pole" type="Marker3D" parent="skeleton/Skeleton3D/two_bone_ik_3d_left_leg" index="1" unique_id=1916717497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15874177, 0.5595692, 0.4239503)
 
-[node name="two_bone_ik_3d_right_leg" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(1960695146) index="22" unique_id=879234782]
+[node name="two_bone_ik_3d_right_leg" type="TwoBoneIK3D" parent="skeleton/Skeleton3D" parent_id_path=PackedInt32Array(233520368) index="22" unique_id=879234782]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19423568, 0, 0)
 active = false
 setting_count = 1

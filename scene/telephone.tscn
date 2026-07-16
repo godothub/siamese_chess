@@ -17,7 +17,7 @@ radius = 0.005
 [node name="telephone" unique_id=448065669 instance=ExtResource("1_doli6")]
 script = ExtResource("2_xqtbd")
 
-[node name="microphone" parent="." index="1" unique_id=1755362843]
+[node name="microphone" parent="." index="1" unique_id=1354297780]
 rotation_edit_mode = 2
 
 [node name="area_3d" type="Area3D" parent="microphone" index="0" unique_id=1446647580]

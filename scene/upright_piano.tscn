@@ -5,25 +5,25 @@
 
 [node name="upright_piano" unique_id=1454712514 instance=ExtResource("1_mm7xa")]
 
-[node name="piano" parent="." index="0" unique_id=309147825]
+[node name="piano" parent="." index="0" unique_id=1787662657]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, -0.000336002, -0.000632915, -0.624198)
 
-[node name="pedal_middle" parent="." index="1" unique_id=236535214]
+[node name="pedal_middle" parent="." index="1" unique_id=167529875]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, -0.000336002, -0.000632915, -0.624198)
 
-[node name="pedal_left" parent="." index="2" unique_id=162684569]
+[node name="pedal_left" parent="." index="2" unique_id=21550986]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, -0.0839947, -0.000632915, -0.624198)
 
-[node name="pedal_right" parent="." index="3" unique_id=583946644]
+[node name="pedal_right" parent="." index="3" unique_id=885465607]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, 0.0870067, -0.000632915, -0.624198)
 
-[node name="white_keys" parent="." index="4" unique_id=724707447]
+[node name="white_keys" parent="." index="4" unique_id=508772608]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, -0.000336002, -0.000632915, -0.624198)
 
-[node name="black_keys" parent="." index="5" unique_id=979222224]
+[node name="black_keys" parent="." index="5" unique_id=112277951]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, 0.0138089, 0.0329507, -0.624198)
 
-[node name="piano_001" parent="." index="6" unique_id=89301455]
+[node name="piano_001" parent="." index="6" unique_id=1302364433]
 transform = Transform3D(1.15197, 0, 0, 0, 1.15197, 0, 0, 0, 1.15197, -0.000336002, -0.000632915, -0.624198)
 
 [node name="upright_piano_chair" parent="." index="7" unique_id=173764630 instance=ExtResource("2_qtvcp")]
