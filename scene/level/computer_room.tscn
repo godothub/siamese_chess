@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="13_non1c"]
 [ext_resource type="PackedScene" uid="uid://u1ropnj7v0ap" path="res://assets/model/hotel_room_desk_chair.glb" id="14_d4clp"]
 [ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="14_g1ls7"]
-[ext_resource type="LightmapGIData" uid="uid://ckp82lkp2mvma" path="res://assets/basement.lmbake" id="15_fvx27"]
 [ext_resource type="PackedScene" uid="uid://b435xrjtthrdn" path="res://assets/model/computer.glb" id="15_non1c"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="16_agg0u"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/event_title.gd" id="16_oobam"]
@@ -109,9 +108,6 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 1.08
 
 [node name="hotel_room_desk_chair" parent="." unique_id=512521497 instance=ExtResource("14_d4clp")]
 transform = Transform3D(0.91999257, 0, 0.39193577, 0, 1, 0, -0.39193577, 0, 0.91999257, 1.6519706, 0, 2.9536614)
-
-[node name="lightmap_gi" type="LightmapGI" parent="." unique_id=1823503648]
-light_data = ExtResource("15_fvx27")
 
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=184629974]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.193512, 2.1510468, 5.4126587)

@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="16_idfw3"]
 [ext_resource type="PackedScene" uid="uid://wlf2bpitdmjk" path="res://scene/actor/piece_queen_black.tscn" id="17_tljiy"]
 [ext_resource type="PackedScene" uid="uid://cgoyrycf6ngyw" path="res://scene/actor/piece_knight_black.tscn" id="18_vpnv2"]
-[ext_resource type="LightmapGIData" uid="uid://ckp82lkp2mvma" path="res://assets/basement.lmbake" id="18_x66wa"]
 [ext_resource type="Script" uid="uid://wbnfk8tm8skk" path="res://src/event/event_title.gd" id="20_0yjdh"]
 [ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/procedure/procedure_game.gd" id="21_3d6ds"]
 [ext_resource type="Script" uid="uid://csapts1u0p18r" path="res://src/event/event_start_game.gd" id="22_wql0o"]
@@ -343,10 +342,10 @@ omni_range = 10.077
 [node name="hotel_door_large" parent="." unique_id=2031737367 instance=ExtResource("9_7pf3j")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=576972813]
+[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=1978504644]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=674245926]
+[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=413679978]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=1404077087]
@@ -456,9 +455,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 
 
 [node name="hotel_room_desk_chair" parent="." unique_id=512521497 instance=ExtResource("12_vykmq")]
 transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, -0.9198921, 0, 6.7662916)
-
-[node name="lightmap_gi" type="LightmapGI" parent="." unique_id=1823503648]
-light_data = ExtResource("18_x66wa")
 
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=184629974]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1510468, 0)

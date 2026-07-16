@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://d1s6qj7aofldk" path="res://scene/chessboard.tscn" id="5_xj5v5"]
 [ext_resource type="PackedScene" uid="uid://famkj12ufimp" path="res://scene/chessboard_blank.tscn" id="7_a77ny"]
 [ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="8_5cfv0"]
-[ext_resource type="LightmapGIData" uid="uid://bdxsaqpli7ebs" path="res://assets/train_carriage.lmbake" id="8_667th"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/event_multi_actor.gd" id="9_667th"]
 [ext_resource type="PackedScene" uid="uid://blfa7tg8uh5xo" path="res://assets/model/book_stack_0.glb" id="9_ii2qt"]
 [ext_resource type="Script" uid="uid://cpyviir7sli6u" path="res://src/event/event_callback.gd" id="10_ii2qt"]
@@ -38,7 +37,7 @@ adjustment_enabled = true
 script = ExtResource("2_ixuif")
 metadata/by = 3
 
-[node name="train_001" parent="." index="0" unique_id=1425395985]
+[node name="train_001" parent="." index="0" unique_id=1510383779]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, 5.3030715)
 
 [node name="omni_light_3d" type="SpotLight3D" parent="train_001" index="18" unique_id=72102590]
@@ -53,7 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7858801, 2.4143808, -4.639
 light_color = Color(1, 0.796, 0.65999997, 1)
 shadow_enabled = true
 
-[node name="train_002" parent="." index="1" unique_id=244080771]
+[node name="train_002" parent="." index="1" unique_id=374937091]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, 8.226805)
 
 [node name="omni_light_3d" type="SpotLight3D" parent="train_002" index="0" unique_id=18524146]
@@ -68,7 +67,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7858801, 2.4143808, -4.639
 light_color = Color(1, 0.796, 0.65999997, 1)
 shadow_enabled = true
 
-[node name="train_004" parent="." index="2" unique_id=1112215354]
+[node name="train_004" parent="." index="2" unique_id=1442852376]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, 11.147057)
 
 [node name="omni_light_3d" type="SpotLight3D" parent="train_004" index="18" unique_id=1370278301]
@@ -83,61 +82,61 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7858801, 2.4143808, -4.639
 light_color = Color(1, 0.796, 0.65999997, 1)
 shadow_enabled = true
 
-[node name="train_003" parent="." index="3" unique_id=1077068158]
+[node name="train_003" parent="." index="3" unique_id=863548638]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, -3.2102308)
 
-[node name="curtain_support_0014" parent="." index="4" unique_id=270036814]
+[node name="curtain_support_0014" parent="." index="4" unique_id=763917560]
 transform = Transform3D(1.7881393e-07, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 1.7881393e-07, -1.3477396, 2.0310612, -2.281695)
 
-[node name="curtain_0024" parent="." index="5" unique_id=1256447489]
+[node name="curtain_0024" parent="." index="5" unique_id=1381419564]
 transform = Transform3D(1.192093e-07, 0, 1, 0, 1, 0, 1, 0, -1.192093e-07, -1.3477396, 2.0310612, -3.0189095)
 
-[node name="curtain_0034" parent="." index="6" unique_id=975876696]
+[node name="curtain_0034" parent="." index="6" unique_id=988612029]
 transform = Transform3D(1.192093e-07, 0, -1, 0, 1, 0, -1, 0, -1.192093e-07, -1.3477396, 2.0310612, -1.5116408)
 
-[node name="train4" parent="." index="7" unique_id=1349365682]
+[node name="train4" parent="." index="7" unique_id=158259679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 0, -3.2801604)
 
-[node name="curtain_0064" parent="." index="8" unique_id=779853613]
+[node name="curtain_0064" parent="." index="8" unique_id=1143158872]
 transform = Transform3D(1.192093e-07, 0, 1, 0, 1, 0, 1, 0, -1.192093e-07, 1.7563896, 2.0310612, -3.1272888)
 
-[node name="curtain_0074" parent="." index="9" unique_id=702809320]
+[node name="curtain_0074" parent="." index="9" unique_id=73245902]
 transform = Transform3D(1.192093e-07, 0, -1, 0, 1, 0, -1, 0, -1.192093e-07, 1.7563896, 2.0310612, -1.6200206)
 
-[node name="curtain_support_0034" parent="." index="10" unique_id=7169906]
+[node name="curtain_support_0034" parent="." index="10" unique_id=1654578068]
 transform = Transform3D(1.7881393e-07, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 1.7881393e-07, 1.7563896, 2.0310612, -2.3900743)
 
-[node name="hang_light_1_0014" parent="." index="11" unique_id=887097838]
+[node name="hang_light_1_0014" parent="." index="11" unique_id=1337079101]
 transform = Transform3D(0.69514805, 0, 0, 0, 0.69514805, 0, 0, 0, 0.69514805, 1.1858474, 2.5836952, -2.3900743)
 
-[node name="shelf_0024" parent="." index="12" unique_id=102416734]
+[node name="shelf_0024" parent="." index="12" unique_id=391126630]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.061223954, 2.1595802, -1.1065576)
 
-[node name="shelf_0034" parent="." index="13" unique_id=953312603]
+[node name="shelf_0034" parent="." index="13" unique_id=1676958084]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 1.8151816, 2.1595802, -3.6678648)
 
-[node name="sofa_0024" parent="." index="14" unique_id=778527480]
+[node name="sofa_0024" parent="." index="14" unique_id=1513741626]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.91544235, 0.6685862, -1.3733022)
 
-[node name="sofa_0034" parent="." index="15" unique_id=1994104743]
+[node name="sofa_0034" parent="." index="15" unique_id=859104714]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.91544235, 0.6685862, -3.389617)
 
-[node name="table_0014" parent="." index="16" unique_id=422748192]
+[node name="table_0014" parent="." index="16" unique_id=620011495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6516018, 0, -2.3900743)
 
-[node name="wall_0034" parent="." index="17" unique_id=385382289]
+[node name="wall_0034" parent="." index="17" unique_id=303430355]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9301599, 1.0773802, -1.0736625)
 
-[node name="wall_door_0014" parent="." index="18" unique_id=146455542]
+[node name="wall_door_0014" parent="." index="18" unique_id=659703453]
 transform = Transform3D(0.976466, 0, 0, 0, 0.976466, 0, 0, 0, 0.976466, -0.029748365, 0.7199571, -3.3273706)
 
-[node name="lightmap4" parent="." index="19" unique_id=1639727281]
+[node name="lightmap4" parent="." index="19" unique_id=427824999]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14249492, 1.301571, -2.12086)
 
-[node name="window4" parent="." index="20" unique_id=1607236878]
+[node name="window4" parent="." index="20" unique_id=217038132]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4647429, 1.4921811, -2.3034654)
 
-[node name="window_0014" parent="." index="21" unique_id=507981322]
+[node name="window_0014" parent="." index="21" unique_id=1369474230]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 1.8843696, 1.4921811, -2.3034654)
 
 [node name="omni_light_3d_2" type="OmniLight3D" parent="." index="22" unique_id=563321957]
@@ -185,20 +184,16 @@ metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23651123, 1.4169769, 1.9835205)
 size = Vector3(5.8065186, 4.7654114, 14.313232)
 
-[node name="lightmap_gi" type="LightmapGI" parent="." index="32" unique_id=503829778]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9515369, 1.0791093, 3.5639553)
-light_data = ExtResource("8_667th")
-
-[node name="event_multi_actor" type="Node3D" parent="." index="33" unique_id=764538665]
+[node name="event_multi_actor" type="Node3D" parent="." index="32" unique_id=764538665]
 script = ExtResource("9_667th")
 piece = 35
 bit = -1731642956030941193
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
-[node name="book_stack_0" parent="." index="34" unique_id=1356828564 instance=ExtResource("9_ii2qt")]
+[node name="book_stack_0" parent="." index="33" unique_id=1356828564 instance=ExtResource("9_ii2qt")]
 transform = Transform3D(0.5471112, 0, 0.2697579, 0, 0.6099999, 0, -0.2697579, 0, 0.5471112, 0.38582855, 0.62251633, 2.5741773)
 
-[node name="event_callback" type="Node3D" parent="." index="35" unique_id=761138615 node_paths=PackedStringArray("node")]
+[node name="event_callback" type="Node3D" parent="." index="34" unique_id=761138615 node_paths=PackedStringArray("node")]
 script = ExtResource("10_ii2qt")
 node = NodePath("..")
 method_name = &"use_chessboard"
@@ -206,10 +201,10 @@ selection = "TRAIN_CARRIAGE_PLAY_CHESS"
 bit = 1152921504606846976
 metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
-[node name="camera_chessboard" type="Camera3D" parent="." index="36" unique_id=1639503970]
+[node name="camera_chessboard" type="Camera3D" parent="." index="35" unique_id=1639503970]
 transform = Transform3D(1, 0, 0, 0, 0.48231944, 0.8759954, 0, -0.8759954, 0.48231944, 1.2977567, 1.2738005, 3.758492)
 
-[node name="event_document_chess_movements" type="Node3D" parent="." index="37" unique_id=1220767615]
+[node name="event_document_chess_movements" type="Node3D" parent="." index="36" unique_id=1220767615]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
 script = ExtResource("11_5tiqh")
 file_path = "user://archive/printed.chess_movements.json"
@@ -221,7 +216,7 @@ bit = 1152921504606846976
 selection = "DOCUMENT_TITLE_CHESS_MOVEMENT"
 metadata/_custom_type_script = "uid://dc4n8wl381mqw"
 
-[node name="event_entrance" type="Node3D" parent="." index="38" unique_id=465027283]
+[node name="event_entrance" type="Node3D" parent="." index="37" unique_id=465027283]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 script = ExtResource("12_wjqlv")
 metadata/_custom_type_script = "uid://bsbhmxre68ncc"
