@@ -242,7 +242,7 @@ func set_state(_state:State) -> void:
 
 func x88_to_vector3(_by:int) -> Vector3:
 	var position_name:String = "%c%d" % [_by % 16 + 97, 7 - _by / 16 + 1]
-	return get_node(position_name).position
+	return get_node(position_name).global_position
 
 func vector3_to_x88(_position:Vector3) -> int:
 	return Chess.name_to_x88(vector3_to_name(_position))

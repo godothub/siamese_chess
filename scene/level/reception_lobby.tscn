@@ -64,6 +64,7 @@ transform = Transform3D(0.840762, 0.239459, -0.485571, 0.242345, 0.635549, 0.733
 shadow_enabled = true
 
 [node name="chessboard" parent="." unique_id=1937646692 instance=ExtResource("2_s8vca")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="door_1" parent="." unique_id=846599646 instance=ExtResource("3_aion5")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, -0.021915242, 3)
@@ -167,7 +168,7 @@ script = ExtResource("17_fhf0e")
 node = NodePath("..")
 method_name = &"elevator_minus_1f"
 selection = "-1F"
-bit = 256
+bit = 36028797018963968
 metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
 [node name="event_callback_2f" type="Node3D" parent="." unique_id=1124459732 node_paths=PackedStringArray("node")]
@@ -175,7 +176,7 @@ script = ExtResource("17_fhf0e")
 node = NodePath("..")
 method_name = &"elevator_2f"
 selection = "2F"
-bit = 256
+bit = 36028797018963968
 metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
 [node name="event_callback_3f" type="Node3D" parent="." unique_id=1385071600 node_paths=PackedStringArray("node")]
@@ -183,7 +184,7 @@ script = ExtResource("17_fhf0e")
 node = NodePath("..")
 method_name = &"elevator_3f"
 selection = "3F"
-bit = 256
+bit = 36028797018963968
 metadata/_custom_type_script = "uid://cpyviir7sli6u"
 
 [node name="camera_white_side" type="Camera3D" parent="." unique_id=1746372595]
@@ -191,7 +192,7 @@ transform = Transform3D(-1, 7.789426e-08, -3.9689112e-08, -9.399129e-09, 0.35556
 fov = 95.0
 
 [node name="camera_black_side" type="Camera3D" parent="." unique_id=617284860]
-transform = Transform3D(1, -1.3560394e-07, 1.0708201e-07, -2.644276e-08, 0.49233234, 0.87040734, -1.7075058e-07, -0.87040734, 0.49233234, -0.2826128, 5.3925323, 6.7386966)
+transform = Transform3D(1, -1.3560391e-07, 1.0708201e-07, -2.6442768e-08, 0.49233234, 0.87040734, -1.7075057e-07, -0.87040734, 0.49233234, -0.2826128, 5.3925323, 6.146034)
 fov = 111.0
 
 [node name="event_camera_black_side" type="Node3D" parent="." unique_id=778137627 node_paths=PackedStringArray("camera")]
@@ -220,7 +221,7 @@ metadata/_custom_type_script = "uid://chtqhpiu556i1"
 [node name="event_multi_actor" type="Node3D" parent="." unique_id=1533712868]
 script = ExtResource("20_h5tcc")
 piece = 35
-bit = 3233857536
+bit = 847736349917184
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
 [node name="event_narrative_overall" type="Node3D" parent="." unique_id=218744405]
@@ -457,7 +458,7 @@ transform = Transform3D(1.0000001, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, 1.0
 script = ExtResource("30_wxkc3")
 to = "res://scene/level/entrance.tscn"
 by = 116
-bit = 1729382256910270464
+bit = 24
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
 [node name="event_teleport_cafe" type="Node3D" parent="." unique_id=856910250]
@@ -465,5 +466,5 @@ transform = Transform3D(-4.3711392e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -4
 script = ExtResource("30_wxkc3")
 to = "res://scene/level/cafe.tscn"
 by = 53
-bit = 1099511627776
+bit = 8388608
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
