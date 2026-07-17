@@ -663,6 +663,8 @@ focus_neighbor_top = NodePath("../../../../margin_container_dialog_border/v_box_
 focus_neighbor_right = NodePath("../label_name_volume")
 focus_neighbor_bottom = NodePath("../../label_explain")
 text_overrun_behavior = 1
+clip_text = true
+fit_to_longest_item = false
 
 [node name="label_name_volume" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container" unique_id=1155867655]
 layout_mode = 2
