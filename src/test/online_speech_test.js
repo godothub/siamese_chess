@@ -5,6 +5,12 @@ var uuid = require("uuid");
 var app = express();
 var exec = require('child_process').exec;
 
+var options = {
+	//链接自己的SSL证书
+	key: fs.readFileSync('/privkey.pem'),
+	cert: fs.readFileSync('/fullchain.pem')
+};
+
 app.use(express.text());
 
 app.get("/tts", async (req, res) => {
@@ -70,4 +76,4 @@ app.post("/asr", async (req, res) => {
 
 })
 
-app.listen(5000, function() {});
+https.createServer(options, app).listen(5000, function() {});
