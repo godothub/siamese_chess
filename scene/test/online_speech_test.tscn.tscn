@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cnhxad2soq8ev"]
+
+[ext_resource type="Script" uid="uid://cuev24csw15r7" path="res://src/test/online_speech_test.tscn.gd" id="1_jociq"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_g28q7"]
+
+[node name="online_speech_test_tscn" type="Control" unique_id=1891605322]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jociq")
+
+[node name="margin_container" type="MarginContainer" parent="." unique_id=1241879505]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="v_box_container" type="VBoxContainer" parent="margin_container" unique_id=549210045]
+layout_mode = 2
+
+[node name="margin_container_tts" type="MarginContainer" parent="margin_container/v_box_container" unique_id=72199338]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container/margin_container_tts" unique_id=1698194223]
+layout_mode = 2
+
+[node name="text_edit" type="TextEdit" parent="margin_container/v_box_container/margin_container_tts/h_box_container" unique_id=1649283205]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="button" type="Button" parent="margin_container/v_box_container/margin_container_tts/h_box_container" unique_id=67469106]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "submit"
+
+[node name="audio_stream_player" type="AudioStreamPlayer" parent="margin_container/v_box_container/margin_container_tts/h_box_container" unique_id=2071912521]
+
+[node name="http_request" type="HTTPRequest" parent="margin_container/v_box_container/margin_container_tts/h_box_container" unique_id=1072593703]
+use_threads = true
+
+[node name="margin_container_asr" type="MarginContainer" parent="margin_container/v_box_container" unique_id=550800983]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="h_box_container" type="HBoxContainer" parent="margin_container/v_box_container/margin_container_asr" unique_id=988564959]
+layout_mode = 2
+
+[node name="button" type="Button" parent="margin_container/v_box_container/margin_container_asr/h_box_container" unique_id=1997193372]
+layout_mode = 2
+text = "speak"
+
+[node name="label" type="Label" parent="margin_container/v_box_container/margin_container_asr/h_box_container" unique_id=1210671654]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="audio_stream_player" type="AudioStreamPlayer" parent="margin_container/v_box_container/margin_container_asr/h_box_container" unique_id=1987785871]
+stream = SubResource("AudioStreamMicrophone_g28q7")
+bus = &"Record"
+
+[node name="http_request" type="HTTPRequest" parent="margin_container/v_box_container/margin_container_asr/h_box_container" unique_id=1525201571]
+use_threads = true
