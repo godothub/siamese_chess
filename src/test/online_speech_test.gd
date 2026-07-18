@@ -20,7 +20,7 @@ func _ready() -> void:
 	asr_record_effect = AudioServer.get_bus_effect(record_idx, 0)
 
 func send_tts() -> void:
-	tts_request.request("https://127.0.0.1:5000/tts?voice=default", ["Content-Type: text/plain"], HTTPClient.METHOD_POST, tts_input.text)
+	tts_request.request("https://api.famulan.uk:5000/tts?voice=default", ["Content-Type: text/plain"], HTTPClient.METHOD_POST, tts_input.text)
 
 func receive_tts(_result:int, _response_code:int, _headers:PackedStringArray, body:PackedByteArray) -> void:
 	var audio_stream:AudioStreamMP3 = AudioStreamMP3.load_from_buffer(body)
@@ -35,7 +35,7 @@ func record_asr() -> void:
 func send_asr() -> void:
 	var recording:PackedByteArray = asr_record_effect.get_recording().data
 	asr_record_effect.set_recording_active(false)
-	asr_request.request_raw("https://127.0.0.1:5000/asr", ["Content-Type: audio/wav"], HTTPClient.METHOD_POST, recording)
+	asr_request.request_raw("https://api.famulan.uk:5000/asr", ["Content-Type: audio/wav"], HTTPClient.METHOD_POST, recording)
 
 func receive_asr(_result:int, _response_code:int, _headers:PackedStringArray, body:PackedByteArray) -> void:
 	asr_result.text = body.get_string_from_utf8()
