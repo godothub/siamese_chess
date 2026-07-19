@@ -114,6 +114,7 @@ func tts_request_result(_result:int, _response_code:int, _header:PackedStringArr
 	if !audio_stream:
 		return
 	audio_stream_player_tts.stream = audio_stream
+	audio_stream_player_tts.volume_linear = Setting.get_value("text_to_speech_volume") / 100.0
 	audio_stream_player_tts.play()
 	next_content()
 
