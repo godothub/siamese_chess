@@ -47,10 +47,10 @@ var table:Dictionary = {}
 @onready var language_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/option_button
 @onready var dialog_border_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/check_box
 @onready var text_to_speech_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/check_box
-@onready var text_to_speech_voice_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/option_button_voice
-@onready var text_to_speech_volume_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/spin_box_volume
-@onready var text_to_speech_speed_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/spin_box_speed
-@onready var text_to_speech_pitch_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/spin_box_pitch
+@onready var text_to_speech_voice_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/voice/option_button
+@onready var text_to_speech_volume_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/volume/spin_box
+@onready var text_to_speech_speed_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/speed/spin_box
+@onready var text_to_speech_pitch_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/pitch/spin_box
 @onready var touch_gesture_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/h_box_container/check_box
 @onready var relax_input:CheckBox = $texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container/check_box
 @onready var clean_archive_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/button
@@ -138,26 +138,26 @@ func _ready() -> void:
 		var iter:Node = dfs_stack.pop_back()
 		dfs_stack.append_array(iter.get_children())
 		if iter is Label:
-		iter.connect("mouse_entered", hover_label.bind(iter))
-		iter.focus_mode = Control.FOCUS_ALL
-		iter.connect("focus_entered", hover_label.bind(iter))
+			iter.connect("mouse_entered", hover_label.bind(iter))
+			iter.focus_mode = Control.FOCUS_ALL
+			iter.connect("focus_entered", hover_label.bind(iter))
 		if iter is Button:
-		iter.connect("mouse_entered", hover_label.bind(iter))
-		iter.connect("focus_entered", hover_label.bind(iter))
+			iter.connect("mouse_entered", hover_label.bind(iter))
+			iter.connect("focus_entered", hover_label.bind(iter))
 		if iter is CheckBox:
-		iter.connect("mouse_entered", hover_check_box.bind(iter))
-		iter.connect("focus_entered", hover_check_box.bind(iter))
-		iter.connect("toggled", change_check_box)
+			iter.connect("mouse_entered", hover_check_box.bind(iter))
+			iter.connect("focus_entered", hover_check_box.bind(iter))
+			iter.connect("toggled", change_check_box)
 		if iter is OptionButton:
-		iter.connect("mouse_entered", hover_option_button.bind(iter))
-		iter.connect("focus_entered", hover_option_button.bind(iter))
-		iter.connect("toggled", show_option_button)
-		iter.connect("item_focused", hover_option_button_selection.bind(iter))
-		iter.connect("item_selected", selected_option_button.bind(iter))
+			iter.connect("mouse_entered", hover_option_button.bind(iter))
+			iter.connect("focus_entered", hover_option_button.bind(iter))
+			iter.connect("toggled", show_option_button)
+			iter.connect("item_focused", hover_option_button_selection.bind(iter))
+			iter.connect("item_selected", selected_option_button.bind(iter))
 		if iter is SpinBox:
-		iter.connect("mouse_entered", hover_spinbox.bind(iter))
-		iter.connect("focus_entered", hover_spinbox.bind(iter))
-		iter.connect("value_changed", change_spinbox)
+			iter.connect("mouse_entered", hover_spinbox.bind(iter))
+			iter.connect("focus_entered", hover_spinbox.bind(iter))
+			iter.connect("value_changed", change_spinbox)
 
 func _physics_process(_delta:float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
