@@ -84,9 +84,11 @@ func blindfold_decision_end(_result:String) -> void:
 	signal_container.add_connection($procedure_game.procedure_end, blindfold_game_end)
 	$procedure_game.start()
 
-
 func blindfold_game_end(_result:String) -> void:
 	signal_container.disconnect_all()
+	if _result == "":
+		interact_carnation_end()
+		return
 	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
 	match _result:
 		"checkmate_black":
