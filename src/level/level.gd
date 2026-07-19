@@ -21,10 +21,13 @@ func _ready() -> void:
 	var state:State = State.new()
 	chessboard.set_state(state)
 	Player.add_inspectable_item(chessboard)
-	for node:Node in get_children():
-		if node is LevelEvent:
-			events.push_back(node)
-			node.on_init()
+	var dfs_stack:Array = [self]
+	while dfs_stack.size():
+		var iter:Node = dfs_stack.pop_back()
+		dfs_stack.append_array(iter.get_children())
+		if iter is LevelEvent:
+			events.push_back(iter)
+			iter.on_init()
 	Progress.create_if_not_exist("obtains", 0)
 	Progress.create_if_not_exist("wins", 0)
 	event_start.call_deferred()
