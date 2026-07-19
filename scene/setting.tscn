@@ -645,7 +645,43 @@ label_settings = SubResource("LabelSettings_ahr6q")
 [node name="grid_container" type="GridContainer" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container" unique_id=2011370031]
 layout_mode = 2
 size_flags_horizontal = 6
-columns = 2
+columns = 3
+
+[node name="type" type="HBoxContainer" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container" unique_id=1286931170]
+layout_mode = 2
+
+[node name="label_name" type="Label" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/type" unique_id=44527497]
+layout_mode = 2
+size_flags_horizontal = 2
+focus_neighbor_left = NodePath("../../../label_name")
+focus_neighbor_top = NodePath("../../../../../../margin_container_dialog_border/v_box_container/label_explain")
+focus_neighbor_right = NodePath("../option_button")
+focus_neighbor_bottom = NodePath("../../../../label_explain")
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_xthoy")
+text = "SETTINGS_TEXT_TO_SPEECH_TYPE"
+label_settings = SubResource("LabelSettings_fhdrf")
+horizontal_alignment = 2
+
+[node name="option_button" type="OptionButton" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/type" unique_id=291727413]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../label_name")
+focus_neighbor_top = NodePath("../../../../../../margin_container_dialog_border/v_box_container/label_explain")
+focus_neighbor_right = NodePath("../../volume/label_name")
+focus_neighbor_bottom = NodePath("../../../../label_explain")
+theme_override_fonts/font = ExtResource("1_xthoy")
+text_overrun_behavior = 1
+clip_text = true
+selected = 0
+fit_to_longest_item = false
+item_count = 3
+popup/item_0/text = "SETTINGS_TEXT_TO_SPEECH_TYPE_SYSTEM"
+popup/item_0/id = 0
+popup/item_1/text = "SETTINGS_TEXT_TO_SPEECH_TYPE_ONLINE"
+popup/item_1/id = 1
+popup/item_2/text = "SETTINGS_TEXT_TO_SPEECH_TYPE_CLIPBOARD"
+popup/item_2/id = 2
 
 [node name="voice" type="HBoxContainer" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container" unique_id=1399663758]
 layout_mode = 2
@@ -672,6 +708,7 @@ focus_neighbor_left = NodePath("../label_name")
 focus_neighbor_top = NodePath("../../../../../../margin_container_dialog_border/v_box_container/label_explain")
 focus_neighbor_right = NodePath("../../volume/label_name")
 focus_neighbor_bottom = NodePath("../../../../label_explain")
+theme_override_fonts/font = ExtResource("1_xthoy")
 text_overrun_behavior = 1
 clip_text = true
 fit_to_longest_item = false

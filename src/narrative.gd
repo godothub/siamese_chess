@@ -1,8 +1,87 @@
 extends Node
 
+class LanguageVoiceList:
+	var system_name:PackedStringArray = []
+	var system_key:PackedStringArray = []
+	var online_name:PackedStringArray = []
+	var online_key:PackedStringArray = []
+var language_voice_list:Dictionary[String, LanguageVoiceList] = {}
+var request_tts:HTTPRequest = HTTPRequest.new()
+var audio_stream_player_tts:AudioStreamPlayer = AudioStreamPlayer.new()
+var mutex:Mutex = Mutex.new()
+
+func _ready() -> void:
+	add_child(request_tts)
+	add_child(audio_stream_player_tts)
+	update_voice_list()
+	request_tts.connect("request_completed", func(_result:int, _response_code:int, _header:PackedStringArray, _body:PackedByteArray):
+		var audio_stream:AudioStreamMP3 = AudioStreamMP3.load_from_buffer(_body)
+		if !audio_stream:
+			return
+		audio_stream_player_tts.stream = audio_stream
+		audio_stream_player_tts.play()
+	)
+
+func update_voice_list() -> void:
+	mutex.lock()
+	for lang:String in Setting.languages.keys():
+		language_voice_list[lang] = LanguageVoiceList.new()
+		language_voice_list[lang].system_name = DisplayServer.tts_get_voices_for_language(lang)
+		language_voice_list[lang].system_key = DisplayServer.tts_get_voices_for_language(lang)
+		var espeak_lang:String = "en" if lang == "en" else "zh"
+		var request_voice_list:HTTPRequest = HTTPRequest.new()
+		add_child(request_voice_list)
+		request_voice_list.connect("request_completed", online_request_result.bind(lang), CONNECT_ONE_SHOT)
+		request_voice_list.request("https://api.famulan.uk:5000/voice_list?lang=" + espeak_lang)
+		await request_voice_list.request_completed
+		request_voice_list.queue_free()
+	mutex.unlock()
+
+func online_request_result(_result:int, _response_code:int, _header:PackedStringArray, _body:PackedByteArray, lang:String) -> void:
+	if (_response_code != 200):
+		return
+	var result = _body.get_string_from_utf8()
+	var result_splited = result.split(",")
+	language_voice_list[lang].online_name.clear()
+	language_voice_list[lang].online_key.clear()
+	for i:int in range(0, result_splited.size(), 2):
+		language_voice_list[lang].online_name.push_back(result_splited[i])
+	for i:int in range(1, result_splited.size(), 2):
+		language_voice_list[lang].online_key.push_back(result_splited[i])
+
+func get_voice_list() -> PackedStringArray:
+	mutex.lock()
+	match Setting.get_value("text_to_speech_type"):
+		0:
+			return language_voice_list[TranslationServer.get_locale()].system_name
+		1:
+			return language_voice_list[TranslationServer.get_locale()].online_name
+		2:
+			return ["-"]	# 剪贴板不用自行选声音
+	return []
+	mutex.unlock()
+
+func set_voice(index:int) -> void:
+	match Setting.get_value("text_to_speech_type"):
+		0:
+			if index < language_voice_list[TranslationServer.get_locale()].system_key.size():
+				Setting.set_value("voice", language_voice_list[TranslationServer.get_locale()].system_key[index])
+		1:
+			if index < language_voice_list[TranslationServer.get_locale()].online_key.size():
+				Setting.set_value("voice", language_voice_list[TranslationServer.get_locale()].online_key[index])
+
 func speak(content:String, interrupted:bool = false) -> void:
 	if Setting.get_value("text_to_speech"):
-		DisplayServer.tts_speak(content, Setting.get_value("voice"), Setting.get_value("text_to_speech_volume"), Setting.get_value("text_to_speech_pitch") / 100.0, Setting.get_value("text_to_speech_speed") / 100.0, 0, interrupted)
+		if Setting.get_value("text_to_speech_type") == 0:
+			if Setting.get_value("voice"):
+				DisplayServer.tts_speak(content, Setting.get_value("voice"), Setting.get_value("text_to_speech_volume"), Setting.get_value("text_to_speech_pitch") / 100.0, Setting.get_value("text_to_speech_speed") / 100.0, 0, interrupted)
+		elif Setting.get_value("text_to_speech_type") == 1:
+			if Setting.get_value("voice"):
+				request_tts.cancel_request()
+				var temp_instance:HTTPClient = HTTPClient.new()
+				request_tts.request("https://api.famulan.uk:5000/tts?" + temp_instance.query_string_from_dict({ "voice": Setting.get_value("voice"), "speed": int(round(Setting.get_value("text_to_speech_speed") / 200.0 * (450 - 80) + 80)), "pitch": int(round(Setting.get_value("text_to_speech_pitch") / 200.0 * 99.0)) }), ["Content-Type: text/plain"], HTTPClient.METHOD_POST, content)
+		else:
+			DisplayServer.clipboard_set(content)
 	print(content)
 
 func stop() -> void:

@@ -22,8 +22,6 @@ var languages:Dictionary[String, String] = {
 	"zh_CN": "简体中文"
 }
 
-var voices:PackedStringArray = []
-
 var axis:Array[Vector2i] = [
 	Vector2(1, 1),
 	Vector2(1, -1),
@@ -47,6 +45,7 @@ var table:Dictionary = {}
 @onready var language_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/option_button
 @onready var dialog_border_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/check_box
 @onready var text_to_speech_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/check_box
+@onready var text_to_speech_type_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/type/option_button
 @onready var text_to_speech_voice_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/voice/option_button
 @onready var text_to_speech_volume_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/volume/spin_box
 @onready var text_to_speech_speed_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/speed/spin_box
@@ -81,6 +80,7 @@ func _ready() -> void:
 	language_input.connect("item_selected", set_language)
 	dialog_border_input.connect("toggled", set_dialog_border)
 	text_to_speech_input.connect("toggled", set_text_to_speech)
+	text_to_speech_type_input.connect("item_selected", set_text_to_speech_type)
 	text_to_speech_voice_input.connect("item_selected", set_text_to_speech_voice)
 	text_to_speech_volume_input.connect("value_changed", set_text_to_speech_volume)
 	text_to_speech_speed_input.connect("value_changed", set_text_to_speech_speed)
@@ -91,40 +91,27 @@ func _ready() -> void:
 	reset_progress_input.connect("pressed", set_reset_progress)
 	$texture_rect/button_close.connect("pressed", close)
 
-	resolution_input.select(table.get_or_add("resolution", 0))
 	set_resolution(table.get_or_add("resolution"))
-	content_scale_input.set_value_no_signal(table.get_or_add("content_scale", 100))
-	content_scale_input.value_changed.emit(content_scale_input.value)	# 强制发送信号
-	fullscreen_input.set_pressed(table.get_or_add("fullscreen", false))
-	fps_input.select(table.get_or_add("fps", 6))
+	set_content_scale(table.get_or_add("content_scale", 100))	# 强制发送信号
 	set_fps(table.get_or_add("fps"))
-	vsync_input.set_pressed(table.get_or_add("vsync", true))
-	master_volume_input.set_value_no_signal(table.get_or_add("master_volume", 80))
-	master_volume_input.value_changed.emit(master_volume_input.value)
-	sfx_volume_input.set_value_no_signal(table.get_or_add("sfx_volume", 80))
-	sfx_volume_input.value_changed.emit(sfx_volume_input.value)
-	env_volume_input.set_value_no_signal(table.get_or_add("env_volume", 80))
-	env_volume_input.value_changed.emit(env_volume_input.value)
-	language_input.select(table.get_or_add("language", languages.keys().find(TranslationServer.get_locale())))
-	dialog_border_input.set_pressed(table.get_or_add("dialog_border", false))
-	text_to_speech_input.set_pressed(table.get_or_add("text_to_speech", false))
-	update_voice()
-	text_to_speech_voice_input.select(table.get_or_add("text_to_speech_voice", 0))
-	text_to_speech_volume_input.set_value_no_signal(table.get_or_add("text_to_speech_volume", 80))
-	text_to_speech_volume_input.value_changed.emit(text_to_speech_volume_input.value)
-	text_to_speech_speed_input.set_value_no_signal(table.get_or_add("text_to_speech_speed", 100))
-	text_to_speech_speed_input.value_changed.emit(text_to_speech_speed_input.value)
-	text_to_speech_pitch_input.set_value_no_signal(table.get_or_add("text_to_speech_pitch", 100))
-	text_to_speech_pitch_input.value_changed.emit(text_to_speech_pitch_input.value)
-	touch_gesture_input.set_pressed(table.get_or_add("touch_gesture", false))
-	relax_input.set_pressed(table.get_or_add("relax", false))
-	camera_move_speed_input.set_value_no_signal(table.get_or_add("camera_move_speed", 50))
-	camera_move_speed_input.value_changed.emit(camera_move_speed_input.value)
-	camera_rotate_sensitive_input.set_value_no_signal(table.get_or_add("camera_rotate_sensitive", 50))
-	camera_rotate_sensitive_input.value_changed.emit(camera_rotate_sensitive_input.value)
-	camera_rotate_axis_input.select(table.get_or_add("camera_rotate_axis", 0))
+	set_fullscreen(table.get_or_add("fullscreen", false))
+	set_vsync(table.get_or_add("vsync", true))
+	set_dialog_border(table.get_or_add("dialog_border", false))
+	set_text_to_speech(table.get_or_add("text_to_speech", false))
+	set_touch_gesture(table.get_or_add("touch_gesture", false))
+	set_relax(table.get_or_add("relax", false))
+
+	set_master_volume(table.get_or_add("master_volume", 80))
+	set_sfx_volume(table.get_or_add("sfx_volume", 80))
+	set_env_volume(table.get_or_add("env_volume", 80))
+	TranslationServer.set_locale(languages.keys()[table.get("language")])
+	language_changed.emit()
+	set_text_to_speech_volume(table.get_or_add("text_to_speech_volume", 80))
+	set_text_to_speech_speed(table.get_or_add("text_to_speech_speed", 100))
+	set_text_to_speech_pitch(table.get_or_add("text_to_speech_pitch", 100))
+	set_camera_move_speed(table.get_or_add("camera_move_speed", 50))
+	set_camera_rotate_sensitive(table.get_or_add("camera_rotate_sensitive", 50))
 	visible = false
-	set_language(table.get_or_add("language"))
 
 	$texture_rect/tab_container.connect("tab_hovered", hover_tab)
 	$texture_rect/tab_container.get_tab_bar().connect("focus_entered", focus_tab)
@@ -137,6 +124,8 @@ func _ready() -> void:
 	while dfs_stack.size():
 		var iter:Node = dfs_stack.pop_back()
 		dfs_stack.append_array(iter.get_children())
+		if iter == $texture_rect/button_close:
+			continue
 		if iter is Label:
 			iter.connect("mouse_entered", hover_label.bind(iter))
 			iter.focus_mode = Control.FOCUS_ALL
@@ -168,6 +157,28 @@ func open() -> void:
 	set_physics_process(true)
 	$audio_stream_player_open.play()
 	$texture_rect/tab_container.get_tab_bar().grab_focus()
+	update_voice_list()
+	resolution_input.select(table.get_or_add("resolution", 0))
+	content_scale_input.set_value_no_signal(table.get_or_add("content_scale", 100))
+	fullscreen_input.set_pressed_no_signal(table.get_or_add("fullscreen", false))
+	fps_input.select(table.get_or_add("fps", 6))
+	vsync_input.set_pressed_no_signal(table.get_or_add("vsync", true))
+	master_volume_input.set_value_no_signal(table.get_or_add("master_volume", 80))
+	sfx_volume_input.set_value_no_signal(table.get_or_add("sfx_volume", 80))
+	env_volume_input.set_value_no_signal(table.get_or_add("env_volume", 80))
+	language_input.select(table.get_or_add("language", languages.keys().find(TranslationServer.get_locale())))
+	dialog_border_input.set_pressed_no_signal(table.get_or_add("dialog_border", false))
+	text_to_speech_input.set_pressed_no_signal(table.get_or_add("text_to_speech", false))
+	text_to_speech_type_input.select(table.get_or_add("text_to_speech_type", 0))
+	text_to_speech_voice_input.select(table.get_or_add("text_to_speech_voice", -1))
+	text_to_speech_volume_input.set_value_no_signal(table.get_or_add("text_to_speech_volume", 80))
+	text_to_speech_speed_input.set_value_no_signal(table.get_or_add("text_to_speech_speed", 100))
+	text_to_speech_pitch_input.set_value_no_signal(table.get_or_add("text_to_speech_pitch", 100))
+	touch_gesture_input.set_pressed_no_signal(table.get_or_add("touch_gesture", false))
+	relax_input.set_pressed_no_signal(table.get_or_add("relax", false))
+	camera_move_speed_input.set_value_no_signal(table.get_or_add("camera_move_speed", 50))
+	camera_rotate_sensitive_input.set_value_no_signal(table.get_or_add("camera_rotate_sensitive", 50))
+	camera_rotate_axis_input.select(table.get_or_add("camera_rotate_axis", 0))
 
 func close() -> void:
 	$audio_stream_player_confirm.play()
@@ -190,6 +201,9 @@ func save_file() -> void:
 
 func get_value(key:String) -> Variant:
 	return table[key]
+
+func set_value(key:String, value:Variant) -> void:
+	table[key] = value
 
 func read_close() -> void:
 	$audio_stream_player_select.play()
@@ -324,8 +338,8 @@ func set_language(index:int) -> void:
 	table.set("language", index)
 	TranslationServer.set_locale(languages.keys()[index])
 	language_changed.emit()
-	if table.get_or_add("text_to_speech", false):
-		update_voice()
+	update_voice_list()
+	set_text_to_speech_voice(0)
 
 func set_dialog_border(toggled_on:bool) -> void:
 	table.set("dialog_border", toggled_on)
@@ -333,15 +347,15 @@ func set_dialog_border(toggled_on:bool) -> void:
 
 func set_text_to_speech(toggled_on:bool) -> void:
 	table.set("text_to_speech", toggled_on)
-	if toggled_on:
-		update_voice()
+
+func set_text_to_speech_type(index:int) -> void:
+	table.set("text_to_speech_type", index)
+	update_voice_list()
+	set_text_to_speech_voice(0)
 
 func set_text_to_speech_voice(index:int) -> void:
 	table.set("text_to_speech_voice", index)
-	if index < voices.size():
-		table.set("voice", voices[index])
-	else:
-		table.set("voice", "")
+	Narrative.set_voice(index)
 
 func set_text_to_speech_volume(value:float) -> void:
 	table.set("text_to_speech_volume", value)
@@ -352,15 +366,13 @@ func set_text_to_speech_speed(value:float) -> void:
 func set_text_to_speech_pitch(value:float) -> void:
 	table.set("text_to_speech_pitch", value)
 
-func update_voice() -> void:
-	voices = DisplayServer.tts_get_voices_for_language(TranslationServer.get_locale())
+func update_voice_list() -> void:
+	var voices:PackedStringArray = Narrative.get_voice_list()
 	if voices.size() == 0:
 		return
 	text_to_speech_voice_input.clear()
 	for iter:String in voices:
 		text_to_speech_voice_input.add_item(iter)
-	var voice:String = voices[0]
-	table.set("voice", voice)
 
 func set_touch_gesture(toggled_on:bool) -> void:
 	table.set("touch_gesture", toggled_on)
