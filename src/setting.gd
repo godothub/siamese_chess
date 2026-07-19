@@ -131,84 +131,30 @@ func _ready() -> void:
 	$texture_rect/tab_container.connect("tab_selected", selected_tab)
 	$texture_rect/button_close.connect("mouse_entered", read_close)
 	$texture_rect/button_close.connect("focus_entered", read_close)
-	var labels:Array = [
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container/label_name,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container/label_name,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container/label_name,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container/label_name,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container/label_name,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/label_name,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/label_explain,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/label_explain,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/label_name_voice,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/label_name_volume,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/label_name_speed,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/label_name_pitch,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/label_explain,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/label_name,
-		$texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/label_explain,
-		$texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/label_name,
-		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/label_explain,
-		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container/label_name
-	]
-	var buttons:Array = [
-		$texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/button,
-		$texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/button
-	]
-	var check_boxes:Array = [
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/check_box,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container/check_box,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/check_box,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/check_box,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/h_box_container/check_box,
-		$texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container/check_box
-	]
-	var option_buttons:Array = [
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container/option_button,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/option_button,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/option_button,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/option_button,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/option_button_voice
-	]
-	var spinbox:Array = [
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container/spin_box,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container/spin_box,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container/spin_box,
-		$texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container/spin_box,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container/spin_box,
-		$texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container/spin_box,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/spin_box_volume,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/spin_box_speed,
-		$texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/spin_box_pitch
-	]
-	
-	for iter:Label in labels:
+
+	# 堆栈DFS找全部节点
+	var dfs_stack:Array = [self]
+	while dfs_stack.size():
+		var iter:Node = dfs_stack.pop_back()
+		dfs_stack.append_array(iter.get_children())
+		if iter is Label:
 		iter.connect("mouse_entered", hover_label.bind(iter))
 		iter.focus_mode = Control.FOCUS_ALL
 		iter.connect("focus_entered", hover_label.bind(iter))
-	for iter:Button in buttons:
+		if iter is Button:
 		iter.connect("mouse_entered", hover_label.bind(iter))
 		iter.connect("focus_entered", hover_label.bind(iter))
-	for iter:CheckBox in check_boxes:
+		if iter is CheckBox:
 		iter.connect("mouse_entered", hover_check_box.bind(iter))
 		iter.connect("focus_entered", hover_check_box.bind(iter))
 		iter.connect("toggled", change_check_box)
-	for iter:OptionButton in option_buttons:
+		if iter is OptionButton:
 		iter.connect("mouse_entered", hover_option_button.bind(iter))
 		iter.connect("focus_entered", hover_option_button.bind(iter))
 		iter.connect("toggled", show_option_button)
 		iter.connect("item_focused", hover_option_button_selection.bind(iter))
 		iter.connect("item_selected", selected_option_button.bind(iter))
-	for iter:SpinBox in spinbox:
+		if iter is SpinBox:
 		iter.connect("mouse_entered", hover_spinbox.bind(iter))
 		iter.connect("focus_entered", hover_spinbox.bind(iter))
 		iter.connect("value_changed", change_spinbox)
