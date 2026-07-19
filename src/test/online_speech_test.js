@@ -47,11 +47,29 @@ app.get("/voice_list", async (req, res) => {
 	await exec(`espeak --voices=${lang}`, (err, stdout, stderr) => {
 		if (err)
 		{
-			console.log(stderr);
+            console.log(stderr);
 			res.send("runtime error");
 			return;
 		}
-		res.send(stdout);
+        var lines = stdout.split("\n");
+        //根据控制台输出排版得出来要搜索的下标位置
+        var gender_index = lines[0].search("nder VoiceName");
+        var name_index = lines[0].search("r VoiceName");
+        var file_index = lines[0].search("File");
+        var result = []
+        for (var i = 1; i < lines.length; i++)
+        {
+            if (lines[i].length <= file_index)
+            {
+                continue;
+            }
+            var gender = lines[i].substring(gender_index).match(/\S*/);
+            var name = lines[i].substring(name_index).match(/\S*/);
+            var file = lines[i].substring(file_index).match(/\S*/);
+            result.push(gender + " " + name);
+            result.push(file);
+        }
+		res.send(result.toString());
 	});
 });
 
