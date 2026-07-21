@@ -14,8 +14,8 @@ func _ready() -> void:
 	tts_submit.connect("pressed", send_tts)
 	tts_request.set_tls_options(TLSOptions.client())
 	tts_request.connect("request_completed", receive_tts)
-	asr_submit.connect("button_down", record_asr)
-	asr_submit.connect("button_up", send_asr)
+	asr_submit.connect("pressed", record_asr)
+	asr_request.connect("request_completed", receive_asr)
 	var record_idx = AudioServer.get_bus_index("Record")
 	asr_record_effect = AudioServer.get_bus_effect(record_idx, 0)
 
@@ -30,12 +30,14 @@ func receive_tts(_result:int, _response_code:int, _headers:PackedStringArray, bo
 	tts_result.play()
 
 func record_asr() -> void:
-	asr_record_effect.set_recording_active(true)
-
-func send_asr() -> void:
-	var recording:PackedByteArray = asr_record_effect.get_recording().data
-	asr_record_effect.set_recording_active(false)
-	asr_request.request_raw("https://api.famulan.uk:5000/asr", ["Content-Type: audio/wav"], HTTPClient.METHOD_POST, recording)
+	if !asr_record_effect.is_recording_active():
+		asr_record_effect.set_recording_active(true)
+		asr_submit.text = "speaking"
+	else:
+		asr_submit.text = "speak"
+		var recording:PackedByteArray = asr_record_effect.get_recording().data
+		asr_record_effect.set_recording_active(false)
+		asr_request.request_raw("https://api.famulan.uk:5000/asr", ["Content-Type: audio/wav"], HTTPClient.METHOD_POST, recording)
 
 func receive_asr(_result:int, _response_code:int, _headers:PackedStringArray, body:PackedByteArray) -> void:
 	asr_result.text = body.get_string_from_utf8()
