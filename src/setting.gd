@@ -91,9 +91,9 @@ func _ready() -> void:
 	reset_progress_input.connect("pressed", set_reset_progress)
 	$texture_rect/button_close.connect("pressed", close)
 
-	set_resolution(table.get_or_add("resolution"))
+	set_resolution(table.get_or_add("resolution", 0))
 	set_content_scale(table.get_or_add("content_scale", 100))	# 强制发送信号
-	set_fps(table.get_or_add("fps"))
+	set_fps(table.get_or_add("fps", 0))
 	set_fullscreen(table.get_or_add("fullscreen", false))
 	set_vsync(table.get_or_add("vsync", true))
 	set_dialog_border(table.get_or_add("dialog_border", false))
