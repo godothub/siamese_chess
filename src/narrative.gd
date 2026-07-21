@@ -46,7 +46,6 @@ func voice_list_request_result(_result:int, _response_code:int, _header:PackedSt
 		language_voice_list[lang].online_key.push_back(result_splited[i])
 
 func get_voice_list() -> PackedStringArray:
-	mutex.lock()
 	match Setting.get_value("text_to_speech_type"):
 		0:
 			return language_voice_list[TranslationServer.get_locale()].system_name
@@ -55,7 +54,6 @@ func get_voice_list() -> PackedStringArray:
 		2:
 			return ["-"]	# 剪贴板不用自行选声音
 	return []
-	mutex.unlock()
 
 func set_voice(index:int) -> void:
 	match Setting.get_value("text_to_speech_type"):
@@ -89,6 +87,7 @@ func next_content() -> void:
 				tts_request(content)
 		else:
 			DisplayServer.clipboard_set(content)
+			content_queue.pop_front()
 	print(content)
 
 func tts_request(content:String) -> void:
