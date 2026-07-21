@@ -68,6 +68,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="audio_stream_player" type="AudioStreamPlayer" parent="margin_container/v_box_container/margin_container_asr/h_box_container" unique_id=1987785871]
 stream = SubResource("AudioStreamMicrophone_g28q7")
+autoplay = true
 bus = &"Record"
 
 [node name="http_request" type="HTTPRequest" parent="margin_container/v_box_container/margin_container_asr/h_box_container" unique_id=1525201571]
