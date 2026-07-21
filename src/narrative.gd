@@ -66,10 +66,12 @@ func set_voice(index:int) -> void:
 
 func speak(content:String, interrupted:bool = false) -> void:
 	if interrupted:
+		if Setting.get_value("text_to_speech_type") == 0:
+			DisplayServer.tts_stop()
+		if Setting.get_value("text_to_speech_type") == 1:
+			request_tts.cancel_request()
+			audio_stream_player_tts.stop()
 		content_queue.clear()
-		DisplayServer.tts_stop()
-		request_tts.cancel_request()
-		audio_stream_player_tts.stop()
 	content_queue.push_back(content)
 	if content_queue.size() == 1:
 		next_content()
