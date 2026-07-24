@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bjk65cu85sbxm"]
+
+[ext_resource type="Script" uid="uid://cf4rr61nnnf1v" path="res://src/spinbox.gd" id="1_uu46r"]
+[ext_resource type="Texture2D" uid="uid://b3h5i5knx1au4" path="res://assets/texture/spinbox_left.svg" id="2_eg452"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_yiam2"]
+[ext_resource type="Texture2D" uid="uid://cpcf2i3iu5t1x" path="res://assets/texture/spinbox_right.svg" id="3_yiam2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eg452"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yiam2"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 10
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tilgu"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="control" type="Control" unique_id=1640801570]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="Panel" parent="." unique_id=969269949]
+layout_mode = 0
+offset_left = -134.0
+offset_top = -84.0
+offset_right = 144.0
+offset_bottom = 50.0
+
+[node name="siamese_spin_box" type="Control" parent="." unique_id=673150327]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -30.0
+offset_right = 67.0
+offset_bottom = 11.0
+focus_mode = 2
+script = ExtResource("1_uu46r")
+suffex = "%"
+font = ExtResource("2_yiam2")
+font_size = 24
+texture_left = ExtResource("2_eg452")
+texture_right = ExtResource("3_yiam2")
+stylebox_normal = SubResource("StyleBoxFlat_eg452")
+stylebox_focus = SubResource("StyleBoxFlat_yiam2")
+stylebox_button = SubResource("StyleBoxFlat_tilgu")
+metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
