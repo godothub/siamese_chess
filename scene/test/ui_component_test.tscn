@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3h5i5knx1au4" path="res://assets/texture/spinbox_left.svg" id="2_eg452"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_yiam2"]
 [ext_resource type="Texture2D" uid="uid://cpcf2i3iu5t1x" path="res://assets/texture/spinbox_right.svg" id="3_yiam2"]
+[ext_resource type="Script" uid="uid://dg4udidalp35" path="res://src/option_button.gd" id="5_tilgu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eg452"]
 bg_color = Color(0, 0, 0, 1)
@@ -25,6 +26,12 @@ shadow_size = 3
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tilgu"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bv4ya"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nv6kn"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="control" type="Control" unique_id=1640801570]
 layout_mode = 3
 anchors_preset = 8
@@ -37,10 +44,10 @@ grow_vertical = 2
 
 [node name="panel" type="Panel" parent="." unique_id=969269949]
 layout_mode = 0
-offset_left = -134.0
-offset_top = -84.0
-offset_right = 144.0
-offset_bottom = 50.0
+offset_left = -135.0
+offset_top = -81.0
+offset_right = 143.0
+offset_bottom = 53.0
 
 [node name="siamese_spin_box" type="Control" parent="." unique_id=673150327]
 custom_minimum_size = Vector2(20, 20)
@@ -63,3 +70,21 @@ stylebox_normal = SubResource("StyleBoxFlat_eg452")
 stylebox_focus = SubResource("StyleBoxFlat_yiam2")
 stylebox_button = SubResource("StyleBoxFlat_tilgu")
 metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
+
+[node name="siamese_option_button" type="Control" parent="." unique_id=1525740101]
+anchors_preset = 0
+offset_left = -67.0
+offset_top = 11.0
+offset_right = 68.0
+offset_bottom = 48.0
+focus_mode = 2
+script = ExtResource("5_tilgu")
+item_list = PackedStringArray("TEST", "SELECTION")
+font = ExtResource("2_yiam2")
+font_size = 15
+texture_left = ExtResource("2_eg452")
+texture_right = ExtResource("3_yiam2")
+stylebox_normal = SubResource("StyleBoxFlat_bv4ya")
+stylebox_focus = SubResource("StyleBoxFlat_yiam2")
+stylebox_button = SubResource("StyleBoxFlat_nv6kn")
+metadata/_custom_type_script = "uid://dg4udidalp35"
