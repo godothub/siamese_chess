@@ -17,6 +17,7 @@ app.use(express.raw({type: "audio/wav"}))
 
 app.post("/tts", async (req, res) => {
 	var content = req.body;
+	content = content.replaceAll(/"/g, "\\\"")
 	console.log(content);
 	if (!content)
 	{
@@ -24,8 +25,11 @@ app.post("/tts", async (req, res) => {
 		return;
 	}
 	var voice = req.query.voice ?? "default";
+	voice = voice.replaceAll(/(^[A-Za-z0-9\/-])*/g, "")	//注意数据清洗
 	var speed = req.query.speed ?? "100";
+	speed = speed.replaceAll(/[^0-9]*/g, "")
 	var pitch = req.query.pitch ?? "50";
+	pitch = pitch.replaceAll(/[^0-9]*/g, "")
 	var file = "/tmp/" + uuid.v4() + ".mp3";
 	console.log(`${voice} ${content} ${speed} ${pitch}`);
 	await exec(`espeak "${content}" -v ${voice} -s ${speed} -p ${pitch} --stdout | ffmpeg -i pipe:0 -q:a 9 -ar 11025 -ac 1 -acodec libmp3lame ${file}`, (err, stdout, stderr) => {
@@ -44,6 +48,7 @@ app.post("/tts", async (req, res) => {
 
 app.get("/voice_list", async (req, res) => {
 	var lang = req.query["lang"]
+	lang = lang.replaceAll(/(^[A-Za-z0-9\/-])*/g, "")
 	await exec(`espeak --voices=${lang}`, (err, stdout, stderr) => {
 		if (err)
 		{
