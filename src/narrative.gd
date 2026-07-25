@@ -5,6 +5,7 @@ class LanguageVoiceList:
 	var system_key:PackedStringArray = []
 	var online_name:PackedStringArray = []
 	var online_key:PackedStringArray = []
+	var ready:bool = false
 
 var language_voice_list:Dictionary[String, LanguageVoiceList] = {}
 var request_tts:HTTPRequest = HTTPRequest.new()
@@ -38,13 +39,16 @@ func voice_list_request_result(_body:PackedByteArray, lang:String) -> void:
 		language_voice_list[lang].online_name.push_back(result_splited[i])
 	for i:int in range(1, result_splited.size(), 2):
 		language_voice_list[lang].online_key.push_back(result_splited[i])
+	language_voice_list[lang].ready = true
 
 func get_voice_list() -> PackedStringArray:
 	match Setting.get_value("text_to_speech_type"):
 		0:
 			return language_voice_list[TranslationServer.get_locale()].system_name
 		1:
-			return language_voice_list[TranslationServer.get_locale()].online_name
+			if language_voice_list[TranslationServer.get_locale()].ready:
+				return language_voice_list[TranslationServer.get_locale()].online_name
+			return ["-"]
 		2:
 			return ["-"]	# 剪贴板不用自行选声音
 	return []
