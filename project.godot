@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 
 [audio]
 
+buses/default_bus_layout="res://default_bus_layout.tres"
 general/text_to_speech=true
 driver/enable_input=true
 
@@ -41,6 +42,7 @@ Gesture="*res://src/gesture.gd"
 TouchscreenInputManager="*res://addons/gdtim/InputManager.gd"
 Narrative="*res://src/narrative.gd"
 Localization="*res://src/lang/localization.gd"
+Network="*res://src/network.gd"
 
 [debug]
 

@@ -5,6 +5,7 @@ class LanguageVoiceList:
 	var system_key:PackedStringArray = []
 	var online_name:PackedStringArray = []
 	var online_key:PackedStringArray = []
+
 var language_voice_list:Dictionary[String, LanguageVoiceList] = {}
 var request_tts:HTTPRequest = HTTPRequest.new()
 var audio_stream_player_tts:AudioStreamPlayer = AudioStreamPlayer.new()
@@ -25,17 +26,10 @@ func update_voice_list() -> void:
 		language_voice_list[lang].system_name = DisplayServer.tts_get_voices_for_language(lang)
 		language_voice_list[lang].system_key = DisplayServer.tts_get_voices_for_language(lang)
 		var espeak_lang:String = "en" if lang == "en" else "zh"
-		var request_voice_list:HTTPRequest = HTTPRequest.new()
-		add_child(request_voice_list)
-		request_voice_list.connect("request_completed", voice_list_request_result.bind(lang), CONNECT_ONE_SHOT)
-		request_voice_list.request("https://api.famulan.uk:5000/voice_list?lang=" + espeak_lang)
-		await request_voice_list.request_completed
-		request_voice_list.queue_free()
+		Network.get_request("/voice_list", {"lang": espeak_lang}, voice_list_request_result.bind(lang))
 	mutex.unlock()
 
-func voice_list_request_result(_result:int, _response_code:int, _header:PackedStringArray, _body:PackedByteArray, lang:String) -> void:
-	if (_response_code != 200):
-		return
+func voice_list_request_result(_body:PackedByteArray, lang:String) -> void:
 	var result = _body.get_string_from_utf8()
 	var result_splited = result.split(",")
 	language_voice_list[lang].online_name.clear()
@@ -93,23 +87,22 @@ func next_content() -> void:
 	print(content)
 
 func tts_request(content:String) -> void:
-	request_tts.cancel_request()
 	# 说到底谁设计的API，query_string_from_dict本应该是静态函数的但结果不是
-	var temp_instance:HTTPClient = HTTPClient.new()
-	request_tts.request("https://api.famulan.uk:5000/tts?" +
-		temp_instance.query_string_from_dict({
+	Network.post_request("/tts", {
 			"voice": Setting.get_value("voice"),
 			"speed": int(round(Setting.get_value("text_to_speech_speed") / 200.0 * (450 - 80) + 80)),
-			"pitch": int(round(Setting.get_value("text_to_speech_pitch") / 200.0 * 99.0)) }),
-		["Content-Type: text/plain"],
-		HTTPClient.METHOD_POST,
-		content)
+			"pitch": int(round(Setting.get_value("text_to_speech_pitch") / 200.0 * 99.0))
+		},
+		"text/plain",
+		content.to_utf8_buffer(),
+		tts_request_result
+	)
 
 func tts_utterance_end(_char_index:int, _utteracne_id:int) -> void:
 	content_queue.pop_front()
 	next_content()
 
-func tts_request_result(_result:int, _response_code:int, _header:PackedStringArray, _body:PackedByteArray) -> void:
+func tts_request_result(_body:PackedByteArray) -> void:
 	content_queue.pop_front()
 	var audio_stream:AudioStreamMP3 = AudioStreamMP3.load_from_buffer(_body)
 	if !audio_stream:
