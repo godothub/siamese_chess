@@ -550,11 +550,11 @@ int PastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _beta, 
 			beta_cutoff++;
 			return _beta;
 		}
-		int big_delta = 975;
-		if (score_relative < _alpha - big_delta && !Chess::is_promote(_state, move_list[i]))
-		{
-			return _alpha;
-		}
+		//int big_delta = 975;
+		//if (score_relative < _alpha - big_delta && !Chess::is_promote(_state, move_list[i]))
+		//{
+		//	return _alpha;
+		//}
 		if (test_score > _alpha)
 		{
 			_alpha = test_score;
@@ -722,7 +722,7 @@ void PastorEngine::search(const godot::Ref<State> &_state, int _group, const god
 	{
 		map_history_state[history_state[i]]++;
 	}
-	for (int i = 2; i <= max_depth; i += 2)
+	for (int i = 1; i <= max_depth; i++)
 	{
 		alphabeta(_state, -WIN, WIN, i, _group, 0, true, false, nullptr, nullptr, alternative_threshold, _debug_output);
 		if (time_passed() >= think_time || interrupted)
