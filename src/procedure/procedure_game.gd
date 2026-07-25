@@ -203,12 +203,12 @@ func state_ready_engine(_arg:Dictionary) -> void:
 	if !Setting.get_value("relax"):
 		engine.set_max_depth(engine_standard_think_depth)
 		engine.set_think_time(engine_standard_think_time)
-		engine.set_quies_enabled(false)
+		engine.set_quies_enabled(true)
 	else:
 		engine.set_max_depth(engine_relax_think_depth)
 		engine.set_think_time(engine_relax_think_time)
-		engine.set_quies_enabled(true)
-	engine.start_search(chessboard.state, chessboard.state.get_turn(), history_zobrist, Callable())
+		engine.set_quies_enabled(false)
+	engine.start_search(chessboard.state, chessboard.state.get_turn(), history_zobrist)
 	if premove_state_machine.current_state == "stop" && player_group != 2 && player_group != 3:
 		premove_state_machine.change_state.call_deferred("start")
 
