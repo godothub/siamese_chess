@@ -2,13 +2,14 @@
 extends Control
 class_name SiameseOptionButton
 
-signal selected(index:int)
+signal item_selected(index:int)
 
 @export var index:int = -1
 @export var item_list:PackedStringArray = []
-
+@export var longest_text_length:bool = false
+@export var clip_text:bool = false
 @export var font:Font = load("res://assets/fonts/FangZhengShuSongJianTi-1.ttf")
-@export var font_size:int = 28
+@export var font_size:int = 22
 @export var font_color:Color = Color(1, 1, 1, 1)
 @export var font_color_selected:Color = Color(0.7, 0, 0, 1)
 @export var texture_left:Texture2D = load("res://assets/texture/spinbox_left.svg")
@@ -20,25 +21,52 @@ signal selected(index:int)
 var is_editing:bool = false
 
 func _draw() -> void:
+	custom_minimum_size.y = max(texture_left.get_size().y, texture_right.get_size().y)
+	if longest_text_length:
+		var max_length:float = 40
+		for text:String in item_list:
+			var current_text_length:float = font.get_string_size(tr(text), HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x
+			max_length = max(max_length, current_text_length)
+		custom_minimum_size.x = size.y * 2 + 20 + max_length
+	else:
+		custom_minimum_size.x = size.y * 2 + 20 + 40
+	size.x = custom_minimum_size.x
 	var button_left_rect:Rect2 = Rect2(Vector2.ZERO, Vector2(size.y, size.y))
 	var button_right_rect:Rect2 = Rect2(Vector2(size.x - size.y, 0), Vector2(size.y, size.y))
 	stylebox_normal.draw(get_canvas_item(), Rect2(Vector2.ZERO, size))
 	stylebox_button.draw(get_canvas_item(), button_left_rect)
 	stylebox_button.draw(get_canvas_item(), button_right_rect)
+	
 	if has_focus():
 		stylebox_focus.draw(get_canvas_item(), Rect2(Vector2.ZERO, size))
-	var text:String = "-" if index == -1 else item_list[index]
-	var text_lenght:float = font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x
-	var text_baseline:float = font.get_ascent(font_size)
-	draw_string(
-		font,
-		size / 2 - Vector2(text_lenght / 2, -text_baseline / 2),
-		text,
-		HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER,
-		-1,
-		font_size,
-		font_color_selected if is_editing else font_color
-	)
+	if clip_text:
+		var text:String = "-" if index == -1 || item_list.size() <= index else item_list[index]
+		text = tr(text)
+		text = strink_string_in_length(text, 80)
+		var text_length:float = font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x
+		var text_baseline:float = font.get_ascent(font_size)
+		draw_string(
+			font,
+			size / 2 - Vector2(text_length / 2, -text_baseline / 2),
+			text,
+			HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER,
+			-1,
+			font_size,
+			font_color_selected if is_editing else font_color
+		)
+	else:
+		var text:String = "-" if index == -1 || item_list.size() <= index else item_list[index]
+		var text_length:float = font.get_string_size(tr(text), HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x
+		var text_baseline:float = font.get_ascent(font_size)
+		draw_string(
+			font,
+			size / 2 - Vector2(text_length / 2, -text_baseline / 2),
+			tr(text),
+			HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER,
+			-1,
+			font_size,
+			font_color_selected if is_editing else font_color
+		)
 	draw_texture_rect(texture_left, button_left_rect.grow(-10), false)
 	draw_texture_rect(texture_right, button_right_rect.grow(-10), false)
 
@@ -77,12 +105,20 @@ func _gui_input(event:InputEvent) -> void:
 			index %= item_list.size()
 			select(index)
 
-func select(value:int) -> void:
-	index = value
-	selected.emit(value)
+func add_item(string:String) -> void:
+	item_list.push_back(string)
+
+func clear() -> void:
+	item_list.clear()
+	index = -1
 	queue_redraw()
 
-func select_no_signal(value:int) -> void:
+func select(value:int) -> void:
+	index = value
+	item_selected.emit(value)
+	queue_redraw()
+
+func set_value_no_signal(value:int) -> void:
 	index = value
 	queue_redraw()
 
@@ -98,3 +134,14 @@ func _notification(what):
 			queue_redraw()
 		NOTIFICATION_RESIZED:
 			queue_redraw()
+
+func strink_string_in_length(text:String, length:float) -> String:
+	var l:int = 0
+	var r:int = text.length() - 1
+	while l < r:
+		var mid:int = (l + r) / 2
+		if font.get_string_size(text.substr(mid), HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x > length:
+			l = mid + 1
+		else:
+			r = mid
+	return text.substr(l)

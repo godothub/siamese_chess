@@ -2,10 +2,14 @@
 
 [ext_resource type="Script" uid="uid://sm17i1s74xa8" path="res://src/setting.gd" id="1_ahr6q"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_xthoy"]
+[ext_resource type="Script" uid="uid://dg4udidalp35" path="res://src/option_button.gd" id="3_2cy8y"]
 [ext_resource type="FontFile" uid="uid://bq5ty1txvcybm" path="res://assets/fonts/Font Awesome 7 Free-Regular-400.otf" id="3_g2to7"]
 [ext_resource type="AudioStream" uid="uid://bn0efi7nl4ro8" path="res://assets/audio/147018__xxqmanxx__socket-wrench.wav" id="4_123qk"]
+[ext_resource type="Texture2D" uid="uid://b3h5i5knx1au4" path="res://assets/texture/spinbox_left.svg" id="4_uthuq"]
 [ext_resource type="AudioStream" uid="uid://bbixsq7mcj4xx" path="res://assets/audio/561658__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-one-keypress-spacebar_96khz_mono_zoomh4n_nt5.wav" id="5_8pksm"]
+[ext_resource type="Texture2D" uid="uid://cpcf2i3iu5t1x" path="res://assets/texture/spinbox_right.svg" id="5_oappg"]
 [ext_resource type="AudioStream" uid="uid://c0oxhpf58472s" path="res://assets/audio/325279__deleted_user_2104797__briefcase_open.wav" id="6_fhdrf"]
+[ext_resource type="Script" uid="uid://cf4rr61nnnf1v" path="res://src/spinbox.gd" id="6_uthuq"]
 [ext_resource type="AudioStream" uid="uid://timpmwbx0mbe" path="res://assets/audio/325279__deleted_user_2104797__briefcase_close.wav" id="7_7piks"]
 
 [sub_resource type="Gradient" id="Gradient_j3y3i"]
@@ -22,6 +26,37 @@ font_size = 32
 font_size = 26
 
 [sub_resource type="LabelSettings" id="LabelSettings_g2to7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xxw5"]
+bg_color = Color(0.05882353, 0.05882353, 0.05882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qavsv"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 10
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_laip5"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 10
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 3
 
 [sub_resource type="LabelSettings" id="LabelSettings_fhdrf"]
 font_size = 18
@@ -75,7 +110,7 @@ grow_vertical = 2
 focus_mode = 3
 theme_override_fonts/font = ExtResource("1_xthoy")
 theme_override_font_sizes/font_size = 24
-current_tab = 3
+current_tab = 1
 tab_0/title = "SETTINGS_TAB_GAME"
 tab_1/title = "SETTINGS_TAB_VIDEO_AUDIO"
 tab_2/title = "SETTINGS_TAB_CONTROL"
@@ -137,7 +172,6 @@ label_settings = SubResource("LabelSettings_g2to7")
 autowrap_mode = 3
 
 [node name="video_audio" type="Control" parent="texture_rect/tab_container" unique_id=1249882484]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 metadata/_tab_name = "SETTINGS_TAB_VIDEO_AUDIO"
@@ -176,20 +210,24 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_RESOLUTION"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="option_button" type="OptionButton" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container" unique_id=1012661039]
+[node name="option_button" type="Control" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container" unique_id=493632822]
+custom_minimum_size = Vector2(156, 48)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
 focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_master_volume/h_box_container/label_name")
 focus_neighbor_bottom = NodePath("../../../margin_container_content_scale/v_box_container/h_box_container/spin_box")
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_xthoy")
-theme_override_font_sizes/font_size = 25
-flat = true
+script = ExtResource("3_2cy8y")
+item_list = PackedStringArray()
+longest_text_length = true
+clip_text = null
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_qavsv")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://dg4udidalp35"
 
 [node name="margin_container_content_scale" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left" unique_id=898044250]
 layout_mode = 2
@@ -215,7 +253,8 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_CONTENT_SCALE"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container" unique_id=557679106]
+[node name="spin_box" type="Control" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container" unique_id=1339000936]
+custom_minimum_size = Vector2(170, 48)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
@@ -223,13 +262,17 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../../../../../v_box_container_right/margin_container_sfx_volume/h_box_container/label_name")
 focus_neighbor_bottom = NodePath(".")
 focus_mode = 2
-min_value = 50.0
-max_value = 200.0
+script = ExtResource("6_uthuq")
 step = 5.0
 value = 100.0
-suffix = "%"
-custom_arrow_step = 5.0
-select_all_on_focus = true
+suffex = " %"
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_laip5")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
 
 [node name="margin_container_fullscreen" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left" unique_id=756264488]
 layout_mode = 2
@@ -282,36 +325,24 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_FPS"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="option_button" type="OptionButton" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container" unique_id=403374600]
+[node name="option_button" type="Control" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container" unique_id=78486842]
+custom_minimum_size = Vector2(383, 48)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
 focus_neighbor_top = NodePath("../../../margin_container_fullscreen/h_box_container/check_box")
 focus_neighbor_right = NodePath("../../../../v_box_container_right/margin_container_env_volume/h_box_container/label_name")
 focus_neighbor_bottom = NodePath("../../../margin_container_vsync/h_box_container/check_box")
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_xthoy")
-theme_override_font_sizes/font_size = 25
-flat = true
-item_count = 7
-popup/item_0/text = "SETTINGS_FPS_10"
-popup/item_0/id = 0
-popup/item_1/text = "SETTINGS_FPS_30"
-popup/item_1/id = 1
-popup/item_2/text = "SETTINGS_FPS_60"
-popup/item_2/id = 2
-popup/item_3/text = "SETTINGS_FPS_90"
-popup/item_3/id = 3
-popup/item_4/text = "SETTINGS_FPS_120"
-popup/item_4/id = 4
-popup/item_5/text = "SETTINGS_FPS_144"
-popup/item_5/id = 5
-popup/item_6/text = "SETTINGS_FPS_UNLIMITED"
-popup/item_6/id = 6
+script = ExtResource("3_2cy8y")
+item_list = PackedStringArray("SETTINGS_FPS_10", "SETTINGS_FPS_30", "SETTINGS_FPS_60", "SETTINGS_FPS_90", "SETTINGS_FPS_120", "SETTINGS_FPS_144", "SETTINGS_FPS_UNLIMITED")
+longest_text_length = true
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_qavsv")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://dg4udidalp35"
 
 [node name="margin_container_vsync" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_left" unique_id=670486421]
 layout_mode = 2
@@ -366,11 +397,20 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_MASTER_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container" unique_id=471060468]
+[node name="spin_box" type="Control" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container" unique_id=1225089836]
+custom_minimum_size = Vector2(148, 48)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_mode = 2
-suffix = "%"
+script = ExtResource("6_uthuq")
+suffex = " %"
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_laip5")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
 
 [node name="margin_container_sfx_volume" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right" unique_id=2075423611]
 layout_mode = 2
@@ -391,11 +431,20 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_SFX_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container" unique_id=253259427]
+[node name="spin_box" type="Control" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container" unique_id=1837327900]
+custom_minimum_size = Vector2(148, 48)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_mode = 2
-suffix = "%"
+script = ExtResource("6_uthuq")
+suffex = " %"
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_laip5")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
 
 [node name="margin_container_env_volume" type="MarginContainer" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right" unique_id=677013504]
 layout_mode = 2
@@ -416,11 +465,20 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_ENV_VOLUME"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container" unique_id=2071694757]
+[node name="spin_box" type="Control" parent="texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container" unique_id=1200253527]
+custom_minimum_size = Vector2(148, 48)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_mode = 2
-suffix = "%"
+script = ExtResource("6_uthuq")
+suffex = " %"
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_laip5")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
 
 [node name="control" type="Control" parent="texture_rect/tab_container" unique_id=8294422]
 visible = false
@@ -455,11 +513,20 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_CAMERA_MOVE_SPEED"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container" unique_id=730591184]
+[node name="spin_box" type="Control" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container" unique_id=2126403542]
+custom_minimum_size = Vector2(148, 48)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_mode = 2
-suffix = "%"
+script = ExtResource("6_uthuq")
+suffex = " %"
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_laip5")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
 
 [node name="margin_container_camera_rotate_sensitive" type="MarginContainer" parent="texture_rect/tab_container/control/v_box_container" unique_id=1036904096]
 layout_mode = 2
@@ -480,11 +547,20 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_CAMERA_ROTATE_SENSITIVE"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container" unique_id=2069383014]
+[node name="spin_box" type="Control" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container" unique_id=869354217]
+custom_minimum_size = Vector2(148, 48)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_mode = 2
-suffix = "%"
+script = ExtResource("6_uthuq")
+suffex = " %"
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_laip5")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
 
 [node name="margin_container_camera_rotate_axis" type="MarginContainer" parent="texture_rect/tab_container/control/v_box_container" unique_id=1680703829]
 layout_mode = 2
@@ -506,31 +582,27 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_CAMERA_ROTATE_AXIS"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="option_button" type="OptionButton" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container" unique_id=1694842823]
+[node name="option_button" type="Control" parent="texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container" unique_id=380580403]
+custom_minimum_size = Vector2(156, 48)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_xthoy")
-theme_override_font_sizes/font_size = 25
-flat = true
-item_count = 4
-popup/item_0/text = "SETTINGS_CAMERA_AXIS_0"
-popup/item_0/id = 0
-popup/item_1/text = "SETTINGS_CAMERA_AXIS_1"
-popup/item_1/id = 1
-popup/item_2/text = "SETTINGS_CAMERA_AXIS_2"
-popup/item_2/id = 2
-popup/item_3/text = "SETTINGS_CAMERA_AXIS_3"
-popup/item_3/id = 3
+script = ExtResource("3_2cy8y")
+item_list = PackedStringArray()
+longest_text_length = true
+clip_text = null
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_qavsv")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://dg4udidalp35"
 
 [node name="accessibility" type="Control" parent="texture_rect/tab_container" unique_id=822844970]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = "SETTINGS_TAB_ACCESSIBILITY"
@@ -563,15 +635,23 @@ theme_override_fonts/font = ExtResource("1_xthoy")
 text = "SETTINGS_LANGUAGE"
 label_settings = SubResource("LabelSettings_ahr6q")
 
-[node name="option_button" type="OptionButton" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container" unique_id=729568239]
+[node name="option_button" type="Control" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container" unique_id=2050000648]
+custom_minimum_size = Vector2(156, 48)
 layout_mode = 2
 size_flags_horizontal = 10
 focus_neighbor_left = NodePath("../label_name")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../margin_container_dialog_border/v_box_container/h_box_container/check_box")
-theme_override_fonts/font = ExtResource("1_xthoy")
-theme_override_font_sizes/font_size = 25
-flat = true
+script = ExtResource("3_2cy8y")
+item_list = PackedStringArray()
+longest_text_length = true
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_qavsv")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://dg4udidalp35"
 
 [node name="margin_container_dialog_border" type="MarginContainer" parent="texture_rect/tab_container/accessibility/v_box_container" unique_id=893951842]
 layout_mode = 2
@@ -663,25 +743,23 @@ text = "SETTINGS_TEXT_TO_SPEECH_TYPE"
 label_settings = SubResource("LabelSettings_fhdrf")
 horizontal_alignment = 2
 
-[node name="option_button" type="OptionButton" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/type" unique_id=291727413]
-custom_minimum_size = Vector2(100, 0)
+[node name="option_button" type="Control" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/type" unique_id=1719684331]
+custom_minimum_size = Vector2(156, 48)
 layout_mode = 2
 focus_neighbor_left = NodePath("../label_name")
 focus_neighbor_top = NodePath("../../../../../../margin_container_dialog_border/v_box_container/label_explain")
 focus_neighbor_right = NodePath("../../volume/label_name")
 focus_neighbor_bottom = NodePath("../../../../label_explain")
-theme_override_fonts/font = ExtResource("1_xthoy")
-text_overrun_behavior = 1
-clip_text = true
-selected = 0
-fit_to_longest_item = false
-item_count = 3
-popup/item_0/text = "SETTINGS_TEXT_TO_SPEECH_TYPE_SYSTEM"
-popup/item_0/id = 0
-popup/item_1/text = "SETTINGS_TEXT_TO_SPEECH_TYPE_ONLINE"
-popup/item_1/id = 1
-popup/item_2/text = "SETTINGS_TEXT_TO_SPEECH_TYPE_CLIPBOARD"
-popup/item_2/id = 2
+script = ExtResource("3_2cy8y")
+item_list = PackedStringArray("SETTINGS_TEXT_TO_SPEECH_TYPE_SYSTEM", "SETTINGS_TEXT_TO_SPEECH_TYPE_ONLINE", "SETTINGS_TEXT_TO_SPEECH_TYPE_CLIPBOARD")
+longest_text_length = true
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_qavsv")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://dg4udidalp35"
 
 [node name="voice" type="HBoxContainer" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container" unique_id=1399663758]
 layout_mode = 2
@@ -701,17 +779,23 @@ text = "SETTINGS_TEXT_TO_SPEECH_VOICE"
 label_settings = SubResource("LabelSettings_fhdrf")
 horizontal_alignment = 2
 
-[node name="option_button" type="OptionButton" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/voice" unique_id=2064718787]
-custom_minimum_size = Vector2(100, 0)
+[node name="option_button" type="Control" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/voice" unique_id=294340591]
+custom_minimum_size = Vector2(156, 48)
 layout_mode = 2
 focus_neighbor_left = NodePath("../label_name")
 focus_neighbor_top = NodePath("../../../../../../margin_container_dialog_border/v_box_container/label_explain")
 focus_neighbor_right = NodePath("../../volume/label_name")
 focus_neighbor_bottom = NodePath("../../../../label_explain")
-theme_override_fonts/font = ExtResource("1_xthoy")
-text_overrun_behavior = 1
+script = ExtResource("3_2cy8y")
+item_list = PackedStringArray()
 clip_text = true
-fit_to_longest_item = false
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_qavsv")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://dg4udidalp35"
 
 [node name="volume" type="HBoxContainer" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container" unique_id=1328030429]
 layout_mode = 2
@@ -731,7 +815,8 @@ text = "SETTINGS_TEXT_TO_SPEECH_VOLUME"
 label_settings = SubResource("LabelSettings_fhdrf")
 horizontal_alignment = 2
 
-[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/volume" unique_id=212357097]
+[node name="spin_box" type="Control" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/volume" unique_id=2140259697]
+custom_minimum_size = Vector2(148, 48)
 layout_mode = 2
 size_flags_horizontal = 8
 focus_neighbor_left = NodePath("../label_name")
@@ -739,7 +824,15 @@ focus_neighbor_top = NodePath("../../../../../../margin_container_dialog_border/
 focus_neighbor_right = NodePath("../../speed/label_name")
 focus_neighbor_bottom = NodePath("../../../../label_explain")
 focus_mode = 2
-suffix = "%"
+script = ExtResource("6_uthuq")
+suffex = " %"
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_laip5")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
 
 [node name="speed" type="HBoxContainer" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container" unique_id=1570442311]
 layout_mode = 2
@@ -759,7 +852,8 @@ text = "SETTINGS_TEXT_TO_SPEECH_SPEED"
 label_settings = SubResource("LabelSettings_fhdrf")
 horizontal_alignment = 2
 
-[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/speed" unique_id=968452813]
+[node name="spin_box" type="Control" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/speed" unique_id=1506831998]
+custom_minimum_size = Vector2(148, 48)
 layout_mode = 2
 size_flags_horizontal = 8
 focus_neighbor_left = NodePath("../label_name")
@@ -767,10 +861,16 @@ focus_neighbor_top = NodePath("../../../../../../margin_container_dialog_border/
 focus_neighbor_right = NodePath("../../pitch/label_name")
 focus_neighbor_bottom = NodePath("../../../../label_explain")
 focus_mode = 2
-min_value = 1.0
-max_value = 200.0
+script = ExtResource("6_uthuq")
 value = 1.0
-suffix = "%"
+suffex = " %"
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_laip5")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
 
 [node name="pitch" type="HBoxContainer" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container" unique_id=1119464044]
 layout_mode = 2
@@ -790,7 +890,8 @@ text = "SETTINGS_TEXT_TO_SPEECH_PITCH"
 label_settings = SubResource("LabelSettings_fhdrf")
 horizontal_alignment = 2
 
-[node name="spin_box" type="SpinBox" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/pitch" unique_id=1082216154]
+[node name="spin_box" type="Control" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/pitch" unique_id=1239686100]
+custom_minimum_size = Vector2(148, 48)
 layout_mode = 2
 size_flags_horizontal = 8
 focus_neighbor_left = NodePath("../label_name")
@@ -798,10 +899,16 @@ focus_neighbor_top = NodePath("../../../../../../margin_container_dialog_border/
 focus_neighbor_right = NodePath("../../../check_box")
 focus_neighbor_bottom = NodePath("../../../../label_explain")
 focus_mode = 2
-min_value = 1.0
-max_value = 200.0
+script = ExtResource("6_uthuq")
 value = 1.0
-suffix = "%"
+suffex = " %"
+font = ExtResource("1_xthoy")
+texture_left = ExtResource("4_uthuq")
+texture_right = ExtResource("5_oappg")
+stylebox_normal = SubResource("StyleBoxFlat_2xxw5")
+stylebox_focus = SubResource("StyleBoxFlat_laip5")
+stylebox_button = SubResource("StyleBoxFlat_2xxw5")
+metadata/_custom_type_script = "uid://cf4rr61nnnf1v"
 
 [node name="check_box" type="CheckBox" parent="texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container" unique_id=186905322]
 self_modulate = Color(2.5203042, 2.5203042, 2.5203042, 1)

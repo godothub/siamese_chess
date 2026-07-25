@@ -31,25 +31,25 @@ var axis:Array[Vector2i] = [
 
 var table:Dictionary = {}
 
-@onready var resolution_input:OptionButton = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/option_button
-@onready var content_scale_input:SpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container/spin_box
+@onready var resolution_input:SiameseOptionButton = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_resolution/h_box_container/option_button
+@onready var content_scale_input:SiameseSpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_content_scale/v_box_container/h_box_container/spin_box
 @onready var fullscreen_input:CheckBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fullscreen/h_box_container/check_box
-@onready var fps_input:OptionButton = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/option_button
+@onready var fps_input:SiameseOptionButton = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_fps/h_box_container/option_button
 @onready var vsync_input:CheckBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_left/margin_container_vsync/h_box_container/check_box
-@onready var master_volume_input:SpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container/spin_box
-@onready var sfx_volume_input:SpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container/spin_box
-@onready var env_volume_input:SpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container/spin_box
-@onready var camera_move_speed_input:SpinBox = $texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container/spin_box
-@onready var camera_rotate_sensitive_input:SpinBox = $texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container/spin_box
-@onready var camera_rotate_axis_input:OptionButton = $texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container/option_button
-@onready var language_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/option_button
+@onready var master_volume_input:SiameseSpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_master_volume/h_box_container/spin_box
+@onready var sfx_volume_input:SiameseSpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_sfx_volume/h_box_container/spin_box
+@onready var env_volume_input:SiameseSpinBox = $texture_rect/tab_container/video_audio/h_box_container/v_box_container_right/margin_container_env_volume/h_box_container/spin_box
+@onready var camera_move_speed_input:SiameseSpinBox = $texture_rect/tab_container/control/v_box_container/margin_container_camera_move_speed/h_box_container/spin_box
+@onready var camera_rotate_sensitive_input:SiameseSpinBox = $texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_sensitive/h_box_container/spin_box
+@onready var camera_rotate_axis_input:SiameseOptionButton = $texture_rect/tab_container/control/v_box_container/margin_container_camera_rotate_axis/h_box_container/option_button
+@onready var language_input:SiameseOptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_language/h_box_container/option_button
 @onready var dialog_border_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_dialog_border/v_box_container/h_box_container/check_box
 @onready var text_to_speech_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/check_box
-@onready var text_to_speech_type_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/type/option_button
-@onready var text_to_speech_voice_input:OptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/voice/option_button
-@onready var text_to_speech_volume_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/volume/spin_box
-@onready var text_to_speech_speed_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/speed/spin_box
-@onready var text_to_speech_pitch_input:SpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/pitch/spin_box
+@onready var text_to_speech_type_input:SiameseOptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/type/option_button
+@onready var text_to_speech_voice_input:SiameseOptionButton = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/voice/option_button
+@onready var text_to_speech_volume_input:SiameseSpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/volume/spin_box
+@onready var text_to_speech_speed_input:SiameseSpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/speed/spin_box
+@onready var text_to_speech_pitch_input:SiameseSpinBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_text_to_speech/v_box_container/h_box_container/grid_container/pitch/spin_box
 @onready var touch_gesture_input:CheckBox = $texture_rect/tab_container/accessibility/v_box_container/margin_container_touch_gesture/v_box_container/h_box_container/check_box
 @onready var relax_input:CheckBox = $texture_rect/tab_container/game/v_box_container/margin_container_relax/v_box_container/h_box_container/check_box
 @onready var clean_archive_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/button
@@ -139,13 +139,11 @@ func _ready() -> void:
 			iter.connect("mouse_entered", hover_check_box.bind(iter))
 			iter.connect("focus_entered", hover_check_box.bind(iter))
 			iter.connect("toggled", change_check_box)
-		if iter is OptionButton:
+		if iter is SiameseOptionButton:
 			iter.connect("mouse_entered", hover_option_button.bind(iter))
 			iter.connect("focus_entered", hover_option_button.bind(iter))
-			iter.connect("toggled", show_option_button)
-			iter.connect("item_focused", hover_option_button_selection.bind(iter))
 			iter.connect("item_selected", selected_option_button.bind(iter))
-		if iter is SpinBox:
+		if iter is SiameseSpinBox:
 			iter.connect("mouse_entered", hover_spinbox.bind(iter))
 			iter.connect("focus_entered", hover_spinbox.bind(iter))
 			iter.connect("value_changed", change_spinbox)
@@ -242,12 +240,12 @@ func change_check_box(toggled:bool) -> void:
 	if get_value("text_to_speech"):
 		Narrative.speak(tr("SETTINGS_CHECKBOX_ON") if toggled else tr("SETTINGS_CHECKBOX_OFF"), true)
 
-func hover_option_button(option_button:OptionButton) -> void:
+func hover_option_button(option_button:SiameseOptionButton) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
 		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_HOVERED").format({"selection": tr(option_button.get_item_text(option_button.selected))}), true)
 
-func hover_option_button_selection(index:int, option_button:OptionButton) -> void:
+func hover_option_button_selection(index:int, option_button:SiameseOptionButton) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
 		Narrative.speak(tr(option_button.get_item_text(index)), true)
@@ -259,12 +257,12 @@ func show_option_button(toggled:bool) -> void:
 	if get_value("text_to_speech"):
 		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_SHOW"), true)
 
-func selected_option_button(index:int, option_button:OptionButton) -> void:
+func selected_option_button(index:int, option_button:SiameseOptionButton) -> void:
 	$audio_stream_player_confirm.play()
 	if get_value("text_to_speech"):
 		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_SELECTED").format({"selection": tr(option_button.get_item_text(index))}), true)
 
-func hover_spinbox(spinbox:SpinBox) -> void:
+func hover_spinbox(spinbox:SiameseSpinBox) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
 		Narrative.speak(tr("SETTINGS_SLIDER_HOVERED") % spinbox.value, true)

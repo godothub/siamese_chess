@@ -11,7 +11,7 @@ signal value_changed(value:float)
 @export var suffex:String = " "
 
 @export var font:Font = load("res://assets/fonts/FangZhengShuSongJianTi-1.ttf")
-@export var font_size:int = 28
+@export var font_size:int = 22
 @export var font_color:Color = Color(1, 1, 1, 1)
 @export var font_color_selected:Color = Color(0.7, 0, 0, 1)
 @export var texture_left:Texture2D = load("res://assets/texture/spinbox_left.svg")
@@ -23,6 +23,11 @@ signal value_changed(value:float)
 var is_editing:bool = false
 
 func _draw() -> void:
+	var text:String = String.num(value) + suffex
+	var text_lenght:float = font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x
+	var text_baseline:float = font.get_ascent(font_size)
+	custom_minimum_size.y = max(texture_left.get_size().y, texture_right.get_size().y)
+	custom_minimum_size.x = size.y * 2 + 20 + text_lenght
 	var button_left_rect:Rect2 = Rect2(Vector2.ZERO, Vector2(size.y, size.y))
 	var button_right_rect:Rect2 = Rect2(Vector2(size.x - size.y, 0), Vector2(size.y, size.y))
 	stylebox_normal.draw(get_canvas_item(), Rect2(Vector2.ZERO, size))
@@ -30,9 +35,6 @@ func _draw() -> void:
 	stylebox_button.draw(get_canvas_item(), button_right_rect)
 	if has_focus():
 		stylebox_focus.draw(get_canvas_item(), Rect2(Vector2.ZERO, size))
-	var text:String = String.num(value) + suffex
-	var text_lenght:float = font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x
-	var text_baseline:float = font.get_ascent(font_size)
 	draw_string(
 		font,
 		size / 2 - Vector2(text_lenght / 2, -text_baseline / 2),
@@ -84,7 +86,7 @@ func set_value(_value:float) -> void:
 	value_changed.emit(_value)
 	queue_redraw()
 
-func change_value_no_signal(_value:float) -> void:
+func set_value_no_signal(_value:float) -> void:
 	value = _value
 	value_changed.emit(_value)
 	queue_redraw()
