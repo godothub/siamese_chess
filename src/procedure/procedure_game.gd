@@ -189,6 +189,7 @@ func state_ready_engine(_arg:Dictionary) -> void:
 		print("evaluated position: %d" % engine.get_evaluated_position())
 		print("deepest ply: %d" % engine.get_deepest_ply())
 		print("deepest depth: %d" % engine.get_deepest_depth())
+		print("alphabeta count: %d" % engine.get_alphabeta_count())
 		print("evaluated position: %d" % engine.get_evaluated_position())
 		print("beta cutoff: %d" % engine.get_beta_cutoff())
 		print("tt cutoff: %d" % engine.get_transposition_table_cutoff())

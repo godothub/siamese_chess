@@ -17,19 +17,19 @@ See the Mulan PSL v2 for more details.
 #include <godot_cpp/classes/time.hpp>
 #include <thread>
 
-void ChessEngine::start_search(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state, const godot::Callable &_debug_output)
+void ChessEngine::start_search(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state)
 {
 	DEV_ASSERT(searching == false);
 	searching = true;
 	interrupted = false;
 	start_thinking = godot::Time::get_singleton()->get_unix_time_from_system();
-	std::thread thread(&ChessEngine::search_thread, this, _state->duplicate(), _group, history_state, _debug_output);
+	std::thread thread(&ChessEngine::search_thread, this, _state->duplicate(), _group, history_state);
 	thread.detach();
 }
 
-void ChessEngine::search_thread(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state, const godot::Callable &_debug_output)
+void ChessEngine::search_thread(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state)
 {
-	search(_state, _group, history_state, _debug_output);
+	search(_state, _group, history_state);
 	searching = false;
 	call_deferred("emit_signal", "search_finished");
 }

@@ -567,7 +567,7 @@ int OldPastorEngine::quies(const godot::Ref<State> &_state, int _alpha, int _bet
 	return _alpha;
 }
 
-int OldPastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _beta, int _depth, int _group, int _ply, bool _is_null, int *killer_1, int *killer_2, int alternative_threshold, const godot::Callable &_debug_output)
+int OldPastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int _beta, int _depth, int _group, int _ply, bool _is_null, int *killer_1, int *killer_2, int alternative_threshold)
 {
 	godot::PackedInt32Array move_list;
 	deepest_ply = std::max(_ply, deepest_ply);
@@ -628,7 +628,7 @@ int OldPastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int 
 	}
 	if (_depth > DEPTH_REDUCTION - 1 && _ply > 1 && can_null)
 	{
-		int next_score = -alphabeta(_state, -_beta, -_beta + 1, _depth - DEPTH_REDUCTION, 1 - _group, _ply + 1, true, nullptr, nullptr, 0, _debug_output);
+		int next_score = -alphabeta(_state, -_beta, -_beta + 1, _depth - DEPTH_REDUCTION, 1 - _group, _ply + 1, true, nullptr, nullptr, 0);
 		if (next_score >= _beta)
 		{
 			beta_cutoff++;
@@ -643,28 +643,24 @@ int OldPastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int 
 	pv_move = move_list[0];
 	for (int i = 0; i < move_list.size(); i++)
 	{
-		if (_debug_output.is_valid())
-		{
-			_debug_output.call(_state->get_zobrist(), _depth, i, move_list.size());
-		}
 		godot::Ref<State> &test_state = state_pool[_ply];
 		_state->_internal_duplicate(test_state);
 		Chess::apply_move(test_state, move_list[i]);
 		int next_score = 0;
 		if (_ply == 0)
 		{
-			next_score = -alphabeta(test_state, -_beta, -_alpha + alternative_threshold + 1, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, 0, _debug_output);
+			next_score = -alphabeta(test_state, -_beta, -_alpha + alternative_threshold + 1, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, 0);
 			searched_move[move_list[i]] = next_score;
 		}
 		else
 		{
 			if (found_pv && can_principle_variation)
 			{
-				next_score = -alphabeta(test_state, -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, 0, _debug_output);
+				next_score = -alphabeta(test_state, -_alpha - 1, -_alpha, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, 0);
 			}
 			if (!can_principle_variation || !found_pv || next_score > _alpha && next_score < _beta)
 			{
-				next_score = -alphabeta(test_state, -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, 0, _debug_output);
+				next_score = -alphabeta(test_state, -_beta, -_alpha, _depth - 1, 1 - _group, _ply + 1, _is_null, &next_killer_1, &next_killer_2, 0);
 			}
 		}
 		if (next_score >= _beta)
@@ -697,7 +693,7 @@ int OldPastorEngine::alphabeta(const godot::Ref<State> &_state, int _alpha, int 
 	return _alpha;
 }
 
-void OldPastorEngine::search(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state, const godot::Callable &_debug_output)
+void OldPastorEngine::search(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state)
 {
 	int total_phase = 24;
 	int phase = total_phase - Chess::population(_state->get_bit('Q') | _state->get_bit('q')) * 4 - Chess::population(_state->get_bit('R') | _state->get_bit('r')) * 2 - Chess::population(_state->get_bit('B') | _state->get_bit('b') | _state->get_bit('N') | _state->get_bit('n')) * 1;
@@ -727,7 +723,7 @@ void OldPastorEngine::search(const godot::Ref<State> &_state, int _group, const 
 	}
 	for (int i = 2; i <= max_depth; i += 2)
 	{
-		alphabeta(_state, -WIN, WIN, i, _group, 0, false, nullptr, nullptr, alternative_threshold, _debug_output);
+		alphabeta(_state, -WIN, WIN, i, _group, 0, false, nullptr, nullptr, alternative_threshold);
 		if (time_passed() >= think_time || interrupted)
 		{
 			break;

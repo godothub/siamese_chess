@@ -32,8 +32,8 @@ class PastorEngine : public ChessEngine
 		int compare_move(int a, int b, int best_move, int killer_1, int killer_2, const godot::Ref<State> &state);
 		int quies(const godot::Ref<State> &_state, int alpha, int beta, int _group = 0, int _ply = 0);
 		void generate_good_capture_move(godot::PackedInt32Array &output, const godot::Ref<State> &_state, int _group);
-		int alphabeta(const godot::Ref<State> &_state, int _alpha, int _beta, int _depth, int _group = 0, int _ply = 0, bool is_pv = true, bool _is_null = false, int *killer_1 = nullptr, int *killer_2 = nullptr, int alternative_threshold = 0, const godot::Callable &_debug_output = godot::Callable());
-		void search(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state, const godot::Callable &_debug_output);
+		int alphabeta(const godot::Ref<State> &_state, int _alpha, int _beta, int _depth, int _group = 0, int _ply = 0, bool is_pv = true, bool _is_null = false, int *killer_1 = nullptr, int *killer_2 = nullptr, int alternative_threshold = 0);
+		void search(const godot::Ref<State> &_state, int _group, const godot::PackedInt64Array &history_state);
 		int get_search_result();
 		void refresh_search_result();
 		int get_principal_move();
@@ -41,6 +41,7 @@ class PastorEngine : public ChessEngine
 		int get_score();
 		int get_deepest_ply();
 		int get_deepest_depth();
+		int get_alphabeta_count();
 		int get_evaluated_position();
 		int get_beta_cutoff();
 		int get_transposition_table_cutoff();
@@ -77,6 +78,7 @@ class PastorEngine : public ChessEngine
 		//调试用
 		int deepest_ply = 0;
 		int deepest_depth = 0;
+		int alphabeta_count = 0;
 		int evaluated_position = 0;
 		int beta_cutoff = 0;
 		int transposition_table_cutoff = 0;
