@@ -25,7 +25,7 @@ func _draw() -> void:
 	if longest_text_length:
 		var max_length:float = 40
 		for text:String in item_list:
-			var current_text_length:float = font.get_string_size(tr(text), HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x
+			var current_text_length:float = font.get_string_size(tr(text), HORIZONTAL_ALIGNMENT_CENTER, -1, font_size).x
 			max_length = max(max_length, current_text_length)
 		custom_minimum_size.x = size.y * 2 + 20 + max_length
 	else:
@@ -43,26 +43,26 @@ func _draw() -> void:
 		var text:String = "-" if index == -1 || item_list.size() <= index else item_list[index]
 		text = tr(text)
 		text = strink_string_in_length(text, 80)
-		var text_length:float = font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x
+		var text_length:float = font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size).x
 		var text_baseline:float = font.get_ascent(font_size)
 		draw_string(
 			font,
 			size / 2 - Vector2(text_length / 2, -text_baseline / 2),
 			text,
-			HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER,
+			HORIZONTAL_ALIGNMENT_CENTER,
 			-1,
 			font_size,
 			font_color_selected if is_editing else font_color
 		)
 	else:
 		var text:String = "-" if index == -1 || item_list.size() <= index else item_list[index]
-		var text_length:float = font.get_string_size(tr(text), HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x
+		var text_length:float = font.get_string_size(tr(text), HORIZONTAL_ALIGNMENT_CENTER, -1, font_size).x
 		var text_baseline:float = font.get_ascent(font_size)
 		draw_string(
 			font,
 			size / 2 - Vector2(text_length / 2, -text_baseline / 2),
 			tr(text),
-			HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER,
+			HORIZONTAL_ALIGNMENT_CENTER,
 			-1,
 			font_size,
 			font_color_selected if is_editing else font_color
@@ -108,6 +108,9 @@ func _gui_input(event:InputEvent) -> void:
 func add_item(string:String) -> void:
 	item_list.push_back(string)
 
+func get_item_text(_index:int) -> String:
+	return item_list[_index] if item_list.size() > _index else ""
+
 func clear() -> void:
 	item_list.clear()
 	index = -1
@@ -140,7 +143,7 @@ func strink_string_in_length(text:String, length:float) -> String:
 	var r:int = text.length() - 1
 	while l < r:
 		var mid:int = (l + r) / 2
-		if font.get_string_size(text.substr(mid), HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x > length:
+		if font.get_string_size(text.substr(mid), HORIZONTAL_ALIGNMENT_CENTER, -1, font_size).x > length:
 			l = mid + 1
 		else:
 			r = mid

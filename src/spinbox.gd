@@ -24,7 +24,7 @@ var is_editing:bool = false
 
 func _draw() -> void:
 	var text:String = String.num(value) + suffex
-	var text_lenght:float = font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER, -1, font_size).x
+	var text_lenght:float = font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size).x
 	var text_baseline:float = font.get_ascent(font_size)
 	custom_minimum_size.y = max(texture_left.get_size().y, texture_right.get_size().y)
 	custom_minimum_size.x = size.y * 2 + 20 + text_lenght
@@ -39,7 +39,7 @@ func _draw() -> void:
 		font,
 		size / 2 - Vector2(text_lenght / 2, -text_baseline / 2),
 		text,
-		HORIZONTAL_ALIGNMENT_CENTER | VERTICAL_ALIGNMENT_CENTER,
+		HORIZONTAL_ALIGNMENT_CENTER,
 		-1,
 		font_size,
 		font_color_selected if is_editing else font_color

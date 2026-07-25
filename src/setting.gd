@@ -243,7 +243,7 @@ func change_check_box(toggled:bool) -> void:
 func hover_option_button(option_button:SiameseOptionButton) -> void:
 	$audio_stream_player_select.play()
 	if get_value("text_to_speech"):
-		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_HOVERED").format({"selection": tr(option_button.get_item_text(option_button.selected))}), true)
+		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_HOVERED").format({"selection": tr(option_button.get_item_text(option_button.index))}), true)
 
 func hover_option_button_selection(index:int, option_button:SiameseOptionButton) -> void:
 	$audio_stream_player_select.play()
