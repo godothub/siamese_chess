@@ -5,7 +5,8 @@ class_name SiameseOptionButton
 signal item_selected(index:int)
 
 @export var index:int = -1
-@export var item_list:PackedStringArray = []
+@export var item_list:PackedStringArray = PackedStringArray()
+var _internal_item_list:PackedStringArray = PacckedStringArray()
 @export var longest_text_length:bool = false
 @export var clip_text:bool = false
 @export var font:Font = load("res://assets/fonts/FangZhengShuSongJianTi-1.ttf")
@@ -20,11 +21,14 @@ signal item_selected(index:int)
 
 var is_editing:bool = false
 
+func _ready() -> void:
+	_internal_item_list.append_array(item_list)
+
 func _draw() -> void:
 	custom_minimum_size.y = max(texture_left.get_size().y, texture_right.get_size().y)
 	if longest_text_length:
 		var max_length:float = 40
-		for text:String in item_list:
+		for text:String in _internal_item_list:
 			var current_text_length:float = font.get_string_size(tr(text), HORIZONTAL_ALIGNMENT_CENTER, -1, font_size).x
 			max_length = max(max_length, current_text_length)
 		custom_minimum_size.x = size.y * 2 + 20 + max_length
@@ -40,7 +44,7 @@ func _draw() -> void:
 	if has_focus():
 		stylebox_focus.draw(get_canvas_item(), Rect2(Vector2.ZERO, size))
 	if clip_text:
-		var text:String = "-" if index == -1 || item_list.size() <= index else item_list[index]
+		var text:String = "-" if index == -1 || _internal_item_list.size() <= index else _internal_item_list[index]
 		text = tr(text)
 		text = strink_string_in_length(text, 80)
 		var text_length:float = font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size).x
@@ -55,7 +59,7 @@ func _draw() -> void:
 			font_color_selected if is_editing else font_color
 		)
 	else:
-		var text:String = "-" if index == -1 || item_list.size() <= index else item_list[index]
+		var text:String = "-" if index == -1 || _internal_item_list.size() <= index else _internal_item_list[index]
 		var text_length:float = font.get_string_size(tr(text), HORIZONTAL_ALIGNMENT_CENTER, -1, font_size).x
 		var text_baseline:float = font.get_ascent(font_size)
 		draw_string(
@@ -71,20 +75,20 @@ func _draw() -> void:
 	draw_texture_rect(texture_right, button_right_rect.grow(-10), false)
 
 func _gui_input(event:InputEvent) -> void:
-	if item_list.size() == 0:
+	if _internal_item_list.size() == 0:
 		return
 	var button_left_rect:Rect2 = Rect2(Vector2.ZERO, Vector2(size.y, size.y))
 	var button_right_rect:Rect2 = Rect2(Vector2(size.x - size.y, 0), Vector2(size.y, size.y))
 	if has_focus():
 		if is_editing:
 			if event.is_action_pressed("ui_left", true):
-				index += item_list.size() - 1
-				index %= item_list.size()
+				index += _internal_item_list.size() - 1
+				index %= _internal_item_list.size()
 				select(index)
 				get_viewport().set_input_as_handled()
 			if event.is_action_pressed("ui_right", true):
 				index += 1
-				index %= item_list.size()
+				index %= _internal_item_list.size()
 				select(index)
 				get_viewport().set_input_as_handled()
 			if event.is_action_pressed("ui_cancel") || event.is_action_pressed("ui_accept"):
@@ -97,22 +101,22 @@ func _gui_input(event:InputEvent) -> void:
 				queue_redraw()
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
 		if button_left_rect.has_point(event.position):
-			index += item_list.size() - 1
-			index %= item_list.size()
+			index += _internal_item_list.size() - 1
+			index %= _internal_item_list.size()
 			select(index)
 		if button_right_rect.has_point(event.position):
 			index += 1
-			index %= item_list.size()
+			index %= _internal_item_list.size()
 			select(index)
 
 func add_item(string:String) -> void:
-	item_list.push_back(string)
+	_internal_item_list.push_back(string)
 
 func get_item_text(_index:int) -> String:
-	return item_list[_index] if item_list.size() > _index else ""
+	return _internal_item_list[_index] if _internal_item_list.size() > _index else ""
 
 func clear() -> void:
-	item_list.clear()
+	_internal_item_list.clear()
 	index = -1
 	queue_redraw()
 
