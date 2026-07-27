@@ -6,7 +6,7 @@ signal item_selected(index:int)
 
 @export var index:int = -1
 @export var item_list:PackedStringArray = PackedStringArray()
-var _internal_item_list:PackedStringArray = PacckedStringArray()
+var _internal_item_list:PackedStringArray = PackedStringArray()
 @export var longest_text_length:bool = false
 @export var clip_text:bool = false
 @export var font:Font = load("res://assets/fonts/FangZhengShuSongJianTi-1.ttf")
