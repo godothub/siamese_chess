@@ -297,9 +297,10 @@ func finger_on_position(position_name:String) -> void:
 			$audio_stream_player_tok.global_position = get_node(position_name).global_position
 			$audio_stream_player_tok.play()
 		Input.vibrate_handheld(50, 0.2)
+		Narrative.speak(Localization.position_name_to_pronounce(position_name), true)
 		if state.has_piece(Chess.name_to_x88(position_name)):
 			var piece:int = state.get_piece(Chess.name_to_x88(position_name))
-			Narrative.speak(tr("THERE_IS_A_PIECE").format({"piece": Localization.piece_to_pronounce(piece), "by": Localization.position_name_to_pronounce(position_name)}), true)
+			Narrative.speak(Localization.piece_to_pronounce(piece), false)
 		hovered.emit(by)
 	pointer_position_name = position_name
 	$canvas.draw_pointer("pointer", COLOR_POINTER, Chess.name_to_x88(position_name))
