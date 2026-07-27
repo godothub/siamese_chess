@@ -24,6 +24,7 @@ var confirm:bool = false
 var cancel:bool = false
 var select:bool = false
 var menu:bool = false
+var tab:int = 0
 
 func _ready() -> void:
 	add_child(hold_timer)
@@ -100,30 +101,44 @@ func _input(event:InputEvent) -> void:
 				
 
 func press_confirm() -> void:
-	confirm = true
-	push_action("ui_accept", true)
+	if !confirm:
+		confirm = true
+		push_action("ui_accept", true)
 
 func release_confirm() -> void:
-	confirm = false
-	push_action("ui_accept", false)
+	if confirm:
+		confirm = false
+		push_action("ui_accept", false)
 
 func press_cancel() -> void:
-	push_action("ui_cancel", true)
+	if !cancel:
+		cancel = true
+		push_action("ui_cancel", true)
 
 func release_cancel() -> void:
-	push_action("ui_cancel", false)
+	if cancel:
+		cancel = false
+		push_action("ui_cancel", false)
 
 func press_menu() -> void:
-	push_action("menu", true)
+	if !menu:
+		menu = true
+		push_action("menu", true)
 
 func release_menu() -> void:
-	push_action("menu", false)
+	if menu:
+		menu = false
+		push_action("menu", false)
 
 func press_select() -> void:
-	push_action("select", true)
+	if !select:
+		select = true
+		push_action("select", true)
 
 func release_select() -> void:
-	push_action("select", false)
+	if select:
+		select = false
+		push_action("select", false)
 
 func press_direction(direction:Vector2) -> void:
 	direction = direction.normalized()
@@ -171,14 +186,21 @@ func release_direction() -> void:
 		push_action("ui_down", false)
 
 func press_tab(dir:int) -> void:
+	if menu || select:	# 防止串手势
+		return
 	if dir == 1:
-		push_action("tab_right", true)
+		if tab != 1:
+			tab = 1
+			push_action("tab_right", true)
 	else:
-		push_action("tab_left", true)
+		if tab != -1:
+			tab = -1
+			push_action("tab_left", true)
 
 func release_tab() -> void:
 	push_action("tab_right", false)
 	push_action("tab_left", false)
+	tab = 0
 
 func push_action(action:String, pressed:bool) -> void:
 	var event:InputEventAction = InputEventAction.new()
