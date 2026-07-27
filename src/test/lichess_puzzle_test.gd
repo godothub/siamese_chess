@@ -27,7 +27,7 @@ func solve_puzzle(state:State, correct_answer:PackedStringArray) -> void:
 	for iter:String in correct_answer:
 		engine.set_max_depth(6)
 		engine.set_think_time(INF)
-		engine.start_search(state, state.get_turn(), [], Callable())
+		engine.start_search(state, state.get_turn(), [])
 		await engine.search_finished
 
 		var my_move:int = engine.get_search_result()

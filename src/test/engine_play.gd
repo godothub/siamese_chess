@@ -74,7 +74,7 @@ func play_game() -> int:
 	history_document.set_sign(-1, Time.get_datetime_string_from_system(), "engine play", white_name, black_name, "CHAR_SYSTEM")
 
 	while Chess.get_end_type(state) == "":
-		white_engine.start_search(state, state.get_turn(), [], Callable())
+		white_engine.start_search(state, state.get_turn(), [])
 		await white_engine.search_finished
 		var move:int = white_engine.get_search_result()
 		
@@ -99,7 +99,7 @@ func play_game() -> int:
 			break
 
 		print("--black--")
-		black_engine.start_search(state, state.get_turn(), [], Callable())
+		black_engine.start_search(state, state.get_turn(), [])
 		await black_engine.search_finished
 		move = black_engine.get_search_result()
 		print("principal_move: ", Chess.get_move_name(state, move))
