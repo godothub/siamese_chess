@@ -39,6 +39,7 @@ func _ready() -> void:
 		else:
 			$texture_rect/button_close.grab_focus()
 	)
+	Terminal.connect("command_received", on_command_received)
 	set_physics_process(false)
 
 func _physics_process(_delta:float) -> void:
@@ -133,3 +134,28 @@ func close() -> void:
 	$texture_rect/document_browser.close()
 	visible = false
 	set_physics_process(false)
+
+func on_command_received(cmd:String) -> void:
+	if cmd == "about":
+		open_about()
+
+func open_about() -> void:
+	var path:String = "user://archive/printed.siamesechess.json"
+	var file_content:Dictionary = {
+		"notable": [{"lines": []}, {"lines": []}, {"lines": []}],
+		"printed": [
+			{"path": "res://assets/archive/welcome.tscn"},
+			{"path": "res://assets/archive/about_this_program.tscn"},
+			{"path": "res://assets/archive/credits.tscn"}
+		]
+	}
+	if !FileAccess.file_exists(path):
+		var dir:DirAccess = DirAccess.open("user://archive/")
+		if !dir:
+			DirAccess.make_dir_absolute("user://archive/")
+			dir = DirAccess.open("user://archive/")
+		var file:FileAccess = FileAccess.open(path, FileAccess.WRITE)
+		file.store_string(JSON.stringify(file_content))
+		file.close()
+	Archive.open()
+	Archive.open_document(path)

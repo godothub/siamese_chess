@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dxxdj5alm3s1u"]
+
+[ext_resource type="Script" uid="uid://y4374snw81f1" path="res://src/terminal.gd" id="1_ttsar"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_tj8r6"]
+
+[sub_resource type="Gradient" id="Gradient_tuuq8"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ydf3r"]
+gradient = SubResource("Gradient_tuuq8")
+
+[node name="terminal" type="CanvasLayer" unique_id=1744524466]
+layer = 10
+script = ExtResource("1_ttsar")
+
+[node name="texture_rect_top" type="TextureRect" parent="." unique_id=721912621]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.105
+offset_bottom = -0.040000916
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_ydf3r")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="margin_container" type="MarginContainer" parent="texture_rect_top" unique_id=162091324]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 5
+
+[node name="line_edit" type="LineEdit" parent="texture_rect_top/margin_container" unique_id=1873821662]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tj8r6")
+theme_override_font_sizes/font_size = 22
+flat = true
