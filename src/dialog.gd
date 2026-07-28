@@ -67,6 +67,8 @@ func _unhandled_input(event:InputEvent) -> void:
 func cancel_gui_input(_event:InputEvent) -> void:
 	if _event is InputEventMouseButton && _event.button_index == MOUSE_BUTTON_LEFT && _event.pressed:
 		cancel()
+	else:
+		Terminal.open()
 
 func push_dialog(_text:String, _speaker:String, blackscreen:bool = false, _click_anywhere:bool = false, _waiting:bool = false) -> void:
 	if tween && tween.is_running():
