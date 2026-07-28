@@ -131,21 +131,21 @@ func _ready() -> void:
 		if iter is Label:
 			iter.connect("mouse_entered", hover_label.bind(iter))
 			iter.focus_mode = Control.FOCUS_ALL
-			iter.connect("focus_entered", hover_label.bind(iter))
+			iter.connect("focus_entered", focus_label.bind(iter))
 		if iter is Button:
 			iter.connect("mouse_entered", hover_label.bind(iter))
-			iter.connect("focus_entered", hover_label.bind(iter))
+			iter.connect("focus_entered", focus_label.bind(iter))
 		if iter is CheckBox:
 			iter.connect("mouse_entered", hover_check_box.bind(iter))
-			iter.connect("focus_entered", hover_check_box.bind(iter))
+			iter.connect("focus_entered", focus_check_box.bind(iter))
 			iter.connect("toggled", change_check_box)
 		if iter is SiameseOptionButton:
 			iter.connect("mouse_entered", hover_option_button.bind(iter))
-			iter.connect("focus_entered", hover_option_button.bind(iter))
+			iter.connect("focus_entered", focus_option_button.bind(iter))
 			iter.connect("item_selected", selected_option_button.bind(iter))
 		if iter is SiameseSpinBox:
 			iter.connect("mouse_entered", hover_spinbox.bind(iter))
-			iter.connect("focus_entered", hover_spinbox.bind(iter))
+			iter.connect("focus_entered", focus_spinbox.bind(iter))
 			iter.connect("value_changed", change_spinbox)
 
 func _physics_process(_delta:float) -> void:
@@ -207,70 +207,67 @@ func set_value(key:String, value:Variant) -> void:
 
 func read_close() -> void:
 	$audio_stream_player_select.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr("ICON_CLOSE"), true)
+	$texture_rect/button_close.grab_focus()
+	Narrative.speak(tr("ICON_CLOSE"), true)
 
 func focus_tab() -> void:
 	$audio_stream_player_select.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr($texture_rect/tab_container.get_tab_bar().get_tab_title($texture_rect/tab_container.current_tab)), true)
+	Narrative.speak(tr($texture_rect/tab_container.get_tab_bar().get_tab_title($texture_rect/tab_container.current_tab)), true)
 
 func hover_tab(tab:int) -> void:
 	$audio_stream_player_select.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab)), true)
+	$texture_rect/tab_container.current_tab = tab
+	Narrative.speak(tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab)), true)
 
 func selected_tab(tab:int) -> void:
 	$audio_stream_player_confirm.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr("SETTINGS_TAB_SELECTED").format({"selection": tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab))}), true)
+	Narrative.speak(tr("SETTINGS_TAB_SELECTED").format({"selection": tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab))}), true)
 
 func hover_label(label:Control) -> void:
+	label.grab_focus()
+
+func focus_label(label:Control) -> void:
 	$audio_stream_player_select.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr(label.text), true)
+	Narrative.speak(tr(label.text), true)
 
 func hover_check_box(check_box:CheckBox) -> void:
+	check_box.grab_focus()
+
+func focus_check_box(check_box:CheckBox) -> void:
 	$audio_stream_player_select.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr("ICON_TURN_ON") if check_box.button_pressed else tr("ICON_TURN_OFF"), true)
+	Narrative.speak(tr("ICON_TURN_ON") if check_box.button_pressed else tr("ICON_TURN_OFF"), true)
 
 func change_check_box(toggled:bool) -> void:
 	$audio_stream_player_confirm.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr("SETTINGS_CHECKBOX_ON") if toggled else tr("SETTINGS_CHECKBOX_OFF"), true)
+	Narrative.speak(tr("SETTINGS_CHECKBOX_ON") if toggled else tr("SETTINGS_CHECKBOX_OFF"), true)
 
 func hover_option_button(option_button:SiameseOptionButton) -> void:
-	$audio_stream_player_select.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_HOVERED").format({"selection": tr(option_button.get_item_text(option_button.index))}), true)
+	option_button.grab_focus()
 
-func hover_option_button_selection(index:int, option_button:SiameseOptionButton) -> void:
+func focus_option_button(option_button:SiameseOptionButton) -> void:
 	$audio_stream_player_select.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr(option_button.get_item_text(index)), true)
+	Narrative.speak(tr("SETTINGS_OPTION_BUTTON_HOVERED").format({"selection": tr(option_button.get_item_text(option_button.index))}), true)
 
 func show_option_button(toggled:bool) -> void:
 	$audio_stream_player_confirm.play()
 	if !toggled:
 		return
-	if get_value("text_to_speech"):
-		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_SHOW"), true)
+	Narrative.speak(tr("SETTINGS_OPTION_BUTTON_SHOW"), true)
 
 func selected_option_button(index:int, option_button:SiameseOptionButton) -> void:
 	$audio_stream_player_confirm.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr("SETTINGS_OPTION_BUTTON_SELECTED").format({"selection": tr(option_button.get_item_text(index))}), true)
+	Narrative.speak(tr("SETTINGS_OPTION_BUTTON_SELECTED").format({"selection": tr(option_button.get_item_text(index))}), true)
 
 func hover_spinbox(spinbox:SiameseSpinBox) -> void:
+	spinbox.grab_focus()
+
+func focus_spinbox(spinbox:SiameseSpinBox) -> void:
 	$audio_stream_player_select.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr("SETTINGS_SLIDER_HOVERED") % spinbox.value, true)
+	Narrative.speak(tr("SETTINGS_SLIDER_HOVERED") % spinbox.value, true)
 
 func change_spinbox(value:float) -> void:
 	$audio_stream_player_select.play()
-	if get_value("text_to_speech"):
-		Narrative.speak(tr("SETTINGS_SLIDER_CHANGED") % value, true)
+	Narrative.speak(tr("SETTINGS_SLIDER_CHANGED") % value, true)
 
 func set_resolution(index:int) -> void:
 	table.set("resolution", index)
