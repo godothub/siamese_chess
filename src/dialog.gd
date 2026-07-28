@@ -235,12 +235,6 @@ func hover_label(label:RichTextLabel) -> void:
 
 func hover_selection(_selected:String) -> void:
 	$audio_stream_player_select.play()
-	if selection.has(_selected):
-		select_focus = selection.find(_selected)
-		text_label.text = selection_to_bbcode(selection, select_focus)
-	elif global_selection.has(_selected):
-		select_focus = global_selection.find(_selected)
-		title_label.text = selection_to_bbcode(global_selection, select_focus)
 	Narrative.speak(tr(_selected), true)
 
 func selection_to_bbcode(_selection:PackedStringArray, _select_focus:int = -1) -> String:

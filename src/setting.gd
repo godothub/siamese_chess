@@ -207,7 +207,6 @@ func set_value(key:String, value:Variant) -> void:
 
 func read_close() -> void:
 	$audio_stream_player_select.play()
-	$texture_rect/button_close.grab_focus()
 	Narrative.speak(tr("ICON_CLOSE"), true)
 
 func focus_tab() -> void:
@@ -224,14 +223,16 @@ func selected_tab(tab:int) -> void:
 	Narrative.speak(tr("SETTINGS_TAB_SELECTED").format({"selection": tr($texture_rect/tab_container.get_tab_bar().get_tab_title(tab))}), true)
 
 func hover_label(label:Control) -> void:
-	label.grab_focus()
+	$audio_stream_player_select.play()
+	Narrative.speak(tr(label.text), true)
 
 func focus_label(label:Control) -> void:
 	$audio_stream_player_select.play()
 	Narrative.speak(tr(label.text), true)
 
 func hover_check_box(check_box:CheckBox) -> void:
-	check_box.grab_focus()
+	$audio_stream_player_select.play()
+	Narrative.speak(tr("ICON_TURN_ON") if check_box.button_pressed else tr("ICON_TURN_OFF"), true)
 
 func focus_check_box(check_box:CheckBox) -> void:
 	$audio_stream_player_select.play()
@@ -242,7 +243,8 @@ func change_check_box(toggled:bool) -> void:
 	Narrative.speak(tr("SETTINGS_CHECKBOX_ON") if toggled else tr("SETTINGS_CHECKBOX_OFF"), true)
 
 func hover_option_button(option_button:SiameseOptionButton) -> void:
-	option_button.grab_focus()
+	$audio_stream_player_select.play()
+	Narrative.speak(tr("SETTINGS_OPTION_BUTTON_HOVERED").format({"selection": tr(option_button.get_item_text(option_button.index))}), true)
 
 func focus_option_button(option_button:SiameseOptionButton) -> void:
 	$audio_stream_player_select.play()
@@ -259,7 +261,8 @@ func selected_option_button(index:int, option_button:SiameseOptionButton) -> voi
 	Narrative.speak(tr("SETTINGS_OPTION_BUTTON_SELECTED").format({"selection": tr(option_button.get_item_text(index))}), true)
 
 func hover_spinbox(spinbox:SiameseSpinBox) -> void:
-	spinbox.grab_focus()
+	$audio_stream_player_select.play()
+	Narrative.speak(tr("SETTINGS_SLIDER_HOVERED") % spinbox.value, true)
 
 func focus_spinbox(spinbox:SiameseSpinBox) -> void:
 	$audio_stream_player_select.play()
