@@ -8,6 +8,7 @@ func post_request(url:String, query:Dictionary, content_type:String, body:Packed
 	var query_string:String = temp_instance.query_string_from_dict(query)
 	var http_request:HTTPRequest = HTTPRequest.new()
 	add_child(http_request)
+	http_request.use_threads = true
 	var path:String = server + url + "?" + query_string
 	print(path)
 	print(query)
