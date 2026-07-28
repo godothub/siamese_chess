@@ -43,6 +43,7 @@ TouchscreenInputManager="*res://addons/gdtim/InputManager.gd"
 Narrative="*res://src/narrative.gd"
 Localization="*res://src/lang/localization.gd"
 Network="*res://src/network.gd"
+Terminal="*res://scene/terminal.tscn"
 
 [debug]
 
