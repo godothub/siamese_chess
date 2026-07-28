@@ -21,6 +21,7 @@ func _ready() -> void:
 	state_machine.add_state("free", state_ready_free, state_exit_free)
 	state_machine.add_state("travel", state_ready_travel)
 	state_machine.add_state("stop", state_ready_stop)
+	Terminal.connect("command_received", on_command_received)
 
 func on_start() -> void:
 	super.on_start()
@@ -108,3 +109,11 @@ func sync_to_global() -> void:
 func receive_value_change(key:String, value:Variant) -> void:
 	if key == "player_by":
 		travel_to(value, false)
+
+func on_command_received(cmd:String) -> void:
+	if !cmd.begins_with("."):
+		return
+	cmd = cmd.trim_prefix(".")
+	var by:int = Chess.name_to_x88(cmd)
+	if by != -1:
+		travel_to(by)

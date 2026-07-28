@@ -842,13 +842,19 @@ bool Chess::is_same_group(int piece_1, int piece_2)
 
 int Chess::name_to_x88(const godot::String &_position_name)
 {
-	DEV_ASSERT(_position_name.length() == 2 && _position_name[0] >= 'a' && _position_name[0] <= 'h' && _position_name[1] >= '1' && _position_name[1] <= '8');
+	if (!(_position_name.length() == 2 && _position_name[0] >= 'a' && _position_name[0] <= 'h' && _position_name[1] >= '1' && _position_name[1] <= '8'))
+	{
+		return -1;
+	}
 	return ((7 - (_position_name[1] - '1')) << 4) + _position_name[0] - 'a';
 }
 
 godot::String Chess::x88_to_name(int _position)
 {
-	DEV_ASSERT(!(_position & 0x88));
+	if (_position & 0x88)
+	{
+		return "";
+	}
 	return godot::String::chr((_position & 15) + 'a') + godot::String::chr((7 - (_position >> 4)) + '1');
 }
 
