@@ -112,9 +112,11 @@ func tts_request_result(_body:PackedByteArray) -> void:
 	next_content()
 
 func stop() -> void:
+	content_queue.clear()
+	if !Setting.get_value("text_to_speech"):
+		return
 	if Setting.get_value("text_to_speech_type") == 0:
 		DisplayServer.tts_stop()
 	if Setting.get_value("text_to_speech_type") == 1:
 		request_tts.cancel_request()
 		audio_stream_player_tts.stop()
-	content_queue.clear()
