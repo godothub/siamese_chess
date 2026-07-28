@@ -54,6 +54,7 @@ func _ready() -> void:
 	$texture_rect_left/label_hint_down.connect("mouse_entered", hover_label.bind($texture_rect_left/label_hint_down))
 	Setting.connect("language_changed", update_dialog)
 	Setting.connect("dialog_border_changed", update_dialog)
+	Terminal.connect("command_received", on_command_received)
 
 func _unhandled_input(event:InputEvent) -> void:
 	if click_anywhere && !waiting:
@@ -287,3 +288,11 @@ func set_border_position(_border_position:bool) -> void:
 
 func get_size() -> float:
 	return $texture_rect_left.size.x if Setting.get_value("dialog_border") else $texture_rect_top.size.y
+
+func on_command_received(cmd:String) -> void:
+	if !cmd.is_valid_int():
+		return
+	var index:int = cmd.to_int()
+	if index > selection.size() || index <= 0:
+		return
+	clicked_selection(selection[index - 1])
