@@ -11,6 +11,7 @@ func _ready() -> void:
 	state_machine.add_state("edit_state", state_ready_edit_state, state_exit_edit_state)
 	state_machine.add_state("edit_fen", state_ready_edit_fen)
 	state_machine.add_state("stop", state_ready_stop)
+	Terminal.connect("command_received", on_command_received)
 
 func start() -> void:
 	state_machine.change_state("edit_state")
@@ -91,29 +92,7 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 		state_machine.change_state("stop", {"result": "canceled"})
 	)
 	state_machine.state_signal_connect(chessboard.click_empty, func (_selected:int) -> void:
-		var last_piece:int = 0
-		if !draw_bit && chessboard.state.has_piece(_selected):
-			var remove_instance:Actor = chessboard.chessboard_piece[_selected]
-			last_piece = chessboard.state.get_piece(_selected)
-			chessboard.state.capture_piece(_selected)
-			chessboard.remove_piece_instance(remove_instance)
-			remove_instance.queue_free()
-			if last_piece == edit_piece:
-				return
-		if edit_piece && draw_bit && (Chess.mask(Chess.x88_to_c64(_selected)) & chessboard.state.get_bit(edit_piece)):
-			var remove_instance:Actor = chessboard.get_bit_instance(edit_piece, _selected)
-			chessboard.remove_bit_instance(remove_instance)
-			chessboard.state.set_bit(edit_piece, chessboard.state.get_bit(edit_piece) ^ Chess.mask(Chess.x88_to_c64(_selected)))
-			remove_instance.queue_free()
-			return
-		var new_instance:Actor = Chessboard.get_default_piece_instance(edit_piece)
-		chessboard.add_child(new_instance)
-		if !draw_bit:
-			chessboard.state.add_piece(_selected, edit_piece)
-			chessboard.add_piece_instance(new_instance, _selected)
-		else:
-			chessboard.state.set_bit(edit_piece, Chess.mask(Chess.x88_to_c64(_selected)) | chessboard.state.get_bit(edit_piece))
-			chessboard.add_bit_instance(new_instance, edit_piece, _selected)
+		set_piece(_selected, edit_piece, draw_bit)
 	)
 	Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_TERRAIN", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], tr("HINT_EDIT") + " " + tr("HINT_EDIT_USING").format({"piece": tr(edit_piece_name)}), false, false)
 	Dialog.show_cancel()
@@ -137,3 +116,50 @@ func state_ready_edit_fen(_arg:Dictionary) -> void:
 
 func state_ready_stop(_arg:Dictionary) -> void:
 	procedure_end.emit(_arg.get("result", ""))
+
+func set_piece(by:int, piece:int, is_bit:bool) -> void:
+	var last_piece:int = 0
+	if !is_bit && chessboard.state.has_piece(by):
+		var remove_instance:Actor = chessboard.chessboard_piece[by]
+		last_piece = chessboard.state.get_piece(by)
+		chessboard.state.capture_piece(by)
+		chessboard.remove_piece_instance(remove_instance)
+		remove_instance.queue_free()
+		if last_piece == piece:
+			return
+	if piece && is_bit && (Chess.mask(Chess.x88_to_c64(by)) & chessboard.state.get_bit(piece)):
+		var remove_instance:Actor = chessboard.get_bit_instance(piece, by)
+		chessboard.remove_bit_instance(remove_instance)
+		chessboard.state.set_bit(piece, chessboard.state.get_bit(piece) ^ Chess.mask(Chess.x88_to_c64(by)))
+		remove_instance.queue_free()
+		return
+	var new_instance:Actor = Chessboard.get_default_piece_instance(piece)
+	chessboard.add_child(new_instance)
+	if !is_bit:
+		chessboard.state.add_piece(by, piece)
+		chessboard.add_piece_instance(new_instance, by)
+	else:
+		chessboard.state.set_bit(piece, Chess.mask(Chess.x88_to_c64(by)) | chessboard.state.get_bit(piece))
+		chessboard.add_bit_instance(new_instance, piece, by)
+
+func on_command_received(cmd:String) -> void:
+	# +[棋子][坐标] 增加
+	# -[坐标] 删除
+	# [FEN]	读入FEN棋谱
+	# y	提交
+	# n 取消
+	if state_machine.current_state != "edit_state":
+		return
+	if cmd == "y":
+		state_machine.change_state("stop", {"result": Chess.stringify(chessboard.state)})
+	elif cmd == "n":
+		state_machine.change_state("stop", {"result": "canceled"})
+	elif cmd.begins_with("+") && cmd.length() == 4:
+		var is_bit:bool = cmd[1] == "|" || cmd[1] == "-" || cmd[1] == '.'
+		var by:int = Chess.name_to_x88(cmd.substr(2))
+		if by != -1:
+			set_piece(by, ord(cmd[1]), is_bit)
+	elif cmd.begins_with("-") && cmd.length() == 3:
+		var by:int = Chess.name_to_x88(cmd.substr(1))
+		if by != -1:
+			set_piece(by, 0, false)
