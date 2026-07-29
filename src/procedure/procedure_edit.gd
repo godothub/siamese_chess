@@ -28,6 +28,53 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 			"PIECE_TERRAIN":
 				Dialog.push_selection(["PIECE_BARRIER", "PIECE_BREAKABLE_BARRIER", "PIECE_WALL_RANK", "PIECE_WALL_FILE"], "HINT_EDIT", false, false)
 				return
+			"SELECTION_FLAGS":
+				Dialog.push_selection(["SELECTION_FIRST_MOVE", "SELECTION_CASTLE", "SELECTION_EN_PASSANT"], "HINT_EDIT", false, false)
+				return
+			"SELECTION_FIRST_MOVE":
+				Dialog.push_selection(["SELECTION_WHITE_FIRST", "SELECTION_BLACK_FIRST"], "HINT_EDIT", false, false)
+				return
+			"SELECTION_CASTLE":
+				Dialog.push_selection([
+					"SELECTION_WHITE_SHORT_CASTLE_" + ("ON" if chessboard.state.get_castle() & 8 else "OFF"),
+					"SELECTION_WHITE_LONG_CASTLE_" + ("ON" if chessboard.state.get_castle() & 4 else "OFF"),
+					"SELECTION_BLACK_SHORT_CASTLE_" + ("ON" if chessboard.state.get_castle() & 2 else "OFF"),
+					"SELECTION_BLACK_LONG_CASTLE_" + ("ON" if chessboard.state.get_castle() & 1 else "OFF")],
+				"HINT_EDIT", false, false)
+				return
+			"SELECTION_EN_PASSANT":
+				var en_passant_name:PackedStringArray = []
+				if chessboard.state.get_turn() == 0:
+					for i:int in range(0x30, 0x38):
+						if chessboard.state.get_piece(i) == ord("p") && (!((i - 1) & 0x88) && chessboard.state.get_piece(i - 1) == ord("P") || !((i + 1) & 0x88) && chessboard.state.get_piece(i + 1) == ord("P")) && !chessboard.state.has_piece(i - 16):
+							en_passant_name.push_back(Chess.x88_to_name(i - 16))
+				else:
+					for i:int in range(0x40, 0x48):
+						if chessboard.state.get_piece(i) == ord("P") && (!((i - 1) & 0x88) && chessboard.state.get_piece(i - 1) == ord("p") || !((i + 1) & 0x88) && chessboard.state.get_piece(i + 1) == ord("p")) && !chessboard.state.has_piece(i + 16):
+							en_passant_name.push_back(Chess.x88_to_name(i + 16))
+				if en_passant_name.size():
+					Dialog.push_selection(en_passant_name, "HINT_EDIT", false, false)
+					return
+			"SELECTION_WHITE_FIRST":
+				chessboard.state.set_turn(0)
+			"SELECTION_BLACK_FIRST":
+				chessboard.state.set_turn(1)
+			"SELECTION_WHITE_SHORT_CASTLE_ON":
+				chessboard.state.set_castle(chessboard.state.get_castle() ^ 8)
+			"SELECTION_WHITE_SHORT_CASTLE_OFF":
+				chessboard.state.set_castle(chessboard.state.get_castle() ^ 8)
+			"SELECTION_WHITE_LONG_CASTLE_ON":
+				chessboard.state.set_castle(chessboard.state.get_castle() ^ 4)
+			"SELECTION_WHITE_LONG_CASTLE_OFF":
+				chessboard.state.set_castle(chessboard.state.get_castle() ^ 4)
+			"SELECTION_BLACK_SHORT_CASTLE_ON":
+				chessboard.state.set_castle(chessboard.state.get_castle() ^ 2)
+			"SELECTION_BLACK_SHORT_CASTLE_OFF":
+				chessboard.state.set_castle(chessboard.state.get_castle() ^ 2)
+			"SELECTION_BLACK_LONG_CASTLE_ON":
+				chessboard.state.set_castle(chessboard.state.get_castle() ^ 1)
+			"SELECTION_BLACK_LONG_CASTLE_OFF":
+				chessboard.state.set_castle(chessboard.state.get_castle() ^ 1)
 			"PIECE_WHITE_KING":
 				edit_piece = ord("K")
 				draw_bit = false
@@ -85,8 +132,12 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 			"SELECTION_FINISH":
 				state_machine.change_state("stop", {"result": Chess.stringify(chessboard.state)})
 				return
+			_:
+				var by:int = Chess.name_to_x88(_selected)
+				if by != -1:
+					chessboard.state.set_en_passant(by)
 		edit_piece_name = _selected
-		Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_TERRAIN", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], tr("HINT_EDIT") + " " + tr("HINT_EDIT_USING").format({"piece": tr(edit_piece_name)}), false, false)
+		Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_TERRAIN", "SELECTION_FLAGS", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], tr("HINT_EDIT") + " " + tr("HINT_EDIT_USING").format({"piece": tr(edit_piece_name)}), false, false)
 	)
 	state_machine.state_signal_connect(Dialog.on_cancel, func () -> void:
 		state_machine.change_state("stop", {"result": "canceled"})
@@ -94,7 +145,7 @@ func state_ready_edit_state(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(chessboard.click_empty, func (_selected:int) -> void:
 		set_piece(_selected, edit_piece, draw_bit)
 	)
-	Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_TERRAIN", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], tr("HINT_EDIT") + " " + tr("HINT_EDIT_USING").format({"piece": tr(edit_piece_name)}), false, false)
+	Dialog.push_selection(["PIECE_REMOVE", "PIECE_WHITE", "PIECE_BLACK", "PIECE_TERRAIN", "SELECTION_FLAGS", "SELECTION_IMPORT_FEN", "SELECTION_FINISH"], tr("HINT_EDIT") + " " + tr("HINT_EDIT_USING").format({"piece": tr(edit_piece_name)}), false, false)
 	Dialog.show_cancel()
 
 func state_exit_edit_state() -> void:
