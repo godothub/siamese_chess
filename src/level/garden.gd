@@ -45,8 +45,15 @@ func decision_demo_end(_result:String) -> void:
 			interact_carnation_end()
 
 func blindfold_chess(_result:String = "") -> void:
-	signal_container.disconnect_all()
+	standard_chessboard.set_enabled(false)
+	$chessboard.set_enabled(false)
 	standard_chessboard.state = Chess.create_initial_state()
+	standard_chessboard.add_default_piece_set()
+	Player.force_set_camera($camera_chessboard)
+	blindfold_side_decision()
+
+func blindfold_side_decision(_result:String = "") -> void:
+	signal_container.disconnect_all()
 	signal_container.add_connection($procedure_decision_side.procedure_end, blindfold_decision_end)
 	$procedure_decision_side.start()
 
@@ -56,7 +63,7 @@ func blindfold_decision_end(_result:String) -> void:
 			interact_carnation_end()
 			return
 		"CARNATION_TALK_DEMO_HOW_TO_PLAY":
-			signal_container.add_connection($procedure_dialog_blindfold_help.procedure_end, blindfold_chess)
+			signal_container.add_connection($procedure_dialog_blindfold_help.procedure_end, blindfold_side_decision)
 			$procedure_dialog_blindfold_help.start()
 			return
 		"SELECTION_PLAY_AS_WHITE":
@@ -65,6 +72,12 @@ func blindfold_decision_end(_result:String) -> void:
 			$procedure_game.player_group = 1
 		"SELECTION_PLAY_AS_RANDOM":
 			$procedure_game.player_group = randi() % 2
+		"CARNATION_TALK_DEMO_EDIT":
+			standard_chessboard.set_enabled(true)
+			$chessboard.set_enabled(false)
+			signal_container.add_connection($procedure_edit_game.procedure_end, blindfold_side_decision)
+			$procedure_edit_game.start()
+			return
 	if $procedure_game.player_group == 0:
 		$procedure_game.white_name = "CHAR_LOTUS"
 		$procedure_game.black_name = "CHAR_CARNATION"

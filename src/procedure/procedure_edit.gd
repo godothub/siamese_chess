@@ -133,6 +133,8 @@ func set_piece(by:int, piece:int, is_bit:bool) -> void:
 		chessboard.state.set_bit(piece, chessboard.state.get_bit(piece) ^ Chess.mask(Chess.x88_to_c64(by)))
 		remove_instance.queue_free()
 		return
+	if !piece:
+		return
 	var new_instance:Actor = Chessboard.get_default_piece_instance(piece)
 	chessboard.add_child(new_instance)
 	if !is_bit:
