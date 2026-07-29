@@ -180,11 +180,11 @@ func analyse_game() -> void:
 func refresh_analyse_engine() -> void:
 	if engine_analyse.is_searching():
 		engine_analyse.connect("search_finished", func() -> void:
-			engine_analyse.start_search.call_deferred(standard_chessboard.state, standard_chessboard.state.get_turn(), [], Callable())
+			engine_analyse.start_search.call_deferred(standard_chessboard.state, standard_chessboard.state.get_turn(), [])
 		, CONNECT_ONE_SHOT)
 		engine_analyse.stop_search()
 	else:
-		engine_analyse.start_search.call_deferred(standard_chessboard.state, standard_chessboard.state.get_turn(), [], Callable())
+		engine_analyse.start_search.call_deferred(standard_chessboard.state, standard_chessboard.state.get_turn(), [])
 
 func show_analyse_result() -> void:
 	if standard_chessboard && standard_chessboard.state && engine_analyse:
