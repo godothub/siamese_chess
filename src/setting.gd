@@ -147,6 +147,7 @@ func _ready() -> void:
 			iter.connect("mouse_entered", hover_spinbox.bind(iter))
 			iter.connect("focus_entered", focus_spinbox.bind(iter))
 			iter.connect("value_changed", change_spinbox)
+	Terminal.connect("command_received", on_command_received)
 
 func _physics_process(_delta:float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -401,3 +402,24 @@ func set_reset_progress() -> void:
 	Progress.clear()
 	Loading.change_scene("res://scene/startup.tscn")
 	close()
+
+func on_command_received(cmd:String) -> void:
+	# /[设置选项] [值]
+	if !cmd.begins_with("/"):
+		return
+	cmd = cmd.trim_prefix("/")
+	if (cmd == "clean archive"):
+		set_clean_archive()
+		return
+	if (cmd == "reset progress"):
+		set_reset_progress()
+		return
+	var cmd_splited:PackedStringArray = cmd.split(" ", false, 2)
+	if cmd_splited.size() != 2:
+		return
+	var key:String = cmd_splited[0]
+	var value:String = cmd_splited[1]
+	if !table.has(key) || !value.is_valid_float():
+		return
+	if has_method("set_" + key):
+		call("set_" + key, value.to_float())
