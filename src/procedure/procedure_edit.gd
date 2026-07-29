@@ -223,6 +223,13 @@ func on_command_received(cmd:String) -> void:
 		if by == -1:
 			return
 		chessboard.state.set_en_passant(by)
+	elif cmd.begins_with("fen "):
+		cmd = cmd.trim_prefix("fen ")
+		var test_state:State = Chess.parse(cmd)
+		if test_state:
+			chessboard.state = test_state
+			chessboard.remove_piece_set()
+			chessboard.add_default_piece_set()
 	elif cmd.begins_with("+") && cmd.length() == 4:
 		var is_bit:bool = cmd[1] == "|" || cmd[1] == "-" || cmd[1] == '.'
 		var by:int = Chess.name_to_x88(cmd.substr(2))
