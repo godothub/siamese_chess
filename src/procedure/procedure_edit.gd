@@ -207,6 +207,22 @@ func on_command_received(cmd:String) -> void:
 		state_machine.change_state("stop", {"result": Chess.stringify(chessboard.state)})
 	elif cmd == "n":
 		state_machine.change_state("stop", {"result": "canceled"})
+	elif cmd.begins_with("first "):
+		cmd = cmd.trim_prefix("first ")
+		if cmd == "w":
+			chessboard.state.set_turn(0)
+		elif cmd == "b":
+			chessboard.state.set_turn(1)
+	elif cmd.begins_with("castle "):
+		cmd = cmd.trim_prefix("castle ")
+		var bit:int = (int(cmd.contains("K")) << 3) + (int(cmd.contains("Q")) << 2) + (int(cmd.contains("k")) << 1) + int(cmd.contains("q"))
+		chessboard.state.set_castle(bit)
+	elif cmd.begins_with("en passant "):
+		cmd = cmd.trim_prefix("en passant ")
+		var by:int = Chess.name_to_x88(cmd)
+		if by == -1:
+			return
+		chessboard.state.set_en_passant(by)
 	elif cmd.begins_with("+") && cmd.length() == 4:
 		var is_bit:bool = cmd[1] == "|" || cmd[1] == "-" || cmd[1] == '.'
 		var by:int = Chess.name_to_x88(cmd.substr(2))
