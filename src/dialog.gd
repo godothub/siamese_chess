@@ -7,7 +7,7 @@ signal on_focus()
 
 const packed_scene:PackedScene = preload("res://scene/dialog.tscn")
 
-const global_selection:Array = ["SELECTION_CAMERA", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"]
+const global_selection:Array = ["SELECTION_CAMERA", "SELECTION_TERMINAL", "SELECTION_DOCUMENTS", "SELECTION_SETTINGS"]
 
 var border_position:bool = true
 var text_label:RichTextLabel = null
@@ -67,8 +67,6 @@ func _unhandled_input(event:InputEvent) -> void:
 func cancel_gui_input(_event:InputEvent) -> void:
 	if _event is InputEventMouseButton && _event.button_index == MOUSE_BUTTON_LEFT && _event.pressed:
 		cancel()
-	else:
-		Terminal.open()
 
 func push_dialog(_text:String, _speaker:String, blackscreen:bool = false, _click_anywhere:bool = false, _waiting:bool = false) -> void:
 	if tween && tween.is_running():
@@ -227,6 +225,8 @@ func clicked_global_selection(_selected:String) -> void:
 	match _selected:
 		"SELECTION_DOCUMENTS":
 			Archive.open()
+		"SELECTION_TERMINAL":
+			Terminal.open()
 		"SELECTION_CAMERA":
 			FilmCamera.open()
 		"SELECTION_SETTINGS":
