@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://jduksop4p3bt"]
+[gd_scene format=3 uid="uid://xesjpq3fh2t"]
 
-[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_akbmg"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_6w76w"]
 
 [sub_resource type="Gradient" id="Gradient_w5kv4"]
 offsets = PackedFloat32Array(0)
@@ -26,12 +26,18 @@ size_flags_horizontal = 4
 texture = SubResource("GradientTexture1D_bw0j0")
 
 [node name="rich_text_label" type="RichTextLabel" parent="texture_rect" unique_id=1545919967]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.057539683
-anchor_top = 0.086181276
+anchor_top = 0.0371471
 anchor_right = 0.9424603
-anchor_bottom = 0.9539376
-theme_override_fonts/normal_font = ExtResource("2_akbmg")
+anchor_bottom = 0.961367
+theme_override_fonts/normal_font = ExtResource("1_6w76w")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
 bbcode_enabled = true
-text = "DOCUMENT_CONTENT_ABOUT_THIS_PROGRAM"
+text = "DOCUMENT_CONTENT_HELP_TERMINAL"
 metadata/_edit_use_anchors_ = true

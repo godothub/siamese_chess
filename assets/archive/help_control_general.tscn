@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://jduksop4p3bt"]
+[gd_scene format=3 uid="uid://c1iem61mcbuwk"]
 
-[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_akbmg"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_mqfwu"]
 
 [sub_resource type="Gradient" id="Gradient_w5kv4"]
 offsets = PackedFloat32Array(0)
@@ -31,7 +31,12 @@ anchor_left = 0.057539683
 anchor_top = 0.086181276
 anchor_right = 0.9424603
 anchor_bottom = 0.9539376
-theme_override_fonts/normal_font = ExtResource("2_akbmg")
+theme_override_fonts/normal_font = ExtResource("1_mqfwu")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
 bbcode_enabled = true
-text = "DOCUMENT_CONTENT_ABOUT_THIS_PROGRAM"
+text = "DOCUMENT_CONTENT_HELP_GENERAL"
 metadata/_edit_use_anchors_ = true

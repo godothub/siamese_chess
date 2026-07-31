@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://c01ydai71jvpl"]
+[gd_scene format=3 uid="uid://nwahfp52mfpi"]
 
-[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_bw0j0"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_c4d1v"]
 
 [sub_resource type="Gradient" id="Gradient_w5kv4"]
 offsets = PackedFloat32Array(0)
@@ -40,13 +40,13 @@ offset_right = 380.0
 offset_bottom = 369.0
 texture = SubResource("GradientTexture1D_toenx")
 
-[node name="rich_text_label" type="RichTextLabel" parent="texture_rect" unique_id=1730736549]
+[node name="rich_text_label" type="RichTextLabel" parent="texture_rect" unique_id=241165704]
 layout_mode = 0
 offset_left = 29.0
 offset_top = 272.0
 offset_right = 475.0
 offset_bottom = 435.0
-theme_override_fonts/normal_font = ExtResource("2_bw0j0")
+theme_override_fonts/normal_font = ExtResource("1_c4d1v")
 bbcode_enabled = true
 text = "[font_size=40][center]SiameseChess[/center][/font_size]
-[center][font_size=24]welcome[/font_size][/center]"
+[center][font_size=24]usage[/font_size][/center]"
