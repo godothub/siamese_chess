@@ -30,29 +30,4 @@ offset_right = 475.0
 offset_bottom = 642.0
 theme_override_fonts/normal_font = ExtResource("2_ct7ke")
 bbcode_enabled = true
-text = "[center][font_size=30]名单[/font_size]
-[font_size=18]Credits[/font_size][/center]
-
-[center][font_size=16]作者[/font_size]
-[font_size=14]Author[/font_size]
-
-[font_size=22]FaMuLan[/font_size]
-
-[font_size=12]作为个人作品，承担了包含游戏机制、游戏关卡、角色、程序、场景等设计工作。[/font_size]
-[font_size=10]The author who design most of content including game mechanics, levels, characters, programming, scene etc.[/font_size]
-[/center]
-
-[center][font_size=16]Godot Hub和组织人员[/font_size]
-[font_size=12]Godot Hub and the members[/font_size]
-[font_size=14][table=2][cell padding=5,5,5,5]沫萝[/cell] [cell padding=5,5,5,5]垂钓老猫[/cell][/table][/font_size]
-[font_size=12]以上成员参与了本游戏项目的协助开发、宣发等工作。[/font_size]
-[font_size=10]The members who give help directly on this project.[/font_size]
-[/center]
-
-[center][font_size=16]致谢[/font_size]
-[font_size=12]Acknowledge[/font_size]
-[font_size=14][table=4][cell padding=5,5,5,5]Cherz[/cell] [cell padding=5,5,5,5]老蔡-omto[/cell] [cell padding=5,5,5,5]Floodin13[/cell] [cell padding=5,5,5,5]fdsts[/cell] [cell padding=5,5,5,5]Kinbote[/cell] [cell padding=5,5,5,5]负离子[/cell] [cell padding=5,5,5,5]正离子[/cell][/table][/font_size]
-[font_size=12]以上成员对于本游戏及其作者给予积极的反馈和精神支持。[/font_size]
-[font_size=10]the members who support this game and its author, in various ways.[/font_size]
-[/center]
-"
+text = "DOCUMENT_CONTENT_CREDITS"
