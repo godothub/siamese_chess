@@ -9,7 +9,7 @@ colors = PackedColorArray(0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_bw0j0"]
 gradient = SubResource("Gradient_w5kv4")
 
-[node name="welcome" type="Panel" unique_id=227652673]
+[node name="manual" type="Panel" unique_id=227652673]
 custom_minimum_size = Vector2(504, 673)
 offset_right = 504.0
 offset_bottom = 673.0

@@ -49,4 +49,4 @@ offset_bottom = 435.0
 theme_override_fonts/normal_font = ExtResource("1_c4d1v")
 bbcode_enabled = true
 text = "[font_size=40][center]SiameseChess[/center][/font_size]
-[center][font_size=24]usage[/font_size][/center]"
+[center][font_size=24]manual[/font_size][/center]"

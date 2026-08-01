@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dxx3wns16xbmi"]
+[gd_scene format=3 uid="uid://c1iem61mcbuwk"]
 
-[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_5nb4p"]
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_jnd8h"]
 
 [sub_resource type="Gradient" id="Gradient_w5kv4"]
 offsets = PackedFloat32Array(0)
@@ -9,7 +9,7 @@ colors = PackedColorArray(0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_bw0j0"]
 gradient = SubResource("Gradient_w5kv4")
 
-[node name="welcome" type="Panel" unique_id=227652673]
+[node name="manual" type="Panel" unique_id=227652673]
 custom_minimum_size = Vector2(504, 673)
 offset_right = 504.0
 offset_bottom = 673.0
@@ -31,12 +31,12 @@ anchor_left = 0.057539683
 anchor_top = 0.086181276
 anchor_right = 0.9424603
 anchor_bottom = 0.9539376
-theme_override_fonts/normal_font = ExtResource("1_5nb4p")
+theme_override_fonts/normal_font = ExtResource("1_jnd8h")
 theme_override_font_sizes/normal_font_size = 14
 theme_override_font_sizes/bold_font_size = 14
 theme_override_font_sizes/bold_italics_font_size = 14
 theme_override_font_sizes/italics_font_size = 14
 theme_override_font_sizes/mono_font_size = 14
 bbcode_enabled = true
-text = "DOCUMENT_CONTENT_HELP_MOUSE_AND_TOUCH"
+text = "DOCUMENT_CONTENT_HELP_GENERAL"
 metadata/_edit_use_anchors_ = true

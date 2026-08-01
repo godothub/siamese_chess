@@ -138,6 +138,8 @@ func close() -> void:
 func on_command_received(cmd:String) -> void:
 	if cmd == "about":
 		open_about()
+	if cmd == "help" || cmd == "?":
+		open_help()
 
 func open_about() -> void:
 	var path:String = "user://archive/printed.siamesechess.json"
@@ -147,6 +149,29 @@ func open_about() -> void:
 			{"path": "res://assets/archive/welcome.tscn"},
 			{"path": "res://assets/archive/about_this_program.tscn"},
 			{"path": "res://assets/archive/credits.tscn"}
+		]
+	}
+	if !FileAccess.file_exists(path):
+		var dir:DirAccess = DirAccess.open("user://archive/")
+		if !dir:
+			DirAccess.make_dir_absolute("user://archive/")
+			dir = DirAccess.open("user://archive/")
+		var file:FileAccess = FileAccess.open(path, FileAccess.WRITE)
+		file.store_string(JSON.stringify(file_content))
+		file.close()
+	Archive.open()
+	Archive.open_document(path)
+
+func open_help() -> void:
+	var path:String = "user://archive/printed.manual.json"
+	var file_content:Dictionary = {
+		"notable": [{"lines": []}, {"lines": []}, {"lines": []}, {"lines": []}, {"lines": []}],
+		"printed": [
+			{"path": "res://assets/archive/manual.tscn"},
+			{"path": "res://assets/archive/manual_general.tscn"},
+			{"path": "res://assets/archive/manual_control_mouse_touch.tscn"},
+			{"path": "res://assets/archive/manual_control_keyboard_gamepad.tscn"},
+			{"path": "res://assets/archive/manual_terminal.tscn"}
 		]
 	}
 	if !FileAccess.file_exists(path):
