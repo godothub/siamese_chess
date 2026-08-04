@@ -7,6 +7,7 @@ func _ready() -> void:
 	current = get_tree().current_scene
 	$texture_rect.modulate = Color(1, 1, 1, 0)
 	$texture_rect.visible = false
+	Terminal.connect("command_received", on_command_received)
 
 func reset_scene() -> void:
 	Progress.set_value("time_left", 60 * 15)
@@ -33,3 +34,10 @@ func change_scene(_path:String, wait_time:float = 0.3) -> void:
 	tween = create_tween()
 	tween.tween_property($texture_rect, "modulate", Color(1, 1, 1, 0), wait_time)
 	tween.tween_property($texture_rect, "visible", false, 0)
+
+func on_command_received(cmd:String) -> void:
+	if !cmd.begins_with("go to "):
+		return
+	cmd = cmd.trim_prefix("go to ")
+	if ResourceLoader.exists("res://scene/" + cmd + ".tscn"):
+		change_scene("res://scene/" + cmd + ".tscn")
