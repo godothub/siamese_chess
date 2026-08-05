@@ -1,7 +1,7 @@
 extends LevelEvent
 class_name EventTitle
 
-@export_multiline() var text:String = ""
+@export_multiline var text:String = ""
 
 var expression:Expression = Expression.new()
 

@@ -1,31 +1,34 @@
 extends LevelEvent
 class_name EventNarrative
 
-# 表达式，返回bool，支持使用Level、Petting、Progress、Chess这几个对象
-# 填写语音ID，所以无需multiline
-@export var text:String = ""
-# 表达式，返回Variant
-@export var placeholder:Dictionary = {}
-#尤其小心：不同语言存在语序区别，占位符需要以键值对为准
-var placeholder_expression:Dictionary[String, Expression] = {}
+# 表达式，返回字符串
+@export_multiline var text:String = ""
+
+@export var start_now:bool = true
+@export var emit_cmd:String = ""
+
+var expression:Expression = Expression.new()
 
 func _ready() -> void:
-	for key:String in placeholder:
-		var expression:Expression = Expression.new()
-		var error:int = expression.parse(placeholder[key], ["Level", "Setting", "Progress", "Chess"])
-		if error != OK:
-			printerr(expression.get_error_text())
-			return
-		placeholder_expression[key] = expression
+	var error:int = expression.parse(text, [])
+	if error != OK:
+		printerr(expression.get_error_text())
+		return
+	if emit_cmd != "":
+		Terminal.connect("command_received", on_command_received)
 
 func on_start() -> void:
-	var text_translated:String = tr(text)
-	var placeholder_result:Dictionary = {}
-	for key:String in placeholder_expression:
-		var result:Variant = placeholder_expression[key].execute([level, Setting, Progress, Chess])
-		if placeholder_expression[key].has_execute_failed():
-			printerr(placeholder_expression[key].get_error_text())
-			return
-		placeholder_result[key] = result
-	text_translated = text_translated.format(placeholder_result)
+	if start_now:
+		read()
+
+func read() -> void:
+	var result:Variant = expression.execute([], self)
+	if expression.has_execute_failed():
+		printerr(expression.get_error_text())
+		return
+	var text_translated = result
 	Narrative.speak(text_translated)
+
+func on_command_received(cmd:String) -> void:
+	if cmd == emit_cmd:
+		read()
