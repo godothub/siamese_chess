@@ -424,25 +424,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23031926, 7.831313)
 [node name="event_title_to_entrance" type="Node3D" parent="." unique_id=298942581]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
 script = ExtResource("31_m47dq")
-text = "TO_ENTRANCE"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_ENTRANCE\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_to_entrance_2" type="Node3D" parent="." unique_id=1462587346]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
 script = ExtResource("31_m47dq")
-text = "TO_ENTRANCE"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_ENTRANCE\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_to_cafe" type="Node3D" parent="." unique_id=394227531]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
 script = ExtResource("31_m47dq")
-text = "TO_CAFE"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_CAFE\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_elevator" type="Node3D" parent="." unique_id=244652126]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("31_m47dq")
-text = "HOTEL_ELEVATOR"
+text = "tr(\"HOTEL_ELEVATOR\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_explore" type="Node3D" parent="." unique_id=650433135 node_paths=PackedStringArray("chessboard", "instance")]

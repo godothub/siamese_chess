@@ -194,13 +194,13 @@ metadata/_custom_type_script = "uid://cpyviir7sli6u"
 [node name="event_title" type="Node3D" parent="." unique_id=1369485858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
 script = ExtResource("16_xr75f")
-text = "CHAR_CARNATION"
+text = "tr(\"CHAR_CARNATION\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_to_hallway" type="Node3D" parent="." unique_id=100654981]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 script = ExtResource("16_xr75f")
-text = "TO_HALLWAY"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_HALLWAY\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_explore" type="Node3D" parent="." unique_id=76684127 node_paths=PackedStringArray("chessboard", "instance")]

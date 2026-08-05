@@ -62,52 +62,52 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
 metadata/_edit_lock_ = true
 
-[node name="f6_001" parent="chessboard" index="20" unique_id=570466164]
+[node name="f6_001" parent="chessboard" index="20" unique_id=748977545]
 visible = false
 
-[node name="f5_001" parent="chessboard" index="21" unique_id=1165883268]
+[node name="f5_001" parent="chessboard" index="21" unique_id=412793952]
 visible = false
 
-[node name="f4_001" parent="chessboard" index="22" unique_id=703548546]
+[node name="f4_001" parent="chessboard" index="22" unique_id=697054025]
 visible = false
 
-[node name="f3_001" parent="chessboard" index="23" unique_id=1087503923]
+[node name="f3_001" parent="chessboard" index="23" unique_id=210310167]
 visible = false
 
-[node name="e6_001" parent="chessboard" index="28" unique_id=1295486398]
+[node name="e6_001" parent="chessboard" index="28" unique_id=1897605195]
 visible = false
 
-[node name="e5_001" parent="chessboard" index="29" unique_id=733279187]
+[node name="e5_001" parent="chessboard" index="29" unique_id=142200301]
 visible = false
 
-[node name="e4_001" parent="chessboard" index="30" unique_id=424895961]
+[node name="e4_001" parent="chessboard" index="30" unique_id=327849168]
 visible = false
 
-[node name="e3_001" parent="chessboard" index="31" unique_id=1681224625]
+[node name="e3_001" parent="chessboard" index="31" unique_id=1060959015]
 visible = false
 
-[node name="d6_001" parent="chessboard" index="36" unique_id=254964476]
+[node name="d6_001" parent="chessboard" index="36" unique_id=637157557]
 visible = false
 
-[node name="d5_001" parent="chessboard" index="37" unique_id=504568412]
+[node name="d5_001" parent="chessboard" index="37" unique_id=283069207]
 visible = false
 
-[node name="d4_001" parent="chessboard" index="38" unique_id=154371546]
+[node name="d4_001" parent="chessboard" index="38" unique_id=1820545476]
 visible = false
 
-[node name="d3_001" parent="chessboard" index="39" unique_id=409363591]
+[node name="d3_001" parent="chessboard" index="39" unique_id=366720574]
 visible = false
 
-[node name="c6_001" parent="chessboard" index="44" unique_id=1688584312]
+[node name="c6_001" parent="chessboard" index="44" unique_id=1050361831]
 visible = false
 
-[node name="c5_001" parent="chessboard" index="45" unique_id=431745924]
+[node name="c5_001" parent="chessboard" index="45" unique_id=1084010656]
 visible = false
 
-[node name="c4_001" parent="chessboard" index="46" unique_id=638393124]
+[node name="c4_001" parent="chessboard" index="46" unique_id=283818518]
 visible = false
 
-[node name="c3_001" parent="chessboard" index="47" unique_id=380807024]
+[node name="c3_001" parent="chessboard" index="47" unique_id=127418488]
 visible = false
 
 [node name="pool" parent="." unique_id=2037384043 instance=ExtResource("4_vie8g")]
@@ -368,19 +368,19 @@ metadata/_custom_type_script = "uid://dxapdof0oowg1"
 [node name="event_title_to_reception_lobby" type="Node3D" parent="." unique_id=1843647125]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
 script = ExtResource("23_bb3lo")
-text = "TO_RECEPTION_LOBBY"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_RECEPTION_LOBBY\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_to_reception_lobby_2" type="Node3D" parent="." unique_id=972421088]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
 script = ExtResource("23_bb3lo")
-text = "TO_RECEPTION_LOBBY"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_RECEPTION_LOBBY\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_to_garden" type="Node3D" parent="." unique_id=861511949]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
 script = ExtResource("23_bb3lo")
-text = "TO_GARDEN"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_GARDEN\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_start_game" type="Node3D" parent="." unique_id=460752855 node_paths=PackedStringArray("game_event")]

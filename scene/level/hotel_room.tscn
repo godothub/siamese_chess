@@ -151,7 +151,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8343501, 0, 3.399881)
 [node name="door_2" parent="." unique_id=1775898386 instance=ExtResource("5_10bqq")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -5, 0, 2)
 
-[node name="face" parent="door_2" index="1" unique_id=1126565889]
+[node name="face" parent="door_2" index="1" unique_id=1519039647]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.5224618, 1.0110773, 0.14069557)
 
 [node name="phonograph" parent="." unique_id=624737484 instance=ExtResource("24_ncv1s")]
@@ -392,7 +392,7 @@ transform = Transform3D(-1, -7.6581955e-08, 4.2165713e-08, -1.9463599e-08, 0.665
 [node name="event_title_to_hallway" type="Node3D" parent="." unique_id=450043553]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
 script = ExtResource("34_vaepl")
-text = "TO_HALLWAY"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_HALLWAY\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_explore" type="Node3D" parent="." unique_id=1762301351 node_paths=PackedStringArray("chessboard", "instance")]

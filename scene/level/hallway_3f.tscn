@@ -267,13 +267,13 @@ enable_shadows = true
 [node name="event_title_to_guest_room" type="Node3D" parent="." unique_id=1643272597]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 script = ExtResource("15_bqsqx")
-text = "TO_GUEST_ROOM"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_GUEST_ROOM\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_elevator" type="Node3D" parent="." unique_id=409255695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("15_bqsqx")
-text = "HOTEL_ELEVATOR"
+text = "tr(\"HOTEL_ELEVATOR\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_explore" type="Node3D" parent="." unique_id=415866681 node_paths=PackedStringArray("chessboard", "instance")]

@@ -220,13 +220,13 @@ enable_shadows = true
 [node name="hotel_door_large" parent="." unique_id=1030011179 instance=ExtResource("13_b3cnt")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, -8.2535925)
 
-[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=166878962]
+[node name="door_large_face_l" parent="hotel_door_large" index="0" unique_id=434129216]
 transform = Transform3D(-0.9036046, 0, -0.42836744, 0, 1, 0, 0.42836744, 0, -0.9036046, -1.0750201, 1.0110773, 0.14069557)
 
-[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=1467620892]
+[node name="door_large_face_r" parent="hotel_door_large" index="1" unique_id=2035341264]
 transform = Transform3D(-0.8933636, 0, 0.4493345, 0, 1, 0, -0.4493345, 0, -0.8933636, 1.0579906, 1.0110773, 0.14069605)
 
-[node name="door_large_structure" parent="hotel_door_large" index="2" unique_id=1160532819]
+[node name="door_large_structure" parent="hotel_door_large" index="2" unique_id=474047955]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="omni_light_3d" type="OmniLight3D" parent="hotel_door_large" unique_id=306188255]
@@ -300,13 +300,13 @@ metadata/_custom_type_script = "uid://bsbhmxre68ncc"
 [node name="event_title_to_basement" type="Node3D" parent="." unique_id=621251520]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
 script = ExtResource("16_t4hms")
-text = "TO_BASEMENT"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_BASEMENT\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_elevator" type="Node3D" parent="." unique_id=1220182496]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 script = ExtResource("16_t4hms")
-text = "HOTEL_ELEVATOR"
+text = "tr(\"HOTEL_ELEVATOR\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_explore" type="Node3D" parent="." unique_id=33062658 node_paths=PackedStringArray("chessboard", "instance")]

@@ -593,16 +593,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
 script = ExtResource("31_2nvbi")
 file_path = "user://archive/printed.manual.json"
 file_content = {
-"notable": [{"lines": []}, {"lines": []}, {"lines": []}, {"lines": []}, {"lines": []}],
-"printed": [
-	{"path": "res://assets/archive/manual.tscn"},
-	{"path": "res://assets/archive/manual_general.tscn"},
-	{"path": "res://assets/archive/manual_control_mouse_touch.tscn"},
-	{"path": "res://assets/archive/manual_control_keyboard_gamepad.tscn"},
-	{"path": "res://assets/archive/manual_terminal.tscn"}
-]
+"notable": [{
+"lines": []
+}, {
+"lines": []
+}, {
+"lines": []
+}, {
+"lines": []
+}, {
+"lines": []
+}],
+"printed": [{
+"path": "res://assets/archive/manual.tscn"
+}, {
+"path": "res://assets/archive/manual_general.tscn"
+}, {
+"path": "res://assets/archive/manual_control_mouse_touch.tscn"
+}, {
+"path": "res://assets/archive/manual_control_keyboard_gamepad.tscn"
+}, {
+"path": "res://assets/archive/manual_terminal.tscn"
+}]
 }
-	
 bit = 274877906944
 selection = "DOCUMENT_TITLE_USER_MANUAL"
 metadata/_custom_type_script = "uid://dc4n8wl381mqw"
@@ -841,19 +854,19 @@ metadata/_custom_type_script = "uid://cpyviir7sli6u"
 [node name="event_title_yulan" type="Node3D" parent="." unique_id=926537307]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
 script = ExtResource("35_tqabg")
-text = "CHAR_YULAN"
+text = "tr(\"CHAR_YULAN\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_yulan_2" type="Node3D" parent="." unique_id=1358781000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 script = ExtResource("35_tqabg")
-text = "CHAR_YULAN"
+text = "tr(\"CHAR_YULAN\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_to_reception_lobby" type="Node3D" parent="." unique_id=640322216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
 script = ExtResource("35_tqabg")
-text = "TO_RECEPTION_LOBBY"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_RECEPTION_LOBBY\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="reflection_probe" type="ReflectionProbe" parent="." unique_id=1935367432]

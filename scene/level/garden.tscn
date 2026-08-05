@@ -5548,394 +5548,394 @@ fov = 79.138054
 
 [node name="chessboard" parent="." unique_id=1662556525 instance=ExtResource("3_85gfo")]
 
-[node name="column" parent="chessboard" index="0" unique_id=2039763033]
+[node name="column" parent="chessboard" index="0" unique_id=1990092031]
 visible = false
 
-[node name="row" parent="chessboard" index="1" unique_id=1575034317]
+[node name="row" parent="chessboard" index="1" unique_id=1049019600]
 visible = false
 
-[node name="h8_001" parent="chessboard" index="2" unique_id=6812672]
+[node name="h8_001" parent="chessboard" index="2" unique_id=1073512307]
 visible = false
 
-[node name="h7_001" parent="chessboard" index="3" unique_id=1614689498]
+[node name="h7_001" parent="chessboard" index="3" unique_id=1705282149]
 visible = false
 
-[node name="h6_001" parent="chessboard" index="4" unique_id=90033660]
+[node name="h6_001" parent="chessboard" index="4" unique_id=723345500]
 visible = false
 
-[node name="h5_001" parent="chessboard" index="5" unique_id=1489974026]
+[node name="h5_001" parent="chessboard" index="5" unique_id=352687634]
 visible = false
 
-[node name="h4_001" parent="chessboard" index="6" unique_id=2022928026]
+[node name="h4_001" parent="chessboard" index="6" unique_id=105182744]
 visible = false
 
-[node name="h3_001" parent="chessboard" index="7" unique_id=877947214]
+[node name="h3_001" parent="chessboard" index="7" unique_id=1211779084]
 visible = false
 
-[node name="h2_001" parent="chessboard" index="8" unique_id=1921167728]
+[node name="h2_001" parent="chessboard" index="8" unique_id=1343192612]
 visible = false
 
-[node name="h1_001" parent="chessboard" index="9" unique_id=1493908255]
+[node name="h1_001" parent="chessboard" index="9" unique_id=348773395]
 visible = false
 
-[node name="g8_001" parent="chessboard" index="10" unique_id=210575954]
+[node name="g8_001" parent="chessboard" index="10" unique_id=864080160]
 visible = false
 
-[node name="g7_001" parent="chessboard" index="11" unique_id=974293838]
+[node name="g7_001" parent="chessboard" index="11" unique_id=1449722773]
 visible = false
 
-[node name="g6_001" parent="chessboard" index="12" unique_id=1697341594]
+[node name="g6_001" parent="chessboard" index="12" unique_id=898399879]
 visible = false
 
-[node name="g5_001" parent="chessboard" index="13" unique_id=1802886980]
+[node name="g5_001" parent="chessboard" index="13" unique_id=2003416077]
 visible = false
 
-[node name="g4_001" parent="chessboard" index="14" unique_id=2094301569]
+[node name="g4_001" parent="chessboard" index="14" unique_id=1524655845]
 visible = false
 
-[node name="g3_001" parent="chessboard" index="15" unique_id=378912393]
+[node name="g3_001" parent="chessboard" index="15" unique_id=2047070402]
 visible = false
 
-[node name="g2_001" parent="chessboard" index="16" unique_id=1356170921]
+[node name="g2_001" parent="chessboard" index="16" unique_id=1391699517]
 visible = false
 
-[node name="g1_001" parent="chessboard" index="17" unique_id=1915462935]
+[node name="g1_001" parent="chessboard" index="17" unique_id=1550226064]
 visible = false
 
-[node name="f8_001" parent="chessboard" index="18" unique_id=1463678746]
+[node name="f8_001" parent="chessboard" index="18" unique_id=1399845519]
 visible = false
 
-[node name="f7_001" parent="chessboard" index="19" unique_id=1310592688]
+[node name="f7_001" parent="chessboard" index="19" unique_id=1153948355]
 visible = false
 
-[node name="f6_001" parent="chessboard" index="20" unique_id=271495101]
+[node name="f6_001" parent="chessboard" index="20" unique_id=748977545]
 visible = false
 
-[node name="f5_001" parent="chessboard" index="21" unique_id=392134199]
+[node name="f5_001" parent="chessboard" index="21" unique_id=412793952]
 visible = false
 
-[node name="f4_001" parent="chessboard" index="22" unique_id=1842470745]
+[node name="f4_001" parent="chessboard" index="22" unique_id=697054025]
 visible = false
 
-[node name="f3_001" parent="chessboard" index="23" unique_id=289527966]
+[node name="f3_001" parent="chessboard" index="23" unique_id=210310167]
 visible = false
 
-[node name="f2_001" parent="chessboard" index="24" unique_id=1304332626]
+[node name="f2_001" parent="chessboard" index="24" unique_id=901500300]
 visible = false
 
-[node name="f1_001" parent="chessboard" index="25" unique_id=312815390]
+[node name="f1_001" parent="chessboard" index="25" unique_id=730538485]
 visible = false
 
-[node name="e8_001" parent="chessboard" index="26" unique_id=1625929623]
+[node name="e8_001" parent="chessboard" index="26" unique_id=655282422]
 visible = false
 
-[node name="e7_001" parent="chessboard" index="27" unique_id=1807793808]
+[node name="e7_001" parent="chessboard" index="27" unique_id=180319082]
 visible = false
 
-[node name="e6_001" parent="chessboard" index="28" unique_id=506584828]
+[node name="e6_001" parent="chessboard" index="28" unique_id=1897605195]
 visible = false
 
-[node name="e5_001" parent="chessboard" index="29" unique_id=990247944]
+[node name="e5_001" parent="chessboard" index="29" unique_id=142200301]
 visible = false
 
-[node name="e4_001" parent="chessboard" index="30" unique_id=1589315345]
+[node name="e4_001" parent="chessboard" index="30" unique_id=327849168]
 visible = false
 
-[node name="e3_001" parent="chessboard" index="31" unique_id=1087046100]
+[node name="e3_001" parent="chessboard" index="31" unique_id=1060959015]
 visible = false
 
-[node name="e2_001" parent="chessboard" index="32" unique_id=905378072]
+[node name="e2_001" parent="chessboard" index="32" unique_id=826814302]
 visible = false
 
-[node name="e1_001" parent="chessboard" index="33" unique_id=312312624]
+[node name="e1_001" parent="chessboard" index="33" unique_id=66096356]
 visible = false
 
-[node name="d8_001" parent="chessboard" index="34" unique_id=1992075505]
+[node name="d8_001" parent="chessboard" index="34" unique_id=1380148976]
 visible = false
 
-[node name="d7_001" parent="chessboard" index="35" unique_id=1271333021]
+[node name="d7_001" parent="chessboard" index="35" unique_id=1820195319]
 visible = false
 
-[node name="d6_001" parent="chessboard" index="36" unique_id=1769314278]
+[node name="d6_001" parent="chessboard" index="36" unique_id=637157557]
 visible = false
 
-[node name="d5_001" parent="chessboard" index="37" unique_id=2139807210]
+[node name="d5_001" parent="chessboard" index="37" unique_id=283069207]
 visible = false
 
-[node name="d4_001" parent="chessboard" index="38" unique_id=1042080290]
+[node name="d4_001" parent="chessboard" index="38" unique_id=1820545476]
 visible = false
 
-[node name="d3_001" parent="chessboard" index="39" unique_id=1179602463]
+[node name="d3_001" parent="chessboard" index="39" unique_id=366720574]
 visible = false
 
-[node name="d2_001" parent="chessboard" index="40" unique_id=1973936897]
+[node name="d2_001" parent="chessboard" index="40" unique_id=262664678]
 visible = false
 
-[node name="d1_001" parent="chessboard" index="41" unique_id=1133559790]
+[node name="d1_001" parent="chessboard" index="41" unique_id=1143940964]
 visible = false
 
-[node name="c8_001" parent="chessboard" index="42" unique_id=952881581]
+[node name="c8_001" parent="chessboard" index="42" unique_id=1848013936]
 visible = false
 
-[node name="c7_001" parent="chessboard" index="43" unique_id=520417772]
+[node name="c7_001" parent="chessboard" index="43" unique_id=1790455017]
 visible = false
 
-[node name="c6_001" parent="chessboard" index="44" unique_id=631703545]
+[node name="c6_001" parent="chessboard" index="44" unique_id=1050361831]
 visible = false
 
-[node name="c5_001" parent="chessboard" index="45" unique_id=1334614105]
+[node name="c5_001" parent="chessboard" index="45" unique_id=1084010656]
 visible = false
 
-[node name="c4_001" parent="chessboard" index="46" unique_id=150671120]
+[node name="c4_001" parent="chessboard" index="46" unique_id=283818518]
 visible = false
 
-[node name="c3_001" parent="chessboard" index="47" unique_id=298845]
+[node name="c3_001" parent="chessboard" index="47" unique_id=127418488]
 visible = false
 
-[node name="c2_001" parent="chessboard" index="48" unique_id=1567535]
+[node name="c2_001" parent="chessboard" index="48" unique_id=175679841]
 visible = false
 
-[node name="c1_001" parent="chessboard" index="49" unique_id=574280630]
+[node name="c1_001" parent="chessboard" index="49" unique_id=1021463519]
 visible = false
 
-[node name="b8_001" parent="chessboard" index="50" unique_id=1685441831]
+[node name="b8_001" parent="chessboard" index="50" unique_id=76346146]
 visible = false
 
-[node name="b7_001" parent="chessboard" index="51" unique_id=663022433]
+[node name="b7_001" parent="chessboard" index="51" unique_id=2086715459]
 visible = false
 
-[node name="b6_001" parent="chessboard" index="52" unique_id=559265249]
+[node name="b6_001" parent="chessboard" index="52" unique_id=1827184831]
 visible = false
 
-[node name="b5_001" parent="chessboard" index="53" unique_id=735254307]
+[node name="b5_001" parent="chessboard" index="53" unique_id=1907917555]
 visible = false
 
-[node name="b4_001" parent="chessboard" index="54" unique_id=243017514]
+[node name="b4_001" parent="chessboard" index="54" unique_id=867295873]
 visible = false
 
-[node name="b3_001" parent="chessboard" index="55" unique_id=680160089]
+[node name="b3_001" parent="chessboard" index="55" unique_id=909256382]
 visible = false
 
-[node name="b2_001" parent="chessboard" index="56" unique_id=1635757757]
+[node name="b2_001" parent="chessboard" index="56" unique_id=1905622541]
 visible = false
 
-[node name="b1_001" parent="chessboard" index="57" unique_id=804862162]
+[node name="b1_001" parent="chessboard" index="57" unique_id=1566061210]
 visible = false
 
-[node name="a8_001" parent="chessboard" index="58" unique_id=713890881]
+[node name="a8_001" parent="chessboard" index="58" unique_id=1802821526]
 visible = false
 
-[node name="a7_001" parent="chessboard" index="59" unique_id=1824009580]
+[node name="a7_001" parent="chessboard" index="59" unique_id=543606566]
 visible = false
 
-[node name="a6_001" parent="chessboard" index="60" unique_id=209006293]
+[node name="a6_001" parent="chessboard" index="60" unique_id=212357850]
 visible = false
 
-[node name="a5_001" parent="chessboard" index="61" unique_id=758390324]
+[node name="a5_001" parent="chessboard" index="61" unique_id=626222440]
 visible = false
 
-[node name="a4_001" parent="chessboard" index="62" unique_id=1059633365]
+[node name="a4_001" parent="chessboard" index="62" unique_id=1043687278]
 visible = false
 
-[node name="a3_001" parent="chessboard" index="63" unique_id=758198755]
+[node name="a3_001" parent="chessboard" index="63" unique_id=909681954]
 visible = false
 
-[node name="a2_001" parent="chessboard" index="64" unique_id=1683123661]
+[node name="a2_001" parent="chessboard" index="64" unique_id=1901629978]
 visible = false
 
-[node name="a1_001" parent="chessboard" index="65" unique_id=1756170975]
+[node name="a1_001" parent="chessboard" index="65" unique_id=2032817532]
 visible = false
 
-[node name="a1" parent="chessboard" index="68" unique_id=965265613]
+[node name="a1" parent="chessboard" index="68" unique_id=1731967051]
 visible = false
 
-[node name="a2" parent="chessboard" index="69" unique_id=970506122]
+[node name="a2" parent="chessboard" index="69" unique_id=444248204]
 visible = false
 
-[node name="a3" parent="chessboard" index="70" unique_id=1872623618]
+[node name="a3" parent="chessboard" index="70" unique_id=1160268241]
 visible = false
 
-[node name="a4" parent="chessboard" index="71" unique_id=153668603]
+[node name="a4" parent="chessboard" index="71" unique_id=888597008]
 visible = false
 
-[node name="a5" parent="chessboard" index="72" unique_id=1970514405]
+[node name="a5" parent="chessboard" index="72" unique_id=1344913827]
 visible = false
 
-[node name="a6" parent="chessboard" index="73" unique_id=1393622288]
+[node name="a6" parent="chessboard" index="73" unique_id=2120534614]
 visible = false
 
-[node name="a7" parent="chessboard" index="74" unique_id=1049552071]
+[node name="a7" parent="chessboard" index="74" unique_id=2015125733]
 visible = false
 
-[node name="a8" parent="chessboard" index="75" unique_id=1759370453]
+[node name="a8" parent="chessboard" index="75" unique_id=751957180]
 visible = false
 
-[node name="b1" parent="chessboard" index="76" unique_id=1497690640]
+[node name="b1" parent="chessboard" index="76" unique_id=494383963]
 visible = false
 
-[node name="b2" parent="chessboard" index="77" unique_id=1235199383]
+[node name="b2" parent="chessboard" index="77" unique_id=1069227502]
 visible = false
 
-[node name="b3" parent="chessboard" index="78" unique_id=751158745]
+[node name="b3" parent="chessboard" index="78" unique_id=636654430]
 visible = false
 
-[node name="b4" parent="chessboard" index="79" unique_id=1758883149]
+[node name="b4" parent="chessboard" index="79" unique_id=1210243546]
 visible = false
 
-[node name="b5" parent="chessboard" index="80" unique_id=886934499]
+[node name="b5" parent="chessboard" index="80" unique_id=2077061666]
 visible = false
 
-[node name="b6" parent="chessboard" index="81" unique_id=186805376]
+[node name="b6" parent="chessboard" index="81" unique_id=930814648]
 visible = false
 
-[node name="b7" parent="chessboard" index="82" unique_id=1413784162]
+[node name="b7" parent="chessboard" index="82" unique_id=321286843]
 visible = false
 
-[node name="b8" parent="chessboard" index="83" unique_id=1886941521]
+[node name="b8" parent="chessboard" index="83" unique_id=1120854736]
 visible = false
 
-[node name="c1" parent="chessboard" index="84" unique_id=1280456684]
+[node name="c1" parent="chessboard" index="84" unique_id=843504520]
 visible = false
 
-[node name="c2" parent="chessboard" index="85" unique_id=1012769335]
+[node name="c2" parent="chessboard" index="85" unique_id=2106784675]
 visible = false
 
-[node name="c3" parent="chessboard" index="86" unique_id=863013774]
+[node name="c3" parent="chessboard" index="86" unique_id=1520282845]
 visible = false
 
-[node name="c4" parent="chessboard" index="87" unique_id=843516862]
+[node name="c4" parent="chessboard" index="87" unique_id=1970829521]
 visible = false
 
-[node name="c5" parent="chessboard" index="88" unique_id=139437436]
+[node name="c5" parent="chessboard" index="88" unique_id=925441311]
 visible = false
 
-[node name="c6" parent="chessboard" index="89" unique_id=1680330953]
+[node name="c6" parent="chessboard" index="89" unique_id=1320338354]
 visible = false
 
-[node name="c7" parent="chessboard" index="90" unique_id=22860851]
+[node name="c7" parent="chessboard" index="90" unique_id=1192170809]
 visible = false
 
-[node name="c8" parent="chessboard" index="91" unique_id=4315146]
+[node name="c8" parent="chessboard" index="91" unique_id=2135824802]
 visible = false
 
-[node name="d1" parent="chessboard" index="92" unique_id=1645217506]
+[node name="d1" parent="chessboard" index="92" unique_id=1199836842]
 visible = false
 
-[node name="d2" parent="chessboard" index="93" unique_id=1905782942]
+[node name="d2" parent="chessboard" index="93" unique_id=1812139936]
 visible = false
 
-[node name="d3" parent="chessboard" index="94" unique_id=2087137823]
+[node name="d3" parent="chessboard" index="94" unique_id=849682946]
 visible = false
 
-[node name="d4" parent="chessboard" index="95" unique_id=807179185]
+[node name="d4" parent="chessboard" index="95" unique_id=214991937]
 visible = false
 
-[node name="d5" parent="chessboard" index="96" unique_id=538615368]
+[node name="d5" parent="chessboard" index="96" unique_id=1866227255]
 visible = false
 
-[node name="d6" parent="chessboard" index="97" unique_id=319090097]
+[node name="d6" parent="chessboard" index="97" unique_id=962223231]
 visible = false
 
-[node name="d7" parent="chessboard" index="98" unique_id=2139469354]
+[node name="d7" parent="chessboard" index="98" unique_id=1178583159]
 visible = false
 
-[node name="d8" parent="chessboard" index="99" unique_id=61684704]
+[node name="d8" parent="chessboard" index="99" unique_id=1753236368]
 visible = false
 
-[node name="e1" parent="chessboard" index="100" unique_id=989115678]
+[node name="e1" parent="chessboard" index="100" unique_id=85251780]
 visible = false
 
-[node name="e2" parent="chessboard" index="101" unique_id=85356223]
+[node name="e2" parent="chessboard" index="101" unique_id=1702520479]
 visible = false
 
-[node name="e3" parent="chessboard" index="102" unique_id=819548907]
+[node name="e3" parent="chessboard" index="102" unique_id=707193426]
 visible = false
 
-[node name="e4" parent="chessboard" index="103" unique_id=2072070671]
+[node name="e4" parent="chessboard" index="103" unique_id=1713664082]
 visible = false
 
-[node name="e5" parent="chessboard" index="104" unique_id=1386306637]
+[node name="e5" parent="chessboard" index="104" unique_id=1396729189]
 visible = false
 
-[node name="e6" parent="chessboard" index="105" unique_id=1081298245]
+[node name="e6" parent="chessboard" index="105" unique_id=1426533536]
 visible = false
 
-[node name="e7" parent="chessboard" index="106" unique_id=218134308]
+[node name="e7" parent="chessboard" index="106" unique_id=164497531]
 visible = false
 
-[node name="e8" parent="chessboard" index="107" unique_id=915947972]
+[node name="e8" parent="chessboard" index="107" unique_id=1515299295]
 visible = false
 
-[node name="f1" parent="chessboard" index="108" unique_id=1360075882]
+[node name="f1" parent="chessboard" index="108" unique_id=446718671]
 visible = false
 
-[node name="f2" parent="chessboard" index="109" unique_id=1034953473]
+[node name="f2" parent="chessboard" index="109" unique_id=739995421]
 visible = false
 
-[node name="f3" parent="chessboard" index="110" unique_id=1310122128]
+[node name="f3" parent="chessboard" index="110" unique_id=500455987]
 visible = false
 
-[node name="f4" parent="chessboard" index="111" unique_id=1362360431]
+[node name="f4" parent="chessboard" index="111" unique_id=669045385]
 visible = false
 
-[node name="f5" parent="chessboard" index="112" unique_id=729309485]
+[node name="f5" parent="chessboard" index="112" unique_id=1947057692]
 visible = false
 
-[node name="f6" parent="chessboard" index="113" unique_id=404806613]
+[node name="f6" parent="chessboard" index="113" unique_id=1930124209]
 visible = false
 
-[node name="f7" parent="chessboard" index="114" unique_id=728434083]
+[node name="f7" parent="chessboard" index="114" unique_id=1837633445]
 visible = false
 
-[node name="f8" parent="chessboard" index="115" unique_id=2124683902]
+[node name="f8" parent="chessboard" index="115" unique_id=1371471535]
 visible = false
 
-[node name="g1" parent="chessboard" index="116" unique_id=1744752493]
+[node name="g1" parent="chessboard" index="116" unique_id=1196871569]
 visible = false
 
-[node name="g2" parent="chessboard" index="117" unique_id=466302335]
+[node name="g2" parent="chessboard" index="117" unique_id=511651422]
 visible = false
 
-[node name="g3" parent="chessboard" index="118" unique_id=90163648]
+[node name="g3" parent="chessboard" index="118" unique_id=1297842506]
 visible = false
 
-[node name="g4" parent="chessboard" index="119" unique_id=2112660455]
+[node name="g4" parent="chessboard" index="119" unique_id=432391082]
 visible = false
 
-[node name="g5" parent="chessboard" index="120" unique_id=665669998]
+[node name="g5" parent="chessboard" index="120" unique_id=1568701019]
 visible = false
 
-[node name="g6" parent="chessboard" index="121" unique_id=1059194931]
+[node name="g6" parent="chessboard" index="121" unique_id=1002041488]
 visible = false
 
-[node name="g7" parent="chessboard" index="122" unique_id=1413052125]
+[node name="g7" parent="chessboard" index="122" unique_id=225945724]
 visible = false
 
-[node name="g8" parent="chessboard" index="123" unique_id=252624177]
+[node name="g8" parent="chessboard" index="123" unique_id=2006592111]
 visible = false
 
-[node name="h1" parent="chessboard" index="124" unique_id=491229338]
+[node name="h1" parent="chessboard" index="124" unique_id=293900996]
 visible = false
 
-[node name="h2" parent="chessboard" index="125" unique_id=244297837]
+[node name="h2" parent="chessboard" index="125" unique_id=1894308670]
 visible = false
 
-[node name="h3" parent="chessboard" index="126" unique_id=721714543]
+[node name="h3" parent="chessboard" index="126" unique_id=136665978]
 visible = false
 
-[node name="h4" parent="chessboard" index="127" unique_id=525701965]
+[node name="h4" parent="chessboard" index="127" unique_id=1835266953]
 visible = false
 
-[node name="h5" parent="chessboard" index="128" unique_id=929344214]
+[node name="h5" parent="chessboard" index="128" unique_id=529320960]
 visible = false
 
-[node name="h6" parent="chessboard" index="129" unique_id=2086911126]
+[node name="h6" parent="chessboard" index="129" unique_id=971433480]
 visible = false
 
-[node name="h7" parent="chessboard" index="130" unique_id=864389316]
+[node name="h7" parent="chessboard" index="130" unique_id=1157501312]
 visible = false
 
-[node name="h8" parent="chessboard" index="131" unique_id=2085467354]
+[node name="h8" parent="chessboard" index="131" unique_id=483805261]
 visible = false
 
 [node name="grass_0" parent="chessboard" unique_id=2051756418 instance=ExtResource("3_mndi1")]
@@ -6157,7 +6157,7 @@ metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 [node name="carnation_2" parent="event_actor_carnation" unique_id=1846543884 instance=ExtResource("6_vvkta")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Skeleton3D" parent="event_actor_carnation/carnation_2/skeleton" parent_id_path=PackedInt32Array(1846543884, 752445334) index="0" unique_id=23419708]
+[node name="Skeleton3D" parent="event_actor_carnation/carnation_2/skeleton" parent_id_path=PackedInt32Array(1846543884, 1700108224) index="0" unique_id=1143853981]
 bones/0/position = Vector3(-0.0035885281, 0.67076004, 0.065477744)
 bones/0/rotation = Quaternion(0.2959612, -0.01004928, -0.0061420454, 0.95512736)
 bones/1/rotation = Quaternion(-5.1091774e-08, 0.03018871, 5.355105e-09, 0.99954426)
@@ -6498,7 +6498,7 @@ transform = Transform3D(0.99986565, 0.0034876363, -0.016016113, 0.00093628094, 0
 [node name="event_title" type="Node3D" parent="." unique_id=1671690287]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
 script = ExtResource("12_kjls8")
-text = "CHAR_CARNATION"
+text = "tr(\"CHAR_CARNATION\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="street_light2_3" parent="." unique_id=385502742 instance=ExtResource("14_y0tp7")]
@@ -6516,7 +6516,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4.03441)
 [node name="event_title_to_entrance" type="Node3D" parent="." unique_id=2084024088]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
 script = ExtResource("12_kjls8")
-text = "TO_ENTRANCE"
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_ENTRANCE\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_explore" type="Node3D" parent="." unique_id=746533081 node_paths=PackedStringArray("chessboard", "instance")]
@@ -6528,7 +6528,7 @@ metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 [node name="cheshire" parent="event_explore" unique_id=1598402161 instance=ExtResource("16_itc81")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.2758185, 0, -1)
 
-[node name="Skeleton3D" parent="event_explore/cheshire/skeleton" parent_id_path=PackedInt32Array(1598402161, 1710223891) index="0" unique_id=1815968097]
+[node name="Skeleton3D" parent="event_explore/cheshire/skeleton" parent_id_path=PackedInt32Array(1598402161, 1368383532) index="0" unique_id=2010894300]
 bones/0/rotation = Quaternion(0.2369665, -0.010706051, -0.002611521, 0.9714554)
 bones/1/rotation = Quaternion(2.1706084e-08, 0.016193826, 9.3132246e-10, 0.99986887)
 bones/2/rotation = Quaternion(0.06845993, -0.019969331, -0.0030379696, 0.99744946)
@@ -6594,7 +6594,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29366678, 1.2720025, 0.303
 [node name="marker_3d" parent="event_explore/cheshire/skeleton/Skeleton3D/convert_transform_modifier_3d" parent_id_path=PackedInt32Array(1598402161, 1860371259) index="0" unique_id=2004121038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35563505, 0.23362947)
 
-[node name="AnimationPlayer" parent="event_explore/cheshire" index="1" unique_id=619228199]
+[node name="AnimationPlayer" parent="event_explore/cheshire" index="1" unique_id=400951522]
 active = false
 
 [node name="garden_chair_2" parent="." unique_id=1929710267 instance=ExtResource("8_85gfo")]
@@ -6719,25 +6719,25 @@ metadata/_custom_type_script = "uid://d2ckdq43wstns"
 [node name="event_title_carnation" type="Node3D" parent="." unique_id=845221173]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 script = ExtResource("12_kjls8")
-text = "CHAR_CARNATION"
+text = "tr(\"CHAR_CARNATION\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_carnation_2" type="Node3D" parent="." unique_id=1396134200]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 script = ExtResource("12_kjls8")
-text = "CHAR_CARNATION"
+text = "tr(\"CHAR_CARNATION\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_carnation_3" type="Node3D" parent="." unique_id=29515853]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 script = ExtResource("12_kjls8")
-text = "CHAR_CARNATION"
+text = "tr(\"CHAR_CARNATION\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_title_carnation_4" type="Node3D" parent="." unique_id=1849673228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
 script = ExtResource("12_kjls8")
-text = "CHAR_CARNATION"
+text = "tr(\"CHAR_CARNATION\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [editable path="chessboard"]
