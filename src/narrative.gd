@@ -83,6 +83,8 @@ func next_content() -> void:
 		else:
 			DisplayServer.clipboard_set(content)
 			content_queue.pop_front()
+	else:
+		content_queue.pop_front()
 	print(content)
 
 func tts_request(content:String) -> void:
