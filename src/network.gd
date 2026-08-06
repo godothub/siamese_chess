@@ -10,8 +10,8 @@ func post_request(url:String, query:Dictionary, content_type:String, body:Packed
 	add_child(http_request)
 	http_request.use_threads = true
 	var path:String = server + url + "?" + query_string
-	print(path)
-	print(query)
+	print_verbose(path)
+	print_verbose(query)
 	http_request.connect("request_completed", receive_response.bind(http_request, path, response))
 	http_request.request_raw(path, ["Content-Type: " + content_type], HTTPClient.METHOD_POST, body)
 
@@ -21,14 +21,14 @@ func get_request(url:String, query:Dictionary, response:Callable) -> void:
 	var http_request:HTTPRequest = HTTPRequest.new()
 	add_child(http_request)
 	var path:String = server + url + "?" + query_string
-	print(path)
-	print(query)
+	print_verbose(path)
+	print_verbose(query)
 	http_request.connect("request_completed", receive_response.bind(http_request, path, response))
 	http_request.request(path, [], HTTPClient.METHOD_GET)
 
 func receive_response(_result:int, _response_code:int, _header:PackedStringArray, body:PackedByteArray, http_request:HTTPRequest, path:String, callback:Callable) -> void:
 	if _result != HTTPRequest.RESULT_SUCCESS:
 		pass
-	print("received %s body size %d" % [path, body.size()])
+	print_verbose("received %s body size %d" % [path, body.size()])
 	callback.call(body)
 	http_request.queue_free()

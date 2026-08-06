@@ -183,20 +183,20 @@ func state_ready_start(_arg:Dictionary) -> void:
 func state_ready_engine(_arg:Dictionary) -> void:
 	state_machine.state_signal_connect(engine.search_finished, func () -> void:
 		assert(chessboard.state.get_turn() == Chess.group(chessboard.state.get_piece(Chess.from(engine.get_search_result()))))
-		print("principal_move: " + Chess.get_move_name(chessboard.state, engine.get_principal_move()))
-		print("score: %d" % engine.get_score())
-		print("evaluated position: %d" % engine.get_evaluated_position())
-		print("deepest ply: %d" % engine.get_deepest_ply())
-		print("deepest depth: %d" % engine.get_deepest_depth())
-		print("alphabeta count: %d" % engine.get_alphabeta_count())
-		print("evaluated position: %d" % engine.get_evaluated_position())
-		print("beta cutoff: %d" % engine.get_beta_cutoff())
-		print("tt cutoff: %d" % engine.get_transposition_table_cutoff())
+		print_verbose("principal_move: " + Chess.get_move_name(chessboard.state, engine.get_principal_move()))
+		print_verbose("score: %d" % engine.get_score())
+		print_verbose("evaluated position: %d" % engine.get_evaluated_position())
+		print_verbose("deepest ply: %d" % engine.get_deepest_ply())
+		print_verbose("deepest depth: %d" % engine.get_deepest_depth())
+		print_verbose("alphabeta count: %d" % engine.get_alphabeta_count())
+		print_verbose("evaluated position: %d" % engine.get_evaluated_position())
+		print_verbose("beta cutoff: %d" % engine.get_beta_cutoff())
+		print_verbose("tt cutoff: %d" % engine.get_transposition_table_cutoff())
 		var searched_move:Dictionary = engine.get_searched_move()
 		var searched_move_pretty:Dictionary = {}
 		for move:int in searched_move:
 			searched_move_pretty[Chess.get_move_name(chessboard.state, move)] = searched_move[move]
-		print("searched move: ", searched_move_pretty)
+		print_verbose("searched move: ", searched_move_pretty)
 		state_machine.change_state.call_deferred("move", {"move": engine.get_search_result()})
 	)
 	if !Setting.get_value("relax"):

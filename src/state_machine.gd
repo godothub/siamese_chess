@@ -33,7 +33,7 @@ func change_state(next_state:String, arg:Dictionary = {}) -> void:
 	last_state = current_state
 	current_state = next_state
 	# 执行状态退出方法
-	print(name + ":" + current_state)
+	print_verbose(name + ":" + current_state)
 	if last_state && state_list[last_state]["exit"].is_valid():
 		state_list[last_state]["exit"].call()
 	mutex.unlock()
