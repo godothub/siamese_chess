@@ -10,11 +10,16 @@ var history:Array[String] = [""]
 
 var history_index:int = -1
 
+var console_thread:Thread = null
+
 func _ready() -> void:
 	visible = false
 	$texture_rect_top/margin_container/line_edit.connect("gui_input", line_edit_input)
 	$texture_rect_top/margin_container/line_edit.connect("text_submitted", exec)
 	$texture_rect_top/margin_container/line_edit.connect("text_changed", enter)
+	if OS.get_cmdline_args().has("--terminal"):
+		console_thread = Thread.new()
+		console_thread.start(listen_stdin)
 
 func _unhandled_input(_event:InputEvent) -> void:
 	if _event.is_action_pressed("terminal") && !visible:
@@ -52,6 +57,11 @@ func open() -> void:
 
 func close() -> void:
 	visible = false
+
+func listen_stdin() -> void:
+	while true:
+		var cmd:String = OS.read_string_from_stdin()
+		exec.call_deferred(cmd)
 
 func exec(cmd:String) -> void:
 	close()
