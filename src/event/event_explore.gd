@@ -111,12 +111,16 @@ func receive_value_change(key:String, value:Variant) -> void:
 		travel_to(value, false)
 
 func on_command_received(cmd:String) -> void:
+	if cmd == "where am i":
+		Narrative.speak(tr("WHERE_IS_CHESHIRE").format({"by": Chess.x88_to_name(cheshire_by)}))
+		return
 	if cmd.begins_with("to "):
 		cmd = cmd.trim_prefix("to ")
 		var by:int = Chess.name_to_x88(cmd)
 		if by != -1:
 			travel_to(by)
-	elif cmd == "ls" || cmd == "list":
+		return
+	if cmd == "ls" || cmd == "list":
 		var output:String = ""
 		for by:int in level.title:
 			output += "%s: %s  " % [Chess.x88_to_name(by), level.title[by]]
