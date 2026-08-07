@@ -229,6 +229,7 @@ func interact_carnation_end() -> void:
 	Player.force_set_camera($camera)
 	$event_explore.instance.get_node("animation_tree").active = true
 	$event_actor_carnation.instance.get_node("animation_tree").active = true
+	$event_actor_carnation.instance.play_animation("sit_and_think")
 	$event_explore.instance.play_animation("battle_idle")
 	$event_explore.instance.set_position($chessboard.name_to_vector3("d6"))
 	$chessboard.set_enabled(true)
