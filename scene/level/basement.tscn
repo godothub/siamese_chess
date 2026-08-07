@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/event_explore.gd" id="23_wetn8"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/event_multi_actor.gd" id="24_bhm70"]
 [ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="25_tljiy"]
+[ext_resource type="Script" uid="uid://ci1qj2blsa7gp" path="res://src/event/event_narrative.gd" id="26_vpnv2"]
 
 [sub_resource type="Environment" id="Environment_ywqhp"]
 background_mode = 1
@@ -623,5 +624,17 @@ instance = NodePath("box_stack")
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="box_stack" parent="event_actor_box_10" unique_id=675675904 instance=ExtResource("4_d5w51")]
+
+[node name="event_narrative_detail" type="Node3D" parent="." unique_id=320144629]
+script = ExtResource("26_vpnv2")
+text = "tr(\"DESCRIPTION_BASEMENT\") + [tr(\"DESCRIPTION_BASEMENT_LIGHT_OFF\"), tr(\"DESCRIPTION_BASEMENT_LIGHT_ON\")].get(int(Progress.get_value(\"basement_light\", false)))"
+start_now = false
+emit_cmd = "detail"
+metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
+
+[node name="event_narrative_overall" type="Node3D" parent="." unique_id=1280041458]
+script = ExtResource("26_vpnv2")
+text = "tr(\"WELCOME_TO\").format({\"place\": tr(\"PLACE_BASEMENT\")})"
+metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
 
 [editable path="hotel_door_large"]

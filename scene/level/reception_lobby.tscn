@@ -224,9 +224,16 @@ piece = 35
 bit = 847736349917184
 metadata/_custom_type_script = "uid://c07j5dqfy7nsx"
 
+[node name="event_narrative_detail" type="Node3D" parent="." unique_id=980717287]
+script = ExtResource("24_p85mr")
+text = "tr(\"DESCRIPTION_RECEPTION_LOBBY\")"
+start_now = false
+emit_cmd = "detail"
+metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
+
 [node name="event_narrative_overall" type="Node3D" parent="." unique_id=218744405]
 script = ExtResource("24_p85mr")
-text = "WELCOME_TO_RECEPTION_LOBBY"
+text = "tr(\"WELCOME_TO\").format({\"place\": tr(\"PLACE_RECEPTION_LOBBY\")})"
 metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
 
 [node name="csg_combiner_3d" type="CSGCombiner3D" parent="." unique_id=398327325]
@@ -445,14 +452,6 @@ script = ExtResource("31_m47dq")
 text = "tr(\"HOTEL_ELEVATOR\")"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
-[node name="event_explore" type="Node3D" parent="." unique_id=650433135 node_paths=PackedStringArray("chessboard", "instance")]
-script = ExtResource("32_wxkc3")
-chessboard = NodePath("../chessboard")
-instance = NodePath("cheshire")
-metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
-
-[node name="cheshire" parent="event_explore" unique_id=1598402161 instance=ExtResource("30_m47dq")]
-
 [node name="event_teleport_entrance" type="Node3D" parent="." unique_id=310012492]
 transform = Transform3D(1.0000001, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, 1.0000001, 0, 0, 7)
 script = ExtResource("30_wxkc3")
@@ -468,3 +467,11 @@ to = "res://scene/level/cafe.tscn"
 by = 53
 bit = 8388608
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
+
+[node name="event_explore" type="Node3D" parent="." unique_id=650433135 node_paths=PackedStringArray("chessboard", "instance")]
+script = ExtResource("32_wxkc3")
+chessboard = NodePath("../chessboard")
+instance = NodePath("cheshire")
+metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
+
+[node name="cheshire" parent="event_explore" unique_id=1598402161 instance=ExtResource("30_m47dq")]

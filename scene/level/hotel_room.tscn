@@ -38,6 +38,7 @@
 [ext_resource type="Script" uid="uid://dxapdof0oowg1" path="res://src/procedure/procedure_game.gd" id="35_hnywy"]
 [ext_resource type="Script" uid="uid://ce4h2ni6na8rh" path="res://src/event/event_enter_room.gd" id="37_c1ip0"]
 [ext_resource type="Script" uid="uid://ck5bvbw2bcwox" path="res://src/procedure/procedure_edit.gd" id="37_fefse"]
+[ext_resource type="Script" uid="uid://ci1qj2blsa7gp" path="res://src/event/event_narrative.gd" id="39_j8yw3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e1edc"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -430,5 +431,17 @@ bit_from = 2199023255552
 bit_to = 8589934592
 camera = NodePath("../camera_bedroom")
 metadata/_custom_type_script = "uid://ce4h2ni6na8rh"
+
+[node name="event_narrative_detail" type="Node3D" parent="." unique_id=491856812]
+script = ExtResource("39_j8yw3")
+text = "tr(\"DESCRIPTION_GUEST_ROOM\")"
+start_now = false
+emit_cmd = "detail"
+metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
+
+[node name="event_narrative_overall" type="Node3D" parent="." unique_id=393182107]
+script = ExtResource("39_j8yw3")
+text = "tr(\"WELCOME_TO\").format({\"place\": tr(\"PLACE_GUEST_ROOM\")})"
+metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
 
 [editable path="door_2"]

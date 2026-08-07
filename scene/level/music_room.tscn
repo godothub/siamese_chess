@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="18_lay20"]
 [ext_resource type="PackedScene" uid="uid://fljvg3cd0hyb" path="res://assets/model/music_room_chair.glb" id="19_1bcad"]
 [ext_resource type="Script" uid="uid://d2ckdq43wstns" path="res://src/procedure/procedure_dialog.gd" id="19_dy0qe"]
+[ext_resource type="Script" uid="uid://ci1qj2blsa7gp" path="res://src/event/event_narrative.gd" id="20_1bcad"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e1edc"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -355,3 +356,15 @@ transform = Transform3D(-0.06676155, 0, 0.99776894, 0, 1, 0, -0.99776894, 0, -0.
 
 [node name="music_room_chair_16" parent="." unique_id=439470134 instance=ExtResource("19_1bcad")]
 transform = Transform3D(0.09601943, 0, 0.99537945, 0, 1, 0, -0.99537945, 0, 0.09601943, -1.032558, 0, 3.5115118)
+
+[node name="event_narrative_detail" type="Node3D" parent="." unique_id=888261870]
+script = ExtResource("20_1bcad")
+text = "tr(\"DESCRIPTION_MUSIC_ROOM\")"
+start_now = false
+emit_cmd = "detail"
+metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
+
+[node name="event_narrative_overall" type="Node3D" parent="." unique_id=1890906360]
+script = ExtResource("20_1bcad")
+text = "tr(\"WELCOME_TO\").format({\"place\": tr(\"PLACE_MUSIC_ROOM\")})"
+metadata/_custom_type_script = "uid://ci1qj2blsa7gp"

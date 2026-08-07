@@ -346,9 +346,16 @@ transform = Transform3D(-0.9939571, 0, -0.10976896, 0, 1.0667725, 0, 0.10976896,
 [node name="tree_29" parent="trees" unique_id=718091541 instance=ExtResource("16_ysi5d")]
 transform = Transform3D(-0.88453007, 0, -0.10976899, 0, 0.8653053, 0, 0.097684234, 0, -0.99395716, -15.509087, 0, 13.826396)
 
-[node name="event_narrative" type="Node3D" parent="." unique_id=313801101]
+[node name="event_narrative_overall" type="Node3D" parent="." unique_id=313801101]
 script = ExtResource("20_a370u")
-text = "WELCOME_TO_ENTRANCE"
+text = "tr(\"WELCOME_TO\").format({\"place\": tr(\"PLACE_ENTRANCE\")})"
+metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
+
+[node name="event_narrative_detail" type="Node3D" parent="." unique_id=492345894]
+script = ExtResource("20_a370u")
+text = "tr(\"DESCRIPTION_ENTRANCE\")"
+start_now = false
+emit_cmd = "detail"
 metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
 
 [node name="event_entrance" type="Node3D" parent="." unique_id=1964488842]
