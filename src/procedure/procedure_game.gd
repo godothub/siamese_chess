@@ -261,6 +261,9 @@ func state_ready_player(_arg:Dictionary) -> void:
 	)
 	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("engine_win"))
 	state_machine.state_signal_connect(Terminal.command_received, func (cmd:String) -> void:
+		if cmd == "pieces":
+			Narrative.speak(chessboard.state.print_board())
+			return
 		var move:int = Chess.name_to_move(chessboard.state, cmd)
 		if move == -1:
 			move = Chess.uci_to_move(cmd, chessboard.state.get_turn())
