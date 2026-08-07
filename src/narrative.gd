@@ -99,7 +99,7 @@ func tts_request(content:String) -> void:
 		tts_request_result
 	)
 
-func tts_utterance_end(_char_index:int, _utteracne_id:int) -> void:
+func tts_utterance_end(_utteracne_id:int) -> void:
 	content_queue.pop_front()
 	next_content()
 
