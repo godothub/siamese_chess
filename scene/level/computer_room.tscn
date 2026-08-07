@@ -160,10 +160,16 @@ by = 4
 bit = 1152921504606846976
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
-[node name="event_title" type="Node3D" parent="." unique_id=2052556496]
+[node name="event_title_computer" type="Node3D" parent="." unique_id=2052556496]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 script = ExtResource("16_oobam")
-text = "COMPUTER_ROOM_COMPUTER"
+text = "tr(\"COMPUTER_ROOM_COMPUTER\")"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
+[node name="event_title_basement" type="Node3D" parent="." unique_id=1679815969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
+script = ExtResource("16_oobam")
+text = "tr(\"TO_PLACE\").format({\"place\": tr(\"PLACE_BASEMENT\")})"
 metadata/_custom_type_script = "uid://wbnfk8tm8skk"
 
 [node name="event_callback" type="Node3D" parent="." unique_id=1188986200 node_paths=PackedStringArray("node")]

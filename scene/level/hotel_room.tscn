@@ -342,6 +342,12 @@ camera = NodePath("../camera_bedroom")
 bit = 129354301440
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
+[node name="event_title_chessboard" type="Node3D" parent="." unique_id=2018930693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+script = ExtResource("34_vaepl")
+text = "tr(\"HOTEL_ROOM_CHESSBOARD\")"
+metadata/_custom_type_script = "uid://wbnfk8tm8skk"
+
 [node name="camera_bathroom" type="Camera3D" parent="." unique_id=2001745757]
 transform = Transform3D(-0.8011513, 0.36232108, -0.4763194, -0.025687931, 0.7743532, 0.632232, 0.5979104, 0.5187492, -0.6110667, -5.3761883, 3.0222034, 2.3439653)
 fov = 106.10179
