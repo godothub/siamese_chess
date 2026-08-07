@@ -36,8 +36,8 @@ func change_scene(_path:String, wait_time:float = 0.3) -> void:
 	tween.tween_property($texture_rect, "visible", false, 0)
 
 func on_command_received(cmd:String) -> void:
-	if !cmd.begins_with("go to "):
+	if !cmd.begins_with("teleport "):
 		return
-	cmd = cmd.trim_prefix("go to ")
+	cmd = cmd.trim_prefix("teleport ")
 	if ResourceLoader.exists("res://scene/" + cmd + ".tscn"):
 		change_scene("res://scene/" + cmd + ".tscn")
