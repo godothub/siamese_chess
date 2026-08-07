@@ -10,19 +10,19 @@ class_name EventNarrative
 var expression:Expression = Expression.new()
 
 func _ready() -> void:
-	var error:int = expression.parse(text, [])
+	var error:int = expression.parse(text, ["Level", "Chess", "Setting", "Progress"])
 	if error != OK:
 		printerr(expression.get_error_text())
 		return
 	if emit_cmd != "":
 		Terminal.connect("command_received", on_command_received)
 
-func on_start() -> void:
+func on_init() -> void:
 	if start_now:
 		read()
 
 func read() -> void:
-	var result:Variant = expression.execute([], self)
+	var result:Variant = expression.execute([level, Chess, Setting, Progress], self)
 	if expression.has_execute_failed():
 		printerr(expression.get_error_text())
 		return
