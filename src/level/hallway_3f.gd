@@ -9,7 +9,7 @@ func elevator_minus_1f() -> void:
 	Loading.change_scene("res://scene/level/hallway_minus_1f.tscn")
 
 func elevator_1f() -> void:
-	Progress.set_value("player_by", 0x10)
+	Progress.set_value("player_by", 0x67)
 	Loading.change_scene("res://scene/level/reception_lobby.tscn")
 
 func elevator_2f() -> void:

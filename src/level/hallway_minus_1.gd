@@ -5,7 +5,7 @@ func _ready() -> void:
 	Ambient.change_environment_sound(load("res://assets/audio/52645__kstein1__white-noise.wav"))
 
 func elevator_1f() -> void:
-	Progress.set_value("player_by", 0x10)
+	Progress.set_value("player_by", 0x67)
 	Loading.change_scene("res://scene/level/reception_lobby.tscn")
 
 func elevator_2f() -> void:
