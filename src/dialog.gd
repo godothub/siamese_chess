@@ -111,9 +111,14 @@ func push_selection(_selection:PackedStringArray, _title:String, _force_selectio
 	tween.tween_property(text_label, "text", text, 0)
 	tween.tween_property(title_label, "text", tr(title), 0)
 	tween.tween_property($texture_rect_full, "visible", false, 0)
-	if title == "":
-		return
-	Narrative.speak(tr(title))
+
+	if title != "":
+		Narrative.speak(tr(title))
+	if selection.size():
+		var selection_str:String = ""
+		for i:int in selection.size():
+			selection_str += "%d:%s " % [i + 1, tr(selection[i])]
+		Narrative.speak(selection_str)
 
 func push_title(_title:String) -> void:
 	title = _title
@@ -292,6 +297,9 @@ func get_size() -> float:
 	return $texture_rect_left.size.x if Setting.get_value("dialog_border") else $texture_rect_top.size.y
 
 func on_command_received(cmd:String) -> void:
+	if click_anywhere && cmd == "next":
+		next()
+		return
 	if !cmd.is_valid_int():
 		return
 	var index:int = cmd.to_int()
