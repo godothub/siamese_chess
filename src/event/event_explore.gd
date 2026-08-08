@@ -109,7 +109,7 @@ func sync_to_global() -> void:
 	FilmCamera.move_camera(cheshire_position, cheshire_rotation)
 
 func receive_value_change(key:String, value:Variant) -> void:
-	if key == "player_by":
+	if key == "player_by" && Loading.is_changing:
 		travel_to(value, false)
 
 func on_command_received(cmd:String) -> void:
