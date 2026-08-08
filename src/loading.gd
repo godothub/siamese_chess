@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var current:Node = null
 var path:String = ""
+var is_changing:bool = false
 
 func _ready() -> void:
 	current = get_tree().current_scene
@@ -15,6 +16,7 @@ func reset_scene() -> void:
 	change_scene(path)
 
 func change_scene(_path:String, wait_time:float = 0.3) -> void:
+	is_changing = true
 	Progress.set_value("current_level", _path)
 	Progress.save_file()
 	path = _path
@@ -34,6 +36,8 @@ func change_scene(_path:String, wait_time:float = 0.3) -> void:
 	tween = create_tween()
 	tween.tween_property($texture_rect, "modulate", Color(1, 1, 1, 0), wait_time)
 	tween.tween_property($texture_rect, "visible", false, 0)
+	await tween.finished
+	is_changing = false
 
 func on_command_received(cmd:String) -> void:
 	if !cmd.begins_with("teleport "):
