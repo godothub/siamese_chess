@@ -41,26 +41,23 @@ func _input(_event:InputEvent) -> void:
 func push_press_event(_position:Vector2) -> void:
 	var press_event:InputEventMouseButton = InputEventMouseButton.new()
 	press_event.position = _position
-	press_event.global_position = _position
 	press_event.button_index = MOUSE_BUTTON_LEFT
 	press_event.button_mask = MOUSE_BUTTON_MASK_LEFT
 	press_event.pressed = true
 	press_event.device = -1
-	Input.parse_input_event(press_event)
+	get_viewport().push_input(press_event, true)
 	await get_tree().create_timer(0.05).timeout
 	var release_event:InputEventMouseButton = InputEventMouseButton.new()
 	release_event.position = _position
-	release_event.global_position = _position
 	release_event.button_index = MOUSE_BUTTON_LEFT
 	release_event.button_mask = MOUSE_BUTTON_MASK_LEFT
 	release_event.pressed = false
 	release_event.device = -1
-	Input.parse_input_event(release_event)
+	get_viewport().push_input(release_event, true)
 
 func push_motion_event(_position:Vector2) -> void:
 	var event:InputEventMouseMotion = InputEventMouseMotion.new()
 	event.position = _position
-	event.global_position = _position
 	event.button_mask = 0
 	event.device = -1
-	Input.parse_input_event(event)
+	get_viewport().push_input(event, true)
