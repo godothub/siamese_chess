@@ -48,6 +48,7 @@ func _ready() -> void:
 	premove_state_machine.add_state("confirm", state_premove_confirm_ready)
 	premove_state_machine.add_state("stop", state_premove_stop_ready)
 	connect("tree_exiting", on_tree_exiting)
+	Terminal.connect("command_received", on_command_received)
 
 func start() -> void:
 	if history_name:
@@ -260,20 +261,6 @@ func state_ready_player(_arg:Dictionary) -> void:
 			state_machine.change_state("end")
 	)
 	state_machine.state_signal_connect(Clock.timeout, state_machine.change_state.call_deferred.bind("engine_win"))
-	state_machine.state_signal_connect(Terminal.command_received, func (cmd:String) -> void:
-		if cmd == "pieces":
-			Narrative.speak(chessboard.state.print_board())
-			return
-		var move:int = Chess.name_to_move(chessboard.state, cmd)
-		if move == -1:
-			move = Chess.uci_to_move(cmd, chessboard.state.get_turn())
-		if move == -1:
-			return
-		var test_move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, chessboard.state.get_turn())
-		if !test_move_list.has(move):
-			return
-		state_machine.change_state("move", {"move": move})
-	)
 	if Chess.get_end_type(chessboard.state) == "":
 		chessboard.set_square_selection(start_from)
 	else:
@@ -445,3 +432,20 @@ func on_tree_exiting() -> void:
 			engine.free()
 		)
 		engine.stop_search()
+
+func on_command_received(cmd:String) -> void:
+	if !chessboard.enabled:
+		return
+	if cmd == "pieces":
+		Narrative.speak(chessboard.state.print_board())
+		return
+	var move:int = Chess.name_to_move(chessboard.state, cmd)
+	if move == -1:
+		move = Chess.uci_to_move(cmd, chessboard.state.get_turn())
+	if move == -1:
+		return
+	var test_move_list:PackedInt32Array = Chess.generate_valid_move(chessboard.state, chessboard.state.get_turn())
+	if !test_move_list.has(move):
+		return
+	state_machine.change_state("move", {"move": move})
+	
