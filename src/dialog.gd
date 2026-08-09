@@ -34,24 +34,24 @@ var blackscreen_interval:float = 0.3
 
 func _ready() -> void:
 	set_border_position(false)
-	$texture_rect_bottom/label.connect("meta_clicked", clicked_selection)
-	$texture_rect_right/label.connect("meta_clicked", clicked_selection)
-	$texture_rect_top/label.connect("meta_clicked", clicked_global_selection)
-	$texture_rect_left/label.connect("meta_clicked", clicked_global_selection)
-	$texture_rect_bottom/label.connect("meta_hover_started", hover_selection)
-	$texture_rect_right/label.connect("meta_hover_started", hover_selection)
-	$texture_rect_top/label.connect("meta_hover_started", hover_selection)
-	$texture_rect_left/label.connect("meta_hover_started", hover_selection)
-	$texture_rect_top/label.connect("mouse_entered", show_global_selection)
-	$texture_rect_top/label.connect("mouse_exited", hide_global_selection)
-	$texture_rect_left/label.connect("mouse_entered", show_global_selection.call_deferred)
-	$texture_rect_left/label.connect("mouse_exited", hide_global_selection)
-	$texture_rect_top/label_hint_left.connect("gui_input", cancel_gui_input)
-	$texture_rect_top/label_hint_left.connect("mouse_entered", hover_label.bind($texture_rect_top/label_hint_left))
-	$texture_rect_top/label_hint_right.connect("mouse_entered", hover_label.bind($texture_rect_top/label_hint_right))
-	$texture_rect_left/label_hint_up.connect("gui_input", cancel_gui_input)
-	$texture_rect_left/label_hint_up.connect("mouse_entered", hover_label.bind($texture_rect_left/label_hint_up))
-	$texture_rect_left/label_hint_down.connect("mouse_entered", hover_label.bind($texture_rect_left/label_hint_down))
+	$texture_rect_bottom/margin_container/label.connect("meta_clicked", clicked_selection)
+	$texture_rect_right/margin_container/label.connect("meta_clicked", clicked_selection)
+	$texture_rect_top/margin_container/label.connect("meta_clicked", clicked_global_selection)
+	$texture_rect_left/margin_container/label.connect("meta_clicked", clicked_global_selection)
+	$texture_rect_bottom/margin_container/label.connect("meta_hover_started", hover_selection)
+	$texture_rect_right/margin_container/label.connect("meta_hover_started", hover_selection)
+	$texture_rect_top/margin_container/label.connect("meta_hover_started", hover_selection)
+	$texture_rect_left/margin_container/label.connect("meta_hover_started", hover_selection)
+	$texture_rect_top/margin_container/label.connect("mouse_entered", show_global_selection)
+	$texture_rect_top/margin_container/label.connect("mouse_exited", hide_global_selection)
+	$texture_rect_left/margin_container/label.connect("mouse_entered", show_global_selection.call_deferred)
+	$texture_rect_left/margin_container/label.connect("mouse_exited", hide_global_selection)
+	$texture_rect_top/margin_container/label_hint_left.connect("gui_input", cancel_gui_input)
+	$texture_rect_top/margin_container/label_hint_left.connect("mouse_entered", hover_label.bind($texture_rect_top/margin_container/label_hint_left))
+	$texture_rect_top/margin_container/label_hint_right.connect("mouse_entered", hover_label.bind($texture_rect_top/margin_container/label_hint_right))
+	$texture_rect_left/margin_container/label_hint_up.connect("gui_input", cancel_gui_input)
+	$texture_rect_left/margin_container/label_hint_up.connect("mouse_entered", hover_label.bind($texture_rect_left/margin_container/label_hint_up))
+	$texture_rect_left/margin_container/label_hint_down.connect("mouse_entered", hover_label.bind($texture_rect_left/margin_container/label_hint_down))
 	Setting.connect("language_changed", update_dialog)
 	Setting.connect("dialog_border_changed", update_dialog)
 	Terminal.connect("command_received", on_command_received)
@@ -117,7 +117,7 @@ func push_selection(_selection:PackedStringArray, _title:String, _force_selectio
 	if selection.size():
 		var selection_str:String = ""
 		for i:int in selection.size():
-			selection_str += "%d:%s " % [i + 1, tr(selection[i])]
+			selection_str += "%d:%s. " % [i + 1, tr(selection[i])]
 		Narrative.speak(selection_str)
 
 func push_title(_title:String) -> void:
@@ -279,19 +279,19 @@ func set_border_position(_border_position:bool) -> void:
 		$texture_rect_right.visible = false
 		$texture_rect_top.visible = true
 		$texture_rect_bottom.visible = true
-		text_label = $texture_rect_bottom/label
-		title_label = $texture_rect_top/label
-		time_label = $texture_rect_top/label_hint_right
-		cancel_label = $texture_rect_top/label_hint_left
+		text_label = $texture_rect_bottom/margin_container/label
+		title_label = $texture_rect_top/margin_container/label
+		time_label = $texture_rect_top/margin_container/label_hint_right
+		cancel_label = $texture_rect_top/margin_container/label_hint_left
 	else:
 		$texture_rect_left.visible = true
 		$texture_rect_right.visible = true
 		$texture_rect_top.visible = false
 		$texture_rect_bottom.visible = false
-		text_label = $texture_rect_right/label
-		title_label = $texture_rect_left/label
-		time_label = $texture_rect_left/label_hint_down
-		cancel_label = $texture_rect_left/label_hint_up
+		text_label = $texture_rect_right/margin_container/label
+		title_label = $texture_rect_left/margin_container/label
+		time_label = $texture_rect_left/margin_container/label_hint_down
+		cancel_label = $texture_rect_left/margin_container/label_hint_up
 
 func get_size() -> float:
 	return $texture_rect_left.size.x if Setting.get_value("dialog_border") else $texture_rect_top.size.y
