@@ -1,211 +1,66 @@
 extends Node
 
-signal move_mouse(position:Vector2)
-
-var swipe_distance:float = 100
 var double_click_threshold:float = 0.3
-var double_click_range:float = 200
-var hold_threshold:float = 0.3
+var double_click_range:float = 50
+var hold_threshold:float = 0.1
 
 var start_position:Vector2 = Vector2(0, 0)
 var current_position:Vector2 = Vector2(0, 0)
-var is_hold:bool = false
 var mouse_moved:bool = true
-var hold_timer:Timer = Timer.new()	# 超时计时用Timer对象会更好
 var double_click_timer:float = -1	# 限时计时用时间戳
-var is_multi_finger:bool = false
-var finger_index:Dictionary[int, bool] = {}
-var up:bool = false
-var down:bool = false
-var left:bool = false
-var right:bool = false
 
-var confirm:bool = false
-var cancel:bool = false
-var select:bool = false
-var menu:bool = false
-var tab:int = 0
-
-func _ready() -> void:
-	add_child(hold_timer)
-	hold_timer.connect("timeout", func () -> void:
-		is_hold = true
-		if is_multi_finger:
-			press_cancel()
-		else:
-			move_mouse.emit(start_position)
-	)
-
-func _input(event:InputEvent) -> void:
+func _input(_event:InputEvent) -> void:
 	if !Setting.get_value("touch_gesture"):
 		return
-	if event is InputEventMouseButton || event is InputEventMouseMotion || event is InputEventScreenTouch || event is InputEventScreenDrag:
-		get_viewport().set_input_as_handled()
-	if event is InputEventScreenTouch:
-		if event.pressed && event.index != 0:
-			finger_index[event.index] = true
-			if finger_index.size() > 1:
-				double_click_timer = -1
-				is_multi_finger = true
-		elif event.index != 0:
-			finger_index.erase(event.index)
-			if finger_index.size() == 0:
-				is_multi_finger = false
-				release_menu()
-				release_select()
-				release_cancel()
-				release_tab()
-	if event is InputEventMouseButton:
-		if event.button_index != MOUSE_BUTTON_LEFT:
+	if _event is InputEventMouseButton || _event is InputEventMouseMotion || _event is InputEventScreenTouch || _event is InputEventScreenDrag:
+		if _event.device != -1:
+			get_viewport().set_input_as_handled()
+		else:
 			return
-		if event.pressed:
-			current_position = event.position
-			is_hold = false
+	if _event is InputEventMouseButton || _event is InputEventScreenTouch:
+		if _event is InputEventMouseButton && _event.button_index != MOUSE_BUTTON_LEFT:
+			return
+		if _event.pressed:
+			push_motion_event(_event.position)
+			current_position = _event.position
 			mouse_moved = false
 			var current_time:float = Time.get_unix_time_from_system()
-			hold_timer.start(hold_threshold)
 			if start_position.distance_to(current_position) < double_click_range && current_time <= double_click_timer + double_click_threshold:
-				press_confirm()
-				hold_timer.stop()
-				is_hold = false
-			start_position = event.position
+				push_press_event(_event.position)
+			start_position = _event.position
 			double_click_timer = current_time
-		else:
-			is_hold = false
-			hold_timer.stop()
-			release_direction()
-			if confirm:
-				release_confirm()
-	if event is InputEventMouseMotion:
-		if !(event.button_mask & MOUSE_BUTTON_LEFT):
+	if _event is InputEventMouseMotion || _event is InputEventScreenDrag:
+		if _event is InputEventMouseMotion && !(_event.button_mask & MOUSE_BUTTON_LEFT):
 			return
-		current_position = event.position
+		current_position = _event.position
 		if start_position.distance_squared_to(current_position) >= 25:
 			mouse_moved = true
 			double_click_timer = -1
-			hold_timer.stop()
-		if !is_hold && !is_multi_finger && start_position.distance_to(current_position) >= swipe_distance:
-			press_direction(current_position - start_position)
-		if !is_multi_finger && is_hold:
-			move_mouse.emit(event.position)
-		if is_multi_finger:
-			var angle:float = event.relative.angle()
-			if angle > -PI * 3 / 4 && angle < -PI / 4:
-				press_select()
-			elif angle > PI / 4 && angle < PI * 3 / 4:
-				press_menu()
-			elif angle > -PI / 4 && angle < PI / 4:
-				press_tab(1)
-			else:
-				press_tab(-1)
-				
+		push_motion_event(_event.position)
 
-func press_confirm() -> void:
-	if !confirm:
-		confirm = true
-		push_action("ui_accept", true)
+func push_press_event(_position:Vector2) -> void:
+	var press_event:InputEventMouseButton = InputEventMouseButton.new()
+	press_event.position = _position
+	press_event.global_position = _position
+	press_event.button_index = MOUSE_BUTTON_LEFT
+	press_event.button_mask = MOUSE_BUTTON_MASK_LEFT
+	press_event.pressed = true
+	press_event.device = -1
+	Input.parse_input_event(press_event)
+	await get_tree().create_timer(0.05).timeout
+	var release_event:InputEventMouseButton = InputEventMouseButton.new()
+	release_event.position = _position
+	release_event.global_position = _position
+	release_event.button_index = MOUSE_BUTTON_LEFT
+	release_event.button_mask = MOUSE_BUTTON_MASK_LEFT
+	release_event.pressed = false
+	release_event.device = -1
+	Input.parse_input_event(release_event)
 
-func release_confirm() -> void:
-	if confirm:
-		confirm = false
-		push_action("ui_accept", false)
-
-func press_cancel() -> void:
-	if !cancel:
-		cancel = true
-		push_action("ui_cancel", true)
-
-func release_cancel() -> void:
-	if cancel:
-		cancel = false
-		push_action("ui_cancel", false)
-
-func press_menu() -> void:
-	if !menu:
-		menu = true
-		push_action("menu", true)
-
-func release_menu() -> void:
-	if menu:
-		menu = false
-		push_action("menu", false)
-
-func press_select() -> void:
-	if !select:
-		select = true
-		push_action("select", true)
-
-func release_select() -> void:
-	if select:
-		select = false
-		push_action("select", false)
-
-func press_direction(direction:Vector2) -> void:
-	direction = direction.normalized()
-	if direction.angle() > -PI / 4 && direction.angle() < PI / 4:
-		if !right:
-			right = true
-			push_action("ui_right", true)
-	elif right:
-		right = false
-		push_action("ui_right", false)
-	if direction.angle() < -PI * 3 / 4 || direction.angle() > PI * 3 / 4:
-		if !left:
-			left = true
-			push_action("ui_left", true)
-	elif left:
-		left = false
-		push_action("ui_left", false)
-	if direction.angle() > -PI * 3 / 4 && direction.angle() < -PI / 4:
-		if !up:
-			up = true
-			push_action("ui_up", true)
-	elif up:
-		up = false
-		push_action("ui_up", false)
-	if direction.angle() > PI / 4 && direction.angle() < PI * 3 / 4:
-		if !down:
-			down = true
-			push_action("ui_down", true)
-	elif down:
-		down = false
-		push_action("ui_down", false)
-
-func release_direction() -> void:
-	if right:
-		right = false
-		push_action("ui_right", false)
-	if left:
-		left = false
-		push_action("ui_left", false)
-	if up:
-		up = false
-		push_action("ui_up", false)
-	if down:
-		down = false
-		push_action("ui_down", false)
-
-func press_tab(dir:int) -> void:
-	if menu || select:	# 防止串手势
-		return
-	if dir == 1:
-		if tab != 1:
-			tab = 1
-			push_action("tab_right", true)
-	else:
-		if tab != -1:
-			tab = -1
-			push_action("tab_left", true)
-
-func release_tab() -> void:
-	push_action("tab_right", false)
-	push_action("tab_left", false)
-	tab = 0
-
-func push_action(action:String, pressed:bool) -> void:
-	var event:InputEventAction = InputEventAction.new()
-	event.action = action
-	event.pressed = pressed
-	event.event_index = -1
-	event.device = 0
+func push_motion_event(_position:Vector2) -> void:
+	var event:InputEventMouseMotion = InputEventMouseMotion.new()
+	event.position = _position
+	event.global_position = _position
+	event.button_mask = 0
+	event.device = -1
 	Input.parse_input_event(event)

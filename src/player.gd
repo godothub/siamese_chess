@@ -19,7 +19,6 @@ func _ready() -> void:
 	state_machine.add_state("interface", state_ready_interface)
 	state_machine.add_state("pointer", state_ready_pointer, Callable(), state_process_pointer, state_input_pointer)
 	state_machine.change_state("inspect")
-	Gesture.connect("move_mouse", move_mouse)
 
 func on_visibility_changed() -> void:
 	if (Setting.visible || FilmCamera.visible || ThirdEye3D.visible || Archive.visible) && state_machine.current_state != "interface":
@@ -184,11 +183,6 @@ func click_area(screen_position:Vector2) -> Node3D:
 	if ray_cast.is_colliding():
 		return ray_cast.get_collider()
 	return null
-
-func move_mouse(pos:Vector2) -> void:
-	current_area = click_area(pos)
-	if is_instance_valid(current_area):
-		current_area.emit_signal("input", self, current_area, false, false, ray_cast.get_collision_point(), ray_cast.get_collision_normal())
 
 func find_area(direction:Vector2) -> Area3D:
 	var best_area:Area3D = null

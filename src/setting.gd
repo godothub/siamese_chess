@@ -376,6 +376,7 @@ func update_voice_list() -> void:
 		text_to_speech_voice_input.add_item(iter)
 
 func set_touch_gesture(toggled_on:bool) -> void:
+	Input.emulate_mouse_from_touch = !toggled_on
 	table.set("touch_gesture", toggled_on)
 	touch_gesture_changed.emit()
 
