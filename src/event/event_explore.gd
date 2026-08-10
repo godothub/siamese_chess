@@ -41,9 +41,9 @@ func state_ready_free(_arg:Dictionary) -> void:
 		if level.available_events.has(_selected):
 			level.available_events[_selected].on_selection()
 			await get_tree().create_timer(0.3).timeout
-			if !Loading.is_changing:
+			if !Loading.is_changing && state_machine.current_state == "free":
 				level.show_selection()
-	) 
+	)
 	state_machine.state_signal_connect(chessboard.hovered, func (_selected:int) -> void:
 		if level.title.has(_selected):
 			Dialog.push_title(level.title[_selected])
