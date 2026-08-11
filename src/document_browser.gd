@@ -24,27 +24,25 @@ func _ready() -> void:
 	set_process_input(false)
 	set_physics_process(false)
 
-func _physics_process(_delta:float) -> void:
-	if Input.is_action_just_pressed("ui_up"):
-		document_view.press_direction(1)
-	if Input.is_action_just_pressed("ui_down"):
-		document_view.press_direction(3)
-	if Input.is_action_just_pressed("ui_left"):
-		document_view.press_direction(0)
-	if Input.is_action_just_pressed("ui_right"):
-		document_view.press_direction(2)
-	if Input.is_action_just_pressed("ui_accept"):
-		document_view.press_confirm()
-	if Input.is_action_just_pressed("tab_right"):
-		change_page(1)
-	if Input.is_action_just_pressed("tab_left"):
-		change_page(-1)
-	if Input.is_action_just_pressed("ui_cancel"):
-		close()
-
-func _input(event:InputEvent) -> void:
+func _unhandled_input(event:InputEvent) -> void:
 	if !document_view || !visible:
 		return
+	if event.is_action_pressed("ui_up"):
+		document_view.press_direction(1)
+	if event.is_action_pressed("ui_down"):
+		document_view.press_direction(3)
+	if event.is_action_pressed("ui_left"):
+		document_view.press_direction(0)
+	if event.is_action_pressed("ui_right"):
+		document_view.press_direction(2)
+	if event.is_action_pressed("ui_accept"):
+		document_view.press_confirm()
+	if event.is_action_pressed("tab_right"):
+		change_page(1)
+	if event.is_action_pressed("tab_left"):
+		change_page(-1)
+	if event.is_action_pressed("ui_cancel"):
+		close()
 	if event is InputEventMultiScreenDrag && get_global_rect().has_point(event.position):
 		change_offset(event.relative)
 	if event is InputEventScreenPinch && event.position && get_global_rect().has_point(event.position):
