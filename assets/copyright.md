@@ -234,6 +234,22 @@
 
 许可：CC-BY 4.0
 
+### Keyboard, computer, mechanical, typing, individual keys, press, button, click, tap, Three key presses_96Khz_Mono_ZoomH4n_NT5-004.wav
+
+文件: 561667__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-three-key-presses_96khz_mono_zoomh4n_nt5-004_*.wav
+
+版权：MattRuthSound
+
+许可：CC-BY 4.0
+
+### Keyboard, computer, mechanical, typing, slowly, keys, press, button, click, tap, repeatedly, burst,_96Khz_Mono_ZoomH4n_NT5-002.wav
+
+文件：561694__mattruthsound__keyboard-computer-mechanical-typing-slowly-keys-press-button-click-tap-repeatedly-burst_96khz_mono_zoomh4n_nt5-002.wav
+
+版权：MattRuthSound
+
+许可：CC-BY 4.0
+
 ### Camera Beep and Click.wav
 
 文件：assets/audio/624936__theplax__camera-beep-and-click.wav
@@ -265,6 +281,22 @@
 版权：DARTEKZ_GAMEZ
 
 许可：CC0
+
+### Walkie-talkie end of transmission
+
+文件：assets/audio/760245__lukacafuka__walkie-talkie-end-of-transmission.wav, assets/audio/760245__lukacafuka__walkie-talkie-end-of-transmission_end.wav
+
+版权：LukaCafuka
+
+许可：CC0
+
+### BEEP 2.wav
+
+文件：assets/audio/760245__lukacafuka__walkie-talkie-end-of-transmission.wav
+
+版权：anthonychartier2020
+
+许可：CC-BY 4.0
 
 ### TELEPHONE HANG OFF, DIAL, HUNG UP
 

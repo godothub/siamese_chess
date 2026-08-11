@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://y4374snw81f1" path="res://src/terminal.gd" id="1_ttsar"]
 [ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="2_tj8r6"]
+[ext_resource type="AudioStream" uid="uid://bpui3p0g4pu2c" path="res://assets/audio/561667__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-three-key-presses_96khz_mono_zoomh4n_nt5-004_0.wav" id="3_q6jp0"]
+[ext_resource type="AudioStream" uid="uid://duksc5jfhoojx" path="res://assets/audio/561667__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-three-key-presses_96khz_mono_zoomh4n_nt5-004_1.wav" id="4_r8vsm"]
+[ext_resource type="AudioStream" uid="uid://swbvlvu07w7n" path="res://assets/audio/561667__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-three-key-presses_96khz_mono_zoomh4n_nt5-004_2.wav" id="5_to07p"]
+[ext_resource type="AudioStream" uid="uid://chrwrsjeeg2ly" path="res://assets/audio/561694__mattruthsound__keyboard-computer-mechanical-typing-slowly-keys-press-button-click-tap-repeatedly-burst_96khz_mono_zoomh4n_nt5-002.wav" id="6_r8vsm"]
 
 [sub_resource type="Gradient" id="Gradient_tuuq8"]
 offsets = PackedFloat32Array(0)
@@ -9,6 +13,12 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ydf3r"]
 gradient = SubResource("Gradient_tuuq8")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ttsar"]
+streams_count = 3
+stream_0/stream = ExtResource("3_q6jp0")
+stream_1/stream = ExtResource("4_r8vsm")
+stream_2/stream = ExtResource("5_to07p")
 
 [node name="terminal" type="CanvasLayer" unique_id=1744524466]
 layer = 10
@@ -42,3 +52,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_tj8r6")
 theme_override_font_sizes/font_size = 22
 flat = true
+
+[node name="audio_stream_player_typing" type="AudioStreamPlayer" parent="." unique_id=1443393253]
+stream = SubResource("AudioStreamRandomizer_ttsar")
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="audio_stream_player_submit" type="AudioStreamPlayer" parent="." unique_id=706356188]
+stream = ExtResource("6_r8vsm")

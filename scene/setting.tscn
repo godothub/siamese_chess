@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b3h5i5knx1au4" path="res://assets/texture/spinbox_left.svg" id="4_uthuq"]
 [ext_resource type="AudioStream" uid="uid://bbixsq7mcj4xx" path="res://assets/audio/561658__mattruthsound__keyboard-computer-mechanical-typing-individual-keys-press-button-click-tap-one-keypress-spacebar_96khz_mono_zoomh4n_nt5.wav" id="5_8pksm"]
 [ext_resource type="Texture2D" uid="uid://cpcf2i3iu5t1x" path="res://assets/texture/spinbox_right.svg" id="5_oappg"]
-[ext_resource type="AudioStream" uid="uid://c0oxhpf58472s" path="res://assets/audio/325279__deleted_user_2104797__briefcase_open.wav" id="6_fhdrf"]
 [ext_resource type="Script" uid="uid://cf4rr61nnnf1v" path="res://src/spinbox.gd" id="6_uthuq"]
-[ext_resource type="AudioStream" uid="uid://timpmwbx0mbe" path="res://assets/audio/325279__deleted_user_2104797__briefcase_close.wav" id="7_7piks"]
+[ext_resource type="AudioStream" uid="uid://o6svbuqcbt1u" path="res://assets/audio/760245__lukacafuka__walkie-talkie-end-of-transmission_end.wav" id="11_oappg"]
+[ext_resource type="AudioStream" uid="uid://wls2sst0mpv3" path="res://assets/audio/760245__lukacafuka__walkie-talkie-end-of-transmission.wav" id="11_uthuq"]
 
 [sub_resource type="Gradient" id="Gradient_j3y3i"]
 offsets = PackedFloat32Array(0)
@@ -1228,9 +1228,9 @@ volume_db = -11.751
 bus = &"SFX"
 
 [node name="audio_stream_player_open" type="AudioStreamPlayer" parent="." unique_id=125692238]
-stream = ExtResource("6_fhdrf")
+stream = ExtResource("11_uthuq")
 bus = &"SFX"
 
 [node name="audio_stream_player_close" type="AudioStreamPlayer" parent="." unique_id=1537027299]
-stream = ExtResource("7_7piks")
+stream = ExtResource("11_oappg")
 bus = &"SFX"

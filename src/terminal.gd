@@ -42,11 +42,13 @@ func line_edit_input(_event:InputEvent) -> void:
 			history_index = clamp(history_index, 0, history.size() - 1)
 			$texture_rect_top/margin_container/line_edit.text = history[history_index]
 			get_viewport().set_input_as_handled()
+			$audio_stream_player_typing.play()
 		if _event.keycode == KEY_DOWN && visible:
 			history_index += 1
 			history_index = clamp(history_index, 0, history.size() - 1)
 			$texture_rect_top/margin_container/line_edit.text = history[history_index]
 			get_viewport().set_input_as_handled()
+			$audio_stream_player_typing.play()
 
 func open() -> void:
 	visible = true
@@ -54,8 +56,10 @@ func open() -> void:
 	$texture_rect_top/margin_container/line_edit.text = ""
 	history_index = history.size() - 1
 	$texture_rect_top/margin_container/line_edit.grab_focus()
+	$audio_stream_player_submit.play()
 
 func close() -> void:
+	$audio_stream_player_submit.play()
 	visible = false
 
 func listen_stdin() -> void:
@@ -64,7 +68,8 @@ func listen_stdin() -> void:
 		exec.call_deferred(cmd)
 
 func exec(cmd:String) -> void:
-	close()
+	if visible:
+		close()
 	if cmd != "":
 		command_received.emit(cmd)
 		history.push_back("")
@@ -74,3 +79,4 @@ func exec(cmd:String) -> void:
 func enter(cmd:String) -> void:
 	history[-1] = cmd
 	history_index = history.size() - 1
+	$audio_stream_player_typing.play()
