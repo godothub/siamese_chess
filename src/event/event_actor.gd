@@ -5,10 +5,15 @@ class_name EventActor
 @export var piece:int = 0
 @export var meta:Dictionary = {}
 @export var instance:Actor = null
+@export var enabled:bool = true
 
-func on_init() -> void:
+func on_start() -> void:
+	if !enabled:
+		return
 	var by:int = Progress.get_value(level.name + ":" + level.chessboard.vector3_to_name(position), level.chessboard.vector3_to_x88(position))
 	if by == -1:
+		return
+	if piece == 0:
 		return
 	level.chessboard.state.add_piece(by, piece)
 	
