@@ -4,6 +4,7 @@ var light_switch:bool = false
 
 func _ready() -> void:
 	super._ready()
+	Ambient.change_environment_sound(load("res://assets/audio/546047__grcekh__analog-crt-tv-electronic-static-noise.wav"))
 	get_tree().call_group("lights", "set_visible", light_switch)
 	light_switch = Progress.get_value("basement_light", false)
 	set_light(light_switch)
