@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://boynseq2vpjw5"]
+
+[ext_resource type="FontFile" uid="uid://cmbwnmrpuigxx" path="res://assets/fonts/FangZhengShuSongJianTi-1.ttf" id="1_ytag6"]
+
+[sub_resource type="Gradient" id="Gradient_w5kv4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bw0j0"]
+gradient = SubResource("Gradient_w5kv4")
+
+[node name="welcome" type="Panel" unique_id=613906545]
+physics_interpolation_mode = 0
+custom_minimum_size = Vector2(504, 673)
+offset_right = 504.0
+offset_bottom = 673.0
+
+[node name="texture_rect" type="TextureRect" parent="." unique_id=1636202968]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_bw0j0")
+
+[node name="rich_text_label" type="RichTextLabel" parent="texture_rect" unique_id=1730736549]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 35.0
+offset_right = 475.0
+offset_bottom = 647.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = 10
+theme_override_constants/paragraph_separation = 0
+theme_override_constants/table_h_separation = 7
+theme_override_constants/table_v_separation = 7
+theme_override_fonts/normal_font = ExtResource("1_ytag6")
+bbcode_enabled = true
+text = "
+莲（以及背后的玩家）：
+
+		由衷感谢您的到来。为了吸引更多志同道合之人，我们的小小世界迟早需要做出一些改变。奈何个人精力有限，我需要耗费更多的时间去修补这个世界。在短期内，您可能会感到迷茫，不知所措。在这里，我特别设立了一条清单，供您参考。
+
+		我会加紧制作一些纪念品，待下一次更新时，只要您完成了清单，就可以获得这份奖品，并放置在您的房间内。
+
+[table=4]
+[cell border=black]名称[/cell][cell border=black expand=2]布局（以执白，白先为例）[/cell][cell border=black]玉兰	[/cell][cell border=black]康乃馨[/cell]
+[cell border=black]常规棋局[/cell][cell border=black]初始布局[/cell][cell border=black] [/cell][cell border=black] [/cell]
+[cell border=black]双车杀[/cell][cell border=black]8/8/8/3k4/8/8/8/R3K2R w - - 0 1[/cell][cell border=black] [/cell][cell border=black] [/cell]
+[cell border=black]后将杀[/cell][cell border=black]4k3/8/8/8/8/8/8/3QK3 w - - 0 1[/cell][cell border=black] [/cell][cell border=black] [/cell]
+[cell border=black]单车杀[/cell][cell border=black]4k3/8/8/8/8/8/8/R3K3 w - - 0 1[/cell][cell border=black] [/cell][cell border=black] [/cell]
+[cell border=black]兵升变[/cell][cell border=black]4k3/8/8/8/8/8/3PK3/8 w - - 0 1[/cell][cell border=black] [/cell][cell border=black] [/cell]
+[cell border=black]双象将杀[/cell][cell border=black]4k3/8/8/8/8/8/8/2B1KB2 w - - 0 1[/cell][cell border=black] [/cell][cell border=black] [/cell]
+[cell border=black]马象将杀[/cell][cell border=black]4k3/8/8/8/8/8/8/4KBN1 w - - 0 1[/cell][cell border=black] [/cell][cell border=black] [/cell]
+[cell border=black]记忆训练[/cell][cell border=black][/cell][cell border=black]N/A[/cell][cell border=black] [/cell]
+[cell border=black]坐标训练[/cell][cell border=black][/cell][cell border=black]N/A[/cell][cell border=black] [/cell]
+[/table]
+"
+scroll_active = false
