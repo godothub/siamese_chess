@@ -71,6 +71,7 @@ func exec(cmd:String) -> void:
 	if visible:
 		close()
 	if cmd != "":
+		cmd = cmd.to_lower()
 		command_received.emit(cmd)
 		history.push_back("")
 	while history.size() > limit:
