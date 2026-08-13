@@ -179,7 +179,6 @@ metadata/_custom_type_script = "uid://bsbhmxre68ncc"
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 0, 1)
 script = ExtResource("13_nlty5")
 instance = NodePath("carnation")
-enabled = null
 metadata/_custom_type_script = "uid://c7cwb1ro3e2r"
 
 [node name="carnation" parent="event_actor_carnation" unique_id=1846543884 instance=ExtResource("14_5uhcj")]
@@ -321,7 +320,12 @@ metadata/_custom_type_script = "uid://d2ckdq43wstns"
 
 [node name="procedure_dialog_yulan" type="Node3D" parent="." unique_id=562921087 node_paths=PackedStringArray("cutscene_camera")]
 script = ExtResource("19_dy0qe")
-sequence_str = "CHAR_CARNATION,TEST_DIALOG,-"
+sequence_str = "CHAR_YULAN,YULAN_TALK_MUSIC_ROOM_PIANO_0,-
+CHAR_YULAN,YULAN_TALK_MUSIC_ROOM_PIANO_1,-
+CHAR_YULAN,YULAN_TALK_MUSIC_ROOM_PIANO_2,-
+CHAR_YULAN,YULAN_TALK_MUSIC_ROOM_PIANO_3,-
+CHAR_YULAN,YULAN_TALK_MUSIC_ROOM_PIANO_4,-
+CHAR_YULAN,YULAN_TALK_MUSIC_ROOM_PIANO_5,-"
 cutscene_camera = NodePath("../camera_carnation_dialog")
 metadata/_custom_type_script = "uid://d2ckdq43wstns"
 
