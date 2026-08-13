@@ -7,6 +7,15 @@ var edit_piece_name:String = "PIECE_REMOVE"
 var state_machine:StateMachine = StateMachine.new()
 @export var chessboard:Chessboard = null
 
+@onready var regex_submit:RegEx = RegEx.create_from_string("(?i:^\\s*(?:submit|y|yes|finish|complete)\\s*$)")
+@onready var regex_cancel:RegEx = RegEx.create_from_string("(?i:^\\s*(?:cancel|n|no|close|stop)\\s*$)")
+@onready var regex_who_first:RegEx = RegEx.create_from_string("(?i:^\\s*(?:first)\\s+(?P<side>[wb])\\s*$)")
+@onready var regex_castle:RegEx = RegEx.create_from_string("^\\s*(?i:castle)\\s+(?P<flag>[KQkq\\-])$")
+@onready var regex_en_passant:RegEx = RegEx.create_from_string("(?i:^\\s*en(?:\\s|_)*passant\\s+(?P<pos>[a-h][1-8])$)")
+@onready var regex_fen:RegEx = RegEx.create_from_string("^\\s*(?i:fen)\\s+(?P<fen>(?:[KQRBNPkqrbnp1-8\\/]+)\\s+(?:[wb])\\s+(?:[KQkq]+|-)\\s+(?:[a-h][1-8]|-)\\s+(?:\\d+)\\s+(?:\\d+))\\s*$")
+@onready var regex_add_piece:RegEx = RegEx.create_from_string("^\\s*(?i:add|\\+|add\\s*piece)\\s*(?P<piece>[KQRBNPkqrbnp\\#\\|\\-\\.\\*])\\s*(?i:(?P<pos>[a-h][1-8]))\\s*$")
+@onready var regex_remove_piece:RegEx = RegEx.create_from_string("^\\s*(?i:remove|\\-|remove\\s*piece)\\s*(?i:(?P<pos>[a-h][1-8]))\\s*$")
+
 func _ready() -> void:
 	state_machine.add_state("edit_state", state_ready_edit_state, state_exit_edit_state)
 	state_machine.add_state("edit_fen", state_ready_edit_fen)
@@ -203,39 +212,56 @@ func on_command_received(cmd:String) -> void:
 	# n 取消
 	if state_machine.current_state != "edit_state":
 		return
-	if cmd == "y":
+	if regex_submit.search(cmd):
 		state_machine.change_state("stop", {"result": Chess.stringify(chessboard.state)})
-	elif cmd == "n":
+		return
+	if regex_cancel.search(cmd):
 		state_machine.change_state("stop", {"result": "canceled"})
-	elif cmd.begins_with("first "):
-		cmd = cmd.trim_prefix("first ")
-		if cmd == "w":
+		return
+	var regex_who_first_result:RegExMatch = regex_who_first.search(cmd)
+	if regex_who_first_result:
+		var result:String = regex_who_first_result.get_string("value")
+		if result == "w":
 			chessboard.state.set_turn(0)
-		elif cmd == "b":
+		elif result == "b":
 			chessboard.state.set_turn(1)
-	elif cmd.begins_with("castle "):
-		cmd = cmd.trim_prefix("castle ")
-		var bit:int = (int(cmd.contains("K")) << 3) + (int(cmd.contains("Q")) << 2) + (int(cmd.contains("k")) << 1) + int(cmd.contains("q"))
+		return
+	var regex_castle_result:RegExMatch = regex_castle.search(cmd)
+	if regex_castle_result:
+		var result:String = regex_castle_result.get_string("flag")
+		var bit:int = (int(result.contains("K")) << 3) + (int(result.contains("Q")) << 2) + (int(result.contains("k")) << 1) + int(result.contains("q"))
 		chessboard.state.set_castle(bit)
-	elif cmd.begins_with("en passant "):
-		cmd = cmd.trim_prefix("en passant ")
-		var by:int = Chess.name_to_x88(cmd)
+		return
+	var regex_en_passant_result:RegExMatch = regex_en_passant.search(cmd)
+	if regex_en_passant_result:
+		var result:String = regex_en_passant_result.get_string("pos")
+		var by:int = Chess.name_to_x88(result)
 		if by == -1:
 			return
 		chessboard.state.set_en_passant(by)
-	elif cmd.begins_with("fen "):
-		cmd = cmd.trim_prefix("fen ")
-		var test_state:State = Chess.parse(cmd)
+		return
+	var regex_fen_result:RegExMatch = regex_fen.search(cmd)
+	if regex_fen_result:
+		var result:String = regex_fen_result.get_string("fen")
+		var test_state:State = Chess.parse(result)
 		if test_state:
 			chessboard.state = test_state
 			chessboard.remove_piece_set()
 			chessboard.add_default_piece_set()
-	elif cmd.begins_with("+") && cmd.length() == 4:
-		var is_bit:bool = cmd[1] == "|" || cmd[1] == "-" || cmd[1] == '.'
-		var by:int = Chess.name_to_x88(cmd.substr(2))
+		return
+	var regex_add_piece_result:RegExMatch = regex_add_piece.search(cmd)
+	if regex_add_piece_result:
+		var piece:String = regex_add_piece_result.get_string("piece")
+		var pos:String = regex_add_piece_result.get_string("pos")
+		var is_bit:bool = piece == "|" || piece == "-" || piece == '+'
+		var by:int = Chess.name_to_x88(pos)
 		if by != -1:
 			set_piece(by, ord(cmd[1]), is_bit)
-	elif cmd.begins_with("-") && cmd.length() == 3:
-		var by:int = Chess.name_to_x88(cmd.substr(1))
+		return
+	var regex_remove_piece_result:RegExMatch = regex_remove_piece.search(cmd)
+	if cmd.begins_with("-") && cmd.length() == 3:
+		var pos:String = regex_remove_piece_result.get_string("pos")
+		var by:int = Chess.name_to_x88(pos)
 		if by != -1:
 			set_piece(by, 0, false)
+		return

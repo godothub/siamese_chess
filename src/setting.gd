@@ -55,6 +55,10 @@ var table:Dictionary = {}
 @onready var clean_archive_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/button
 @onready var reset_progress_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/button
 
+@onready var regex_set_value:RegEx = RegEx.create_from_string("(?i:^\\s*(?:(set|\\/)\\s+)?(?P<key>\\S+)\\s+(?P<value>\\S+)\\s*$)")
+@onready var regex_clean_archive:RegEx = RegEx.create_from_string("(?i:^\\s*(?:clean|reset)\\s+(?:archive|document|documents)\\s*$)")
+@onready var regex_reset_progress:RegEx = RegEx.create_from_string("(?i:^\\s*(?:clean|reset)\\s+(?:progress|save)\\s*$)")
+
 func _ready() -> void:
 	set_physics_process(false)
 	if !resolutions.has(get_viewport().size):
@@ -406,20 +410,17 @@ func set_reset_progress() -> void:
 
 func on_command_received(cmd:String) -> void:
 	# /[设置选项] [值]
-	if !cmd.begins_with("/"):
-		return
-	cmd = cmd.trim_prefix("/")
-	if (cmd == "clean archive"):
+	if regex_clean_archive.search(cmd):
 		set_clean_archive()
 		return
-	if (cmd == "reset progress"):
+	if regex_reset_progress.search(cmd):
 		set_reset_progress()
 		return
-	var cmd_splited:PackedStringArray = cmd.split(" ", false, 2)
-	if cmd_splited.size() != 2:
+	var regex_set_value_result:RegExMatch = regex_set_value.search(cmd)
+	if !regex_set_value_result:
 		return
-	var key:String = cmd_splited[0]
-	var value:String = cmd_splited[1]
+	var key:String = regex_set_value_result.get_string("key")
+	var value:String = regex_set_value_result.get_string("value")
 	if !table.has(key) || !value.is_valid_float():
 		return
 	if has_method("set_" + key):

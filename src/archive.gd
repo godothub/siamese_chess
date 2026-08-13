@@ -27,6 +27,9 @@ var mouse_moved:bool = false
 var scroll_velocity:float = 0
 var current_button:Button = null
 
+@onready var regex_help:RegEx = RegEx.create_from_string("(?i:^\\s*(help|\\?)\\s*$)")
+@onready var regex_about:RegEx = RegEx.create_from_string("(?i:^\\s*about\\s*$)")
+
 func _ready() -> void:
 	visible = false
 	$texture_rect/button_close.connect("pressed", close)
@@ -136,9 +139,9 @@ func close() -> void:
 	set_physics_process(false)
 
 func on_command_received(cmd:String) -> void:
-	if cmd == "about":
+	if regex_about.search(cmd):
 		open_about()
-	if cmd == "help" || cmd == "?":
+	if regex_help.search(cmd):
 		open_help()
 
 func open_about() -> void:

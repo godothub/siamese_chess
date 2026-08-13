@@ -27,6 +27,9 @@ var history_event:Array = []
 var state_machine:StateMachine = StateMachine.new()
 var premove_state_machine:StateMachine = StateMachine.new()
 
+@onready var regex_pieces:RegEx = RegEx.create_from_string("(?i:^\\s*pieces\\s*$)")
+@onready var regex_move:RegEx = RegEx.create_from_string("^\\s*(?P<move>([Oo0]-[Oo0](-[Oo0])?|[KQRBN]?[a-h]?[1-8]?x?[a-h][1-8](\\=[QRBN])?[+#]?)(\\s?\\{.+?\\})?(\\s(1-0|0-1|1\\/2-1\\/2))?)\\s*$")
+
 func _ready() -> void:
 	engine = PastorEngine.new()
 	state_machine.name = "game"
@@ -436,10 +439,13 @@ func on_tree_exiting() -> void:
 func on_command_received(cmd:String) -> void:
 	if !chessboard.enabled:
 		return
-	if cmd == "pieces":
+	if regex_pieces.search(cmd):
 		Narrative.speak(chessboard.state.print_board())
 		return
-	var move:int = Chess.name_to_move(chessboard.state, cmd)
+	var regex_move_result = regex_move.search(cmd)
+	if !regex_move_result:
+		return
+	var move:int = Chess.name_to_move(chessboard.state, regex_move_result.get_string("move"))
 	if move == -1:
 		move = Chess.uci_to_move(cmd, chessboard.state.get_turn())
 	if move == -1:

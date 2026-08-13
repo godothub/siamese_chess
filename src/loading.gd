@@ -4,6 +4,8 @@ var current:Node = null
 var path:String = ""
 var is_changing:bool = false
 
+@onready var regex_teleport:RegEx = RegEx.create_from_string("^\\s*(?i:teleport|tele)\\s+(?P<path>\\S+)$")
+
 func _ready() -> void:
 	current = get_tree().current_scene
 	$texture_rect.modulate = Color(1, 1, 1, 0)
@@ -40,8 +42,9 @@ func change_scene(_path:String, wait_time:float = 0.3) -> void:
 	is_changing = false
 
 func on_command_received(cmd:String) -> void:
-	if !cmd.begins_with("teleport "):
+	var regex_teleport_result:RegExMatch = regex_teleport.search(cmd)
+	if !regex_teleport_result:
 		return
-	cmd = cmd.trim_prefix("teleport ")
-	if ResourceLoader.exists("res://scene/" + cmd + ".tscn"):
-		change_scene("res://scene/" + cmd + ".tscn")
+	var scene_path:String = regex_teleport_result.get_string("path")
+	if ResourceLoader.exists("res://scene/" + scene_path + ".tscn"):
+		change_scene("res://scene/" + scene_path + ".tscn")

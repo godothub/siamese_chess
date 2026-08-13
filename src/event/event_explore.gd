@@ -12,6 +12,10 @@ var dont_move:bool = false
 
 var travel_path:PackedInt32Array = []
 
+@onready var regex_where_am_i:RegEx = RegEx.create_from_string("(?i:^\\s*where\\s*(?:((am)?\\s*i)|((is)?\\s*me))?\\s*$)")
+@onready var regex_move_to:RegEx = RegEx.create_from_string("(?i:^\\s*(?:move|to|move\\s*to)\\s+(?P<pos>[a-h][1-8])\\s*$)")
+@onready var regex_list:RegEx = RegEx.create_from_string("(?i:^\\s*(?:list|ls)\\s*$)")
+
 func _ready() -> void:
 	cheshire_by = Progress.get_value("player_by", chessboard.vector3_to_x88(position))
 	Progress.connect("value_changed", receive_value_change)
@@ -113,16 +117,16 @@ func receive_value_change(key:String, value:Variant) -> void:
 		travel_to(value, false)
 
 func on_command_received(cmd:String) -> void:
-	if cmd == "where am i":
+	if regex_where_am_i.search(cmd):
 		Narrative.speak(tr("WHERE_IS_CHESHIRE").format({"by": Chess.x88_to_name(cheshire_by)}))
 		return
-	if cmd.begins_with("to "):
-		cmd = cmd.trim_prefix("to ")
-		var by:int = Chess.name_to_x88(cmd)
+	var move_to_search_result:RegExMatch = regex_move_to.search(cmd)
+	if move_to_search_result:
+		var by:int = Chess.name_to_x88(move_to_search_result.get_string("pos").to_lower())
 		if by != -1:
 			travel_to(by)
 		return
-	if cmd == "ls" || cmd == "list":
+	if regex_list.search(cmd):
 		var output:String = ""
 		for by:int in level.title:
 			output += "%s: %s  " % [Chess.x88_to_name(by), level.title[by]]

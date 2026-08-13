@@ -32,6 +32,9 @@ var tween:Tween = null
 var cooldown_interval:float = 0.3
 var blackscreen_interval:float = 0.3
 
+var regex_next:RegEx = RegEx.create_from_string("(?i:^\\s*(?:next|n)\\s*$)")
+var regex_select:RegEx = RegEx.create_from_string("(?i:^\\s*(?:select)?\\s*(?P<index>[0-9]+)$)")
+
 func _ready() -> void:
 	set_border_position(false)
 	$texture_rect_bottom/margin_container/label.connect("meta_clicked", clicked_selection)
@@ -297,12 +300,13 @@ func get_size() -> float:
 	return $texture_rect_left.size.x if Setting.get_value("dialog_border") else $texture_rect_top.size.y
 
 func on_command_received(cmd:String) -> void:
-	if click_anywhere && cmd == "next":
+	if click_anywhere && regex_next.search(cmd):
 		next()
 		return
-	if !cmd.is_valid_int():
+	var regex_select_result:RegExMatch = regex_select.search(cmd)
+	if !regex_select_result:
 		return
-	var index:int = cmd.to_int()
+	var index:int = regex_select_result.get_string("index").to_int()
 	if index > selection.size() || index <= 0:
 		return
 	clicked_selection(selection[index - 1])
