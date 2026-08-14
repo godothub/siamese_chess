@@ -23,6 +23,7 @@ func _ready() -> void:
 	$margin_container_page/h_box_container/button_next.connect("pressed", change_page.bind(+1))
 	set_process_input(false)
 	set_physics_process(false)
+	Terminal.connect("command_received", on_command_received)
 
 func _unhandled_input(event:InputEvent) -> void:
 	if !document_view || !visible:
@@ -134,3 +135,7 @@ func change_page(dir:int) -> void:
 	page = clamp(page, 0, document_view.document.page_count() - 1)
 	document_view.turn_page(page)
 	$margin_container_page/h_box_container/label.text = "%d/%d" % [page + 1, document_view.document.page_count()]
+
+func on_command_received(cmd:String) -> void:
+	if document_view:
+		document_view.on_command_received(cmd)

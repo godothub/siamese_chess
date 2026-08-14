@@ -29,6 +29,8 @@ var current_button:Button = null
 
 @onready var regex_help:RegEx = RegEx.create_from_string("(?i:^\\s*(help|\\?)\\s*$)")
 @onready var regex_about:RegEx = RegEx.create_from_string("(?i:^\\s*about\\s*$)")
+@onready var regex_open:RegEx = RegEx.create_from_string("^\\s*(?i:open)\\s*(?P<file>\\S+)\\s*$")
+@onready var regex_close:RegEx = RegEx.create_from_string("(?i:^\\s*close\\s*$)")
 
 func _ready() -> void:
 	visible = false
@@ -119,9 +121,11 @@ func read_title(text:String) -> void:
 	Narrative.speak(tr(text), true)
 
 func open_document(filename:String) -> void:
+	filename = filename.get_file()
+	if !FileAccess.file_exists("user://archive/" + filename):
+		return
 	$audio_stream_player_confirm.play()
 	$texture_rect/document_browser.close()
-	filename = filename.get_file()
 	var filename_splited:PackedStringArray = filename.split(".")	# 模板.名称.json
 	document = load(document_data_list[filename_splited[0]]).new()
 	document_view = load(document_view_list[filename_splited[0]]).instantiate()
@@ -141,8 +145,23 @@ func close() -> void:
 func on_command_received(cmd:String) -> void:
 	if regex_about.search(cmd):
 		open_about()
+		return
 	if regex_help.search(cmd):
 		open_help()
+		return
+	if visible && regex_close.search(cmd):
+		close()
+		return
+	var regex_open_result:RegExMatch = regex_open.search(cmd)
+	if regex_open_result:
+		if !FileAccess.file_exists("user://archive/" + regex_open_result.get_string("file")):
+			Terminal.print(tr("ARCHIVE_FILE_NOT_FOUND"))
+			return
+		if !visible:
+			Narrative.speak(tr("ARCHIVE_FILE_OPENED"))
+			open()
+		open_document(regex_open_result.get_string("file"))
+		return
 
 func open_about() -> void:
 	var path:String = "user://archive/printed.siamesechess.json"
