@@ -440,8 +440,7 @@ func on_command_received(cmd:String) -> void:
 	if !chessboard.enabled:
 		return
 	if regex_board.search(cmd):
-		var toast:Toast = Toast.create_instance(chessboard.state.print_board())
-		add_child(toast)
+		Terminal.print(chessboard.state.print_board())
 		return
 	var regex_move_result = regex_move.search(cmd)
 	if !regex_move_result:

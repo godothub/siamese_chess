@@ -11,6 +11,7 @@ var history:Array[String] = [""]
 var history_index:int = -1
 
 var console_thread:Thread = null
+var toast:Toast = null
 
 func _ready() -> void:
 	visible = false
@@ -80,3 +81,9 @@ func enter(cmd:String) -> void:
 	history[-1] = cmd
 	history_index = history.size() - 1
 	$audio_stream_player_typing.play()
+
+func print(text:String) -> void:
+	if toast:
+		toast.queue_free()
+	toast = Toast.create_instance(text)
+	add_child(toast)

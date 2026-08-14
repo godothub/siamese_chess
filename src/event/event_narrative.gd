@@ -31,8 +31,7 @@ func read(use_toast:bool = false) -> void:
 		return
 	var text_translated:String = result
 	if use_toast:
-		var toast:Toast = Toast.create_instance(text_translated)
-		add_child(toast)
+		Terminal.print(text_translated)
 	else:
 		#toast自己已经speak过了
 		Narrative.speak(text_translated)
