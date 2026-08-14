@@ -55,6 +55,7 @@ var table:Dictionary = {}
 @onready var clean_archive_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_clean_archive/h_box_container/button
 @onready var reset_progress_input:Button = $texture_rect/tab_container/files/v_box_container/margin_container_reset_progress/v_box_container/h_box_container/button
 
+@onready var regex_list:RegEx = RegEx.create_from_string("(?i:^\\s*setting\\s*$)")
 @onready var regex_set_value:RegEx = RegEx.create_from_string("(?i:^\\s*(?:(set|\\/)\\s+)?(?P<key>\\S+)\\s+(?P<value>\\S+)\\s*$)")
 @onready var regex_clean_archive:RegEx = RegEx.create_from_string("(?i:^\\s*(?:clean|reset)\\s+(?:archive|document|documents)\\s*$)")
 @onready var regex_reset_progress:RegEx = RegEx.create_from_string("(?i:^\\s*(?:clean|reset)\\s+(?:progress|save)\\s*$)")
@@ -410,6 +411,9 @@ func set_reset_progress() -> void:
 
 func on_command_received(cmd:String) -> void:
 	# /[设置选项] [值]
+	if regex_list.search(cmd):
+		Terminal.print("\n".join(table.keys()))
+		return
 	if regex_clean_archive.search(cmd):
 		set_clean_archive()
 		return
