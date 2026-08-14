@@ -27,7 +27,7 @@ var history_event:Array = []
 var state_machine:StateMachine = StateMachine.new()
 var premove_state_machine:StateMachine = StateMachine.new()
 
-@onready var regex_pieces:RegEx = RegEx.create_from_string("(?i:^\\s*pieces\\s*$)")
+@onready var regex_board:RegEx = RegEx.create_from_string("(?i:^\\s*board\\s*$)")
 @onready var regex_move:RegEx = RegEx.create_from_string("^\\s*(?P<move>([Oo0]-[Oo0](-[Oo0])?|[KQRBN]?[a-h]?[1-8]?x?[a-h][1-8](\\=[QRBN])?[+#]?)(\\s?\\{.+?\\})?(\\s(1-0|0-1|1\\/2-1\\/2))?)\\s*$")
 
 func _ready() -> void:
@@ -439,8 +439,8 @@ func on_tree_exiting() -> void:
 func on_command_received(cmd:String) -> void:
 	if !chessboard.enabled:
 		return
-	if regex_pieces.search(cmd):
-		Narrative.speak(chessboard.state.print_board())
+	if regex_board.search(cmd):
+		Terminal.print(chessboard.state.print_board())
 		return
 	var regex_move_result = regex_move.search(cmd)
 	if !regex_move_result:

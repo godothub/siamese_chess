@@ -14,11 +14,11 @@ static func create_instance(_text:String) -> Toast:
 	return instance
 
 func _ready() -> void:
-	$texture_rect/label.text = text
-	$texture_rect/label.visible = false
+	$texture_rect/margin_container/label.text = text
+	$texture_rect/margin_container/label.visible = false
 	tween = create_tween()
 	tween.tween_interval(blackscreen_interval)
-	tween.tween_property($texture_rect/label, "visible", true, 0)
+	tween.tween_property($texture_rect/margin_container/label, "visible", true, 0)
 	Narrative.speak(tr(text))
 
 func _unhandled_input(_event:InputEvent) -> void:
@@ -28,7 +28,7 @@ func _unhandled_input(_event:InputEvent) -> void:
 		confirmed.emit()
 		tween.kill()
 		tween = create_tween()
-		tween.tween_property($texture_rect/label, "visible", false, 0)
+		tween.tween_property($texture_rect/margin_container/label, "visible", false, 0)
 		tween.tween_interval(blackscreen_interval)
 		tween.tween_callback(queue_free)
 	get_viewport().set_input_as_handled()

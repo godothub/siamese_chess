@@ -4,6 +4,8 @@ class_name DocumentView
 var document:Document
 var page_index:int = 0
 
+static var regex_close:RegEx = RegEx.create_from_string("")
+
 func set_document(_document:Document) -> void:
 	document = _document
 
@@ -42,3 +44,6 @@ func new_page() -> void:
 
 func turn_page(_page:int) -> void:
 	page_index = _page
+
+func on_command_received(_cmd:String) -> void:
+	pass
