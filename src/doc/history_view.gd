@@ -4,14 +4,6 @@ class_name HistoryView
 var current_move:int = 0
 var state_list:Array[State] = []
 
-static var regex_fen:RegEx = RegEx.create_from_string("(?i:^\\s*fen\\s*$)")
-static var regex_board:RegEx = RegEx.create_from_string("(?i:^\\s*board\\s*$)")
-static var regex_initial_board:RegEx = RegEx.create_from_string("(?i:^\\s*initial\\s*board\\s*$)")
-static var regex_next_move:RegEx = RegEx.create_from_string("(?i:^\\s*(next\\s*move)\\s*$)")
-static var regex_prev_move:RegEx = RegEx.create_from_string("(?i:^\\s*(prev\\s*move)\\s*$)")
-static var regex_next_page:RegEx = RegEx.create_from_string("(?i:^\\s*(next\\s*page)\\s*$)")
-static var regex_prev_page:RegEx = RegEx.create_from_string("(?i:^\\s*(prev\\s*page)\\s*$)")
-
 func _ready() -> void:
 	for i:int in range(60):
 		get_node("history/white/label_%d" % (i + 1)).connect("gui_input", press_move.bind(i * 2))
@@ -63,37 +55,16 @@ func press_move(event:InputEvent, index:int) -> void:
 		if state_list.size() > index:
 			$history/chessboard_flat.set_state(state_list[index])
 
-func on_command_received(cmd:String) -> void:
-	super.on_command_received(cmd)
-	if regex_board.search(cmd):
-		Terminal.print($history/chessboard_flat.state.print_board())
-		return
-	if regex_next_move.search(cmd):
-		if current_move >= document.page_list[page_index].history.size() - 1:
-			Terminal.print(tr("DOCUMENT_HISTORY_END_OF_GAME"))
-		else:
-			current_move += 1
-			Terminal.print(document.page_list[page_index].history[current_move])
-		return
-	if regex_prev_move.search(cmd):
-		if current_move <= 0:
-			Terminal.print(tr("DOCUMENT_HISTORY_BEGIN_OF_GAME"))
-		else:
-			current_move -= 1
-			Terminal.print(document.page_list[page_index].history[current_move])
-		return
-	if regex_initial_board.search(cmd):
-		Terminal.print(document.page_list[page_index].initial_state.print_board())
-	if regex_next_page.search(cmd):
-		if page_index >= document.page_count() - 1:
-			Terminal.print(tr("DOCUMENT_END_OF_DOCUMENT"))
-		else:
-			turn_page(page_index + 1)
-		return
-	
-	if regex_prev_page.search(cmd):
-		if page_index <= 0:
-			Terminal.print(tr("DOCUMENT_BEGIN_OF_DOCUMENT"))
-		else:
-			turn_page(page_index - 1)
-		return
+func set_focus(_focus:int) -> void:
+	if _focus == 0:
+		$history/chessboard_flat.set_state(document.page_list[page_index].initial_state.duplicate())
+	elif _focus >= 1 && _focus <= document.page_list[page_index].history.size():
+		current_move = _focus - 1
+		$history/chessboard_flat.set_state(state_list[current_move])
+		Narrative.speak(document.page_list[page_index].history[current_move])
+
+func detail() -> void:
+	Narrative.speak($history/chessboard_flat.state.print_board())
+
+func focus_count() -> int:
+	return document.page_list[page_index].history.size() + 1

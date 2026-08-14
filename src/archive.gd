@@ -31,6 +31,7 @@ var current_button:Button = null
 @onready var regex_about:RegEx = RegEx.create_from_string("(?i:^\\s*about\\s*$)")
 @onready var regex_open:RegEx = RegEx.create_from_string("^\\s*(?i:open)\\s*(?P<file>\\S+)\\s*$")
 @onready var regex_close:RegEx = RegEx.create_from_string("(?i:^\\s*close\\s*$)")
+@onready var regex_list:RegEx = RegEx.create_from_string("(?i:^\\s*archive\\s*$)")
 
 func _ready() -> void:
 	visible = false
@@ -149,6 +150,9 @@ func on_command_received(cmd:String) -> void:
 	if regex_help.search(cmd):
 		open_help()
 		return
+	if regex_list.search(cmd):
+		update_list()
+		Terminal.print("\n".join(document_list))
 	if visible && regex_close.search(cmd):
 		close()
 		return

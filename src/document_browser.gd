@@ -12,6 +12,13 @@ var current_tool:int = 0
 var zoom_mapped:float = 1
 var zoom_local:float = 1
 var page:int = 0
+var focus:int = 0
+
+static var regex_info:RegEx = RegEx.create_from_string("(?i:^\\s*info\\s*$)")
+static var regex_next_focus:RegEx = RegEx.create_from_string("(?i:^\\s*(next\\s*focus)\\s*$)")
+static var regex_prev_focus:RegEx = RegEx.create_from_string("(?i:^\\s*(prev\\s*focus)\\s*$)")
+static var regex_next_page:RegEx = RegEx.create_from_string("(?i:^\\s*(next\\s*page)\\s*$)")
+static var regex_prev_page:RegEx = RegEx.create_from_string("(?i:^\\s*(prev\\s*page)\\s*$)")
 
 func _ready() -> void:
 	$margin_container_zoom/h_box_container/button_zoom_out.connect("pressed", change_zoom.bind(-0.1))
@@ -29,15 +36,15 @@ func _unhandled_input(event:InputEvent) -> void:
 	if !document_view || !visible:
 		return
 	if event.is_action_pressed("ui_up"):
-		document_view.press_direction(1)
+		set_focus(-1)
 	if event.is_action_pressed("ui_down"):
-		document_view.press_direction(3)
+		set_focus(1)
 	if event.is_action_pressed("ui_left"):
-		document_view.press_direction(0)
+		change_page(-1)
 	if event.is_action_pressed("ui_right"):
-		document_view.press_direction(2)
+		change_page(1)
 	if event.is_action_pressed("ui_accept"):
-		document_view.press_confirm()
+		document_view.detail()
 	if event.is_action_pressed("tab_right"):
 		change_page(1)
 	if event.is_action_pressed("tab_left"):
@@ -131,11 +138,31 @@ func set_current_tool(_current_tool:int) -> void:
 	current_tool = _current_tool
 
 func change_page(dir:int) -> void:
+	focus = 0
 	page += dir
 	page = clamp(page, 0, document_view.document.page_count() - 1)
 	document_view.turn_page(page)
 	$margin_container_page/h_box_container/label.text = "%d/%d" % [page + 1, document_view.document.page_count()]
 
+func set_focus(dir:int) -> void:
+	focus += dir
+	focus = clamp(focus, 0, document_view.focus_count() - 1)
+	document_view.set_focus(focus)
+
 func on_command_received(cmd:String) -> void:
-	if document_view:
-		document_view.on_command_received(cmd)
+	if !document_view:
+		return
+	if regex_next_focus.search(cmd):
+		set_focus(focus + 1)
+		return
+	if regex_prev_focus.search(cmd):
+		set_focus(focus - 1)
+		return
+	if regex_next_page.search(cmd):
+		change_page(1)
+		return
+	if regex_prev_page.search(cmd):
+		change_page(-1)
+		return
+	if regex_info.search(cmd):
+		document_view.detail()

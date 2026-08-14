@@ -33,11 +33,14 @@ func cancel_dragging() -> void:
 func erase(_drawing_position:Vector2) -> void:
 	pass
 
-func press_direction(_dir:int) -> void:
+func set_focus(_focus:int) -> void:
 	pass
 
-func press_confirm() -> void:
+func detail() -> void:
 	pass
+
+func focus_count() -> int:
+	return 0
 
 func new_page() -> void:
 	pass
