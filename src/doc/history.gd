@@ -3,10 +3,12 @@ class_name History
 
 class HistoryPage extends RefCounted:
 	var date:String = ""
+	var fen:String = ""
 	var event:String = ""
 	var white:String = ""
 	var black:String = ""
 	var recorder:String = ""
+	var result:String = ""
 	var state:State = null
 	var history:PackedStringArray = []
 	var initial_state:State = null
@@ -20,6 +22,7 @@ func parse(data:Dictionary) -> void:
 	for iter:Dictionary in data_arr:
 		var page:HistoryPage = HistoryPage.new()
 		var fen:String = iter["state"]
+		page.fen = fen
 		page.initial_state = Chess.parse(fen)
 		page.history_raw = iter["history"]
 		page.date = iter.get("date", "CHAR_UNKNOWN")
@@ -33,6 +36,7 @@ func parse(data:Dictionary) -> void:
 			page.history.push_back(Chess.get_move_name(test_state, move))
 			Chess.apply_move(test_state, move)
 		page.state = test_state
+		page.result = Chess.get_end_type(test_state)
 
 func dict() -> Dictionary:
 	var data:Dictionary = super.dict()

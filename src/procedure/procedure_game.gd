@@ -177,7 +177,7 @@ func state_ready_start(_arg:Dictionary) -> void:
 	if history_name:
 		history_document.new_page()
 		history_document.set_state(-1, chessboard.state)
-		history_document.set_sign(-1, Time.get_datetime_string_from_system(), name, tr(white_name), tr(black_name), tr(recorder_name))
+		history_document.set_sign(-1, Time.get_datetime_string_from_system(), name, white_name, black_name, recorder_name)
 	var end_type:String = Chess.get_end_type(chessboard.state)
 	if end_type != "":
 		state_machine.change_state.call_deferred("result")

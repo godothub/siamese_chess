@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/event_explore.gd" id="23_wetn8"]
 [ext_resource type="Script" uid="uid://c07j5dqfy7nsx" path="res://src/event/event_multi_actor.gd" id="24_bhm70"]
 [ext_resource type="Script" uid="uid://bbi6kjxerg3hk" path="res://src/event/event_teleport.gd" id="25_tljiy"]
+[ext_resource type="Script" uid="uid://dc4n8wl381mqw" path="res://src/event/event_document.gd" id="26_8dvou"]
 [ext_resource type="Script" uid="uid://ci1qj2blsa7gp" path="res://src/event/event_narrative.gd" id="26_vpnv2"]
 
 [sub_resource type="Environment" id="Environment_ywqhp"]
@@ -634,5 +635,21 @@ metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
 script = ExtResource("26_vpnv2")
 text = "tr(\"WELCOME_TO\").format({\"place\": tr(\"PLACE_BASEMENT\")})"
 metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
+
+[node name="event_document" type="Node3D" parent="." unique_id=33536932]
+transform = Transform3D(-0.95996666, 0, 0.28011376, 0, 1, 0, -0.28011376, 0, -0.95996666, -1, 0, -3)
+script = ExtResource("26_8dvou")
+file_path = "user://archive/printed.basement_record.json"
+file_content = {
+"notable": [{
+"lines": []
+}],
+"printed": [{
+"path": "res://assets/archive/basement_record.tscn"
+}]
+}
+bit = 2251799813685248
+selection = "DOCUMENT_TITLE_BASEMENT_RECORD"
+metadata/_custom_type_script = "uid://dc4n8wl381mqw"
 
 [editable path="hotel_door_large"]
