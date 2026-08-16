@@ -155,8 +155,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.8367022, 2.4194348)
 [node name="event_teleport" type="Node3D" parent="." unique_id=792511513]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
 script = ExtResource("14_g1ls7")
-to = "res://scene/level/basement.tscn"
-by = 4
+to = "res://scene/level/hallway_minus_1f.tscn"
+by = 48
 bit = 1152921504606846976
 metadata/_custom_type_script = "uid://bbi6kjxerg3hk"
 
