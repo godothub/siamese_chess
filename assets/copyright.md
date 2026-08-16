@@ -28,6 +28,14 @@
 
 许可：Free(?)
 
+### unifont
+
+文件：assets/fonts/unifont-16.0.04.cn.ttf
+
+版权：Daniel Roe
+
+许可：MIT
+
 ## 模型
 
 ### 涉及原创角色的模型
