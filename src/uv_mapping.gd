@@ -12,8 +12,8 @@ var _world_normals:Array[Vector3] = []
 var _world_vertices:Array = []
 var _local_face_vertices:Array = []
 
-func set_mesh(_mesh_instance:MeshInstance3D) -> void:
-	mesh = _mesh_instance.mesh
+func set_mesh(_mesh:Mesh) -> void:
+	mesh = _mesh
   
 	meshtool = MeshDataTool.new()
 	meshtool.create_from_surface(mesh, 0)  

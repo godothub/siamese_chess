@@ -36,6 +36,11 @@ transform = Transform3D(0.848446, -0.27651, 0.451312, -4.17995e-08, 0.852686, 0.
 [node name="cheshire" parent="." unique_id=2081135011 instance=ExtResource("1_pvi36")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0676162, 0, 0.0165617)
 
+[node name="ray_cast_3d" type="RayCast3D" parent="." unique_id=1329527052]
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="area_3d" type="Area3D" parent="." unique_id=239686190]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="area_3d" unique_id=970964240]

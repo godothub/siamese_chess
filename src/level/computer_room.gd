@@ -5,11 +5,14 @@ var signal_container:SignalContainer = SignalContainer.new()
 
 func _ready() -> void:
 	Ambient.change_environment_sound(load("res://assets/audio/546047__grcekh__analog-crt-tv-electronic-static-noise.wav"))
+	Player.add_inspectable_item($computer)
+	$computer.set_enabled(false)
 	super._ready()
 
 func interact_computer() -> void:
 	change_state("computer")
 	$chessboard.set_enabled(false)
+	$computer.set_enabled(true)
 	$event_explore/cheshire.visible = false
 	Player.force_set_camera($camera_computer)
 	computer_main()
@@ -17,6 +20,7 @@ func interact_computer() -> void:
 func interact_end() -> void:
 	signal_container.disconnect_all()
 	$chessboard.set_enabled(true)
+	$computer.set_enabled(false)
 	$event_explore/cheshire.visible = true
 	Player.force_set_camera($camera_3d)
 	change_state("")

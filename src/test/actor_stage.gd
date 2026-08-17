@@ -3,12 +3,18 @@ extends Node3D
 var stranger_queue:Array = []
 
 func _ready() -> void:
-	$area_3d.connect("input_event", input_event)
 	$timer.connect("timeout", create_stranger)
 
-func input_event(_camera:Camera3D, event:InputEvent, _event_position:Vector3, _normal:Vector3, _shape_idx:int) -> void:
+func _unhandled_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
-		$cheshire.move(_event_position)
+		var from:Vector3 = get_viewport().get_camera_3d().project_ray_origin(event.position)
+		var to:Vector3 = get_viewport().get_camera_3d().project_ray_normal(event.position) * 200
+		$ray_cast_3d.global_position = from
+		$ray_cast_3d.target_position = to
+		$ray_cast_3d.collision_mask = 3
+		$ray_cast_3d.force_raycast_update()
+		if $ray_cast_3d.is_colliding():
+			$cheshire.move($ray_cast_3d.get_collision_point())
 
 func create_stranger() -> void:
 	var instance:Actor = load("res://scene/actor/stranger.tscn").instantiate()

@@ -13,7 +13,7 @@ func _ready() -> void:
 	array_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, $mesh_instance.mesh.get_mesh_arrays())
 	$mesh_instance.mesh = array_mesh
 	uv_mapping = UVMapping.new()
-	uv_mapping.set_mesh($mesh_instance)
+	uv_mapping.set_mesh($mesh_instance.mesh)
 	super._ready()
 
 func input(_from:Node3D, _to:Area3D, _event:InputEvent, _event_position:Vector3, _normal:Vector3) -> void:
