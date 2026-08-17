@@ -3,58 +3,70 @@
 [ext_resource type="PackedScene" uid="uid://b435xrjtthrdn" path="res://assets/model/computer.glb" id="1_ty6n0"]
 [ext_resource type="Script" uid="uid://ccsi0pjo3mwqb" path="res://src/computer.gd" id="2_tdtlj"]
 [ext_resource type="FontFile" uid="uid://bijdunvpr6lor" path="res://assets/fonts/unifont_t-17.0.05_subset.ttf" id="3_tdtlj"]
+[ext_resource type="Shader" uid="uid://b1e7b2dcs7wfm" path="res://scene/crtvhs.gdshader" id="4_cxrug"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_tdtlj"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_cxrug"]
 viewport_path = NodePath("sub_viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxrug"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36qyv"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_tdtlj")
+albedo_texture = SubResource("ViewportTexture_cxrug")
 
-[sub_resource type="Gradient" id="Gradient_j3y3i"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ty6n0"]
-gradient = SubResource("Gradient_j3y3i")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3pel"]
+shader = ExtResource("4_cxrug")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.046000002185
+shader_parameter/sharpness = 0.6666667
+shader_parameter/color_offset = 0.0
+shader_parameter/mask_brightness = 0.0
+shader_parameter/scanline_brightness = 1.0
+shader_parameter/min_scanline_thickness = 0.5
+shader_parameter/aspect = 0.75
+shader_parameter/wobble_strength = 0.0
 
 [node name="computer" unique_id=2070028598 instance=ExtResource("1_ty6n0")]
 script = ExtResource("2_tdtlj")
 
-[node name="console" parent="." index="0" unique_id=1829814189]
-surface_material_override/1 = SubResource("StandardMaterial3D_cxrug")
+[node name="console" parent="." index="0" unique_id=139584759]
+surface_material_override/1 = SubResource("StandardMaterial3D_36qyv")
 
 [node name="sub_viewport" type="SubViewport" parent="." index="4" unique_id=1073327156]
 own_world_3d = true
-size = Vector2i(800, 600)
+size = Vector2i(640, 480)
 
-[node name="texture_rect" type="TextureRect" parent="sub_viewport" index="0" unique_id=1555871044]
+[node name="color_rect_black" type="ColorRect" parent="sub_viewport" index="0" unique_id=2093428181]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
-texture = SubResource("GradientTexture1D_ty6n0")
-expand_mode = 1
-stretch_mode = 1
+color = Color(0, 0, 0, 1)
 
-[node name="margin_container" type="MarginContainer" parent="sub_viewport/texture_rect" index="0" unique_id=2012452799]
+[node name="margin_container" type="MarginContainer" parent="sub_viewport/color_rect_black" index="0" unique_id=2012452799]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="rich_text_label" type="RichTextLabel" parent="sub_viewport/texture_rect/margin_container" index="0" unique_id=674930193]
+[node name="rich_text_label" type="RichTextLabel" parent="sub_viewport/color_rect_black/margin_container" index="0" unique_id=674930193]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_tdtlj")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 scroll_active = false
 scroll_following_visible_characters = true
+
+[node name="color_rect_shader" type="ColorRect" parent="sub_viewport" index="1" unique_id=1063210573]
+material = SubResource("ShaderMaterial_j3pel")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.2509804)

@@ -9,12 +9,14 @@ func _ready() -> void:
 
 func interact_computer() -> void:
 	change_state("computer")
+	$chessboard.set_enabled(false)
 	$event_explore/cheshire.visible = false
 	Player.force_set_camera($camera_computer)
 	computer_main()
 
 func interact_end() -> void:
 	signal_container.disconnect_all()
+	$chessboard.set_enabled(true)
 	$event_explore/cheshire.visible = true
 	Player.force_set_camera($camera_3d)
 	change_state("")
@@ -24,7 +26,8 @@ func computer_main() -> void:
 	signal_container.add_connection($procedure_decision_main.procedure_end, computer_main_end)
 	$computer.clear()
 	$computer.print(" ____  _                                \n/ ___|(_) __ _ _ __ ___   ___  ___  ___ \n\\___ \\| |/ _` | '_ ` _ \\ / _ \\/ __|/ _ \\\n ___) | | (_| | | | | | |  __/\\__ \\  __/\n|____/|_|\\__,_|_| |_| |_|\\___||___/\\___|\n / ___| |__   ___  ___ ___              \n| |   | '_ \\ / _ \\/ __/ __|             \n| |___| | | |  __/\\__ \\__ \\             \n \\____|_| |_|\\___||___/___/ _           \n / ___|___  _ __  ___  ___ | | ___      \n| |   / _ \\| '_ \\/ __|/ _ \\| |/ _ \\     \n| |__| (_) | | | \\__ \\ (_) | |  __/     \n \\____\\___/|_| |_|___/\\___/|_|\\___|     \n")
-	$computer.print("1." + tr("COMPUTER_ROOM_COMPUTER_STATISTICS") + " 2." + tr("COMPUTER_ROOM_COMPUTER_TEST") + " 3." + tr("COMPUTER_ROOM_COMPUTER_LOGIN"))
+	$computer.print("---------------------------------\n")
+	$computer.print(tr("COMPUTER_ROOM_COMPUTER_GREETING") + "\n")
 	$procedure_decision_main.start()
 
 func computer_main_end(result:String) -> void:
@@ -39,14 +42,16 @@ func computer_main_end(result:String) -> void:
 			interact_end()
 
 func computer_statistics() -> void:
-	pass
+	computer_main()
 
 func computer_test() -> void:
 	signal_container.disconnect_all()
 	signal_container.add_connection($procedure_decision_test.procedure_end, computer_test_decision_end)
 	$procedure_decision_test.start()
+	$computer.print(tr("COMPUTER_ROOM_COMPUTER_TEST_HINT") + "\n")
 
 func computer_test_decision_end(result:String) -> void:
+	signal_container.disconnect_all()
 	match result:
 		"COMPUTER_ROOM_COMPUTER_TEST_ACTOR_STAGE":
 			$computer.run_scene("res://scene/test/actor_stage.tscn")
@@ -62,3 +67,9 @@ func computer_test_decision_end(result:String) -> void:
 			$computer.run_scene("res://scene/test/online_speech_test.tscn")
 		_:
 			interact_end()
+	signal_container.add_connection(Dialog.on_next, computer_test_end.call_deferred)
+	Dialog.push_selection(["SELECTION_CANCEL"], "", false, false)
+
+func computer_test_end() -> void:
+	$computer.close_scene()
+	computer_main()
