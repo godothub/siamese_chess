@@ -16,13 +16,8 @@ func _ready() -> void:
 	super._ready()
 	history_document.set_filename("history.engine_play.json")
 	history_document.load_file()
-	Player.force_set_camera($camera_3d)
 	chessboard.set_enabled(true)
-	while !is_instance_valid(state):
-		var text_input_instance:TextInput = TextInput.create_text_input_instance("输入FEN格式的布局：", "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
-		add_child(text_input_instance)
-		await text_input_instance.confirmed
-		state = Chess.parse(text_input_instance.text)
+	state = Chess.parse("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 	initial_state = state.duplicate()
 	chessboard.set_state(state.duplicate())
 	chessboard.add_default_piece_set()
@@ -31,6 +26,7 @@ func _ready() -> void:
 	new_pastor.set_max_depth(20)
 	new_pastor.set_think_time(2)
 	play_match()
+	connect("tree_exiting", on_tree_exiting)
 
 func play_match() -> void:
 	while true:
@@ -140,3 +136,15 @@ func reset() -> void:
 	chessboard.set_state(initial_state)
 	chessboard.remove_piece_set()
 	chessboard.add_default_piece_set()
+
+func on_tree_exiting() -> void:
+	if white_engine && white_engine.is_searching():
+		white_engine.search_finished.connect(func() -> void:
+			white_engine.free()
+		)
+		white_engine.stop_search()
+	if black_engine && black_engine.is_searching():
+		black_engine.search_finished.connect(func() -> void:
+			black_engine.free()
+		)
+		black_engine.stop_search()
