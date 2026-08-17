@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://bdf3to583wfus"]
 
 [ext_resource type="PackedScene" uid="uid://b435xrjtthrdn" path="res://assets/model/computer.glb" id="1_ty6n0"]
-[ext_resource type="FontFile" uid="uid://c03cgemm68kpd" path="res://assets/fonts/unifont-16.0.04.cn.ttf" id="2_q4rav"]
 [ext_resource type="Script" uid="uid://ccsi0pjo3mwqb" path="res://src/computer.gd" id="2_tdtlj"]
+[ext_resource type="FontFile" uid="uid://bijdunvpr6lor" path="res://assets/fonts/unifont_t-17.0.05_subset.ttf" id="3_tdtlj"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_su1vk"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_tdtlj"]
 viewport_path = NodePath("sub_viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7eka5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxrug"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_su1vk")
+albedo_texture = SubResource("ViewportTexture_tdtlj")
 
 [sub_resource type="Gradient" id="Gradient_j3y3i"]
 offsets = PackedFloat32Array(0)
@@ -21,10 +21,11 @@ gradient = SubResource("Gradient_j3y3i")
 [node name="computer" unique_id=2070028598 instance=ExtResource("1_ty6n0")]
 script = ExtResource("2_tdtlj")
 
-[node name="console" parent="." index="0" unique_id=566525448]
-surface_material_override/1 = SubResource("StandardMaterial3D_7eka5")
+[node name="console" parent="." index="0" unique_id=1829814189]
+surface_material_override/1 = SubResource("StandardMaterial3D_cxrug")
 
 [node name="sub_viewport" type="SubViewport" parent="." index="4" unique_id=1073327156]
+own_world_3d = true
 size = Vector2i(800, 600)
 
 [node name="texture_rect" type="TextureRect" parent="sub_viewport" index="0" unique_id=1555871044]
@@ -52,9 +53,8 @@ theme_override_constants/margin_bottom = 50
 
 [node name="rich_text_label" type="RichTextLabel" parent="sub_viewport/texture_rect/margin_container" index="0" unique_id=674930193]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_q4rav")
+theme_override_fonts/normal_font = ExtResource("3_tdtlj")
 theme_override_font_sizes/normal_font_size = 30
-theme_override_font_sizes/mono_font_size = 30
 bbcode_enabled = true
 scroll_active = false
 scroll_following_visible_characters = true

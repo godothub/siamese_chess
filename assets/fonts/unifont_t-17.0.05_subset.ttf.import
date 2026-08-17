@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c03cgemm68kpd"
-path="res://.godot/imported/unifont-16.0.04.cn.ttf-ce600ca402f1e3440dff802b7b97e572.fontdata"
+uid="uid://bijdunvpr6lor"
+path="res://.godot/imported/unifont_t-17.0.05_subset.ttf-431f2f231ab1e5034d820fd10181e220.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/unifont-16.0.04.cn.ttf"
-dest_files=["res://.godot/imported/unifont-16.0.04.cn.ttf-ce600ca402f1e3440dff802b7b97e572.fontdata"]
+source_file="res://assets/fonts/unifont_t-17.0.05_subset.ttf"
+dest_files=["res://.godot/imported/unifont_t-17.0.05_subset.ttf-431f2f231ab1e5034d820fd10181e220.fontdata"]
 
 [params]
 
