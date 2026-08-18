@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://baosxe1urv0fi" path="res://src/test/multiplayer_test.gd" id="1_uvkj0"]
 [ext_resource type="PackedScene" uid="uid://dwvyc2qlcdag0" path="res://scene/chessboard_large.tscn" id="3_wlho1"]
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="5_uvkj0"]
-[ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/event_entrance.gd" id="6_wlho1"]
+[ext_resource type="PackedScene" uid="uid://bjdbj6ulswxgl" path="res://scene/actor/cheshire.tscn" id="6_sw4ef"]
 [ext_resource type="Script" uid="uid://c1ksy6uwt4vl6" path="res://src/event/event_explore.gd" id="7_sw4ef"]
-[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="8_uvkj0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8u0jj"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -44,6 +43,11 @@ environment = SubResource("Environment_46dhi")
 
 [node name="chessboard" parent="." unique_id=1937646692 instance=ExtResource("3_wlho1")]
 metadata/_edit_lock_ = true
+
+[node name="ray_cast_3d" type="RayCast3D" parent="." unique_id=1006292220]
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="camera" type="Camera3D" parent="." unique_id=1612927449]
 transform = Transform3D(-1, 7.5710346e-08, -4.3711385e-08, 0, 0.49999997, 0.86602545, 8.742278e-08, 0.86602545, -0.49999997, 0, 8.28637, -7.5226173)
@@ -560,21 +564,13 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -8.4
 [node name="multi_mesh_instance_3d" type="MultiMeshInstance3D" parent="bookshelves" unique_id=1982781397]
 multimesh = SubResource("MultiMesh_t2l86")
 
-[node name="event_entrance" type="Node3D" parent="." unique_id=903551894]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
-script = ExtResource("6_wlho1")
-metadata/_custom_type_script = "uid://bsbhmxre68ncc"
-
-[node name="event_explore" type="Node3D" parent="." unique_id=564774248 node_paths=PackedStringArray("chessboard")]
+[node name="event_explore" type="Node3D" parent="." unique_id=564774248 node_paths=PackedStringArray("chessboard", "instance")]
 script = ExtResource("7_sw4ef")
 chessboard = NodePath("../chessboard")
+instance = NodePath("cheshire")
 metadata/_custom_type_script = "uid://c1ksy6uwt4vl6"
 
-[node name="event_camera" type="Node3D" parent="." unique_id=1528268728 node_paths=PackedStringArray("camera")]
-script = ExtResource("8_uvkj0")
-camera = NodePath("../camera")
-bit = -1
-metadata/_custom_type_script = "uid://b5f46bgwa3pux"
+[node name="cheshire" parent="event_explore" unique_id=1598402161 instance=ExtResource("6_sw4ef")]
 
 [node name="http_request_move" type="HTTPRequest" parent="." unique_id=434616340]
 
