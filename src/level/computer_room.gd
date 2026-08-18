@@ -59,13 +59,17 @@ func computer_test() -> void:
 	$procedure_decision_test.start()
 	$computer.print(tr("COMPUTER_ROOM_COMPUTER_TEST_HINT") + "\n")
 
+var assigned_key:Array = []
 func computer_test_decision_end(result:String) -> void:
 	signal_container.disconnect_all()
+	assigned_key = []
 	match result:
 		"COMPUTER_ROOM_COMPUTER_TEST_ACTOR_STAGE":
 			$computer.run_scene("res://scene/test/actor_stage.tscn")
 		"COMPUTER_ROOM_COMPUTER_TEST_DECORATE_TEST":
 			$computer.run_scene("res://scene/test/decorate_test.tscn")
+			assigned_key.push_back("SELECTION_ROTATE_ITEM")
+			assigned_key.push_back("SELECTION_NEXT_ITEM")
 		"COMPUTER_ROOM_COMPUTER_TEST_ENGINE_PLAY":
 			$computer.run_scene("res://scene/test/engine_play.tscn")
 		"COMPUTER_ROOM_COMPUTER_TEST_LICHESS_PUZZLE_TEST":
@@ -76,8 +80,22 @@ func computer_test_decision_end(result:String) -> void:
 			$computer.run_scene("res://scene/test/online_speech_test.tscn")
 		_:
 			interact_end()
-	signal_container.add_connection(Dialog.on_next, computer_test_end.call_deferred)
-	Dialog.push_selection(["SELECTION_CANCEL"], "", false, false)
+	signal_container.add_connection(Dialog.on_select, on_test_selection.call_deferred)
+	assigned_key.push_back("SELECTION_CANCEL")
+	Dialog.push_selection(assigned_key, "", false, false)
+
+func on_test_selection(selected:String) -> void:
+	match selected:
+		"SELECTION_CANCEL":
+			computer_test_end()
+			return
+		"SELECTION_ROTATE_ITEM":
+			$computer.button_input("tab_left", true)
+			$computer.button_input("tab_left", false)
+		"SELECTION_NEXT_ITEM":
+			$computer.button_input("tab_right", true)
+			$computer.button_input("tab_right", false)
+	Dialog.push_selection(assigned_key, "", false, false)
 
 func computer_test_end() -> void:
 	$computer.close_scene()

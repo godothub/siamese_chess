@@ -48,7 +48,6 @@ func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_p
 		event_position_2d.x *= region.x
 		event_position_2d.y *= region.y
 	last_event_position_2d = event_position_2d
-	
 
 	if _instant:
 		var event:InputEventMouseButton = InputEventMouseButton.new()
@@ -64,3 +63,10 @@ func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_p
 		event.position = event_position_2d
 		event.device = -1
 		$sub_viewport.push_input(event, true)
+
+func button_input(button:String, pressed:bool) -> bool:
+	var event:InputEventAction = InputEventAction.new()
+	event.action = button
+	event.pressed = pressed
+	$sub_viewport.push_input(event, true)
+	return true

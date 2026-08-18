@@ -77,6 +77,8 @@ SELECTION_BLACK_LONG_CASTLE_OFF,"黑方长易位（关）","Black long castle (O
 SELECTION_IMPORT_FEN,"导入FEN","Import FEN"
 SELECTION_FINISH,"完成","Finish"
 SELECTION_USE,"使用","Use"
+SELECTION_ROTATE_ITEM,"旋转物品","Rotate item"
+SELECTION_NEXT_ITEM,"切换物品","Next item"
 HINT_STATUS,"金钱：%d  赢局：%d","Cash: %d  Wins: %d"
 HINT_EXTRA_MOVE,"选择一个着法","Select a move."
 HINT_USE_PIECE,"选择一颗棋子","Select a piece."
