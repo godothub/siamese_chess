@@ -572,7 +572,12 @@ camera = NodePath("../camera")
 bit = -1
 metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
-[node name="marker_decorate" type="Node3D" parent="." unique_id=1395911076 node_paths=PackedStringArray("chessboard")]
+[node name="procedure_decorate" type="Node3D" parent="." unique_id=1395911076 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("6_io7ym")
 chessboard = NodePath("../chessboard")
 metadata/_custom_type_script = "uid://y6xks0tymhp5"
+
+[node name="ray_cast_3d" type="RayCast3D" parent="." unique_id=105257851]
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false

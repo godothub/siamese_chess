@@ -17,7 +17,6 @@ func _ready() -> void:
 		file_name = dir.get_next()
 	state_machine.add_state("decorate", state_ready_decorate, Callable(), Callable(), state_input_decorate)
 	state_machine.add_state("stop", state_ready_stop)
-	Player.state_machine.change_state("pointer")
 
 func start() -> void:
 	state_machine.change_state("decorate")
@@ -38,21 +37,20 @@ func create_model_collision(instance:Node3D) -> void:
 			iter.create_convex_collision()
 
 func state_ready_decorate(_arg:Dictionary) -> void:
-	state_machine.state_signal_connect(Player.pointer_move, func (world_position:Vector3, _normal:Vector3) -> void:
+	state_machine.state_signal_connect(chessboard.hovered, func (selected:int) -> void:
 		if !current_model_instance:
 			return
-		current_model_instance.global_position = world_position
+		current_model_instance.global_position = chessboard.x88_to_vector3(selected)
 	)
-	state_machine.state_signal_connect(Player.pointer_click, func (world_position:Vector3, _normal:Vector3) -> void:
+	state_machine.state_signal_connect(chessboard.click_empty, func (selected:int) -> void:
 		if !current_model_instance:
 			return
-		create_model_collision(current_model_instance)
-		current_model_instance.global_position = world_position
+		current_model_instance.global_position = chessboard.x88_to_vector3(selected)
 		if !(current_model_index in range(0, available_model.size())):
 			return
 		current_model_instance = available_model[current_model_index].instantiate()
 		chessboard.add_child(current_model_instance)
-		current_model_instance.global_position = world_position
+		current_model_instance.global_position = chessboard.x88_to_vector3(selected)
 	)
 
 func state_input_decorate(event:InputEvent) -> void:
