@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dtu3l0xkrwcvx" path="res://assets/model/bookshelf.glb" id="5_hbp3u"]
 [ext_resource type="Script" uid="uid://bsbhmxre68ncc" path="res://src/event/event_entrance.gd" id="6_1gbfv"]
 [ext_resource type="Script" uid="uid://y6xks0tymhp5" path="res://src/procedure/procedure_decorate.gd" id="6_io7ym"]
-[ext_resource type="Script" uid="uid://b5f46bgwa3pux" path="res://src/event/event_camera.gd" id="8_kojda"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dj6d0"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -565,12 +564,6 @@ multimesh = SubResource("MultiMesh_tvp6u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
 script = ExtResource("6_1gbfv")
 metadata/_custom_type_script = "uid://bsbhmxre68ncc"
-
-[node name="event_camera" type="Node3D" parent="." unique_id=98979970 node_paths=PackedStringArray("camera")]
-script = ExtResource("8_kojda")
-camera = NodePath("../camera")
-bit = -1
-metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 
 [node name="procedure_decorate" type="Node3D" parent="." unique_id=1395911076 node_paths=PackedStringArray("chessboard")]
 script = ExtResource("6_io7ym")
