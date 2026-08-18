@@ -193,4 +193,4 @@ selection = ["COMPUTER_ROOM_COMPUTER_TEST_ACTOR_STAGE", "COMPUTER_ROOM_COMPUTER_
 metadata/_custom_type_script = "uid://dg2slo01f4hvf"
 
 [node name="camera_computer" type="Camera3D" parent="." unique_id=1404713627]
-transform = Transform3D(1, 0, 0, 0, 0.9563048, 0.2923717, 0, -0.2923717, 0.9563048, 1, 1.26, 3.039)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.226, 2.776)
