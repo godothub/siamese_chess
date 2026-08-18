@@ -9,6 +9,7 @@ func _ready() -> void:
 	super._ready()
 	region = $sub_viewport.size
 	uv_mapping.set_mesh($console_touch.mesh)
+	set_process_unhandled_input(false)
 	clear()
 
 func print(text:String) -> void:
@@ -22,11 +23,17 @@ func run_scene(path:String) -> void:
 	scene_instance = instance
 	$sub_viewport.add_child(instance, false, Node.INTERNAL_MODE_FRONT)
 	$sub_viewport/color_rect_black.hide()
+	set_process_unhandled_input(true)
 
 func close_scene() -> void:
 	scene_instance.queue_free()
 	scene_instance = null
 	$sub_viewport/color_rect_black.show()
+	set_process_unhandled_input(false)
+
+func _unhandled_input(event:InputEvent) -> void:
+	if event is InputEventKey:
+		$sub_viewport.push_input(event)
 
 func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_position:Vector3, _normal:Vector3) -> void:
 	var event_position_3d:Vector3 = $console_touch.global_transform.affine_inverse() * _event_position
