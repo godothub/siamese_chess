@@ -46,6 +46,11 @@ func computer_main_end(result:String) -> void:
 			interact_end()
 
 func computer_statistics() -> void:
+	$computer.print(tr("COMPUTER_ROOM_COMPUTER_STATISTICS_PRINT") % {
+		"match_count": Progress.get_value("match_count", 0),
+		"wins": Progress.get_value("match_wins", 0),
+		"play_time": "%d:%d" % [Progress.get_value("play_time", 0) / 3600, Progress.get_value("play_time", 0) / 60]
+	})
 	computer_main()
 
 func computer_test() -> void:

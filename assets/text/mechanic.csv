@@ -171,6 +171,7 @@ COMPUTER_ROOM_COMPUTER_GREETING,"您好！请问有什么需要帮忙？","Hello
 COMPUTER_ROOM_COMPUTER_STATISTICS,"统计","Statistics"
 COMPUTER_ROOM_COMPUTER_TEST,"测试","Test"
 COMPUTER_ROOM_COMPUTER_LOGIN,"登录","Login"
+COMPUTER_ROOM_COMPUTER_STATISTICS_PRINT,"对局数：{match_count}\n获胜：{wins}\n游玩时长：{play_time}\n","Matchs: {match_count}\nWins: {wins}\nPlay time:{play_time}\n"
 COMPUTER_ROOM_COMPUTER_TEST_HINT,"请选择想要测试的项目","Please select the scene what you want."
 COMPUTER_ROOM_COMPUTER_TEST_ACTOR_STAGE,"Actor测试","Actor test"
 COMPUTER_ROOM_COMPUTER_TEST_DECORATE_TEST,"装饰测试","Decorate test"
