@@ -57,9 +57,7 @@ func state_input_decorate(event:InputEvent) -> void:
 	if current_model_instance:
 		if event.is_action_pressed("tab_left"):
 			current_model_instance.rotation.y += PI / 2
-		if event.is_action_pressed("tab_right"):
-			current_model_instance.rotation.y -= PI / 2
-	if event.is_action_pressed("select"):
+	if event.is_action_pressed("tab_right"):
 		current_model_index = ((current_model_index + 1) + available_model.size()) % available_model.size()
 		change_model(current_model_index)
 
