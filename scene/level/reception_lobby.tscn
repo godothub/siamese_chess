@@ -204,7 +204,7 @@ metadata/_custom_type_script = "uid://b5f46bgwa3pux"
 [node name="event_bit_wall_file" type="Node3D" parent="." unique_id=774183538]
 script = ExtResource("10_h67uj")
 piece = 45
-bit = 827854946304
+bit = 36169534557847552
 metadata/_custom_type_script = "uid://chtqhpiu556i1"
 
 [node name="event_bit_wall_rank" type="Node3D" parent="." unique_id=918927078]
@@ -215,7 +215,7 @@ metadata/_custom_type_script = "uid://chtqhpiu556i1"
 [node name="event_bit_wall_diag" type="Node3D" parent="." unique_id=1555054300]
 script = ExtResource("10_h67uj")
 piece = 43
-bit = 413927473152
+bit = 18084767304187904
 metadata/_custom_type_script = "uid://chtqhpiu556i1"
 
 [node name="event_multi_actor" type="Node3D" parent="." unique_id=1533712868]
