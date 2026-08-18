@@ -26,7 +26,8 @@ func run_scene(path:String) -> void:
 	set_process_unhandled_input(true)
 
 func close_scene() -> void:
-	scene_instance.queue_free()
+	if scene_instance:
+		scene_instance.queue_free()
 	scene_instance = null
 	$sub_viewport/color_rect_black.show()
 	set_process_unhandled_input(false)
@@ -48,27 +49,18 @@ func area_input(_from:Node3D, _to:Area3D, _instant:bool, _pressed:bool, _event_p
 		event_position_2d.y *= region.y
 	last_event_position_2d = event_position_2d
 	
-	if _pressed:
-		if _instant:
-			var event:InputEventMouseButton = InputEventMouseButton.new()
-			event.button_index = MOUSE_BUTTON_LEFT
-			event.button_mask = MOUSE_BUTTON_MASK_LEFT
-			event.pressed = true
-			event.position = event_position_2d
-			event.device = -1
-			$sub_viewport.push_input(event, true)
-		else:
-			var event:InputEventMouseMotion = InputEventMouseMotion.new()
-			event.button_mask = MOUSE_BUTTON_MASK_LEFT
-			event.position = event_position_2d
-			event.device = -1
-			$sub_viewport.push_input(event, true)
+
+	if _instant:
+		var event:InputEventMouseButton = InputEventMouseButton.new()
+		event.button_index = MOUSE_BUTTON_LEFT
+		event.button_mask = MOUSE_BUTTON_MASK_LEFT
+		event.pressed = _pressed
+		event.position = event_position_2d
+		event.device = -1
+		$sub_viewport.push_input(event, true)
 	else:
-		if _instant:
-			var event:InputEventMouseButton = InputEventMouseButton.new()
-			event.button_index = MOUSE_BUTTON_LEFT
-			event.button_mask = MOUSE_BUTTON_MASK_LEFT
-			event.pressed = false
-			event.position = event_position_2d
-			event.device = -1
-			$sub_viewport.push_input(event, true)
+		var event:InputEventMouseMotion = InputEventMouseMotion.new()
+		event.button_mask = MOUSE_BUTTON_MASK_LEFT if _pressed else 0
+		event.position = event_position_2d
+		event.device = -1
+		$sub_viewport.push_input(event, true)
