@@ -30,6 +30,8 @@ func draw() -> void:
 	var empty_texture:Texture2D = ImageTexture.create_from_image(empty_image)
 	for i:int in 64:
 		item_list.add_icon_item(empty_texture, false)
+	if !state:
+		return
 	var piece_position:PackedInt32Array = state.get_all_pieces()
 	for by:int in piece_position:
 		var by_piece:int = state.get_piece(by)
