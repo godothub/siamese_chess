@@ -20,7 +20,6 @@ func _ready() -> void:
 
 	var state:State = State.new()
 	chessboard.set_state(state)
-	Player.add_inspectable_item(chessboard)
 	var dfs_stack:Array = [self]
 	while dfs_stack.size():
 		var iter:Node = dfs_stack.pop_back()
