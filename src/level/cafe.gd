@@ -1,14 +1,11 @@
 extends Level
 
-@onready var standard_history_document:Document = load("res://src/doc/history.gd").new()
 @onready var standard_chessboard:Chessboard = $table_0/chessboard_standard
 
 var signal_container:SignalContainer = SignalContainer.new()
 
 func _ready() -> void:
 	super._ready()
-	standard_history_document.set_filename("history.match_with_yulan.json")
-	standard_history_document.load_file()
 	Ambient.change_environment_sound(load("res://assets/audio/52645__kstein1__white-noise.wav"))
 	
 	standard_chessboard.set_enabled(false)
