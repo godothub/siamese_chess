@@ -11,6 +11,7 @@ viewport_path = NodePath("sub_viewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36qyv"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_cxrug")
+roughness = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j3pel"]
 shader = ExtResource("4_cxrug")
@@ -30,7 +31,7 @@ data = PackedVector3Array(-0.145, 0.38619998, 0.0643, -0.20359999, 0.4382, 0.056
 [node name="computer" unique_id=2070028598 instance=ExtResource("1_ty6n0")]
 script = ExtResource("2_tdtlj")
 
-[node name="console" parent="." index="0" unique_id=517656915]
+[node name="console" parent="." index="0" unique_id=1852027719]
 surface_material_override/1 = SubResource("StandardMaterial3D_36qyv")
 
 [node name="sub_viewport" type="SubViewport" parent="." index="4" unique_id=1073327156]
@@ -75,7 +76,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0.2509804)
 
-[node name="console_touch" parent="." index="5" unique_id=330276390]
+[node name="console_touch" parent="." index="5" unique_id=1683194493]
 visible = false
 
 [node name="area_3d" type="Area3D" parent="." index="6" unique_id=627241084]
