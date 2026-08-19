@@ -102,10 +102,15 @@ func edit_end(_result:String) -> void:
 func game_end(_result:String) -> void:
 	signal_container.disconnect_all()
 	signal_container.add_connection(Dialog.on_next, interact_pastor_end)
+	Progress.accumulate("match_count", 1)
 	match _result:
 		"checkmate_black":
+			if $procedure_game.player_group == 1:
+				Progress.accumulate("match_wins", 1)
 			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "CHAR_YULAN", true, true)
 		"checkmate_white":
+			if $procedure_game.player_group == 0:
+				Progress.accumulate("match_wins", 1)
 			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "CHAR_YULAN", true, true)
 		"stalemate_black":
 			Dialog.push_dialog("HINT_DRAW", "CHAR_YULAN", true, true)

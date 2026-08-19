@@ -103,10 +103,15 @@ func blindfold_game_end(_result:String) -> void:
 		interact_carnation_end()
 		return
 	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
+	Progress.accumulate("match_count", 1)
 	match _result:
 		"checkmate_black":
+			if $procedure_game.player_group == 1:
+				Progress.accumulate("match_wins", 1)
 			Dialog.push_dialog("HINT_BLACK_CHECKMATE", "CHAR_CARNATION", true, true)
 		"checkmate_white":
+			if $procedure_game.player_group == 0:
+				Progress.accumulate("match_wins", 1)
 			Dialog.push_dialog("HINT_WHITE_CHECKMATE", "CHAR_CARNATION", true, true)
 		"stalemate_black":
 			Dialog.push_dialog("HINT_DRAW", "CHAR_CARNATION", true, true)

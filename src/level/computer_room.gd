@@ -15,6 +15,8 @@ func interact_computer() -> void:
 	$computer.set_enabled(true)
 	$event_explore/cheshire.visible = false
 	Player.force_set_camera($camera_computer)
+	$computer.clear()
+	$computer.print(" ____  _                                \n/ ___|(_) __ _ _ __ ___   ___  ___  ___ \n\\___ \\| |/ _` | '_ ` _ \\ / _ \\/ __|/ _ \\\n ___) | | (_| | | | | | |  __/\\__ \\  __/\n|____/|_|\\__,_|_| |_| |_|\\___||___/\\___|\n / ___| |__   ___  ___ ___              \n| |   | '_ \\ / _ \\/ __/ __|             \n| |___| | | |  __/\\__ \\__ \\             \n \\____|_| |_|\\___||___/___/ _           \n / ___|___  _ __  ___  ___ | | ___      \n| |   / _ \\| '_ \\/ __|/ _ \\| |/ _ \\     \n| |__| (_) | | | \\__ \\ (_) | |  __/     \n \\____\\___/|_| |_|___/\\___/|_|\\___|     \n")
 	computer_main()
 
 func interact_end() -> void:
@@ -28,8 +30,6 @@ func interact_end() -> void:
 func computer_main() -> void:
 	signal_container.disconnect_all()
 	signal_container.add_connection($procedure_decision_main.procedure_end, computer_main_end)
-	$computer.clear()
-	$computer.print(" ____  _                                \n/ ___|(_) __ _ _ __ ___   ___  ___  ___ \n\\___ \\| |/ _` | '_ ` _ \\ / _ \\/ __|/ _ \\\n ___) | | (_| | | | | | |  __/\\__ \\  __/\n|____/|_|\\__,_|_| |_| |_|\\___||___/\\___|\n / ___| |__   ___  ___ ___              \n| |   | '_ \\ / _ \\/ __/ __|             \n| |___| | | |  __/\\__ \\__ \\             \n \\____|_| |_|\\___||___/___/ _           \n / ___|___  _ __  ___  ___ | | ___      \n| |   / _ \\| '_ \\/ __|/ _ \\| |/ _ \\     \n| |__| (_) | | | \\__ \\ (_) | |  __/     \n \\____\\___/|_| |_|___/\\___/|_|\\___|     \n")
 	$computer.print("---------------------------------\n")
 	$computer.print(tr("COMPUTER_ROOM_COMPUTER_GREETING") + "\n")
 	$procedure_decision_main.start()
@@ -40,17 +40,15 @@ func computer_main_end(result:String) -> void:
 			computer_statistics()
 		"COMPUTER_ROOM_COMPUTER_TEST":
 			computer_test()
-		"COMPUTER_ROOM_COMPUTER_LOGIN":
-			pass
 		_:
 			interact_end()
 
 func computer_statistics() -> void:
-	$computer.print(tr("COMPUTER_ROOM_COMPUTER_STATISTICS_PRINT") % {
+	$computer.print(tr("COMPUTER_ROOM_COMPUTER_STATISTICS_PRINT").format({
 		"match_count": Progress.get_value("match_count", 0),
 		"wins": Progress.get_value("match_wins", 0),
-		"play_time": "%d:%d" % [Progress.get_value("play_time", 0) / 3600, Progress.get_value("play_time", 0) / 60]
-	})
+		"play_time": "%02d:%02d" % [int(Progress.get_value("play_time", 0) / 3600), int(Progress.get_value("play_time", 0) / 60)]
+	}))
 	computer_main()
 
 func computer_test() -> void:

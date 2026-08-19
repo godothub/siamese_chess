@@ -183,7 +183,7 @@ metadata/_custom_type_script = "uid://ci1qj2blsa7gp"
 [node name="procedure_decision_main" type="Node3D" parent="." unique_id=2084795789]
 script = ExtResource("17_qc6l7")
 cancelable = true
-selection = ["COMPUTER_ROOM_COMPUTER_STATISTICS", "COMPUTER_ROOM_COMPUTER_TEST", "COMPUTER_ROOM_COMPUTER_LOGIN"]
+selection = ["COMPUTER_ROOM_COMPUTER_STATISTICS", "COMPUTER_ROOM_COMPUTER_TEST"]
 metadata/_custom_type_script = "uid://dg2slo01f4hvf"
 
 [node name="procedure_decision_test" type="Node3D" parent="." unique_id=413179710]

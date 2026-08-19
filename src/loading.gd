@@ -3,6 +3,7 @@ extends CanvasLayer
 var current:Node = null
 var path:String = ""
 var is_changing:bool = false
+var start_time:float = 0
 
 @onready var regex_teleport:RegEx = RegEx.create_from_string("^\\s*(?i:teleport|tele)\\s+(?P<path>\\S+)$")
 
@@ -19,8 +20,12 @@ func reset_scene() -> void:
 
 func change_scene(_path:String, wait_time:float = 0.3) -> void:
 	is_changing = true
+	if start_time != 0:
+		var time_diff:float = Time.get_unix_time_from_system() - start_time
+		Progress.accumulate("play_time", time_diff)
 	Progress.set_value("current_level", _path)
 	Progress.save_file()
+	start_time = Time.get_unix_time_from_system()
 	path = _path
 	var tween:Tween = create_tween()
 	tween.tween_property($texture_rect, "visible", true, 0)
