@@ -169,6 +169,9 @@ func position_practice_start() -> void:
 func position_practice_end() -> void:
 	signal_container.disconnect_all()
 	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
+	var last_score:int = Progress.get_value("position_practice_score", 0)
+	if last_score == 0 || score > last_score:
+		Progress.set_value("position_practice_score", score)
 	Dialog.push_dialog(tr("CARNATION_TALK_DEMO_POSITIONING_RESULT").format({"score": score}), "CHAR_CARNATION", true, true, false)
 
 func memory_practice(_result:String = "") -> void:
@@ -178,6 +181,7 @@ func memory_practice(_result:String = "") -> void:
 
 var memory_state:State = null
 var memory_answer:String = ""
+var memory_difficulty:int = 0
 
 func memory_practice_decision_end(_result:String) -> void:
 	signal_container.disconnect_all()
@@ -185,10 +189,13 @@ func memory_practice_decision_end(_result:String) -> void:
 	match _result:
 		"CARNATION_TALK_DEMO_MEMORIZING_EASY":
 			memory_state = Chess.create_random_state(3)
+			memory_difficulty = 3
 		"CARNATION_TALK_DEMO_MEMORIZING_MEDIUM":
 			memory_state = Chess.create_random_state(6)
+			memory_difficulty = 6
 		"CARNATION_TALK_DEMO_MEMORIZING_HARD":
 			memory_state = Chess.create_random_state(10)
+			memory_difficulty = 10
 		"CARNATION_TALK_DEMO_HOW_TO_PLAY":
 			signal_container.add_connection($procedure_dialog_memorize_help.procedure_end, memory_practice)
 			$procedure_dialog_memorize_help.start()
@@ -219,8 +226,11 @@ func memory_practice_result(_result:String) -> void:
 	standard_chessboard.set_state(memory_state)
 	standard_chessboard.add_default_piece_set()
 	signal_container.add_connection(Dialog.on_next, interact_carnation_end)
+	var last_score:int = Progress.get_value("memory_practice_practice_score", 0)
 	if _result.split(" ")[0] == memory_answer:
 		Dialog.push_dialog(tr("CARNATION_TALK_DEMO_MEMORIZING_CORRECT"), "CHAR_CARNATION", true, true, false)
+		if last_score == 0 || memory_difficulty > last_score:
+			Progress.set_value("memory_practice_practice_score", memory_difficulty)
 	else:
 		Dialog.push_dialog(tr("CARNATION_TALK_DEMO_MEMORIZING_INCORRECT"), "CHAR_CARNATION", true, true, false)
 

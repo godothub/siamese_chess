@@ -15,7 +15,7 @@ var pawn_carnation:bool = false
 var two_bishop_carnation:bool = false
 var bishop_knight_carnation:bool = false
 var memory_carnation:int = 0
-var position_carnation:float = false
+var position_carnation:int = 0
 
 func _ready() -> void:
 	find_document()
@@ -35,7 +35,7 @@ func _ready() -> void:
 		"two_bishop_carnation": "√" if two_bishop_carnation else "",
 		"bishop_knight_carnation": "√" if bishop_knight_carnation else "",
 		"memory_carnation": "%d" % memory_carnation,
-		"position_carnation": "%f" % position_carnation
+		"position_carnation": "%d" % position_carnation
 	})
 
 func find_document() -> void:
@@ -79,3 +79,5 @@ func find_document() -> void:
 				two_bishop_carnation = true
 			if page.fen.begins_with("4k3/8/8/8/8/8/8/4KBN1 w") && page.white == "CHAR_LOTUS" && page.result == "checkmate_white":
 				bishop_knight_carnation = true
+	position_carnation = Progress.get_value("position_practice_score", 0)
+	memory_carnation = Progress.get_value("memory_practice_score", 0)
