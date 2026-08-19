@@ -298,7 +298,7 @@ func finger_on_position(position_name:String) -> void:
 			$audio_stream_player_tok.play()
 		Input.vibrate_handheld(50, 0.2)
 		Narrative.speak(Localization.position_name_to_pronounce(position_name), true)
-		if state.has_piece(Chess.name_to_x88(position_name)):
+		if state && state.has_piece(Chess.name_to_x88(position_name)):
 			var piece:int = state.get_piece(Chess.name_to_x88(position_name))
 			Narrative.speak(Localization.piece_to_pronounce(piece), false)
 		hovered.emit(by)
